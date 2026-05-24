@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import Eyebrow from "@/components/Eyebrow";
+import { ChevronDown } from "lucide-react";
 
 const CONTACT_EMAIL = "hello@shopdollhouse.co";
 const STUDIO_NAME = "The Dollhouse Brand Studio";
@@ -120,6 +121,8 @@ const AgreementForm = () => {
   const [signature, setSignature] = useState("");
   const [accepted, setAccepted] = useState(false);
   const [platformMenuOpen, setPlatformMenuOpen] = useState(false);
+  const [packageMenuOpen, setPackageMenuOpen] = useState(false);
+  const [contractLengthMenuOpen, setContractLengthMenuOpen] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
   const today = new Date().toLocaleDateString("en-US", {
@@ -375,11 +378,46 @@ ${notes || "None"}`;
           <StepHeader number="2" title="Package & Scope" />
           <label className="block">
             <span className={labelClass}>Selected Package</span>
-            <select value={selectedPackage} onChange={(e) => setSelectedPackage(e.target.value)} className={selectClass}>
-              {packages.map((pkg) => (
-                <option key={pkg} value={pkg} className="bg-[#C9A0A0] text-white">{pkg}</option>
-              ))}
-            </select>
+            <div className="relative mt-2">
+              <button
+                type="button"
+                onClick={() => setPackageMenuOpen((open) => !open)}
+                className="w-full border-0 border-b border-[#C4B5A5] bg-transparent px-0 py-3 text-left text-[14px] text-dollhouse-ink outline-none transition-colors focus:border-dollhouse-ink flex items-center justify-between"
+                aria-haspopup="listbox"
+                aria-expanded={packageMenuOpen}
+              >
+                {selectedPackage}
+                <ChevronDown size={16} className="text-dollhouse-text-light" />
+              </button>
+              {packageMenuOpen && (
+                <div
+                  role="listbox"
+                  className="absolute left-0 right-0 z-30 mt-2 overflow-hidden rounded-2xl border border-dollhouse-p3/20 bg-card shadow-[0_18px_45px_rgba(60,45,39,0.13)]"
+                >
+                  {packages.map((pkg) => {
+                    const isSelected = selectedPackage === pkg;
+
+                    return (
+                      <button
+                        key={pkg}
+                        type="button"
+                        role="option"
+                        aria-selected={isSelected}
+                        onClick={() => {
+                          setSelectedPackage(pkg);
+                          setPackageMenuOpen(false);
+                        }}
+                        className={`w-full px-4 py-3 text-left text-[14px] transition-colors ${
+                          isSelected ? "bg-[#C9A0A0] text-white" : "text-dollhouse-ink hover:bg-[#f7f1ec]"
+                        }`}
+                      >
+                        {pkg}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
             <span className="mt-3 block rounded-xl bg-[#f7f1ec] px-4 py-3 text-[12px] text-dollhouse-text-mid font-light leading-relaxed">
               {packageNote}
             </span>
@@ -387,11 +425,46 @@ ${notes || "None"}`;
 
           <label className="block">
             <span className={labelClass}>Contract Length</span>
-            <select value={contractLength} onChange={(e) => setContractLength(e.target.value)} className={selectClass}>
-              {contractLengths.map((length) => (
-                <option key={length} value={length} className="bg-[#C9A0A0] text-white">{length}</option>
-              ))}
-            </select>
+            <div className="relative mt-2">
+              <button
+                type="button"
+                onClick={() => setContractLengthMenuOpen((open) => !open)}
+                className="w-full border-0 border-b border-[#C4B5A5] bg-transparent px-0 py-3 text-left text-[14px] text-dollhouse-ink outline-none transition-colors focus:border-dollhouse-ink flex items-center justify-between"
+                aria-haspopup="listbox"
+                aria-expanded={contractLengthMenuOpen}
+              >
+                {contractLength}
+                <ChevronDown size={16} className="text-dollhouse-text-light" />
+              </button>
+              {contractLengthMenuOpen && (
+                <div
+                  role="listbox"
+                  className="absolute left-0 right-0 z-30 mt-2 overflow-hidden rounded-2xl border border-dollhouse-p3/20 bg-card shadow-[0_18px_45px_rgba(60,45,39,0.13)]"
+                >
+                  {contractLengths.map((length) => {
+                    const isSelected = contractLength === length;
+
+                    return (
+                      <button
+                        key={length}
+                        type="button"
+                        role="option"
+                        aria-selected={isSelected}
+                        onClick={() => {
+                          setContractLength(length);
+                          setContractLengthMenuOpen(false);
+                        }}
+                        className={`w-full px-4 py-3 text-left text-[14px] transition-colors ${
+                          isSelected ? "bg-[#C9A0A0] text-white" : "text-dollhouse-ink hover:bg-[#f7f1ec]"
+                        }`}
+                      >
+                        {length}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           </label>
 
           <div>
@@ -427,11 +500,12 @@ ${notes || "None"}`;
               <button
                 type="button"
                 onClick={() => setPlatformMenuOpen((open) => !open)}
-                className="w-full border-0 border-b border-[#C4B5A5] bg-transparent px-0 py-3 text-left text-[14px] text-dollhouse-ink outline-none transition-colors focus:border-dollhouse-ink"
+                className="w-full border-0 border-b border-[#C4B5A5] bg-transparent px-0 py-3 text-left text-[14px] text-dollhouse-ink outline-none transition-colors focus:border-dollhouse-ink flex items-center justify-between"
                 aria-haspopup="listbox"
                 aria-expanded={platformMenuOpen}
               >
                 {selectedPlatform}
+                <ChevronDown size={16} className="text-dollhouse-text-light" />
               </button>
               {platformMenuOpen && (
                 <div
