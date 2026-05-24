@@ -59,13 +59,25 @@ const LocalBusinessPortfolio = () => {
 
           <div className="flex-1 min-w-[280px]">
             <p className="text-[14px] text-dollhouse-text-mid font-light leading-relaxed mb-4">
-              I'm a Product Designer and brand strategist from the Greater Toronto Area — with 10+ years in graphic and product design, building brands for companies, creators, and entrepreneurs. My product design work has been recognized by BuzzFeed and HuffPost, and I've been in the design world long enough to know exactly what makes a brand stick.
+              My name is Mandy Fortune — a designer and social media strategist based in the Greater Toronto Area with over 12 years of experience in branding, visual design, and digital media.
             </p>
             <p className="text-[14px] text-dollhouse-text-mid font-light leading-relaxed mb-4">
-              I built The Dollhouse because I kept seeing the same problem: talented people with incredible ideas, stuck because their brand didn't match their vision.
+              I started The Dollhouse to help established local businesses finally show up online the way they deserve. You've built something real — a loyal customer base, a great reputation, a business that works. The problem is, if you're not on social media, new customers can't find you. That's where I come in.
             </p>
-            <p className="text-[13px] text-dollhouse-text-light font-light leading-relaxed">
-              A look at the design style behind the creative work. Ads, social content, merch, websites, and brand visuals all work better when the business looks polished first.
+            <p className="text-[14px] text-dollhouse-text-mid font-light leading-relaxed mb-4">
+              I handle everything — from setting up your pages to creating your content, running your ads, and reporting back to you — all without a single phone call. Everything is managed via email, on your schedule, with zero overwhelm on your end.
+            </p>
+            <p className="text-[14px] text-dollhouse-text-mid font-light leading-relaxed mb-4">
+              My design work has been featured by BuzzFeed and HuffPost, and I've collaborated with clients across retail, e-commerce, and lifestyle brands to deliver visual content that actually converts. I bring that same level of quality and strategy to every local business I work with.
+            </p>
+            <p className="text-[14px] text-dollhouse-text-mid font-light leading-relaxed mb-4">
+              If you're ready to stop being invisible online, I'd love to work with you.
+            </p>
+            <p className="text-[14px] text-dollhouse-ink font-medium leading-relaxed">
+              — Mandy
+            </p>
+            <p className="text-[13px] text-dollhouse-text-light font-light leading-relaxed mt-6">
+              A Little About Me
             </p>
           </div>
         </div>
