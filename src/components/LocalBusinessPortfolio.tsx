@@ -58,6 +58,9 @@ const LocalBusinessPortfolio = () => {
           </div>
 
           <div className="flex-1 min-w-[280px]">
+            <p className="text-[13px] text-dollhouse-text-light font-light leading-relaxed mb-3">
+              A Little About Me
+            </p>
             <p className="text-[14px] text-dollhouse-text-mid font-light leading-relaxed mb-4">
               My name is Mandy Fortune — a designer and social media strategist based in the Greater Toronto Area with over 12 years of experience in branding, visual design, and digital media.
             </p>
@@ -73,11 +76,8 @@ const LocalBusinessPortfolio = () => {
             <p className="text-[14px] text-dollhouse-text-mid font-light leading-relaxed mb-4">
               If you're ready to stop being invisible online, I'd love to work with you.
             </p>
-            <p className="text-[14px] text-dollhouse-ink font-medium leading-relaxed">
+            <p className="text-[13px] text-dollhouse-text-light font-light leading-relaxed mb-4">
               — Mandy
-            </p>
-            <p className="text-[13px] text-dollhouse-text-light font-light leading-relaxed mt-6 mb-8">
-              A Little About Me
             </p>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
