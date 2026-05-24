@@ -230,6 +230,8 @@ const LocalBusinessPackages = () => {
   const [quoteTimeline, setQuoteTimeline] = useState("");
   const [quoteBudget, setQuoteBudget] = useState("");
   const [quoteStatus, setQuoteStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [timelineMenuOpen, setTimelineMenuOpen] = useState(false);
+  const [budgetMenuOpen, setBudgetMenuOpen] = useState(false);
 
   const timelineOptions = [
     "As soon as possible",
@@ -499,36 +501,90 @@ const LocalBusinessPackages = () => {
 
         <label className="block">
           <span className={quoteLabelClass}>When do you need this done by?</span>
-          <select
-            required
-            value={quoteTimeline}
-            onChange={(event) => setQuoteTimeline(event.target.value)}
-            className={quoteSelectClass}
-          >
-            <option value="" disabled>Select a timeline</option>
-            {timelineOptions.map((option) => (
-              <option key={option} value={option} className="bg-[#C9A0A0] text-white">
-                {option}
-              </option>
-            ))}
-          </select>
+          <div className="relative mt-2">
+            <button
+              type="button"
+              onClick={() => setTimelineMenuOpen((open) => !open)}
+              className="w-full border-0 border-b border-[#C4B5A5] bg-transparent px-0 py-3 text-left text-[14px] text-dollhouse-ink outline-none transition-colors focus:border-dollhouse-ink flex items-center justify-between"
+              aria-haspopup="listbox"
+              aria-expanded={timelineMenuOpen}
+            >
+              {quoteTimeline || "Select a timeline"}
+              <ChevronDown size={16} className="text-dollhouse-text-light" />
+            </button>
+            {timelineMenuOpen && (
+              <div
+                role="listbox"
+                className="absolute left-0 right-0 z-30 mt-2 overflow-hidden rounded-2xl border border-dollhouse-p3/20 bg-card shadow-[0_18px_45px_rgba(60,45,39,0.13)]"
+              >
+                {timelineOptions.map((option) => {
+                  const isSelected = quoteTimeline === option;
+
+                  return (
+                    <button
+                      key={option}
+                      type="button"
+                      role="option"
+                      aria-selected={isSelected}
+                      onClick={() => {
+                        setQuoteTimeline(option);
+                        setTimelineMenuOpen(false);
+                      }}
+                      className={`w-full px-4 py-3 text-left text-[14px] transition-colors ${
+                        isSelected ? "bg-[#C9A0A0] text-white" : "text-dollhouse-ink hover:bg-[#f7f1ec]"
+                      }`}
+                    >
+                      {option}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         </label>
 
         <label className="block">
           <span className={quoteLabelClass}>What is your approximate budget?</span>
-          <select
-            required
-            value={quoteBudget}
-            onChange={(event) => setQuoteBudget(event.target.value)}
-            className={quoteSelectClass}
-          >
-            <option value="" disabled>Select your budget range</option>
-            {budgetOptions.map((option) => (
-              <option key={option} value={option} className="bg-[#C9A0A0] text-white">
-                {option}
-              </option>
-            ))}
-          </select>
+          <div className="relative mt-2">
+            <button
+              type="button"
+              onClick={() => setBudgetMenuOpen((open) => !open)}
+              className="w-full border-0 border-b border-[#C4B5A5] bg-transparent px-0 py-3 text-left text-[14px] text-dollhouse-ink outline-none transition-colors focus:border-dollhouse-ink flex items-center justify-between"
+              aria-haspopup="listbox"
+              aria-expanded={budgetMenuOpen}
+            >
+              {quoteBudget || "Select your budget range"}
+              <ChevronDown size={16} className="text-dollhouse-text-light" />
+            </button>
+            {budgetMenuOpen && (
+              <div
+                role="listbox"
+                className="absolute left-0 right-0 z-30 mt-2 overflow-hidden rounded-2xl border border-dollhouse-p3/20 bg-card shadow-[0_18px_45px_rgba(60,45,39,0.13)]"
+              >
+                {budgetOptions.map((option) => {
+                  const isSelected = quoteBudget === option;
+
+                  return (
+                    <button
+                      key={option}
+                      type="button"
+                      role="option"
+                      aria-selected={isSelected}
+                      onClick={() => {
+                        setQuoteBudget(option);
+                        setBudgetMenuOpen(false);
+                      }}
+                      className={`w-full px-4 py-3 text-left text-[14px] transition-colors ${
+                        isSelected ? "bg-[#C9A0A0] text-white" : "text-dollhouse-ink hover:bg-[#f7f1ec]"
+                      }`}
+                    >
+                      {option}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         </label>
 
         {quoteStatus === "success" && (
