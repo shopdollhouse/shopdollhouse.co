@@ -13,6 +13,11 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        display: ['"Cormorant Garamond"', 'serif'],
+        accent: ['"Josefin Sans"', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -47,6 +52,18 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        dollhouse: {
+          p0: "hsl(var(--dh-p0))",
+          p1: "hsl(var(--dh-p1))",
+          p2: "hsl(var(--dh-p2))",
+          p3: "hsl(var(--dh-p3))",
+          p4: "hsl(var(--dh-p4))",
+          ink: "hsl(var(--dh-ink))",
+          "text-light": "hsl(var(--dh-text-light))",
+          "text-mid": "hsl(var(--dh-text-mid))",
+          card: "hsl(var(--dh-card))",
+          gold: "hsl(var(--dh-gold))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -65,20 +82,12 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       animation: {
