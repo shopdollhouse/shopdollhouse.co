@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import Eyebrow from "@/components/Eyebrow";
-import { Globe, Image, Mail, Megaphone, Palette, PenTool, ShoppingBag, SquarePen } from "lucide-react";
+import { ChevronDown, ChevronUp, Globe, Image, Mail, Megaphone, Palette, PenTool, ShoppingBag, SquarePen } from "lucide-react";
 
 const CONTACT_EMAIL = "hello@shopdollhouse.co";
 const FORMSPREE_ENDPOINT =
@@ -220,6 +220,7 @@ const renderFeature = (feature: string | { text: string; tags?: string[]; note?:
 
 const LocalBusinessPackages = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [openIncluded, setOpenIncluded] = useState<number | null>(null);
   const [quoteName, setQuoteName] = useState("");
   const [quoteBusiness, setQuoteBusiness] = useState("");
   const [quoteEmail, setQuoteEmail] = useState("");
@@ -336,7 +337,7 @@ const LocalBusinessPackages = () => {
     </div>
 
     <div className="grid gap-10 lg:grid-cols-3 items-stretch">
-      {packages.map((pkg) => (
+      {packages.map((pkg, index) => (
         <article
           key={pkg.title}
           className={`relative flex h-full min-h-[720px] flex-col rounded-2xl border bg-card p-9 shadow-[0_18px_55px_rgba(60,45,39,0.06)] ${
@@ -368,15 +369,24 @@ const LocalBusinessPackages = () => {
           </div>
 
           <div className="mt-5">
-            <p className="font-accent text-[9px] uppercase tracking-[3px] text-dollhouse-p3">What's Included</p>
-            <ul className="list-none p-0 mt-3 space-y-3">
-              {pkg.included.map((feature) => (
-                <li key={typeof feature === "string" ? feature : feature.text} className="relative pl-5 text-[12.5px] font-light leading-relaxed text-dollhouse-text-mid">
-                  <span className="absolute left-0 top-[0.5em] h-1.5 w-1.5 rounded-full bg-[#d0b6a9]" />
-                  {renderFeature(feature)}
-                </li>
-              ))}
-            </ul>
+            <button
+              type="button"
+              onClick={() => setOpenIncluded(openIncluded === index ? null : index)}
+              className="flex w-full items-center justify-between font-accent text-[9px] uppercase tracking-[3px] text-dollhouse-p3 hover:text-dollhouse-ink transition-colors"
+            >
+              What's Included
+              {openIncluded === index ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+            </button>
+            {openIncluded === index && (
+              <ul className="list-none p-0 mt-3 space-y-3">
+                {pkg.included.map((feature) => (
+                  <li key={typeof feature === "string" ? feature : feature.text} className="relative pl-5 text-[12.5px] font-light leading-relaxed text-dollhouse-text-mid">
+                    <span className="absolute left-0 top-[0.5em] h-1.5 w-1.5 rounded-full bg-[#d0b6a9]" />
+                    {renderFeature(feature)}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
 
           <p className="mt-5 rounded-xl bg-[#f7f1ec] px-4 py-3 text-[12px] font-light leading-relaxed text-dollhouse-text-mid">
