@@ -48,7 +48,7 @@ const LocalBusinessPortfolio = () => {
         </div>
 
         <div className="flex flex-col lg:flex-row gap-10 max-w-[1320px] mx-auto">
-          <div className="flex-shrink-0 w-[200px] h-[200px] rounded-full overflow-hidden border border-dollhouse-p3/35 mx-auto lg:mx-0 shadow-lg">
+          <div className="flex-shrink-0 w-[200px] h-[200px] rounded-[22px] overflow-hidden border border-dollhouse-p3/35 mx-auto lg:mx-0 shadow-lg">
             <img
               src={mandyPhoto}
               alt="Mandy Fortune — founder of The Dollhouse"
