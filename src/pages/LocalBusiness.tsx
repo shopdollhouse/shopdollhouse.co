@@ -1,6 +1,7 @@
 import AgreementForm from "@/components/AgreementForm";
 import BackToTopButton from "@/components/BackToTopButton";
 import CookieConsent from "@/components/CookieConsent";
+import DigitalProducts from "@/components/DigitalProducts";
 import HeartDivider from "@/components/HeartDivider";
 import FirstClientNotice from "@/components/FirstClientNotice";
 import LocalBusinessPackages from "@/components/LocalBusinessPackages";
@@ -41,6 +42,7 @@ const LocalBusiness = () => {
         <FirstClientNotice />
         <div className="w-full border-t border-[#D4C9C0]" aria-hidden="true" />
         <LocalBusinessPortfolio />
+        <DigitalProducts />
         <LocalBusinessPackages />
         <AgreementForm />
       </main>
