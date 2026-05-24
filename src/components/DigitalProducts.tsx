@@ -35,12 +35,12 @@ const DigitalProducts = () => {
   return (
     <section className="px-6 py-16 max-w-[1320px] mx-auto">
       <div className="text-center mb-12">
-        <Eyebrow text="Digital Products" className="mb-4" />
+        <Eyebrow text="Recent Work" className="mb-4" />
         <h2 className="font-display italic font-normal text-dollhouse-ink text-[clamp(28px,4vw,44px)] leading-tight">
-          Interactive Web Apps — Also Available on Etsy
+          Interactive Web Apps
         </h2>
         <p className="text-[13px] text-dollhouse-text-light font-light max-w-[620px] mx-auto mt-3 leading-relaxed">
-          Browse my ready-made digital planners and interactive web apps — no downloads or subscriptions required. Works instantly in your browser.
+          A selection of interactive web applications I designed and built — browser based, no downloads required.
         </p>
       </div>
 
@@ -74,7 +74,7 @@ const DigitalProducts = () => {
                 className="mt-auto pt-6"
               >
                 <span className="flex items-center justify-center rounded-pill border border-dollhouse-ink bg-transparent px-5 py-3 font-accent text-[9px] uppercase tracking-[3px] text-dollhouse-ink no-underline transition-all duration-300 hover:bg-dollhouse-ink hover:text-card">
-                  View on Etsy →
+                  View Project →
                 </span>
               </a>
             </div>
@@ -82,15 +82,10 @@ const DigitalProducts = () => {
         ))}
       </div>
 
-      <div className="mt-12 flex justify-center">
-        <a
-          href="https://www.etsy.com/shop/herdollhouse"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center rounded-pill bg-dollhouse-ink px-10 py-3.5 font-accent text-[10px] uppercase tracking-[3px] text-card no-underline font-medium transition-all duration-300 hover:opacity-90 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-dollhouse-ink/10"
-        >
-          Shop All Products on Etsy →
-        </a>
+      <div className="mt-10 text-center">
+        <p className="text-[11px] text-dollhouse-text-light font-light italic">
+          These products are available on my Etsy shop — herdollhouse on Etsy
+        </p>
       </div>
     </section>
   );
