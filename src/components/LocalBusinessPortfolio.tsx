@@ -47,8 +47,8 @@ const LocalBusinessPortfolio = () => {
           </h2>
         </div>
 
-        <div className="flex flex-wrap items-center gap-10 max-w-[900px] mx-auto">
-          <div className="flex-shrink-0 w-[200px] h-[200px] rounded-full overflow-hidden border border-dollhouse-p3/35 mx-auto shadow-lg">
+        <div className="flex flex-col lg:flex-row gap-10 max-w-[1320px] mx-auto">
+          <div className="flex-shrink-0 w-[200px] h-[200px] rounded-full overflow-hidden border border-dollhouse-p3/35 mx-auto lg:mx-0 shadow-lg">
             <img
               src={mandyPhoto}
               alt="Mandy Fortune — founder of The Dollhouse"
@@ -76,33 +76,33 @@ const LocalBusinessPortfolio = () => {
             <p className="text-[14px] text-dollhouse-ink font-medium leading-relaxed">
               — Mandy
             </p>
-            <p className="text-[13px] text-dollhouse-text-light font-light leading-relaxed mt-6">
+            <p className="text-[13px] text-dollhouse-text-light font-light leading-relaxed mt-6 mb-8">
               A Little About Me
             </p>
+
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {portfolioItems.map((image, index) => (
+                <button
+                  key={image}
+                  type="button"
+                  onClick={() => {
+                    setSelectedIndex(index);
+                    setIsExpanded(true);
+                  }}
+                  aria-label={`Open portfolio sample ${index + 1} larger`}
+                  className="group overflow-hidden rounded-[22px] border border-dollhouse-p3/20 bg-[#f7f1ec] p-2 shadow-[0_18px_55px_rgba(60,45,39,0.07)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(60,45,39,0.12)]"
+                >
+                  <img
+                    src={image}
+                    alt={`The Dollhouse Brand Studio portfolio sample ${index + 1}`}
+                    className="w-full aspect-video rounded-[16px] bg-card object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+                    loading={index < 4 ? "eager" : "lazy"}
+                  />
+                </button>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {portfolioItems.map((image, index) => (
-          <button
-            key={image}
-            type="button"
-            onClick={() => {
-              setSelectedIndex(index);
-              setIsExpanded(true);
-            }}
-            aria-label={`Open portfolio sample ${index + 1} larger`}
-            className="group overflow-hidden rounded-[22px] border border-dollhouse-p3/20 bg-[#f7f1ec] p-2 shadow-[0_18px_55px_rgba(60,45,39,0.07)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(60,45,39,0.12)]"
-          >
-            <img
-              src={image}
-              alt={`The Dollhouse Brand Studio portfolio sample ${index + 1}`}
-              className="w-full aspect-video rounded-[16px] bg-card object-contain transition-transform duration-500 group-hover:scale-[1.02]"
-              loading={index < 4 ? "eager" : "lazy"}
-            />
-          </button>
-        ))}
       </div>
 
       {isExpanded && (
