@@ -53,7 +53,7 @@ const LocalBusinessPortfolio = () => {
               src={mandyPhoto}
               alt="Mandy Fortune — founder of The Dollhouse"
               className="w-full h-full object-cover"
-              style={{ objectPosition: "60% 52%" }}
+              style={{ objectPosition: "50% 50%" }}
             />
           </div>
 
