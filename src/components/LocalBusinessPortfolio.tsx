@@ -2,22 +2,16 @@ import { useEffect, useState } from "react";
 import Eyebrow from "@/components/Eyebrow";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-import portfolio1 from "@/assets/portfolio-local-business/portfolio-1.jpg";
-import portfolio2 from "@/assets/portfolio-local-business/portfolio-2.jpg";
 import portfolio3 from "@/assets/portfolio-local-business/portfolio-3.jpg";
-import portfolio4 from "@/assets/portfolio-local-business/portfolio-4.jpg";
 import portfolio5 from "@/assets/portfolio-local-business/portfolio-5.jpg";
 import portfolio6 from "@/assets/portfolio-local-business/portfolio-6.jpg";
 import portfolio9 from "@/assets/portfolio-local-business/portfolio-9.jpg";
 
 const portfolioItems = [
-  portfolio1,
-  portfolio2,
-  portfolio3,
-  portfolio4,
-  portfolio5,
-  portfolio6,
-  portfolio9,
+  portfolio5, // Jerk & Jollof — Event Branding & Promotion
+  portfolio3, // CandiiShop — Merch Designs
+  portfolio6, // Real Yardie — Merch & Merchandising
+  portfolio9, // D'Addario — Promotional Campaigns & Email Marketing
 ];
 
 const LocalBusinessPortfolio = () => {

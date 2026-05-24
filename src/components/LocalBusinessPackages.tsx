@@ -346,11 +346,11 @@ const LocalBusinessPackages = () => {
           }`}
         >
           {pkg.badge && (
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 max-w-[calc(100%-32px)]">
               <span className={`inline-flex whitespace-nowrap rounded-pill font-accent uppercase ring-2 ring-card ${
                 pkg.featured
                   ? "bg-dollhouse-ink text-card px-4 py-1.5 text-[9px] tracking-[2.5px] shadow-md"
-                  : "bg-[#ead2d9] text-[#9b5369] px-2.5 py-0.5 text-[7px] tracking-[1px] shadow-sm"
+                  : "bg-[#ead2d9] text-[#9b5369] px-3 py-1 text-[8px] tracking-[1.5px] shadow-sm"
               }`}>
                 {pkg.badge}
               </span>
@@ -636,9 +636,17 @@ const LocalBusinessPackages = () => {
                   +
                 </span>
               </button>
-              {isOpen && (
-                <p className="px-3 pb-4 text-[12.5px] font-light leading-relaxed text-dollhouse-text-light">{faq.a}</p>
-              )}
+              <div
+                className="grid overflow-hidden transition-all duration-400 ease-out"
+                style={{
+                  gridTemplateRows: isOpen ? "1fr" : "0fr",
+                  opacity: isOpen ? 1 : 0,
+                }}
+              >
+                <div className="min-h-0 overflow-hidden">
+                  <p className="px-3 pb-4 text-[12.5px] font-light leading-[1.7] text-dollhouse-text-light">{faq.a}</p>
+                </div>
+              </div>
             </div>
           );
         })}

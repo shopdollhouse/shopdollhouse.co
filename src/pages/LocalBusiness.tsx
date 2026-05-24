@@ -43,6 +43,9 @@ const LocalBusiness = () => {
         <div className="w-full border-t border-[#D4C9C0]" aria-hidden="true" />
         <LocalBusinessPortfolio />
         <DigitalProducts />
+        <div className="mx-auto max-w-[1320px] px-6">
+          <div className="w-full border-t border-[#D4C9C0]" aria-hidden="true" />
+        </div>
         <LocalBusinessPackages />
         <AgreementForm />
       </main>
