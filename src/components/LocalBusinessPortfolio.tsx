@@ -6,6 +6,7 @@ import portfolio3 from "@/assets/portfolio-local-business/portfolio-3.jpg";
 import portfolio5 from "@/assets/portfolio-local-business/portfolio-5.jpg";
 import portfolio6 from "@/assets/portfolio-local-business/portfolio-6.jpg";
 import portfolio9 from "@/assets/portfolio-local-business/portfolio-9.jpg";
+import mandyPhoto from "@/assets/mandy-photo.jpg";
 
 const portfolioItems = [
   portfolio5, // Jerk & Jollof — Event Branding & Promotion
@@ -38,14 +39,36 @@ const LocalBusinessPortfolio = () => {
 
   return (
     <section className="px-6 pt-[60px] pb-20 max-w-[1320px] mx-auto">
-      <div className="text-center mb-12">
-        <Eyebrow text="About Me + Portfolio" className="mb-4" />
-        <h2 className="font-display italic font-normal text-dollhouse-ink text-[clamp(28px,4vw,44px)] leading-tight">
-          Meet Mandy + View the Work
-        </h2>
-        <p className="text-[13px] text-dollhouse-text-light font-light max-w-[560px] mx-auto mt-3">
-          A look at the design style behind the creative work. Ads, social content, merch, websites, and brand visuals all work better when the business looks polished first.
-        </p>
+      <div className="mb-12">
+        <div className="text-center mb-8">
+          <Eyebrow text="About Me + Portfolio" className="mb-4" />
+          <h2 className="font-display italic font-normal text-dollhouse-ink text-[clamp(28px,4vw,44px)] leading-tight">
+            Meet Mandy + View the Work
+          </h2>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-10 max-w-[900px] mx-auto">
+          <div className="flex-shrink-0 w-[200px] h-[200px] rounded-full overflow-hidden border border-dollhouse-p3/35 mx-auto shadow-lg">
+            <img
+              src={mandyPhoto}
+              alt="Mandy Fortune — founder of The Dollhouse"
+              className="w-full h-full object-cover"
+              style={{ objectPosition: "60% 52%" }}
+            />
+          </div>
+
+          <div className="flex-1 min-w-[280px]">
+            <p className="text-[14px] text-dollhouse-text-mid font-light leading-relaxed mb-4">
+              I'm a Product Designer and brand strategist from the Greater Toronto Area — with 10+ years in graphic and product design, building brands for companies, creators, and entrepreneurs. My product design work has been recognized by BuzzFeed and HuffPost, and I've been in the design world long enough to know exactly what makes a brand stick.
+            </p>
+            <p className="text-[14px] text-dollhouse-text-mid font-light leading-relaxed mb-4">
+              I built The Dollhouse because I kept seeing the same problem: talented people with incredible ideas, stuck because their brand didn't match their vision.
+            </p>
+            <p className="text-[13px] text-dollhouse-text-light font-light leading-relaxed">
+              A look at the design style behind the creative work. Ads, social content, merch, websites, and brand visuals all work better when the business looks polished first.
+            </p>
+          </div>
+        </div>
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
