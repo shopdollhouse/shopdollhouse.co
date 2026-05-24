@@ -224,8 +224,19 @@ const LocalBusinessPackages = () => {
   const [quoteBusiness, setQuoteBusiness] = useState("");
   const [quoteEmail, setQuoteEmail] = useState("");
   const [quoteProject, setQuoteProject] = useState("");
+  const [quoteBusinessType, setQuoteBusinessType] = useState("");
+  const [quoteWebsite, setQuoteWebsite] = useState("");
+  const [quoteTimeline, setQuoteTimeline] = useState("");
   const [quoteBudget, setQuoteBudget] = useState("");
   const [quoteStatus, setQuoteStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  const timelineOptions = [
+    "As soon as possible",
+    "Within 2 weeks",
+    "Within 1 month",
+    "Within 2 to 3 months",
+    "No specific deadline",
+  ];
 
   const budgetOptions = [
     "Under $500",
@@ -254,6 +265,9 @@ const LocalBusinessPackages = () => {
           businessName: quoteBusiness,
           email: quoteEmail,
           projectDetails: quoteProject,
+          businessType: quoteBusinessType,
+          websiteUrl: quoteWebsite || "Not provided",
+          projectTimeline: quoteTimeline,
           approximateBudget: quoteBudget,
         }),
       });
@@ -268,6 +282,9 @@ const LocalBusinessPackages = () => {
       setQuoteBusiness("");
       setQuoteEmail("");
       setQuoteProject("");
+      setQuoteBusinessType("");
+      setQuoteWebsite("");
+      setQuoteTimeline("");
       setQuoteBudget("");
     } catch {
       setQuoteStatus("error");
@@ -445,6 +462,46 @@ const LocalBusinessPackages = () => {
             onChange={(event) => setQuoteProject(event.target.value)}
             className={`${quoteInputClass} resize-none`}
           />
+        </label>
+
+        <label className="block">
+          <span className={quoteLabelClass}>What type of business do you have?</span>
+          <input
+            required
+            type="text"
+            placeholder="eg. Restaurant, Salon, Retail, Clinic"
+            value={quoteBusinessType}
+            onChange={(event) => setQuoteBusinessType(event.target.value)}
+            className={quoteInputClass}
+          />
+        </label>
+
+        <label className="block">
+          <span className={quoteLabelClass}>Do you have a website? If so drop the link here</span>
+          <input
+            type="text"
+            placeholder="eg. www.yourbusiness.com"
+            value={quoteWebsite}
+            onChange={(event) => setQuoteWebsite(event.target.value)}
+            className={quoteInputClass}
+          />
+        </label>
+
+        <label className="block">
+          <span className={quoteLabelClass}>When do you need this done by?</span>
+          <select
+            required
+            value={quoteTimeline}
+            onChange={(event) => setQuoteTimeline(event.target.value)}
+            className={quoteSelectClass}
+          >
+            <option value="" disabled>Select a timeline</option>
+            {timelineOptions.map((option) => (
+              <option key={option} value={option} className="bg-[#C9A0A0] text-white">
+                {option}
+              </option>
+            ))}
+          </select>
         </label>
 
         <label className="block">
