@@ -175,7 +175,7 @@ function cleanStyleALiveData(value) {
 }
 
 // ─── FONTS ───────────────────────────────────────────────────────────────────
-const FONT_URL = "https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&family=Jost:wght@300;400;500&display=swap";
+const FONT_URL = "https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&family=Jost:wght@300;400;500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap";
 
 function useFonts() {
   useEffect(() => {
@@ -2488,120 +2488,172 @@ function LiveStudio({ scripts, setScripts, brands }) {
     setView("cuecard");
   }
 
-  // ── TELEPROMPTER VIEW ──
+  // ── TELEPROMPTER VIEW (Modern Redesign) ──
   if(view==="teleprompter" && selScript){
     const sections = liveData?.sections||[];
+    const GOLD = "#d4af6a";
+    const GOLD_GLOW = "rgba(212,175,106,0.4)";
     return (
-      <div style={{ position:"fixed", inset:0, background:"#080604", zIndex:999, display:"flex", flexDirection:"column", fontFamily:"'DM Sans',sans-serif" }}>
+      <div style={{ position:"fixed", inset:0, background:"radial-gradient(ellipse at top, #0a0a0f 0%, #050507 60%, #000000 100%)", zIndex:999, display:"flex", flexDirection:"column", fontFamily:"'Inter','DM Sans',sans-serif" }}>
 
-        {/* Top bar */}
+        {/* Ambient glow effect */}
+        <div style={{ position:"absolute", top:0, left:"50%", transform:"translateX(-50%)", width:"60%", height:"40%", background:`radial-gradient(ellipse, ${GOLD_GLOW} 0%, transparent 70%)`, opacity:0.08, pointerEvents:"none", zIndex:1 }} />
+
+        {/* Top floating progress bar */}
+        <div style={{ position:"absolute", top:0, left:0, right:0, height:"3px", background:"rgba(255,255,255,0.04)", zIndex:11 }}>
+          <div id="dh-progress-bar" style={{ height:"100%", width:"0%", background:`linear-gradient(90deg, ${GOLD}, #f5d896, ${GOLD})`, boxShadow:`0 0 12px ${GOLD_GLOW}`, transition:"width 0.2s linear" }} />
+        </div>
+
+        {/* Top glassmorphic control bar */}
         {!dimUI && (
-          <div style={{ display:"flex", alignItems:"center", gap:12, padding:"10px 24px", background:"rgba(0,0,0,0.6)", borderBottom:"1px solid rgba(255,255,255,0.05)", flexShrink:0, flexWrap:"wrap" }}>
-            <div style={{ display:"flex", alignItems:"center", gap:8 }}>
-              <div style={{ width:8,height:8,borderRadius:"50%",background:scrolling?"#ff3355":"rgba(255,255,255,0.2)", animation:scrolling?"pulse 1s ease infinite":"none" }}/>
-              <span style={{ fontFamily:"'DM Sans',sans-serif", fontSize:13, color:"rgba(255,255,255,0.62)", fontWeight:600 }}>{selScript.title}</span>
+          <div style={{ display:"flex", alignItems:"center", gap:14, padding:"14px 32px", background:"rgba(10,10,15,0.7)", backdropFilter:"blur(20px) saturate(180%)", WebkitBackdropFilter:"blur(20px) saturate(180%)", borderBottom:"1px solid rgba(255,255,255,0.06)", flexShrink:0, flexWrap:"wrap", zIndex:12, position:"relative" }}>
+            {/* Title + Live indicator */}
+            <div style={{ display:"flex", alignItems:"center", gap:12 }}>
+              <div style={{ position:"relative", width:10, height:10 }}>
+                <div style={{ position:"absolute", inset:0, borderRadius:"50%", background:scrolling?"#ff4466":"rgba(255,255,255,0.25)", boxShadow:scrolling?"0 0 16px rgba(255,68,102,0.8)":"none", animation:scrolling?"pulse 1.4s ease infinite":"none" }} />
+              </div>
+              <span style={{ fontFamily:"'Inter',sans-serif", fontSize:14, color:"rgba(255,255,255,0.92)", fontWeight:600, letterSpacing:"-0.01em" }}>{selScript.title}</span>
             </div>
-            {/* Timer */}
-            <div style={{ display:"flex", alignItems:"center", gap:8, marginLeft:"auto" }}>
+
+            {/* Right side controls */}
+            <div style={{ display:"flex", alignItems:"center", gap:10, marginLeft:"auto" }}>
+              {/* Timer */}
               <button onClick={timerRunning?stopTimer:startTimer}
-                style={{ padding:"4px 12px", background:timerRunning?"rgba(255,45,85,0.15)":"rgba(255,255,255,0.06)", border:`1px solid ${timerRunning?"rgba(255,45,85,0.3)":"rgba(255,255,255,0.1)"}`, borderRadius:6, color:timerRunning?"#ff7788":"rgba(255,255,255,0.5)", fontFamily:"monospace", fontSize:14, cursor:"pointer", letterSpacing:2 }}>
+                style={{ padding:"7px 16px", background:timerRunning?"linear-gradient(135deg, rgba(255,68,102,0.18), rgba(255,68,102,0.08))":"rgba(255,255,255,0.05)", border:`1px solid ${timerRunning?"rgba(255,68,102,0.35)":"rgba(255,255,255,0.08)"}`, borderRadius:10, color:timerRunning?"#ff7788":"rgba(255,255,255,0.7)", fontFamily:"'JetBrains Mono',monospace", fontSize:14, cursor:"pointer", letterSpacing:1, fontWeight:600, transition:"all 0.2s", boxShadow:timerRunning?"0 0 20px rgba(255,68,102,0.2)":"none" }}>
                 {fmtTime(elapsed)}
               </button>
-              {/* Speed */}
-              {[["Size",fontSize,()=>setFontSize(s=>Math.max(22,s-4)),()=>setFontSize(s=>Math.min(80,s+4))],["Speed",speed,()=>setSpeed(s=>Math.max(5,s-3)),()=>setSpeed(s=>Math.min(100,s+3))]].map(([lbl,val,dec,inc])=>(
-                <div key={lbl} style={{ display:"flex", alignItems:"center", gap:5 }}>
-                  <span style={{ fontFamily:"'Jost',sans-serif", fontSize:7, letterSpacing:2, color:"rgba(255,255,255,0.25)", textTransform:"uppercase" }}>{lbl}</span>
-                  <button onClick={dec} style={{ background:"rgba(255,255,255,0.06)", border:"none", color:"rgba(255,255,255,0.5)", borderRadius:4, padding:"2px 7px", cursor:"pointer", fontSize:13 }}>−</button>
-                  <span style={{ fontSize:10, color:"rgba(255,255,255,0.4)", minWidth:20, textAlign:"center" }}>{val}</span>
-                  <button onClick={inc} style={{ background:"rgba(255,255,255,0.06)", border:"none", color:"rgba(255,255,255,0.5)", borderRadius:4, padding:"2px 7px", cursor:"pointer", fontSize:13 }}>+</button>
+
+              {/* Size & Speed sliders */}
+              {[["A",fontSize,()=>setFontSize(s=>Math.max(22,s-4)),()=>setFontSize(s=>Math.min(80,s+4))],["⊳",speed,()=>setSpeed(s=>Math.max(5,s-3)),()=>setSpeed(s=>Math.min(100,s+3))]].map(([lbl,val,dec,inc])=>(
+                <div key={lbl} style={{ display:"flex", alignItems:"center", gap:2, background:"rgba(255,255,255,0.04)", borderRadius:10, padding:"3px", border:"1px solid rgba(255,255,255,0.06)" }}>
+                  <span style={{ fontFamily:"'Inter',sans-serif", fontSize:11, color:"rgba(255,255,255,0.4)", padding:"0 8px", fontWeight:600 }}>{lbl}</span>
+                  <button onClick={dec} style={{ background:"rgba(255,255,255,0.06)", border:"none", color:"rgba(255,255,255,0.7)", borderRadius:7, width:24, height:24, cursor:"pointer", fontSize:14, fontWeight:500, transition:"all 0.15s", display:"flex", alignItems:"center", justifyContent:"center" }} onMouseEnter={e=>e.currentTarget.style.background="rgba(255,255,255,0.12)"} onMouseLeave={e=>e.currentTarget.style.background="rgba(255,255,255,0.06)"}>−</button>
+                  <span style={{ fontSize:11, color:"rgba(255,255,255,0.6)", minWidth:24, textAlign:"center", fontFamily:"'JetBrains Mono',monospace", fontWeight:500 }}>{val}</span>
+                  <button onClick={inc} style={{ background:"rgba(255,255,255,0.06)", border:"none", color:"rgba(255,255,255,0.7)", borderRadius:7, width:24, height:24, cursor:"pointer", fontSize:14, fontWeight:500, transition:"all 0.15s", display:"flex", alignItems:"center", justifyContent:"center" }} onMouseEnter={e=>e.currentTarget.style.background="rgba(255,255,255,0.12)"} onMouseLeave={e=>e.currentTarget.style.background="rgba(255,255,255,0.06)"}>+</button>
                 </div>
               ))}
+
+              {/* Copy Script */}
               <button onClick={copyFullLiveScript}
-                style={{ padding:"4px 12px", background:copiedLiveScript?"rgba(100,170,100,0.14)":"rgba(196,168,154,0.08)", border:`1px solid ${copiedLiveScript?"rgba(100,170,100,0.35)":"rgba(196,168,154,0.18)"}`, borderRadius:6, color:copiedLiveScript?"#9ed09e":"rgba(245,234,212,0.72)", fontFamily:"'Jost',sans-serif", fontSize:9, letterSpacing:1.5, textTransform:"uppercase", cursor:"pointer", whiteSpace:"nowrap" }}
+                style={{ padding:"7px 14px", background:copiedLiveScript?"linear-gradient(135deg, rgba(120,200,140,0.2), rgba(120,200,140,0.08))":"rgba(212,175,106,0.08)", border:`1px solid ${copiedLiveScript?"rgba(120,200,140,0.4)":"rgba(212,175,106,0.2)"}`, borderRadius:10, color:copiedLiveScript?"#9ed09e":GOLD, fontFamily:"'Inter',sans-serif", fontSize:11, fontWeight:600, cursor:"pointer", whiteSpace:"nowrap", transition:"all 0.2s", letterSpacing:"0.02em" }}
                 title="Copy the full live script">
-                {copiedLiveScript ? "Copied" : "Copy Script"}
+                {copiedLiveScript ? "✓ Copied" : "Copy"}
               </button>
-              <button onClick={()=>setDimUI(v=>!v)} style={{ padding:"4px 10px", background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.07)", borderRadius:6, color:"rgba(255,255,255,0.3)", fontSize:10, cursor:"pointer" }} title="D — dim controls">dim</button>
-              <button onClick={()=>setShowNervous(v=>!v)} style={{ padding:"4px 10px", background:"rgba(196,168,154,0.08)", border:"1px solid rgba(196,168,154,0.15)", borderRadius:6, color:"rgba(196,168,154,0.7)", fontSize:10, cursor:"pointer" }} title="N — nervous card">✦</button>
-              <button onClick={()=>{ stopScroll(); stopTimer(); setView("cuecard"); }} style={{ padding:"4px 12px", background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", borderRadius:6, color:"rgba(255,255,255,0.25)", fontSize:10, cursor:"pointer" }}>✕ Cue Cards</button>
+
+              {/* Dim toggle */}
+              <button onClick={()=>setDimUI(v=>!v)} style={{ padding:"7px 12px", background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:10, color:"rgba(255,255,255,0.5)", fontSize:11, cursor:"pointer", fontWeight:500, transition:"all 0.2s" }} title="D — Hide controls">◐</button>
+
+              {/* Cue cards exit */}
+              <button onClick={()=>{ stopScroll(); stopTimer(); setView("cuecard"); }} style={{ padding:"7px 14px", background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:10, color:"rgba(255,255,255,0.55)", fontSize:11, cursor:"pointer", fontWeight:500, transition:"all 0.2s" }}>← Cue Cards</button>
             </div>
           </div>
         )}
         {dimUI && (
-          <button onClick={()=>setDimUI(false)} style={{ position:"fixed", top:8, right:12, zIndex:1001, background:"rgba(255,255,255,0.04)", border:"none", color:"rgba(255,255,255,0.15)", fontSize:11, cursor:"pointer", borderRadius:4, padding:"3px 8px" }}>show controls</button>
+          <button onClick={()=>setDimUI(false)} style={{ position:"fixed", top:12, right:16, zIndex:1001, background:"rgba(255,255,255,0.04)", backdropFilter:"blur(10px)", border:"1px solid rgba(255,255,255,0.06)", color:"rgba(255,255,255,0.4)", fontSize:11, cursor:"pointer", borderRadius:8, padding:"6px 12px", fontWeight:500 }}>show controls</button>
         )}
 
-        {/* Reading line */}
-        <div style={{ position:"absolute", top:"38%", left:0, right:0, height:"2px", background:"rgba(196,168,154,0.07)", pointerEvents:"none", zIndex:10 }} />
+        {/* Top fade gradient */}
+        <div style={{ position:"absolute", top:dimUI?0:60, left:0, right:0, height:120, background:"linear-gradient(180deg, rgba(0,0,0,0.95) 0%, transparent 100%)", pointerEvents:"none", zIndex:5 }} />
+
+        {/* Reading focus line — modern glowing */}
+        <div style={{ position:"absolute", top:"42%", left:"5%", right:"5%", height:"1px", background:`linear-gradient(90deg, transparent, ${GOLD_GLOW}, transparent)`, pointerEvents:"none", zIndex:10, boxShadow:`0 0 24px ${GOLD_GLOW}` }} />
+        <div style={{ position:"absolute", top:"42%", left:"50%", transform:"translate(-50%, -50%)", width:"32px", height:"32px", border:`1px solid ${GOLD_GLOW}`, borderRadius:"50%", pointerEvents:"none", zIndex:10, opacity:0.4 }} />
 
         {/* Script scroll area */}
-        <div ref={scrollRef} style={{ flex:1, overflowY:"auto", padding:`80px ${Math.max(6,14-(fontSize/8))}vw`, scrollbarWidth:"none" }}>
+        <div ref={scrollRef} 
+          onScroll={(e)=>{ const el=e.target; const pct=(el.scrollTop/(el.scrollHeight-el.clientHeight))*100; const bar=document.getElementById("dh-progress-bar"); if(bar) bar.style.width=`${pct}%`; }}
+          style={{ flex:1, overflowY:"auto", padding:`140px ${Math.max(6,14-(fontSize/8))}vw 200px`, scrollbarWidth:"none", position:"relative", zIndex:3 }}>
           {liveData?.hook_statement && (
-            <div style={{ marginBottom:48, padding:"20px 28px", background:"rgba(255,45,85,0.06)", border:"1px solid rgba(255,45,85,0.1)", borderRadius:12 }}>
-              <div style={{ fontFamily:"'Jost',sans-serif", fontSize:8, letterSpacing:3, color:"rgba(255,45,85,0.6)", textTransform:"uppercase", marginBottom:10 }}>⏺ Say This First</div>
-              <div style={{ fontFamily:"'DM Sans',sans-serif", fontSize:fontSize, color:"rgba(255,255,255,0.92)", lineHeight:1.55, fontWeight:500 }}>{liveData.hook_statement}</div>
+            <div style={{ marginBottom:64, padding:"28px 36px", background:"linear-gradient(135deg, rgba(255,68,102,0.08), rgba(255,68,102,0.02))", border:"1px solid rgba(255,68,102,0.15)", borderRadius:20, backdropFilter:"blur(10px)", boxShadow:"0 8px 32px rgba(255,68,102,0.08)" }}>
+              <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:14 }}>
+                <div style={{ width:6, height:6, borderRadius:"50%", background:"#ff4466", boxShadow:"0 0 12px #ff4466" }} />
+                <div style={{ fontFamily:"'Inter',sans-serif", fontSize:11, letterSpacing:"0.15em", color:"rgba(255,68,102,0.85)", textTransform:"uppercase", fontWeight:700 }}>Say This First</div>
+              </div>
+              <div style={{ fontFamily:"'Inter','DM Sans',sans-serif", fontSize:fontSize, color:"rgba(255,255,255,0.96)", lineHeight:1.5, fontWeight:500, letterSpacing:"-0.015em" }}>{liveData.hook_statement}</div>
             </div>
           )}
           {sections.map((sec,i)=>(
-            <div key={sec.id||i} style={{ marginBottom:56 }}>
-              <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:20 }}>
-                <div style={{ height:1, flex:1, background:"rgba(255,255,255,0.05)" }}/>
-                <span style={{ fontFamily:"'Jost',sans-serif", fontSize:8, letterSpacing:3, textTransform:"uppercase", color:"rgba(255,255,255,0.2)", padding:"4px 14px", border:"1px solid rgba(255,255,255,0.07)", borderRadius:999 }}>{sec.label} · ~{sec.duration_min}min</span>
-                <div style={{ height:1, flex:1, background:"rgba(255,255,255,0.05)" }}/>
+            <div key={sec.id||i} style={{ marginBottom:80 }}>
+              {/* Section header — modern gradient pill */}
+              <div style={{ display:"flex", alignItems:"center", gap:16, marginBottom:32 }}>
+                <div style={{ height:1, flex:1, background:`linear-gradient(90deg, transparent, ${GOLD_GLOW})` }}/>
+                <div style={{ display:"flex", alignItems:"center", gap:10, padding:"8px 20px", background:"linear-gradient(135deg, rgba(212,175,106,0.12), rgba(212,175,106,0.04))", border:`1px solid ${GOLD_GLOW}`, borderRadius:999, boxShadow:`0 4px 24px rgba(212,175,106,0.1)` }}>
+                  <span style={{ width:5, height:5, borderRadius:"50%", background:GOLD, boxShadow:`0 0 8px ${GOLD}` }} />
+                  <span style={{ fontFamily:"'Inter',sans-serif", fontSize:11, letterSpacing:"0.12em", textTransform:"uppercase", color:GOLD, fontWeight:700 }}>{sec.label}</span>
+                  <span style={{ fontFamily:"'JetBrains Mono',monospace", fontSize:10, color:"rgba(212,175,106,0.6)", fontWeight:500 }}>~{sec.duration_min}m</span>
+                </div>
+                <div style={{ height:1, flex:1, background:`linear-gradient(90deg, ${GOLD_GLOW}, transparent)` }}/>
               </div>
-              {sec.cue && <div style={{ fontFamily:"'Jost',sans-serif", fontSize:9, letterSpacing:2, color:"rgba(196,168,154,0.4)", textTransform:"uppercase", marginBottom:16 }}>◦ {sec.cue}</div>}
-              <div style={{ fontFamily:"'DM Sans',sans-serif", fontSize:fontSize, color:"rgba(255,255,255,0.9)", lineHeight:1.58, whiteSpace:"pre-wrap", letterSpacing:0, fontWeight:400 }}>{sec.script}</div>
+              {sec.cue && <div style={{ fontFamily:"'Inter',sans-serif", fontSize:11, letterSpacing:"0.1em", color:"rgba(212,175,106,0.55)", textTransform:"uppercase", marginBottom:24, fontWeight:600, paddingLeft:4 }}>◦ {sec.cue}</div>}
+              <div style={{ fontFamily:"'Inter','DM Sans',sans-serif", fontSize:fontSize, color:"rgba(255,255,255,0.94)", lineHeight:1.62, whiteSpace:"pre-wrap", letterSpacing:"-0.011em", fontWeight:400 }}>{sec.script}</div>
               {sec.engagement_prompt && (
-                <div style={{ margin:"28px 0", padding:"16px 20px", background:"rgba(122,143,166,0.08)", border:"1px solid rgba(122,143,166,0.15)", borderRadius:10 }}>
-                  <div style={{ fontFamily:"'Jost',sans-serif", fontSize:8, letterSpacing:2, color:"rgba(122,143,166,0.7)", textTransform:"uppercase", marginBottom:8 }}>◎ Ask the room</div>
-                  <div style={{ fontFamily:"'DM Sans',sans-serif", fontSize:fontSize*0.68, color:"rgba(255,255,255,0.78)", lineHeight:1.55, fontWeight:500 }}>{sec.engagement_prompt}</div>
+                <div style={{ margin:"40px 0", padding:"22px 28px", background:"linear-gradient(135deg, rgba(122,143,200,0.1), rgba(122,143,200,0.02))", border:"1px solid rgba(122,143,200,0.18)", borderRadius:16, backdropFilter:"blur(10px)" }}>
+                  <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:10 }}>
+                    <span style={{ width:5, height:5, borderRadius:"50%", background:"#8aa0d4" }} />
+                    <div style={{ fontFamily:"'Inter',sans-serif", fontSize:10, letterSpacing:"0.15em", color:"rgba(138,160,212,0.9)", textTransform:"uppercase", fontWeight:700 }}>Ask the Room</div>
+                  </div>
+                  <div style={{ fontFamily:"'Inter',sans-serif", fontSize:fontSize*0.72, color:"rgba(255,255,255,0.88)", lineHeight:1.5, fontWeight:500, letterSpacing:"-0.01em" }}>{sec.engagement_prompt}</div>
                 </div>
               )}
               {sec.reminder && (
-                <div style={{ margin:"16px 0", padding:"12px 18px", background:"rgba(196,168,154,0.05)", border:"1px solid rgba(196,168,154,0.1)", borderRadius:8 }}>
-                  <div style={{ fontFamily:"'DM Sans',sans-serif", fontSize:fontSize*0.52, color:"rgba(196,168,154,0.65)", lineHeight:1.45 }}>✦ {sec.reminder}</div>
+                <div style={{ margin:"20px 0", padding:"14px 22px", background:"rgba(212,175,106,0.04)", border:"1px solid rgba(212,175,106,0.12)", borderRadius:12, borderLeft:`3px solid ${GOLD_GLOW}` }}>
+                  <div style={{ fontFamily:"'Inter',sans-serif", fontSize:fontSize*0.55, color:"rgba(212,175,106,0.75)", lineHeight:1.5, fontWeight:500, fontStyle:"italic" }}>{sec.reminder}</div>
                 </div>
               )}
             </div>
           ))}
           {liveData?.product_mention && (
-            <div style={{ marginBottom:48, padding:"20px 28px", background:"rgba(184,145,106,0.07)", border:"1px solid rgba(184,145,106,0.15)", borderRadius:12 }}>
-              <div style={{ fontFamily:"'Jost',sans-serif", fontSize:8, letterSpacing:3, color:"rgba(184,145,106,0.6)", textTransform:"uppercase", marginBottom:12 }}>◈ Product Mention</div>
-              <div style={{ fontFamily:"'DM Sans',sans-serif", fontSize:fontSize, color:"rgba(255,255,255,0.9)", lineHeight:1.58, fontWeight:400 }}>{liveData.product_mention}</div>
+            <div style={{ marginBottom:64, padding:"28px 36px", background:"linear-gradient(135deg, rgba(212,175,106,0.1), rgba(212,175,106,0.02))", border:`1px solid ${GOLD_GLOW}`, borderRadius:20, backdropFilter:"blur(10px)", boxShadow:`0 8px 32px rgba(212,175,106,0.08)` }}>
+              <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:16 }}>
+                <div style={{ width:6, height:6, borderRadius:"50%", background:GOLD, boxShadow:`0 0 12px ${GOLD}` }} />
+                <div style={{ fontFamily:"'Inter',sans-serif", fontSize:11, letterSpacing:"0.15em", color:GOLD, textTransform:"uppercase", fontWeight:700 }}>Product Mention</div>
+              </div>
+              <div style={{ fontFamily:"'Inter','DM Sans',sans-serif", fontSize:fontSize, color:"rgba(255,255,255,0.94)", lineHeight:1.62, fontWeight:400, letterSpacing:"-0.011em" }}>{liveData.product_mention}</div>
             </div>
           )}
           {liveData?.closing_script && (
-            <div style={{ marginBottom:48, padding:"20px 28px", background:"rgba(255,45,85,0.05)", border:"1px solid rgba(255,45,85,0.08)", borderRadius:12 }}>
-              <div style={{ fontFamily:"'Jost',sans-serif", fontSize:8, letterSpacing:3, color:"rgba(255,45,85,0.5)", textTransform:"uppercase", marginBottom:12 }}>⏺ Closing</div>
-              <div style={{ fontFamily:"'DM Sans',sans-serif", fontSize:fontSize, color:"rgba(255,255,255,0.9)", lineHeight:1.58, whiteSpace:"pre-wrap", fontWeight:400 }}>{liveData.closing_script}</div>
+            <div style={{ marginBottom:64, padding:"28px 36px", background:"linear-gradient(135deg, rgba(255,68,102,0.08), rgba(255,68,102,0.02))", border:"1px solid rgba(255,68,102,0.15)", borderRadius:20, backdropFilter:"blur(10px)" }}>
+              <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:16 }}>
+                <div style={{ width:6, height:6, borderRadius:"50%", background:"#ff4466", boxShadow:"0 0 12px #ff4466" }} />
+                <div style={{ fontFamily:"'Inter',sans-serif", fontSize:11, letterSpacing:"0.15em", color:"rgba(255,68,102,0.85)", textTransform:"uppercase", fontWeight:700 }}>Closing</div>
+              </div>
+              <div style={{ fontFamily:"'Inter','DM Sans',sans-serif", fontSize:fontSize, color:"rgba(255,255,255,0.94)", lineHeight:1.62, whiteSpace:"pre-wrap", fontWeight:400, letterSpacing:"-0.011em" }}>{liveData.closing_script}</div>
             </div>
           )}
           <div style={{height:"70vh"}}/>
         </div>
 
+        {/* Bottom fade gradient */}
+        <div style={{ position:"absolute", bottom:dimUI?0:80, left:0, right:0, height:140, background:"linear-gradient(0deg, rgba(0,0,0,0.95) 0%, transparent 100%)", pointerEvents:"none", zIndex:5 }} />
+
         {/* Nervous card overlay */}
         {showNervous && liveData?.if_nervous_card && (
-          <div style={{ position:"fixed", inset:0, zIndex:1002, background:"rgba(20,12,8,0.96)", display:"flex", alignItems:"center", justifyContent:"center", padding:40 }}>
-            <div style={{ maxWidth:600, textAlign:"center" }}>
-              <div style={{ fontFamily:"'Jost',sans-serif", fontSize:9, letterSpacing:4, textTransform:"uppercase", color:"rgba(196,168,154,0.5)", marginBottom:24 }}>✦ You're okay. Keep going.</div>
-              <div style={{ fontFamily:"'DM Sans',sans-serif", fontSize:24, color:"rgba(255,255,255,0.9)", lineHeight:1.55, marginBottom:32, fontWeight:500 }}>{liveData.if_nervous_card}</div>
-              <button onClick={()=>setShowNervous(false)} style={{ padding:"12px 32px", background:"rgba(196,168,154,0.1)", border:"1px solid rgba(196,168,154,0.25)", borderRadius:999, fontFamily:"'Jost',sans-serif", fontSize:9, letterSpacing:3, textTransform:"uppercase", color:"rgba(196,168,154,0.8)", cursor:"pointer" }}>I'm ready. Back to script.</button>
+          <div style={{ position:"fixed", inset:0, zIndex:1002, background:"rgba(5,5,7,0.92)", backdropFilter:"blur(40px)", WebkitBackdropFilter:"blur(40px)", display:"flex", alignItems:"center", justifyContent:"center", padding:40 }}>
+            <div style={{ maxWidth:640, textAlign:"center", animation:"riseIn 0.5s ease" }}>
+              <div style={{ width:48, height:48, borderRadius:"50%", background:`linear-gradient(135deg, ${GOLD_GLOW}, transparent)`, border:`1px solid ${GOLD_GLOW}`, margin:"0 auto 28px", display:"flex", alignItems:"center", justifyContent:"center", fontSize:18, color:GOLD }}>✦</div>
+              <div style={{ fontFamily:"'Inter',sans-serif", fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(212,175,106,0.7)", marginBottom:24, fontWeight:600 }}>You're okay. Keep going.</div>
+              <div style={{ fontFamily:"'Inter','DM Sans',sans-serif", fontSize:26, color:"rgba(255,255,255,0.96)", lineHeight:1.5, marginBottom:40, fontWeight:500, letterSpacing:"-0.015em" }}>{liveData.if_nervous_card}</div>
+              <button onClick={()=>setShowNervous(false)} style={{ padding:"14px 36px", background:`linear-gradient(135deg, rgba(212,175,106,0.15), rgba(212,175,106,0.05))`, border:`1px solid ${GOLD_GLOW}`, borderRadius:999, fontFamily:"'Inter',sans-serif", fontSize:12, letterSpacing:"0.08em", textTransform:"uppercase", color:GOLD, cursor:"pointer", fontWeight:600, boxShadow:`0 4px 24px rgba(212,175,106,0.15)`, transition:"all 0.2s" }}>I'm ready. Back to script.</button>
             </div>
           </div>
         )}
 
-        {/* Bottom controls */}
+        {/* Bottom glassmorphic control bar */}
         {!dimUI && (
-          <div style={{ padding:"10px 24px", background:"rgba(0,0,0,0.5)", borderTop:"1px solid rgba(255,255,255,0.03)", display:"flex", gap:16, alignItems:"center", flexShrink:0, flexWrap:"wrap" }}>
+          <div style={{ padding:"16px 32px", background:"rgba(10,10,15,0.7)", backdropFilter:"blur(20px) saturate(180%)", WebkitBackdropFilter:"blur(20px) saturate(180%)", borderTop:"1px solid rgba(255,255,255,0.06)", display:"flex", gap:14, alignItems:"center", flexShrink:0, flexWrap:"wrap", zIndex:12, position:"relative" }}>
+            {/* Main play button */}
             <button onClick={()=>scrolling?stopScroll():startScroll()}
-              style={{ padding:"8px 22px", background:scrolling?"rgba(255,45,85,0.15)":"rgba(196,168,154,0.12)", border:`1px solid ${scrolling?"rgba(255,45,85,0.3)":"rgba(196,168,154,0.25)"}`, borderRadius:999, fontFamily:"'Jost',sans-serif", fontSize:9, letterSpacing:3, textTransform:"uppercase", color:scrolling?"#ff7788":"rgba(196,168,154,0.8)", cursor:"pointer" }}>
-              {scrolling?"⏸ Pause":"▶ Scroll"}
+              style={{ padding:"10px 28px", background:scrolling?"linear-gradient(135deg, rgba(255,68,102,0.2), rgba(255,68,102,0.08))":`linear-gradient(135deg, ${GOLD}, #b88f48)`, border:`1px solid ${scrolling?"rgba(255,68,102,0.4)":GOLD}`, borderRadius:999, fontFamily:"'Inter',sans-serif", fontSize:12, letterSpacing:"0.08em", textTransform:"uppercase", color:scrolling?"#ff7788":"#1a1410", cursor:"pointer", fontWeight:700, boxShadow:scrolling?"0 0 24px rgba(255,68,102,0.3)":"0 4px 24px rgba(212,175,106,0.4)", transition:"all 0.25s", display:"flex", alignItems:"center", gap:8 }}>
+              <span style={{ fontSize:14 }}>{scrolling?"⏸":"▶"}</span>
+              <span>{scrolling?"Pause":"Play"}</span>
             </button>
-            <button onClick={resetScroll} style={{ padding:"8px 14px", background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", borderRadius:999, fontFamily:"'Jost',sans-serif", fontSize:9, letterSpacing:2, color:"rgba(255,255,255,0.3)", cursor:"pointer" }}>↑ Reset</button>
-            {[["Space","Play/Pause"],["↑↓","Speed"],["D","Dim"],["N","Nervous Card"],["T","Timer"],["Esc","Cue Cards"]].map(([k,d])=>(
-              <div key={k} style={{ display:"flex", gap:5, alignItems:"center" }}>
-                <span style={{ padding:"1px 6px", background:"rgba(255,255,255,0.05)", borderRadius:3, fontFamily:"monospace", fontSize:8, color:"rgba(255,255,255,0.3)" }}>{k}</span>
-                <span style={{ fontFamily:"'Jost',sans-serif", fontSize:7, letterSpacing:1, textTransform:"uppercase", color:"rgba(255,255,255,0.15)" }}>{d}</span>
+            <button onClick={resetScroll} style={{ padding:"10px 18px", background:"rgba(255,255,255,0.05)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:999, fontFamily:"'Inter',sans-serif", fontSize:11, letterSpacing:"0.05em", color:"rgba(255,255,255,0.6)", cursor:"pointer", fontWeight:600, transition:"all 0.2s" }}>↑ Reset</button>
+            <div style={{ width:1, height:24, background:"rgba(255,255,255,0.08)" }} />
+            {/* Keyboard shortcuts — modern chips */}
+            {[["Space","Play"],["↑↓","Speed"],["D","Dim"],["N","Calm"],["T","Timer"],["Esc","Exit"]].map(([k,d])=>(
+              <div key={k} style={{ display:"flex", gap:6, alignItems:"center" }}>
+                <kbd style={{ padding:"3px 8px", background:"rgba(255,255,255,0.06)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:6, fontFamily:"'JetBrains Mono',monospace", fontSize:9, color:"rgba(255,255,255,0.55)", fontWeight:600 }}>{k}</kbd>
+                <span style={{ fontFamily:"'Inter',sans-serif", fontSize:10, color:"rgba(255,255,255,0.35)", fontWeight:500 }}>{d}</span>
               </div>
             ))}
           </div>
