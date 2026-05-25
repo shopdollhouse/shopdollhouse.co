@@ -26,9 +26,6 @@ const LocalBusiness = () => {
             Your Business is Established.<br />
             <span className="text-[clamp(28px,4.5vw,48px)]">Your Social Media Should Be Too.</span>
           </h1>
-          <p className="text-[17px] text-dollhouse-text-mid font-light mt-5 max-w-[560px] mx-auto">
-            Your business is established. Your social media isn&apos;t. We fix that.
-          </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a
               href="#local-business"
