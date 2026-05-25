@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import Eyebrow from "@/components/Eyebrow";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 const CONTACT_EMAIL = "hello@shopdollhouse.co";
 const STUDIO_NAME = "The Dollhouse Brand Studio";
@@ -123,6 +123,7 @@ const AgreementForm = () => {
   const [platformMenuOpen, setPlatformMenuOpen] = useState(false);
   const [packageMenuOpen, setPackageMenuOpen] = useState(false);
   const [contractLengthMenuOpen, setContractLengthMenuOpen] = useState(false);
+  const [agreementSectionOpen, setAgreementSectionOpen] = useState(0);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
   const today = new Date().toLocaleDateString("en-US", {
@@ -611,10 +612,19 @@ ${notes || "None"}`;
           </div>
 
           <div className="space-y-5">
-            {agreementSections.map((section) => (
-              <div key={section.title} className="border-t border-dollhouse-p3/20 pt-4">
-                <p className="font-display italic text-[18px] font-normal text-dollhouse-ink">{section.title}</p>
-                <p className="mt-2 text-[12.5px] text-dollhouse-text-light font-light leading-relaxed">{section.body}</p>
+            {agreementSections.map((section, index) => (
+              <div key={section.title} className="border-t border-dollhouse-p320 pt-4">
+                <button
+                  type="button"
+                  onClick={() => setAgreementSectionOpen(agreementSectionOpen === index ? null : index)}
+                  className="flex w-full items-center justify-between font-display italic text-[18px] font-normal text-dollhouse-ink hover:text-dollhouse-text-mid transition-colors"
+                >
+                  {section.title}
+                  {agreementSectionOpen === index ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                </button>
+                {agreementSectionOpen === index && (
+                  <p className="mt-2 text-[12.5px] text-dollhouse-text-light font-light leading-relaxed">{section.body}</p>
+                )}
               </div>
             ))}
           </div>
