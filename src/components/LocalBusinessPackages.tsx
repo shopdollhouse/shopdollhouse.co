@@ -371,24 +371,15 @@ const LocalBusinessPackages = () => {
           </div>
 
           <div className="mt-5">
-            <button
-              type="button"
-              onClick={() => setOpenIncluded(openIncluded === index ? null : index)}
-              className="flex w-full items-center justify-between font-accent text-[9px] uppercase tracking-[3px] text-dollhouse-p3 hover:text-dollhouse-ink transition-colors"
-            >
-              What's Included
-              {openIncluded === index ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-            </button>
-            {openIncluded === index && (
-              <ul className="list-none p-0 mt-3 space-y-3">
-                {pkg.included.map((feature) => (
-                  <li key={typeof feature === "string" ? feature : feature.text} className="relative pl-5 text-[12.5px] font-light leading-relaxed text-dollhouse-text-mid">
-                    <span className="absolute left-0 top-[0.5em] h-1.5 w-1.5 rounded-full bg-[#d0b6a9]" />
-                    {renderFeature(feature)}
-                  </li>
-                ))}
-              </ul>
-            )}
+            <p className="font-accent text-[9px] uppercase tracking-[3px] text-dollhouse-p3">What's Included</p>
+            <ul className="list-none p-0 mt-3 space-y-3">
+              {pkg.included.map((feature) => (
+                <li key={typeof feature === "string" ? feature : feature.text} className="relative pl-5 text-[12.5px] font-light leading-relaxed text-dollhouse-text-mid">
+                  <span className="absolute left-0 top-[0.5em] h-1.5 w-1.5 rounded-full bg-[#d0b6a9]" />
+                  {renderFeature(feature)}
+                </li>
+              ))}
+            </ul>
           </div>
 
           <p className="mt-5 rounded-xl bg-[#f7f1ec] px-4 py-3 text-[12px] font-light leading-relaxed text-dollhouse-text-mid">
