@@ -14,7 +14,7 @@ const packages = [
     description: "For established businesses ready to build a professional social presence from scratch.",
     included: [
       "Profile setup + branding",
-      { text: "12 posts/month", tags: ["static", "carousel"] },
+      { text: "12 posts/month — static and carousel only, no reels", tags: ["static", "carousel"] },
       "Captions + hashtags written by us",
       "Scheduling + publishing",
       "1 promotional email graphic/month",
@@ -37,7 +37,7 @@ const packages = [
     description: "Full content suite with reels, video editing, and TikTok for businesses ready to grow fast.",
     included: [
       "Everything in Standard",
-      { text: "16 posts/month", tags: ["static", "carousel", "reels"] },
+      { text: "16 posts/month — 14 static/carousel + 2 reels", tags: ["static", "carousel", "reels"] },
       "Short-form video content + editing (Instagram/Facebook: 15–30 sec · TikTok: 30–60 sec)",
       "2 promotional email graphics/month",
       "Custom ad creatives designed by us",
@@ -64,7 +64,7 @@ const packages = [
     description: "Your own creative team. Maximum content, full ads management, merch design, and complete brand support.",
     included: [
       "Everything in Pro",
-      { text: "30 posts/month", tags: ["static", "carousel", "reels"] },
+      { text: "30 posts/month — 26 static/carousel + 4 reels", tags: ["static", "carousel", "reels"] },
       "Extended video editing + reels (Instagram/Facebook: 15–30 sec · TikTok: 30–60 sec)",
       {
         text: "Full Meta ads management included",

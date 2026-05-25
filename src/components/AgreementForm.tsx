@@ -75,8 +75,20 @@ const agreementSections = [
     body: "All client communication is handled by email only. No calls, meetings, rush work, additional revisions, or services outside the selected package are included unless approved in writing and may require an additional fee.",
   },
   {
+    title: "Solo Studio Policy",
+    body: "No rush delivery, no same-day turnaround, no after-hours communication. One revision round included per content batch. Additional revisions are not guaranteed and may be billed separately.",
+  },
+  {
+    title: "Client Approvals",
+    body: "Client must provide feedback and approvals within 48 hours. Delays caused by the client shift all delivery and publishing dates. The studio is not responsible for client-caused delays.",
+  },
+  {
+    title: "UGC and AI Video",
+    body: "Reels in Pro and Premium may use AI-generated video or UGC creator content. UGC talent fees are separate from the monthly fee and are the responsibility of the client. The studio will source and direct creators and notify the client of costs before they are incurred.",
+  },
+  {
     title: "Payment",
-    body: "Payment is not collected through this form. The Dollhouse Brand Studio will review the agreement and manually send the correct payment link. Package fees are service fees only and do not include Meta advertising spend, hosting, domains, paid tools, printing, or third-party platform fees.",
+    body: "Payment is not collected through this form. The Dollhouse Brand Studio will review the agreement and manually send the correct payment link. Package fees do not include Meta ad spend, UGC talent fees, hosting, domains, paid tools, printing, or any third-party fees. These are always billed separately and paid directly by the client.",
   },
   {
     title: "No Refund Policy",
