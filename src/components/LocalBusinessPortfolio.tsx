@@ -119,22 +119,22 @@ const LocalBusinessPortfolio = () => {
           {digitalProducts.map((product) => (
             <article
               key={product.name}
-              className="flex h-full flex-col overflow-hidden rounded-[18px] border border-[#D4C9C0] bg-[#F5F0EB] shadow-[0_10px_30px_rgba(60,45,39,0.05)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(60,45,39,0.1)]"
+              className="flex h-full flex-col overflow-hidden rounded-[22px] border border-dollhouse-p3/20 bg-[#f7f1ec] p-2 shadow-[0_18px_55px_rgba(60,45,39,0.07)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(60,45,39,0.12)]"
             >
-              <div className="w-full overflow-hidden bg-card" style={{ aspectRatio: "1 / 1.3" }}>
+              <div className="w-full overflow-hidden bg-card rounded-[16px]">
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="h-full w-full object-cover"
+                  className="w-full aspect-video object-contain"
                   loading="lazy"
                 />
               </div>
 
-              <div className="flex flex-1 flex-col p-5">
-                <h3 className="font-display italic text-[18px] font-normal text-dollhouse-ink leading-snug">
+              <div className="flex flex-1 flex-col p-3">
+                <h3 className="font-display italic text-[16px] font-normal text-dollhouse-ink leading-snug">
                   {product.name}
                 </h3>
-                <p className="mt-2 text-[12px] font-light leading-[1.7] text-dollhouse-text-light">
+                <p className="mt-2 text-[11px] font-light leading-[1.7] text-dollhouse-text-light">
                   {product.description}
                 </p>
 
@@ -142,9 +142,9 @@ const LocalBusinessPortfolio = () => {
                   href={product.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-auto pt-5 inline-block"
+                  className="mt-auto pt-3 inline-block"
                 >
-                  <span className="font-accent text-[10px] uppercase tracking-[2.5px] text-dollhouse-ink no-underline border-b border-dollhouse-ink/30 pb-0.5 transition-all duration-300 hover:border-dollhouse-ink hover:tracking-[3px]">
+                  <span className="font-accent text-[9px] uppercase tracking-[2.5px] text-dollhouse-ink no-underline border-b border-dollhouse-ink/30 pb-0.5 transition-all duration-300 hover:border-dollhouse-ink hover:tracking-[3px]">
                     View Project →
                   </span>
                 </a>
