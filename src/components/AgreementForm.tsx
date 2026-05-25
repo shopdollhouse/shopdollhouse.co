@@ -57,12 +57,10 @@ const monthlyAddonPrices: Record<string, number> = {
 const platforms = [
   "Instagram",
   "Facebook",
-  "Threads",
   "TikTok",
   "Instagram + Facebook",
-  "Instagram + Facebook + Threads",
   "Instagram + Facebook + TikTok",
-  "All platforms (Instagram, Facebook, Threads, TikTok)",
+  "All platforms (Instagram, Facebook, TikTok)",
 ];
 
 const agreementSections = [
@@ -127,7 +125,7 @@ const AgreementForm = () => {
   const [contractLength, setContractLength] = useState(contractLengths[0]);
   const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
-  const [selectedPlatform, setSelectedPlatform] = useState("Instagram + Facebook + Threads");
+  const [selectedPlatform, setSelectedPlatform] = useState("Instagram + Facebook");
   const [startDate, setStartDate] = useState("");
   const [notes, setNotes] = useState("");
   const [signature, setSignature] = useState("");

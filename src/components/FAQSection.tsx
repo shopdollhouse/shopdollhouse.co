@@ -32,7 +32,7 @@ const faqs = [
   },
   {
     q: "What is included in social media management?",
-    a: "Packages can include profile setup, branding, designed posts, carousels, reels, captions, hashtags, scheduling, publishing, promotional email graphics, monthly reports, Threads support, TikTok support, Meta ads management, custom ad creatives, merch design concepts, and analytics depending on the selected package. Meta ad spend is separate and paid directly to Meta by the client."
+    a: "Packages can include profile setup, branding, designed posts, carousels, reels, captions, hashtags, scheduling, publishing, promotional email graphics, monthly reports, TikTok support, Meta ads management, custom ad creatives, merch design concepts, and analytics depending on the selected package. Meta ad spend is separate and paid directly to Meta by the client."
   },
   {
     q: "Do you work with local businesses?",

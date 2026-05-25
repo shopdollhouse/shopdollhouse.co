@@ -21,7 +21,7 @@ const packages = [
       "Monthly performance report",
       "Organic content only",
     ],
-    platforms: "Platforms — choose up to 3: Instagram, Facebook, Threads",
+    platforms: "Platforms — Instagram and Facebook only",
     timeline: [
       "Week 1–2 — Profile setup + branding complete",
       "Week 3 — First content batch ready for your approval",
@@ -47,7 +47,7 @@ const packages = [
       },
       "Monthly performance report",
     ],
-    platforms: "Platforms — choose any 3: Instagram, Facebook, Threads, TikTok",
+    platforms: "Platforms — Instagram, Facebook, and TikTok — choose up to 2 or all 3",
     timeline: [
       "Week 1–2 — Setup, branding + content strategy complete",
       "Week 3–4 — First posts + reels ready for your approval",
@@ -75,7 +75,7 @@ const packages = [
       "Detailed monthly analytics report",
       "Priority email support",
     ],
-    platforms: "Platforms — all included: Instagram, Facebook, Threads, TikTok",
+    platforms: "Platforms — Instagram, Facebook, and TikTok — all included",
     timeline: [
       "Week 1–2 — Full onboarding, brand audit + strategy complete",
       "Week 3–4 — First content batch ready for your approval",

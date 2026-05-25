@@ -82,7 +82,6 @@ hello@shopdollhouse.co
 
 Social Media
 • Instagram: @mandyxdoll
-• Threads: @mandyxdoll
 • TikTok: @mandyxdoll
 
 Done-For-You Inquiries
