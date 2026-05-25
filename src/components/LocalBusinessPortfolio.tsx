@@ -41,10 +41,10 @@ const digitalProducts: DigitalProduct[] = [
 
 const portfolioItems = [
   mandyPhoto, // Mandy Fortune
-  portfolio5, // Jerk & Jollof — Event Branding & Promotion
   portfolio3, // CandiiShop — Merch Designs
-  portfolio6, // Real Yardie — Merch & Merchandising
   portfolio9, // D'Addario — Promotional Campaigns & Email Marketing
+  portfolio5, // Jerk & Jollof — Event Branding & Promotion
+  portfolio6, // Real Yardie — Merch & Merchandising
 ];
 
 const LocalBusinessPortfolio = () => {
