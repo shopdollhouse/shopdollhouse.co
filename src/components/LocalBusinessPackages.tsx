@@ -71,7 +71,7 @@ const packages = [
         note: "Ads are launched in month 2 once your organic content foundation is established.",
       },
       "4 promotional email graphics/month",
-      "1 merch design concept/month",
+      "1 merch design concept included (additional concepts available as one-time add-on at $1,000 each)",
       "Detailed monthly analytics report",
       "Priority email support",
     ],
@@ -106,7 +106,7 @@ const monthlyAddons = [
   {
     title: "Meta Ads Management",
     price: "+$600/mo",
-    availability: "Available for Pro package only. Recommended after 60 days of consistent organic content.",
+    availability: "Available for Standard and Pro. Recommended after 60 days of consistent organic content.",
     includes: ["Campaign setup + management", "Custom ad creatives", "Ad spend billed separately"],
     icon: Megaphone,
   },
@@ -154,6 +154,12 @@ const projectAddons = [
     price: "$400+",
     desc: "Branded post graphics for Instagram, Facebook, or both.",
     icon: Image,
+  },
+  {
+    title: "Custom Web App",
+    price: "$800+",
+    desc: "Interactive tools built for a business website — pricing calculators, lead capture quizzes, booking widgets, custom interactive forms.",
+    icon: Globe,
   },
 ];
 
