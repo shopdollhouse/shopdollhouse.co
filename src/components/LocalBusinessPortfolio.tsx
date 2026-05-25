@@ -79,18 +79,8 @@ const LocalBusinessPortfolio = () => {
           </h2>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-10 max-w-[1320px] mx-auto">
-          <div className="flex-shrink-0 w-[200px] h-[200px] rounded-[22px] overflow-hidden border border-dollhouse-p3/35 mx-auto lg:mx-0 shadow-lg">
-            <img
-              src={mandyPhoto}
-              alt="Mandy Fortune — founder of The Dollhouse"
-              className="w-full h-full object-cover"
-              style={{ objectPosition: "50% 50%" }}
-            />
-          </div>
-
-          <div className="flex-1 min-w-[280px]">
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="max-w-[1320px] mx-auto">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {portfolioItems.map((image, index) => (
                 <button
                   key={image}
@@ -111,7 +101,6 @@ const LocalBusinessPortfolio = () => {
                 </button>
               ))}
             </div>
-          </div>
         </div>
       </div>
 
