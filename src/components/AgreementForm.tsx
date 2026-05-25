@@ -8,15 +8,15 @@ const FORMSPREE_ENDPOINT =
   import.meta.env.VITE_FORMSPREE_ENDPOINT || "https://formspree.io/f/mwvrvrzj";
 
 const packages = [
-  "Standard $1,500/mo",
-  "Pro $2,500/mo",
-  "Premium $5,000/mo",
+  "Standard $1,800/mo",
+  "Pro $3,000/mo",
+  "Premium $7,500/mo",
 ];
 
 const packagePrices: Record<string, number> = {
-  "Standard $1,500/mo": 1500,
-  "Pro $2,500/mo": 2500,
-  "Premium $5,000/mo": 5000,
+  "Standard $1,800/mo": 1800,
+  "Pro $3,000/mo": 3000,
+  "Premium $7,500/mo": 7500,
 };
 
 const contractLengths = [

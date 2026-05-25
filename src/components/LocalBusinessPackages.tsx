@@ -9,7 +9,7 @@ const FORMSPREE_ENDPOINT =
 const packages = [
   {
     title: "Standard",
-    price: "$1,500/mo",
+    price: "$1,800/mo",
     badge: "First Month · No Commitment",
     description: "For established businesses ready to build a professional social presence from scratch.",
     included: [
@@ -32,7 +32,7 @@ const packages = [
   },
   {
     title: "Pro",
-    price: "$2,500/mo",
+    price: "$3,000/mo",
     badge: "Most Popular",
     description: "Full content suite with reels, video editing, and TikTok for businesses ready to grow fast.",
     included: [
@@ -60,7 +60,7 @@ const packages = [
   },
   {
     title: "Premium",
-    price: "$5,000/mo",
+    price: "$7,500/mo",
     description: "Your own creative team. Maximum content, full ads management, merch design, and complete brand support.",
     included: [
       "Everything in Pro",
@@ -188,7 +188,7 @@ const packageFaqs = [
   },
   {
     q: "How does the first month trial work for Standard?",
-    a: "The Standard package offers a no-commitment first month — you pay $1,500, I set up your profiles, create your first content batch, and begin publishing. At the end of month 1 you decide if you'd like to continue. If you do, a 3-month minimum begins from month 2. If not, we part ways with no hard feelings.",
+    a: "The Standard package offers a no-commitment first month — you pay $1,800, I set up your profiles, create your first content batch, and begin publishing. At the end of month 1 you decide if you'd like to continue. If you do, a 3-month minimum begins from month 2. If not, we part ways with no hard feelings.",
   },
   {
     q: "Who pays for the ad spend?",
