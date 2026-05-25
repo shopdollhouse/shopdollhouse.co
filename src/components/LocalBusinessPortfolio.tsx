@@ -6,7 +6,7 @@ import portfolio3 from "@/assets/portfolio-local-business/portfolio-3.jpg";
 import portfolio5 from "@/assets/portfolio-local-business/portfolio-5.jpg";
 import portfolio6 from "@/assets/portfolio-local-business/portfolio-6.jpg";
 import portfolio9 from "@/assets/portfolio-local-business/portfolio-9.jpg";
-import mandyPhoto from "@/assets/mandy-photo.jpg";
+import mandyPhoto from "@/assets/mandy.jpg";
 
 type DigitalProduct = {
   image: string;
@@ -89,9 +89,6 @@ const LocalBusinessPortfolio = () => {
           </div>
 
           <div className="flex-1 min-w-[280px]">
-            <p className="text-[13px] text-dollhouse-text-light font-light leading-relaxed mb-3">
-              A Little About Me
-            </p>
             <p className="text-[14px] text-dollhouse-text-mid font-light leading-relaxed mb-4">
               My name is Mandy Fortune — a designer and social media strategist based in the Greater Toronto Area with over 12 years of experience in branding, visual design, and digital media.
             </p>
