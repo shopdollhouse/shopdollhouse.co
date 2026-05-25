@@ -70,7 +70,7 @@ const packages = [
         text: "Full Meta ads management included",
         note: "Ads are launched in month 2 once your organic content foundation is established.",
       },
-      "4 promotional email graphics/month",
+      "2 promotional email graphics/month (additional email graphics available as a monthly add-on at +$300/mo each)",
       "1 merch design concept included (additional concepts available as one-time add-on at $1,000 each)",
       "Detailed monthly analytics report",
       "Priority email support",
