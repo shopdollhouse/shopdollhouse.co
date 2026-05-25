@@ -657,46 +657,46 @@ ${notes || "None"}`;
           </button>
         </div>
       </form>
-    </section>
 
-    {agreementModalOpen && (
-      <div
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
-        onClick={() => setAgreementModalOpen(false)}
-      >
+      {agreementModalOpen && (
         <div
-          className="relative max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-card p-8 shadow-2xl"
-          onClick={(e) => e.stopPropagation()}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+          onClick={() => setAgreementModalOpen(false)}
         >
-          <button
-            type="button"
-            onClick={() => setAgreementModalOpen(false)}
-            className="absolute right-6 top-6 text-dollhouse-text-light hover:text-dollhouse-ink transition-colors"
+          <div
+            className="relative max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-card p-8 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
           >
-            <ChevronUp size={24} className="rotate-45" />
-          </button>
+            <button
+              type="button"
+              onClick={() => setAgreementModalOpen(false)}
+              className="absolute right-6 top-6 text-dollhouse-text-light hover:text-dollhouse-ink transition-colors"
+            >
+              <ChevronUp size={24} className="rotate-45" />
+            </button>
 
-          <h2 className="font-display italic text-[28px] font-normal text-dollhouse-ink mb-6">Service Agreement</h2>
+            <h2 className="font-display italic text-[28px] font-normal text-dollhouse-ink mb-6">Service Agreement</h2>
 
-          <div className="space-y-6">
-            {agreementSections.map((section) => (
-              <div key={section.title}>
-                <h3 className="font-display italic text-[18px] font-normal text-dollhouse-ink mb-2">{section.title}</h3>
-                <p className="text-[13px] text-dollhouse-text-mid font-light leading-relaxed">{section.body}</p>
-              </div>
-            ))}
+            <div className="space-y-6">
+              {agreementSections.map((section) => (
+                <div key={section.title}>
+                  <h3 className="font-display italic text-[18px] font-normal text-dollhouse-ink mb-2">{section.title}</h3>
+                  <p className="text-[13px] text-dollhouse-text-mid font-light leading-relaxed">{section.body}</p>
+                </div>
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setAgreementModalOpen(false)}
+              className="mt-8 w-full rounded-2xl bg-dollhouse-ink px-6 py-4 font-display italic text-[16px] font-normal text-white transition-all hover:bg-dollhouse-text-mid"
+            >
+              Got It
+            </button>
           </div>
-
-          <button
-            type="button"
-            onClick={() => setAgreementModalOpen(false)}
-            className="mt-8 w-full rounded-2xl bg-dollhouse-ink px-6 py-4 font-display italic text-[16px] font-normal text-white transition-all hover:bg-dollhouse-text-mid"
-          >
-            Got It
-          </button>
         </div>
-      </div>
-    )}
+      )}
+    </section>
   );
 };
 
