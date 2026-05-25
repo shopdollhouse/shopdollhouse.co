@@ -38,9 +38,7 @@ const packages = [
     badge: "Most Popular",
     description: "Everything in Standard plus video content, TikTok, and faster growth for businesses ready to scale.",
     included: [
-      "Profile setup and branding",
-      "We write all captions and hashtags",
-      "We schedule and publish everything",
+      "Includes everything in Standard",
       { text: "16 posts/month — 14 image/swipeable + 2 video reels", tags: ["static", "carousel", "reels"], note: "Static: single image posts · Carousel: swipeable multi-image posts · Reels: short video posts" },
       "Short-form video editing included",
       "2 promotional email graphics per month",
@@ -49,7 +47,6 @@ const packages = [
         text: "Meta ads management optional add-on (+$600/mo)",
         note: "Recommended after 60 days of consistent organic content. We will advise when your account is ready.",
       },
-      "Monthly performance report",
     ],
     platforms: "Platforms — Instagram, Facebook, and TikTok — choose up to 2 or all 3",
     timeline: [
@@ -68,11 +65,7 @@ const packages = [
     priceValue: "Maximum content with full ads management and merch design included",
     description: "High-touch solo studio experience with maximum content, full ads management, merch design, and complete brand support.",
     included: [
-      "Profile setup and branding",
-      "We write all captions and hashtags",
-      "We schedule and publish everything",
-      "Short-form video editing included",
-      "Custom ad creatives designed by us",
+      "Includes everything in Pro",
       { text: "30 posts/month — 26 image/swipeable + 4 video reels", tags: ["static", "carousel", "reels"], note: "Static: single image posts · Carousel: swipeable multi-image posts · Reels: short video posts" },
       {
         text: "Full Meta ads management included",
@@ -81,7 +74,7 @@ const packages = [
       "2 promotional email graphics per month (additional available at +$300/mo each)",
       "1 merch design concept included (additional concepts available as one-time add-on at $1,000 each)",
       "Detailed monthly analytics report",
-      "Priority email support",
+      "Dedicated email support — your emails are always answered first",
     ],
     platforms: "Platforms — Instagram, Facebook, and TikTok — all included",
     timeline: [
@@ -420,6 +413,10 @@ const LocalBusinessPackages = () => {
         </article>
       ))}
     </div>
+
+    <p className="mt-8 text-center text-[11.5px] font-light italic leading-relaxed text-dollhouse-text-light">
+      Trusted by established local businesses across the GTA.
+    </p>
 
     <div className="dh-reveal mx-auto mt-16 max-w-[900px] rounded-[24px] border border-[#D4C9C0] bg-[#EDE8E3] p-12 shadow-[0_22px_70px_rgba(60,45,39,0.08)]">
       <div className="text-center">
