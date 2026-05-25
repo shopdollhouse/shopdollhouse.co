@@ -6,6 +6,7 @@ import portfolio3 from "@/assets/portfolio-local-business/portfolio-3.jpg";
 import portfolio5 from "@/assets/portfolio-local-business/portfolio-5.jpg";
 import portfolio6 from "@/assets/portfolio-local-business/portfolio-6.jpg";
 import portfolio9 from "@/assets/portfolio-local-business/portfolio-9.jpg";
+import portfolio10 from "@/assets/portfolio-local-business/portfolio-10.png";
 import mandyPhoto from "@/assets/mandy.jpg";
 
 type DigitalProduct = {
@@ -45,6 +46,7 @@ const portfolioItems = [
   portfolio9, // D'Addario — Promotional Campaigns & Email Marketing
   portfolio5, // Jerk & Jollof — Event Branding & Promotion
   portfolio6, // Real Yardie — Merch & Merchandising
+  portfolio10, // Lumière Beauty Lounge — Sample Work
 ];
 
 const LocalBusinessPortfolio = () => {
@@ -98,6 +100,11 @@ const LocalBusinessPortfolio = () => {
                     className="w-full aspect-video rounded-[16px] bg-card object-contain transition-transform duration-500 group-hover:scale-[1.02]"
                     loading={index < 4 ? "eager" : "lazy"}
                   />
+                  {image === portfolio10 && (
+                    <span className="mt-2 block text-center text-[10px] font-light italic text-dollhouse-text-light">
+                      Sample Work
+                    </span>
+                  )}
                 </button>
               ))}
             </div>
