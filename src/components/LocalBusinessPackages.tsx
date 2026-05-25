@@ -243,10 +243,9 @@ const LocalBusinessPackages = () => {
 
   const timelineOptions = [
     "As soon as possible",
-    "Within 2 weeks",
-    "Within 1 month",
-    "Within 2 to 3 months",
-    "No specific deadline",
+    "Within the next month",
+    "In 1 to 3 months",
+    "Just exploring for now",
   ];
 
   const budgetOptions = [
@@ -429,7 +428,7 @@ const LocalBusinessPackages = () => {
           Something Else in Mind?
         </h3>
         <p className="mx-auto mt-4 max-w-[610px] text-[13.5px] font-light leading-relaxed text-dollhouse-text-light">
-          Not sure which package is right for you, or need something specific that isn't listed here? Tell me what you're working on and I'll put together a custom quote — no commitment required.
+          Not a package person? Tell me what you need and I'll build something around you. I'll review your request and get back to you within 2 business days — no commitment required.
         </p>
       </div>
 
@@ -500,7 +499,7 @@ const LocalBusinessPackages = () => {
         </label>
 
         <label className="block">
-          <span className={quoteLabelClass}>When do you need this done by?</span>
+          <span className={quoteLabelClass}>Preferred start date</span>
           <div className="relative mt-2">
             <button
               type="button"
@@ -606,6 +605,9 @@ const LocalBusinessPackages = () => {
         >
           {quoteStatus === "sending" ? "Sending Request..." : "Request a Custom Quote →"}
         </button>
+        <p className="mt-3 text-center text-[11px] font-light italic text-dollhouse-text-light">
+          You'll hear back within 2 business days. All communication is by email only.
+        </p>
       </form>
     </div>
 
