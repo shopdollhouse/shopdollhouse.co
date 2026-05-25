@@ -121,7 +121,7 @@ const LocalBusinessPortfolio = () => {
               key={product.name}
               className="flex h-full flex-col overflow-hidden rounded-[18px] border border-[#D4C9C0] bg-[#F5F0EB] shadow-[0_10px_30px_rgba(60,45,39,0.05)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(60,45,39,0.1)]"
             >
-              <div className="w-full overflow-hidden bg-card" style={{ aspectRatio: "1 / 0.7" }}>
+              <div className="w-full overflow-hidden bg-card" style={{ aspectRatio: "1 / 1.3" }}>
                 <img
                   src={product.image}
                   alt={product.name}
