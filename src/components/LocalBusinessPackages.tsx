@@ -155,12 +155,6 @@ const projectAddons = [
     desc: "Branded post graphics for Instagram, Facebook, or both.",
     icon: Image,
   },
-  {
-    title: "Custom Web App",
-    price: "$800+",
-    desc: "Interactive tools built for a business website — pricing calculators, lead capture quizzes, booking widgets, custom interactive forms.",
-    icon: Globe,
-  },
 ];
 
 const packageFaqs = [
