@@ -123,7 +123,7 @@ const AgreementForm = () => {
   const [platformMenuOpen, setPlatformMenuOpen] = useState(false);
   const [packageMenuOpen, setPackageMenuOpen] = useState(false);
   const [contractLengthMenuOpen, setContractLengthMenuOpen] = useState(false);
-  const [agreementSectionOpen, setAgreementSectionOpen] = useState(0);
+  const [agreementModalOpen, setAgreementModalOpen] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
   const today = new Date().toLocaleDateString("en-US", {
@@ -612,21 +612,13 @@ ${notes || "None"}`;
           </div>
 
           <div className="space-y-5">
-            {agreementSections.map((section, index) => (
-              <div key={section.title} className="border-t border-dollhouse-p320 pt-4">
-                <button
-                  type="button"
-                  onClick={() => setAgreementSectionOpen(agreementSectionOpen === index ? null : index)}
-                  className="flex w-full items-center justify-between font-display italic text-[18px] font-normal text-dollhouse-ink hover:text-dollhouse-text-mid transition-colors"
-                >
-                  {section.title}
-                  {agreementSectionOpen === index ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                </button>
-                {agreementSectionOpen === index && (
-                  <p className="mt-2 text-[12.5px] text-dollhouse-text-light font-light leading-relaxed">{section.body}</p>
-                )}
-              </div>
-            ))}
+            <button
+              type="button"
+              onClick={() => setAgreementModalOpen(true)}
+              className="w-full rounded-2xl border border-dollhouse-p3/30 bg-card px-6 py-4 text-left transition-all hover:border-dollhouse-p3/50 hover:bg-[#f7f1ec]"
+            >
+              <span className="font-display italic text-[16px] font-normal text-dollhouse-ink">View Agreement</span>
+            </button>
           </div>
         </div>
 
@@ -666,6 +658,45 @@ ${notes || "None"}`;
         </div>
       </form>
     </section>
+
+    {agreementModalOpen && (
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+        onClick={() => setAgreementModalOpen(false)}
+      >
+        <div
+          className="relative max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-card p-8 shadow-2xl"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button
+            type="button"
+            onClick={() => setAgreementModalOpen(false)}
+            className="absolute right-6 top-6 text-dollhouse-text-light hover:text-dollhouse-ink transition-colors"
+          >
+            <ChevronUp size={24} className="rotate-45" />
+          </button>
+
+          <h2 className="font-display italic text-[28px] font-normal text-dollhouse-ink mb-6">Service Agreement</h2>
+
+          <div className="space-y-6">
+            {agreementSections.map((section) => (
+              <div key={section.title}>
+                <h3 className="font-display italic text-[18px] font-normal text-dollhouse-ink mb-2">{section.title}</h3>
+                <p className="text-[13px] text-dollhouse-text-mid font-light leading-relaxed">{section.body}</p>
+              </div>
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setAgreementModalOpen(false)}
+            className="mt-8 w-full rounded-2xl bg-dollhouse-ink px-6 py-4 font-display italic text-[16px] font-normal text-white transition-all hover:bg-dollhouse-text-mid"
+          >
+            Got It
+          </button>
+        </div>
+      </div>
+    )}
   );
 };
 
