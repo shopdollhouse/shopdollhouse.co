@@ -24,7 +24,7 @@ const LocalBusiness = () => {
           </p>
           <h1 className="font-display italic font-normal text-dollhouse-ink text-[clamp(38px,6vw,68px)] leading-tight">
             Your Business is Established.<br />
-            Your Social Media Should Be Too.
+            <span className="text-[clamp(28px,4.5vw,48px)]">Your Social Media Should Be Too.</span>
           </h1>
           <p className="text-[17px] text-dollhouse-text-mid font-light mt-5 max-w-[560px] mx-auto">
             Your business is established. Your social media isn&apos;t. We fix that.
