@@ -5,8 +5,6 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import LocalBusiness from "./pages/LocalBusiness.tsx";
-import Quiz from "./pages/Quiz.tsx";
-import QuizLeads from "./pages/QuizLeads.tsx";
 import Onboarding from "./pages/Onboarding.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
@@ -21,8 +19,6 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/starter-kit" element={<LocalBusiness />} />
-          <Route path="/quiz" element={<Quiz />} />
-          <Route path="/quiz/leads" element={<QuizLeads />} />
           <Route path="/onboarding" element={<Onboarding />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
