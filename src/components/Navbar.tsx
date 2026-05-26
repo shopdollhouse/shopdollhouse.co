@@ -37,10 +37,9 @@ const Navbar = () => {
   };
 
   const links: [string, string][] = [
-    ["The Rooms", "/#the-rooms"],
-    ["Done-For-You", "/#dfy"],
-    ["Local Business", "/local-business"],
-    ["About", "/#about"],
+    ["Services", "/#services"],
+    ["Pricing", "/#pricing"],
+    ["Starter Kit", "/starter-kit"],
     ["FAQ", "/#faq"],
   ];
 
@@ -58,6 +57,7 @@ const Navbar = () => {
           <a href="/" className="font-display italic text-dollhouse-ink no-underline flex flex-col items-start leading-tight">
             <span className="text-[9px] tracking-[4px] text-dollhouse-text-light font-normal">the</span>
             <span className="text-[15px] tracking-[4px] uppercase">Dollhouse</span>
+            <span className="font-accent not-italic text-[6.5px] tracking-[3px] uppercase text-dollhouse-gold font-semibold mt-[1px]">Brand Studio</span>
           </a>
 
           <div className="flex items-center gap-6">
@@ -82,20 +82,10 @@ const Navbar = () => {
 
             <div className="hidden md:flex items-center gap-2">
               <a
-                href={STAN_STORE}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-accent text-[8px] tracking-[3px] uppercase px-4 py-2 bg-dollhouse-ink text-card rounded-pill no-underline hover:opacity-90 transition-opacity"
+                href="/#contact"
+                className="font-accent text-[8px] tracking-[3px] uppercase px-5 py-2.5 bg-dollhouse-ink text-card rounded-pill no-underline hover:opacity-90 transition-opacity"
               >
-                Stan Store →
-              </a>
-              <a
-                href={ETSY_SHOP}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-accent text-[8px] tracking-[3px] uppercase px-4 py-2 bg-dollhouse-p3 text-dollhouse-ink rounded-pill no-underline hover:opacity-90 transition-opacity"
-              >
-                Etsy →
+                Book a Call →
               </a>
             </div>
 
@@ -124,28 +114,13 @@ const Navbar = () => {
             ))}
             <div className="flex flex-col gap-2 mt-2">
               <a
-                href={STAN_STORE}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/#contact"
+                onClick={() => setMenuOpen(false)}
                 className="font-accent text-[10px] tracking-[3px] uppercase text-dollhouse-ink no-underline"
               >
-                Stan Store →
-              </a>
-              <a
-                href={ETSY_SHOP}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-accent text-[10px] tracking-[3px] uppercase text-dollhouse-p3 no-underline"
-              >
-                Etsy →
+                Book a Call →
               </a>
             </div>
-            <button
-              onClick={() => { setMenuOpen(false); setShowQuizForm(true); }}
-              className="font-accent text-[10px] tracking-[3px] uppercase text-dollhouse-gold no-underline flex items-center gap-1.5 bg-transparent border-none cursor-pointer p-0 text-left mt-2"
-            >
-              <span>✦</span> Free Brand Quiz
-            </button>
           </div>
         )}
       </nav>
