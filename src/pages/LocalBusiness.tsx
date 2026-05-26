@@ -5,6 +5,7 @@ import HeartDivider from "@/components/HeartDivider";
 import CornerFrame from "@/components/CornerFrame";
 import LegalModal, { useLegalModal } from "@/components/LegalModal";
 import useScrollReveal from "@/hooks/useScrollReveal";
+import heroRoseBg from "@/assets/hero-rose-bg.jpg";
 
 // ─── Kit items ─────────────────────────────────────────────────────────────────
 const kitItems = [
@@ -68,8 +69,16 @@ export default function LocalBusiness() {
       <Navbar />
 
       {/* ─── HERO ─── */}
-      <CornerFrame className="min-h-[82vh] flex items-center justify-center text-center px-10 py-16">
-        <div className="flex flex-col items-center max-w-[600px] animate-rise-in">
+      <CornerFrame className="relative min-h-[82vh] flex items-center justify-center text-center px-10 py-16 overflow-hidden">
+        <div className="absolute left-0 bottom-0 h-[72%] w-[22%] max-w-[240px] overflow-hidden pointer-events-none select-none opacity-50"
+          style={{ maskImage: "linear-gradient(to right, black 50%, transparent 100%)" }}>
+          <img src={heroRoseBg} aria-hidden="true" className="w-full h-full object-cover object-center" />
+        </div>
+        <div className="absolute right-0 bottom-0 h-[72%] w-[22%] max-w-[240px] overflow-hidden pointer-events-none select-none opacity-50"
+          style={{ maskImage: "linear-gradient(to left, black 50%, transparent 100%)" }}>
+          <img src={heroRoseBg} aria-hidden="true" className="w-full h-full object-cover object-center scale-x-[-1]" />
+        </div>
+        <div className="relative z-10 flex flex-col items-center max-w-[600px] animate-rise-in">
           <div className="animate-float-arch mb-6">
             <DollhouseArch />
           </div>
