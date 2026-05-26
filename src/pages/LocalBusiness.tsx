@@ -20,12 +20,15 @@ const LocalBusiness = () => {
       <main>
         <section className="px-6 py-20 text-center max-w-[760px] mx-auto">
           <p className="font-accent text-[9px] tracking-[4px] uppercase text-dollhouse-p3 mb-4">
-            Done-for-You Social Media Marketing
+            AI Powered Social Media Marketing
           </p>
           <h1 className="font-display italic font-normal text-dollhouse-ink text-[clamp(38px,6vw,68px)] leading-tight">
-            Your Business is Established.<br />
-            <span className="text-[clamp(28px,4.5vw,48px)]">Your Social Media Should Be Too.</span>
+            Your Business Deserves to Be Found.<br />
+            <span className="text-[clamp(28px,4.5vw,48px)]">We Build the System That Makes It Happen.</span>
           </h1>
+          <p className="text-[17px] text-dollhouse-text-mid font-light mt-5 max-w-[560px] mx-auto">
+            AI powered social media content, automation, and lead generation for established local businesses in the GTA.
+          </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a
               href="#local-business"

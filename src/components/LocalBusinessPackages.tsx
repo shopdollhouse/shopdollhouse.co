@@ -8,83 +8,78 @@ const FORMSPREE_ENDPOINT =
 
 const packages = [
   {
-    title: "Standard",
-    price: "$1,800/mo",
-    priceValue: "Upgrade to Pro for video content and TikTok",
+    title: "AI Social Starter",
+    price: "$800/mo",
+    priceValue: "Upgrade to AI Clone Content for video content",
     badge: "First Month · No Commitment",
-    description: "Build a professional social presence from scratch with simple, consistent posts that look great and get you noticed.",
+    description: "The perfect entry point. Build trust, generate leads, and get your business showing up online.",
     included: [
-      "Profile setup and branding",
-      { text: "12 posts/month — single images and swipeable posts", tags: ["static", "carousel"], note: "Static: single image posts · Carousel: swipeable multi-image posts" },
-      "We write all captions and hashtags",
-      "We schedule and publish everything",
-      "1 promotional email graphic per month",
-      "Monthly performance report",
-      "Organic content only — no ads",
+      "5 branded AI generated posts per week",
+      "Automated comment to DM lead generation",
+      "AI built lead magnet",
+      "Missed call text back system",
+      "Lead connector app access",
+      "Content scheduled and published for you",
+      "Monthly analytics report",
     ],
-    platforms: "Platforms — Instagram and Facebook only",
+    platforms: "Best for: Businesses with no social media presence who want to start strong without a big commitment",
     timeline: [
-      "Week 1–2 — Profile setup and branding complete",
-      "Week 3 — First content batch ready for your approval",
-      "Week 4 — Publishing begins",
-      "Note: Timeline depends on you providing assets and approvals on time",
+      "Week 1 — Setup and lead magnet creation",
+      "Week 2 — AI content generation begins",
+      "Week 3 — Automation systems go live",
+      "Week 4 — Full system operational",
     ],
-    note: "First month — no commitment · 3-month minimum from month 2 · Organic content only",
+    note: "First month — no commitment · 3-month minimum from month 2",
   },
   {
-    title: "Pro",
-    price: "$3,000/mo",
-    priceValue: "Upgrade to Premium for maximum content and full ads management",
+    title: "AI Clone Content",
+    price: "$1,500/mo",
+    priceValue: "Upgrade to The Full System for complete growth engine",
     badge: "Most Popular",
-    description: "Everything in Standard plus video content, TikTok, and faster growth for businesses ready to scale.",
+    description: "Your face. Your voice. Showing up online every single day without you lifting a finger.",
     included: [
-      "Includes everything in Standard",
-      { text: "16 posts/month — 14 image/swipeable + 2 video reels", tags: ["static", "carousel", "reels"], note: "Static: single image posts · Carousel: swipeable multi-image posts · Reels: short video posts" },
-      "Short-form video editing included",
-      "2 promotional email graphics per month",
-      "Custom ad creatives designed by us",
-      {
-        text: "Meta ads management optional add-on (+$600/mo)",
-        note: "Recommended after 60 days of consistent organic content. We will advise when your account is ready.",
-      },
+      "AI video clone built from your likeness",
+      "3 AI clone video posts per week",
+      "Branded graphics and captions",
+      "Content scheduled and published for you",
+      "Automated comment to DM lead generation",
+      "Monthly analytics report",
     ],
-    platforms: "Platforms — Instagram, Facebook, and TikTok — choose up to 2 or all 3",
+    platforms: "Best for: Business owners who want to build a personal brand and connect with their audience through video without being on camera every day",
     timeline: [
-      "Week 1–2 — Setup, branding and content strategy complete",
-      "Week 3–4 — First posts and reels ready for your approval",
-      "Week 5 — Publishing begins",
-      "Month 2 — Meta ads launched (if add-on selected)",
-      "Note: Timeline depends on you providing assets and approvals on time",
+      "Week 1 — AI clone recording and setup",
+      "Week 2 — Clone training and content strategy",
+      "Week 3 — First AI clone videos ready",
+      "Week 4 — Publishing begins",
     ],
-    note: "3-month minimum · Ad spend billed separately",
+    note: "3-month minimum",
     featured: true,
   },
   {
-    title: "Premium",
-    price: "$7,500/mo",
-    priceValue: "Maximum content with full ads management and merch design included",
-    description: "High-touch solo studio experience with maximum content, full ads management, merch design, and complete brand support.",
+    title: "The Full System",
+    price: "$2,500/mo",
+    priceValue: "Complete done-for-you growth engine with ads and lead generation",
+    description: "The complete done-for-you growth engine. Content, automation, ads, and lead generation all working together every single day.",
     included: [
-      "Includes everything in Pro",
-      { text: "30 posts/month — 26 image/swipeable + 4 video reels", tags: ["static", "carousel", "reels"], note: "Static: single image posts · Carousel: swipeable multi-image posts · Reels: short video posts" },
-      {
-        text: "Full Meta ads management included",
-        note: "Ads are launched in month 2 once your organic content foundation is established.",
-      },
-      "2 promotional email graphics per month (additional available at +$300/mo each)",
-      "1 merch design concept included (additional concepts available as one-time add-on at $1,000 each)",
-      "Detailed monthly analytics report",
-      "Dedicated email support — your emails are always answered first",
+      "Daily content — AI generated carousels and graphics 5 days a week",
+      "AI clone video content — 3 high impact videos per week showcasing the business owner",
+      "Comment to DM automation",
+      "AI built lead magnet",
+      "Missed call text back system",
+      "Lead connector app access",
+      "3 pinned AI generated high impact posts with boosted ad spend applied",
+      "Boosted posts driving real traffic and bookings",
+      "Full analytics dashboard and monthly report",
+      "Brand colors, fonts, and assets pulled and applied automatically",
     ],
-    platforms: "Platforms — Instagram, Facebook, and TikTok — all included",
+    platforms: "Best for: Established businesses ready to turn their social media into a full lead generation machine",
     timeline: [
-      "Week 1–2 — Full onboarding, brand audit and strategy complete",
-      "Week 3–4 — First content batch ready for your approval",
-      "Week 5–6 — Publishing begins across all platforms",
-      "Month 2 — Ads live and merch design kicked off",
-      "Note: Timeline depends on you providing assets and approvals on time",
+      "Week 1 — Full system setup and AI clone recording",
+      "Week 2 — Content strategy and lead magnet creation",
+      "Week 3–4 — First content batch and automation go live",
+      "Month 2 — Ads launched and optimization begins",
     ],
-    note: "3-month minimum · Ad spend billed separately by client",
+    note: "3-month minimum · Ad spend billed separately — minimum $250/mo recommended",
   },
 ];
 
@@ -105,27 +100,56 @@ const notFor = [
 
 const monthlyAddons = [
   {
-    title: "Meta Ads Management",
-    price: "+$600/mo",
-    availability: "Available for Standard and Pro. Recommended after 60 days of consistent organic content.",
-    includes: ["Campaign setup + management", "Custom ad creatives", "Ad spend billed separately"],
+    title: "Extra AI Video Posts",
+    price: "+$200/mo",
+    includes: ["2 additional videos per week", "AI clone content", "Branded and scheduled"],
     icon: Megaphone,
   },
   {
-    title: "Extra Email Graphic",
+    title: "Extra Platforms",
+    price: "+$150/mo",
+    includes: ["Per additional platform", "Beyond what's included", "Full content and automation"],
+    icon: Globe,
+  },
+  {
+    title: "Email Marketing Automation",
     price: "+$300/mo",
-    includes: ["Fully designed email banner", "Branded to your business", "Ready to send"],
+    includes: ["Automated email sequences", "Connected to your lead magnet", "Nurture leads automatically"],
     icon: Mail,
   },
   {
-    title: "Extra Content",
-    price: "+$400/mo",
-    includes: ["4 extra posts", "Static or carousel", "Captions included"],
+    title: "Reputation Management",
+    price: "+$200/mo",
+    includes: ["Automated review requests", "Sent after every appointment", "Build 5-star reputation"],
     icon: PenTool,
   },
 ];
 
 const projectAddons = [
+  {
+    title: "AI Clone Setup",
+    price: "$500",
+    desc: "Standalone AI video clone creation without a monthly package.",
+    icon: Megaphone,
+  },
+  {
+    title: "Full GHL Funnel Build",
+    price: "$1,500",
+    desc: "Complete lead generation funnel with landing page, automation, and email sequence.",
+    icon: Globe,
+  },
+  {
+    title: "Lead Magnet Design and Copy",
+    price: "$400",
+    desc: "Professionally designed PDF lead magnet built for your business.",
+    icon: PenTool,
+  },
+  {
+    title: "GoHighLevel Account Setup",
+    price: "$750",
+    desc: "Complete GHL account setup, automation build, and platform connections done for you.",
+    icon: Mail,
+  },
   {
     title: "Merch Design",
     price: "$1,000",
@@ -151,21 +175,25 @@ const projectAddons = [
     icon: Palette,
   },
   {
-    title: "Social Post Design",
-    price: "$400+",
-    desc: "Branded post graphics for Instagram, Facebook, or both.",
+    title: "Custom Web App",
+    price: "$800+",
+    desc: "Custom web application built for your specific business needs.",
     icon: Image,
   },
 ];
 
 const packageFaqs = [
   {
-    q: "Do I need to provide photos or content?",
-    a: "Not necessarily. As a graphic designer I can create everything from scratch — branded graphics, carousels, reels, and promotional visuals. If you have photos of your business, products, or team you'd like included, you're welcome to send them and I'll incorporate them into your content. Either way, everything will look professional and on brand.",
+    q: "How does the AI clone work?",
+    a: "We record you for about 15 minutes capturing your voice, mannerisms, and expressions. The AI then creates a digital clone that can speak any script we write. You approve every video before it goes live, so you maintain full control over what's being said in your name.",
   },
   {
-    q: "How do I give feedback on posts?",
-    a: "Everything is handled by email. Before anything goes live, you'll receive your content batch for review and approval. Simply reply with any feedback and I'll make adjustments. Nothing gets posted without your approval first.",
+    q: "What platforms do you support?",
+    a: "We primarily work with Instagram and Facebook, where most local business customers are. Additional platforms can be added as a monthly add-on if you need to expand your reach.",
+  },
+  {
+    q: "How does the lead generation automation work?",
+    a: "Our system automatically engages with commenters on your posts, moving them from comments to DMs, and capturing their information into your lead connector app. Combined with AI-built lead magnets and missed call text-back, it creates a seamless lead capture system that works 24/7.",
   },
   {
     q: "What happens after I fill out the agreement?",
@@ -173,27 +201,23 @@ const packageFaqs = [
   },
   {
     q: "When do I pay?",
-    a: "Payment is due before each service month begins. For the Standard package your first month is due upfront with no long-term commitment. For Pro and Premium the first month payment locks in your 3-month minimum.",
+    a: "Payment is due before each service month begins. For AI Social Starter your first month is due upfront with no long-term commitment. For AI Clone Content and The Full System the first month payment locks in your 3-month minimum.",
   },
   {
     q: "What if I want to cancel?",
-    a: "All packages require a 3-month minimum commitment — Standard from month 2 onward, Pro and Premium from day one. After the minimum period is complete either party can end the agreement in writing with no penalty. Payments already made are non-refundable as outlined in the agreement.",
+    a: "All packages require a 3-month minimum commitment — AI Social Starter from month 2 onward, AI Clone Content and The Full System from day one. After the minimum period is complete either party can end the agreement in writing with no penalty. Payments already made are non-refundable as outlined in the agreement.",
   },
   {
     q: "Do you guarantee results?",
-    a: "No — and any agency that does is not being honest with you. Social media growth depends on many factors including your industry, offer, audience, and how long you've been active. What I do guarantee is professional quality content delivered on time, every month, with a clear strategy behind it. Most businesses in their first 3–6 months focus on building a foundation — consistent branding, growing a following, and getting in front of the right audience. Meaningful engagement typically develops over time as your presence becomes established. By month 6 most of my clients are seeing consistent reach, growing followers, and real interest from new customers. By month 9–12 the results tend to compound — content that's been building for months starts working together and the growth becomes much more noticeable. Social media is a long game. The businesses that commit and stay consistent are the ones that win. That's exactly why my packages require a minimum commitment — not to lock you in, but because I know from experience that the real results come to those who stick with it.",
-  },
-  {
-    q: "When should I start running ads?",
-    a: "We recommend waiting at least 60 days before running any paid ads. This gives your profile time to build credibility — consistent content, a growing following, and an established brand presence. When someone clicks an ad and lands on a new empty profile they leave immediately. Ads work best when there is already something worth seeing. We will monitor your account and let you know exactly when you are ready to start getting the most out of your ad spend.",
-  },
-  {
-    q: "How does the first month trial work for Standard?",
-    a: "The Standard package offers a no-commitment first month — you pay $1,800, I set up your profiles, create your first content batch, and begin publishing. At the end of month 1 you decide if you'd like to continue. If you do, a 3-month minimum begins from month 2. If not, we part ways with no hard feelings.",
+    a: "No — and any agency that does is not being honest with you. Social media growth depends on many factors including your industry, offer, audience, and how long you've been active. What I do guarantee is professional quality content delivered on time, every month, with a clear strategy behind it. AI-powered systems increase efficiency and consistency, but meaningful engagement and results develop over time as your presence becomes established. The businesses that commit and stay consistent are the ones that win.",
   },
   {
     q: "Who pays for the ad spend?",
     a: "You do — directly to Meta. My fee covers the strategy, creative, and management of your ads. Your ad budget goes straight from your account to Meta so you stay in full control of your spending. I'll recommend a budget based on your goals but the final decision is always yours.",
+  },
+  {
+    q: "What is GoHighLevel?",
+    a: "GoHighLevel (GHL) is the CRM and automation platform we use to power your lead generation systems. It handles missed call text-back, lead capture, email automation, and more. If you don't have an account, we can set one up for you as a one-time add-on.",
   },
 ];
 
@@ -303,10 +327,10 @@ const LocalBusinessPackages = () => {
     <div className="text-center mb-14">
       <Eyebrow text="Service Menu" className="mb-4" />
       <h2 className="font-display italic font-normal text-dollhouse-ink text-[clamp(30px,5vw,56px)] leading-tight">
-        Done-for-You Content Creation
+        AI Powered Social Media Automation
       </h2>
       <p className="text-[13.5px] text-dollhouse-text-light font-light mt-4 max-w-[650px] mx-auto leading-relaxed">
-        Professional social media content for established local businesses starting from zero. You focus on running your business — we handle everything else.
+        AI powered social media content, automation, and lead generation for established local businesses in the GTA. You focus on running your business — we handle everything else.
       </p>
     </div>
 
@@ -610,7 +634,7 @@ const LocalBusinessPackages = () => {
 
     <div className="mt-16 rounded-2xl border border-dollhouse-p3/20 bg-[#f7f1ec] px-6 py-5 text-center">
       <p className="text-[12px] font-light leading-relaxed text-dollhouse-text-mid">
-        Standard: free first month, then 3-month minimum · Pro + Premium: 3-month minimum · Ad spend paid directly to Meta by client · All communication via email
+        AI Social Starter: first month no commitment, then 3-month minimum · AI Clone Content + The Full System: 3-month minimum · Ad spend paid directly to Meta by client · All communication via email
       </p>
     </div>
 
@@ -630,11 +654,6 @@ const LocalBusinessPackages = () => {
                 <h4 className="font-accent text-[10px] uppercase tracking-[3px] text-dollhouse-p3">{addon.title}</h4>
                 <p className="font-display italic text-[20px] text-dollhouse-ink whitespace-nowrap">{addon.price}</p>
               </div>
-              {addon.availability && (
-                <p className="mb-3 rounded-xl bg-[#f7f1ec] px-3 py-2 text-[11.5px] font-light italic leading-relaxed text-dollhouse-text-mid">
-                  {addon.availability}
-                </p>
-              )}
               <ul className="list-none p-0 mt-3 space-y-1">
                 {addon.includes.map((item) => (
                   <li key={item} className="relative pl-4 text-[12px] font-light leading-relaxed text-dollhouse-text-light">
