@@ -39,6 +39,8 @@ const packages = [
     description: "Your face. Your voice. Showing up online every single day without you lifting a finger.",
     included: [
       "AI video clone built from your likeness",
+      "AI social clone — your personality and voice represented across all content",
+      "AI influencer and mascot created for your brand",
       "3 AI clone video posts per week",
       "Branded graphics and captions",
       "Content scheduled and published for you",
@@ -63,6 +65,8 @@ const packages = [
     included: [
       "Daily content — AI generated carousels and graphics 5 days a week",
       "AI clone video content — 3 high impact videos per week showcasing the business owner",
+      "AI social clone — your personality and voice represented across all content",
+      "AI influencer and mascot created for your brand",
       "Comment to DM automation",
       "AI built lead magnet",
       "Missed call text back system",
@@ -84,18 +88,18 @@ const packages = [
 ];
 
 const isFor = [
-  "You have an established business but little to no social media presence",
-  "You've been meaning to get on social media but never had the time",
-  "You want professional, consistent content without hiring a full in-house team",
-  "You're ready to stop being invisible online while your competitors grow",
+  "Established local businesses who are tired of being invisible online",
+  "Business owners who want leads and bookings not just pretty posts",
+  "Anyone who wants a complete system not just content",
+  "Businesses ready to stop guessing and start growing",
   "You want everything handled for you — no meetings, no calls, just results delivered to your inbox",
 ];
 
 const notFor = [
-  "You're a brand new startup still figuring out your business",
-  "You want to be hands-on and manage your own content",
-  "You're looking for guaranteed overnight results",
-  "You're not ready to commit to at least one month",
+  "Brand new businesses with no offer or product",
+  "Anyone looking for guaranteed overnight results",
+  "Business owners who want to manage everything themselves",
+  "Anyone not ready to invest in real growth",
 ];
 
 const monthlyAddons = [
@@ -127,13 +131,13 @@ const monthlyAddons = [
 
 const projectAddons = [
   {
-    title: "AI Clone Setup",
+    title: "AI Clone Creation",
     price: "$500",
-    desc: "Standalone AI video clone creation without a monthly package.",
+    desc: "Standalone AI video clone, social clone, and brand mascot creation without a monthly package.",
     icon: Megaphone,
   },
   {
-    title: "Full GHL Funnel Build",
+    title: "Full Funnel Build",
     price: "$1,500",
     desc: "Complete lead generation funnel with landing page, automation, and email sequence.",
     icon: Globe,
@@ -145,9 +149,9 @@ const projectAddons = [
     icon: PenTool,
   },
   {
-    title: "GoHighLevel Account Setup",
+    title: "Marketing System Setup",
     price: "$750",
-    desc: "Complete GHL account setup, automation build, and platform connections done for you.",
+    desc: "Complete automation setup, platform connections, and lead connector configuration done for you.",
     icon: Mail,
   },
   {
@@ -184,40 +188,36 @@ const projectAddons = [
 
 const packageFaqs = [
   {
-    q: "How does the AI clone work?",
+    q: "What is an AI clone and how does it work?",
     a: "We record you for about 15 minutes capturing your voice, mannerisms, and expressions. The AI then creates a digital clone that can speak any script we write. You approve every video before it goes live, so you maintain full control over what's being said in your name.",
   },
   {
-    q: "What platforms do you support?",
-    a: "We primarily work with Instagram and Facebook, where most local business customers are. Additional platforms can be added as a monthly add-on if you need to expand your reach.",
+    q: "Do I have to be on camera?",
+    a: "No. The AI clone is created from a single recording session, after which the AI generates all future videos. You only need to approve the content — you never have to film again unless you want to update your clone.",
   },
   {
-    q: "How does the lead generation automation work?",
+    q: "How does the comment to DM automation work?",
     a: "Our system automatically engages with commenters on your posts, moving them from comments to DMs, and capturing their information into your lead connector app. Combined with AI-built lead magnets and missed call text-back, it creates a seamless lead capture system that works 24/7.",
   },
   {
-    q: "What happens after I fill out the agreement?",
-    a: "Once your agreement is submitted I'll review it and send you a payment link within 1–2 business days. Work begins after payment is received. You'll then receive an onboarding email with everything I need from you to get started.",
+    q: "What does the lead magnet do?",
+    a: "The AI-built lead magnet is a branded PDF resource designed specifically for your business. It's used to capture contact information from interested prospects, turning social media engagement into qualified leads that you can follow up with.",
   },
   {
-    q: "When do I pay?",
-    a: "Payment is due before each service month begins. For AI Social Starter your first month is due upfront with no long-term commitment. For AI Clone Content and The Full System the first month payment locks in your 3-month minimum.",
+    q: "What is the missed call text back system?",
+    a: "When someone calls your business and doesn't reach you, the system automatically sends them a text message. This helps capture leads who would otherwise be lost, and often leads to callbacks or bookings that wouldn't have happened otherwise.",
   },
   {
-    q: "What if I want to cancel?",
-    a: "All packages require a 3-month minimum commitment — AI Social Starter from month 2 onward, AI Clone Content and The Full System from day one. After the minimum period is complete either party can end the agreement in writing with no penalty. Payments already made are non-refundable as outlined in the agreement.",
+    q: "What is an AI influencer or mascot and how does my business use it?",
+    a: "An AI influencer or mascot is a digital character created to represent your brand. It can appear in your content, engage with your audience, and build brand recognition without requiring you to be the face of every post. It's particularly useful for businesses that want to maintain a consistent brand presence across all content.",
   },
   {
-    q: "Do you guarantee results?",
-    a: "No — and any agency that does is not being honest with you. Social media growth depends on many factors including your industry, offer, audience, and how long you've been active. What I do guarantee is professional quality content delivered on time, every month, with a clear strategy behind it. AI-powered systems increase efficiency and consistency, but meaningful engagement and results develop over time as your presence becomes established. The businesses that commit and stay consistent are the ones that win.",
+    q: "How long until I see results?",
+    a: "Social media growth is a long game. Most businesses see meaningful engagement and results develop over 3–6 months as your presence becomes established. AI-powered systems increase efficiency and consistency, but real results come to those who commit and stay consistent. That's why our packages require a minimum commitment.",
   },
   {
     q: "Who pays for the ad spend?",
     a: "You do — directly to Meta. My fee covers the strategy, creative, and management of your ads. Your ad budget goes straight from your account to Meta so you stay in full control of your spending. I'll recommend a budget based on your goals but the final decision is always yours.",
-  },
-  {
-    q: "What is GoHighLevel?",
-    a: "GoHighLevel (GHL) is the CRM and automation platform we use to power your lead generation systems. It handles missed call text-back, lead capture, email automation, and more. If you don't have an account, we can set one up for you as a one-time add-on.",
   },
 ];
 

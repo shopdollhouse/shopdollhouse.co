@@ -8,15 +8,15 @@ const FORMSPREE_ENDPOINT =
   import.meta.env.VITE_FORMSPREE_ENDPOINT || "https://formspree.io/f/mwvrvrzj";
 
 const packages = [
-  "Standard $1,800/mo",
-  "Pro $3,000/mo",
-  "Premium $7,500/mo",
+  "AI Social Starter $800/mo",
+  "AI Clone Content $1,500/mo",
+  "The Full System $2,500/mo",
 ];
 
 const packagePrices: Record<string, number> = {
-  "Standard $1,800/mo": 1800,
-  "Pro $3,000/mo": 3000,
-  "Premium $7,500/mo": 7500,
+  "AI Social Starter $800/mo": 800,
+  "AI Clone Content $1,500/mo": 1500,
+  "The Full System $2,500/mo": 2500,
 };
 
 const contractLengths = [
@@ -26,32 +26,41 @@ const contractLengths = [
 ];
 
 const addons = [
-  "Merch Design - $1,000 per project",
+  "AI Clone Creation - $500",
+  "Full Funnel Build - $1,500",
+  "Lead Magnet Design and Copy - $400",
+  "Marketing System Setup - $750",
+  "Merch Design - $1,000",
   "Website Refresh - $1,500+",
   "Website Build - $3,000+",
   "Logo Refresh - $800+",
-  "Social Post Design - $400+",
+  "Custom Web App - $800+",
 ];
 
 const oneTimeAddonPrices: Record<string, number> = {
-  "Merch Design - $1,000 per project": 1000,
+  "AI Clone Creation - $500": 500,
+  "Full Funnel Build - $1,500": 1500,
+  "Lead Magnet Design and Copy - $400": 400,
+  "Marketing System Setup - $750": 750,
+  "Merch Design - $1,000": 1000,
   "Website Refresh - $1,500+": 1500,
   "Website Build - $3,000+": 3000,
   "Logo Refresh - $800+": 800,
-  "Social Post Design - $400+": 400,
+  "Custom Web App - $800+": 800,
 };
 
 const additionalServices = [
-  "Meta Ads Management - +$600/mo",
-  "Extra Email Graphic - +$300/mo",
-  "Extra Content - +$400/mo",
+  "Extra AI Video Posts - +$200/mo",
+  "Extra Platforms - +$150/mo",
+  "Email Marketing Automation - +$300/mo",
+  "Reputation Management - +$200/mo",
 ];
-const metaAdsService = "Meta Ads Management - +$600/mo";
 
 const monthlyAddonPrices: Record<string, number> = {
-  "Meta Ads Management - +$600/mo": 600,
-  "Extra Email Graphic - +$300/mo": 300,
-  "Extra Content - +$400/mo": 400,
+  "Extra AI Video Posts - +$200/mo": 200,
+  "Extra Platforms - +$150/mo": 150,
+  "Email Marketing Automation - +$300/mo": 300,
+  "Reputation Management - +$200/mo": 200,
 };
 
 const platforms = [
@@ -66,7 +75,11 @@ const platforms = [
 const agreementSections = [
   {
     title: "What's Included",
-    body: "The Dollhouse Brand Studio will provide the selected done-for-you content creation package, approved add-ons, and approved additional services listed in this agreement. Services may include profile setup, branding, designed posts, carousels, reels, captions, hashtags, scheduling, publishing, promotional email graphics, Meta ads management, reporting, merch concepts, and strategy recommendations based on the selected scope.",
+    body: "The Dollhouse Brand Studio will provide the selected AI-powered social media automation package, approved add-ons, and approved additional services listed in this agreement. Services may include AI-generated content, AI video clone creation, AI social clone, AI influencer and mascot creation, comment to DM automation, AI-built lead magnets, missed call text-back systems, lead connector app access, scheduling, publishing, Meta ads management when included, reporting, and strategy recommendations based on the selected scope.",
+  },
+  {
+    title: "AI Clone Likeness Consent",
+    body: "For packages including AI clone services, the client grants The Dollhouse Brand Studio permission to create a digital clone of their likeness, voice, and mannerisms. The client understands that the AI clone will be used to generate content on their behalf and approves all content before it is published. The client may request removal of the clone at any time, but fees for clone creation are non-refundable.",
   },
   {
     title: "Communication",
@@ -81,12 +94,20 @@ const agreementSections = [
     body: "Client must provide feedback and approvals within 48 hours. Delays caused by the client shift all delivery and publishing dates. The studio is not responsible for client-caused delays.",
   },
   {
-    title: "UGC and AI Video",
-    body: "Reels in Pro and Premium may use AI-generated video or UGC creator content. UGC talent fees are separate from the monthly fee and are the responsibility of the client. The studio will source and direct creators and notify the client of costs before they are incurred.",
+    title: "Payment",
+    body: "Payment is not collected through this form. The Dollhouse Brand Studio will review the agreement and manually send the correct payment link. Package fees do not include Meta ad spend, hosting, domains, paid tools, printing, or any third-party fees. These are always billed separately and paid directly by the client.",
   },
   {
-    title: "Payment",
-    body: "Payment is not collected through this form. The Dollhouse Brand Studio will review the agreement and manually send the correct payment link. Package fees do not include Meta ad spend, UGC talent fees, hosting, domains, paid tools, printing, or any third-party fees. These are always billed separately and paid directly by the client.",
+    title: "Ad Spend Responsibility",
+    body: "The client is responsible for all Meta advertising spend. The Dollhouse Brand Studio manages ad strategy, creative, and optimization, but the client pays all ad costs directly to Meta through their own account. The studio recommends ad budgets but the client has final approval on all ad spend decisions.",
+  },
+  {
+    title: "Automation Performance Disclaimer",
+    body: "AI-powered automation systems including comment to DM, missed call text-back, and lead generation tools are provided as-is. Performance depends on third-party platform availability, API limits, and platform policy changes. The Dollhouse Brand Studio is not responsible for automation failures caused by third-party platform issues, API downtime, or policy changes beyond our control.",
+  },
+  {
+    title: "Third Party Platform Dependency",
+    body: "Services depend on third-party platforms including social media platforms, automation tools, and lead management systems. These platforms may change features, pricing, or policies without notice. The Dollhouse Brand Studio is not responsible for third-party platform changes that affect service delivery. The client understands that some services may be impacted by third-party platform decisions.",
   },
   {
     title: "No Refund Policy",
@@ -102,7 +123,7 @@ const agreementSections = [
   },
   {
     title: "Cancellation",
-    body: "Standard begins with a no-commitment first month; if the client continues, the 3-month minimum begins from month 2. Pro and Premium require a 3-month minimum from the first month. After the minimum period is complete, either party may end future work in writing. Fees already paid remain non-refundable.",
+    body: "AI Social Starter begins with a no-commitment first month; if the client continues, the 3-month minimum begins from month 2. AI Clone Content and The Full System require a 3-month minimum from the first month. After the minimum period is complete, either party may end future work in writing. Fees already paid remain non-refundable.",
   },
   {
     title: "Dispute Resolution",
@@ -185,21 +206,18 @@ const AgreementForm = () => {
     };
   }, [selectedAddons, selectedPackage, selectedServices]);
 
-  const isStandardPackage = selectedPackage.startsWith("Standard");
-  const availableAdditionalServices = isStandardPackage
-    ? additionalServices.filter((service) => service !== metaAdsService)
-    : additionalServices;
+  const isAIStarterPackage = selectedPackage.startsWith("AI Social Starter");
+  const availableAdditionalServices = additionalServices;
 
   useEffect(() => {
-    if (!isStandardPackage) return;
-    setSelectedServices((current) => current.filter((service) => service !== metaAdsService));
-  }, [isStandardPackage]);
+    // No filtering needed for new packages
+  }, [isAIStarterPackage]);
 
   const agreementText = useMemo(() => {
     const addonsText = selectedAddons.length > 0 ? selectedAddons.join(", ") : "None selected";
     const servicesText = selectedServices.length > 0 ? selectedServices.join(", ") : "None selected";
-    const standardTrialText = selectedPackage.startsWith("Standard")
-      ? "\nStandard Trial Note: Month 1 has no long-term commitment. If the client continues after month 1, the 3-month minimum begins from month 2."
+    const starterTrialText = selectedPackage.startsWith("AI Social Starter")
+      ? "\nAI Social Starter Trial Note: Month 1 has no long-term commitment. If the client continues after month 1, the 3-month minimum begins from month 2."
       : "";
 
     return `Social Media Marketing Agreement
@@ -211,7 +229,7 @@ Business Address: ${businessAddress || "[Business Address]"}
 Email: ${email || "[Email]"}
 Phone: ${phone || "[Phone]"}
 Selected Package: ${selectedPackage}
-Contract Length: ${contractLength}${standardTrialText}
+Contract Length: ${contractLength}${starterTrialText}
 Design Add-Ons: ${addonsText}
 Additional Services Requested: ${servicesText}
 Preferred Platform: ${selectedPlatform}
@@ -221,9 +239,12 @@ Pricing Summary:
 ${pricingSummary.emailSummary}
 
 Agreement Summary:
-${STUDIO_NAME} will provide done-for-you content creation, social media management, Meta ads management when included in the selected package or add-ons, approved monthly add-ons, or approved standalone additional services for the selected package and contract length. Services may include Instagram and Facebook setup and branding, designed posts, carousels, reels, captions, hashtags, scheduling, publishing, promotional email graphics, Threads support, TikTok support, Meta ads management, custom ad creatives, content strategy, analytics reporting, merch design concepts, and strategy recommendations based on the selected package. All client communication is handled by email only. No calls are included unless separately agreed in writing. If "Additional Service Only" is selected, the requested service must be reviewed, scoped, and quoted before payment. Adjustments and creative refreshes are made when needed based on package scope, platform performance, budget, campaign goals, and client approvals.
+${STUDIO_NAME} will provide AI-powered social media automation services including AI-generated content, AI video clone creation, AI social clone, AI influencer and mascot creation, comment to DM automation, AI-built lead magnets, missed call text-back systems, lead connector app access, scheduling, publishing, Meta ads management when included in the selected package or add-ons, approved monthly add-ons, or approved standalone additional services for the selected package and contract length. All client communication is handled by email only. No calls are included unless separately agreed in writing. If "Additional Service Only" is selected, the requested service must be reviewed, scoped, and quoted before payment. Adjustments and creative refreshes are made when needed based on package scope, platform performance, budget, campaign goals, and client approvals.
 
-Design work and additional agency services are optional and scoped separately. Monthly add-ons may include Meta ads management, extra email graphics, and extra content. One-time project add-ons may include merch design, website refreshes, website builds, logo refreshes, and social post design only when approved in writing.
+AI Clone Likeness Consent:
+For packages including AI clone services, the client grants ${STUDIO_NAME} permission to create a digital clone of their likeness, voice, and mannerisms. The client understands that the AI clone will be used to generate content on their behalf and approves all content before it is published. The client may request removal of the clone at any time, but fees for clone creation are non-refundable.
+
+Design work and additional agency services are optional and scoped separately. Monthly add-ons may include extra AI video posts, extra platforms, email marketing automation, and reputation management. One-time project add-ons may include AI clone creation, full funnel build, lead magnet design and copy, marketing system setup, merch design, website refreshes, website builds, logo refreshes, and custom web apps only when approved in writing.
 
 Scope & Changes:
 Only the package, add-ons, and approved additional services listed in this agreement are included. Any extra requests, rush work, additional revisions, extra creative, website pages, meetings, calls, platform setup, or services not listed here must be approved separately and may require an additional fee.
@@ -232,7 +253,7 @@ Client Responsibilities:
 The client agrees to provide timely access, business details, brand assets, approvals, account permissions, and email feedback needed to complete the work. The client is responsible for the accuracy of business information, offers, prices, claims, promotions, and any required permissions. Meta ad spend, domain registration, hosting, paid tools, printing, and third-party platform fees are billed separately.
 
 Payment:
-Payment is not collected through this form. After this agreement is reviewed, ${STUDIO_NAME} will manually send the correct payment link for the selected package and any approved add-ons. Package fees are service fees paid to ${STUDIO_NAME} only and do not include Meta advertising spend. The client pays all Meta ad spend separately through their own Meta account or approved ad payment method. Work does not begin until the agreement is accepted and the required payment is received. Standard includes a no-commitment first month; if the client continues after month 1, the 3-month minimum begins from month 2. Pro and Premium require a 3-month minimum commitment from the first month. Monthly package fees are due before the service month begins unless otherwise agreed in writing. Late or failed payments may pause work, delivery, reporting, revisions, launches, publishing, or access until the account is brought current.
+Payment is not collected through this form. After this agreement is reviewed, ${STUDIO_NAME} will manually send the correct payment link for the selected package and any approved add-ons. Package fees are service fees paid to ${STUDIO_NAME} only and do not include Meta advertising spend. The client pays all Meta ad spend separately through their own Meta account or approved ad payment method. Work does not begin until the agreement is accepted and the required payment is received. AI Social Starter includes a no-commitment first month; if the client continues after month 1, the 3-month minimum begins from month 2. AI Clone Content and The Full System require a 3-month minimum commitment from the first month. Monthly package fees are due before the service month begins unless otherwise agreed in writing. Late or failed payments may pause work, delivery, reporting, revisions, launches, publishing, or access until the account is brought current.
 
 No Refund Policy:
 All payments are final and non-refundable once paid, including setup fees, monthly service fees, design add-ons, rush fees, and approved extra work, unless otherwise required by law. The client is paying for reserved time, strategy, setup, creative direction, campaign work, and service availability, not guaranteed outcomes.
@@ -242,6 +263,15 @@ Timelines depend on the client providing access, assets, information, and approv
 
 Results:
 ${STUDIO_NAME} does not guarantee specific revenue, leads, reach, sales, or platform approval outcomes. Results depend on offer, audience, budget, creative, market conditions, and platform performance.
+
+Ad Spend Responsibility:
+The client is responsible for all Meta advertising spend. ${STUDIO_NAME} manages ad strategy, creative, and optimization, but the client pays all ad costs directly to Meta through their own account. The studio recommends ad budgets but the client has final approval on all ad spend decisions.
+
+Automation Performance Disclaimer:
+AI-powered automation systems including comment to DM, missed call text-back, and lead generation tools are provided as-is. Performance depends on third-party platform availability, API limits, and platform policy changes. ${STUDIO_NAME} is not responsible for automation failures caused by third-party platform issues, API downtime, or policy changes beyond our control.
+
+Third Party Platform Dependency:
+Services depend on third-party platforms including social media platforms, automation tools, and lead management systems. These platforms may change features, pricing, or policies without notice. ${STUDIO_NAME} is not responsible for third-party platform changes that affect service delivery. The client understands that some services may be impacted by third-party platform decisions.
 
 Platform Rules & Ad Spend:
 Facebook, Instagram, Meta, payment processors, hosting providers, and other third-party platforms may change rules, reject ads, restrict accounts, pause campaigns, or change performance. The client is responsible for Meta ad spend and third-party charges unless otherwise agreed in writing.
@@ -280,7 +310,7 @@ ${notes || "None"}`;
     );
   };
 
-  const packageNote = isStandardPackage
+  const packageNote = isAIStarterPackage
     ? "Your first month has no long-term commitment. If you choose to continue, a 3-month minimum begins from month 2."
     : "This package requires a 3-month minimum from day one.";
   const inputClass = "mt-2 w-full border-0 border-b border-[#C4B5A5] bg-transparent px-0 py-3 text-[14px] text-dollhouse-ink outline-none transition-colors focus:border-dollhouse-ink";
