@@ -4,7 +4,6 @@ import Eyebrow from "@/components/Eyebrow";
 import DollhouseArch from "@/components/DollhouseArch";
 import HeartDivider from "@/components/HeartDivider";
 import CornerFrame from "@/components/CornerFrame";
-import CookieConsent from "@/components/CookieConsent";
 import LegalModal, { useLegalModal } from "@/components/LegalModal";
 import useScrollReveal from "@/hooks/useScrollReveal";
 
@@ -598,7 +597,6 @@ export default function Index() {
         </button>
       </footer>
 
-      <CookieConsent />
       <LegalModal activeModal={activeModal} onClose={closeModal} />
     </div>
   );
