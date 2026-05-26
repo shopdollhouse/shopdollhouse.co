@@ -8,7 +8,6 @@ import LocalBusiness from "./pages/LocalBusiness.tsx";
 import Quiz from "./pages/Quiz.tsx";
 import QuizLeads from "./pages/QuizLeads.tsx";
 import Onboarding from "./pages/Onboarding.tsx";
-import Planner from "./pages/Planner.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -25,7 +24,6 @@ const App = () => (
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/quiz/leads" element={<QuizLeads />} />
           <Route path="/onboarding" element={<Onboarding />} />
-          <Route path="/planner" element={<Planner />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
