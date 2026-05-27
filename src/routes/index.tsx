@@ -1875,7 +1875,7 @@ function StarterKitBanner() {
         className="mt-4 text-[var(--ink)]/65 max-w-md mx-auto"
         style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", lineHeight: 1.6 }}
       >
-        The Blueprint, Brand Workbook & AI Prompt Kit — build your brand foundation. Start from $17, or get all three for $127.
+        The Blueprint, Brand Workbook & AI Prompt Kit — everything you need to build a solid brand foundation.
       </p>
       <Link
         to="/brand-room"
