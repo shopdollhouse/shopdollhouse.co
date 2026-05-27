@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Outer arch body -->
+  <path d="M12 62V30C12 16 20 8 32 8C44 8 52 16 52 30V62H44V30C44 20 38 15 32 15C26 15 20 20 20 30V62H12Z" fill="#c8a864"/>
+  <!-- Inner doorway arch -->
+  <path d="M24 62V38C24 34 27.5 31 32 31C36.5 31 40 34 40 38V62H24Z" fill="#c97a7a"/>
+  <!-- Keystone dot -->
+  <circle cx="32" cy="8" r="3.5" fill="#c8a864"/>
+</svg>
