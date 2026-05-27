@@ -316,7 +316,7 @@ function Hero() {
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontSize: "clamp(1.8rem, 3.8vw, 2.8rem)",
-            fontWeight: 600,
+            fontWeight: 400,
             fontStyle: "italic",
             animationDelay: "0.52s",
           }}
