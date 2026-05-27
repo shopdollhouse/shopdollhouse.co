@@ -312,7 +312,7 @@ function Hero() {
         </div>
 
         <h2
-          className="reveal mt-2 text-[var(--ink)] leading-snug max-w-xl mx-auto"
+          className="reveal mt-2 text-[var(--rose)] leading-snug max-w-xl mx-auto"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontSize: "clamp(1.8rem, 3.8vw, 2.8rem)",
