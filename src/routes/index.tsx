@@ -120,7 +120,7 @@ function Nav() {
             </span>
             <span
               className="text-[var(--ink)] italic"
-              style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "15px", letterSpacing: "1.5px", textTransform: "uppercase" }}
+              style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "15px", letterSpacing: "4px", textTransform: "uppercase" }}
             >
               Dollhouse
             </span>
@@ -274,7 +274,7 @@ function Hero() {
           the
         </p>
         <h1
-          className="reveal text-[var(--rose)] font-normal tracking-[-0.05em] leading-[0.95] mt-1"
+          className="reveal text-[var(--rose)] font-normal tracking-[0.04em] leading-[0.95] -mt-3"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontSize: "clamp(3.5rem, 9vw, 6rem)",
@@ -1312,7 +1312,7 @@ function Footer() {
       </span>
       <span
         className="text-[var(--ink)] italic inline-block"
-        style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "15px", letterSpacing: "1.5px", textTransform: "uppercase" }}
+        style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "15px", letterSpacing: "4px", textTransform: "uppercase" }}
       >
         Dollhouse
       </span>
