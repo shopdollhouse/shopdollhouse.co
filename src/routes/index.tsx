@@ -1183,6 +1183,12 @@ function Pricing() {
                     Get a Free Proposal
                   </p>
                 </a>
+                <p
+                  className="mt-3 text-center"
+                  style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.62rem", letterSpacing: "0.12em", textTransform: "uppercase", color: isFilled ? "rgba(250,243,234,0.35)" : "rgba(30,15,10,0.3)" }}
+                >
+                  3-month minimum if you sign on
+                </p>
               </article>
             </div>
           );
