@@ -904,7 +904,7 @@ function Pricing() {
         {tiers.map((t) => {
           const isFilled = !!t.featured;
           return (
-            <div key={t.name} className="relative pt-8">
+            <div key={t.name} className={`relative pt-8 ${isFilled ? "md:-mt-4 md:z-10" : ""}`}>
               {t.topBadge && (
                 <span
                   className="absolute -top-1 left-1/2 -translate-x-1/2 z-10 px-6 py-2 rounded-full text-[10px] tracking-luxe uppercase whitespace-nowrap"
@@ -926,16 +926,16 @@ function Pricing() {
               )}
 
               <article
-                className="h-full rounded-[28px] p-10 flex flex-col items-center text-center"
+                className={`h-full rounded-[28px] p-10 flex flex-col items-center text-center ${isFilled ? "md:py-14" : ""}`}
                 style={{
-                  background:
-                    "linear-gradient(180deg, #fbf3ee 0%, #f6e8e1 100%)",
-                  border:
-                    isFilled
-                      ? "1.5px solid rgba(201,122,122,0.45)"
-                      : "1px solid color-mix(in oklab, var(--gold) 35%, transparent)",
+                  background: isFilled
+                    ? "var(--ink)"
+                    : "linear-gradient(180deg, #fbf3ee 0%, #f6e8e1 100%)",
+                  border: isFilled
+                    ? "1.5px solid rgba(255,255,255,0.08)"
+                    : "1px solid color-mix(in oklab, var(--gold) 35%, transparent)",
                   boxShadow: isFilled
-                    ? "0 30px 60px -30px rgba(201,122,122,0.35), inset 0 1px 0 rgba(255,255,255,0.6)"
+                    ? "0 40px 80px -20px rgba(30,15,10,0.55), 0 0 0 1px rgba(200,168,100,0.15)"
                     : "0 30px 60px -30px rgba(160,110,95,0.35), inset 0 1px 0 rgba(255,255,255,0.6)",
                 }}
               >
@@ -949,11 +949,12 @@ function Pricing() {
 
                 {/* Title */}
                 <h3
-                  className="mt-3 italic text-[var(--ink)]"
+                  className="mt-3 italic"
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
                     fontSize: "clamp(1.75rem, 2.2vw, 2.25rem)",
                     lineHeight: 1.1,
+                    color: isFilled ? "var(--cream)" : "var(--ink)",
                   }}
                 >
                   {t.name}
@@ -964,10 +965,13 @@ function Pricing() {
                   className="mt-5 inline-flex items-center gap-2 px-5 py-2 rounded-full text-[10.5px] tracking-luxe uppercase"
                   style={{
                     fontFamily: "'Jost', sans-serif",
-                    color: "var(--ink)",
-                    border:
-                      "1px solid color-mix(in oklab, var(--gold) 40%, transparent)",
-                    backgroundColor: "rgba(255,255,255,0.5)",
+                    color: isFilled ? "rgba(250,243,234,0.85)" : "var(--ink)",
+                    border: isFilled
+                      ? "1px solid rgba(200,168,100,0.35)"
+                      : "1px solid color-mix(in oklab, var(--gold) 40%, transparent)",
+                    backgroundColor: isFilled
+                      ? "rgba(255,255,255,0.07)"
+                      : "rgba(255,255,255,0.5)",
                   }}
                 >
                   <span style={{ color: "var(--gold)" }}>✦</span> Monthly Retainer
@@ -997,23 +1001,25 @@ function Pricing() {
                 </div>
 
                 {/* Price */}
-                <div className="mt-7 flex items-baseline gap-2">
+                <div className="mt-7 flex flex-col items-center">
                   <span
                     style={{
                       fontFamily: "'Cormorant Garamond', serif",
                       fontSize: "clamp(2.5rem, 3.8vw, 3.25rem)",
                       lineHeight: 1,
                       fontStyle: "italic",
+                      color: "var(--gold)",
                     }}
                   >
                     {t.price}
                   </span>
                   <span
-                    className="text-[var(--ink)]/55"
                     style={{
                       fontFamily: "'Jost', sans-serif",
-                      fontSize: "0.8rem",
-                      letterSpacing: "0.15em",
+                      fontSize: "0.7rem",
+                      letterSpacing: "0.2em",
+                      color: isFilled ? "rgba(255,255,255,0.45)" : "rgba(30,15,10,0.45)",
+                      marginTop: "4px",
                     }}
                   >
                     USD/MO
@@ -1022,11 +1028,12 @@ function Pricing() {
 
                 {/* Tagline */}
                 <p
-                  className="mt-6 text-[var(--ink)]/75"
+                  className="mt-6"
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
                     fontSize: "1.05rem",
                     lineHeight: 1.55,
+                    color: isFilled ? "rgba(250,243,234,0.7)" : "rgba(30,15,10,0.75)",
                   }}
                 >
                   {t.tagline}
@@ -1060,10 +1067,11 @@ function Pricing() {
                   {t.features.map((f) => (
                     <li
                       key={f}
-                      className="flex items-start gap-3 text-[var(--ink)]/85"
+                      className="flex items-start gap-3"
                       style={{
                         fontFamily: "'Jost', sans-serif",
                         fontSize: "0.92rem",
+                        color: isFilled ? "rgba(250,243,234,0.85)" : "rgba(30,15,10,0.85)",
                       }}
                     >
                       <span
@@ -1080,13 +1088,14 @@ function Pricing() {
                 {/* CTA */}
                 <a
                   href="#contact"
-                  className="mt-10 block text-center rounded-full text-[11px] tracking-luxe uppercase px-8 py-4 transition hover:opacity-90"
+                  className="mt-10 block text-center rounded-full text-[11px] tracking-luxe uppercase px-8 py-4 transition-all hover:-translate-y-px hover:opacity-90"
                   style={{
                     fontFamily: "'Jost', sans-serif",
                     ...(isFilled
                       ? {
-                          backgroundColor: "var(--ink)",
-                          color: "var(--cream)",
+                          background: "var(--gold)",
+                          color: "var(--ink)",
+                          boxShadow: "0 14px 30px -12px rgba(160,120,60,0.55)",
                         }
                       : {
                           backgroundColor: "transparent",
