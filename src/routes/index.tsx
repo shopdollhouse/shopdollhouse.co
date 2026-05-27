@@ -392,8 +392,8 @@ function Hero() {
         </div>
 
         <p
-          className="reveal mt-5 text-[var(--ink)]/55 italic text-sm"
-          style={{ fontFamily: "'Cormorant Garamond', serif", animationDelay: "0.85s" }}
+          className="reveal mt-5 text-[var(--ink)]/60 italic"
+          style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1rem, 2vw, 1.2rem)", animationDelay: "0.85s" }}
         >
           3 months to build momentum, then month-to-month · Fully managed, nothing to learn
         </p>
