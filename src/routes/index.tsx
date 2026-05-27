@@ -1332,6 +1332,36 @@ function Footer() {
   );
 }
 
+/* ─── Back to top ─────────────────────────────────────── */
+function BackToTop() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 400);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <button
+      aria-label="Back to top"
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      className="fixed bottom-8 right-8 z-50 w-11 h-11 rounded-full flex items-center justify-center transition-all duration-500"
+      style={{
+        background: "var(--ink)",
+        boxShadow: "0 8px 24px -8px rgba(30,15,10,0.5)",
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(16px)",
+        pointerEvents: visible ? "auto" : "none",
+      }}
+    >
+      <svg viewBox="0 0 16 16" fill="none" stroke="var(--gold)" strokeWidth="1.5" className="w-4 h-4">
+        <path d="M3 10.5L8 5.5L13 10.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </button>
+  );
+}
+
 function Index() {
   return (
     <main className="bg-[var(--blush)] text-[var(--ink)]">
@@ -1344,6 +1374,7 @@ function Index() {
       <StarterKitCTA />
       <Contact />
       <Footer />
+      <BackToTop />
     </main>
   );
 }
