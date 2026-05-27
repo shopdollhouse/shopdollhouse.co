@@ -426,14 +426,14 @@ function Hero() {
 
 /* ─── Trust bar ───────────────────────────────────────── */
 function TrustBar() {
-  const logos = ["BuzzFeed", "HuffPost", "Meta", "TikTok", "Instagram"];
+  const logos = ["Meta", "TikTok", "Instagram"];
   return (
     <section className="py-14 px-6 bg-[var(--cream)]/60 backdrop-blur-sm border-y border-[var(--gold)]/15">
       <p
         className="text-center text-[10px] tracking-luxe uppercase text-[var(--gold)]"
         style={{ fontFamily: "'Jost', sans-serif" }}
       >
-        As seen in · Built on the world's top platforms
+        Built on the world's top platforms
       </p>
       <div className="mt-7 flex flex-wrap justify-center items-center gap-x-14 gap-y-4 text-[var(--ink)]/60">
         {logos.map((l) => (
