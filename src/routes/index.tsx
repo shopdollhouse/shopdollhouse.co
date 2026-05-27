@@ -843,7 +843,6 @@ function Pricing() {
         "AI clone or custom brand character",
         "AI content creation, posting & scheduling",
         "Short-form videos posted 3x per week",
-        "Monthly email newsletter",
         "1 platform managed for you",
       ],
     },
@@ -871,6 +870,7 @@ function Pricing() {
       tagline: "Ready to scale? More platforms, paid ads, and deeper automation.",
       cta: "Get a Quote →",
       features: [
+        "Everything in Starter — expanded to 3 platforms",
         "Instagram, TikTok & Facebook — all managed",
         "Facebook & Instagram ad management",
         "Short-form videos posted 3–5x per week",
