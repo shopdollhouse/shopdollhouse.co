@@ -118,15 +118,16 @@ function Hero() {
           <Divider />
         </div>
 
-        <p className="reveal mt-2 text-[var(--ink)]/80 leading-relaxed max-w-md mx-auto" style={{ fontFamily: FONT_BODY, fontSize: "1rem", animationDelay: "0.55s" }}>
-          Brand Kit, AI Prompt Kit, and Brand Workbook — everything you need to launch a polished, on-brand business in a single weekend.
+        <h2 className="reveal mt-2 text-[var(--rose)] leading-snug max-w-xl mx-auto" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.8rem, 3.8vw, 2.8rem)", fontWeight: 400, fontStyle: "italic", animationDelay: "0.52s" }}>
+          Build a Brand That Looks Like You Hired an Agency.
+        </h2>
+
+        <p className="reveal mt-4 text-[var(--ink)]/65 leading-relaxed max-w-lg mx-auto" style={{ fontFamily: FONT_BODY, fontSize: "clamp(0.95rem, 1.8vw, 1.1rem)", animationDelay: "0.58s" }}>
+          Brand Kit, AI Prompt Kit & Brand Workbook — everything you need to launch a polished, on-brand business in a single weekend. No designer. No agency. Just you.
         </p>
 
         <div className="reveal mt-9 flex flex-col sm:flex-row items-center justify-center gap-4" style={{ animationDelay: "0.65s" }}>
-          <a
-            href="#checkout"
-            className="btn-ink"
-          >
+          <a href="#checkout" className="btn-ink">
             Get the Kit — $297 <span aria-hidden>→</span>
           </a>
           <a href="#whats-inside" className="btn-ghost">
@@ -134,7 +135,7 @@ function Hero() {
           </a>
         </div>
 
-        <p className="reveal mt-7 text-[var(--ink)]/55 italic text-sm" style={{ fontFamily: FONT_DISPLAY, animationDelay: "0.75s" }}>
+        <p className="reveal mt-7 text-[var(--ink)]/55 italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1rem, 2vw, 1.2rem)", animationDelay: "0.75s" }}>
           One-time payment · Lifetime access · 14-day guarantee
         </p>
       </div>
@@ -195,7 +196,7 @@ function WhatsInside() {
               <p className="mt-1 italic text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem" }}>{p.tagline}</p>
               <div className="mt-5 flex items-center gap-3">
                 <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 50%, transparent), transparent)" }} />
-                <span style={{ color: "var(--gold)", fontSize: "0.7rem" }}>♥</span>
+                <svg viewBox="0 0 24 22" fill="currentColor" style={{ width: "13px", height: "13px", color: "var(--gold)", flexShrink: 0 }}><path d="M12 21.6C6.3 16.1 1 11.3 1 7.2 1 3.4 4.1 2 6.3 2c1.3 0 4.2.5 5.7 4.5C13.6 2.5 16.5 2 17.7 2 20.3 2 23 3.6 23 7.2c0 4.1-5.1 8.9-11 14.4z"/></svg>
                 <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 50%, transparent), transparent)" }} />
               </div>
               <p className="mt-5 text-[var(--ink)]/70 leading-relaxed text-sm flex-1" style={{ fontFamily: FONT_BODY }}>{p.detail}</p>
@@ -238,13 +239,13 @@ function Includes() {
         </h2>
         <div className="mt-3 flex items-center gap-3">
           <span className="h-px w-12" style={{ background: "linear-gradient(90deg, transparent, rgba(201,122,122,0.5), transparent)" }} />
-          <span style={{ color: "#c97a7a", fontSize: "0.7rem" }}>♥</span>
+          <svg viewBox="0 0 24 22" fill="currentColor" style={{ width: "13px", height: "13px", color: "#c97a7a", flexShrink: 0 }}><path d="M12 21.6C6.3 16.1 1 11.3 1 7.2 1 3.4 4.1 2 6.3 2c1.3 0 4.2.5 5.7 4.5C13.6 2.5 16.5 2 17.7 2 20.3 2 23 3.6 23 7.2c0 4.1-5.1 8.9-11 14.4z"/></svg>
           <span className="h-px w-12" style={{ background: "linear-gradient(90deg, transparent, rgba(201,122,122,0.5), transparent)" }} />
         </div>
         <ul className="mt-10 grid sm:grid-cols-2 gap-x-8 gap-y-4 relative z-10">
           {INCLUDES.map((item) => (
             <li key={item} className="flex items-start gap-3" style={{ fontFamily: FONT_BODY, fontSize: "0.9rem", color: "rgba(250,243,234,0.85)" }}>
-              <span className="mt-1 shrink-0" style={{ color: "var(--gold)", fontSize: "0.65rem" }}>✦</span>
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0" style={{ width: "13px", height: "13px", color: "var(--gold)" }}><path d="M2.5 8.5L6 12L13.5 4.5" /></svg>
               {item}
             </li>
           ))}
@@ -285,7 +286,7 @@ function Pricing() {
 
           <div className="mt-6 flex items-center gap-3 justify-center">
             <span className="h-px w-12" style={{ background: "linear-gradient(90deg, transparent, rgba(201,122,122,0.5), transparent)" }} />
-            <span style={{ color: "#c97a7a", fontSize: "0.7rem" }}>♥</span>
+            <svg viewBox="0 0 24 22" fill="currentColor" style={{ width: "13px", height: "13px", color: "#c97a7a", flexShrink: 0 }}><path d="M12 21.6C6.3 16.1 1 11.3 1 7.2 1 3.4 4.1 2 6.3 2c1.3 0 4.2.5 5.7 4.5C13.6 2.5 16.5 2 17.7 2 20.3 2 23 3.6 23 7.2c0 4.1-5.1 8.9-11 14.4z"/></svg>
             <span className="h-px w-12" style={{ background: "linear-gradient(90deg, transparent, rgba(201,122,122,0.5), transparent)" }} />
           </div>
 
@@ -369,7 +370,7 @@ function Footer() {
       <p className="text-[var(--gold)] font-semibold mt-1" style={{ fontFamily: FONT_LUXE, fontSize: "6.5px", letterSpacing: "3px", textTransform: "uppercase" }}>Brand Studio</p>
       <div className="mt-6 flex items-center justify-center gap-2 text-[var(--ink)]/35">
         <span className="h-px w-8 bg-[var(--gold)]/30" />
-        <span className="text-[var(--gold)]/50 text-[0.5rem]">♥</span>
+        <svg viewBox="0 0 24 22" fill="currentColor" style={{ width: "10px", height: "10px", color: "var(--gold)", opacity: 0.5 }}><path d="M12 21.6C6.3 16.1 1 11.3 1 7.2 1 3.4 4.1 2 6.3 2c1.3 0 4.2.5 5.7 4.5C13.6 2.5 16.5 2 17.7 2 20.3 2 23 3.6 23 7.2c0 4.1-5.1 8.9-11 14.4z"/></svg>
         <span className="h-px w-8 bg-[var(--gold)]/30" />
       </div>
       <Link to="/" className="mt-4 inline-block text-[var(--gold)] text-[10px] tracking-[0.2em] uppercase hover:opacity-70 transition-opacity" style={{ fontFamily: FONT_LUXE }}>
