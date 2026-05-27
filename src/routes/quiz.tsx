@@ -164,8 +164,8 @@ function QuizPage() {
           <span style={{ fontFamily: FONT_DISPLAY, fontSize: "15px", letterSpacing: "4px", textTransform: "uppercase", marginTop: "-4px", color: "var(--ink)", fontStyle: "italic" }}>Dollhouse</span>
           <span style={{ fontFamily: FONT_LUXE, fontSize: "6.5px", letterSpacing: "3px", textTransform: "uppercase", marginTop: "1px", color: "var(--gold)", fontWeight: 600 }}>Brand Studio</span>
         </Link>
-        <Link to="/brand-room" className="hover:opacity-60 transition-opacity" style={{ fontFamily: FONT_LUXE, fontSize: "13px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>
-          ← The Brand Room
+        <Link to="/brand-room" className="hover:opacity-60 transition-opacity shrink-0" style={{ fontFamily: FONT_LUXE, fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--gold)" }}>
+          ← Brand Room
         </Link>
       </nav>
 
@@ -177,7 +177,7 @@ function QuizPage() {
       )}
 
       {/* Content */}
-      <div className="flex-1 flex items-center justify-center px-6 py-16">
+      <div className="flex-1 flex items-start md:items-center justify-center px-6 py-10 md:py-16">
         <div className="w-full max-w-2xl">
 
           {/* ── INTRO ── */}
@@ -306,8 +306,8 @@ function QuizPage() {
                 </p>
               </div>
 
-              <div className="rounded-[28px] p-10 md:p-12 relative overflow-hidden" style={{ background: "var(--ink)", boxShadow: "0 40px 80px -20px rgba(30,15,10,0.5), 0 0 0 1px rgba(200,168,100,0.2)" }}>
-                <div className="absolute top-5 right-6 px-3 py-1 rounded-full" style={{ background: "rgba(200,168,100,0.18)", border: "1px solid rgba(200,168,100,0.4)" }}>
+              <div className="rounded-[28px] p-8 md:p-12" style={{ background: "var(--ink)", boxShadow: "0 40px 80px -20px rgba(30,15,10,0.5), 0 0 0 1px rgba(200,168,100,0.2)" }}>
+                <div className="inline-flex mb-4 px-3 py-1 rounded-full" style={{ background: "rgba(200,168,100,0.18)", border: "1px solid rgba(200,168,100,0.4)" }}>
                   <span style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>Recommended for you</span>
                 </div>
 

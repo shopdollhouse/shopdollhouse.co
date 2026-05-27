@@ -63,7 +63,7 @@ function Nav() {
 
         <Link
           to="/quiz"
-          className="hidden md:inline-flex rounded-full bg-[var(--ink)] text-[var(--cream)] text-[10px] tracking-[0.18em] uppercase px-5 py-2.5 hover:opacity-90 transition"
+          className="inline-flex rounded-full bg-[var(--ink)] text-[var(--cream)] text-[10px] tracking-[0.18em] uppercase px-4 py-2 md:px-5 md:py-2.5 hover:opacity-90 transition"
           style={{ fontFamily: FONT_LUXE }}
         >
           Take a Free Quiz
