@@ -124,17 +124,16 @@ function QuizPage() {
     const r = getResultType(answers);
     setResult(r);
     try {
-      await fetch("https://services.leadconnectorhq.com/hooks/ElOoFIfV3BYE54LNg3Yw/webhook-trigger/f0eb8fb1-d243-4706-a790-41f93d6e50dd", {
+      await fetch("https://formspree.io/f/mwvrvrzj", {
         method: "POST",
         body: JSON.stringify({
-          firstName: name,
+          name,
           email,
           source: "Brand Room Quiz",
-          quizResult: RESULTS[r].type,
-          quizRecommendation: RESULTS[r].product,
-          tags: ["Quiz Lead", RESULTS[r].type],
+          quiz_result: RESULTS[r].type,
+          quiz_recommendation: RESULTS[r].product,
         }),
-        headers: { "Content-Type": "application/json" },
+        headers: { "Accept": "application/json", "Content-Type": "application/json" },
       });
     } catch (_) {}
     setSubmitting(false);
