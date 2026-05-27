@@ -839,7 +839,7 @@ function Pricing() {
       cta: "Get Started →",
       features: [
         "AI content creation, posting & scheduling",
-        "3 short-form videos per week",
+        "3–5 short-form videos per week",
         "Automation maintenance",
         "AI clone or custom brand character",
         "1 client account (1 platform)",
@@ -855,7 +855,7 @@ function Pricing() {
       cta: "Apply for Elite →",
       features: [
         "AI content creation, posting & scheduling",
-        "3 short-form videos per week",
+        "3–5 short-form videos per week",
         "Automation maintenance",
         "AI clone or custom brand character",
         "5 accounts — all platforms + full ad management",
@@ -869,7 +869,7 @@ function Pricing() {
       cta: "Get a Quote →",
       features: [
         "AI content creation, posting & scheduling",
-        "3 short-form videos per week",
+        "3–5 short-form videos per week",
         "Automation maintenance",
         "AI clone or custom brand character",
         "3 accounts — all platforms + ad management",
