@@ -263,7 +263,7 @@ function Hero() {
         </div>
 
         <p
-          className="reveal text-[var(--gold)] italic mt-2 leading-none"
+          className="reveal text-[var(--gold)] italic mt-2 leading-none mb-0"
           style={{
             fontFamily: "'Allura', cursive",
             fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
@@ -274,7 +274,7 @@ function Hero() {
           the
         </p>
         <h1
-          className="reveal text-[var(--rose)] font-normal tracking-[0.04em] leading-[0.95] -mt-3"
+          className="reveal text-[var(--rose)] font-normal tracking-[0.04em] leading-[0.95] -mt-7"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontSize: "clamp(3.5rem, 9vw, 6rem)",
