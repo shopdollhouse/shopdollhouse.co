@@ -1222,6 +1222,99 @@ function Pricing() {
 }
 
 /* ─── FAQ ─────────────────────────────────────────────── */
+/* ─── Comparison Table ─────────────────────────────────── */
+function ComparisonTable() {
+  const rows = [
+    { feature: "Done-for-you content & posting",       dh: true,  agency: true,  diy: false },
+    { feature: "AI clone or custom brand character",   dh: true,  agency: false, diy: false },
+    { feature: "AI content creation & scheduling",     dh: true,  agency: false, diy: false },
+    { feature: "Short-form video production",          dh: true,  agency: false, diy: false },
+    { feature: "Automation & CRM included",            dh: true,  agency: false, diy: false },
+    { feature: "Lead & booking automation",            dh: true,  agency: false, diy: false },
+    { feature: "AI voice agent available",             dh: true,  agency: false, diy: false },
+    { feature: "Transparent pricing",                  dh: true,  agency: false, diy: false },
+    { feature: "Month-to-month after 3 months",        dh: true,  agency: false, diy: true  },
+  ];
+
+  const Check = ({ val }: { val: boolean }) =>
+    val ? (
+      <span style={{ color: "var(--gold)", fontSize: "1rem" }}>✦</span>
+    ) : (
+      <span style={{ color: "rgba(30,15,10,0.2)", fontSize: "1rem" }}>✕</span>
+    );
+
+  return (
+    <section className="py-24 px-6" style={{ background: "linear-gradient(180deg, var(--blush) 0%, var(--cream) 100%)" }}>
+      <SectionTitle
+        eyebrow="Why The Dollhouse"
+        title="How we compare"
+        italic="Not all agencies are built the same."
+      />
+
+      <div className="mt-16 max-w-4xl mx-auto overflow-x-auto">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr>
+              <th className="pb-6 text-left w-1/2" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(30,15,10,0.4)", fontWeight: 500 }}>
+                Feature
+              </th>
+              {[
+                { label: "The Dollhouse", featured: true },
+                { label: "Other Agencies", featured: false },
+                { label: "DIY", featured: false },
+              ].map(({ label, featured }) => (
+                <th
+                  key={label}
+                  className="pb-6 text-center"
+                  style={{ fontFamily: featured ? "'Cormorant Garamond', serif" : "'Jost', sans-serif", fontSize: featured ? "1.1rem" : "0.7rem", fontStyle: featured ? "italic" : "normal", letterSpacing: featured ? "0.02em" : "0.18em", textTransform: "uppercase", color: featured ? "var(--ink)" : "rgba(30,15,10,0.4)", fontWeight: featured ? 600 : 500 }}
+                >
+                  {label}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row, i) => (
+              <tr
+                key={row.feature}
+                style={{ borderTop: "1px solid color-mix(in oklab, var(--gold) 18%, transparent)" }}
+              >
+                <td
+                  className="py-4 pr-6"
+                  style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.85rem", color: "rgba(30,15,10,0.7)" }}
+                >
+                  {row.feature}
+                </td>
+                <td
+                  className="py-4 text-center"
+                  style={{
+                    background: i === 0
+                      ? "linear-gradient(180deg, rgba(200,168,100,0.07) 0%, rgba(200,168,100,0.07) 100%)"
+                      : "rgba(200,168,100,0.07)",
+                  }}
+                >
+                  <Check val={row.dh} />
+                </td>
+                <td className="py-4 text-center"><Check val={row.agency} /></td>
+                <td className="py-4 text-center"><Check val={row.diy} /></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <div className="mt-10 text-center">
+          <a
+            href="#contact"
+            className="btn-ink"
+          >
+            Get a Free Proposal <span aria-hidden>→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function FAQ() {
   const faqs: [string, string][] = [
     ["What does 'done-for-you' actually mean?", "Everything — content creation, posting, scheduling, automation setup, ad management, and reporting. You get a full system running in the background while you focus on your business. No tools to learn, no content to make, nothing to manage."],
@@ -1443,6 +1536,7 @@ function Index() {
       <TrustBar />
       <Services />
       <Pricing />
+      <ComparisonTable />
       <FAQ />
       <StarterKitCTA />
       <Contact />
