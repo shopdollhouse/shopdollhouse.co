@@ -67,7 +67,7 @@ function Nav() {
           className="hidden md:inline-flex rounded-full bg-[var(--ink)] text-[var(--cream)] text-[10px] tracking-[0.18em] uppercase px-5 py-2.5 hover:opacity-90 transition"
           style={{ fontFamily: FONT_LUXE }}
         >
-          Get a Free Proposal
+          Take a Free Quiz
         </Link>
       </div>
     </nav>
