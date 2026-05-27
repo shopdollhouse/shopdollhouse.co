@@ -1241,19 +1241,21 @@ function About() {
 
         <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
           {/* Photo */}
-          <div className="shrink-0">
+          <div className="shrink-0 mx-auto">
             <div
-              className="w-52 h-52 md:w-64 md:h-64 rounded-full overflow-hidden mx-auto"
+              className="w-56 md:w-72 overflow-hidden"
               style={{
+                borderRadius: "28px",
                 border: "2px solid color-mix(in oklab, var(--gold) 40%, transparent)",
                 boxShadow: "0 20px 50px -15px rgba(160,110,95,0.35)",
+                aspectRatio: "3/4",
               }}
             >
               <img
                 src={mandyPhoto}
                 alt="Mandy Fortune — founder of The Dollhouse Brand Studio"
                 className="w-full h-full object-cover"
-                style={{ objectPosition: "60% 20%" }}
+                style={{ objectPosition: "center top" }}
               />
             </div>
           </div>
