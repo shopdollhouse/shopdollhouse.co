@@ -897,7 +897,7 @@ function Pricing() {
         "Turn traffic into leads & booked appointments",
         "Automations that turn followers into leads & appointments",
         "AI clone or custom brand character",
-        "AI content creation, posting & scheduling",
+        "Custom content creation matched to your brand voice & identity",
         "Reels, carousels & static posts — 3x per week (12/mo)",
         "1 platform managed for you",
       ],
@@ -1358,7 +1358,7 @@ function ComparisonTable() {
   const rows = [
     { feature: "Done-for-you content & posting",       dh: true,  agency: true,  diy: false },
     { feature: "AI clone or custom brand character",   dh: true,  agency: false, diy: false },
-    { feature: "AI content creation & scheduling",     dh: true,  agency: false, diy: false },
+    { feature: "Custom content matched to brand voice",  dh: true,  agency: false, diy: false },
     { feature: "Short-form video production",          dh: true,  agency: false, diy: false },
     { feature: "Automation & CRM included",            dh: true,  agency: false, diy: false },
     { feature: "Lead & booking automation",            dh: true,  agency: false, diy: false },
