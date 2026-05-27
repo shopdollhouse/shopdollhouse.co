@@ -1318,7 +1318,7 @@ function About() {
 
             {/* Stats */}
             <div className="mt-7 flex gap-10 justify-center md:justify-start">
-              {[["10+ Years", "Brand & Design"], ["500+", "Brands Helped"]].map(([value, label]) => (
+              {[["11 Years", "Brand & Design"], ["500+", "Brands Helped"]].map(([value, label]) => (
                 <div key={value}>
                   <p
                     className="italic text-[var(--rose)]"
