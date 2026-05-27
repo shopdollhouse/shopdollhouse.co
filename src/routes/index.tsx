@@ -834,6 +834,132 @@ function CaptionCard() {
   );
 }
 
+function AIChatCard() {
+  const msgs = [
+    { from: "lead", text: "Hi! Do you have availability this week?" },
+    { from: "ai", text: "Hey! Yes — we have openings Tuesday at 2pm and Thursday at 10am. Which works for you? 😊" },
+    { from: "lead", text: "Thursday works!" },
+    { from: "ai", text: "Perfect! I've booked you for Thursday at 10am. You'll get a confirmation text shortly ✅" },
+  ];
+  return (
+    <div className="relative">
+      <div aria-hidden className="absolute -inset-6 -z-10 rounded-[36px] opacity-60 blur-2xl"
+        style={{ background: "radial-gradient(60% 60% at 30% 30%, rgba(200,168,100,0.4), transparent 70%), radial-gradient(50% 50% at 80% 70%, rgba(232,180,180,0.35), transparent 70%)" }} />
+      <div className="relative rounded-[28px] overflow-hidden border border-white/90 shadow-[0_35px_70px_-30px_rgba(160,100,100,0.35)]"
+        style={{ background: "linear-gradient(160deg, rgba(255,255,255,0.94) 0%, rgba(252,246,238,0.9) 100%)", backdropFilter: "blur(14px)" }}>
+        <div className="px-5 pt-5 pb-2 border-b border-[var(--gold)]/15 flex items-center gap-3">
+          <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(135deg, var(--gold), #f0d3a8)" }}>
+            <span className="text-[var(--ink)] text-[11px]">✦</span>
+          </div>
+          <div>
+            <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--ink)" }}>AI Assistant</p>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", color: "rgba(30,15,10,0.4)" }}>Responds instantly · 24/7</p>
+          </div>
+          <span className="ml-auto flex items-center gap-1.5" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "#22c55e" }}>
+            <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" /> Online
+          </span>
+        </div>
+        <div className="p-5 space-y-3">
+          {msgs.map((m, i) => (
+            <div key={i} className={`flex ${m.from === "ai" ? "justify-start" : "justify-end"}`}>
+              <div className="max-w-[80%] rounded-2xl px-4 py-2.5"
+                style={{
+                  background: m.from === "ai" ? "linear-gradient(135deg, var(--gold), #f0d3a8)" : "rgba(30,15,10,0.07)",
+                  color: m.from === "ai" ? "var(--ink)" : "rgba(30,15,10,0.75)",
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: "0.8rem",
+                  lineHeight: 1.45,
+                }}>
+                {m.text}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ReminderCard() {
+  const reminders = [
+    { time: "48 hrs before", msg: "Hi Sarah! Just a reminder — your appointment is on Thursday at 10am. Reply CONFIRM to lock it in 👋", sent: true },
+    { time: "24 hrs before", msg: "See you tomorrow at 10am! Let us know if anything changes.", sent: true },
+    { time: "2 hrs before", msg: "You're up soon! Your appointment is at 10am today. We're ready for you ✨", sent: false },
+  ];
+  return (
+    <div className="relative">
+      <div aria-hidden className="absolute -inset-6 -z-10 rounded-[36px] opacity-60 blur-2xl"
+        style={{ background: "radial-gradient(60% 60% at 70% 30%, rgba(232,180,180,0.45), transparent 70%), radial-gradient(50% 50% at 20% 80%, rgba(200,168,100,0.35), transparent 70%)" }} />
+      <div className="relative rounded-[28px] overflow-hidden border border-white/90 shadow-[0_35px_70px_-30px_rgba(160,100,100,0.35)]"
+        style={{ background: "linear-gradient(160deg, rgba(255,255,255,0.94) 0%, rgba(252,240,240,0.9) 100%)", backdropFilter: "blur(14px)" }}>
+        <div className="px-6 pt-5 pb-4 border-b border-[var(--gold)]/15">
+          <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>Automated Reminders</p>
+          <p className="mt-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.1rem", color: "var(--ink)" }}>Appointment: Thursday 10:00am</p>
+        </div>
+        <div className="p-5 space-y-4">
+          {reminders.map((r, i) => (
+            <div key={i} className="flex gap-3 items-start">
+              <div className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5"
+                style={{ background: r.sent ? "rgba(200,168,100,0.2)" : "rgba(30,15,10,0.06)", border: `1px solid ${r.sent ? "rgba(200,168,100,0.5)" : "rgba(30,15,10,0.1)"}` }}>
+                {r.sent && <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "9px", height: "9px", color: "var(--gold)" }}><path d="M2.5 8.5L6 12L13.5 4.5" /></svg>}
+              </div>
+              <div className="flex-1">
+                <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.6rem", letterSpacing: "0.14em", textTransform: "uppercase", color: r.sent ? "var(--gold)" : "rgba(30,15,10,0.35)" }}>{r.time}</p>
+                <p className="mt-1 leading-relaxed" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: r.sent ? "rgba(30,15,10,0.7)" : "rgba(30,15,10,0.35)" }}>{r.msg}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ReviewCard() {
+  const reviews = [
+    { name: "Jessica M.", stars: 5, text: "Absolutely incredible service. My brand has never looked better — I'm getting DMs every single day now.", time: "2 days ago" },
+    { name: "Tara L.", stars: 5, text: "I went from zero engagement to booked out in 6 weeks. The content they create is *chef's kiss*.", time: "1 week ago" },
+    { name: "Marcus D.", stars: 5, text: "Best investment I've made for my business. Hands down.", time: "2 weeks ago" },
+  ];
+  return (
+    <div className="relative">
+      <div aria-hidden className="absolute -inset-6 -z-10 rounded-[36px] opacity-60 blur-2xl"
+        style={{ background: "radial-gradient(55% 55% at 50% 50%, rgba(200,168,100,0.4), transparent 70%)" }} />
+      <div className="relative rounded-[28px] overflow-hidden border border-white/90 shadow-[0_35px_70px_-30px_rgba(160,100,100,0.35)]"
+        style={{ background: "linear-gradient(160deg, rgba(255,255,255,0.94) 0%, rgba(255,251,240,0.9) 100%)", backdropFilter: "blur(14px)" }}>
+        <div className="px-6 pt-5 pb-4 border-b border-[var(--gold)]/15 flex items-center justify-between">
+          <div>
+            <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>Google Reviews</p>
+            <div className="flex items-center gap-2 mt-1">
+              <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.6rem", fontWeight: 600, color: "var(--ink)", lineHeight: 1 }}>5.0</span>
+              <div>
+                <div className="flex gap-0.5">{[...Array(5)].map((_, i) => <span key={i} style={{ color: "#f59e0b", fontSize: "0.75rem" }}>★</span>)}</div>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", color: "rgba(30,15,10,0.45)" }}>47 reviews</p>
+              </div>
+            </div>
+          </div>
+          <div className="text-right">
+            <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.6rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(30,15,10,0.4)" }}>New this month</p>
+            <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.4rem", fontWeight: 600, color: "var(--gold)" }}>+12</p>
+          </div>
+        </div>
+        <div className="p-5 space-y-3.5">
+          {reviews.map((r, i) => (
+            <div key={i} className="pb-3.5 border-b border-[var(--gold)]/10 last:border-0 last:pb-0">
+              <div className="flex items-center justify-between">
+                <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.72rem", letterSpacing: "0.06em", color: "var(--ink)", fontWeight: 500 }}>{r.name}</p>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.62rem", color: "rgba(30,15,10,0.35)" }}>{r.time}</p>
+              </div>
+              <div className="flex gap-0.5 mt-1">{[...Array(r.stars)].map((_, j) => <span key={j} style={{ color: "#f59e0b", fontSize: "0.65rem" }}>★</span>)}</div>
+              <p className="mt-1.5 leading-relaxed" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: "rgba(30,15,10,0.65)" }}>{r.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Services() {
   const items = [
     {
@@ -856,6 +982,27 @@ function Services() {
       sub: "Clear data. Smarter decisions. Every month.",
       body: "Detailed performance reports and a dedicated monthly strategy session keep you in the loop. We track what's growing your business and build the next month's plan around what's working.",
       visual: <CaptionCard />,
+    },
+    {
+      tag: "AI Voice & Chat Automation",
+      title: "Never miss a lead — calls, texts, and DMs answered instantly, 24/7.",
+      sub: "Your business never sleeps.",
+      body: "Our AI answers every call, text, and message the moment it comes in. It qualifies the lead, answers questions, and books the appointment — so no opportunity ever slips through the cracks, even at 2am.",
+      visual: <AIChatCard />,
+    },
+    {
+      tag: "Automated Appointment Reminders",
+      title: "Reduce no-shows before they happen.",
+      sub: "Keep your calendar full and your clients showing up.",
+      body: "Automated text and email reminders go out 48 hours, 24 hours, and 2 hours before every appointment. Less no-shows, less chasing, and a more professional experience for your clients — all on autopilot.",
+      visual: <ReminderCard />,
+    },
+    {
+      tag: "Review & Reputation Management",
+      title: "Build your 5-star presence — automatically.",
+      sub: "More reviews. More trust. More new clients.",
+      body: "After every appointment, we send a review request to your client. We track your reputation across Google, respond to feedback, and keep your star rating climbing — building social proof that brings in new business on its own.",
+      visual: <ReviewCard />,
     },
   ];
   return (
