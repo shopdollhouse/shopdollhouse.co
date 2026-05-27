@@ -1190,7 +1190,9 @@ function Pricing() {
                       : "rgba(255,255,255,0.5)",
                   }}
                 >
-                  <span style={{ color: "var(--gold)" }}>✦</span> Monthly Retainer
+                  <svg viewBox="0 0 24 22" fill="currentColor" style={{ width: "13px", height: "13px", color: "var(--gold)" }}>
+                    <path d="M12 21.6C6.3 16.1 1 11.3 1 7.2 1 3.4 4.1 2 6.3 2c1.3 0 4.2.5 5.7 4.5C13.6 2.5 16.5 2 17.7 2 20.3 2 23 3.6 23 7.2c0 4.1-5.1 8.9-11 14.4z"/>
+                  </svg> Monthly Retainer
                 </div>
 
                 {/* Price */}
@@ -1270,7 +1272,9 @@ function Pricing() {
                           : "linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 50%, transparent), transparent)",
                     }}
                   />
-                  <span style={{ color: isFilled ? "#c97a7a" : "var(--gold)", fontSize: "0.7rem" }}>♥</span>
+                  <svg viewBox="0 0 24 22" fill="currentColor" style={{ width: "14px", height: "14px", color: isFilled ? "#c97a7a" : "var(--gold)", flexShrink: 0 }}>
+                    <path d="M12 21.6C6.3 16.1 1 11.3 1 7.2 1 3.4 4.1 2 6.3 2c1.3 0 4.2.5 5.7 4.5C13.6 2.5 16.5 2 17.7 2 20.3 2 23 3.6 23 7.2c0 4.1-5.1 8.9-11 14.4z"/>
+                  </svg>
                   <span
                     className="flex-1 h-px"
                     style={{
