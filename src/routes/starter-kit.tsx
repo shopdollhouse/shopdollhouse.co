@@ -123,7 +123,7 @@ function Hero() {
         </h2>
 
         <p className="reveal mt-4 text-[var(--ink)]/65 leading-relaxed max-w-lg mx-auto" style={{ fontFamily: FONT_BODY, fontSize: "clamp(0.95rem, 1.8vw, 1.1rem)", animationDelay: "0.58s" }}>
-          Brand Kit, AI Prompt Kit & Brand Workbook — everything you need to launch a polished, on-brand business in a single weekend. No designer. No agency. Just you.
+          Brand Kit Blueprint, Brand Workbook & AI Prompt Kit — everything you need to build a complete brand from scratch. No designer. No agency. Just you.
         </p>
 
         <div className="reveal mt-9 flex flex-col sm:flex-row items-center justify-center gap-4" style={{ animationDelay: "0.65s" }}>
@@ -147,21 +147,24 @@ function Hero() {
 const PIECES = [
   {
     num: "01",
-    name: "The Brand Kit",
-    tagline: "Logo, palette, type & a 30-page guide",
-    detail: "A complete visual identity system — primary & secondary logos, color tokens, typography pairings, and a print-ready brand guidelines PDF.",
+    price: "$97",
+    name: "The Dollhouse Brand Kit Blueprint",
+    tagline: "Interactive web app — build your brand from scratch",
+    detail: "No guesswork. No blank pages. Every brand decision walked through step by step — your colors, fonts, logo direction, voice, and visual identity all locked in.",
   },
   {
     num: "02",
-    name: "The AI Prompt Kit",
-    tagline: "200+ on-brand prompts for ChatGPT",
-    detail: "Captions, hooks, emails, ad copy, sales pages, and product descriptions — every prompt pre-tuned to your tone, audience, and offer.",
+    price: "$47",
+    name: "Brand Workbook",
+    tagline: "Every foundational business decision, made",
+    detail: "An interactive web app that walks you through positioning, audience, offers, and brand voice. + BONUS included to help you hit the ground running.",
   },
   {
     num: "03",
-    name: "The Brand Workbook",
-    tagline: "Find your voice in one weekend",
-    detail: "A guided 40-page workbook that walks you through positioning, audience, voice, offers, and your first 30 days of content.",
+    price: "$17",
+    name: "AI Prompt Kit",
+    tagline: "50+ prompts across 8 rooms — ready to use",
+    detail: "Copy, content, strategy — all pre-built. Captions, hooks, emails, ad copy and more. Customize and use instantly. No staring at a blank screen.",
   },
 ];
 
@@ -191,8 +194,11 @@ function WhatsInside() {
                 boxShadow: "0 30px 60px -30px rgba(160,110,95,0.35), inset 0 1px 0 rgba(255,255,255,0.6)",
               }}
             >
-              <span className="text-[var(--gold)] italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "2.5rem", lineHeight: 1 }}>{p.num}</span>
-              <h3 className="mt-5 text-[var(--ink)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.75rem" }}>{p.name}</h3>
+              <div className="flex items-center justify-between">
+                <span className="text-[var(--gold)] italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "2.5rem", lineHeight: 1 }}>{p.num}</span>
+                <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.6rem", lineHeight: 1 }}>{p.price}</span>
+              </div>
+              <h3 className="mt-5 text-[var(--ink)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.6rem", lineHeight: 1.2 }}>{p.name}</h3>
               <p className="mt-1 italic text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem" }}>{p.tagline}</p>
               <div className="mt-5 flex items-center gap-3">
                 <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 50%, transparent), transparent)" }} />
@@ -210,13 +216,12 @@ function WhatsInside() {
 
 /* ─── Includes Checklist ──────────────────────────────── */
 const INCLUDES = [
-  "Primary, secondary & submark logo files (SVG, PNG)",
-  "Complete color system with hex, RGB & CMYK",
-  "Typography pairings & usage rules",
-  "30-page brand guidelines PDF",
-  "200+ ChatGPT prompts across 8 categories",
-  "Caption, hook & email frameworks",
-  "40-page brand workbook (PDF + Notion)",
+  "Brand Kit Blueprint — interactive web app ($97 value)",
+  "Brand Workbook — interactive web app + BONUS ($47 value)",
+  "AI Prompt Kit — 50+ prompts across 8 rooms ($17 value)",
+  "Copy, content & strategy prompts ready to customize",
+  "Every foundational brand decision walked through step by step",
+  "Color, font, voice & visual identity all locked in",
   "30-day content starter calendar",
   "Lifetime access & free updates",
   "Private community of founders",
