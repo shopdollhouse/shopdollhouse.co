@@ -92,8 +92,23 @@ function Nav() {
 
   return (
     <>
+      {/* Urgency banner */}
+      <div
+        className="fixed top-0 inset-x-0 z-50 h-9 flex items-center justify-center gap-3 px-4"
+        style={{ backgroundColor: "var(--ink)" }}
+      >
+        <span style={{ color: "var(--gold)", fontSize: "0.55rem" }}>✦</span>
+        <span
+          className="text-[var(--cream)] text-[10px] tracking-[0.2em] uppercase"
+          style={{ fontFamily: "'Jost', sans-serif" }}
+        >
+          Limited spots available — now booking new clients
+        </span>
+        <span style={{ color: "var(--gold)", fontSize: "0.55rem" }}>✦</span>
+      </div>
+
       <nav
-        className={`fixed top-0 inset-x-0 z-40 transition-all duration-500 ${
+        className={`fixed top-9 inset-x-0 z-40 transition-all duration-500 ${
           scrolled ? "py-3" : "py-6"
         }`}
         style={{
@@ -144,7 +159,7 @@ function Nav() {
           </div>
 
           <a href="#contact" className="hidden md:inline-flex btn-ink !py-2.5 !px-5 !text-[10px]">
-            Get a Quote
+            Get a Free Proposal
           </a>
 
           {/* Mobile toggle */}
@@ -194,7 +209,7 @@ function Nav() {
             </a>
           ))}
           <a href="#contact" onClick={() => setOpen(false)} className="btn-ink justify-center mt-2">
-            Get a Quote
+            Get a Free Proposal
           </a>
         </div>
       </div>
@@ -311,7 +326,8 @@ function Hero() {
           style={{ animationDelay: "0.65s" }}
         >
           <a href="#contact" className="btn-ink">
-            Get a Quote <span aria-hidden>→</span>
+            Get a Free Proposal <span aria-hidden>→</span>
+
           </a>
           <div
             className="inline-flex items-center gap-2 rounded-full border border-[var(--gold)]/40 bg-white/40 backdrop-blur-sm px-4 py-1.5 text-[var(--gold)]"
@@ -329,9 +345,36 @@ function Hero() {
           </a>
         </div>
 
+        {/* Stats row */}
+        <div
+          className="reveal mt-8 flex items-center justify-center gap-6 flex-wrap"
+          style={{ animationDelay: "0.75s" }}
+        >
+          {[
+            { stat: "100%", label: "Done For You" },
+            { stat: "24/7", label: "AI Automation" },
+            { stat: "30 days", label: "To See Results" },
+          ].map(({ stat, label }) => (
+            <div key={label} className="flex flex-col items-center gap-0.5">
+              <span
+                className="text-[var(--rose)]"
+                style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.4rem, 3vw, 1.75rem)", fontStyle: "italic", lineHeight: 1 }}
+              >
+                {stat}
+              </span>
+              <span
+                className="text-[var(--ink)]/50 text-[9px] tracking-[0.2em] uppercase"
+                style={{ fontFamily: "'Jost', sans-serif" }}
+              >
+                {label}
+              </span>
+            </div>
+          ))}
+        </div>
+
         <p
-          className="reveal mt-7 text-[var(--ink)]/55 italic text-sm"
-          style={{ fontFamily: "'Cormorant Garamond', serif", animationDelay: "0.75s" }}
+          className="reveal mt-6 text-[var(--ink)]/55 italic text-sm"
+          style={{ fontFamily: "'Cormorant Garamond', serif", animationDelay: "0.85s" }}
         >
           3-month minimum · Fully managed, nothing to learn
         </p>
@@ -867,7 +910,7 @@ function Pricing() {
       name: "Growth",
       price: "$2,500",
       tagline: "Ready to scale? More platforms, paid ads, and deeper automation.",
-      cta: "Get a Quote →",
+      cta: "Get a Free Proposal →",
       features: [
         "Everything in Starter — expanded to 3 platforms",
         "Facebook & Instagram ad management",
@@ -1323,7 +1366,7 @@ function Contact() {
           className="w-full rounded-xl bg-[var(--ink)] text-[var(--cream)] py-4 text-[11px] tracking-luxe uppercase hover:opacity-90 transition"
           style={{ fontFamily: "'Jost', sans-serif" }}
         >
-          {submitted ? "Thank you — we'll be in touch ♡" : "Get my quote →"}
+          {submitted ? "Thank you — we'll be in touch ♡" : "Send my free proposal request →"}
         </button>
       </form>
     </section>
