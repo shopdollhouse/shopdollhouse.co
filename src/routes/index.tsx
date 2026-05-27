@@ -264,13 +264,14 @@ function Hero() {
           className="reveal inline-flex items-center gap-2 rounded-full border border-[var(--gold)]/55 bg-white/40 backdrop-blur-md px-5 py-2 text-[var(--gold)]"
           style={{ animationDelay: "0.05s" }}
         >
-          <LockIcon className="w-3 h-3" />
+          <span style={{ fontSize: "0.55rem" }}>✦</span>
           <span
             className="text-[10px] tracking-luxe uppercase font-medium"
             style={{ fontFamily: "'Jost', sans-serif" }}
           >
             Social Media Marketing Agency
           </span>
+          <span style={{ fontSize: "0.55rem" }}>✦</span>
         </div>
         <div
           className="reveal mt-10 flex justify-center text-[var(--gold)]"
@@ -1002,7 +1003,7 @@ function Services() {
   return (
     <section id="services" className="py-24 md:py-32 px-6">
       <SectionTitle
-        eyebrow="What's Inside"
+        eyebrow="What We Do"
         title={<>Everything you need to<br />dominate social media.</>}
       />
       <div className="mt-20 max-w-6xl mx-auto space-y-24">
@@ -1112,7 +1113,7 @@ function Pricing() {
       }}
     >
       <SectionTitle
-        eyebrow="Style Packages"
+        eyebrow="Monthly Plans"
         title="Choose your plan"
         italic="Done-for-you monthly retainer — includes your AI clone or brand character."
       />
@@ -1667,44 +1668,6 @@ function FAQ() {
   );
 }
 
-/* ─── Starter Kit CTA ─────────────────────────────────── */
-function StarterKitCTA() {
-  return (
-    <section className="px-6 py-20">
-      <div className="max-w-4xl mx-auto bg-[var(--ink)] text-[var(--cream)] rounded-2xl p-12 md:p-16 text-center relative overflow-hidden">
-        <img
-          src={roseAccent}
-          alt=""
-          loading="lazy"
-          className="absolute -top-10 -right-10 w-56 opacity-25 pointer-events-none"
-        />
-        <Eyebrow>Just Starting Out?</Eyebrow>
-        <h2
-          className="text-[var(--cream)] mt-3"
-          style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.25rem, 4vw, 3.25rem)" }}
-        >
-          Build your brand first
-        </h2>
-        <p
-          className="text-[var(--cream)]/75 mt-5 max-w-xl mx-auto leading-relaxed"
-          style={{ fontFamily: "'DM Sans', sans-serif" }}
-        >
-          Not ready for a retainer yet? The Starter Kit gives you the Brand Kit,
-          AI Prompt Kit, and Brand Workbook — everything you need to build a
-          solid brand foundation.
-        </p>
-        <Link
-          to="/starter-kit"
-          className="mt-8 inline-block rounded-full bg-[var(--cream)] text-[var(--ink)] text-[11px] tracking-luxe uppercase px-8 py-4 hover:opacity-90 transition"
-          style={{ fontFamily: "'Jost', sans-serif" }}
-        >
-          See the Starter Kit →
-        </Link>
-      </div>
-    </section>
-  );
-}
-
 /* ─── Contact ─────────────────────────────────────────── */
 function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
@@ -1875,7 +1838,7 @@ function StarterKitBanner() {
         className="mt-4 text-[var(--ink)]/65 max-w-md mx-auto"
         style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", lineHeight: 1.6 }}
       >
-        Brand Kit, AI Prompt Kit & Brand Workbook — build your foundation for just $297.
+        The Blueprint, Brand Workbook & AI Prompt Kit — build your brand foundation. Start from $17, or get all three for $127.
       </p>
       <Link
         to="/starter-kit"

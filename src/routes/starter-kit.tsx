@@ -55,10 +55,10 @@ function Nav() {
         </Link>
 
         <div className="hidden md:flex items-center gap-9 text-[10px] tracking-[0.18em] uppercase text-[var(--ink)]/70" style={{ fontFamily: FONT_LUXE }}>
-          <Link to="/" className="hover:text-[var(--rose)] transition-colors">Services</Link>
-          <Link to="/" className="hover:text-[var(--rose)] transition-colors">Pricing</Link>
+          <a href="/#services" className="hover:text-[var(--rose)] transition-colors">Services</a>
+          <a href="/#pricing" className="hover:text-[var(--rose)] transition-colors">Pricing</a>
           <Link to="/starter-kit" className="text-[var(--rose)]">Starter Kit</Link>
-          <Link to="/" className="hover:text-[var(--rose)] transition-colors">FAQ</Link>
+          <a href="/#faq" className="hover:text-[var(--rose)] transition-colors">FAQ</a>
         </div>
 
         <Link
