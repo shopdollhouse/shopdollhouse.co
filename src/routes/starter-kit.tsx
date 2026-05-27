@@ -123,12 +123,12 @@ function Hero() {
         </h2>
 
         <p className="reveal mt-4 text-[var(--ink)]/65 leading-relaxed max-w-lg mx-auto" style={{ fontFamily: FONT_BODY, fontSize: "clamp(0.95rem, 1.8vw, 1.1rem)", animationDelay: "0.58s" }}>
-          Start with the $97 Blueprint — or grab all three for $127 and save $34.
+          Start with the Blueprint — or grab all three and save.
         </p>
 
         <div className="reveal mt-9 flex flex-col sm:flex-row items-center justify-center gap-4" style={{ animationDelay: "0.65s" }}>
           <a href="#blueprint" className="btn-ink">
-            Get the Blueprint — $97 <span aria-hidden>→</span>
+            Get the Blueprint <span aria-hidden>→</span>
           </a>
           <a href="#bundle" className="btn-ghost">
             See the Full Bundle <span aria-hidden>↓</span>
@@ -233,7 +233,7 @@ function WhatsInside() {
               </div>
               <p className="mt-4 text-[var(--ink)]/70 leading-relaxed text-sm flex-1" style={{ fontFamily: FONT_BODY }}>{p.detail}</p>
               <a href={`mailto:hello@shopdollhouse.co?subject=${encodeURIComponent(p.name)}`} className="mt-6 w-full block rounded-xl px-5 py-3 text-center transition-all hover:opacity-80" style={{ border: "1px solid color-mix(in oklab, var(--gold) 50%, transparent)", color: "var(--gold)" }}>
-                <span style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", fontStyle: "italic", fontWeight: 600 }}>Get it — {p.price} →</span>
+                <span style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", fontStyle: "italic", fontWeight: 600 }}>Get it →</span>
               </a>
             </article>
           ))}
@@ -356,7 +356,7 @@ function Bundle() {
             style={{ backgroundColor: "var(--gold)", boxShadow: "0 12px 28px -10px rgba(160,110,60,0.5)" }}
           >
             <p className="text-[var(--ink)] leading-tight" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.15rem", fontStyle: "italic", fontWeight: 700 }}>
-              Get the Full Bundle — $127 →
+              Get the Full Bundle →
             </p>
             <p className="text-[var(--ink)]/60 mt-0.5" style={{ fontFamily: FONT_LUXE, fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase" }}>
               All three · Delivered instantly to your inbox
