@@ -1076,8 +1076,8 @@ function Pricing() {
                   }}
                 >
                   <p
-                    className="text-[var(--ink)] leading-tight font-bold"
-                    style={{ fontFamily: "'Jost', sans-serif", fontSize: "1rem", letterSpacing: "0.02em" }}
+                    className="text-[var(--ink)] leading-tight"
+                    style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.15rem", fontStyle: "italic", fontWeight: 700 }}
                   >
                     14-Day Free Trial
                   </p>
