@@ -86,6 +86,7 @@ function Nav() {
 
   const links = [
     { href: "#services", label: "Services" },
+    { href: "#about", label: "About" },
     { href: "#pricing", label: "Pricing" },
     { href: "#faq", label: "FAQ" },
     { href: "#contact", label: "Contact" },
@@ -94,8 +95,9 @@ function Nav() {
   return (
     <>
       {/* Urgency banner */}
-      <div
-        className="fixed top-0 inset-x-0 z-50 h-9 flex items-center justify-center gap-3 px-4"
+      <a
+        href="#contact"
+        className="fixed top-0 inset-x-0 z-50 h-9 flex items-center justify-center gap-3 px-4 hover:opacity-90 transition-opacity"
         style={{ backgroundColor: "var(--ink)" }}
       >
         <span style={{ color: "var(--gold)", fontSize: "0.55rem" }}>✦</span>
@@ -106,7 +108,7 @@ function Nav() {
           Limited spots available — now booking new clients
         </span>
         <span style={{ color: "var(--gold)", fontSize: "0.55rem" }}>✦</span>
-      </div>
+      </a>
 
       <nav
         className={`fixed top-9 inset-x-0 z-40 transition-all duration-500 ${
@@ -338,7 +340,7 @@ function Hero() {
               className="text-[10px] tracking-luxe uppercase font-medium"
               style={{ fontFamily: "'Jost', sans-serif" }}
             >
-              14-day free trial
+              14-day free trial included
             </span>
           </div>
           <a href="#services" className="btn-ghost">
@@ -412,20 +414,20 @@ function Hero() {
 
 /* ─── Trust bar ───────────────────────────────────────── */
 function TrustBar() {
-  const logos = ["Meta", "OpenAI", "TikTok", "Google", "Stripe"];
+  const logos = ["BuzzFeed", "HuffPost", "Meta", "TikTok", "Instagram"];
   return (
     <section className="py-14 px-6 bg-[var(--cream)]/60 backdrop-blur-sm border-y border-[var(--gold)]/15">
       <p
         className="text-center text-[10px] tracking-luxe uppercase text-[var(--gold)]"
         style={{ fontFamily: "'Jost', sans-serif" }}
       >
-        Powered by the same infrastructure trusted by 500,000+ businesses
+        As seen in · Built on the world's top platforms
       </p>
       <div className="mt-7 flex flex-wrap justify-center items-center gap-x-14 gap-y-4 text-[var(--ink)]/60">
         {logos.map((l) => (
           <span
             key={l}
-            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.6rem" }}
+            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.6rem", fontStyle: l === "BuzzFeed" || l === "HuffPost" ? "italic" : "normal", fontWeight: l === "HuffPost" ? 700 : 400 }}
           >
             {l}
           </span>
@@ -905,7 +907,7 @@ function Pricing() {
       price: "$5,000+",
       tagline: "Your entire online business — run, managed, and scaled completely for you.",
       featured: true,
-      topBadge: { label: "Most Popular", tone: "gold" as const },
+      topBadge: { label: "Featured", tone: "gold" as const },
       cta: "Apply for Elite →",
       features: [
         "Everything in Growth — Instagram, TikTok, Facebook, LinkedIn & Threads",
@@ -1154,7 +1156,7 @@ function Pricing() {
                     className="text-[var(--ink)] leading-tight"
                     style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.15rem", fontStyle: "italic", fontWeight: 700 }}
                   >
-                    14-Day Free Trial
+                    Get a Free Proposal
                   </p>
                   <p
                     className="text-[var(--ink)]/60 mt-0.5"
@@ -1236,7 +1238,7 @@ function Pricing() {
 /* ─── About ────────────────────────────────────────────── */
 function About() {
   return (
-    <section className="py-24 md:py-32 px-6 bg-[var(--cream)]">
+    <section id="about" className="py-24 md:py-32 px-6 bg-[var(--cream)]">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-14">
           <Eyebrow>The Person Behind the Brand</Eyebrow>
@@ -1276,7 +1278,7 @@ function About() {
               className="text-[var(--ink)]/75 leading-relaxed"
               style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem" }}
             >
-              I'm a brand strategist and content designer from the Greater Toronto Area — with 10+ years in graphic and product design, building brands for companies, creators, and entrepreneurs. My work has been recognized by <strong>BuzzFeed</strong> and <strong>HuffPost</strong>.
+              I'm a social media strategist and brand designer from the Greater Toronto Area — with 10+ years in graphic and product design, building brands for companies, creators, and entrepreneurs. My work has been recognized by <strong>BuzzFeed</strong> and <strong>HuffPost</strong>.
             </p>
             <p
               className="mt-4 text-[var(--ink)]/75 leading-relaxed"
@@ -1452,7 +1454,7 @@ function FAQ() {
     ["What's included in the $500 setup fee?", "A complete system buildout — landing pages, calendar integration, automated follow-up sequences, CRM setup, and everything configured and ready before your first month begins. This is a one-time fee."],
     ["How does the system turn traffic into leads and booked appointments?", "We build automated funnels that capture visitors, follow up instantly via SMS and email, and book them directly into your calendar — without you lifting a finger. Most leads are contacted within minutes of opting in."],
     ["What platforms do you manage?", "It depends on your plan. Starter covers 1 platform of your choice. Growth covers Instagram, TikTok & Facebook. Elite covers Instagram, TikTok, Facebook, LinkedIn & Threads — fully managed across all five. We post where your audience is."],
-    ["Is there a minimum commitment?", "Yes — all retainers have a 3-month minimum. This gives us enough time to build momentum, train the AI to your brand voice, and start seeing real results. After 3 months it's month-to-month."],
+    ["Is there a minimum commitment?", "Yes — we start with 3 months to build momentum, train the AI to your brand voice, and start seeing real results. After that it's month-to-month with no long-term contract required."],
     ["Do I have to approve content before it goes live?", "Yes. Every post goes into your content calendar for approval before it's scheduled. We keep it simple so it takes minutes, not hours."],
     ["What kinds of businesses do you work with?", "Local service businesses, boutique brands, coaches, creatives, and anyone who wants to show up online consistently without doing it themselves."],
     ["What are the add-on services?", "AI voice agents (handles your calls 24/7), review and reputation management, email and SMS marketing, additional content, website design, and merch design. Ask about pricing when you get your quote."],
@@ -1732,7 +1734,6 @@ function Index() {
       <Pricing />
       <ComparisonTable />
       <FAQ />
-      <StarterKitCTA />
       <Contact />
       <Footer />
       <BackToTop />
