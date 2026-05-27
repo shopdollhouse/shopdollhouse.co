@@ -164,7 +164,7 @@ function QuizPage() {
           <span style={{ fontFamily: FONT_DISPLAY, fontSize: "15px", letterSpacing: "4px", textTransform: "uppercase", marginTop: "-4px", color: "var(--ink)", fontStyle: "italic" }}>Dollhouse</span>
           <span style={{ fontFamily: FONT_LUXE, fontSize: "6.5px", letterSpacing: "3px", textTransform: "uppercase", marginTop: "1px", color: "var(--gold)", fontWeight: 600 }}>Brand Studio</span>
         </Link>
-        <Link to="/brand-room" className="hover:opacity-60 transition-opacity" style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>
+        <Link to="/brand-room" className="hover:opacity-60 transition-opacity" style={{ fontFamily: FONT_LUXE, fontSize: "13px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>
           ← The Brand Room
         </Link>
       </nav>
