@@ -1571,19 +1571,25 @@ function Contact() {
     setStatus("sending");
     const form = e.currentTarget;
     const data = new FormData(form);
+    // Convert FormData to JSON for more reliable delivery
+    const payload: Record<string, string> = {};
+    data.forEach((value, key) => { payload[key] = value as string; });
     try {
       const res = await fetch("https://formspree.io/f/mwvrvrzj", {
         method: "POST",
-        body: data,
-        headers: { Accept: "application/json" },
+        body: JSON.stringify(payload),
+        headers: { "Accept": "application/json", "Content-Type": "application/json" },
       });
       if (res.ok) {
         setStatus("done");
         form.reset();
       } else {
+        const json = await res.json().catch(() => ({}));
+        console.error("Formspree error:", json);
         setStatus("error");
       }
-    } catch {
+    } catch (err) {
+      console.error("Submit error:", err);
       setStatus("error");
     }
   }
@@ -1673,19 +1679,32 @@ function Contact() {
           />
         </div>
 
+        {status === "error" && (
+          <div className="rounded-xl px-5 py-4 text-center" style={{ background: "rgba(180,60,60,0.08)", border: "1px solid rgba(180,60,60,0.25)" }}>
+            <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.75rem", color: "#b43c3c", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+              Something went wrong — please email us directly at{" "}
+              <a href="mailto:hello@shopdollhouse.co" style={{ textDecoration: "underline", color: "#b43c3c" }}>
+                hello@shopdollhouse.co
+              </a>
+            </p>
+          </div>
+        )}
+
+        {status === "done" && (
+          <div className="rounded-xl px-5 py-4 text-center" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.3)" }}>
+            <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.1rem", fontStyle: "italic", color: "var(--ink)", opacity: 0.8 }}>
+              Thank you — we'll be in touch within 24 hours ♡
+            </p>
+          </div>
+        )}
+
         <button
           type="submit"
           disabled={status === "sending" || status === "done"}
           className="w-full rounded-xl bg-[var(--ink)] text-[var(--cream)] py-4 text-[11px] tracking-luxe uppercase hover:opacity-90 transition disabled:opacity-60"
           style={{ fontFamily: "'Jost', sans-serif" }}
         >
-          {status === "done"
-            ? "Thank you — we'll be in touch ♡"
-            : status === "sending"
-            ? "Sending..."
-            : status === "error"
-            ? "Something went wrong — try again"
-            : "Send my free proposal request →"}
+          {status === "sending" ? "Sending..." : "Send my free proposal request →"}
         </button>
       </form>
     </section>
