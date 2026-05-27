@@ -1253,11 +1253,10 @@ function Pricing() {
                     border: "1px solid rgba(200,168,100,0.35)",
                   }}
                 >
-                  <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>✦</span>
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "13px", height: "13px", color: "var(--gold)", flexShrink: 0 }}><path d="M2.5 8.5L6 12L13.5 4.5" /></svg>
                   <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.72rem", color: "var(--gold)", letterSpacing: "0.16em", textTransform: "uppercase" }}>
                     Includes platform access — {t.software} value
                   </span>
-                  <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>✦</span>
                 </div>
 
                 {/* Divider w/ heart */}
