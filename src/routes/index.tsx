@@ -1401,9 +1401,13 @@ function ComparisonTable() {
 
   const Check = ({ val }: { val: boolean }) =>
     val ? (
-      <span style={{ color: "var(--gold)", fontSize: "1rem" }}>✦</span>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "15px", height: "15px", color: "var(--gold)", display: "inline-block" }}>
+        <path d="M2.5 8.5L6 12L13.5 4.5" />
+      </svg>
     ) : (
-      <span style={{ color: "rgba(30,15,10,0.2)", fontSize: "1rem" }}>✕</span>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" style={{ width: "13px", height: "13px", color: "rgba(30,15,10,0.2)", display: "inline-block" }}>
+        <path d="M4 4L12 12M12 4L4 12" />
+      </svg>
     );
 
   return (
