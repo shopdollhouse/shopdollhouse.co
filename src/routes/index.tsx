@@ -340,7 +340,7 @@ function Hero() {
               className="text-[10px] tracking-luxe uppercase font-medium"
               style={{ fontFamily: "'Jost', sans-serif" }}
             >
-              14-day free trial included
+              Try free for 14 days
             </span>
           </div>
           <a href="#services" className="btn-ghost">
@@ -1152,7 +1152,7 @@ function Pricing() {
                 >
                   <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>★</span>
                   <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.72rem", color: "var(--gold)", letterSpacing: "0.16em", textTransform: "uppercase" }}>
-                    14-Day Free Trial Included
+                    Try Free for 14 Days
                   </span>
                   <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>★</span>
                 </div>
