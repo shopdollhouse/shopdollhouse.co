@@ -269,16 +269,9 @@ function Hero() {
             className="text-[10px] tracking-luxe uppercase font-medium"
             style={{ fontFamily: "'Jost', sans-serif" }}
           >
-            Done-For-You Social Media
+            Social Media Marketing Agency
           </span>
         </div>
-        <p
-          className="reveal mt-3"
-          style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.72rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(30,15,10,0.45)", animationDelay: "0.08s" }}
-        >
-          Social Media Marketing Agency
-        </p>
-
         <div
           className="reveal mt-10 flex justify-center text-[var(--gold)]"
           style={{ animationDelay: "0.15s" }}
@@ -321,9 +314,10 @@ function Hero() {
         <h2
           className="reveal mt-2 text-[var(--ink)] leading-tight max-w-xl mx-auto"
           style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)",
-            fontWeight: 600,
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: "clamp(1.5rem, 3.2vw, 2.2rem)",
+            fontWeight: 800,
+            letterSpacing: "-0.01em",
             animationDelay: "0.52s",
           }}
         >
