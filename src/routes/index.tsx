@@ -1661,6 +1661,39 @@ function Contact() {
   );
 }
 
+/* ─── Starter Kit Banner ───────────────────────────────── */
+function StarterKitBanner() {
+  return (
+    <section className="py-20 px-6 text-center" style={{ background: "linear-gradient(135deg, #f4dcdc 0%, #f7e6dc 45%, #f1d3cf 100%)" }}>
+      <p
+        className="text-[var(--gold)] text-[11px] tracking-luxe uppercase"
+        style={{ fontFamily: "'Jost', sans-serif" }}
+      >
+        Not ready for a full retainer?
+      </p>
+      <h2
+        className="mt-4 italic text-[var(--ink)]"
+        style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 1.1 }}
+      >
+        Start with the Starter Kit
+      </h2>
+      <p
+        className="mt-4 text-[var(--ink)]/65 max-w-md mx-auto"
+        style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", lineHeight: 1.6 }}
+      >
+        Brand Kit, AI Prompt Kit & Brand Workbook — build your foundation for just $297.
+      </p>
+      <Link
+        to="/starter-kit"
+        className="mt-8 inline-flex items-center gap-2 rounded-2xl px-8 py-4 hover:-translate-y-0.5 transition-all"
+        style={{ backgroundColor: "var(--ink)", color: "var(--cream)", fontFamily: "'Cormorant Garamond', serif", fontSize: "1.15rem", fontStyle: "italic", fontWeight: 700 }}
+      >
+        Explore the Starter Kit →
+      </Link>
+    </section>
+  );
+}
+
 /* ─── Footer ──────────────────────────────────────────── */
 function Footer() {
   return (
@@ -1683,17 +1716,14 @@ function Footer() {
       >
         Brand Studio
       </p>
-      <div className="mt-6 flex items-center justify-center gap-2 text-[var(--ink)]/35" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+      <div className="mt-6 flex items-center justify-center gap-2">
         <span className="h-px w-8 bg-[var(--gold)]/30" />
         <span className="text-[var(--gold)]/50 text-[0.5rem]">♥</span>
         <span className="h-px w-8 bg-[var(--gold)]/30" />
       </div>
-      <p className="mt-4 text-[var(--ink)]/45 italic text-sm" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-        Not ready for a retainer yet?
-      </p>
       <Link
         to="/starter-kit"
-        className="mt-1 inline-block text-[var(--gold)] text-[10px] tracking-[0.2em] uppercase hover:opacity-70 transition-opacity"
+        className="mt-4 inline-block text-[var(--gold)] text-[10px] tracking-[0.2em] uppercase hover:opacity-70 transition-opacity"
         style={{ fontFamily: "'Jost', sans-serif" }}
       >
         Start with the Starter Kit →
@@ -1750,6 +1780,7 @@ function Index() {
       <ComparisonTable />
       <FAQ />
       <Contact />
+      <StarterKitBanner />
       <Footer />
       <BackToTop />
     </main>
