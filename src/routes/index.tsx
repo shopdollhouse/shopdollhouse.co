@@ -120,7 +120,7 @@ function Nav() {
             </span>
             <span
               className="text-[var(--ink)] italic"
-              style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "15px", letterSpacing: "4px", textTransform: "uppercase" }}
+              style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "15px", letterSpacing: "1.5px", textTransform: "uppercase" }}
             >
               Dollhouse
             </span>
@@ -330,7 +330,7 @@ function Hero() {
           className="reveal mt-7 text-[var(--ink)]/55 italic text-sm"
           style={{ fontFamily: "'Cormorant Garamond', serif", animationDelay: "0.75s" }}
         >
-          3-month minimum · All communication by email
+          3-month minimum · Fully managed, nothing to learn
         </p>
       </div>
 
@@ -1276,7 +1276,7 @@ function Footer() {
       </span>
       <span
         className="text-[var(--ink)] italic inline-block"
-        style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "15px", letterSpacing: "4px", textTransform: "uppercase" }}
+        style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "15px", letterSpacing: "1.5px", textTransform: "uppercase" }}
       >
         Dollhouse
       </span>
