@@ -838,11 +838,11 @@ function Pricing() {
       tagline: "Get visible. Get consistent.",
       cta: "Get Started →",
       features: [
-        "1 client account managed",
-        "Social media management (1 platform)",
-        "AI-generated branded captions & scheduling",
+        "AI content creation, posting & scheduling",
+        "3 short-form videos per week",
+        "Automation maintenance",
         "AI clone or custom brand character",
-        "Online appointment booking setup",
+        "1 client account (1 platform)",
         "Monthly analytics report",
       ],
     },
@@ -854,11 +854,11 @@ function Pricing() {
       topBadge: { label: "Most Popular", tone: "gold" as const },
       cta: "Apply for Elite →",
       features: [
-        "5 client accounts — all platforms",
+        "AI content creation, posting & scheduling",
+        "3 short-form videos per week",
+        "Automation maintenance",
         "AI clone or custom brand character",
-        "Full AI booking system (voice, chat & reviews)",
-        "Facebook, Instagram & Google ad management",
-        "Email & SMS marketing campaigns",
+        "5 accounts — all platforms + full ad management",
         "Bi-weekly strategy calls & weekly reports",
       ],
     },
@@ -868,12 +868,12 @@ function Pricing() {
       tagline: "More reach. More leads. More revenue.",
       cta: "Get a Quote →",
       features: [
-        "3 client accounts — all platforms",
+        "AI content creation, posting & scheduling",
+        "3 short-form videos per week",
+        "Automation maintenance",
         "AI clone or custom brand character",
+        "3 accounts — all platforms + ad management",
         "Appointment booking + no-show reminders",
-        "Automated lead follow-up sequences",
-        "Social media ads + content strategy",
-        "Email & SMS marketing automations",
       ],
     },
   ];
@@ -995,9 +995,23 @@ function Pricing() {
                   </span>
                 </div>
 
+                {/* One-time setup fee */}
+                <div
+                  className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg"
+                  style={{
+                    background: isFilled ? "rgba(255,255,255,0.05)" : "rgba(30,15,10,0.04)",
+                    border: `1px dashed ${isFilled ? "rgba(255,255,255,0.15)" : "rgba(30,15,10,0.18)"}`,
+                  }}
+                >
+                  <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>✦</span>
+                  <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.68rem", letterSpacing: "0.14em", textTransform: "uppercase", color: isFilled ? "rgba(250,243,234,0.6)" : "rgba(30,15,10,0.5)" }}>
+                    $500 one-time setup fee
+                  </span>
+                </div>
+
                 {/* Tagline */}
                 <p
-                  className="mt-6"
+                  className="mt-5"
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
                     fontSize: "1.05rem",
@@ -1097,6 +1111,58 @@ function Pricing() {
             </div>
           );
         })}
+      </div>
+
+      {/* Setup fee note */}
+      <p className="text-center mt-10 text-[var(--ink)]/45 italic text-sm" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+        $500 one-time setup includes: complete system buildout, landing pages, calendar integration, automation sequences & CRM setup
+      </p>
+
+      {/* Add-on Services */}
+      <div className="mt-20 max-w-4xl mx-auto">
+        <div className="text-center mb-10">
+          <p className="text-[var(--gold)] text-[11px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
+            Customize your plan
+          </p>
+          <h3
+            className="mt-3 italic text-[var(--ink)]"
+            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.75rem, 3vw, 2.25rem)" }}
+          >
+            Available Add-ons
+          </h3>
+        </div>
+        <div className="grid sm:grid-cols-2 gap-4">
+          {[
+            { title: "AI Voice Agent", desc: "24/7 AI handles your incoming calls, qualifies leads, books appointments — all in your brand voice." },
+            { title: "Review & Reputation Management", desc: "Monitor, respond to, and grow your online reviews across Google and beyond." },
+            { title: "Email & Text Message Marketing", desc: "Done-for-you campaigns, nurture sequences and broadcasts sent to your list." },
+            { title: "Additional Content Creation", desc: "Extra posts, videos and creative assets produced personally by me for your brand." },
+          ].map((addon) => (
+            <div
+              key={addon.title}
+              className="rounded-2xl px-7 py-6 flex gap-4 items-start"
+              style={{
+                background: "linear-gradient(160deg, rgba(255,255,255,0.7) 0%, rgba(251,240,235,0.6) 100%)",
+                border: "1px solid color-mix(in oklab, var(--gold) 30%, transparent)",
+                boxShadow: "0 8px 24px -12px rgba(160,110,95,0.2)",
+                backdropFilter: "blur(8px)",
+              }}
+            >
+              <span style={{ color: "var(--gold)", fontSize: "0.65rem", marginTop: "4px", flexShrink: 0 }}>✦</span>
+              <div>
+                <p className="font-medium" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.15rem", fontStyle: "italic", color: "var(--ink)" }}>
+                  {addon.title}
+                </p>
+                <p className="mt-1" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.82rem", color: "rgba(30,15,10,0.62)", lineHeight: 1.55 }}>
+                  {addon.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="text-center mt-8 text-[var(--ink)]/45 text-[11px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
+          Ask about add-on pricing when you get your quote
+        </p>
       </div>
     </section>
   );
