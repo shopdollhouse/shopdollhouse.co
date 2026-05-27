@@ -1309,7 +1309,7 @@ function About() {
               className="text-[var(--ink)]/75 leading-relaxed"
               style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem" }}
             >
-              I'm a social media strategist and brand designer from the Greater Toronto Area — with 10+ years in graphic and product design, building brands for companies, creators, and entrepreneurs. My work has been recognized by <strong>BuzzFeed</strong> and <strong>HuffPost</strong>.
+              I'm a social media strategist and brand designer from the Greater Toronto Area — with 11+ years in graphic and product design, building brands for companies, creators, and entrepreneurs. My work has been recognized by <strong>BuzzFeed</strong> and <strong>HuffPost</strong>.
             </p>
             <p
               className="mt-4 text-[var(--ink)]/75 leading-relaxed"
