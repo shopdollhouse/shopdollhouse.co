@@ -318,15 +318,27 @@ function Hero() {
           <Divider />
         </div>
 
-        <p
-          className="reveal mt-2 text-[var(--ink)]/80 leading-relaxed max-w-lg mx-auto"
+        <h2
+          className="reveal mt-2 text-[var(--ink)] leading-tight max-w-xl mx-auto"
           style={{
-            fontFamily: "'DM Sans', sans-serif",
-            fontSize: "clamp(1.05rem, 2vw, 1.2rem)",
-            animationDelay: "0.55s",
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)",
+            fontWeight: 600,
+            animationDelay: "0.52s",
           }}
         >
-          Get more leads and booked clients from social media — without filming, posting, or figuring out the algorithm yourself.
+          More Leads. More Booked Clients. Zero Content Work.
+        </h2>
+
+        <p
+          className="reveal mt-4 text-[var(--ink)]/65 leading-relaxed max-w-lg mx-auto"
+          style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: "clamp(0.95rem, 1.8vw, 1.1rem)",
+            animationDelay: "0.58s",
+          }}
+        >
+          We create your content, run your ads, and automate your follow-up — so you can focus on running your business.
         </p>
 
         <div
