@@ -1400,7 +1400,30 @@ function StarterKitCTA() {
 
 /* ─── Contact ─────────────────────────────────────────── */
 function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("sending");
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    try {
+      const res = await fetch("https://formspree.io/f/mwvrvrzj", {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+      if (res.ok) {
+        setStatus("done");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
     <section id="contact" className="py-24 md:py-32 px-6">
       <SectionTitle
@@ -1410,18 +1433,15 @@ function Contact() {
       />
 
       <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          setSubmitted(true);
-        }}
+        onSubmit={handleSubmit}
         className="mt-12 max-w-xl mx-auto rounded-2xl bg-white/70 backdrop-blur-md border border-white/80 shadow-[0_25px_50px_-25px_rgba(180,120,120,0.3)] p-8 md:p-10 space-y-5"
       >
         {([
-          ["Your Name", "text", "Jane Doe"],
-          ["Business Name", "text", "Your Brand"],
-          ["Email Address", "email", "you@brand.co"],
-        ] as const).map(([label, type, ph]) => (
-          <div key={label}>
+          ["Your Name", "name", "text", "Jane Doe"],
+          ["Business Name", "business", "text", "Your Brand"],
+          ["Email Address", "email", "email", "you@brand.co"],
+        ] as const).map(([label, name, type, ph]) => (
+          <div key={name}>
             <label
               className="block text-[10px] tracking-luxe uppercase text-[var(--gold)] mb-2"
               style={{ fontFamily: "'Jost', sans-serif" }}
@@ -1430,6 +1450,7 @@ function Contact() {
             </label>
             <input
               type={type}
+              name={name}
               placeholder={ph}
               required
               className="w-full rounded-xl bg-white/60 border border-[var(--gold)]/30 px-5 py-3.5 text-[var(--ink)] placeholder:text-[var(--ink)]/35 focus:outline-none focus:border-[var(--rose)] transition"
@@ -1445,6 +1466,7 @@ function Contact() {
             Which plan interests you?
           </label>
           <select
+            name="plan"
             className="w-full rounded-xl bg-white/60 border border-[var(--gold)]/30 px-5 py-3.5 text-[var(--ink)] focus:outline-none focus:border-[var(--rose)] transition"
             style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem" }}
           >
@@ -1456,10 +1478,17 @@ function Contact() {
         </div>
         <button
           type="submit"
-          className="w-full rounded-xl bg-[var(--ink)] text-[var(--cream)] py-4 text-[11px] tracking-luxe uppercase hover:opacity-90 transition"
+          disabled={status === "sending" || status === "done"}
+          className="w-full rounded-xl bg-[var(--ink)] text-[var(--cream)] py-4 text-[11px] tracking-luxe uppercase hover:opacity-90 transition disabled:opacity-60"
           style={{ fontFamily: "'Jost', sans-serif" }}
         >
-          {submitted ? "Thank you — we'll be in touch ♡" : "Send my free proposal request →"}
+          {status === "done"
+            ? "Thank you — we'll be in touch ♡"
+            : status === "sending"
+            ? "Sending..."
+            : status === "error"
+            ? "Something went wrong — try again"
+            : "Send my free proposal request →"}
         </button>
       </form>
     </section>
