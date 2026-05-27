@@ -272,6 +272,12 @@ function Hero() {
             Done-For-You Social Media
           </span>
         </div>
+        <p
+          className="reveal mt-3"
+          style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.72rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(30,15,10,0.45)", animationDelay: "0.08s" }}
+        >
+          Social Media Marketing Agency
+        </p>
 
         <div
           className="reveal mt-10 flex justify-center text-[var(--gold)]"
