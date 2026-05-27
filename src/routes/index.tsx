@@ -1156,13 +1156,13 @@ function Pricing() {
                     className="text-[var(--ink)] leading-tight"
                     style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.15rem", fontStyle: "italic", fontWeight: 700 }}
                   >
-                    Get a Free Proposal
+                    14-Day Free Trial
                   </p>
                   <p
                     className="text-[var(--ink)]/60 mt-0.5"
                     style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase" }}
                   >
-                    No obligations · cancel anytime
+                    Get a free proposal · no obligations
                   </p>
                 </a>
               </article>
