@@ -1053,6 +1053,7 @@ function Pricing() {
       tagline: "Everything you need to get online, get consistent, and start converting.",
       cta: "Get Started →",
       features: [
+        "1 platform fully managed for you — nothing to post, nothing to schedule",
         "Online booking system — clients can book appointments directly from your page",
         "Lead funnels & automations that turn your followers into booked appointments",
         "Comment word triggers — someone drops a keyword on your post, they're instantly sent to your landing page",
@@ -1060,7 +1061,6 @@ function Pricing() {
         "AI clone or custom brand character — content that sounds and feels like you, without you filming",
         "Custom content creation matched to your brand voice & identity",
         "Reels, carousels & static posts — 3x per week (12/mo)",
-        "1 platform fully managed for you",
       ],
     },
     {
@@ -1074,14 +1074,14 @@ function Pricing() {
       features: [
         "Everything in Growth — expanded to 5 platforms: Instagram, TikTok, Facebook, LinkedIn & Threads",
         "AI voice agent — answers calls, handles inquiries & books appointments 24/7",
-        "Full AI booking system — chat, follow-up & review collection all automated",
+        "Full AI booking system — automated chat, reminders, follow-up & review collection",
         "AI website design & build — a complete, conversion-ready site done for you",
         "Google, Facebook, Instagram & TikTok ad management — all platforms, fully managed",
         "Daily content — 5–7x per week (up to 28 posts/mo) across every platform",
         "Monthly email newsletter — written, designed & sent for you",
-        "Bi-weekly strategy calls & weekly performance reports",
-        "Quarterly brand strategy audit & content refresh",
         "Priority 48-hour content revisions",
+        "Quarterly brand strategy audit & content refresh",
+        "Bi-weekly strategy calls & weekly performance reports",
       ],
     },
     {
