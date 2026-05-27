@@ -1352,26 +1352,26 @@ function Pricing() {
       <div className="mt-20 max-w-4xl mx-auto">
         <div className="text-center mb-10">
           <p className="text-[var(--gold)] text-[11px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
-            Starter plan add-ons
+            Available on any plan
           </p>
           <h3
             className="mt-3 italic text-[var(--ink)]"
             style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.75rem, 3vw, 2.25rem)" }}
           >
-            Upgrade your package
+            Power up your plan
           </h3>
           <p className="mt-3 text-[var(--ink)]/55 italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.05rem" }}>
-            Each service below is available as an extra charge on the Starter plan.
+            Add exactly what your business needs — priced into your custom quote.
           </p>
         </div>
         <div className="grid sm:grid-cols-2 gap-4">
           {[
-            { title: "AI Voice Agent", desc: "24/7 AI handles your incoming calls, qualifies leads, books appointments — all in your brand voice." },
-            { title: "Review & Reputation Management", desc: "Monitor, respond to, and grow your online reviews across Google and beyond." },
-            { title: "Email & Text Message Marketing", desc: "Done-for-you campaigns, nurture sequences and broadcasts sent to your list." },
-            { title: "Additional Content Creation", desc: "Extra posts, videos and creative assets produced personally by me for your brand." },
-            { title: "Website Design", desc: "Custom-designed websites and landing pages built to convert — branded, fast, and done for you." },
-            { title: "Merch Design", desc: "On-brand merchandise design for your business — apparel, products and print-ready assets." },
+            { title: "AI Voice Agent", desc: "Never miss a call. Your AI answers 24/7, qualifies leads, and books appointments — in your brand voice." },
+            { title: "Review & Reputation Management", desc: "Automatically request reviews, respond to feedback, and build your 5-star presence on Google and beyond." },
+            { title: "Email & SMS Marketing", desc: "Done-for-you campaigns, broadcasts, and nurture sequences that keep your audience warm and ready to buy." },
+            { title: "Additional Content Creation", desc: "Need more posts or platforms? Extra content created and scheduled for you — same quality, more volume." },
+            { title: "Website & Landing Page Design", desc: "A conversion-ready website or landing page — designed for your brand and built to turn visitors into clients." },
+            { title: "Merch & Brand Design", desc: "On-brand merch, apparel, and print-ready assets designed to match your business identity." },
           ].map((addon) => (
             <div
               key={addon.title}
@@ -1383,7 +1383,9 @@ function Pricing() {
                 backdropFilter: "blur(8px)",
               }}
             >
-              <span style={{ color: "var(--gold)", fontSize: "0.65rem", marginTop: "4px", flexShrink: 0 }}>✦</span>
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "14px", height: "14px", color: "var(--gold)", marginTop: "4px", flexShrink: 0 }}>
+                <path d="M2.5 8.5L6 12L13.5 4.5" />
+              </svg>
               <div>
                 <p className="font-medium" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.15rem", fontStyle: "italic", color: "var(--ink)" }}>
                   {addon.title}
@@ -1396,7 +1398,7 @@ function Pricing() {
           ))}
         </div>
         <p className="text-center mt-8 text-[var(--ink)]/45 text-[11px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
-          Add-on pricing included in your custom quote
+          Add-on pricing included in your custom quote · mention it when you apply
         </p>
       </div>
     </section>
