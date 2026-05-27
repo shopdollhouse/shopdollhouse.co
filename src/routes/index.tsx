@@ -925,16 +925,15 @@ function Pricing() {
     {
       name: "Growth",
       price: "$2,500",
-      tagline: "Ready to scale? More platforms, paid ads, and deeper automation.",
+      tagline: "Your AI clone content, amplified — more platforms, paid ads behind it, and automation closing the loop.",
       cta: "Get a Free Proposal →",
       features: [
-        "Everything in Starter — expanded to 3 platforms",
-        "Facebook & Instagram ad management",
-        "Reels, carousels & static posts — 3–5x per week (up to 20/mo)",
-        "Email & text nurture sequences",
-        "Email & SMS marketing automations",
-        "Reputation & review management",
-        "Monthly strategy call",
+        "Everything in Starter — AI clone content now running on 3 platforms: Instagram, TikTok & Facebook",
+        "Paid ads put money behind your best content — Facebook & Instagram ad management included",
+        "More content, more reach — reels, carousels & static posts 3–5x per week (up to 20/mo)",
+        "Email & SMS automations that follow up with leads while you sleep",
+        "Reputation & review management — 5-star presence on autopilot",
+        "Monthly strategy call to double down on what's working",
       ],
     },
   ];
