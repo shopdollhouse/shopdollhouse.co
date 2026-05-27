@@ -835,7 +835,7 @@ function Pricing() {
     {
       name: "Starter",
       price: "$1,000",
-      tagline: "Get visible. Get consistent.",
+      tagline: "Everything you need to get online, get consistent, and start converting.",
       cta: "Get Started →",
       features: [
         "Turn traffic into leads & booked appointments",
@@ -843,38 +843,39 @@ function Pricing() {
         "AI clone or custom brand character",
         "AI content creation, posting & scheduling",
         "Short-form videos posted 3x per week",
-        "1 client account (1 platform)",
+        "Monthly email newsletter",
+        "1 platform managed for you",
       ],
     },
     {
       name: "Elite",
       price: "$5,000+",
-      tagline: "Full-service. Everything handled.",
+      tagline: "Your entire online business — run, managed, and scaled completely for you.",
       featured: true,
       topBadge: { label: "Most Popular", tone: "gold" as const },
       cta: "Apply for Elite →",
       features: [
-        "Turn traffic into leads & booked appointments",
-        "Automations that turn followers into leads & appointments",
-        "AI clone or custom brand character",
-        "AI content creation, posting & scheduling",
+        "Instagram, TikTok, Facebook, LinkedIn & Threads — all managed",
+        "Google, Facebook & Instagram ad management",
+        "AI voice agent (24/7 calls & inquiries)",
+        "Full AI booking system (chat, reviews & follow-up)",
+        "AI website design & build",
         "Short-form videos posted 3–5x per week",
-        "5 accounts — all platforms + full ad management",
+        "Reputation management + email & SMS marketing",
         "Bi-weekly strategy calls & weekly reports",
       ],
     },
     {
       name: "Growth",
       price: "$2,500",
-      tagline: "More reach. More leads. More revenue.",
+      tagline: "Ready to scale? More platforms, paid ads, and deeper automation.",
       cta: "Get a Quote →",
       features: [
-        "Turn traffic into leads & booked appointments",
-        "Automations that turn followers into leads & appointments",
-        "AI clone or custom brand character",
-        "AI content creation, posting & scheduling",
+        "Instagram, TikTok & Facebook — all managed",
+        "Facebook & Instagram ad management",
         "Short-form videos posted 3–5x per week",
-        "3 accounts — all platforms + ad management",
+        "Email & text nurture sequences",
+        "Email & SMS marketing automations",
         "Appointment booking + no-show reminders",
       ],
     },
@@ -1124,14 +1125,17 @@ function Pricing() {
       <div className="mt-20 max-w-4xl mx-auto">
         <div className="text-center mb-10">
           <p className="text-[var(--gold)] text-[11px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
-            Customize your plan
+            Starter plan add-ons
           </p>
           <h3
             className="mt-3 italic text-[var(--ink)]"
             style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.75rem, 3vw, 2.25rem)" }}
           >
-            Available Add-ons
+            Upgrade your package
           </h3>
+          <p className="mt-3 text-[var(--ink)]/55 italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.05rem" }}>
+            Each service below is available as an extra charge on the Starter plan.
+          </p>
         </div>
         <div className="grid sm:grid-cols-2 gap-4">
           {[
@@ -1165,7 +1169,7 @@ function Pricing() {
           ))}
         </div>
         <p className="text-center mt-8 text-[var(--ink)]/45 text-[11px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
-          Ask about add-on pricing when you get your quote
+          Add-on pricing included in your custom quote
         </p>
       </div>
     </section>
@@ -1179,7 +1183,7 @@ function FAQ() {
     ["What is the AI clone or brand character?", "We create either an AI version of you (your face, your voice, your energy — generating content without you filming) or a custom brand mascot/character designed specifically for your business. Both are used to post consistently and promote your brand on autopilot."],
     ["What's included in the $500 setup fee?", "A complete system buildout — landing pages, calendar integration, automated follow-up sequences, CRM setup, and everything configured and ready before your first month begins. This is a one-time fee."],
     ["How does the system turn traffic into leads and booked appointments?", "We build automated funnels that capture visitors, follow up instantly via SMS and email, and book them directly into your calendar — without you lifting a finger. Most leads are contacted within minutes of opting in."],
-    ["What platforms do you manage?", "Instagram, TikTok, Facebook, and Google. Email and SMS marketing are included on Growth and Elite plans. We post where your audience is."],
+    ["What platforms do you manage?", "It depends on your plan. Starter covers 1 platform of your choice. Growth covers Instagram, TikTok & Facebook. Elite covers Instagram, TikTok, Facebook, LinkedIn & Threads — fully managed across all five. We post where your audience is."],
     ["Is there a minimum commitment?", "Yes — all retainers have a 3-month minimum. This gives us enough time to build momentum, train the AI to your brand voice, and start seeing real results. After 3 months it's month-to-month."],
     ["Do I have to approve content before it goes live?", "Yes. Every post goes into your content calendar for approval before it's scheduled. We keep it simple so it takes minutes, not hours."],
     ["What kinds of businesses do you work with?", "Local service businesses, boutique brands, coaches, creatives, and anyone who wants to show up online consistently without doing it themselves."],
