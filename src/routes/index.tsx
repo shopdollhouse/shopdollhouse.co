@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import bgImage from "@/assets/password-bg.jpg";
 import roseAccent from "@/assets/rose-accent.png";
 import archMark from "@/assets/arch-mark.svg";
+import mandyPhoto from "@/assets/mandy-photo.jpg";
 
 export const Route = createFileRoute("/")({ component: Index });
 
@@ -1222,6 +1223,123 @@ function Pricing() {
 }
 
 /* ─── FAQ ─────────────────────────────────────────────── */
+/* ─── About ────────────────────────────────────────────── */
+function About() {
+  return (
+    <section className="py-24 md:py-32 px-6 bg-[var(--cream)]">
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-14">
+          <Eyebrow>The Person Behind the Brand</Eyebrow>
+          <h2
+            className="mt-4 italic text-[var(--ink)]"
+            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.2rem, 4vw, 3rem)", lineHeight: 1.1 }}
+          >
+            Hi, I'm Mandy
+          </h2>
+          <Divider />
+        </div>
+
+        <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+          {/* Photo */}
+          <div className="shrink-0">
+            <div
+              className="w-52 h-52 md:w-64 md:h-64 rounded-full overflow-hidden mx-auto"
+              style={{
+                border: "2px solid color-mix(in oklab, var(--gold) 40%, transparent)",
+                boxShadow: "0 20px 50px -15px rgba(160,110,95,0.35)",
+              }}
+            >
+              <img
+                src={mandyPhoto}
+                alt="Mandy Fortune — founder of The Dollhouse Brand Studio"
+                className="w-full h-full object-cover"
+                style={{ objectPosition: "60% 20%" }}
+              />
+            </div>
+          </div>
+
+          {/* Copy */}
+          <div className="flex-1 text-center md:text-left">
+            <p
+              className="text-[var(--ink)]/75 leading-relaxed"
+              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem" }}
+            >
+              I'm a brand strategist and content designer from the Greater Toronto Area — with 10+ years in graphic and product design, building brands for companies, creators, and entrepreneurs. My work has been recognized by <strong>BuzzFeed</strong> and <strong>HuffPost</strong>.
+            </p>
+            <p
+              className="mt-4 text-[var(--ink)]/75 leading-relaxed"
+              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem" }}
+            >
+              I built The Dollhouse because I kept seeing the same problem — talented business owners with incredible products, invisible online. Not because they weren't good enough, but because they were too busy running their business to show up consistently.
+            </p>
+            <p
+              className="mt-4 text-[var(--ink)]/75 leading-relaxed"
+              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem" }}
+            >
+              So I built a system that does it for them. AI-powered, done-for-you, and built to convert.
+            </p>
+
+            {/* Divider */}
+            <div className="mt-7 flex items-center gap-3 justify-center md:justify-start">
+              <span className="h-px w-10 bg-[var(--gold)] opacity-40" />
+              <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>♥</span>
+              <span className="h-px w-10 bg-[var(--gold)] opacity-40" />
+            </div>
+
+            {/* As seen in */}
+            <div className="mt-5 flex flex-wrap items-center gap-4 justify-center md:justify-start">
+              <span
+                className="text-[var(--ink)]/40 text-[9px] tracking-[0.2em] uppercase"
+                style={{ fontFamily: "'Jost', sans-serif" }}
+              >
+                As seen in
+              </span>
+              <a
+                href="https://www.buzzfeed.com/sarahrohoman/black-owned-stores-etsy-canada"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-70 transition-opacity"
+                style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", fontStyle: "italic", color: "var(--gold)", borderBottom: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)", paddingBottom: "1px" }}
+              >
+                BuzzFeed
+              </a>
+              <a
+                href="https://www.huffpost.com/entry/get-out-and-vote-merch-election-2020_l_5f344d83c5b6960c066fef03"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold hover:opacity-70 transition-opacity"
+                style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.85rem", color: "var(--ink)", borderBottom: "1px solid color-mix(in oklab, var(--ink) 25%, transparent)", paddingBottom: "1px" }}
+              >
+                HuffPost
+              </a>
+            </div>
+
+            {/* Stats */}
+            <div className="mt-7 flex gap-10 justify-center md:justify-start">
+              {[["10+ Years", "Brand & Design"], ["500+", "Brands Helped"]].map(([value, label]) => (
+                <div key={value}>
+                  <p
+                    className="italic text-[var(--rose)]"
+                    style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.6rem", lineHeight: 1 }}
+                  >
+                    {value}
+                  </p>
+                  <p
+                    className="mt-1 text-[var(--ink)]/45 text-[9px] tracking-[0.2em] uppercase"
+                    style={{ fontFamily: "'Jost', sans-serif" }}
+                  >
+                    {label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ─── Comparison Table ─────────────────────────────────── */
 function ComparisonTable() {
   const rows = [
@@ -1598,6 +1716,7 @@ function Index() {
       <Hero />
       <TrustBar />
       <Services />
+      <About />
       <Pricing />
       <ComparisonTable />
       <FAQ />
