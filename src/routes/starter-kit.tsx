@@ -148,6 +148,7 @@ const PIECES = [
   {
     num: "01",
     price: "$97",
+    originalPrice: "$145",
     name: "The Dollhouse Brand Kit Blueprint",
     tagline: "Interactive web app — build your brand from scratch",
     detail: "No guesswork. No blank pages. Every brand decision walked through step by step — your colors, fonts, logo direction, voice, and visual identity all locked in.",
@@ -155,6 +156,7 @@ const PIECES = [
   {
     num: "02",
     price: "$47",
+    originalPrice: "$261",
     name: "Brand Workbook",
     tagline: "Every foundational business decision, made",
     detail: "An interactive web app that walks you through positioning, audience, offers, and brand voice. + BONUS included to help you hit the ground running.",
@@ -162,6 +164,7 @@ const PIECES = [
   {
     num: "03",
     price: "$17",
+    originalPrice: null,
     name: "AI Prompt Kit",
     tagline: "50+ prompts across 8 rooms — ready to use",
     detail: "Copy, content, strategy — all pre-built. Captions, hooks, emails, ad copy and more. Customize and use instantly. No staring at a blank screen.",
@@ -196,7 +199,10 @@ function WhatsInside() {
               <p className="mt-4 leading-relaxed" style={{ fontFamily: FONT_BODY, fontSize: "0.95rem", color: "rgba(250,243,234,0.7)" }}>{PIECES[0].detail}</p>
             </div>
             <div className="flex flex-col items-center md:items-end gap-4 shrink-0">
-              <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3rem, 5vw, 4rem)", lineHeight: 1 }}>{PIECES[0].price}</span>
+              <div className="flex items-baseline gap-3">
+                <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3rem, 5vw, 4rem)", lineHeight: 1 }}>{PIECES[0].price}</span>
+                <span className="line-through" style={{ fontFamily: FONT_BODY, fontSize: "1.1rem", color: "rgba(250,243,234,0.3)" }}>{PIECES[0].originalPrice}</span>
+              </div>
               <a href="mailto:hello@shopdollhouse.co?subject=Brand%20Kit%20Blueprint" className="w-full md:w-auto rounded-2xl px-8 py-4 text-center transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ backgroundColor: "var(--gold)", boxShadow: "0 12px 28px -10px rgba(160,110,60,0.5)" }}>
                 <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", fontStyle: "italic", fontWeight: 700, color: "var(--ink)" }}>Get the Blueprint →</p>
               </a>
@@ -211,7 +217,12 @@ function WhatsInside() {
             <article key={p.name} className="rounded-[28px] p-10 flex flex-col" style={{ background: "linear-gradient(180deg, #fbf3ee 0%, #f6e8e1 100%)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)", boxShadow: "0 30px 60px -30px rgba(160,110,95,0.35), inset 0 1px 0 rgba(255,255,255,0.6)" }}>
               <div className="flex items-center justify-between">
                 <span className="text-[var(--gold)] italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "2.5rem", lineHeight: 1 }}>{p.num}</span>
-                <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.6rem", lineHeight: 1 }}>{p.price}</span>
+                <div className="flex items-baseline gap-2">
+                  <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.6rem", lineHeight: 1 }}>{p.price}</span>
+                  {p.originalPrice && (
+                    <span className="line-through" style={{ fontFamily: FONT_BODY, fontSize: "0.9rem", color: "rgba(30,15,10,0.3)" }}>{p.originalPrice}</span>
+                  )}
+                </div>
               </div>
               <h3 className="mt-5 text-[var(--ink)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.6rem", lineHeight: 1.2 }}>{p.name}</h3>
               <p className="mt-1 italic text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem" }}>{p.tagline}</p>
