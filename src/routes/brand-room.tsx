@@ -97,7 +97,7 @@ function Hero() {
         </div>
 
         <div className="reveal mt-8 flex justify-center text-[var(--gold)]" style={{ animationDelay: "0.15s" }}>
-          <img src={archMark} alt="" className="w-7 h-10 opacity-60" style={{ filter: "sepia(0.4) saturate(1.5)" }} />
+          <img src={archMark} alt="" className="w-16 h-24 opacity-60" style={{ filter: "sepia(0.4) saturate(1.5)" }} />
         </div>
 
         <p className="reveal text-[var(--gold)] italic mt-2 leading-none" style={{ fontFamily: FONT_SCRIPT, fontSize: "clamp(2.5rem, 5vw, 3.5rem)", textTransform: "lowercase", animationDelay: "0.2s" }}>
