@@ -1770,7 +1770,7 @@ function Contact() {
         {hasWebsite === "Yes" && (
           <div>
             <label className={labelClass} style={labelStyle}>Website URL</label>
-            <input type="url" name="website" placeholder="https://yourbrand.com" className={inputClass} style={inputStyle} />
+            <input type="text" name="website" placeholder="yourbrand.com" className={inputClass} style={inputStyle} />
           </div>
         )}
 
