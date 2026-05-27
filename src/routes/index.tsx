@@ -840,7 +840,7 @@ function Pricing() {
       features: [
         "AI content creation, posting & scheduling",
         "Short-form videos posted 3x per week",
-        "System to turn traffic into leads & booked appointments",
+        "Turn traffic into leads & booked appointments",
         "Automation maintenance",
         "AI clone or custom brand character",
         "1 client account (1 platform)",
@@ -856,7 +856,7 @@ function Pricing() {
       features: [
         "AI content creation, posting & scheduling",
         "Short-form videos posted 3–5x per week",
-        "System to turn traffic into leads & booked appointments",
+        "Turn traffic into leads & booked appointments",
         "Automation maintenance",
         "AI clone or custom brand character",
         "5 accounts — all platforms + full ad management",
@@ -871,7 +871,7 @@ function Pricing() {
       features: [
         "AI content creation, posting & scheduling",
         "Short-form videos posted 3–5x per week",
-        "System to turn traffic into leads & booked appointments",
+        "Turn traffic into leads & booked appointments",
         "Automation maintenance",
         "AI clone or custom brand character",
         "3 accounts — all platforms + ad management",
