@@ -1066,7 +1066,7 @@ function Pricing() {
                 </div>
 
                 {/* Features */}
-                <ul className="mt-7 space-y-3.5 flex-1">
+                <ul className="mt-7 space-y-3.5 flex-1 w-full text-left">
                   {t.features.map((f) => (
                     <li
                       key={f}
@@ -1119,6 +1119,9 @@ function Pricing() {
       {/* Setup fee note */}
       <p className="text-center mt-10 text-[var(--ink)]/45 italic text-sm" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
         $500 one-time setup includes: complete system buildout, landing pages, calendar integration, automation sequences & CRM setup
+      </p>
+      <p className="text-center mt-3 text-[var(--ink)]/40 italic text-sm" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+        * Meta ad spend is separate & paid directly to Meta — minimum $500/mo recommended
       </p>
 
       {/* Add-on Services */}
