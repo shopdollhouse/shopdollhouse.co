@@ -1219,14 +1219,6 @@ function Pricing() {
                   </span>
                 </div>
 
-                {/* Software included */}
-                <div className="mt-3 flex items-center justify-center gap-1.5">
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "11px", height: "11px", color: "var(--gold)", flexShrink: 0 }}><path d="M2.5 8.5L6 12L13.5 4.5" /></svg>
-                  <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.68rem", letterSpacing: "0.12em", textTransform: "uppercase", color: isFilled ? "rgba(255,255,255,0.55)" : "rgba(30,15,10,0.5)" }}>
-                    Includes platform access — <span style={{ color: "var(--gold)" }}>{t.software} value</span>
-                  </span>
-                </div>
-
                 {/* One-time setup fee */}
                 <div
                   className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg"
@@ -1262,10 +1254,8 @@ function Pricing() {
                   }}
                 >
                   <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>✦</span>
-                  <span
-                    style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.72rem", color: "var(--gold)", letterSpacing: "0.16em", textTransform: "uppercase" }}
-                  >
-                    Includes platform access
+                  <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.72rem", color: "var(--gold)", letterSpacing: "0.16em", textTransform: "uppercase" }}>
+                    Includes platform access — {t.software} value
                   </span>
                   <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>✦</span>
                 </div>
