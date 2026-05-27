@@ -1401,6 +1401,7 @@ function StarterKitCTA() {
 /* ─── Contact ─────────────────────────────────────────── */
 function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
+  const [hasWebsite, setHasWebsite] = useState("Yes");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -1424,6 +1425,11 @@ function Contact() {
     }
   }
 
+  const inputClass = "w-full rounded-xl bg-white/60 border border-[var(--gold)]/30 px-5 py-3.5 text-[var(--ink)] placeholder:text-[var(--ink)]/35 focus:outline-none focus:border-[var(--rose)] transition";
+  const inputStyle = { fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem" };
+  const labelClass = "block text-[10px] tracking-luxe uppercase text-[var(--gold)] mb-2";
+  const labelStyle = { fontFamily: "'Jost', sans-serif" };
+
   return (
     <section id="contact" className="py-24 md:py-32 px-6">
       <SectionTitle
@@ -1436,46 +1442,74 @@ function Contact() {
         onSubmit={handleSubmit}
         className="mt-12 max-w-xl mx-auto rounded-2xl bg-white/70 backdrop-blur-md border border-white/80 shadow-[0_25px_50px_-25px_rgba(180,120,120,0.3)] p-8 md:p-10 space-y-5"
       >
-        {([
-          ["Your Name", "name", "text", "Jane Doe"],
-          ["Business Name", "business", "text", "Your Brand"],
-          ["Email Address", "email", "email", "you@brand.co"],
-        ] as const).map(([label, name, type, ph]) => (
-          <div key={name}>
-            <label
-              className="block text-[10px] tracking-luxe uppercase text-[var(--gold)] mb-2"
-              style={{ fontFamily: "'Jost', sans-serif" }}
-            >
-              {label}
-            </label>
-            <input
-              type={type}
-              name={name}
-              placeholder={ph}
-              required
-              className="w-full rounded-xl bg-white/60 border border-[var(--gold)]/30 px-5 py-3.5 text-[var(--ink)] placeholder:text-[var(--ink)]/35 focus:outline-none focus:border-[var(--rose)] transition"
-              style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem" }}
-            />
+        {/* First / Last */}
+        <div className="grid grid-cols-2 gap-4">
+          {([["First Name", "first_name", "Jane"], ["Last Name", "last_name", "Doe"]] as const).map(([label, name, ph]) => (
+            <div key={name}>
+              <label className={labelClass} style={labelStyle}>{label} *</label>
+              <input type="text" name={name} placeholder={ph} required className={inputClass} style={inputStyle} />
+            </div>
+          ))}
+        </div>
+
+        {/* Phone / Email */}
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label className={labelClass} style={labelStyle}>Phone *</label>
+            <input type="tel" name="phone" placeholder="(555) 000-0000" required className={inputClass} style={inputStyle} />
           </div>
-        ))}
+          <div>
+            <label className={labelClass} style={labelStyle}>Email *</label>
+            <input type="email" name="email" placeholder="you@brand.co" required className={inputClass} style={inputStyle} />
+          </div>
+        </div>
+
+        {/* Plan */}
         <div>
-          <label
-            className="block text-[10px] tracking-luxe uppercase text-[var(--gold)] mb-2"
-            style={{ fontFamily: "'Jost', sans-serif" }}
-          >
-            Which plan interests you?
-          </label>
-          <select
-            name="plan"
-            className="w-full rounded-xl bg-white/60 border border-[var(--gold)]/30 px-5 py-3.5 text-[var(--ink)] focus:outline-none focus:border-[var(--rose)] transition"
-            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem" }}
-          >
+          <label className={labelClass} style={labelStyle}>Which plan interests you?</label>
+          <select name="plan" className={inputClass} style={inputStyle}>
             <option>Starter — $1,000/mo</option>
             <option>Growth — $2,500/mo</option>
             <option>Elite — $5,000+/mo</option>
             <option>Not sure yet</option>
           </select>
         </div>
+
+        {/* Website? */}
+        <div>
+          <label className={labelClass} style={labelStyle}>Do you have a website?</label>
+          <select
+            name="has_website"
+            value={hasWebsite}
+            onChange={(e) => setHasWebsite(e.target.value)}
+            className={inputClass}
+            style={inputStyle}
+          >
+            <option>Yes</option>
+            <option>No</option>
+          </select>
+        </div>
+
+        {/* Website URL — shown only if Yes */}
+        {hasWebsite === "Yes" && (
+          <div>
+            <label className={labelClass} style={labelStyle}>Website URL</label>
+            <input type="url" name="website" placeholder="https://yourbrand.com" className={inputClass} style={inputStyle} />
+          </div>
+        )}
+
+        {/* Message */}
+        <div>
+          <label className={labelClass} style={labelStyle}>Your Message</label>
+          <textarea
+            name="message"
+            rows={4}
+            placeholder="Tell us about your business and what you're looking to achieve..."
+            className={`${inputClass} resize-none`}
+            style={inputStyle}
+          />
+        </div>
+
         <button
           type="submit"
           disabled={status === "sending" || status === "done"}
