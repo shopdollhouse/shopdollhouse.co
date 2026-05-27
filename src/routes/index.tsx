@@ -1818,7 +1818,7 @@ function Contact() {
   );
 }
 
-/* ─── Starter Kit Banner ───────────────────────────────── */
+/* ─── Brand Room Banner ────────────────────────────────── */
 function StarterKitBanner() {
   return (
     <section className="py-20 px-6 text-center" style={{ background: "linear-gradient(135deg, #f4dcdc 0%, #f7e6dc 45%, #f1d3cf 100%)" }}>
@@ -1832,7 +1832,7 @@ function StarterKitBanner() {
         className="mt-4 italic text-[var(--ink)]"
         style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 1.1 }}
       >
-        Start with the Starter Kit
+        Step into The Brand Room
       </h2>
       <p
         className="mt-4 text-[var(--ink)]/65 max-w-md mx-auto"
@@ -1841,11 +1841,11 @@ function StarterKitBanner() {
         The Blueprint, Brand Workbook & AI Prompt Kit — build your brand foundation. Start from $17, or get all three for $127.
       </p>
       <Link
-        to="/starter-kit"
+        to="/brand-room"
         className="mt-8 inline-flex items-center gap-2 rounded-2xl px-8 py-4 hover:-translate-y-0.5 transition-all"
         style={{ backgroundColor: "var(--ink)", color: "var(--cream)", fontFamily: "'Cormorant Garamond', serif", fontSize: "1.15rem", fontStyle: "italic", fontWeight: 700 }}
       >
-        Explore the Starter Kit →
+        Explore The Brand Room →
       </Link>
     </section>
   );
@@ -1866,11 +1866,11 @@ function Footer() {
         <span className="h-px w-8 bg-[var(--gold)]/30" />
       </div>
       <Link
-        to="/starter-kit"
+        to="/brand-room"
         className="mt-5 inline-block text-[var(--gold)] text-[15px] tracking-[0.2em] uppercase hover:opacity-70 transition-opacity"
         style={{ fontFamily: "'Jost', sans-serif" }}
       >
-        Start with the Starter Kit →
+        Enter The Brand Room →
       </Link>
       <p
         className="text-xs text-[var(--ink)]/35 mt-8"

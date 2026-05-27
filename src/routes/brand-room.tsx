@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import bgImage from "@/assets/password-bg.jpg";
 import archMark from "@/assets/arch-mark.svg";
 
-export const Route = createFileRoute("/starter-kit")({ component: StarterKitPage });
+export const Route = createFileRoute("/brand-room")({ component: BrandRoomPage });
 
 const FONT_DISPLAY = "'Cormorant Garamond', serif";
 const FONT_SCRIPT = "'Allura', cursive";
@@ -57,7 +57,7 @@ function Nav() {
         <div className="hidden md:flex items-center gap-9 text-[10px] tracking-[0.18em] uppercase text-[var(--ink)]/70" style={{ fontFamily: FONT_LUXE }}>
           <a href="/#services" className="hover:text-[var(--rose)] transition-colors">Services</a>
           <a href="/#pricing" className="hover:text-[var(--rose)] transition-colors">Pricing</a>
-          <Link to="/starter-kit" className="text-[var(--rose)]">Starter Kit</Link>
+          <Link to="/brand-room" className="text-[var(--rose)]">The Brand Room</Link>
           <a href="/#faq" className="hover:text-[var(--rose)] transition-colors">FAQ</a>
         </div>
 
@@ -94,7 +94,7 @@ function Hero() {
         />
 
         <div className="reveal inline-flex items-center gap-2 rounded-full border border-[var(--gold)]/55 bg-white/40 backdrop-blur-md px-5 py-2 text-[var(--gold)]" style={{ animationDelay: "0.05s" }}>
-          <span className="text-[10px] tracking-luxe uppercase font-medium" style={{ fontFamily: FONT_LUXE }}>One-Time · Done-With-You</span>
+          <span className="text-[10px] tracking-luxe uppercase font-medium" style={{ fontFamily: FONT_LUXE }}>One-Time · Build Your Brand</span>
         </div>
 
         <div className="reveal mt-8 flex justify-center text-[var(--gold)]" style={{ animationDelay: "0.15s" }}>
@@ -108,7 +108,7 @@ function Hero() {
           className="reveal text-[var(--rose)] font-normal leading-[0.95] mt-1"
           style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3.5rem, 9vw, 6rem)", letterSpacing: "0.04em", animationDelay: "0.3s" }}
         >
-          STARTER KIT
+          THE BRAND ROOM
         </h1>
         <p className="reveal mt-4 text-[var(--gold)] text-[11px] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, animationDelay: "0.4s" }}>
           brand studio
@@ -385,11 +385,11 @@ function Bundle() {
 
 /* ─── FAQ ─────────────────────────────────────────────── */
 const FAQS: [string, string][] = [
-  ["Who is the Starter Kit for?", "Founders, creators, and small business owners who want a polished brand and a content engine without hiring an agency."],
+  ["Who is The Brand Room for?", "Founders, creators, and small business owners who want a polished brand and a content engine without hiring an agency."],
   ["Can I buy just one product?", "Yes — each piece is available individually. Start with the $97 Blueprint, grab the $47 Brand Workbook, or pick up the $17 AI Prompt Kit on its own. Or save $34 and grab all three for $127."],
   ["How is this delivered?", "Instantly. After checkout you'll receive an email with access to your Brand Kit Blueprint, Brand Workbook, and AI Prompt Kit."],
   ["Do I need design experience?", "Nope. Everything is templated and editable in Canva. The workbook walks you through every decision step by step."],
-  ["Can I upgrade to a done-for-you retainer later?", "Yes — your Starter Kit investment is credited toward your first month on any monthly plan."],
+  ["Can I upgrade to a done-for-you retainer later?", "Yes — your Brand Room investment is credited toward your first month on any monthly plan."],
 ];
 
 function FAQ() {
@@ -477,7 +477,7 @@ function BackToTop() {
 }
 
 /* ─── Page ─────────────────────────────────────────────── */
-function StarterKitPage() {
+function BrandRoomPage() {
   return (
     <main className="bg-[var(--blush)] text-[var(--ink)]">
       <Nav />
