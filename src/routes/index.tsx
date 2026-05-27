@@ -1049,6 +1049,7 @@ function Pricing() {
     {
       name: "Starter",
       price: "$1,000",
+      software: "$97/mo",
       tagline: "Everything you need to get online, get consistent, and start converting.",
       cta: "Get Started →",
       features: [
@@ -1064,6 +1065,7 @@ function Pricing() {
     {
       name: "Elite",
       price: "$5,000+",
+      software: "$497/mo",
       tagline: "Your entire online business — run, managed, and scaled completely for you.",
       featured: true,
       topBadge: { label: "Featured", tone: "gold" as const },
@@ -1084,6 +1086,7 @@ function Pricing() {
     {
       name: "Growth",
       price: "$2,500",
+      software: "$297/mo",
       tagline: "Your AI clone content, amplified — more platforms, paid ads behind it, and automation closing the loop.",
       cta: "Get a Free Proposal →",
       features: [
@@ -1211,6 +1214,14 @@ function Pricing() {
                     }}
                   >
                     USD/MO
+                  </span>
+                </div>
+
+                {/* Software included */}
+                <div className="mt-3 flex items-center justify-center gap-1.5">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "11px", height: "11px", color: "var(--gold)", flexShrink: 0 }}><path d="M2.5 8.5L6 12L13.5 4.5" /></svg>
+                  <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.68rem", letterSpacing: "0.12em", textTransform: "uppercase", color: isFilled ? "rgba(255,255,255,0.55)" : "rgba(30,15,10,0.5)" }}>
+                    Includes platform access — <span style={{ color: "var(--gold)" }}>{t.software} value</span>
                   </span>
                 </div>
 
