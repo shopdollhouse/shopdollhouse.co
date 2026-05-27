@@ -1132,10 +1132,12 @@ function Pricing() {
                       }}
                     >
                       <span
-                        className="mt-1 shrink-0"
-                        style={{ color: isFilled ? "#c97a7a" : "var(--gold)", fontSize: "0.7rem" }}
+                        className="mt-0.5 shrink-0"
+                        style={{ color: isFilled ? "#c97a7a" : "var(--gold)" }}
                       >
-                        ✦
+                        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "13px", height: "13px" }}>
+                          <path d="M2.5 8.5L6 12L13.5 4.5" />
+                        </svg>
                       </span>
                       <span>{f}</span>
                     </li>
