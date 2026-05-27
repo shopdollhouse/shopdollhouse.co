@@ -434,15 +434,17 @@ function FAQ() {
 function Footer() {
   return (
     <footer className="border-t border-[var(--gold)]/15 py-12 px-6 text-center bg-[var(--blush)]">
-      <span className="text-[var(--ink)]/50 font-normal block" style={{ fontFamily: FONT_SCRIPT, fontSize: "18px", letterSpacing: "1px", textTransform: "lowercase", lineHeight: 1 }}>the</span>
-      <span className="text-[var(--ink)] italic inline-block" style={{ fontFamily: FONT_DISPLAY, fontSize: "15px", letterSpacing: "4px", textTransform: "uppercase", marginTop: "-4px" }}>Dollhouse</span>
-      <p className="text-[var(--gold)] font-semibold mt-1" style={{ fontFamily: FONT_LUXE, fontSize: "6.5px", letterSpacing: "3px", textTransform: "uppercase" }}>Brand Studio</p>
+      <div className="inline-flex flex-col items-center" style={{ gap: "1px" }}>
+        <span className="text-[var(--ink)]/50 font-normal" style={{ fontFamily: FONT_SCRIPT, fontSize: "18px", letterSpacing: "1px", textTransform: "lowercase", lineHeight: 1 }}>the</span>
+        <span className="text-[var(--ink)] italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "15px", letterSpacing: "4px", textTransform: "uppercase", lineHeight: 1 }}>Dollhouse</span>
+        <p className="text-[var(--gold)] font-semibold" style={{ fontFamily: FONT_LUXE, fontSize: "6.5px", letterSpacing: "3px", textTransform: "uppercase", marginTop: "2px" }}>Brand Studio</p>
+      </div>
       <div className="mt-6 flex items-center justify-center gap-2 text-[var(--ink)]/35">
         <span className="h-px w-8 bg-[var(--gold)]/30" />
         <svg viewBox="0 0 24 22" fill="currentColor" style={{ width: "10px", height: "10px", color: "var(--gold)", opacity: 0.5 }}><path d="M12 21.6C6.3 16.1 1 11.3 1 7.2 1 3.4 4.1 2 6.3 2c1.3 0 4.2.5 5.7 4.5C13.6 2.5 16.5 2 17.7 2 20.3 2 23 3.6 23 7.2c0 4.1-5.1 8.9-11 14.4z"/></svg>
         <span className="h-px w-8 bg-[var(--gold)]/30" />
       </div>
-      <Link to="/" className="mt-4 inline-block text-[var(--gold)] text-[13px] tracking-[0.2em] uppercase hover:opacity-70 transition-opacity" style={{ fontFamily: FONT_LUXE }}>
+      <Link to="/" className="mt-5 inline-block text-[var(--gold)] text-[15px] tracking-[0.2em] uppercase hover:opacity-70 transition-opacity" style={{ fontFamily: FONT_LUXE }}>
         ← Back to main site
       </Link>
       <p className="text-xs text-[var(--ink)]/35 mt-6" style={{ fontFamily: "'DM Sans', sans-serif" }}>
