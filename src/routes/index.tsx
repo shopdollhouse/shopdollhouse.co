@@ -1679,8 +1679,16 @@ function Contact() {
     const form = e.currentTarget;
     const data = new FormData(form);
     // Convert FormData to JSON for more reliable delivery
-    const payload: Record<string, string> = {};
-    data.forEach((value, key) => { payload[key] = value as string; });
+    const payload: Record<string, string | string[]> = {};
+    const addons: string[] = [];
+    data.forEach((value, key) => {
+      if (key === "addons") {
+        addons.push(value as string);
+      } else {
+        payload[key] = value as string;
+      }
+    });
+    if (addons.length > 0) payload["addons"] = addons.join(", ");
     try {
       const res = await fetch("https://formspree.io/f/mwvrvrzj", {
         method: "POST",
@@ -1773,6 +1781,35 @@ function Contact() {
             <input type="text" name="website" placeholder="yourbrand.com" className={inputClass} style={inputStyle} />
           </div>
         )}
+
+        {/* Add-ons */}
+        <div>
+          <label className={labelClass} style={labelStyle}>Interested in any add-ons? <span className="normal-case opacity-60">(optional)</span></label>
+          <div className="grid grid-cols-1 gap-2">
+            {[
+              "AI Voice Agent",
+              "Review & Reputation Management",
+              "Email & SMS Marketing",
+              "Additional Content Creation",
+              "Website & Landing Page Design",
+              "Merch & Brand Design",
+            ].map((addon) => (
+              <label
+                key={addon}
+                className="flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer transition-all hover:border-[var(--gold)]/50"
+                style={{ background: "rgba(255,255,255,0.5)", border: "1px solid color-mix(in oklab, var(--gold) 25%, transparent)" }}
+              >
+                <input
+                  type="checkbox"
+                  name="addons"
+                  value={addon}
+                  className="accent-[var(--gold)] w-4 h-4 shrink-0"
+                />
+                <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "var(--ink)" }}>{addon}</span>
+              </label>
+            ))}
+          </div>
+        </div>
 
         {/* Message */}
         <div>
