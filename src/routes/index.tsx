@@ -1175,14 +1175,16 @@ function Pricing() {
 /* ─── FAQ ─────────────────────────────────────────────── */
 function FAQ() {
   const faqs: [string, string][] = [
-    ["What does 'done-for-you' actually mean?", "We handle everything — strategy, writing, design, scheduling, ad management, and reporting. You approve, we execute. No tools to learn, no calendars to manage."],
-    ["What platforms do you manage?", "Instagram, TikTok, Facebook, and Google. Email and SMS marketing are included on Growth and Elite plans."],
-    ["How do you learn my brand voice?", "We start with a kickoff questionnaire and onboarding session, then refine your voice with every approved post. Within 30 days it sounds like you wrote it yourself."],
-    ["Do I have to approve content before it goes live?", "Yes. Every post is queued in your private content calendar for approval before scheduling — but we keep it lightweight so it never becomes a bottleneck."],
-    ["Is there a minimum commitment?", "All retainers have a 3-month minimum. After that, month-to-month."],
-    ["Is pricing in USD?", "Yes, all pricing is listed in USD."],
-    ["What kinds of businesses do you work with?", "Local service businesses, boutique brands, and creator-led companies that want to show up online without doing it themselves."],
-    ["What's included in the Elite funnel or website build?", "A custom landing page or single-page funnel designed to convert your ad traffic — copy, design, and tracking included."],
+    ["What does 'done-for-you' actually mean?", "Everything — content creation, posting, scheduling, automation setup, ad management, and reporting. You get a full system running in the background while you focus on your business. No tools to learn, no content to make, nothing to manage."],
+    ["What is the AI clone or brand character?", "We create either an AI version of you (your face, your voice, your energy — generating content without you filming) or a custom brand mascot/character designed specifically for your business. Both are used to post consistently and promote your brand on autopilot."],
+    ["What's included in the $500 setup fee?", "A complete system buildout — landing pages, calendar integration, automated follow-up sequences, CRM setup, and everything configured and ready before your first month begins. This is a one-time fee."],
+    ["How does the system turn traffic into leads and booked appointments?", "We build automated funnels that capture visitors, follow up instantly via SMS and email, and book them directly into your calendar — without you lifting a finger. Most leads are contacted within minutes of opting in."],
+    ["What platforms do you manage?", "Instagram, TikTok, Facebook, and Google. Email and SMS marketing are included on Growth and Elite plans. We post where your audience is."],
+    ["Is there a minimum commitment?", "Yes — all retainers have a 3-month minimum. This gives us enough time to build momentum, train the AI to your brand voice, and start seeing real results. After 3 months it's month-to-month."],
+    ["Do I have to approve content before it goes live?", "Yes. Every post goes into your content calendar for approval before it's scheduled. We keep it simple so it takes minutes, not hours."],
+    ["What kinds of businesses do you work with?", "Local service businesses, boutique brands, coaches, creatives, and anyone who wants to show up online consistently without doing it themselves."],
+    ["What are the add-on services?", "AI voice agents (handles your calls 24/7), review and reputation management, email and SMS marketing, additional content, website design, and merch design. Ask about pricing when you get your quote."],
+    ["Is pricing in USD?", "Yes, all pricing is in USD. Plans start at $1,000/mo with a $500 one-time setup fee."],
   ];
   return (
     <section id="faq" className="py-24 md:py-32 px-6">
