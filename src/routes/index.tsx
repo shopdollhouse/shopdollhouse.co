@@ -213,13 +213,19 @@ function Hero() {
         backgroundPosition: "center",
       }}
     >
-      {/* Soft vignette to lift text contrast */}
+      {/* Base wash — tones down the photo */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: "rgba(247,228,223,0.55)" }}
+      />
+      {/* Vignette — darkens edges, lifts center contrast */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at center, transparent 0%, rgba(247,228,223,0.35) 75%, rgba(247,228,223,0.6) 100%)",
+            "radial-gradient(ellipse at center, transparent 0%, rgba(230,200,195,0.45) 70%, rgba(210,175,168,0.7) 100%)",
         }}
       />
       {/* Decorative arches */}
@@ -235,8 +241,8 @@ function Hero() {
             width: "min(120%, 780px)",
             height: "110%",
             background:
-              "radial-gradient(ellipse at center, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.6) 35%, rgba(255,255,255,0.25) 60%, rgba(255,255,255,0) 80%)",
-            filter: "blur(28px)",
+              "radial-gradient(ellipse at center, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.78) 40%, rgba(255,255,255,0.35) 65%, rgba(255,255,255,0) 85%)",
+            filter: "blur(32px)",
           }}
         />
         <div
