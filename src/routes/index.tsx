@@ -312,12 +312,12 @@ function Hero() {
         </div>
 
         <h2
-          className="reveal mt-2 text-[var(--ink)] leading-tight max-w-xl mx-auto"
+          className="reveal mt-2 text-[var(--ink)] leading-snug max-w-xl mx-auto"
           style={{
-            fontFamily: "'DM Sans', sans-serif",
-            fontSize: "clamp(1.5rem, 3.2vw, 2.2rem)",
-            fontWeight: 800,
-            letterSpacing: "-0.01em",
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: "clamp(1.8rem, 3.8vw, 2.8rem)",
+            fontWeight: 600,
+            fontStyle: "italic",
             animationDelay: "0.52s",
           }}
         >
@@ -327,8 +327,9 @@ function Hero() {
         <p
           className="reveal mt-4 text-[var(--ink)]/65 leading-relaxed max-w-lg mx-auto"
           style={{
-            fontFamily: "'DM Sans', sans-serif",
-            fontSize: "clamp(0.95rem, 1.8vw, 1.1rem)",
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: "clamp(1.1rem, 2vw, 1.35rem)",
+            fontStyle: "italic",
             animationDelay: "0.58s",
           }}
         >
