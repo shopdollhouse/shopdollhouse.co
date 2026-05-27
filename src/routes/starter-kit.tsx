@@ -123,15 +123,15 @@ function Hero() {
         </h2>
 
         <p className="reveal mt-4 text-[var(--ink)]/65 leading-relaxed max-w-lg mx-auto" style={{ fontFamily: FONT_BODY, fontSize: "clamp(0.95rem, 1.8vw, 1.1rem)", animationDelay: "0.58s" }}>
-          Brand Kit Blueprint, Brand Workbook & AI Prompt Kit — everything you need to build a complete brand from scratch. No designer. No agency. Just you.
+          Start with the $97 Blueprint — or grab all three for $127 and save $34.
         </p>
 
         <div className="reveal mt-9 flex flex-col sm:flex-row items-center justify-center gap-4" style={{ animationDelay: "0.65s" }}>
-          <a href="#checkout" className="btn-ink">
-            Get the Kit — $297 <span aria-hidden>→</span>
+          <a href="#blueprint" className="btn-ink">
+            Get the Blueprint — $97 <span aria-hidden>→</span>
           </a>
-          <a href="#whats-inside" className="btn-ghost">
-            What's Inside <span aria-hidden>↓</span>
+          <a href="#bundle" className="btn-ghost">
+            See the Full Bundle <span aria-hidden>↓</span>
           </a>
         </div>
 
@@ -183,29 +183,47 @@ function WhatsInside() {
           <Divider />
         </div>
 
-        <div className="mt-16 grid md:grid-cols-3 gap-8">
-          {PIECES.map((p) => (
-            <article
-              key={p.name}
-              className="rounded-[28px] p-10 flex flex-col"
-              style={{
-                background: "linear-gradient(180deg, #fbf3ee 0%, #f6e8e1 100%)",
-                border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)",
-                boxShadow: "0 30px 60px -30px rgba(160,110,95,0.35), inset 0 1px 0 rgba(255,255,255,0.6)",
-              }}
-            >
+        {/* Featured Blueprint */}
+        <div id="blueprint" className="mt-16 rounded-[32px] p-10 md:p-14 relative overflow-hidden" style={{ background: "var(--ink)", boxShadow: "0 40px 80px -20px rgba(30,15,10,0.5), 0 0 0 1px rgba(200,168,100,0.2)" }}>
+          <div className="absolute top-5 right-6 px-3 py-1 rounded-full" style={{ background: "rgba(200,168,100,0.2)", border: "1px solid rgba(200,168,100,0.4)" }}>
+            <span style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>Featured Product</span>
+          </div>
+          <div className="flex flex-col md:flex-row md:items-center gap-8">
+            <div className="flex-1">
+              <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "2.5rem", lineHeight: 1 }}>01</span>
+              <h3 className="mt-4 text-[var(--cream)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.8rem, 3vw, 2.5rem)", lineHeight: 1.15 }}>{PIECES[0].name}</h3>
+              <p className="mt-2 italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem" }}>{PIECES[0].tagline}</p>
+              <p className="mt-4 leading-relaxed" style={{ fontFamily: FONT_BODY, fontSize: "0.95rem", color: "rgba(250,243,234,0.7)" }}>{PIECES[0].detail}</p>
+            </div>
+            <div className="flex flex-col items-center md:items-end gap-4 shrink-0">
+              <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3rem, 5vw, 4rem)", lineHeight: 1 }}>{PIECES[0].price}</span>
+              <a href="mailto:hello@shopdollhouse.co?subject=Brand%20Kit%20Blueprint" className="w-full md:w-auto rounded-2xl px-8 py-4 text-center transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ backgroundColor: "var(--gold)", boxShadow: "0 12px 28px -10px rgba(160,110,60,0.5)" }}>
+                <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", fontStyle: "italic", fontWeight: 700, color: "var(--ink)" }}>Get the Blueprint →</p>
+              </a>
+              <p style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(250,243,234,0.4)" }}>One-time · Instant access</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Other two products */}
+        <div className="mt-8 grid md:grid-cols-2 gap-8">
+          {PIECES.slice(1).map((p) => (
+            <article key={p.name} className="rounded-[28px] p-10 flex flex-col" style={{ background: "linear-gradient(180deg, #fbf3ee 0%, #f6e8e1 100%)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)", boxShadow: "0 30px 60px -30px rgba(160,110,95,0.35), inset 0 1px 0 rgba(255,255,255,0.6)" }}>
               <div className="flex items-center justify-between">
                 <span className="text-[var(--gold)] italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "2.5rem", lineHeight: 1 }}>{p.num}</span>
                 <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.6rem", lineHeight: 1 }}>{p.price}</span>
               </div>
               <h3 className="mt-5 text-[var(--ink)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.6rem", lineHeight: 1.2 }}>{p.name}</h3>
               <p className="mt-1 italic text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem" }}>{p.tagline}</p>
-              <div className="mt-5 flex items-center gap-3">
+              <div className="mt-4 flex items-center gap-3">
                 <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 50%, transparent), transparent)" }} />
                 <svg viewBox="0 0 24 22" fill="currentColor" style={{ width: "13px", height: "13px", color: "var(--gold)", flexShrink: 0 }}><path d="M12 21.6C6.3 16.1 1 11.3 1 7.2 1 3.4 4.1 2 6.3 2c1.3 0 4.2.5 5.7 4.5C13.6 2.5 16.5 2 17.7 2 20.3 2 23 3.6 23 7.2c0 4.1-5.1 8.9-11 14.4z"/></svg>
                 <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 50%, transparent), transparent)" }} />
               </div>
-              <p className="mt-5 text-[var(--ink)]/70 leading-relaxed text-sm flex-1" style={{ fontFamily: FONT_BODY }}>{p.detail}</p>
+              <p className="mt-4 text-[var(--ink)]/70 leading-relaxed text-sm flex-1" style={{ fontFamily: FONT_BODY }}>{p.detail}</p>
+              <a href={`mailto:hello@shopdollhouse.co?subject=${encodeURIComponent(p.name)}`} className="mt-6 w-full block rounded-xl px-5 py-3 text-center transition-all hover:opacity-80" style={{ border: "1px solid color-mix(in oklab, var(--gold) 50%, transparent)", color: "var(--gold)" }}>
+                <span style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", fontStyle: "italic", fontWeight: 600 }}>Get it — {p.price} →</span>
+              </a>
             </article>
           ))}
         </div>
@@ -260,32 +278,58 @@ function Includes() {
   );
 }
 
-/* ─── Pricing ─────────────────────────────────────────── */
-function Pricing() {
+/* ─── Bundle ──────────────────────────────────────────── */
+function Bundle() {
   return (
-    <section id="checkout" className="py-24 md:py-32 px-6" style={{ background: "linear-gradient(135deg, #f4dcdc 0%, #f7e6dc 45%, #f1d3cf 100%)" }}>
+    <section id="bundle" className="py-24 md:py-32 px-6" style={{ background: "linear-gradient(135deg, #f4dcdc 0%, #f7e6dc 45%, #f1d3cf 100%)" }}>
       <div className="max-w-3xl mx-auto text-center">
-        <p className="text-[var(--gold)] text-[11px] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE }}>One-Time Investment</p>
+        <p className="text-[var(--gold)] text-[11px] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE }}>Best Value</p>
         <h2 className="mt-4 text-[var(--rose)] leading-[1.05]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.25rem, 4vw, 3.5rem)", fontWeight: 400 }}>
-          Get the Starter Kit
+          Get everything together
         </h2>
         <Divider />
 
         <div
-          className="mt-12 rounded-[32px] p-10 md:p-14"
+          className="mt-12 rounded-[32px] p-10 md:p-14 relative overflow-hidden"
           style={{
             background: "var(--ink)",
-            boxShadow: "0 40px 80px -20px rgba(30,15,10,0.55), 0 0 0 1px rgba(200,168,100,0.15)",
+            boxShadow: "0 40px 80px -20px rgba(30,15,10,0.55), 0 0 0 1px rgba(200,168,100,0.2)",
           }}
         >
-          <p className="text-[var(--gold)] text-[11px] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE }}>The Starter Kit</p>
-          <div className="mt-6 flex items-baseline justify-center gap-4">
-            <span className="italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3rem, 6vw, 4.5rem)", lineHeight: 1, color: "var(--gold)" }}>
-              $297
-            </span>
-            <span className="line-through" style={{ fontFamily: FONT_BODY, color: "rgba(250,243,234,0.35)", fontSize: "1.25rem" }}>$497</span>
+          {/* Best Value badge */}
+          <div className="absolute top-5 right-6 px-3 py-1 rounded-full" style={{ background: "rgba(200,168,100,0.2)", border: "1px solid rgba(200,168,100,0.4)" }}>
+            <span style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>Best Value</span>
           </div>
-          <p className="mt-3" style={{ fontFamily: FONT_LUXE, fontSize: "0.7rem", letterSpacing: "0.2em", color: "rgba(255,255,255,0.45)", textTransform: "uppercase" }}>
+
+          <p className="text-[var(--gold)] text-[11px] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE }}>The Full Starter Kit Bundle</p>
+
+          {/* Line items */}
+          <div className="mt-8 space-y-3 text-left">
+            {PIECES.map((p) => (
+              <div key={p.name} className="flex items-center justify-between gap-4 py-2" style={{ borderBottom: "1px solid rgba(200,168,100,0.12)" }}>
+                <div className="flex items-center gap-3">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "12px", height: "12px", color: "var(--gold)", flexShrink: 0 }}><path d="M2.5 8.5L6 12L13.5 4.5" /></svg>
+                  <span style={{ fontFamily: FONT_BODY, fontSize: "0.9rem", color: "rgba(250,243,234,0.8)" }}>{p.name}</span>
+                </div>
+                <span className="shrink-0 italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: "rgba(250,243,234,0.45)" }}>{p.price}</span>
+              </div>
+            ))}
+            <div className="flex items-center justify-between pt-2">
+              <span style={{ fontFamily: FONT_LUXE, fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(250,243,234,0.35)" }}>Regular total</span>
+              <span className="line-through" style={{ fontFamily: FONT_BODY, color: "rgba(250,243,234,0.3)", fontSize: "0.95rem" }}>$161</span>
+            </div>
+          </div>
+
+          {/* Bundle price */}
+          <div className="mt-8 flex items-baseline justify-center gap-4">
+            <span className="italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3rem, 6vw, 4.5rem)", lineHeight: 1, color: "var(--gold)" }}>
+              $127
+            </span>
+            <div className="flex flex-col items-start gap-1">
+              <span className="px-2 py-0.5 rounded-full text-[var(--ink)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", background: "var(--gold)" }}>Save $34</span>
+            </div>
+          </div>
+          <p className="mt-3" style={{ fontFamily: FONT_LUXE, fontSize: "0.7rem", letterSpacing: "0.2em", color: "rgba(255,255,255,0.4)", textTransform: "uppercase" }}>
             One-time · Lifetime access · 14-day guarantee
           </p>
 
@@ -296,25 +340,33 @@ function Pricing() {
           </div>
 
           <a
-            href="mailto:hello@shopdollhouse.co?subject=Starter%20Kit"
+            href="mailto:hello@shopdollhouse.co?subject=Starter%20Kit%20Bundle"
             className="mt-8 w-full block rounded-2xl px-5 py-4 text-center transition-all hover:-translate-y-0.5 hover:opacity-90"
             style={{ backgroundColor: "var(--gold)", boxShadow: "0 12px 28px -10px rgba(160,110,60,0.5)" }}
           >
             <p className="text-[var(--ink)] leading-tight" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.15rem", fontStyle: "italic", fontWeight: 700 }}>
-              Get Instant Access →
+              Get the Full Bundle — $127 →
             </p>
             <p className="text-[var(--ink)]/60 mt-0.5" style={{ fontFamily: FONT_LUXE, fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase" }}>
-              Delivered instantly to your inbox
+              All three · Delivered instantly to your inbox
             </p>
           </a>
 
-          <p className="mt-6 text-[var(--cream)]/45 text-xs" style={{ fontFamily: FONT_BODY }}>
-            Want it done for you instead?{" "}
-            <Link to="/" className="underline hover:text-[var(--gold)] transition-colors">
-              See our retainers
-            </Link>
+          <p className="mt-6 text-[var(--cream)]/40 text-xs" style={{ fontFamily: FONT_BODY }}>
+            Just want one piece?{" "}
+            <a href="#blueprint" className="underline hover:text-[var(--gold)] transition-colors text-[var(--cream)]/50">
+              Start with the $97 Blueprint
+            </a>
+            {" "}or buy the Workbook &amp; Prompts individually above.
           </p>
         </div>
+
+        <p className="mt-10 italic text-[var(--rose)]/70" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem" }}>
+          Want it all done for you instead?{" "}
+          <Link to="/" className="underline hover:text-[var(--rose)] transition-colors">
+            See our retainers →
+          </Link>
+        </p>
       </div>
     </section>
   );
@@ -323,7 +375,8 @@ function Pricing() {
 /* ─── FAQ ─────────────────────────────────────────────── */
 const FAQS: [string, string][] = [
   ["Who is the Starter Kit for?", "Founders, creators, and small business owners who want a polished brand and a content engine without hiring an agency."],
-  ["How is this delivered?", "Instantly. After checkout you'll receive an email with access to your Brand Kit files, Prompt Kit, and Workbook (PDF + Notion)."],
+  ["Can I buy just one product?", "Yes — each piece is available individually. Start with the $97 Blueprint, grab the $47 Brand Workbook, or pick up the $17 AI Prompt Kit on its own. Or save $34 and grab all three for $127."],
+  ["How is this delivered?", "Instantly. After checkout you'll receive an email with access to your Brand Kit Blueprint, Brand Workbook, and AI Prompt Kit."],
   ["Do I need design experience?", "Nope. Everything is templated and editable in Canva. The workbook walks you through every decision step by step."],
   ["Can I upgrade to a done-for-you retainer later?", "Yes — your Starter Kit investment is credited toward your first month on any monthly plan."],
 ];
@@ -418,7 +471,7 @@ function StarterKitPage() {
       <Hero />
       <WhatsInside />
       <Includes />
-      <Pricing />
+      <Bundle />
       <FAQ />
       <Footer />
       <BackToTop />
