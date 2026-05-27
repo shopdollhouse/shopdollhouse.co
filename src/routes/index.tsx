@@ -301,7 +301,7 @@ function Hero() {
           DOLLHOUSE
         </h1>
         <p
-          className="reveal mt-4 text-[var(--gold)] text-[11px] tracking-luxe uppercase"
+          className="reveal mt-4 text-[var(--gold)] text-[15px] tracking-luxe uppercase"
           style={{ fontFamily: "'Jost', sans-serif", animationDelay: "0.4s" }}
         >
           brand studio
