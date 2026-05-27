@@ -1295,24 +1295,23 @@ function Pricing() {
                 {/* 14-Day Free Trial badge */}
                 <div className="mt-10 w-full text-center">
                   <div
-                    className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl"
+                    className="w-full flex flex-col items-center justify-center gap-1.5 px-4 py-3 rounded-xl"
                     style={{
                       background: isFilled ? "rgba(200,168,100,0.12)" : "rgba(200,168,100,0.1)",
                       border: "1px solid rgba(200,168,100,0.35)",
                     }}
                   >
-                    <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>★</span>
-                    <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.72rem", color: "var(--gold)", letterSpacing: "0.16em", textTransform: "uppercase" }}>
-                      Try Free for 14 Days
-                    </span>
-                    <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>★</span>
+                    <div className="flex items-center gap-2">
+                      <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>★</span>
+                      <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.72rem", color: "var(--gold)", letterSpacing: "0.16em", textTransform: "uppercase" }}>
+                        Try Free for 14 Days
+                      </span>
+                      <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>★</span>
+                    </div>
+                    <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: isFilled ? "rgba(250,243,234,0.45)" : "rgba(30,15,10,0.38)" }}>
+                      No obligations · cancel anytime
+                    </p>
                   </div>
-                  <p
-                    className="mt-2"
-                    style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.62rem", letterSpacing: "0.12em", textTransform: "uppercase", color: isFilled ? "rgba(250,243,234,0.4)" : "rgba(30,15,10,0.35)" }}
-                  >
-                    No obligations · cancel anytime
-                  </p>
                 </div>
 
                 {/* CTA */}
