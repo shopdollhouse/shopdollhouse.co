@@ -348,33 +348,43 @@ function Hero() {
 
         {/* Stats row */}
         <div
-          className="reveal mt-8 flex items-center justify-center gap-6 flex-wrap"
-          style={{ animationDelay: "0.75s" }}
+          className="reveal mt-10 w-full flex items-center justify-center gap-0 flex-wrap rounded-2xl py-6 px-4"
+          style={{
+            animationDelay: "0.75s",
+            background: "rgba(255,255,255,0.55)",
+            backdropFilter: "blur(12px)",
+            border: "1px solid rgba(200,168,100,0.2)",
+          }}
         >
           {[
             { stat: "100%", label: "Done For You" },
             { stat: "24/7", label: "AI Automation" },
-            { stat: "30 days", label: "To See Results" },
-          ].map(({ stat, label }) => (
-            <div key={label} className="flex flex-col items-center gap-0.5">
-              <span
-                className="text-[var(--rose)]"
-                style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.4rem, 3vw, 1.75rem)", fontStyle: "italic", lineHeight: 1 }}
-              >
-                {stat}
-              </span>
-              <span
-                className="text-[var(--ink)]/50 text-[9px] tracking-[0.2em] uppercase"
-                style={{ fontFamily: "'Jost', sans-serif" }}
-              >
-                {label}
-              </span>
+            { stat: "30 Days", label: "To See Results" },
+          ].map(({ stat, label }, i) => (
+            <div key={label} className="flex items-center">
+              <div className="flex flex-col items-center gap-1 px-8">
+                <span
+                  className="text-[var(--rose)]"
+                  style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2rem, 5vw, 2.75rem)", fontStyle: "italic", lineHeight: 1 }}
+                >
+                  {stat}
+                </span>
+                <span
+                  className="text-[var(--ink)]/60 tracking-[0.2em] uppercase"
+                  style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem" }}
+                >
+                  {label}
+                </span>
+              </div>
+              {i < 2 && (
+                <span className="h-8 w-px bg-[var(--gold)]/25" />
+              )}
             </div>
           ))}
         </div>
 
         <p
-          className="reveal mt-6 text-[var(--ink)]/55 italic text-sm"
+          className="reveal mt-5 text-[var(--ink)]/55 italic text-sm"
           style={{ fontFamily: "'Cormorant Garamond', serif", animationDelay: "0.85s" }}
         >
           3 months to build momentum, then month-to-month · Fully managed, nothing to learn
