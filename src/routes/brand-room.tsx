@@ -135,7 +135,7 @@ function Hero() {
         </div>
 
         <p className="reveal mt-7 text-[var(--ink)]/55 italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1rem, 2vw, 1.2rem)", animationDelay: "0.75s" }}>
-          One-time payment · Lifetime access · 14-day guarantee
+          One-time payment · Lifetime access
         </p>
       </div>
     </header>
