@@ -1192,6 +1192,7 @@ function FAQ() {
     ["What kinds of businesses do you work with?", "Local service businesses, boutique brands, coaches, creatives, and anyone who wants to show up online consistently without doing it themselves."],
     ["What are the add-on services?", "AI voice agents (handles your calls 24/7), review and reputation management, email and SMS marketing, additional content, website design, and merch design. Ask about pricing when you get your quote."],
     ["Is pricing in USD?", "Yes, all pricing is in USD. Plans start at $1,000/mo with a $500 one-time setup fee."],
+    ["What is your refund policy?", "All sales are final — we do not offer refunds. Once your system is built and your plan is active, the work has begun. If you have concerns at any point, reach out and we'll work through it together."],
   ];
   return (
     <section id="faq" className="py-24 md:py-32 px-6">
