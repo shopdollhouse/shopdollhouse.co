@@ -1683,11 +1683,26 @@ function Footer() {
       >
         Brand Studio
       </p>
+      <div className="mt-6 flex items-center justify-center gap-2 text-[var(--ink)]/35" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+        <span className="h-px w-8 bg-[var(--gold)]/30" />
+        <span className="text-[var(--gold)]/50 text-[0.5rem]">♥</span>
+        <span className="h-px w-8 bg-[var(--gold)]/30" />
+      </div>
+      <p className="mt-4 text-[var(--ink)]/45 italic text-sm" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+        Not ready for a retainer yet?
+      </p>
+      <Link
+        to="/starter-kit"
+        className="mt-1 inline-block text-[var(--gold)] text-[10px] tracking-[0.2em] uppercase hover:opacity-70 transition-opacity"
+        style={{ fontFamily: "'Jost', sans-serif" }}
+      >
+        Start with the Starter Kit →
+      </Link>
       <p
-        className="text-xs text-[var(--ink)]/45 mt-6"
+        className="text-xs text-[var(--ink)]/35 mt-8"
         style={{ fontFamily: "'DM Sans', sans-serif" }}
       >
-        © {new Date().getFullYear()} The Dollhouse. All rights reserved.
+        © {new Date().getFullYear()} The Dollhouse Brand Studio. All rights reserved.
       </p>
     </footer>
   );
