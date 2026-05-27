@@ -376,7 +376,7 @@ function Hero() {
           className="reveal mt-6 text-[var(--ink)]/55 italic text-sm"
           style={{ fontFamily: "'Cormorant Garamond', serif", animationDelay: "0.85s" }}
         >
-          3-month minimum · Fully managed, nothing to learn
+          3 months to build momentum, then month-to-month · Fully managed, nothing to learn
         </p>
       </div>
 
@@ -885,7 +885,7 @@ function Pricing() {
         "Automations that turn followers into leads & appointments",
         "AI clone or custom brand character",
         "AI content creation, posting & scheduling",
-        "Short-form videos posted 3x per week",
+        "Short-form videos posted 3x per week (12/mo)",
         "1 platform managed for you",
       ],
     },
@@ -902,7 +902,7 @@ function Pricing() {
         "AI voice agent (24/7 calls & inquiries)",
         "Full AI booking system (chat, reviews & follow-up)",
         "AI website design & build",
-        "Short-form videos posted 3–5x per week",
+        "Short-form videos posted 3–5x per week (up to 20/mo)",
         "Bi-weekly strategy calls & weekly reports",
       ],
     },
@@ -914,7 +914,7 @@ function Pricing() {
       features: [
         "Everything in Starter — expanded to 3 platforms",
         "Facebook & Instagram ad management",
-        "Short-form videos posted 3–5x per week",
+        "Short-form videos posted 3–5x per week (up to 20/mo)",
         "Email & text nurture sequences",
         "Email & SMS marketing automations",
         "Reputation & review management",
