@@ -981,29 +981,6 @@ function Pricing() {
                   <span style={{ color: "var(--gold)" }}>✦</span> Monthly Retainer
                 </div>
 
-                {/* 14-Day Free Trial badge */}
-                <div
-                  className="mt-4 w-full rounded-xl px-5 py-3 text-center"
-                  style={{
-                    backgroundColor: "var(--gold)",
-                    boxShadow: "0 8px 24px -10px rgba(160,110,60,0.45)",
-                    minWidth: "200px",
-                  }}
-                >
-                  <p
-                    className="text-[var(--ink)] leading-tight"
-                    style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.15rem", fontStyle: "italic", fontWeight: 500 }}
-                  >
-                    14-Day Free Trial
-                  </p>
-                  <p
-                    className="text-[var(--ink)]/65 mt-0.5"
-                    style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.62rem", letterSpacing: "0.14em", textTransform: "uppercase" }}
-                  >
-                    No obligations · cancel anytime
-                  </p>
-                </div>
-
                 {/* Price */}
                 <div className="mt-7 flex flex-col items-center">
                   <span
@@ -1089,26 +1066,27 @@ function Pricing() {
                   ))}
                 </ul>
 
-                {/* CTA */}
+                {/* 14-Day Free Trial — primary CTA at bottom */}
                 <a
                   href="#contact"
-                  className="mt-10 block text-center rounded-full text-[11px] tracking-luxe uppercase px-8 py-4 transition-all hover:-translate-y-px hover:opacity-90"
+                  className="mt-10 w-full block rounded-2xl px-5 py-4 text-center transition-all hover:-translate-y-0.5 hover:opacity-90"
                   style={{
-                    fontFamily: "'Jost', sans-serif",
-                    ...(isFilled
-                      ? {
-                          background: "var(--gold)",
-                          color: "var(--ink)",
-                          boxShadow: "0 14px 30px -12px rgba(160,120,60,0.55)",
-                        }
-                      : {
-                          backgroundColor: "transparent",
-                          color: "var(--ink)",
-                          border: "1.5px solid var(--ink)",
-                        }),
+                    backgroundColor: "var(--gold)",
+                    boxShadow: "0 12px 28px -10px rgba(160,110,60,0.5)",
                   }}
                 >
-                  {t.cta}
+                  <p
+                    className="text-[var(--ink)] leading-tight font-bold"
+                    style={{ fontFamily: "'Jost', sans-serif", fontSize: "1rem", letterSpacing: "0.02em" }}
+                  >
+                    14-Day Free Trial
+                  </p>
+                  <p
+                    className="text-[var(--ink)]/60 mt-0.5"
+                    style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase" }}
+                  >
+                    No obligations · cancel anytime
+                  </p>
                 </a>
               </article>
             </div>
