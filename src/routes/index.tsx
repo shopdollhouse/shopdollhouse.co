@@ -836,19 +836,14 @@ function Pricing() {
       name: "Starter",
       price: "$1,000",
       tagline: "Get visible. Get consistent.",
-      trial: "14-day free trial",
       cta: "Get Started →",
       features: [
         "1 client account managed",
+        "Social media management (1 platform)",
+        "AI-generated branded captions & scheduling",
         "Online appointment booking setup",
         "Automated booking confirmations",
-        "Social media management (1 platform)",
-        "AI-generated branded captions",
-        "Content creation & scheduling",
-        "Caption & hashtag writing",
         "Monthly analytics report",
-        "Basic GHL CRM access",
-        "Includes platform access",
       ],
     },
     {
@@ -859,18 +854,12 @@ function Pricing() {
       topBadge: { label: "Most Popular", tone: "gold" as const },
       cta: "Apply for Elite →",
       features: [
-        "5 client accounts managed",
+        "5 client accounts — all platforms",
         "Full AI booking system (voice, chat & reviews)",
-        "AI voice + chat agent — 24/7 lead response",
-        "Automated no-show reduction sequences",
-        "Review & reputation management",
         "Facebook, Instagram & Google ad management",
-        "Social media management (all platforms)",
         "Email & SMS marketing campaigns",
         "Custom funnel or landing page build",
-        "Bi-weekly strategy calls",
-        "Weekly performance reports",
-        "Includes platform access",
+        "Bi-weekly strategy calls & weekly reports",
       ],
     },
     {
@@ -879,16 +868,12 @@ function Pricing() {
       tagline: "More reach. More leads. More revenue.",
       cta: "Get a Quote →",
       features: [
-        "3 client accounts managed",
+        "3 client accounts — all platforms",
         "Appointment booking + no-show reminders",
         "Automated lead follow-up sequences",
-        "Social media management (all platforms)",
-        "Social media ad creation & management",
+        "Social media ads + content strategy",
         "Email & SMS marketing automations",
-        "Content calendar & strategy",
-        "GHL reporting dashboard",
         "Monthly strategy session",
-        "Includes platform access",
       ],
     },
   ];
@@ -1022,6 +1007,23 @@ function Pricing() {
                 >
                   {t.tagline}
                 </p>
+
+                {/* Platform access highlight */}
+                <div
+                  className="mt-5 w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl"
+                  style={{
+                    background: isFilled ? "rgba(200,168,100,0.12)" : "rgba(200,168,100,0.1)",
+                    border: "1px solid rgba(200,168,100,0.35)",
+                  }}
+                >
+                  <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>✦</span>
+                  <span
+                    style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.72rem", color: "var(--gold)", letterSpacing: "0.16em", textTransform: "uppercase" }}
+                  >
+                    Includes platform access
+                  </span>
+                  <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>✦</span>
+                </div>
 
                 {/* Divider w/ heart */}
                 <div className="mt-7 flex items-center gap-3">
