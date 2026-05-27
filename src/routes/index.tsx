@@ -1194,6 +1194,12 @@ function Pricing() {
                     <path d="M12 21.6C6.3 16.1 1 11.3 1 7.2 1 3.4 4.1 2 6.3 2c1.3 0 4.2.5 5.7 4.5C13.6 2.5 16.5 2 17.7 2 20.3 2 23 3.6 23 7.2c0 4.1-5.1 8.9-11 14.4z"/>
                   </svg> Monthly Retainer
                 </div>
+                <p
+                  className="mt-1.5 text-center"
+                  style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: isFilled ? "rgba(250,243,234,0.4)" : "rgba(30,15,10,0.35)" }}
+                >
+                  3-month minimum if you sign on
+                </p>
 
                 {/* Price */}
                 <div className="mt-7 flex flex-col items-center">
@@ -1325,12 +1331,6 @@ function Pricing() {
                     Get a Free Proposal
                   </p>
                 </a>
-                <p
-                  className="mt-3 text-center"
-                  style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.62rem", letterSpacing: "0.12em", textTransform: "uppercase", color: isFilled ? "rgba(250,243,234,0.35)" : "rgba(30,15,10,0.3)" }}
-                >
-                  3-month minimum if you sign on
-                </p>
               </article>
             </div>
           );
