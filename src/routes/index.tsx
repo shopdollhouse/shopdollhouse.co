@@ -114,13 +114,13 @@ function Nav() {
           >
             <span
               className="text-[var(--ink)]/55 font-normal not-italic"
-              style={{ fontFamily: "'Allura', cursive", fontSize: "18px", letterSpacing: "1px", textTransform: "lowercase" }}
+              style={{ fontFamily: "'Allura', cursive", fontSize: "18px", letterSpacing: "1px", textTransform: "lowercase", lineHeight: 1 }}
             >
               the
             </span>
             <span
               className="text-[var(--ink)] italic"
-              style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "15px", letterSpacing: "4px", textTransform: "uppercase" }}
+              style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "15px", letterSpacing: "4px", textTransform: "uppercase", marginTop: "-4px" }}
             >
               Dollhouse
             </span>
@@ -263,7 +263,7 @@ function Hero() {
         </div>
 
         <p
-          className="reveal text-[var(--gold)] italic mt-2 leading-none mb-0"
+          className="reveal text-[var(--gold)] italic mt-2 leading-none"
           style={{
             fontFamily: "'Allura', cursive",
             fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
@@ -274,7 +274,7 @@ function Hero() {
           the
         </p>
         <h1
-          className="reveal text-[var(--rose)] font-normal tracking-[0.04em] leading-[0.95] -mt-7"
+          className="reveal text-[var(--rose)] font-normal tracking-[0.04em] leading-[0.95] mt-1"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontSize: "clamp(3.5rem, 9vw, 6rem)",
@@ -1306,13 +1306,13 @@ function Footer() {
     <footer className="border-t border-[var(--gold)]/15 py-12 px-6 text-center">
       <span
         className="text-[var(--ink)]/50 font-normal block"
-        style={{ fontFamily: "'Allura', cursive", fontSize: "18px", letterSpacing: "1px", textTransform: "lowercase" }}
+        style={{ fontFamily: "'Allura', cursive", fontSize: "18px", letterSpacing: "1px", textTransform: "lowercase", lineHeight: 1 }}
       >
         the
       </span>
       <span
         className="text-[var(--ink)] italic inline-block"
-        style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "15px", letterSpacing: "4px", textTransform: "uppercase" }}
+        style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "15px", letterSpacing: "4px", textTransform: "uppercase", marginTop: "-4px" }}
       >
         Dollhouse
       </span>
