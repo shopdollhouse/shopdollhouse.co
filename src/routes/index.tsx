@@ -1139,6 +1139,8 @@ function Pricing() {
             { title: "Review & Reputation Management", desc: "Monitor, respond to, and grow your online reviews across Google and beyond." },
             { title: "Email & Text Message Marketing", desc: "Done-for-you campaigns, nurture sequences and broadcasts sent to your list." },
             { title: "Additional Content Creation", desc: "Extra posts, videos and creative assets produced personally by me for your brand." },
+            { title: "Website Design", desc: "Custom-designed websites and landing pages built to convert — branded, fast, and done for you." },
+            { title: "Merch Design", desc: "On-brand merchandise design for your business — apparel, products and print-ready assets." },
           ].map((addon) => (
             <div
               key={addon.title}
