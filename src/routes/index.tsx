@@ -841,7 +841,7 @@ function Pricing() {
         "1 client account managed",
         "Social media management (1 platform)",
         "AI-generated branded captions & scheduling",
-        "Custom AI brand mascot for content",
+        "AI clone or custom brand character",
         "Online appointment booking setup",
         "Monthly analytics report",
       ],
@@ -855,7 +855,7 @@ function Pricing() {
       cta: "Apply for Elite →",
       features: [
         "5 client accounts — all platforms",
-        "AI video clone for Reels, ads & content",
+        "AI clone or custom brand character",
         "Full AI booking system (voice, chat & reviews)",
         "Facebook, Instagram & Google ad management",
         "Email & SMS marketing campaigns",
@@ -869,7 +869,7 @@ function Pricing() {
       cta: "Get a Quote →",
       features: [
         "3 client accounts — all platforms",
-        "AI brand mascot for social content",
+        "AI clone or custom brand character",
         "Appointment booking + no-show reminders",
         "Automated lead follow-up sequences",
         "Social media ads + content strategy",
@@ -890,7 +890,7 @@ function Pricing() {
       <SectionTitle
         eyebrow="Style Packages"
         title="Choose your plan"
-        italic="Done-for-you monthly retainer — includes AI clone & mascot creation."
+        italic="Done-for-you monthly retainer — includes your AI clone or brand character."
       />
       <div className="mt-20 max-w-7xl mx-auto grid md:grid-cols-3 gap-8 lg:gap-10">
         {tiers.map((t) => {
