@@ -1005,7 +1005,7 @@ function Pricing() {
                 >
                   <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>✦</span>
                   <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.68rem", letterSpacing: "0.14em", textTransform: "uppercase", color: isFilled ? "rgba(250,243,234,0.6)" : "rgba(30,15,10,0.5)" }}>
-                    $500 one-time setup fee
+                    + $500 one-time setup fee
                   </span>
                 </div>
 
