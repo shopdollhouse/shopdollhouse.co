@@ -319,15 +319,14 @@ function Hero() {
         </div>
 
         <p
-          className="reveal mt-2 text-[var(--ink)]/80 leading-relaxed max-w-md mx-auto"
+          className="reveal mt-2 text-[var(--ink)]/80 leading-relaxed max-w-lg mx-auto"
           style={{
             fontFamily: "'DM Sans', sans-serif",
-            fontSize: "1rem",
+            fontSize: "clamp(1.05rem, 2vw, 1.2rem)",
             animationDelay: "0.55s",
           }}
         >
-          Your business, everywhere online. AI-powered social media content,
-          scheduling, and analytics — done for you, every single day.
+          Get more leads and booked clients from social media — without filming, posting, or figuring out the algorithm yourself.
         </p>
 
         <div
