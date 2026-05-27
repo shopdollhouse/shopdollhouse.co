@@ -957,7 +957,7 @@ function Pricing() {
             <div key={t.name} className={`relative pt-8 ${isFilled ? "md:-mt-4 md:z-10" : ""}`}>
               {t.topBadge && (
                 <span
-                  className="absolute -top-1 left-1/2 -translate-x-1/2 z-10 px-6 py-2 rounded-full text-[10px] tracking-luxe uppercase whitespace-nowrap"
+                  className="absolute top-5 left-1/2 -translate-x-1/2 z-10 px-6 py-2 rounded-full text-[10px] tracking-luxe uppercase whitespace-nowrap"
                   style={{
                     fontFamily: "'Jost', sans-serif",
                     backgroundColor:
@@ -1061,7 +1061,6 @@ function Pricing() {
                     border: `1px dashed ${isFilled ? "rgba(255,255,255,0.15)" : "rgba(30,15,10,0.18)"}`,
                   }}
                 >
-                  <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>✦</span>
                   <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.68rem", letterSpacing: "0.14em", textTransform: "uppercase", color: isFilled ? "rgba(250,243,234,0.6)" : "rgba(30,15,10,0.5)" }}>
                     + $500 one-time setup fee
                   </span>
