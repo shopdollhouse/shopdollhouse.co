@@ -839,10 +839,10 @@ function Pricing() {
       cta: "Get Started →",
       features: [
         "Turn traffic into leads & booked appointments",
+        "Automations that turn followers into leads & appointments",
         "AI clone or custom brand character",
         "AI content creation, posting & scheduling",
         "Short-form videos posted 3x per week",
-        "Automation maintenance",
         "1 client account (1 platform)",
       ],
     },
@@ -855,11 +855,11 @@ function Pricing() {
       cta: "Apply for Elite →",
       features: [
         "Turn traffic into leads & booked appointments",
+        "Automations that turn followers into leads & appointments",
         "AI clone or custom brand character",
         "AI content creation, posting & scheduling",
         "Short-form videos posted 3–5x per week",
         "5 accounts — all platforms + full ad management",
-        "Automation maintenance",
         "Bi-weekly strategy calls & weekly reports",
       ],
     },
@@ -870,12 +870,12 @@ function Pricing() {
       cta: "Get a Quote →",
       features: [
         "Turn traffic into leads & booked appointments",
+        "Automations that turn followers into leads & appointments",
         "AI clone or custom brand character",
         "AI content creation, posting & scheduling",
         "Short-form videos posted 3–5x per week",
         "3 accounts — all platforms + ad management",
         "Appointment booking + no-show reminders",
-        "Automation maintenance",
       ],
     },
   ];
