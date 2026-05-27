@@ -848,6 +848,7 @@ function Pricing() {
         "Caption & hashtag writing",
         "Monthly analytics report",
         "Basic GHL CRM access",
+        "Includes platform access",
       ],
     },
     {
@@ -869,6 +870,7 @@ function Pricing() {
         "Custom funnel or landing page build",
         "Bi-weekly strategy calls",
         "Weekly performance reports",
+        "Includes platform access",
       ],
     },
     {
@@ -886,6 +888,7 @@ function Pricing() {
         "Content calendar & strategy",
         "GHL reporting dashboard",
         "Monthly strategy session",
+        "Includes platform access",
       ],
     },
   ];
