@@ -105,6 +105,7 @@ function QuizPage() {
   const [answers, setAnswers] = useState<string[]>([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<keyof typeof RESULTS>("A");
 
@@ -129,6 +130,7 @@ function QuizPage() {
         body: JSON.stringify({
           name,
           email,
+          phone,
           source: "Brand Room Quiz",
           quiz_result: RESULTS[r].type,
           quiz_recommendation: RESULTS[r].product,
@@ -146,6 +148,7 @@ function QuizPage() {
     setAnswers([]);
     setName("");
     setEmail("");
+    setPhone("");
   }
 
   const progressPct =
@@ -276,6 +279,17 @@ function QuizPage() {
                   className="w-full rounded-xl px-5 py-3.5 placeholder:text-[var(--ink)]/35 focus:outline-none transition"
                   style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: "var(--ink)", background: "rgba(255,255,255,0.8)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }}
                 />
+                <input
+                  type="tel"
+                  placeholder="Phone number (optional)"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="w-full rounded-xl px-5 py-3.5 placeholder:text-[var(--ink)]/35 focus:outline-none transition"
+                  style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: "var(--ink)", background: "rgba(255,255,255,0.8)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }}
+                />
+                <p style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(30,15,10,0.3)" }}>
+                  📱 Add your number to receive your results by text too
+                </p>
                 <button
                   type="submit"
                   disabled={submitting}

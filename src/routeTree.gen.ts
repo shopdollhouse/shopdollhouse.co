@@ -9,18 +9,24 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as StarterKitRouteImport } from './routes/starter-kit'
 import { Route as SoftwareRouteImport } from './routes/software'
+import { Route as QuizRouteImport } from './routes/quiz'
+import { Route as BrandRoomRouteImport } from './routes/brand-room'
 import { Route as IndexRouteImport } from './routes/index'
 
-const StarterKitRoute = StarterKitRouteImport.update({
-  id: '/starter-kit',
-  path: '/starter-kit',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const SoftwareRoute = SoftwareRouteImport.update({
   id: '/software',
   path: '/software',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuizRoute = QuizRouteImport.update({
+  id: '/quiz',
+  path: '/quiz',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrandRoomRoute = BrandRoomRouteImport.update({
+  id: '/brand-room',
+  path: '/brand-room',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,48 +37,59 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/brand-room': typeof BrandRoomRoute
+  '/quiz': typeof QuizRoute
   '/software': typeof SoftwareRoute
-  '/starter-kit': typeof StarterKitRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/brand-room': typeof BrandRoomRoute
+  '/quiz': typeof QuizRoute
   '/software': typeof SoftwareRoute
-  '/starter-kit': typeof StarterKitRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/brand-room': typeof BrandRoomRoute
+  '/quiz': typeof QuizRoute
   '/software': typeof SoftwareRoute
-  '/starter-kit': typeof StarterKitRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/software' | '/starter-kit'
+  fullPaths: '/' | '/brand-room' | '/quiz' | '/software'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/software' | '/starter-kit'
-  id: '__root__' | '/' | '/software' | '/starter-kit'
+  to: '/' | '/brand-room' | '/quiz' | '/software'
+  id: '__root__' | '/' | '/brand-room' | '/quiz' | '/software'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BrandRoomRoute: typeof BrandRoomRoute
+  QuizRoute: typeof QuizRoute
   SoftwareRoute: typeof SoftwareRoute
-  StarterKitRoute: typeof StarterKitRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/starter-kit': {
-      id: '/starter-kit'
-      path: '/starter-kit'
-      fullPath: '/starter-kit'
-      preLoaderRoute: typeof StarterKitRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/software': {
       id: '/software'
       path: '/software'
       fullPath: '/software'
       preLoaderRoute: typeof SoftwareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quiz': {
+      id: '/quiz'
+      path: '/quiz'
+      fullPath: '/quiz'
+      preLoaderRoute: typeof QuizRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brand-room': {
+      id: '/brand-room'
+      path: '/brand-room'
+      fullPath: '/brand-room'
+      preLoaderRoute: typeof BrandRoomRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -87,8 +104,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BrandRoomRoute: BrandRoomRoute,
+  QuizRoute: QuizRoute,
   SoftwareRoute: SoftwareRoute,
-  StarterKitRoute: StarterKitRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
