@@ -361,7 +361,7 @@ function Hero() {
           {[
             { stat: "100%", label: "Done For You" },
             { stat: "24/7", label: "AI Automation" },
-            { stat: "30 Days", label: "To See Results" },
+            { stat: "90 Days", label: "To See Results" },
           ].map(({ stat, label }, i) => (
             <div key={label} className="flex items-center">
               <div className="flex flex-col items-center gap-1 px-8">
