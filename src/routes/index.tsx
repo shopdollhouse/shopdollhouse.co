@@ -1053,6 +1053,7 @@ function Pricing() {
       tagline: "Everything you need to get online, get consistent, and start converting.",
       cta: "Get Started →",
       features: [
+        "Online booking system — clients can book appointments directly from your page",
         "Lead funnels & automations that turn your followers into booked appointments",
         "Comment word triggers — someone drops a keyword on your post, they're instantly sent to your landing page",
         "DM automation — every inquiry gets an instant reply that guides them straight to book or buy",
@@ -1091,6 +1092,7 @@ function Pricing() {
       cta: "Get a Free Proposal →",
       features: [
         "Everything in Starter — your AI clone content now running across 3 platforms: Instagram, TikTok & Facebook",
+        "Automated appointment reminders — reduce no-shows with text & email reminders sent before every booking",
         "Paid ads put money behind your best content — Facebook & Instagram ad management included",
         "Email & SMS automations that follow up with every lead while you sleep",
         "Reputation & review management — 5-star presence built on autopilot",
