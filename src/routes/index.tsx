@@ -895,7 +895,7 @@ function Pricing() {
       cta: "Get Started →",
       features: [
         "Turn traffic into leads & booked appointments",
-        "Every lead followed up in under 60 seconds — automatically",
+        "Automations that turn followers into leads & appointments",
         "AI clone or custom brand character",
         "AI content creation, posting & scheduling",
         "Short-form videos posted 3x per week (12/mo)",
