@@ -144,7 +144,7 @@ function Nav() {
           </div>
 
           <a href="#contact" className="hidden md:inline-flex btn-ink !py-2.5 !px-5 !text-[10px]">
-            Book a Call
+            Get a Quote
           </a>
 
           {/* Mobile toggle */}
@@ -194,7 +194,7 @@ function Nav() {
             </a>
           ))}
           <a href="#contact" onClick={() => setOpen(false)} className="btn-ink justify-center mt-2">
-            Book a Call
+            Get a Quote
           </a>
         </div>
       </div>
@@ -307,8 +307,8 @@ function Hero() {
           className="reveal mt-9 flex flex-col items-center justify-center gap-4"
           style={{ animationDelay: "0.65s" }}
         >
-          <a href="#pricing" className="btn-ink">
-            Book a Discovery Call <span aria-hidden>→</span>
+          <a href="#contact" className="btn-ink">
+            Get a Quote <span aria-hidden>→</span>
           </a>
           <div
             className="inline-flex items-center gap-2 rounded-full border border-[var(--gold)]/40 bg-white/40 backdrop-blur-sm px-4 py-1.5 text-[var(--gold)]"
@@ -871,7 +871,7 @@ function Pricing() {
       name: "Growth",
       price: "$2,500",
       tagline: "More reach. More leads. More revenue.",
-      cta: "Book a Call →",
+      cta: "Get a Quote →",
       features: [
         "3 Accounts",
         "AI automation",
@@ -1257,7 +1257,7 @@ function Contact() {
           className="w-full rounded-xl bg-[var(--ink)] text-[var(--cream)] py-4 text-[11px] tracking-luxe uppercase hover:opacity-90 transition"
           style={{ fontFamily: "'Jost', sans-serif" }}
         >
-          {submitted ? "Thank you — we'll be in touch ♡" : "Book my discovery call →"}
+          {submitted ? "Thank you — we'll be in touch ♡" : "Get my quote →"}
         </button>
       </form>
     </section>
