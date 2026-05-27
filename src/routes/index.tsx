@@ -274,7 +274,7 @@ function Hero() {
           the
         </p>
         <h1
-          className="reveal text-[var(--rose)] font-normal tracking-[-0.01em] leading-[0.95] mt-1"
+          className="reveal text-[var(--rose)] font-normal tracking-[-0.05em] leading-[0.95] mt-1"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontSize: "clamp(3.5rem, 9vw, 6rem)",
