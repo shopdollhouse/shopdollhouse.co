@@ -1197,13 +1197,17 @@ function Pricing() {
         })}
       </div>
 
-      {/* Setup fee note */}
-      <p className="text-center mt-10 text-[var(--ink)]/45 italic text-sm" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-        $500 one-time setup includes: complete system buildout, landing pages, calendar integration, automation sequences & CRM setup
-      </p>
-      <p className="text-center mt-3 text-[var(--ink)]/40 italic text-sm" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-        * Meta ad spend is separate & paid directly to Meta — minimum $500/mo recommended
-      </p>
+      {/* Setup fee + ad spend notes */}
+      <div className="mt-12 max-w-2xl mx-auto rounded-2xl px-8 py-6 text-center space-y-4"
+        style={{ background: "rgba(200,168,100,0.07)", border: "1px solid rgba(200,168,100,0.22)" }}>
+        <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "var(--ink)", opacity: 0.75, fontStyle: "italic", lineHeight: 1.6 }}>
+          <span style={{ color: "var(--gold)", fontStyle: "normal", fontWeight: 600 }}>$500 one-time setup fee</span> — includes complete system buildout, landing pages, calendar integration, automation sequences & CRM setup.
+        </p>
+        <div style={{ height: "1px", background: "rgba(200,168,100,0.2)" }} />
+        <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "var(--ink)", opacity: 0.7, fontStyle: "italic", lineHeight: 1.6 }}>
+          <span style={{ color: "var(--rose)", fontStyle: "normal", fontWeight: 600 }}>* Ad spend is separate</span> — paid directly to Meta. We recommend a minimum of $500/mo for real results.
+        </p>
+      </div>
 
       {/* Add-on Services */}
       <div className="mt-20 max-w-4xl mx-auto">
