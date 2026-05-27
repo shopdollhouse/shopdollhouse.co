@@ -228,9 +228,6 @@ function Hero() {
             "radial-gradient(ellipse at center, transparent 0%, rgba(230,200,195,0.45) 70%, rgba(210,175,168,0.7) 100%)",
         }}
       />
-      {/* Decorative arches */}
-      <DoorIcon className="hidden lg:block absolute top-[18%] left-[6%] w-14 h-20 text-[var(--gold)]/35 reveal-soft" />
-      <DoorIcon className="hidden lg:block absolute bottom-[14%] right-[7%] w-20 h-28 text-[var(--gold)]/45 reveal-soft" />
 
       <div className="relative z-10 w-full max-w-[680px] text-center">
         {/* Soft white blur halo behind logo + header for readability */}
@@ -277,7 +274,7 @@ function Hero() {
           the
         </p>
         <h1
-          className="reveal text-[var(--rose)] font-normal tracking-[0.04em] leading-[0.95] mt-1"
+          className="reveal text-[var(--rose)] font-normal tracking-[-0.01em] leading-[0.95] mt-1"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontSize: "clamp(3.5rem, 9vw, 6rem)",
