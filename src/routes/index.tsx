@@ -325,11 +325,10 @@ function Hero() {
         </h2>
 
         <p
-          className="reveal mt-4 text-[var(--ink)]/65 leading-relaxed max-w-lg mx-auto"
+          className="reveal mt-4 text-[var(--ink)]/60 uppercase tracking-[0.2em] leading-relaxed max-w-lg mx-auto"
           style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: "clamp(1.1rem, 2vw, 1.35rem)",
-            fontStyle: "italic",
+            fontFamily: "'Jost', sans-serif",
+            fontSize: "0.65rem",
             animationDelay: "0.58s",
           }}
         >
