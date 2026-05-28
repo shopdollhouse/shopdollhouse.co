@@ -1741,17 +1741,12 @@ function ComparisonTable() {
 
 function FAQ() {
   const faqs: [string, string][] = [
-    ["What does 'done-for-you' actually mean?", "Everything — content creation, posting, scheduling, automation setup, ad management, and reporting. You get a full system running in the background while you focus on your business. No tools to learn, no content to make, nothing to manage."],
-    ["What is the AI clone or brand character?", "We create either an AI version of you (your face, your voice, your energy — generating content without you filming) or a custom brand mascot/character designed specifically for your business. Both are used to post consistently and promote your brand on autopilot."],
-    ["What's included in the $500 setup fee?", "A complete system buildout — landing pages, calendar integration, automated follow-up sequences, CRM setup, and everything configured and ready before your first month begins. This is a one-time fee."],
-    ["How does the system turn traffic into leads and booked appointments?", "We build automated funnels that capture visitors, follow up instantly via SMS and email, and book them directly into your calendar — without you lifting a finger. Most leads are contacted within minutes of opting in."],
-    ["What platforms do you manage?", "It depends on your plan. Starter covers 1 platform of your choice. Growth covers Instagram, TikTok & Facebook. Elite covers Instagram, TikTok, Facebook, LinkedIn & Threads — fully managed across all five. We post where your audience is."],
-    ["Is there a minimum commitment?", "Yes — we start with 3 months to build momentum, train the AI to your brand voice, and start seeing real results. After that it's month-to-month with no long-term contract required."],
-    ["Do I have to approve content before it goes live?", "Yes. Every post goes into your content calendar for approval before it's scheduled. We keep it simple so it takes minutes, not hours."],
-    ["What kinds of businesses do you work with?", "Local service businesses, boutique brands, coaches, creatives, and anyone who wants to show up online consistently without doing it themselves."],
-    ["What are the add-on services?", "AI voice agents (handles your calls 24/7), review and reputation management, email and SMS marketing, additional content, website design, and merch design. Ask about pricing when you get your quote."],
-    ["Is pricing in USD?", "Yes, all pricing is in USD. Plans start at $1,000/mo with a $500 one-time setup fee."],
-    ["What is your refund policy?", "All sales are final — we do not offer refunds. Once your system is built and your plan is active, the work has begun. If you have concerns at any point, reach out and we'll work through it together."],
+    ["What does 'done-for-you' actually mean?", "Everything — content creation, posting, scheduling, automation, ad management, and reporting. No tools to learn, no content to make, nothing to manage. You focus on your business; we handle the rest."],
+    ["What is the AI clone or brand character?", "We create either an AI version of you (your face, your voice, your energy — posting content without you filming) or a custom brand character built for your business. Either way, your content goes live every day on autopilot."],
+    ["What's included in the $500 setup fee?", "A complete system buildout — landing pages, calendar integration, automated follow-up sequences, and CRM setup, all configured before your first month begins. One-time only, never charged again."],
+    ["Is there a minimum commitment?", "Yes — 3 months to build momentum and train the AI to your brand voice. After that it's fully month-to-month with no long-term contract."],
+    ["What kinds of businesses do you work with?", "Local service businesses, boutique brands, coaches, creatives, and entrepreneurs who want to show up online consistently without doing it themselves."],
+    ["What is your refund policy?", "All sales are final. Once your system is built and your plan is active, the work has begun — but if you have concerns at any point, reach out and we'll work through it."],
   ];
   return (
     <section id="faq" className="pt-24 md:pt-32 pb-10 md:pb-14 px-6">
