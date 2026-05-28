@@ -9,7 +9,7 @@ const FONT_LUXE = "'Jost', sans-serif";
 const FONT_SCRIPT = "'Allura', cursive";
 
 /* ─── Types ───────────────────────────────────────────── */
-type Tab = "workflow" | "monthly" | "prompts" | "outreach" | "growth" | "newhire" | "deals" | "content";
+type Tab = "workflow" | "monthly" | "prompts" | "outreach" | "growth" | "newhire" | "deals" | "content" | "quote";
 
 /* ─── Prompt Card ─────────────────────────────────────── */
 function PromptCard({ title, tag, prompt }: { title: string; tag: string; prompt: string }) {
@@ -5487,6 +5487,507 @@ function LoginGate({ onAuth }: { onAuth: () => void }) {
   );
 }
 
+/* ─── Quote Builder ───────────────────────────────────── */
+const QB_PACKAGES = {
+  starter: {
+    name: "Starter", monthly: 1000, setup: 500, emoji: "✨", color: "#c8a864",
+    tagline: "Perfect for local businesses getting started with done-for-you social.",
+    includes: [
+      "3–4 branded posts/week (Instagram + Facebook)",
+      "1 platform managed (Instagram or Facebook)",
+      "Monthly content calendar",
+      "Basic hashtag + caption strategy",
+      "Monthly performance report",
+      "Platform access for scheduling + analytics",
+    ],
+  },
+  growth: {
+    name: "Growth", monthly: 2500, setup: 500, emoji: "🚀", color: "#c97a7a",
+    tagline: "Multi-platform management for businesses ready to scale their presence.",
+    includes: [
+      "Daily posts across 2–3 platforms",
+      "Instagram, Facebook + TikTok or LinkedIn",
+      "Reels / short-form video content",
+      "Story creation + highlights",
+      "Community engagement + DM monitoring",
+      "Bi-weekly strategy check-ins",
+      "Full analytics dashboard access",
+    ],
+  },
+  elite: {
+    name: "Elite", monthly: 5000, setup: 500, emoji: "👑", color: "#7b68ee",
+    tagline: "White-glove, full-service brand presence across every major platform.",
+    includes: [
+      "Daily content across all major platforms",
+      "AI avatar video content included",
+      "Full ad campaign management",
+      "Custom brand strategy + content direction",
+      "Dedicated account manager",
+      "Weekly strategy calls",
+      "Priority support + same-day response",
+    ],
+  },
+} as const;
+
+type PkgKey = keyof typeof QB_PACKAGES;
+
+interface QBAddon {
+  key: string;
+  type: "monthly" | "onetime";
+  price: number;
+  name: string;
+  desc: string;
+  emoji: string;
+}
+
+const QB_ADDONS: QBAddon[] = [
+  { key: "ai_video_std",    type: "monthly", price: 500,  emoji: "🎬", name: "AI Avatar Video — Standard",          desc: "4 branded AI avatar videos/month" },
+  { key: "ai_video_prem",   type: "monthly", price: 1000, emoji: "🎥", name: "AI Avatar Video — Premium",           desc: "8 videos/month + custom scripts + full editing" },
+  { key: "linkedin",        type: "monthly", price: 300,  emoji: "💼", name: "LinkedIn Management",                desc: "Daily posts + connection outreach + content" },
+  { key: "gbp",             type: "monthly", price: 200,  emoji: "📍", name: "Google Business Profile",            desc: "Weekly posts + review monitoring + Q&A" },
+  { key: "extra_platform",  type: "monthly", price: 300,  emoji: "➕", name: "Extra Platform Add-On",              desc: "Add Pinterest, YouTube, or X management" },
+  { key: "email_sms",       type: "monthly", price: 300,  emoji: "📧", name: "Email + SMS Marketing",              desc: "2 campaigns/month — designed, written, sent" },
+  { key: "google_ads",      type: "monthly", price: 500,  emoji: "🎯", name: "Google Ads Management",              desc: "Campaign setup, copy, optimisation (ad spend separate)" },
+  { key: "website_hosting", type: "monthly", price: 97,   emoji: "🌐", name: "Website Hosting & Maintenance",      desc: "Hosting, updates, uptime monitoring" },
+  { key: "website_build",   type: "onetime", price: 500,  emoji: "🏗️", name: "AI Website Build",                  desc: "Full branded website — delivered in 5–7 days" },
+  { key: "revenue_audit",   type: "onetime", price: 1500, emoji: "🔍", name: "AI Revenue Audit",                  desc: "Full pipeline + social + workflow audit with growth plan" },
+  { key: "digital_product", type: "onetime", price: 297,  emoji: "📦", name: "AI Digital Product / Lead Gen Tool", desc: "Quiz, calculator, or checklist built in your branding" },
+  { key: "brand_kit",       type: "onetime", price: 297,  emoji: "🎨", name: "Brand Kit",                         desc: "Logo, colours, fonts, templates — brand-ready package" },
+];
+
+function QuoteBuilderTab() {
+  const [clientName, setClientName] = useState("");
+  const [bizName, setBizName] = useState("");
+  const [niche, setNiche] = useState("");
+  const [city, setCity] = useState("");
+  const [pkg, setPkg] = useState<PkgKey | null>(null);
+  const [addons, setAddons] = useState<Set<string>>(new Set());
+  const [trial, setTrial] = useState(false);
+  const [annual, setAnnual] = useState(false);
+  const [adSpend, setAdSpend] = useState("");
+  const [note, setNote] = useState("");
+  const [copied, setCopied] = useState<"quote" | "email" | null>(null);
+
+  const selectedPkg = pkg ? QB_PACKAGES[pkg] : null;
+  const monthlyAddons = QB_ADDONS.filter(a => a.type === "monthly" && addons.has(a.key));
+  const onetimeAddons = QB_ADDONS.filter(a => a.type === "onetime" && addons.has(a.key));
+
+  const monthlyBase = selectedPkg?.monthly ?? 0;
+  const monthlyAddonsTotal = monthlyAddons.reduce((s, a) => s + a.price, 0);
+  const monthlySubtotal = monthlyBase + monthlyAddonsTotal;
+  const discount = annual ? Math.round(monthlySubtotal * 0.15) : 0;
+  const monthlyTotal = monthlySubtotal - discount;
+  const setupFee = selectedPkg ? 500 : 0;
+  const onetimeTotal = onetimeAddons.reduce((s, a) => s + a.price, 0);
+  const dueToday = trial
+    ? setupFee + onetimeTotal
+    : setupFee + onetimeTotal + monthlyTotal;
+
+  function toggleAddon(key: string) {
+    setAddons(prev => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key); else next.add(key);
+      return next;
+    });
+  }
+
+  function dotLine(label: string, val: string, width = 52) {
+    const dots = ".".repeat(Math.max(2, width - label.length - val.length));
+    return `${label}${dots}${val}`;
+  }
+
+  function generateQuote(mode: "quote" | "email") {
+    if (!selectedPkg) return "";
+    const p = selectedPkg;
+    const lines: string[] = [];
+
+    if (mode === "email") {
+      lines.push(`Subject: Your Custom Proposal — ${bizName || "Your Business"}`);
+      lines.push("");
+      lines.push(`Hi ${clientName || "there"},`);
+      lines.push("");
+      lines.push(`Thank you for your time! As promised, here's the custom investment proposal I've put together for ${bizName || "your business"}. Everything is tailored specifically to what we discussed.`);
+      lines.push("");
+    }
+
+    lines.push("═".repeat(54));
+    lines.push("  THE DOLLHOUSE BRAND STUDIO");
+    lines.push("  Custom Investment Proposal");
+    if (bizName) lines.push(`  Prepared for: ${bizName}${city ? ` · ${city}` : ""}`);
+    if (niche) lines.push(`  Industry: ${niche}`);
+    lines.push("═".repeat(54));
+    lines.push("");
+    lines.push(`  ${p.emoji}  ${p.name} Package — $${p.monthly.toLocaleString()}/mo`);
+    lines.push("");
+    lines.push("  What's included:");
+    p.includes.forEach(item => lines.push(`    ✓ ${item}`));
+
+    if (monthlyAddons.length > 0 || onetimeAddons.length > 0) {
+      lines.push("");
+      lines.push("  Add-On Services:");
+      monthlyAddons.forEach(a => lines.push(`    + ${a.name} — $${a.price}/mo`));
+      onetimeAddons.forEach(a => lines.push(`    + ${a.name} — $${a.price} one-time`));
+    }
+
+    lines.push("");
+    lines.push("─".repeat(54));
+    lines.push("  INVESTMENT SUMMARY");
+    lines.push("─".repeat(54));
+    lines.push("");
+    lines.push(dotLine(`  ${p.name} Package`, `$${p.monthly.toLocaleString()}/mo`));
+    if (monthlyAddons.length > 0) {
+      monthlyAddons.forEach(a => lines.push(dotLine(`  + ${a.name}`, `$${a.price}/mo`)));
+    }
+    if (annual) {
+      lines.push(dotLine("  Monthly Subtotal", `$${monthlySubtotal.toLocaleString()}/mo`));
+      lines.push(dotLine("  Annual Discount (15% off)", `−$${discount}/mo`));
+    }
+    lines.push(dotLine("  Monthly Total", `$${monthlyTotal.toLocaleString()}/mo`));
+    lines.push("");
+    lines.push(dotLine("  One-Time Setup Fee", `$${setupFee}`));
+    if (onetimeAddons.length > 0) {
+      onetimeAddons.forEach(a => lines.push(dotLine(`  + ${a.name}`, `$${a.price}`)));
+    }
+    if (adSpend) lines.push(`  * Client ad spend (paid direct): ${adSpend}`);
+    lines.push("");
+    lines.push("─".repeat(54));
+    if (trial) {
+      lines.push(dotLine("  DUE TODAY (setup fee)", `$${dueToday.toLocaleString()}`));
+      lines.push(dotLine("  First 2 Weeks", "FREE TRIAL"));
+      lines.push(dotLine("  Starting Month 1", `$${monthlyTotal.toLocaleString()}/mo`));
+    } else {
+      lines.push(dotLine("  DUE TODAY", `$${dueToday.toLocaleString()}`));
+    }
+    lines.push("─".repeat(54));
+    lines.push("");
+    lines.push("  NEXT STEPS:");
+    lines.push("  1. Review this proposal — let me know if you have questions");
+    lines.push("  2. Confirm your start date");
+    lines.push("  3. Setup fee is collected to lock in your spot");
+    if (trial) lines.push("  4. Your 14-day free trial begins immediately after setup");
+    lines.push(`  ${trial ? "5" : "4"}. We get to work — you see results within the first week`);
+
+    if (note) {
+      lines.push("");
+      lines.push("─".repeat(54));
+      lines.push("  Note from Amanda:");
+      lines.push(`  ${note}`);
+    }
+
+    lines.push("");
+    lines.push("═".repeat(54));
+    lines.push("  The Dollhouse Brand Studio");
+    lines.push("  hello@shopdollhouse.co");
+    lines.push("═".repeat(54));
+
+    if (mode === "email") {
+      lines.push("");
+      lines.push("This proposal is valid for 7 days. I'm so excited to get started — let me know when you're ready to move forward!");
+      lines.push("");
+      lines.push("With love,");
+      lines.push("Amanda");
+      lines.push("The Dollhouse Brand Studio");
+    }
+
+    return lines.join("\n");
+  }
+
+  function copyText(mode: "quote" | "email") {
+    navigator.clipboard.writeText(generateQuote(mode));
+    setCopied(mode);
+    setTimeout(() => setCopied(null), 2500);
+  }
+
+  const quoteReady = !!selectedPkg;
+
+  const inputStyle = {
+    fontFamily: FONT_BODY, fontSize: "0.875rem",
+    background: "rgba(255,255,255,0.8)",
+    border: "1px solid rgba(200,168,100,0.3)",
+    color: "var(--ink)",
+  };
+
+  function AddonRow({ a, isOnetime }: { a: QBAddon; isOnetime?: boolean }) {
+    const checked = addons.has(a.key);
+    const accentColor = isOnetime ? "#7b68ee" : "var(--gold)";
+    return (
+      <label
+        className="flex items-center gap-3 cursor-pointer p-3 rounded-xl transition-all"
+        style={{
+          background: checked ? (isOnetime ? "rgba(123,104,238,0.08)" : "rgba(200,168,100,0.1)") : "rgba(255,255,255,0.4)",
+          border: checked ? `1px solid ${isOnetime ? "rgba(123,104,238,0.3)" : "rgba(200,168,100,0.35)"}` : "1px solid rgba(200,168,100,0.1)",
+        }}
+      >
+        <input type="checkbox" checked={checked} onChange={() => toggleAddon(a.key)} className="sr-only" />
+        <div className="w-5 h-5 rounded-md flex items-center justify-center shrink-0 transition-all" style={{ background: checked ? accentColor : "rgba(255,255,255,0.7)", border: checked ? "none" : "1px solid rgba(200,168,100,0.4)" }}>
+          {checked && <svg viewBox="0 0 16 16" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3"><path d="M2.5 8.5L6 12L13.5 4.5" /></svg>}
+        </div>
+        <span style={{ fontSize: "1.05rem" }}>{a.emoji}</span>
+        <div className="flex-1 min-w-0">
+          <p style={{ fontFamily: FONT_BODY, fontSize: "0.875rem", color: "var(--ink)" }}>{a.name}</p>
+          <p style={{ fontFamily: FONT_BODY, fontSize: "0.75rem", color: "rgba(30,15,10,0.5)" }}>{a.desc}</p>
+        </div>
+        <p style={{ fontFamily: FONT_LUXE, fontSize: "0.875rem", fontWeight: 600, whiteSpace: "nowrap", color: checked ? accentColor : "rgba(30,15,10,0.4)" }}>
+          {isOnetime ? `+$${a.price}` : `+$${a.price}/mo`}
+        </p>
+      </label>
+    );
+  }
+
+  function Toggle({ active, onToggle, label, sub, activeColor = "var(--gold)" }: { active: boolean; onToggle: () => void; label: string; sub: string; activeColor?: string }) {
+    return (
+      <div className="flex items-center justify-between p-4 rounded-xl transition-all" style={{ background: active ? `${activeColor}18` : "rgba(255,255,255,0.4)", border: active ? `1px solid ${activeColor}55` : "1px solid rgba(200,168,100,0.15)" }}>
+        <div>
+          <p style={{ fontFamily: FONT_BODY, fontSize: "0.875rem", color: "var(--ink)" }}>{label}</p>
+          <p style={{ fontFamily: FONT_BODY, fontSize: "0.75rem", color: "rgba(30,15,10,0.5)", marginTop: "2px" }}>{sub}</p>
+        </div>
+        <button onClick={onToggle} className="w-12 h-6 rounded-full relative transition-all shrink-0 ml-4" style={{ background: active ? activeColor : "rgba(200,168,100,0.25)" }}>
+          <div className="absolute top-1 w-4 h-4 rounded-full bg-white shadow transition-all" style={{ left: active ? "28px" : "4px" }} />
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <SectionHeader
+        label="Quote Builder"
+        title="Build a Custom Client Quote"
+        sub="Fill in the details, pick a package and add-ons — a professional proposal generates instantly, ready to copy and send."
+      />
+      <div className="grid gap-8 lg:grid-cols-[1fr_400px] items-start">
+
+        {/* ── LEFT: Controls ── */}
+        <div className="space-y-6">
+
+          {/* Step 1 — Client Info */}
+          <div className="rounded-2xl p-6" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
+            <p className="text-[10px] tracking-[0.25em] uppercase mb-4" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Step 1 — Client Info</p>
+            <div className="grid sm:grid-cols-2 gap-4">
+              {([
+                { label: "Client Name", val: clientName, set: setClientName, placeholder: "e.g. Sarah" },
+                { label: "Business Name", val: bizName, set: setBizName, placeholder: "e.g. Bloom Med Spa" },
+                { label: "Industry / Niche", val: niche, set: setNiche, placeholder: "e.g. Medical Aesthetics" },
+                { label: "City", val: city, set: setCity, placeholder: "e.g. Toronto, ON" },
+              ] as const).map(({ label, val, set, placeholder }) => (
+                <div key={label}>
+                  <label className="block mb-1.5" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.12em", color: "rgba(30,15,10,0.5)", textTransform: "uppercase" }}>{label}</label>
+                  <input
+                    value={val}
+                    onChange={e => (set as (v: string) => void)(e.target.value)}
+                    placeholder={placeholder}
+                    className="w-full px-4 py-2.5 rounded-xl outline-none"
+                    style={inputStyle}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Step 2 — Package */}
+          <div className="rounded-2xl p-6" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
+            <p className="text-[10px] tracking-[0.25em] uppercase mb-4" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Step 2 — Choose a Package</p>
+            <div className="space-y-3">
+              {(Object.entries(QB_PACKAGES) as [PkgKey, (typeof QB_PACKAGES)[PkgKey]][]).map(([key, p]) => {
+                const isSelected = pkg === key;
+                return (
+                  <div
+                    key={key}
+                    onClick={() => setPkg(isSelected ? null : key)}
+                    className="rounded-xl p-4 cursor-pointer transition-all"
+                    style={{ border: isSelected ? `2px solid ${p.color}` : "1px solid rgba(200,168,100,0.2)", background: isSelected ? `${p.color}15` : "rgba(255,255,255,0.5)" }}
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-3">
+                        <span style={{ fontSize: "1.3rem" }}>{p.emoji}</span>
+                        <div>
+                          <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.15rem", color: p.color, fontWeight: 600 }}>{p.name}</p>
+                          <p style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "rgba(30,15,10,0.5)" }}>{p.tagline}</p>
+                        </div>
+                      </div>
+                      <div className="text-right shrink-0">
+                        <p style={{ fontFamily: FONT_LUXE, fontSize: "1.05rem", color: p.color, fontWeight: 600 }}>${p.monthly.toLocaleString()}/mo</p>
+                        <p style={{ fontFamily: FONT_BODY, fontSize: "0.7rem", color: "rgba(30,15,10,0.4)" }}>+ $500 setup</p>
+                      </div>
+                    </div>
+                    {isSelected && (
+                      <div className="mt-4 pt-4" style={{ borderTop: `1px solid ${p.color}30` }}>
+                        <p className="mb-2 text-[10px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, color: p.color }}>Includes</p>
+                        <div className="grid sm:grid-cols-2 gap-1">
+                          {p.includes.map((item, i) => (
+                            <p key={i} style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.7)" }}>✓ {item}</p>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Step 3 — Add-Ons */}
+          <div className="rounded-2xl p-6" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
+            <p className="text-[10px] tracking-[0.25em] uppercase mb-4" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Step 3 — Add-On Services</p>
+            <p className="mb-3" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(30,15,10,0.4)" }}>Monthly Add-Ons</p>
+            <div className="space-y-2 mb-6">
+              {QB_ADDONS.filter(a => a.type === "monthly").map(a => <AddonRow key={a.key} a={a} />)}
+            </div>
+            <p className="mb-3" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(30,15,10,0.4)" }}>One-Time Services</p>
+            <div className="space-y-2">
+              {QB_ADDONS.filter(a => a.type === "onetime").map(a => <AddonRow key={a.key} a={a} isOnetime />)}
+            </div>
+          </div>
+
+          {/* Step 4 — Options */}
+          <div className="rounded-2xl p-6" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
+            <p className="text-[10px] tracking-[0.25em] uppercase mb-4" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Step 4 — Options & Notes</p>
+            <div className="space-y-4">
+              <Toggle
+                active={trial} onToggle={() => setTrial(!trial)}
+                label="14-Day Free Trial"
+                sub="$500 setup collected today · first 2 weeks free · month 1 billed on day 15"
+                activeColor="#4a9970"
+              />
+              <Toggle
+                active={annual} onToggle={() => setAnnual(!annual)}
+                label="Annual Commitment Discount"
+                sub="15% off monthly total when client commits to 12 months"
+              />
+              <div>
+                <label className="block mb-1.5" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.12em", color: "rgba(30,15,10,0.5)", textTransform: "uppercase" }}>Client Ad Spend Budget <span style={{ fontWeight: 300 }}>(optional)</span></label>
+                <input
+                  value={adSpend}
+                  onChange={e => setAdSpend(e.target.value)}
+                  placeholder="e.g. $500/mo Meta · $300/mo Google (paid directly by client)"
+                  className="w-full px-4 py-2.5 rounded-xl outline-none"
+                  style={inputStyle}
+                />
+                <p className="mt-1.5" style={{ fontFamily: FONT_BODY, fontSize: "0.72rem", color: "rgba(30,15,10,0.38)" }}>Ad spend is paid directly to the platform — not included in your retainer.</p>
+              </div>
+              <div>
+                <label className="block mb-1.5" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.12em", color: "rgba(30,15,10,0.5)", textTransform: "uppercase" }}>Custom Note <span style={{ fontWeight: 300 }}>(optional)</span></label>
+                <textarea
+                  value={note}
+                  onChange={e => setNote(e.target.value)}
+                  placeholder="Add a personal note — it'll appear at the bottom of the proposal."
+                  rows={3}
+                  className="w-full px-4 py-2.5 rounded-xl outline-none resize-none"
+                  style={inputStyle}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ── RIGHT: Live Preview ── */}
+        <div className="lg:sticky lg:top-24 space-y-4">
+
+          {/* Summary Card */}
+          <div className="rounded-2xl p-6" style={{ background: "var(--ink)", border: "1px solid rgba(200,168,100,0.2)" }}>
+            <p className="text-[10px] tracking-[0.25em] uppercase mb-5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Investment Summary</p>
+            {!selectedPkg ? (
+              <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(255,255,255,0.3)", textAlign: "center", padding: "2rem 0" }}>← Select a package to see pricing</p>
+            ) : (
+              <>
+                {/* Monthly breakdown */}
+                <div className="space-y-2 mb-4">
+                  <div className="flex justify-between items-center">
+                    <span style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(255,255,255,0.6)" }}>{selectedPkg.emoji} {selectedPkg.name}</span>
+                    <span style={{ fontFamily: FONT_LUXE, fontSize: "0.85rem", color: "var(--cream)" }}>${selectedPkg.monthly.toLocaleString()}/mo</span>
+                  </div>
+                  {monthlyAddons.map(a => (
+                    <div key={a.key} className="flex justify-between items-center">
+                      <span style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(255,255,255,0.45)" }}>+ {a.name}</span>
+                      <span style={{ fontFamily: FONT_LUXE, fontSize: "0.8rem", color: "rgba(255,255,255,0.6)" }}>+${a.price}/mo</span>
+                    </div>
+                  ))}
+                  {annual && (
+                    <div className="flex justify-between items-center pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+                      <span style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "#4a9970" }}>Annual Discount (15%)</span>
+                      <span style={{ fontFamily: FONT_LUXE, fontSize: "0.8rem", color: "#4a9970" }}>−${discount.toLocaleString()}/mo</span>
+                    </div>
+                  )}
+                </div>
+                <div className="flex justify-between items-center py-3 mb-4" style={{ borderTop: "1px solid rgba(200,168,100,0.2)", borderBottom: "1px solid rgba(200,168,100,0.2)" }}>
+                  <span style={{ fontFamily: FONT_LUXE, fontSize: "0.75rem", color: "var(--gold)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Monthly Total</span>
+                  <span style={{ fontFamily: FONT_DISPLAY, fontSize: "1.6rem", color: "var(--gold)", fontWeight: 600 }}>${monthlyTotal.toLocaleString()}/mo</span>
+                </div>
+                {/* One-time breakdown */}
+                <div className="space-y-2 mb-4">
+                  <div className="flex justify-between items-center">
+                    <span style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(255,255,255,0.5)" }}>Setup Fee</span>
+                    <span style={{ fontFamily: FONT_LUXE, fontSize: "0.82rem", color: "rgba(255,255,255,0.65)" }}>$500</span>
+                  </div>
+                  {onetimeAddons.map(a => (
+                    <div key={a.key} className="flex justify-between items-center">
+                      <span style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(255,255,255,0.45)" }}>+ {a.name}</span>
+                      <span style={{ fontFamily: FONT_LUXE, fontSize: "0.8rem", color: "rgba(255,255,255,0.6)" }}>${a.price}</span>
+                    </div>
+                  ))}
+                </div>
+                {/* Due Today */}
+                <div className="rounded-xl p-4" style={{ background: "rgba(200,168,100,0.15)", border: "1px solid rgba(200,168,100,0.3)" }}>
+                  <div className="flex justify-between items-center">
+                    <span style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", color: "var(--gold)", textTransform: "uppercase", letterSpacing: "0.12em" }}>{trial ? "Due Today (Setup)" : "Due Today"}</span>
+                    <span style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "var(--gold)", fontWeight: 700 }}>${dueToday.toLocaleString()}</span>
+                  </div>
+                  {trial && <p style={{ fontFamily: FONT_BODY, fontSize: "0.72rem", color: "rgba(200,168,100,0.6)", marginTop: "4px" }}>First 2 weeks free · ${monthlyTotal.toLocaleString()}/mo starts day 15</p>}
+                </div>
+                {adSpend && (
+                  <p className="mt-3 text-center" style={{ fontFamily: FONT_BODY, fontSize: "0.72rem", color: "rgba(255,255,255,0.3)" }}>* Client pays ad spend directly: {adSpend}</p>
+                )}
+              </>
+            )}
+          </div>
+
+          {/* Action Buttons */}
+          <div className="grid grid-cols-2 gap-3">
+            <button
+              onClick={() => quoteReady && copyText("quote")}
+              className="py-3 rounded-xl text-[11px] tracking-widest uppercase transition-all"
+              style={{
+                fontFamily: FONT_LUXE,
+                background: copied === "quote" ? "#4a7a4a" : (quoteReady ? "var(--ink)" : "rgba(30,15,10,0.1)"),
+                color: quoteReady ? "var(--gold)" : "rgba(30,15,10,0.25)",
+                cursor: quoteReady ? "pointer" : "not-allowed",
+                border: "1px solid rgba(200,168,100,0.2)",
+              }}
+            >
+              {copied === "quote" ? "✓ Copied!" : "📋 Copy Quote"}
+            </button>
+            <button
+              onClick={() => quoteReady && copyText("email")}
+              className="py-3 rounded-xl text-[11px] tracking-widest uppercase transition-all"
+              style={{
+                fontFamily: FONT_LUXE,
+                background: copied === "email" ? "#4a7a4a" : (quoteReady ? "rgba(200,168,100,0.14)" : "rgba(30,15,10,0.05)"),
+                color: quoteReady ? "var(--gold)" : "rgba(30,15,10,0.25)",
+                cursor: quoteReady ? "pointer" : "not-allowed",
+                border: quoteReady ? "1px solid rgba(200,168,100,0.35)" : "1px solid rgba(200,168,100,0.1)",
+              }}
+            >
+              {copied === "email" ? "✓ Copied!" : "📧 Copy as Email"}
+            </button>
+          </div>
+
+          {/* Live Quote Preview */}
+          {quoteReady && (
+            <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.6)" }}>
+              <div className="px-4 py-2.5" style={{ background: "rgba(200,168,100,0.08)", borderBottom: "1px solid rgba(200,168,100,0.15)" }}>
+                <p style={{ fontFamily: FONT_LUXE, fontSize: "0.65rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--gold)" }}>Quote Preview</p>
+              </div>
+              <pre className="p-4 text-[11px] leading-relaxed overflow-auto max-h-[500px]" style={{ fontFamily: "ui-monospace, monospace", color: "rgba(30,15,10,0.7)", whiteSpace: "pre-wrap", margin: 0 }}>
+                {generateQuote("quote")}
+              </pre>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function PlaybookPage() {
   const [authed, setAuthed] = useState(() => sessionStorage.getItem("dh_admin") === "1");
   const [tab, setTab] = useState<Tab>("workflow");
@@ -5502,6 +6003,7 @@ function PlaybookPage() {
     { id: "growth", label: "Inbound Growth", icon: "📈" },
     { id: "deals", label: "Deal Pipeline", icon: "🎯" },
     { id: "newhire", label: "New Hire Guide", icon: "👋" },
+    { id: "quote", label: "Quote Builder", icon: "🧮" },
   ];
 
   return (
@@ -5554,6 +6056,7 @@ function PlaybookPage() {
         {tab === "content" && <ContentStrategyTab />}
         {tab === "deals" && <DealTrackerTab />}
         {tab === "newhire" && <NewHireTab />}
+        {tab === "quote" && <QuoteBuilderTab />}
       </div>
 
       <footer className="px-6 py-8 text-center border-t border-[var(--gold)]/10">
