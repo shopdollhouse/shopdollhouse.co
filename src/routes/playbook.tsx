@@ -1637,8 +1637,71 @@ We are a small team. Trust and reliability are non-negotiable.`,
 }
 
 /* ─── Page ─────────────────────────────────────────────── */
+const PW_HASH = "aa15f6cd8c0cb47ab513439d925bc35b9352f1f43718ce566613643804770458";
+
+async function hashString(s: string): Promise<string> {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+function LoginGate({ onAuth }: { onAuth: () => void }) {
+  const [email, setEmail] = useState("");
+  const [pw, setPw] = useState("");
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  async function submit(e: React.FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+    setError(false);
+    const h = await hashString(pw);
+    if (email.toLowerCase().trim() === "hello@shopdollhouse.co" && h === PW_HASH) {
+      sessionStorage.setItem("dh_admin", "1");
+      onAuth();
+    } else {
+      setError(true);
+    }
+    setLoading(false);
+  }
+
+  return (
+    <main className="min-h-screen flex items-center justify-center px-6" style={{ background: "linear-gradient(135deg, #f4dcdc 0%, #f7e6dc 45%, #f1d3cf 100%)" }}>
+      <div className="w-full max-w-sm">
+        <div className="text-center mb-8">
+          <p style={{ fontFamily: FONT_SCRIPT, fontSize: "1.6rem", color: "rgba(30,15,10,0.4)" }}>the</p>
+          <h1 style={{ fontFamily: FONT_DISPLAY, fontSize: "2rem", color: "var(--rose)", fontWeight: 400, letterSpacing: "0.06em", marginTop: "-6px" }}>DOLLHOUSE</h1>
+          <p style={{ fontFamily: FONT_LUXE, fontSize: "8px", letterSpacing: "3px", textTransform: "uppercase", color: "var(--gold)", fontWeight: 600 }}>Brand Studio · Admin</p>
+        </div>
+        <form onSubmit={submit} className="space-y-3 rounded-2xl p-8" style={{ background: "rgba(255,255,255,0.7)", border: "1px solid rgba(200,168,100,0.25)", backdropFilter: "blur(12px)" }}>
+          <input
+            type="email" placeholder="Email address" value={email} onChange={e => setEmail(e.target.value)} required
+            className="w-full rounded-xl px-4 py-3 focus:outline-none"
+            style={{ fontFamily: FONT_BODY, fontSize: "0.9rem", color: "var(--ink)", background: "rgba(255,255,255,0.85)", border: `1px solid ${error ? "#c97a7a" : "rgba(200,168,100,0.35)"}` }}
+          />
+          <input
+            type="password" placeholder="Password" value={pw} onChange={e => setPw(e.target.value)} required
+            className="w-full rounded-xl px-4 py-3 focus:outline-none"
+            style={{ fontFamily: FONT_BODY, fontSize: "0.9rem", color: "var(--ink)", background: "rgba(255,255,255,0.85)", border: `1px solid ${error ? "#c97a7a" : "rgba(200,168,100,0.35)"}` }}
+          />
+          {error && <p style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "#c97a7a" }}>Incorrect email or password.</p>}
+          <button
+            type="submit" disabled={loading}
+            className="w-full rounded-xl py-3 transition-all hover:opacity-90 disabled:opacity-60 mt-2"
+            style={{ background: "var(--ink)", fontFamily: FONT_DISPLAY, fontSize: "1rem", fontStyle: "italic", fontWeight: 700, color: "var(--gold)" }}
+          >
+            {loading ? "Checking..." : "Enter the Playbook →"}
+          </button>
+        </form>
+      </div>
+    </main>
+  );
+}
+
 function PlaybookPage() {
+  const [authed, setAuthed] = useState(() => sessionStorage.getItem("dh_admin") === "1");
   const [tab, setTab] = useState<Tab>("workflow");
+
+  if (!authed) return <LoginGate onAuth={() => setAuthed(true)} />;
 
   const tabs: { id: Tab; label: string; icon: string }[] = [
     { id: "workflow", label: "Client Workflow", icon: "📋" },

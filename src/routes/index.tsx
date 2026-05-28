@@ -1915,6 +1915,13 @@ function Footer() {
       >
         © {new Date().getFullYear()} The Dollhouse Brand Studio. All rights reserved.
       </p>
+      <Link
+        to="/playbook"
+        className="mt-4 inline-block hover:opacity-60 transition-opacity"
+        style={{ fontFamily: "'Jost', sans-serif", fontSize: "9px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.2)" }}
+      >
+        Admin
+      </Link>
     </footer>
   );
 }

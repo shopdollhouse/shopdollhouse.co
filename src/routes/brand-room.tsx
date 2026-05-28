@@ -449,6 +449,13 @@ function Footer() {
       <p className="text-xs text-[var(--ink)]/35 mt-6" style={{ fontFamily: "'DM Sans', sans-serif" }}>
         © {new Date().getFullYear()} The Dollhouse Brand Studio. All rights reserved.
       </p>
+      <Link
+        to="/playbook"
+        className="mt-3 inline-block hover:opacity-60 transition-opacity"
+        style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.2)" }}
+      >
+        Admin
+      </Link>
     </footer>
   );
 }
