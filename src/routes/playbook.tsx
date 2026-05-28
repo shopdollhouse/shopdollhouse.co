@@ -1874,10 +1874,573 @@ SECTION 6 — Access & Logins
 
 Format as a clean intake form with clear section headers, short answer fields, and multiple choice where appropriate. Tone: professional, warm, easy to fill out."`,
     },
+
+    // ─── 4x4 Video Strategy ──────────────────────────────
+    {
+      title: "4x4 Method — Overview & Framework Reference",
+      tag: "4x4 Method",
+      prompt: `This is the content strategy framework hardcoded into every video we create for clients. Read this before using any other 4x4 prompt.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+THE GOAL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+This is not just a structure — it is nervous system sequencing.
+You are guiding the viewer through: Curiosity → Recognition → Regulation → Belief → Action.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+BEFORE YOU SCRIPT: SET YOUR INTENTION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Start with a STRONG topic — not a weak one.
+
+Weak: "Why you need discipline"       → Generic. No one reacts.
+Strong: "Why your low self-esteem is disguised as waiting for motivation" → Exposes a pattern. Everyone reacts.
+
+A strong topic:
+✓ Calls out a specific behavior
+✓ Challenges the viewer's identity
+✓ Interrupts a delusion they're holding
+✓ Makes the ideal client say "this is for ME"
+✓ Nobody is confused about who it's speaking to
+
+Define your psychological target before scripting:
+— Who is this for?
+— What identities does this confront in them?
+— What pain or frustration am I bringing to light?
+— What transformation am I offering?
+— Why does this matter to them? Why does it matter to me to say it?
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+THE 4x4 STRUCTURE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 1 — HOOK (First 4 seconds)
+The hook is an INTERRUPTION. The brain decides in 1–3 seconds: is this about me?
+First two sentences must DISRUPT, ACCUSE, REVEAL, or EXPOSE.
+
+Why two sentences?
+→ Sentence 1 = pattern interruption (shock)
+→ Sentence 2 = personal relevance (clarity)
+Shock without clarity → they leave. Clarity without shock → they scroll. You need BOTH.
+
+On-screen title + subtitle:
+→ Title anchors the theme — does NOT repeat the hook
+→ Subtitle adds context (include in caption)
+Example: Hook: "You don't have a content problem — you have a courage problem."
+Title on screen: "The Psychology of Inconsistent Creators"
+Subtitle in caption: "How low self-esteem sabotages visibility"
+
+STEP 2 — PROOF (External validation, early in the video)
+Back up the hook immediately. Nobody cares until you prove it.
+→ A stat or study
+→ A testimonial or case study
+→ Your own real personal results
+
+STEP 3 — VALUE / PROBLEM (The mirror and the story)
+People don't connect to information — they connect to mirrors.
+Hold a mirror up to expose their patterns (not to shame — to make them aware).
+
+Use a personal story. Stories do three things:
+1. Build trust
+2. Build emotional connection
+3. Lower resistance
+
+Teach from your scars, not just from theory.
+
+Emotional triggers that work (NOT shame — pattern exposure):
+→ Shame exposure: "You say you want wealth but avoid responsibility."
+→ Hope: "You're closer than you think."
+→ Identity challenge: "You don't lack a skill — you lack a belief system."
+→ Fear of regret: "You're wasting your potential."
+→ Aspiration/exposure: Showing what's possible through your lifestyle or results.
+
+KEY RULE: Don't shame people. Expose their patterns. That is authority.
+
+STEP 4 — CALL TO ACTION (Last 4 seconds)
+End every video with a clear CTA. This boosts engagement and feeds the algorithm.
+→ "Comment [WORD] and I'll DM you [RESOURCE]"
+→ "Follow for [OUTCOME] content"
+→ "Share this with someone who [SITUATION]"
+→ "Book a free call — link in bio"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+QUICK REFERENCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Hook     → First 4 seconds  → Interrupt, expose, make it personal
+Proof    → Right after hook → Stat / testimonial / personal results
+Value    → Middle           → Mirror, story, pain points, takeaways
+CTA      → Last 4 seconds   → Drive engagement, feed the algorithm`,
+    },
+    {
+      title: "Strong Topic Generator — 20 Topics for Any Niche",
+      tag: "4x4 Method",
+      prompt: `Use this before scripting any video. Paste into ChatGPT to generate 20 strong, pattern-exposing topics that will stop the scroll for your client's ideal audience.
+
+Paste this into ChatGPT:
+
+"You are a viral content strategist trained in psychology-based video scripting. I need 20 STRONG video topics for [BUSINESS NAME / NICHE].
+
+Business type: [e.g., life coach / med spa / personal trainer / restaurant / real estate agent]
+Ideal client: [DESCRIBE — e.g., 'women 30–45 who want to lose weight but keep starting over' / 'small business owners who are invisible online']
+Content goal: [e.g., get DMs / build trust / sell a service / grow followers / go viral]
+
+STRONG topic criteria:
+✓ Calls out a specific behavior or pattern
+✓ Challenges the viewer's identity
+✓ Interrupts a delusion they're holding
+✓ Speaks directly to the ideal client — no one else is confused
+✓ Exposes something the viewer already knows but hasn't admitted
+
+WEAK → STRONG examples:
+❌ 'Why you need to work harder'
+✓ 'The reason you call yourself 'disciplined' but your results say otherwise'
+
+❌ 'How to get more clients'
+✓ 'The type of clients you're attracting is a direct reflection of how much you charge yourself'
+
+❌ 'Social media tips for small businesses'
+✓ 'You're not posting consistently because deep down you don't believe your business is worth the attention'
+
+For EACH of the 20 topics, give me:
+1. The STRONG topic (specific, pattern-exposing, identity-confronting)
+2. The WEAK version it replaces (what everyone else would say)
+3. The identity it confronts in the viewer
+4. The transformation it points to
+5. Pain activation score 1–10 (how hard will this hit for the ideal client)
+
+Sort by pain activation score, highest first. Do NOT make these generic. They should feel like they were written specifically for [BUSINESS TYPE] and their audience."`,
+    },
+    {
+      title: "Hook Writer — First 4 Seconds + Title & Subtitle",
+      tag: "4x4 Method",
+      prompt: `Use this to write the opening hook for any video — plus the on-screen title and caption subtitle. The hook is everything. Get this wrong and no one watches. Get it right and they can't look away.
+
+Paste this into ChatGPT:
+
+"You are a viral content strategist trained in the 4x4 Method for psychology-based video content.
+
+I need 10 hook variations for this video topic: [PASTE THE STRONG TOPIC]
+
+Context:
+Business type: [TYPE]
+Ideal client: [DESCRIBE — be specific]
+Tone of the video: [e.g., bold and confrontational / warm and vulnerable / educational / raw and honest]
+
+Hook formula — two sentences only:
+→ Sentence 1: Pattern interruption. This is the SHOCK. It disrupts, accuses, reveals, or exposes. The viewer's brain should say 'wait, what?'
+→ Sentence 2: Personal relevance. This is the CLARITY. It tells them exactly who this is for. The viewer should say 'this is about me.'
+
+Without both: they leave or scroll. With both: they're hooked.
+
+Write 10 hook options. Each one should feel DIFFERENT in approach:
+- 2 hooks that START with an accusation
+- 2 hooks that START with a question
+- 2 hooks that START with a statistic or bold claim
+- 2 hooks that START with 'If you...'
+- 2 hooks that are vulnerable and personal
+
+For EACH hook, also write:
+→ ON-SCREEN TITLE (3–7 words, anchors the theme of the video — does NOT repeat the hook)
+→ SUBTITLE for caption (one punchy line that adds specificity or context)
+
+Example of the format I want:
+Hook: 'You don't have a content problem — you have a courage problem. And if you've been posting inconsistently, you already know what I'm talking about.'
+Title: The Psychology of Inconsistent Creators
+Subtitle: How low self-esteem sabotages visibility
+
+After all 10 hooks, tell me which 3 you'd recommend and why."`,
+    },
+    {
+      title: "Full 4x4 Script — Master Template (Any Business)",
+      tag: "4x4 Method",
+      prompt: `Use this to write a complete video script for any client using the full 4x4 Method. This is the master prompt — it applies to any niche, any platform.
+
+Paste this into ChatGPT:
+
+"You are a viral content strategist and scriptwriter trained in the 4x4 Method — a psychology-based nervous system sequencing approach to video content that guides viewers through: Curiosity → Recognition → Regulation → Belief → Action.
+
+Write a complete short-form video script for [BUSINESS NAME].
+
+Business type: [TYPE]
+Ideal client: [DESCRIBE — be specific about who they are, what they want, what's stopping them]
+Video topic (STRONG — not generic): [PASTE THE STRONG TOPIC]
+Platform: [Instagram Reel / TikTok / Facebook Reel]
+Target length: [30 / 45 / 60 seconds]
+Tone: [bold and confrontational / warm and vulnerable / educational / raw and real]
+
+Deliver the script in the exact 4x4 structure below:
+
+━━ STEP 1: HOOK — First 4 seconds ━━
+Two sentences maximum.
+Sentence 1: Pattern interruption — shock, disrupt, accuse, reveal, or expose.
+Sentence 2: Personal relevance — narrow to the exact viewer this is for.
+The viewer must think 'this is about ME' or they scroll.
+
+ON-SCREEN TEXT:
+Title (anchors the theme — does not repeat the hook):
+Subtitle (1 line, goes in the caption):
+
+━━ STEP 2: PROOF — Right after the hook ━━
+Immediately validate the hook with proof. This earns the right to be heard.
+Use ONE of: a real statistic / a testimonial / personal results / a case study.
+Keep it short — 1–3 sentences. The viewer is still deciding if they trust you.
+
+━━ STEP 3: VALUE — The mirror and the story ━━
+This is the body of the video. Hold a mirror up to expose their pattern without shaming them.
+
+Use a story from real life (client story, personal experience, a scenario they'll recognize).
+Stories build trust, build emotional connection, and lower resistance.
+Teach from scars, not theory.
+
+Then deliver the actual value — the insight, strategy, or truth that moves them.
+Include at least ONE emotional trigger:
+→ Shame exposure (expose the pattern, not the person)
+→ Hope ('you're closer than you think')
+→ Identity challenge ('you don't lack a skill — you lack a belief system')
+→ Fear of regret ('you're wasting your potential')
+→ Aspiration exposure (what's possible when they change)
+
+━━ STEP 4: CALL TO ACTION — Last 4 seconds ━━
+One clear action. Make it feel like the natural next step, not a sales pitch.
+Options: Comment [WORD] / Follow for [OUTCOME] / Book a call / Share with someone who [SITUATION]
+
+━━ AFTER THE SCRIPT ━━
+Also give me:
+1. The full CAPTION for this post (2–4 sentences + CTA + 5–8 hashtags)
+2. 3 on-screen text overlays to show during the video (beyond the title — key phrases to flash on screen)
+3. Audio direction (what vibe/style of background music fits this video)
+4. One suggestion for what to show visually while talking (b-roll, environment, action shot)"`,
+    },
+    {
+      title: "4x4 Script — Local Service Business",
+      tag: "4x4 Method",
+      prompt: `Use this to write a 4x4 video script specifically for local service businesses — salons, dentists, chiropractors, HVAC, plumbers, landscapers, gyms, med spas, restaurants, etc.
+
+These clients aren't personal brands — but the 4x4 method still applies. The business owner becomes the face, and the content exposes patterns in potential customers' behavior.
+
+Paste this into ChatGPT:
+
+"You are a viral content strategist trained in the 4x4 Method. Write a complete short-form video script for a local [BUSINESS TYPE] called [BUSINESS NAME] located in [CITY].
+
+Ideal customer: [DESCRIBE — e.g., 'homeowners 35–65 who keep ignoring their HVAC until it breaks' / 'women who want to feel confident but keep postponing self-care']
+Video goal: [get more bookings / build local trust / get more DMs / go viral in the community]
+Topic (STRONG — expose a pattern): [PASTE STRONG TOPIC — or ask AI to suggest one first]
+Platform: [Instagram Reel / TikTok / Facebook Reel]
+Length: [30 / 45 / 60 seconds]
+Tone: [warm and local / bold and direct / educational]
+Owner's name (if they'll be on camera): [NAME]
+
+Use the full 4x4 structure:
+
+HOOK (First 4 sec):
+→ Sentence 1: Expose or interrupt — call out the behavior their customers have
+→ Sentence 2: Make it personal to their specific audience (locals who need this service)
+
+Example hook for a dentist:
+'You've been putting off that appointment for three years. Not because you can't afford it — because you're scared of what they'll find.'
+
+PROOF:
+→ A local stat, a before/after, a number of years in business, or a real customer result
+→ Something that builds instant local credibility
+
+VALUE (The mirror + story):
+→ Expose the pattern the ideal customer has (e.g., DIY-ing something until it becomes a bigger problem / avoiding the dentist until the pain is unbearable)
+→ Tell a real story: a customer who waited and what happened vs. one who acted early
+→ Give them 1–3 actionable tips or the one truth they need to hear
+→ Use an emotional trigger: hope, identity challenge, fear of regret, or aspiration
+
+CTA (Last 4 sec):
+→ 'Comment [WORD] and I'll DM you [our special offer]'
+→ 'Book your appointment — link in bio'
+→ 'Call us at [NUMBER]'
+→ 'Tag someone who needs to hear this'
+
+After the script:
+1. Caption for the post (local, conversational, include city name, 5 hashtags — mix of local and niche)
+2. On-screen text overlays (2–3 key phrases to flash on screen)
+3. What visual to show while talking (clinic/shop interior, the service being performed, before/after, team at work)"`,
+    },
+    {
+      title: "4x4 Script — Personal Brand / Coach / Creator",
+      tag: "4x4 Method",
+      prompt: `Use this for personal brand clients — coaches, consultants, course creators, thought leaders, or for building Mandy's own brand content. This is where the 4x4 method is most powerful — because the content IS the person.
+
+Paste this into ChatGPT:
+
+"You are a viral content strategist trained in the 4x4 Method — a psychology-based nervous system sequencing approach to video content.
+
+Write a complete short-form video script for [NAME], a [THEIR IDENTITY — e.g., 'business coach for first-generation entrepreneurs' / 'social media strategist for women-owned small businesses' / 'life coach who teaches high-achievers to stop self-sabotaging'].
+
+Ideal viewer: [DESCRIBE — be deeply specific: their age range, what they want, what's stopping them, what they secretly believe about themselves]
+Topic (STRONG — must expose a pattern the ideal viewer has): [PASTE STRONG TOPIC]
+Platform: [Instagram Reel / TikTok]
+Length: [30 / 45 / 60 seconds]
+Tone: [raw and real / bold and confrontational / warm and mentoring / vulnerable and honest]
+Key personal story or credential to weave in: [e.g., 'I used to post from a shelter with $11 in my account' / 'I hit six figures before I dealt with my imposter syndrome']
+
+The FULL 4x4 structure:
+
+HOOK (First 4 sec):
+→ Sentence 1: A bold pattern interrupt — accuse, expose, reveal something they know but haven't admitted. This is a confrontation, not a conversation.
+→ Sentence 2: Personal relevance — narrow it to exactly who this is for. They should feel caught.
+
+The hook should feel like [NAME] is talking directly to one specific person, not a crowd.
+
+ON-SCREEN:
+Title (anchors the video theme — does not repeat the hook):
+Subtitle (in the caption — adds more context):
+
+PROOF (Right after hook — earn the right to be heard):
+→ Personal result, a transformation they went through, or a client's result
+→ Something specific and real — not vague. Numbers, timelines, before/after.
+
+VALUE (The mirror + story + emotional trigger):
+→ Hold the mirror up. Expose the pattern — gently but honestly. Don't shame, expose.
+→ Tell the real story: something from your own journey or a client's journey that the viewer will recognize themselves in
+→ This is where you teach from your SCARS, not just your strategy
+→ Choose and use one emotional trigger:
+   • Shame exposure: call out the gap between what they say they want and what they do
+   • Hope: show them the light — 'you are closer than you think'
+   • Identity challenge: 'you don't lack a skill — you lack a belief system'
+   • Fear of regret: 'you are wasting your potential and somewhere deep down you know it'
+   • Aspiration/Exposure: show what's possible when someone makes the shift
+
+CTA (Last 4 sec):
+→ Be direct. One ask. Should feel like the natural next step from the video's transformation.
+→ Options: 'Comment [WORD]' / 'Follow for more of this' / 'Share with someone who needs this' / 'DM me [WORD] and I'll send you [RESOURCE]'
+
+After the script give me:
+1. Caption (3–5 punchy lines, sounds like them talking, not marketing. CTA at the end. 5–8 hashtags.)
+2. 3 on-screen text overlays (the phrases that need to LAND on screen visually)
+3. The one piece of advice on how to DELIVER this video — what energy, what body language, what does their face need to say"`,
+    },
+    {
+      title: "4x4 Script — E-Commerce / Product Brand",
+      tag: "4x4 Method",
+      prompt: `Use this for product-based brands — e-commerce, clothing, beauty, food, lifestyle products, etc. The 4x4 method works for product content by tying the product to an identity shift or emotional truth — not just showing the product.
+
+Paste this into ChatGPT:
+
+"You are a viral content strategist trained in the 4x4 Method. Write a short-form video script for [BRAND NAME], an e-commerce brand that sells [PRODUCT TYPE].
+
+Ideal customer: [DESCRIBE — e.g., 'women 20–35 who want to feel premium and put-together but are on a budget' / 'men who care about their appearance but don't want to look like they're trying too hard']
+Product being featured: [SPECIFIC PRODUCT]
+Video goal: [drive sales / build brand identity / go viral / grow following]
+Topic (STRONG — tie it to an identity or pattern, not just the product): [PASTE STRONG TOPIC or describe what the product represents emotionally]
+Platform: [TikTok / Instagram Reel]
+Length: [15 / 30 / 45 seconds]
+Tone: [aspirational and luxury / fun and relatable / raw and honest / lifestyle-focused]
+
+Important: Do NOT make this a product demo. Make it a MIRROR that the ideal customer holds up and sees themselves — with the product as the vehicle for their transformation.
+
+THE FULL 4x4 STRUCTURE:
+
+HOOK (First 4 sec):
+→ Sentence 1: Expose the pattern or identity the viewer has around the type of person who uses this product
+→ Sentence 2: Make it personal — tie it directly to who they are or who they want to be
+→ Example for a luxury skin care brand: 'You keep buying cheap skincare and wondering why you don't feel like a priority. You already know what the real problem is.'
+
+PROOF:
+→ A before/after, a number (% of customers who see X result), a viral moment, a testimonial
+→ Or a lifestyle exposure that makes the product feel aspirational and attainable at the same time
+
+VALUE (The mirror + emotional trigger):
+→ Connect the product to a transformation — not just a feature
+→ Use ASPIRATION EXPOSURE: show what this product represents for someone who has the life they want
+→ Or use IDENTITY CHALLENGE: 'you don't buy cheap because you can't afford better — you buy cheap because you don't think you deserve better'
+→ Tell a short real story: a customer's experience, or your own relationship to the product
+
+CTA (Last 4 sec):
+→ 'Shop now — link in bio'
+→ 'Comment [WORD] and I'll DM you a discount code'
+→ 'Tag someone who needs this'
+→ 'Follow — we drop new [PRODUCT] every [DAY]'
+
+After the script:
+1. Caption (2–3 lines, sounds human, includes CTA, 5–8 hashtags — niche + product-specific)
+2. Visual direction: what to show on screen? Product close-up, lifestyle shot, unboxing, before/after, luxury styling?
+3. On-screen text overlays (2–3 phrases that land visually)
+4. Hook-to-product ratio advice: how much time showing product vs. talking to the viewer?"`,
+    },
+    {
+      title: "Emotional Trigger Map — Choose the Right One",
+      tag: "4x4 Method",
+      prompt: `Use this before scripting any video to identify WHICH emotional trigger will work best for your client's specific audience. Different triggers work for different people. Choose the wrong one and the content falls flat. Choose the right one and it goes viral.
+
+Paste this into ChatGPT:
+
+"You are a content psychologist and viral video strategist. I need you to identify the best emotional triggers to use in a video for [BUSINESS NAME / CREATOR NAME].
+
+Their ideal viewer: [DESCRIBE in detail — age, situation, what they want, what's stopping them, what they secretly believe]
+Video topic: [PASTE THE STRONG TOPIC]
+Tone: [bold / warm / vulnerable / educational]
+
+Here are the 6 core emotional triggers used in viral video content:
+
+1. SHAME EXPOSURE — Expose the gap between what they say and what they do. Not to shame them — to help them see their own pattern. Example: 'You say you want wealth but you avoid every conversation about money.'
+
+2. HOPE — You are closer than you think. This activates people who are tired and about to give up. Example: 'Most people quit 3 feet from the gold.'
+
+3. IDENTITY CHALLENGE — Challenge who they believe they are. Example: 'You don't lack a skill — you lack a belief system.' This is powerful for high-achievers in a rut.
+
+4. FEAR OF REGRET — Activate the fear that they are wasting their potential, their time, or their chance. Example: 'The version of you that started five years ago would be disappointed in where you are standing right now.'
+
+5. ASPIRATION / EXPOSURE — Show what is possible. Expose the life or result that's available to them. This is powerful with lifestyle content — showing the house, the body, the business, the freedom — and letting them feel the gap between where they are and where they could be.
+
+6. BELONGING / RECOGNITION — Make them feel seen and understood in a way that nobody else has. They feel 'finally someone who gets it.' This is powerful for communities and niche audiences.
+
+Based on the ideal viewer I described:
+1. Rank all 6 triggers from most effective to least effective for THIS audience and explain why
+2. Give me an example of how each of the top 3 triggers would sound as a HOOK sentence for this specific video topic
+3. Tell me which one trigger you would bet on for this video and why
+4. Warn me about any trigger that could backfire or feel manipulative with this particular audience
+
+After your analysis, use the #1 trigger to write 3 hook options for this video."`,
+    },
+    {
+      title: "Story-to-Script Converter — Turn Any Story Into a 4x4 Video",
+      tag: "4x4 Method",
+      prompt: `The most powerful content comes from real stories. Use this to turn ANY personal story — yours or a client's — into a complete 4x4 video script. Stories lower resistance, build trust, and make content that people save and share.
+
+Paste this into ChatGPT:
+
+"You are a viral content strategist trained in the 4x4 Method. I need you to turn a real story into a complete short-form video script.
+
+THE STORY:
+[Paste the real story here — it doesn't have to be perfect or polished. Write it raw. Include: the situation, the emotional low point, what changed, and the result or lesson. The messier and more honest, the better material it gives us.]
+
+Example of the kind of detail that makes great content:
+'I was posting three times a day from a homeless shelter. I had $11 in my bank account. Every time I looked at my phone and saw zero comments, I wanted to quit. But I kept posting because I had nothing else. Three months later those videos brought in my first $5,000 client.'
+
+Context:
+Creator / Business: [NAME]
+Ideal viewer: [DESCRIBE — who needs to hear this story to feel less alone?]
+Platform: [Instagram Reel / TikTok]
+Length: [30 / 45 / 60 seconds]
+Tone: [vulnerable and raw / hopeful / direct]
+
+WHAT I NEED YOU TO DO:
+
+1. FIND THE HOOK
+What is the single most pattern-interrupting line in this story?
+Write Sentence 1 (the shock / the exposure) and Sentence 2 (who this is for).
+The hook should make the ideal viewer think 'this is about ME.'
+
+2. FIND THE PROOF
+What part of this story provides the external validation that makes the hook believable?
+Pull it out and sharpen it (make any numbers or timelines specific).
+
+3. FIND THE MIRROR
+What pattern in the viewer's life does this story expose?
+Write the transition from the story into the VALUE — the universal truth that the viewer can apply to themselves.
+
+4. WRITE THE CTA
+Based on where the video ends emotionally — what is the most natural next step to ask them to take?
+
+Then write the FULL COMPLETE SCRIPT with all 4 sections labeled and timed.
+
+Also give me:
+— The on-screen TITLE and SUBTITLE
+— The full CAPTION (3–4 lines + CTA + hashtags)
+— One note on how to DELIVER this video — what energy, pacing, or emotion to bring"`,
+    },
+    {
+      title: "30-Day 4x4 Content Calendar — Monthly Video Plan",
+      tag: "4x4 Method",
+      prompt: `Use this to plan a full month of short-form video content for any client using the 4x4 Method. Every video in the calendar follows the psychology-based structure — strong topics, pattern-exposing hooks, emotional triggers, and clear CTAs.
+
+Paste this into ChatGPT:
+
+"You are a viral content strategist trained in the 4x4 Method. Build a 30-day short-form video content calendar for [BUSINESS NAME / CREATOR NAME].
+
+Business type / niche: [TYPE]
+Ideal viewer: [DESCRIBE specifically]
+Primary platform: [Instagram Reels / TikTok / both]
+Posting frequency: [3x per week / 5x per week / daily]
+Content goals this month: [e.g., grow following / get DMs / drive bookings / sell a product / build authority]
+Any upcoming promotions or events: [LIST — or write 'none']
+Tone of the account: [bold / warm and educational / raw and personal / luxury lifestyle]
+
+Create a 30-day calendar where each video entry includes:
+
+▸ Date / Day #
+▸ Strong Topic (specific, pattern-exposing — NOT generic)
+▸ Hook (2 sentences: pattern interrupt + personal relevance)
+▸ On-Screen Title
+▸ Caption Subtitle
+▸ Emotional Trigger Used (shame exposure / hope / identity challenge / fear of regret / aspiration)
+▸ Proof Element (what to use as validation — stat, testimonial, personal result)
+▸ CTA for this video
+
+Organize the 30 days with intentional variation:
+— Week 1: Establish authority (educational + credibility content)
+— Week 2: Build emotional connection (story-based + vulnerable content)
+— Week 3: Handle objections + build desire (identity challenge content)
+— Week 4: Drive action (aspiration + direct CTA content)
+
+At the end, give me:
+1. The 3 videos from this calendar you think have the highest viral potential — and why
+2. The 3 videos most likely to drive DMs or bookings — and why
+3. One piece of advice on how to batch-film all 30 of these efficiently"`,
+    },
+    {
+      title: "Caption + CTA Writer — 4x4 Aligned",
+      tag: "4x4 Method",
+      prompt: `The caption is the second hook. After someone watches the video — the caption either deepens their connection or loses them. Use this to write a 4x4-aligned caption and CTA for any video.
+
+Paste this into ChatGPT:
+
+"You are a social media copywriter trained in the 4x4 Method for psychology-based content.
+
+Write the full caption + CTA package for this video:
+
+Video topic: [PASTE THE STRONG TOPIC]
+Hook used in the video: [PASTE THE TWO-SENTENCE HOOK]
+On-screen title: [PASTE]
+Subtitle (to go in caption): [PASTE]
+Business / Creator: [NAME and TYPE]
+Platform: [Instagram / TikTok / Facebook]
+Primary CTA for this video: [e.g., comment / DM / follow / book / share]
+Emotional trigger used in the video: [which one?]
+
+Write the caption in 3 parts:
+
+PART 1 — SUBTITLE LINE (first line of caption, appears before 'more' cutoff)
+This is ONE line that deepens the hook without repeating it.
+It should feel like a direct extension — the viewer reads it right after the video ends and it lands harder.
+Examples:
+'How low self-esteem sabotages visibility.'
+'The pattern you keep calling strategy.'
+'Your consistency problem is not a schedule problem.'
+
+PART 2 — CAPTION BODY (3–5 lines max)
+Conversational. No fluff. No generic motivational filler.
+Continue the pattern exposure from the video — give them one more thing to sit with.
+Should feel like a continuation of the conversation, not a sales pitch.
+Include ONE specific line they'll want to screenshot or save.
+
+PART 3 — CALL TO ACTION
+One clear ask. Direct and natural — not desperate.
+Match the CTA to the emotional state the video left them in.
+Options:
+→ 'Comment [WORD] and I'll DM you [SPECIFIC RESOURCE]'
+→ 'Follow for more content like this'
+→ 'Share this with someone who needs to hear it'
+→ 'Book a free call — link in bio'
+→ 'Tag someone who's been saying this about themselves'
+
+HASHTAGS:
+Give me 8 hashtags — a mix of:
+- 2 large popular tags (1M+ posts)
+- 3 medium niche tags (100K–1M posts)
+- 3 small specific tags (under 100K — high signal for the right audience)
+
+After everything — give me one note on WHY this caption works for this specific audience and video topic."`,
+    },
   ];
 
   const GROUPS = [
     { label: "Platform AI", icon: "🤖", tags: ["Platform AI"] },
+    { label: "4x4 Video Strategy", icon: "🧠", tags: ["4x4 Method"] },
     { label: "Content Creation", icon: "✍️", tags: ["Captions", "Video", "Stories", "Planning"] },
     { label: "Content Sizes", icon: "📐", tags: ["Sizes"] },
     { label: "Ads & Email", icon: "📣", tags: ["Ads", "Email"] },
