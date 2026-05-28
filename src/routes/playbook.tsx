@@ -589,6 +589,48 @@ Then I will:
 Write in a confident, helpful, expert tone. Not salesy. Genuinely useful first.`,
     },
     {
+      title: "Pitch Deck Builder",
+      tag: "Sales",
+      prompt: `Build a 7-slide sales pitch deck for The Dollhouse Brand Studio for a specific prospect.
+
+Prospect info:
+- Business name: [BUSINESS NAME]
+- Niche: [NICHE]
+- City: [CITY]
+- Pain points they mentioned on the call: [THEIR EXACT WORDS / PROBLEMS]
+- Package they're interested in: [LOW / MID / HIGH TIER — or describe package]
+- Monthly price: $[AMOUNT]
+- Any setup fee: $[AMOUNT or "none"]
+
+Build 7 slides:
+
+Slide 1 — Introduction
+Who we are: The Dollhouse Brand Studio. What we do: done-for-you social media, ads, and automation for [NICHE] businesses. Why we do it: [MANDY'S SHORT WHY — e.g. "We believe every small business deserves to look and run like a big one."]
+
+Slide 2 — Their Problem
+Restate [BUSINESS NAME]'s pain points in their own words. Make them feel understood, not sold to.
+
+Slide 3 — Our Solution
+Software + service working together. Platform handles the automations, CRM, and scheduling. We handle the content, ads, and strategy. They handle their business.
+
+Slide 4 — Proof
+[INSERT CASE STUDY OR TESTIMONIAL] — if no case study yet, use: "We set up a system like this for a [SIMILAR NICHE] business and they [RESULT] in [TIMEFRAME]."
+
+Slide 5 — Their Package
+Exactly what's included, listed clearly. Also list 1–2 things NOT included so there are no surprises.
+
+Slide 6 — Investment
+Monthly: $[AMOUNT]. Setup (one-time): $[AMOUNT or "none"]. Payment terms: [MONTHLY / UPFRONT / etc.]
+
+Slide 7 — Next Steps
+Step 1: Sign the agreement
+Step 2: Complete onboarding form (sent same day)
+Step 3: Kickoff call within 48 hours — your system goes live
+
+---
+Format this as presentation slide content. Keep each slide to 50 words or less. No filler — every word earns its place.`,
+    },
+    {
       title: "GEO Brand Audit Prompt",
       tag: "GEO",
       prompt: `Run a GEO (Generative Engine Optimization) audit for The Dollhouse Brand Studio.
@@ -1266,6 +1308,50 @@ Thanks again for trusting me with [BUSINESS NAME].
               </ul>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Pitch Deck Guide */}
+      <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+        <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+          <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Step 3 in the Sales Process</p>
+          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "var(--rose)" }}>The Pitch Deck</h3>
+        </div>
+        <div className="px-6 py-6 space-y-5">
+          <p style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(30,15,10,0.7)", lineHeight: 1.7 }}>
+            After you've had the discovery call and run the CLOSER framework, send a pitch deck before asking for the close. It makes you look like a real agency, removes hesitation, and gives them something concrete to look at. Keep it under 15 slides. It should feel like a proposal, not a presentation.
+          </p>
+
+          <div>
+            <p className="text-[10px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>What your deck must include</p>
+            <div className="space-y-2">
+              {[
+                { n: "1", title: "Introduction", body: "Who you are, what you do, and why you do it. Keep it personal — 1 slide." },
+                { n: "2", title: "Their Problem", body: "Restate their pain points in their own words (from what they told you on the call). This shows you actually listened." },
+                { n: "3", title: "Your Solution", body: "Software + service together. Show them it's not just posts — it's a full system running for their business." },
+                { n: "4", title: "Case Study or Testimonials", body: "Real results with real numbers. Even one example from an early client or your own brand counts." },
+                { n: "5", title: "The Package They Chose", body: "Outline the specific tier — what's included, what's not. Be clear. Vague proposals lose deals." },
+                { n: "6", title: "Pricing", body: "Monthly fee, any one-time setup fee, and payment terms. No surprises." },
+                { n: "7", title: "Clear Next Steps", body: "Step 1 / Step 2 / Step 3 — what happens after they say yes. Make it easy to move forward." },
+              ].map(({ n, title, body }) => (
+                <div key={n} className="flex gap-4 rounded-xl p-4" style={{ background: "rgba(200,168,100,0.06)", border: "1px solid rgba(200,168,100,0.12)" }}>
+                  <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style={{ background: "var(--ink)" }}>
+                    <span style={{ fontFamily: FONT_DISPLAY, fontSize: "0.85rem", color: "var(--gold)", fontStyle: "italic" }}>{n}</span>
+                  </div>
+                  <div>
+                    <p className="font-medium" style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--ink)" }}>{title}</p>
+                    <p className="mt-0.5" style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(30,15,10,0.6)" }}>{body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="p-4 rounded-xl" style={{ background: "var(--ink)" }}>
+            <p className="italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: "var(--cream)", lineHeight: 1.5 }}>
+              Use the "Pitch Deck Builder" prompt in the Content Prompts tab to generate a complete customized deck for any prospect in minutes.
+            </p>
+          </div>
         </div>
       </div>
 
