@@ -4707,10 +4707,26 @@ interface Prospect {
   id: string; biz: string; contact: string; email: string; phone: string;
   niche: string; city: string; pain: string; source: string;
   stage: PStage; notes: PNote[]; savedMsgs: PMsg[]; created: string;
+  quoteSentAt?: string; // ISO — set when quote is saved; auto-expires to "lost" after 7 days
 }
 
 const PKEY = "dh_deals_v1";
-const loadProspects = (): Prospect[] => { try { return JSON.parse(localStorage.getItem(PKEY) || "[]"); } catch { return []; } };
+const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
+const loadProspects = (): Prospect[] => {
+  try {
+    const raw: Prospect[] = JSON.parse(localStorage.getItem(PKEY) || "[]");
+    const now = Date.now();
+    // Auto-move proposals to "lost" if quote is older than 7 days and no response
+    return raw.map(p => {
+      if (p.stage === "proposal" && p.quoteSentAt) {
+        if (now - new Date(p.quoteSentAt).getTime() > SEVEN_DAYS_MS) {
+          return { ...p, stage: "lost" as PStage };
+        }
+      }
+      return p;
+    });
+  } catch { return []; }
+};
 const saveAllProspects = (list: Prospect[]) => localStorage.setItem(PKEY, JSON.stringify(list));
 const uid = () => Math.random().toString(36).slice(2);
 const fmt = (d: string) => new Date(d).toLocaleDateString("en-CA", { month: "short", day: "numeric" });
@@ -5403,6 +5419,11 @@ function DealTrackerTab() {
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {filtered.map(p => {
           const s = STAGE_INFO[p.stage];
+          // Days remaining on quote
+          const daysLeft = p.quoteSentAt && p.stage === "proposal"
+            ? Math.max(0, Math.ceil((new Date(p.quoteSentAt).getTime() + SEVEN_DAYS_MS - Date.now()) / 86400000))
+            : null;
+          const expiryColor = daysLeft !== null ? (daysLeft <= 1 ? "#e05555" : daysLeft <= 3 ? "#e0943a" : "#4a9970") : null;
           return (
             <button key={p.id} onClick={() => openDetail(p.id)} className="text-left rounded-2xl p-5 transition-all hover:-translate-y-0.5 hover:shadow-lg" style={{ background: "rgba(255,255,255,0.7)", border: "1px solid rgba(200,168,100,0.2)", boxShadow: "0 4px 16px -8px rgba(160,110,95,0.15)" }}>
               <div className="flex items-start justify-between gap-2 mb-3">
@@ -5412,6 +5433,13 @@ function DealTrackerTab() {
               <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.2rem", color: "var(--ink)", lineHeight: 1.2 }}>{p.biz}</h3>
               {p.contact && <p style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "rgba(30,15,10,0.5)", marginTop: "2px" }}>{p.contact}</p>}
               {p.niche && <p style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "rgba(30,15,10,0.45)", marginTop: "1px" }}>{p.niche}{p.city ? ` · ${p.city}` : ""}</p>}
+              {daysLeft !== null && expiryColor && (
+                <div className="mt-2 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg" style={{ background: `${expiryColor}18`, border: `1px solid ${expiryColor}44` }}>
+                  <span style={{ fontFamily: FONT_LUXE, fontSize: "8.5px", letterSpacing: "0.12em", textTransform: "uppercase", color: expiryColor }}>
+                    {daysLeft === 0 ? "⚠ Expires today" : `⏳ Quote expires in ${daysLeft}d`}
+                  </span>
+                </div>
+              )}
               <div className="flex items-center gap-3 mt-3 pt-3" style={{ borderTop: "1px solid rgba(200,168,100,0.12)" }}>
                 <span style={{ fontFamily: FONT_LUXE, fontSize: "8px", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(30,15,10,0.35)" }}>{p.notes.length} note{p.notes.length !== 1 ? "s" : ""}</span>
                 <span style={{ fontFamily: FONT_LUXE, fontSize: "8px", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(30,15,10,0.35)" }}>{p.savedMsgs.length} saved msg{p.savedMsgs.length !== 1 ? "s" : ""}</span>
@@ -6547,6 +6575,7 @@ function QuoteBuilderTab() {
   const [adSpend, setAdSpend] = useState("");
   const [note, setNote] = useState("");
   const [copied, setCopied] = useState<"quote" | "email" | null>(null);
+  const [saved, setSaved] = useState(false);
 
   const selectedPkg = pkg ? QB_PACKAGES[pkg] : null;
   const monthlyAddons = QB_ADDONS.filter(a => a.type === "monthly" && addons.has(a.key));
@@ -6757,6 +6786,36 @@ function QuoteBuilderTab() {
     navigator.clipboard.writeText(generateQuote(mode));
     setCopied(mode);
     setTimeout(() => setCopied(null), 2500);
+  }
+
+  function saveToPipeline() {
+    if (!selectedPkg) return;
+    const now = new Date().toISOString();
+    const newProspect: Prospect = {
+      id: uid(),
+      biz: bizName || "Unknown Business",
+      contact: clientName || "",
+      email: "",
+      phone: "",
+      niche,
+      city,
+      pain: "",
+      source: "Quote Builder",
+      stage: "proposal",
+      notes: [],
+      savedMsgs: [{
+        id: uid(),
+        label: `Quote — ${selectedPkg.name} · $${monthlyTotal.toLocaleString()}/mo`,
+        body: generateQuote("quote"),
+        at: now,
+      }],
+      created: now,
+      quoteSentAt: now,
+    };
+    const existing = loadProspects();
+    saveAllProspects([newProspect, ...existing]);
+    setSaved(true);
+    setTimeout(() => setSaved(false), 3000);
   }
 
   const quoteReady = !!selectedPkg;
@@ -7034,6 +7093,26 @@ function QuoteBuilderTab() {
               {copied === "email" ? "✓ Copied!" : "📧 Copy as Email"}
             </button>
           </div>
+
+          {/* Save to Pipeline */}
+          <button
+            onClick={() => quoteReady && saveToPipeline()}
+            className="w-full py-3.5 rounded-xl text-[11px] tracking-widest uppercase transition-all"
+            style={{
+              fontFamily: FONT_LUXE,
+              background: saved ? "#4a7a4a" : (quoteReady ? "rgba(74,153,112,0.12)" : "rgba(30,15,10,0.04)"),
+              color: saved ? "#fff" : (quoteReady ? "#4a9970" : "rgba(30,15,10,0.2)"),
+              cursor: quoteReady ? "pointer" : "not-allowed",
+              border: quoteReady ? "1px solid rgba(74,153,112,0.35)" : "1px solid rgba(30,15,10,0.08)",
+            }}
+          >
+            {saved ? "✓ Saved to Pipeline! (auto-expires in 7 days)" : "➕ Save to Pipeline"}
+          </button>
+          {saved && (
+            <p className="text-center text-[10px]" style={{ fontFamily: FONT_BODY, color: "rgba(74,153,112,0.8)" }}>
+              Go to the <strong>Deals</strong> tab to see it — it'll be in the Proposal Sent stage.
+            </p>
+          )}
 
           {/* Live Quote Preview */}
           {quoteReady && (
