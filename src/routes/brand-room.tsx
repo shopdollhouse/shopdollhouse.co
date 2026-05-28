@@ -158,7 +158,7 @@ const PIECES = [
     originalPrice: "$261",
     name: "Brand Workbook",
     tagline: "Every foundational business decision, made",
-    detail: "An interactive web app that walks you through positioning, audience, offers, and brand voice. + BONUS included to help you hit the ground running.",
+    detail: "An interactive web app that walks you through positioning, audience, offers, and brand voice. Includes a bonus PDF workbook to help you hit the ground running.",
   },
   {
     num: "03",
@@ -245,7 +245,7 @@ function WhatsInside() {
 /* ─── Includes Checklist ──────────────────────────────── */
 const INCLUDES = [
   "Brand Kit Blueprint — interactive web app ($145 value)",
-  "Brand Workbook — interactive web app + BONUS ($261 value)",
+  "Brand Workbook — interactive web app + bonus PDF workbook ($261 value)",
   "AI Prompt Kit — 50+ prompts across 8 rooms ($17 value)",
   "Copy, content & strategy prompts ready to customize",
   "Every foundational brand decision walked through step by step",
