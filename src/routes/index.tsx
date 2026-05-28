@@ -1901,6 +1901,7 @@ function Contact() {
         <div>
           <label className={labelClass} style={labelStyle}>Which plan interests you?</label>
           <select name="plan" className={inputClass} style={inputStyle}>
+            <option>Content Starter — $500/mo</option>
             <option>Starter — $1,000/mo</option>
             <option>Growth — $2,500/mo</option>
             <option>Elite — $5,000+/mo</option>
