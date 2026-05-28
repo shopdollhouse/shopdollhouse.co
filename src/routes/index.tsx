@@ -2039,15 +2039,12 @@ function Footer() {
       >
         © {new Date().getFullYear()} The Dollhouse Brand Studio. All rights reserved.
       </p>
-      {/* Admin access — subtle */}
       <Link
         to="/playbook"
-        className="mt-3 inline-block opacity-0 hover:opacity-30 transition-opacity select-none"
-        aria-hidden
-        tabIndex={-1}
-        style={{ fontSize: "6px", color: "transparent" }}
+        className="mt-3 inline-block text-[var(--ink)]/25 hover:text-[var(--ink)]/50 transition-colors"
+        style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase" }}
       >
-        ·
+        Admin
       </Link>
     </footer>
   );
