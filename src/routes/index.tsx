@@ -1901,7 +1901,7 @@ function Contact() {
           </div>
         </div>
 
-        {/* Business / Industry */}
+        {/* Business / Industry / Website */}
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className={labelClass} style={labelStyle}>Business Name</label>
@@ -1911,6 +1911,10 @@ function Contact() {
             <label className={labelClass} style={labelStyle}>Industry / Niche</label>
             <input type="text" name="industry" placeholder="e.g. Medical Aesthetics" className={inputClass} style={inputStyle} />
           </div>
+        </div>
+        <div>
+          <label className={labelClass} style={labelStyle}>Website <span className="normal-case opacity-60">(optional)</span></label>
+          <input type="url" name="website" placeholder="e.g. yourbusiness.com" className={inputClass} style={inputStyle} />
         </div>
 
         {/* Plan */}
@@ -1977,7 +1981,7 @@ function Contact() {
           <label className={labelClass} style={labelStyle}>Your Message</label>
           <textarea
             name="message"
-            rows={4}
+            rows={2}
             placeholder="Tell us about your business and what you're looking to achieve..."
             className={`${inputClass} resize-none`}
             style={inputStyle}
