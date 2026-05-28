@@ -4009,13 +4009,13 @@ function genMessage(key: string, p: Prospect): string {
 
   const t: Record<string, string> = {
     ai_clone_pitch:
-`Subject: we made something for ${biz}
+`Subject: we made an AI version of you for ${biz}
 
 Hi ${fn},
 
-We put together something for ${biz} that I genuinely think you haven't seen before.
+We created an AI clone of you — a digital version of you [or your brand character] that can post video content for ${biz} every single week without you ever filming anything.
 
-No pitch — I just wanted to ask: would you want to take a look?
+Would you want to see what it looks like?
 
 — Mandy Fortune
 The Dollhouse Brand Studio
@@ -4024,9 +4024,9 @@ shopdollhouse.co`,
     ai_clone_dm:
 `Hey ${fn} 👀
 
-Random question — but we actually made something for ${biz} that I think you've never seen before.
+Random question — we actually made an AI clone of you for ${biz}. It's a digital version of you that can post content for your business automatically, without you ever filming anything.
 
-Would you want to take a look?`,
+Would you want to see what it looks like?`,
 
     cold_email:
 `Subject: quick question about ${biz}'s social media
@@ -4607,7 +4607,8 @@ function DealTrackerTab() {
 }
 
 /* ─── Page ─────────────────────────────────────────────── */
-const PW_HASH = "aa15f6cd8c0cb47ab513439d925bc35b9352f1f43718ce566613643804770458";
+const PW_HASH = "cdc132ff0a47a81b6e95dbc1b9e16b8df2a97e39f580e110ad02359dca43acef";
+const ADMIN_EMAIL = "fortuneamanda@hotmail.com";
 
 async function hashString(s: string): Promise<string> {
   const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
@@ -4625,7 +4626,7 @@ function LoginGate({ onAuth }: { onAuth: () => void }) {
     setLoading(true);
     setError(false);
     const h = await hashString(pw);
-    if (email.toLowerCase().trim() === "hello@shopdollhouse.co" && h === PW_HASH) {
+    if (email.toLowerCase().trim() === ADMIN_EMAIL && h === PW_HASH) {
       sessionStorage.setItem("dh_admin", "1");
       onAuth();
     } else {
