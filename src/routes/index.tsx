@@ -1411,6 +1411,38 @@ function Pricing() {
         })}
       </div>
 
+      {/* Content Starter — lite plan */}
+      <div className="mt-10 max-w-3xl mx-auto">
+        <div
+          className="flex flex-col sm:flex-row items-center justify-between gap-5 rounded-2xl px-8 py-5"
+          style={{
+            background: "linear-gradient(135deg, rgba(255,255,255,0.55), rgba(251,240,235,0.5))",
+            border: "1px dashed color-mix(in oklab, var(--gold) 45%, transparent)",
+          }}
+        >
+          <div className="text-center sm:text-left">
+            <div className="flex items-center gap-2 justify-center sm:justify-start">
+              <span style={{ color: "var(--gold)", fontSize: "0.55rem" }}>✦</span>
+              <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--gold)" }}>
+                Entry Option
+              </p>
+            </div>
+            <p className="mt-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.3rem", color: "var(--ink)", fontStyle: "italic" }}>
+              Content Starter — <span style={{ color: "var(--gold)" }}>$500/mo</span>
+            </p>
+            <p className="mt-1" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "rgba(30,15,10,0.55)", lineHeight: 1.5 }}>
+              Static posts & carousels — branded, scheduled, and done for you. No AI avatar. Perfect for getting consistent without the full system.
+            </p>
+          </div>
+          <a
+            href="#contact"
+            className="shrink-0 btn-ghost !py-2.5 !px-6 !text-[10px] whitespace-nowrap"
+          >
+            Enquire →
+          </a>
+        </div>
+      </div>
+
       {/* Setup fee + ad spend notes */}
       <div className="mt-12 max-w-2xl mx-auto rounded-2xl px-8 py-6 text-center space-y-4"
         style={{ background: "rgba(200,168,100,0.07)", border: "1px solid rgba(200,168,100,0.22)" }}>
