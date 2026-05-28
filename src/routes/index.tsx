@@ -1430,8 +1430,15 @@ function Pricing() {
             <p className="mt-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.3rem", color: "var(--ink)", fontStyle: "italic" }}>
               Content Starter — <span style={{ color: "var(--gold)" }}>$500/mo</span>
             </p>
-            <p className="mt-1" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "rgba(30,15,10,0.55)", lineHeight: 1.5 }}>
-              Static posts & carousels — branded, scheduled, and done for you. No AI avatar. Perfect for getting consistent without the full system.
+            <div className="mt-1.5 flex items-center gap-3 flex-wrap justify-center sm:justify-start">
+              {["1 Platform", "8 Posts/mo", "Static & Carousels"].map((tag) => (
+                <span key={tag} style={{ fontFamily: "'Jost', sans-serif", fontSize: "9px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)", borderBottom: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)", paddingBottom: "1px" }}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <p className="mt-2" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "rgba(30,15,10,0.55)", lineHeight: 1.5 }}>
+              Branded, scheduled, and done for you — no AI avatar, no automation. Perfect for staying consistent without the full system.
             </p>
           </div>
           <a
