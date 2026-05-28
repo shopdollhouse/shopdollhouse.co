@@ -88,7 +88,7 @@ function Nav() {
     { href: "#services", label: "Services" },
     { href: "#about", label: "About" },
     { href: "#pricing", label: "Pricing" },
-    { href: "#booking", label: "Book a Call" },
+    { href: "#faq", label: "FAQ" },
     { href: "#contact", label: "Contact" },
   ];
 
@@ -355,8 +355,8 @@ function Hero() {
               Try free for 14 days
             </span>
           </div>
-          <a href="#booking" className="btn-ghost">
-            Book a free discovery call <span aria-hidden>→</span>
+          <a href="#services" className="btn-ghost">
+            See how it works <span aria-hidden>↓</span>
           </a>
         </div>
 
@@ -1784,59 +1784,6 @@ function FAQ() {
   );
 }
 
-/* ─── Booking ─────────────────────────────────────────── */
-function BookingEmbed() {
-  useEffect(() => {
-    const existing = document.getElementById("ghl-booking-script");
-    if (existing) return;
-    const script = document.createElement("script");
-    script.id = "ghl-booking-script";
-    script.src = "https://api.leadconnectorhq.com/js/form_embed.js";
-    script.type = "text/javascript";
-    document.body.appendChild(script);
-    return () => {
-      const s = document.getElementById("ghl-booking-script");
-      if (s) document.body.removeChild(s);
-    };
-  }, []);
-
-  return (
-    <section
-      id="booking"
-      className="py-24 md:py-32 px-6"
-      style={{ background: "var(--cream)" }}
-    >
-      <SectionTitle
-        eyebrow="Free Discovery Call"
-        title={<>Let's talk about<br />your business</>}
-        italic="30 minutes. No pressure. No pitch. Just a real conversation."
-      />
-      <div
-        className="mt-12 max-w-3xl mx-auto rounded-2xl overflow-hidden"
-        style={{
-          border: "1px solid color-mix(in oklab, var(--gold) 30%, transparent)",
-          boxShadow: "0 25px 50px -25px rgba(180,120,120,0.2)",
-          background: "rgba(255,255,255,0.6)",
-        }}
-      >
-        <iframe
-          src="https://api.leadconnectorhq.com/widget/booking/9mOtVmE8ihxgAX2AMzge"
-          style={{ width: "100%", border: "none", overflow: "hidden", minHeight: "700px", display: "block" }}
-          scrolling="no"
-          id="9mOtVmE8ihxgAX2AMzge_1779983060858"
-          title="Book a Free Discovery Call"
-        />
-      </div>
-      <p
-        className="mt-6 text-center text-[var(--ink)]/40 italic"
-        style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem" }}
-      >
-        Prefer to send a message instead? Scroll down ↓
-      </p>
-    </section>
-  );
-}
-
 /* ─── Contact ─────────────────────────────────────────── */
 function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
@@ -1885,9 +1832,9 @@ function Contact() {
   return (
     <section id="contact" className="pt-10 md:pt-14 pb-24 md:pb-32 px-6">
       <SectionTitle
-        eyebrow="Or Send a Message"
-        title={<>Prefer to<br />send a proposal?</>}
-        italic="Fill out the form and we'll reach out within 24 hours."
+        eyebrow="Get Started"
+        title={<>Ready to grow<br />your business?</>}
+        italic="Tell us about your business and we'll reach out within 24 hours."
       />
 
       <form
@@ -2013,6 +1960,30 @@ function Contact() {
         >
           {status === "sending" ? "Sending..." : "Send my free proposal request →"}
         </button>
+
+        <div className="flex items-center gap-3 my-1">
+          <span className="flex-1 h-px bg-[var(--gold)]/20" />
+          <span className="text-[var(--ink)]/30 text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>or</span>
+          <span className="flex-1 h-px bg-[var(--gold)]/20" />
+        </div>
+
+        <a
+          href="https://api.leadconnectorhq.com/widget/booking/9mOtVmE8ihxgAX2AMzge"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full flex items-center justify-center gap-2 rounded-xl py-3.5 text-[11px] tracking-luxe uppercase transition-all hover:border-[var(--ink)]/40 hover:text-[var(--ink)]"
+          style={{
+            fontFamily: "'Jost', sans-serif",
+            color: "var(--ink)",
+            border: "1px solid color-mix(in oklab, var(--ink) 22%, transparent)",
+          }}
+        >
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: "13px", height: "13px" }}>
+            <rect x="2" y="3" width="12" height="11" rx="1.5" />
+            <path d="M5 1.5v3M11 1.5v3M2 7h12" strokeLinecap="round" />
+          </svg>
+          Book a free discovery call
+        </a>
       </form>
     </section>
   );
@@ -2145,7 +2116,6 @@ function Index() {
       <Pricing />
       <ComparisonTable />
       <FAQ />
-      <BookingEmbed />
       <Contact />
       <StarterKitBanner />
       <Footer />
