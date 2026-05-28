@@ -7189,68 +7189,68 @@ function PlaybookPage() {
       </header>
 
       {/* Tabs */}
-      <div className="sticky top-0 z-30 px-6 md:px-12 py-3 overflow-x-auto" style={{ background: "rgba(247,230,220,0.92)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(200,168,100,0.12)" }}>
-        <div className="max-w-6xl mx-auto flex gap-2 min-w-max items-center">
+      <div className="sticky top-0 z-30 flex items-center" style={{ background: "rgba(247,230,220,0.92)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(200,168,100,0.12)" }}>
 
-          {/* Primary tabs */}
-          {primaryTabs.map((t) => (
-            <button
-              key={t.id}
-              onClick={() => { setTab(t.id); setRefOpen(false); }}
-              className="px-4 py-2 rounded-xl text-[11px] tracking-wider uppercase transition-all whitespace-nowrap"
-              style={{
-                fontFamily: FONT_LUXE,
-                background: tab === t.id ? "var(--ink)" : "rgba(255,255,255,0.5)",
-                color: tab === t.id ? "var(--gold)" : "rgba(30,15,10,0.55)",
-                border: tab === t.id ? "1px solid var(--ink)" : "1px solid rgba(200,168,100,0.2)",
-              }}
-            >
-              {t.icon} {t.label}
-            </button>
-          ))}
-
-          {/* Divider */}
-          <div className="w-px h-5 mx-1" style={{ background: "rgba(200,168,100,0.25)" }} />
-
-          {/* Reference dropdown */}
-          <div className="relative" ref={refDropdownRef}>
-            <button
-              onClick={() => setRefOpen(o => !o)}
-              className="px-4 py-2 rounded-xl text-[11px] tracking-wider uppercase transition-all whitespace-nowrap flex items-center gap-1.5"
-              style={{
-                fontFamily: FONT_LUXE,
-                background: activeRefTab ? "var(--ink)" : (refOpen ? "rgba(255,255,255,0.8)" : "rgba(255,255,255,0.5)"),
-                color: activeRefTab ? "var(--gold)" : "rgba(30,15,10,0.55)",
-                border: activeRefTab ? "1px solid var(--ink)" : "1px solid rgba(200,168,100,0.2)",
-              }}
-            >
-              {activeRefTab ? `${activeRefTab.icon} ${activeRefTab.label}` : "📚 Reference"}
-              <span style={{ fontSize: "8px", opacity: 0.6 }}>{refOpen ? "▲" : "▼"}</span>
-            </button>
-
-            {refOpen && (
-              <div className="absolute top-full left-0 mt-1.5 rounded-xl overflow-hidden shadow-xl z-50" style={{ background: "rgba(252,244,238,0.98)", border: "1px solid rgba(200,168,100,0.25)", minWidth: "180px", backdropFilter: "blur(12px)" }}>
-                {referenceTabs.map((t) => (
-                  <button
-                    key={t.id}
-                    onClick={() => { setTab(t.id); setRefOpen(false); }}
-                    className="w-full text-left px-4 py-2.5 text-[11px] tracking-wider uppercase transition-all flex items-center gap-2.5"
-                    style={{
-                      fontFamily: FONT_LUXE,
-                      background: tab === t.id ? "rgba(200,168,100,0.15)" : "transparent",
-                      color: tab === t.id ? "var(--gold)" : "rgba(30,15,10,0.6)",
-                      borderLeft: tab === t.id ? "2px solid var(--gold)" : "2px solid transparent",
-                    }}
-                  >
-                    <span>{t.icon}</span>
-                    <span>{t.label}</span>
-                  </button>
-                ))}
-              </div>
-            )}
+        {/* Primary tabs — scrollable */}
+        <div className="flex-1 overflow-x-auto px-6 md:px-12 py-3">
+          <div className="flex gap-2 min-w-max">
+            {primaryTabs.map((t) => (
+              <button
+                key={t.id}
+                onClick={() => { setTab(t.id); setRefOpen(false); }}
+                className="px-4 py-2 rounded-xl text-[11px] tracking-wider uppercase transition-all whitespace-nowrap"
+                style={{
+                  fontFamily: FONT_LUXE,
+                  background: tab === t.id ? "var(--ink)" : "rgba(255,255,255,0.5)",
+                  color: tab === t.id ? "var(--gold)" : "rgba(30,15,10,0.55)",
+                  border: tab === t.id ? "1px solid var(--ink)" : "1px solid rgba(200,168,100,0.2)",
+                }}
+              >
+                {t.icon} {t.label}
+              </button>
+            ))}
           </div>
-
         </div>
+
+        {/* Reference dropdown — outside overflow container so it's never clipped */}
+        <div className="shrink-0 pr-6 md:pr-12 py-3 relative" ref={refDropdownRef} style={{ borderLeft: "1px solid rgba(200,168,100,0.15)" }}>
+          <button
+            onClick={() => setRefOpen(o => !o)}
+            className="px-4 py-2 rounded-xl text-[11px] tracking-wider uppercase transition-all whitespace-nowrap flex items-center gap-1.5"
+            style={{
+              fontFamily: FONT_LUXE,
+              background: activeRefTab ? "var(--ink)" : (refOpen ? "rgba(255,255,255,0.8)" : "rgba(255,255,255,0.5)"),
+              color: activeRefTab ? "var(--gold)" : "rgba(30,15,10,0.55)",
+              border: activeRefTab ? "1px solid var(--ink)" : "1px solid rgba(200,168,100,0.2)",
+              marginLeft: "8px",
+            }}
+          >
+            {activeRefTab ? `${activeRefTab.icon} ${activeRefTab.label}` : "📚 Reference"}
+            <span style={{ fontSize: "8px", opacity: 0.6 }}>{refOpen ? "▲" : "▼"}</span>
+          </button>
+
+          {refOpen && (
+            <div className="absolute top-full right-0 mt-1.5 rounded-xl overflow-hidden shadow-xl z-50" style={{ background: "rgba(252,244,238,0.98)", border: "1px solid rgba(200,168,100,0.25)", minWidth: "190px", backdropFilter: "blur(12px)" }}>
+              {referenceTabs.map((t) => (
+                <button
+                  key={t.id}
+                  onClick={() => { setTab(t.id); setRefOpen(false); }}
+                  className="w-full text-left px-4 py-2.5 text-[11px] tracking-wider uppercase transition-all flex items-center gap-2.5"
+                  style={{
+                    fontFamily: FONT_LUXE,
+                    background: tab === t.id ? "rgba(200,168,100,0.15)" : "transparent",
+                    color: tab === t.id ? "var(--gold)" : "rgba(30,15,10,0.6)",
+                    borderLeft: tab === t.id ? "2px solid var(--gold)" : "2px solid transparent",
+                  }}
+                >
+                  <span>{t.icon}</span>
+                  <span>{t.label}</span>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
       </div>
 
       {/* Content */}
