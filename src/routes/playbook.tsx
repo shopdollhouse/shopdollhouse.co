@@ -9,7 +9,7 @@ const FONT_LUXE = "'Jost', sans-serif";
 const FONT_SCRIPT = "'Allura', cursive";
 
 /* ─── Types ───────────────────────────────────────────── */
-type Tab = "workflow" | "monthly" | "prompts" | "outreach" | "growth" | "newhire" | "deals" | "content" | "quote" | "schedule";
+type Tab = "start" | "workflow" | "monthly" | "prompts" | "outreach" | "growth" | "newhire" | "deals" | "content" | "quote" | "schedule";
 
 /* ─── Prompt Card ─────────────────────────────────────── */
 function PromptCard({ title, tag, prompt }: { title: string; tag: string; prompt: string }) {
@@ -5487,6 +5487,418 @@ function LoginGate({ onAuth }: { onAuth: () => void }) {
   );
 }
 
+/* ─── Start Here Tab ─────────────────────────────────── */
+function StartHereTab() {
+  const [openDay, setOpenDay] = useState<number | null>(1);
+
+  const week1: { day: number; title: string; colour: string; warning: string; tasks: { task: string; detail: string }[] }[] = [
+    {
+      day: 1, colour: "#c8a864", title: "Foundation — Get Every Account Set Up",
+      warning: "Don't send a single DM until Day 7. Build the infrastructure first.",
+      tasks: [
+        { task: "Create your agency profile inside the platform", detail: "Name: The Dollhouse Brand Studio. Upload your logo, set your brand colours, add a professional photo. This is the first thing clients see when they're onboarded — make it look like a real business." },
+        { task: "Connect all 4 social media accounts to the platform", detail: "TikTok, Instagram, Facebook, Threads. You need these connected to post content for your own brand AND to eventually link client accounts. Do this once, benefit forever." },
+        { task: "Set up Stripe (or the platform's built-in payments)", detail: "You cannot get paid without this. Takes 10 minutes. You need a bank account and a government ID. Once connected, you can send invoices and collect setup fees instantly." },
+        { task: "Set up a professional email", detail: "hello@shopdollhouse.co — forward it to your personal Gmail for now. Free to set up with Google Workspace or just use a Gmail alias until you're ready to pay." },
+        { task: "Create a booking link", detail: "Use Calendly (free) or your platform's built-in calendar. Set up one slot: 'Discovery Call — 30 minutes.' This link goes in every single DM when someone says they're interested. Never make them figure out your schedule." },
+        { task: "Download Canva (free)", detail: "You'll use Canva to build the brand kit product, design client content, and create your own social media graphics. The free plan is enough to start. Set up a Canva account with your business email." },
+      ],
+    },
+    {
+      day: 2, colour: "#c97a7a", title: "Build Your AI Avatar Demo",
+      warning: "This is the close. It needs to exist and look good before you contact anyone.",
+      tasks: [
+        { task: "Take a clean, well-lit photo of yourself", detail: "Front-facing, single person, neutral or simple background. Good lighting matters — face a window or use a ring light. Portrait mode on an iPhone works perfectly. This is the photo the AI uses to generate your avatar, so quality directly affects the result." },
+        { task: "Write 3 avatar scripts (15–20 seconds each)", detail: "Script 1 — Social media pitch: 'Hi, I'm [NAME] from The Dollhouse Brand Studio. We do done-for-you social media for local businesses — content, posting, automations — everything runs for you every single day. DM SOCIAL to see what we'd do for your business.' Script 2 — AI avatar demo: 'What you're watching right now is an AI avatar — a digital version of a real business owner. We build one of these for every client. It posts content automatically, promotes their services, and they never have to film a thing.' Script 3 — Brand awareness: 'I'm Mandy, and I run The Dollhouse Brand Studio. We help local businesses show up online every single day — without the owner ever touching a phone.'" },
+        { task: "Generate each avatar video in your AI video tool", detail: "Upload your photo. Paste the script. Choose a natural-sounding voice (not robotic — listen to a few samples before you pick). Generate. Download. Watch the full video before saving — check that the lip sync looks natural and the voice sounds real. Regenerate if anything looks off." },
+        { task: "Save all 3 organized by name", detail: "Create a folder: Dollhouse → Demo Videos → [Date]. You'll be building these for prospects too — stay organized from day 1 so you're never hunting for the right file during a call." },
+        { task: "Send yourself the demo on your phone", detail: "You need to be able to pull it up in under 10 seconds during a live or a call. Save it to your camera roll. Test playing it with sound. This is your most important tool." },
+      ],
+    },
+    {
+      day: 3, colour: "#7b68ee", title: "Build Your Own Brand Content",
+      warning: "If you're selling social media, your own pages must look like proof. This is non-negotiable.",
+      tasks: [
+        { task: "Write your bio for every platform (same formula, slightly different)", detail: "Formula: What you do + who you help + one CTA. Example: 'Done-for-you social media for local businesses 🌸 AI-powered content, posted every day 📲 DM SOCIAL to get started — link below ↓'" },
+        { task: "Design 7 posts in Canva — one week of content", detail: "Use these 7 themes in order: 1) What The Dollhouse does (introduce the service) 2) Show your AI avatar demo video 3) Before/after concept — 'what your social media looks like vs. what it could look like' 4) Pricing transparency — 'here's what $1,000/mo gets you' 5) Behind the scenes — setting up the platform for a client 6) A tip for business owners — 'the one social media mistake costing you clients' 7) Your story — why you started this." },
+        { task: "Write 7 captions using the prompts in the Content Prompts tab", detail: "Open the Content Prompts tab. Use the Caption Writing prompt. Give it the post concept and your brand voice. Edit the first line to sound like you — AI writes well, but the opening always needs your personality. Batch all 7 in one sitting. Never write one at a time." },
+        { task: "Schedule all 7 posts across all 4 platforms right now", detail: "Post times that work: 9am, 12pm, or 6pm. Spread across Mon–Sun. Use your platform's scheduler or each platform's native scheduling. Don't post them all today — stagger them so you have content going live all week even when you're busy." },
+        { task: "Set up your link in bio on every platform", detail: "Use Linktree (free) or Stan.store's link page. Add three links: 1) 'Book a Free Discovery Call' (your Calendly link) 2) 'Get the Brand Kit — $97' (your Stan.store product link from Day 4) 3) Your website (shopdollhouse.co). This link goes in every single bio. Update it as you add more." },
+      ],
+    },
+    {
+      day: 4, colour: "#4a9970", title: "Build the Brand Kit Digital Product",
+      warning: "This is your B2C offer — sold to women who want to start a business, NOT to your agency clients. Different audience, different pitch, different price.",
+      tasks: [
+        { task: "Open Canva and build 5 brand template files", detail: "1) Logo kit — 3 logo variations in Canva: icon + text, text only, icon only. Build it so the buyer can swap out the business name and colour. Make 5 different style options (modern, luxury, playful, minimal, bold). 2) Brand colour palette card — a one-page Canva file showing 5 colours that work together with their hex codes. Include a 'how to use this' note. 3) Font pairing guide — one page, 3 different font combinations (heading + body) with examples of how they look on a post. 4) Social media profile kit — IG profile cover, 6 highlight cover icons, a story template, and a feed post template. All editable. 5) 10 social media caption templates — fill-in-the-blank captions for the 5 most common business posts: intro, offer, testimonial, tip, story." },
+        { task: "Write the 'First Sale Checklist' PDF (1 page)", detail: "This is the bonus that makes the kit worth $97. Simple, clear, actionable. Items: ✓ Pick your one offer ✓ Write your IG bio ✓ Post 3 times this week ✓ DM 5 people who follow you ✓ Tell 3 friends what you're launching ✓ Set up a free PayPal or Stripe ✓ Make your first ask. One page. No fluff. This is the thing women actually need but no one gives them." },
+        { task: "Set up a Stan.store account (free)", detail: "Stan.store is built for creators selling digital products. Create a product: 'The Dollhouse Brand Kit — Launch Your Business This Week.' Price: $97. Write the description using this formula: WHO it's for + WHAT problem it solves + WHAT'S INSIDE + what happens after they buy. Upload your Canva share links (set to 'anyone with the link can view/copy') and the PDF. Set up instant delivery." },
+        { task: "Test the purchase flow yourself", detail: "Go through the entire buying experience as a customer. Click buy. Enter a test card. Check the delivery email. Click the Canva links. Make sure everything opens. Fix anything that's slow, confusing, or broken. If it's annoying for you, it'll lose you sales." },
+        { task: "Create a 60-second TikTok showing what's in the kit", detail: "Film yourself scrolling through the kit in Canva. Show the logo templates, the colour palettes, the caption templates. Talk over it: 'I made this for anyone who wants to start a business but doesn't know where to begin. For $97 you get everything you need to look professional and make your first sale.' This video goes up tomorrow." },
+      ],
+    },
+    {
+      day: 5, colour: "#4a90d9", title: "Get Your Tech Running",
+      warning: "None of this needs to be perfect. It just needs to work before your first client signs.",
+      tasks: [
+        { task: "Set up missed call text-back in the platform for your own number", detail: "Any missed call → auto-SMS fires immediately → 'Hey! Sorry we missed you — how can we help?' Takes 5 minutes to build and runs forever. This is also what you'll set up for every client on day 1 of their onboarding. Do it for yourself first so you know the steps cold." },
+        { task: "Build a simple lead capture form in the platform", detail: "Fields: Name, Email, Phone, 'What's your biggest social media challenge right now?' When filled out → contact created in CRM → auto-DM or email fires → task created for follow-up. This is your first workflow. Clients get the same thing built during their onboarding." },
+        { task: "Build your proposal template in the Quote Builder", detail: "Open the Quote Builder tab. Select the Starter package. Add typical add-ons. Generate the quote. Copy it. Save it somewhere. This is your starting point — you'll personalize 4 fields and it's done. Never start a proposal from scratch." },
+        { task: "Set up your comment keyword automations on your own social", detail: "Keyword: SOCIAL → auto-DM: 'Hey! I'm so glad you're interested 🌸 Here's my booking link to chat about your social media: [LINK]' Keyword: AVATAR → auto-DM: 'I love that you asked! I'd love to show you what an AI avatar would look like for your business. Book a free 10-minute call here: [LINK]' Keyword: KIT → auto-DM: 'Here's the link to the Brand Kit: [LINK] — everything you need to look professional and launch this week!' Test all three before going live." },
+        { task: "Practice sending a test invoice", detail: "Create a $500 invoice in your platform or Stripe. Send it to yourself. Pay it with a test card. Make sure it works end to end. Sending an invoice should take you 90 seconds. If it takes longer, practice until it doesn't." },
+      ],
+    },
+    {
+      day: 6, colour: "#d48e28", title: "Practice Your First TikTok LIVE",
+      warning: "Your first live will be awkward. Do it today — not tomorrow in front of real leads.",
+      tasks: [
+        { task: "Do a private practice live for 20 minutes", detail: "Go live on TikTok. Check everything: Is the lighting flattering? Can you hear yourself clearly? Does your background look clean? Is your phone stable on a stand? Fix these things now — not when you're live with viewers." },
+        { task: "Practice your opening out loud 5 times", detail: "'Hey, welcome! If you're just joining — I'm Mandy from The Dollhouse Brand Studio. We go live here every day at 8:30am. Today I'm going to show you [TOPIC]. Drop a wave in the chat so I can see who's here!' Practice until it feels natural, not scripted." },
+        { task: "Practice showing your AI avatar demo on camera", detail: "Pull up the avatar video on your phone or computer and show it during the practice live. Practice saying: 'What you're seeing right now is an AI avatar — a digital version of a real business owner. We build one of these for every client. They never have to film anything.' Practice the pause after. Let the video do the work." },
+        { task: "Write your live outline on a sticky note you can see off-camera", detail: "0–5 min: Welcome. 5–20 min: Value (teach one useful thing). 20–35 min: Engagement (ask a question, respond to comments). 35–50 min: AI avatar demo + DM CTA. 50–60 min: Brand kit offer + link in chat. 60 min: Wrap + 'follow for tomorrow.' You don't read it — it's just a safety net so you never blank." },
+        { task: "Set up your physical live space for tomorrow morning", detail: "Clean background or simple decor. Ring light or face a bright window. Phone on a stand at eye level. Charger plugged in (lives drain battery fast — you cannot go dead mid-live). Glass of water. Notifications silenced. Everything ready before 8:15am." },
+      ],
+    },
+    {
+      day: 7, colour: "#c97a7a", title: "Go Live + Send Your First 10 DMs",
+      warning: "Day 7 is when the business starts. Everything before this was setup. This is real.",
+      tasks: [
+        { task: "Post a 'going live tomorrow' story on IG and Facebook TONIGHT", detail: "'I'm going live tomorrow morning at 8:30am — I'm going to show you something you've never seen before. Set a reminder.' This primes your audience even before you have one. Even 1 viewer who comes back tomorrow is proof it works." },
+        { task: "Go live at exactly 8:30am", detail: "Even if 0 people are watching. The algorithm needs to see that you show up at the same time every day before it starts showing you to more people. Consistency comes first, audience comes second. Talk to the camera like there are 500 people watching — because eventually there will be." },
+        { task: "Research 20 leads using the Google Maps Method", detail: "Open the Outreach Scripts tab → Blueprint section. Follow the Google Maps Method. Find 20 businesses with weak social (under 200 followers, last post 4+ weeks ago, bad graphics). Write: their name, Instagram handle, one specific thing about their business. This is your outreach list." },
+        { task: "Send your first 10 cold DMs", detail: "Use the AI Clone Pitch from the Outreach Scripts tab → AI Clone Pitch section. Personalize the business name and the compliment. Send exactly 10 today. The number feels small — good. This is about building the habit, not hitting volume. Volume comes next week." },
+        { task: "Add all 10 leads to the Deal Pipeline", detail: "Open the Deal Pipeline tab. Create a deal for each lead — name, business, platform. Set stage to 'Contacted.' This is how you track who replied, who ghosted, who said yes. If it's not tracked, it doesn't exist." },
+      ],
+    },
+  ];
+
+  const liveStructure = [
+    { time: "0–5 min", label: "Welcome & Hook", colour: "#dc2626", type: "LIVE",
+      what: "Start talking the second you go live — don't wait for viewers. 'Hey! Welcome! If you're just joining, I'm Mandy from The Dollhouse Brand Studio and we go live here every day at 8:30am.' Then immediately tease what you're covering: 'Today I'm going to show you something I guarantee you've never seen — stick around for the full thing.'",
+      cta: "Ask them to drop a wave or their city in the comments. Every comment boosts your reach." },
+    { time: "5–20 min", label: "Teach One Valuable Thing", colour: "#4a64c8", type: "Value",
+      what: "Pick ONE topic. Examples that perform: '3 social media mistakes that are costing local businesses clients right now' / 'What $1,000/mo in done-for-you social media actually looks like' / 'I'm going to rebuild this business's entire social presence live right now' / 'How the comment-to-DM automation works (and why it books appointments while you sleep).' Give real value. People who learn something stay — and come back tomorrow.",
+      cta: "Every 5 minutes: 'Drop your business type in the comments — I'm going to give you specific feedback.'" },
+    { time: "20–35 min", label: "Engage the Room", colour: "#4a9970", type: "Outreach",
+      what: "Stop teaching. Start asking. 'What's the hardest part of social media for your business right now?' 'Has anyone ever worked with a social media agency before? What was your experience?' Read the comments out loud and respond to each one. This is where you identify hot leads — the person who comments 'I've been struggling with this for months' is your next client.",
+      cta: "Watch for business owners in the comments. DM them during the live while they're still watching." },
+    { time: "35–50 min", label: "🔴 The AI Avatar Demo", colour: "#dc2626", type: "Close",
+      what: "'Okay — I promised I'd show you something you've never seen. Here it is.' Play your AI avatar demo video. Let it play all the way through without talking over it. Then: 'That is an AI avatar — a digital version of a real business owner. I build one of these for every client. It posts content for their business every week and they never have to film a single thing. If you want to see what one would look like for YOUR business — DM me the word AVATAR right now.'",
+      cta: "Drop 'DM me AVATAR' in the chat. Say it out loud. Say it again at the end of the demo. This is your primary B2B CTA." },
+    { time: "50–58 min", label: "Brand Kit Offer (B2C)", colour: "#7b68ee", type: "Offer",
+      what: "Shift the audience. 'For those of you who are watching and you're not a business yet — you're thinking about starting something but you don't know where to begin — this next part is for you.' Show the brand kit on screen. 'I built a brand kit for $97. It gives you your logo, your colours, your fonts, your social media templates, and a first-sale checklist. Everything you need to look professional and make your first sale this week. The link is going in the chat right now.'",
+      cta: "Drop the Stan.store link in the chat. Say the price. Say what they get. Keep it under 3 minutes — it's a product, not a pitch." },
+    { time: "58–60 min", label: "Wrap + Tomorrow's CTA", colour: "#c8a864", type: "Close",
+      what: "'Thank you so much for being here today. If you're a business owner who wants to hand off your social media — DM me SOCIAL and let's talk. If you want to start your business and you need the brand kit — link is in the chat. And follow this account right now because I'm here every single morning at 8:30am.' Wave. End the live.",
+      cta: "Within 30 minutes: DM every person who commented. Clip 3-5 moments from the live. Post the best clip as a TikTok right now." },
+  ];
+
+  const noproofScripts = [
+    {
+      scenario: "They ask: 'Can I see some examples of your work?'",
+      scripts: [
+        { label: "Option 1 — Use your own brand", text: "Absolutely — actually, everything you're seeing on my page right now is built with the exact same system I'd build for you. My TikTok, my Instagram, my content — it's all created using the AI tools I use for clients. That IS the portfolio. And the AI avatar I just showed you? That was built for my own brand first." },
+        { label: "Option 2 — The trial IS the proof", text: "Honestly? The best example I can give you is your own business. That's why we have the 14-day trial. Instead of showing you someone else's results, we'll build it for YOUR business and you'll see it working in real time. That's more valuable than any case study." },
+        { label: "Option 3 — Free mini-audit (builds trust)", text: "What I'll do is put together a quick look at [BUSINESS NAME]'s current social presence — what you're posting, what's missing, and what I'd change first. Takes me 15 minutes and I'll send it to you completely free. That way you can see how I think before we talk about working together." },
+        { label: "Option 4 — The honest close (most trust)", text: "I'm being selective about who I take on right now because I want to build case studies I'm genuinely proud of. That's actually WHY I offer the 14-day free trial — you get real results without any financial risk, and I get a case study I can use to show the next person. It's the best deal for both of us. Want to be one of the first?" },
+      ],
+    },
+    {
+      scenario: "CLOSER — 'S' step: you have no case study to share",
+      scripts: [
+        { label: "Use yourself as the case study", text: "I'll be transparent with you — I'm building my own client base right now and the first case study I have is my own. I built the entire Dollhouse Brand Studio system for myself first. Everything I'm showing you — the AI avatar, the automations, the content system — I set all of it up from scratch. So you're not getting someone who's theorizing. You're getting someone who built it and uses it every day." },
+        { label: "Use a concept case study", text: "I want to show you what this would look like for a [THEIR NICHE] business specifically. I've been thinking about exactly how I'd approach [BUSINESS NAME] and I actually put some ideas together. [Share a few specific ideas tailored to their business.] Does this match what you're looking for?" },
+      ],
+    },
+  ];
+
+  const platformSetup = [
+    { step: "Agency profile", detail: "Business name, logo, contact email, business phone. This is what clients see in the platform. Make it look like a real agency." },
+    { step: "Payment processing", detail: "Connect Stripe or the platform's payment gateway. Test it with a $1 transaction before you need it for real." },
+    { step: "Calendar / booking system", detail: "Set up one booking type: Discovery Call, 30 minutes. Connect your Google Calendar. Test the booking flow from a private browser." },
+    { step: "Your own social media connected", detail: "TikTok, Instagram, Facebook, Threads. You'll post your own content through the platform so you know how it works before doing it for clients." },
+    { step: "Brand board (yours)", detail: "Your colours: Blush #f4dcdc, Rose #c97a7a, Gold #c8a864, Ink #1e0f0a, Cream #fdf6ef. Your fonts. Your logo. The platform pulls from this when creating AI content." },
+    { step: "Missed call text-back", detail: "Go to workflows. Create trigger: missed call. Action: send SMS immediately → 'Hey! Sorry we missed you — how can we help? Reply here and we'll be right with you.' Publish it. Test by calling yourself and not answering." },
+    { step: "Lead capture form", detail: "Build a simple form: Name, Email, Phone, biggest social media challenge. Set automation: form submit → create contact → add tag 'New Lead' → send welcome email. Test it." },
+    { step: "CRM pipeline stages", detail: "Set up your stages to match the Deal Pipeline tab: New Lead → Contacted → Responded → Call Set → Proposal Sent → Trial → Client → Lost. These are already in the Deal Tracker — match your CRM to them." },
+    { step: "Test everything end-to-end", detail: "Fill out your own lead form. Watch the automation fire. Book a fake discovery call. Send a test invoice. Everything should work before your first real lead hits it." },
+  ];
+
+  const brandKitPitches = [
+    { platform: "TikTok LIVE", script: "'For those of you who've been thinking about starting a business but you don't know where to begin — I made something for you. It's called the Dollhouse Brand Kit. For $97, you get your logo templates, your brand colours, your social media templates, and a first-sale checklist. Everything you need to look professional and make your first sale this week. Link is going in the chat RIGHT NOW.'" },
+    { platform: "TikTok Video Caption", script: "She wanted to start a business. She didn't know how to make it look real. So I gave her everything. The logo. The colours. The social media templates. The checklist for getting her first sale. $97. Everything you need to launch this week. Link in bio ✨ #smallbusiness #womeninbusiness #brandkit #startabusiness" },
+    { platform: "Instagram Story", script: "Slide 1: 'Wanting to start a business but don't know where to start?' Slide 2: 'I made this for you →' Slide 3: Show the kit contents. Slide 4: '$97. Instant download.' Slide 5: Link sticker → Stan.store" },
+    { platform: "DM (when someone says they want to start a business)", script: "Oh my gosh that's so exciting! I actually built something specifically for this. It's called the Dollhouse Brand Kit — for $97 you get your logo templates, brand colours, social media templates, and a step-by-step checklist for making your first sale. A lot of women use it to go from 'I want to start something' to 'I'm actually launching this week.' Want the link?" },
+  ];
+
+  return (
+    <div>
+      <SectionHeader
+        label="Read This First"
+        title="Start Here — Your First 7 Days"
+        sub="You have zero clients, zero followers, and zero proof. This tab tells you exactly what to do before you send your first DM, go live, or say a price out loud. Follow this in order."
+      />
+
+      {/* ── Week 1 Checklist ── */}
+      <div className="mb-12">
+        <p className="text-[10px] tracking-[0.25em] uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Days 1–7</p>
+        <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--rose)", fontWeight: 400, marginBottom: "6px" }}>Zero-Client Survival Checklist</h3>
+        <p className="mb-6" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.5)" }}>Each day has a specific job. Do them in order. By Day 7 you're live, you have a product, and you've sent your first DMs.</p>
+        <div className="space-y-2">
+          {week1.map((d) => {
+            const isOpen = openDay === d.day;
+            return (
+              <div key={d.day} className="rounded-2xl overflow-hidden" style={{ border: `1px solid ${d.colour}35`, background: isOpen ? `${d.colour}10` : "rgba(255,255,255,0.55)" }}>
+                <button onClick={() => setOpenDay(isOpen ? null : d.day)} className="w-full flex items-center justify-between px-5 py-4 text-left">
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: d.colour }}>
+                      <span style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: "#fff", fontStyle: "italic", fontWeight: 600 }}>{d.day}</span>
+                    </div>
+                    <div>
+                      <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.05rem", color: "var(--ink)" }}>Day {d.day} — {d.title}</p>
+                      <p style={{ fontFamily: FONT_BODY, fontSize: "0.75rem", color: "rgba(30,15,10,0.45)", marginTop: "1px" }}>{d.tasks.length} tasks</p>
+                    </div>
+                  </div>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4 shrink-0 ml-3 transition-transform" style={{ color: "rgba(30,15,10,0.3)", transform: isOpen ? "rotate(180deg)" : "none" }}><path d="M6 9l6 6 6-6" /></svg>
+                </button>
+                {isOpen && (
+                  <div className="px-5 pb-5 pt-1">
+                    <div className="rounded-xl px-4 py-2.5 mb-4" style={{ background: `${d.colour}20`, border: `1px solid ${d.colour}40` }}>
+                      <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.7)", fontStyle: "italic" }}>⚠️ {d.warning}</p>
+                    </div>
+                    <div className="space-y-3">
+                      {d.tasks.map((t, i) => (
+                        <div key={i} className="flex gap-3">
+                          <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ background: `${d.colour}22`, border: `1px solid ${d.colour}45` }}>
+                            <span style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", color: d.colour, fontWeight: 700 }}>{i + 1}</span>
+                          </div>
+                          <div className="flex-1">
+                            <p style={{ fontFamily: FONT_BODY, fontSize: "0.875rem", color: "var(--ink)", fontWeight: 500, marginBottom: "3px" }}>{t.task}</p>
+                            <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.55)", lineHeight: 1.6 }}>{t.detail}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ── Platform Setup ── */}
+      <div className="mb-12">
+        <p className="text-[10px] tracking-[0.25em] uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Do This Once</p>
+        <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--rose)", fontWeight: 400, marginBottom: "6px" }}>Platform Setup Checklist</h3>
+        <p className="mb-5" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.5)" }}>Every client references 'the platform' — you need to know it cold before your first client signs. Set yours up exactly like this.</p>
+        <div className="rounded-2xl p-6" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
+          <div className="space-y-3">
+            {platformSetup.map((item, i) => (
+              <div key={i} className="flex gap-4 rounded-xl p-4" style={{ background: "rgba(200,168,100,0.06)", border: "1px solid rgba(200,168,100,0.12)" }}>
+                <div className="w-6 h-6 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style={{ background: "var(--ink)" }}>
+                  <span style={{ fontFamily: FONT_DISPLAY, fontSize: "0.8rem", color: "var(--gold)", fontStyle: "italic" }}>{i + 1}</span>
+                </div>
+                <div>
+                  <p style={{ fontFamily: FONT_LUXE, fontSize: "0.75rem", letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--ink)", marginBottom: "3px" }}>{item.step}</p>
+                  <p style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.6)", lineHeight: 1.55 }}>{item.detail}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── No Proof Scripts ── */}
+      <div className="mb-12">
+        <p className="text-[10px] tracking-[0.25em] uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Critical Early-Stage Sales Skill</p>
+        <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--rose)", fontWeight: 400, marginBottom: "6px" }}>No Proof? No Problem — Exact Words</h3>
+        <p className="mb-5" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.5)" }}>Every beginner hits the moment someone asks 'can I see your work?' Here are 4 responses that turn that question into an advantage, not a wall.</p>
+        <div className="space-y-5">
+          {noproofScripts.map((section, si) => (
+            <div key={si} className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+              <div className="px-6 py-4" style={{ background: "rgba(200,168,100,0.08)", borderBottom: "1px solid rgba(200,168,100,0.15)" }}>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "var(--ink)", fontStyle: "italic" }}>"{section.scenario}"</p>
+              </div>
+              <div className="p-5 space-y-3">
+                {section.scripts.map((s, i) => (
+                  <div key={i} className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.15)" }}>
+                    <div className="px-4 py-2" style={{ background: "var(--ink)" }}>
+                      <p style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gold)" }}>{s.label}</p>
+                    </div>
+                    <div className="px-4 py-3" style={{ background: "rgba(200,168,100,0.04)" }}>
+                      <p style={{ fontFamily: FONT_DISPLAY, fontSize: "0.95rem", color: "var(--ink)", fontStyle: "italic", lineHeight: 1.65 }}>"{s.text}"</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+          <div className="rounded-2xl p-5" style={{ background: "var(--ink)", border: "1px solid rgba(200,168,100,0.2)" }}>
+            <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: "var(--gold)", fontStyle: "italic", lineHeight: 1.5 }}>The rule: never apologise for being new. Position it as "I'm selective about who I start with because I want results I'm proud of." That's not a weakness — that's a standard. It makes you more attractive, not less.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* ── TikTok LIVE Playbook ── */}
+      <div className="mb-12">
+        <p className="text-[10px] tracking-[0.25em] uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Your Primary Lead Engine</p>
+        <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--rose)", fontWeight: 400, marginBottom: "6px" }}>TikTok LIVE Playbook — 60 Minutes</h3>
+        <p className="mb-5" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.5)" }}>Every live follows this structure. Two audiences, two offers, one hour. B2B (business owners → social media service) and B2C (women starting a business → brand kit).</p>
+
+        {/* Pre-live */}
+        <div className="rounded-2xl p-5 mb-4" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
+          <p className="text-[9px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Before You Go Live — Do All 5</p>
+          <div className="grid sm:grid-cols-2 gap-2">
+            {[
+              "Post a 'going live in 10 min' story on Instagram and Facebook",
+              "Have your AI avatar demo video pulled up and ready to play",
+              "Charger plugged in — lives kill batteries fast",
+              "Stan.store brand kit link copied and ready to paste in chat",
+              "Your live outline sticky note visible off-camera",
+            ].map((item, i) => (
+              <div key={i} className="flex items-start gap-2">
+                <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ background: "rgba(200,168,100,0.2)", border: "1px solid rgba(200,168,100,0.35)" }}>
+                  <span style={{ fontFamily: FONT_LUXE, fontSize: "0.55rem", color: "var(--gold)", fontWeight: 700 }}>{i + 1}</span>
+                </div>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.7)", lineHeight: 1.5 }}>{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Live segments */}
+        <div className="space-y-3">
+          {liveStructure.map((seg, i) => (
+            <div key={i} className="rounded-2xl overflow-hidden" style={{ border: `1px solid ${seg.colour}35` }}>
+              <div className="px-5 py-3 flex items-center gap-4" style={{ background: `${seg.colour}14` }}>
+                <div className="shrink-0 text-right" style={{ minWidth: "60px" }}>
+                  <p style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", color: seg.colour, fontWeight: 600 }}>{seg.time}</p>
+                </div>
+                <div className="w-px h-8 shrink-0" style={{ background: `${seg.colour}40` }} />
+                <div>
+                  <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: "var(--ink)" }}>{seg.label}</p>
+                  <span className="text-[9px] tracking-widest uppercase px-2 py-0.5 rounded-full" style={{ fontFamily: FONT_LUXE, background: `${seg.colour}20`, color: seg.colour }}>{seg.type}</span>
+                </div>
+              </div>
+              <div className="px-5 py-4 space-y-3" style={{ background: "rgba(255,255,255,0.5)" }}>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(30,15,10,0.7)", lineHeight: 1.65 }}>{seg.what}</p>
+                <div className="flex items-start gap-2 rounded-lg px-3 py-2" style={{ background: `${seg.colour}10`, border: `1px solid ${seg.colour}25` }}>
+                  <span style={{ color: seg.colour, fontSize: "0.75rem", marginTop: "1px", flexShrink: 0 }}>→</span>
+                  <p style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.06em", color: seg.colour }}>{seg.cta}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Post-live */}
+        <div className="rounded-2xl p-5 mt-4" style={{ background: "var(--ink)", border: "1px solid rgba(200,168,100,0.2)" }}>
+          <p className="text-[9px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>After Every Live — Do All 4 Within 30 Minutes</p>
+          <div className="space-y-2">
+            {[
+              { n: "1", t: "DM every person who commented during the live", d: "Even just 'Hey! Thanks so much for watching today — are you a business owner?' This is warm outreach. These people already know you." },
+              { n: "2", t: "Clip the best 60-second moment and post it as a TikTok immediately", d: "The live creates the content. The clip extends the reach. One live = one post. Do this every time." },
+              { n: "3", t: "Post an Instagram story: 'Missed the live? Here's what we covered + link below'", d: "Link to your booking page. Even people who didn't watch will see the story." },
+              { n: "4", t: "Reply to every comment the live generated", d: "Reply rate affects how often TikTok shows you to new people. Every reply counts." },
+            ].map(({ n, t, d }) => (
+              <div key={n} className="flex gap-3">
+                <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ background: "rgba(200,168,100,0.15)", border: "1px solid rgba(200,168,100,0.3)" }}>
+                  <span style={{ fontFamily: FONT_DISPLAY, fontSize: "0.82rem", color: "var(--gold)", fontStyle: "italic" }}>{n}</span>
+                </div>
+                <div>
+                  <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "var(--cream)", marginBottom: "2px" }}>{t}</p>
+                  <p style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "rgba(250,243,234,0.5)", lineHeight: 1.5 }}>{d}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── Brand Kit Product (B2C) ── */}
+      <div className="mb-4">
+        <p className="text-[10px] tracking-[0.25em] uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Separate B2C Offer — Different Audience</p>
+        <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--rose)", fontWeight: 400, marginBottom: "6px" }}>The Brand Kit Digital Product</h3>
+        <p className="mb-5" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.5)" }}>This is NOT for your agency clients. This is sold directly to women who want to start a business and don't know where to begin. $97. Instant download. Two completely different audiences, two different revenue streams.</p>
+
+        {/* What's in it */}
+        <div className="grid md:grid-cols-2 gap-4 mb-5">
+          <div className="rounded-2xl p-6" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
+            <p className="text-[9px] tracking-widest uppercase mb-4" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>What's Inside the Kit</p>
+            <div className="space-y-2.5">
+              {[
+                { emoji: "🎨", item: "5 logo template options in Canva", sub: "Fully editable — they swap the name, change the colour, done" },
+                { emoji: "🎨", item: "Brand colour palette card", sub: "5 colours that work together, with hex codes and how to use them" },
+                { emoji: "✍️", item: "Font pairing guide", sub: "3 combinations: heading + body font, with real examples" },
+                { emoji: "📱", item: "Social media profile kit", sub: "IG profile, highlight covers, story template, feed post template" },
+                { emoji: "📝", item: "10 fill-in-the-blank caption templates", sub: "Intro, offer, testimonial, tip, story — the 5 posts every new business needs" },
+                { emoji: "✅", item: "First Sale Checklist (the real value)", sub: "7 steps from 'I want to start something' to 'I just made my first sale'" },
+              ].map(({ emoji, item, sub }, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <span style={{ fontSize: "1rem", flexShrink: 0, marginTop: "1px" }}>{emoji}</span>
+                  <div>
+                    <p style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "var(--ink)" }}>{item}</p>
+                    <p style={{ fontFamily: FONT_BODY, fontSize: "0.75rem", color: "rgba(30,15,10,0.45)", lineHeight: 1.45 }}>{sub}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div className="rounded-2xl p-5" style={{ background: "var(--ink)", border: "1px solid rgba(200,168,100,0.2)" }}>
+              <p className="text-[9px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Pricing + Where to Sell</p>
+              <div className="space-y-2">
+                {[
+                  { label: "Price", val: "$97 — impulse buy, no-brainer for the value" },
+                  { label: "Platform", val: "Stan.store (free, built for creators)" },
+                  { label: "Delivery", val: "Instant download — Canva links + PDF" },
+                  { label: "Where you sell it", val: "TikTok LIVE (primary), TikTok videos, IG Stories, DMs" },
+                ].map(({ label, val }) => (
+                  <div key={label} className="flex justify-between items-start gap-3">
+                    <span style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(200,168,100,0.55)", flexShrink: 0 }}>{label}</span>
+                    <span style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(250,243,234,0.8)", textAlign: "right" }}>{val}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="rounded-2xl p-5" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.25)" }}>
+              <p className="text-[9px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The Upsell Path</p>
+              <div className="flex items-center gap-2 flex-wrap">
+                {["$97 Brand Kit", "→", "$297 Brand Strategy Call", "→", "$1,000/mo Social Media Service"].map((step, i) => (
+                  <span key={i} style={{ fontFamily: step === "→" ? FONT_BODY : FONT_LUXE, fontSize: step === "→" ? "1rem" : "0.72rem", letterSpacing: step === "→" ? 0 : "0.06em", color: step === "→" ? "rgba(30,15,10,0.4)" : "var(--ink)", textTransform: step === "→" ? "none" : "uppercase" }}>{step}</span>
+                ))}
+              </div>
+              <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "rgba(30,15,10,0.55)", lineHeight: 1.5 }}>The brand kit buyer already trusts you. They paid $97. After they use it and see results — that's your warmest possible lead for the full service.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* How to pitch it */}
+        <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+          <div className="px-6 py-4" style={{ background: "rgba(200,168,100,0.08)", borderBottom: "1px solid rgba(200,168,100,0.15)" }}>
+            <p className="text-[9px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Word-for-Word Pitches</p>
+            <h4 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.15rem", color: "var(--ink)" }}>How to Sell the Brand Kit on Each Platform</h4>
+          </div>
+          <div className="p-5 space-y-3">
+            {brandKitPitches.map((p, i) => (
+              <div key={i} className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.15)" }}>
+                <div className="px-4 py-2" style={{ background: "var(--ink)" }}>
+                  <p style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gold)" }}>{p.platform}</p>
+                </div>
+                <div className="px-4 py-3" style={{ background: "rgba(200,168,100,0.04)" }}>
+                  <p style={{ fontFamily: FONT_DISPLAY, fontSize: "0.92rem", color: "var(--ink)", fontStyle: "italic", lineHeight: 1.7 }}>"{p.script}"</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ─── Schedule Tab ───────────────────────────────────── */
 const BLOCK_COLORS: Record<string, { bg: string; border: string; dot: string; label: string }> = {
   live:     { bg: "rgba(220,38,38,0.1)",    border: "rgba(220,38,38,0.28)",    dot: "#dc2626", label: "LIVE" },
@@ -5980,7 +6392,6 @@ const QB_ADDONS: QBAddon[] = [
   { key: "revenue_audit",     type: "onetime", price: 1500, emoji: "🔍", name: "AI Revenue Audit",                    desc: "Full pipeline + social + workflow audit with growth plan" },
   { key: "digital_product",   type: "onetime", price: 297,  emoji: "📦", name: "AI Digital Product / Lead Gen Tool",  desc: "Quiz, calculator, or checklist built in your branding" },
   { key: "digital_product_build", type: "onetime", price: 497, emoji: "💡", name: "Digital Product Build",            desc: "Sellable digital product — ebook, template pack, swipe file, or mini-course workbook" },
-  { key: "brand_kit",         type: "onetime", price: 297,  emoji: "🎨", name: "Brand Kit",                           desc: "Logo, colours, fonts, templates — brand-ready package" },
   { key: "merch_design",      type: "onetime", price: 297,  emoji: "👕", name: "Merch & Brand Design",                desc: "On-brand merch, apparel, and print-ready assets designed to match your business identity." },
 ];
 
@@ -6426,11 +6837,12 @@ function QuoteBuilderTab() {
 
 function PlaybookPage() {
   const [authed, setAuthed] = useState(() => sessionStorage.getItem("dh_admin") === "1");
-  const [tab, setTab] = useState<Tab>("workflow");
+  const [tab, setTab] = useState<Tab>("start");
 
   if (!authed) return <LoginGate onAuth={() => setAuthed(true)} />;
 
   const tabs: { id: Tab; label: string; icon: string }[] = [
+    { id: "start", label: "Start Here", icon: "🌟" },
     { id: "workflow", label: "Client Workflow", icon: "📋" },
     { id: "monthly", label: "Monthly Process", icon: "📅" },
     { id: "prompts", label: "Content Prompts", icon: "✍️" },
@@ -6485,6 +6897,7 @@ function PlaybookPage() {
 
       {/* Content */}
       <div className="max-w-6xl mx-auto px-6 md:px-12 py-12">
+        {tab === "start" && <StartHereTab />}
         {tab === "workflow" && <WorkflowTab />}
         {tab === "monthly" && <MonthlyTab />}
         {tab === "prompts" && <PromptsTab />}
