@@ -260,6 +260,7 @@ function MonthlyTab() {
 /* ─── Tab: Prompts ────────────────────────────────────── */
 function PromptsTab() {
   const [search, setSearch] = useState("");
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const prompts = [
     {
       title: "AI Graphics — Single Posts (Platform Ask AI)",
@@ -964,21 +965,58 @@ Swap in your actual results once you have them. Specific numbers always outperfo
   ];
 
   const q = search.toLowerCase().trim();
-  const filtered = q ? prompts.filter(p =>
-    p.title.toLowerCase().includes(q) ||
-    p.tag.toLowerCase().includes(q) ||
-    p.prompt.toLowerCase().includes(q)
-  ) : null;
+
+  // Pool of prompts after category filter
+  const catPrompts = activeCategory
+    ? prompts.filter(p => { const g = GROUPS.find(g => g.label === activeCategory); return g ? g.tags.includes(p.tag) : true; })
+    : prompts;
+
+  // Further filter by search
+  const searchFiltered = q
+    ? catPrompts.filter(p => p.title.toLowerCase().includes(q) || p.tag.toLowerCase().includes(q) || p.prompt.toLowerCase().includes(q))
+    : null;
+
+  // Groups to render in browse mode
+  const visibleGroups = activeCategory ? GROUPS.filter(g => g.label === activeCategory) : GROUPS;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       <SectionHeader label="Prompt Library" title="Copy. Paste. Customize. Done." sub="Every prompt you need to create client work. Replace bracketed placeholders with client details. Never start from scratch." />
+
+      {/* Category nav */}
+      <div className="overflow-x-auto pb-1">
+        <div className="flex gap-2 min-w-max">
+          <button
+            onClick={() => setActiveCategory(null)}
+            className="px-4 py-2 rounded-xl text-[10px] tracking-wider uppercase transition-all"
+            style={{ fontFamily: FONT_LUXE, background: !activeCategory ? "var(--ink)" : "rgba(255,255,255,0.65)", color: !activeCategory ? "var(--gold)" : "rgba(30,15,10,0.5)", border: !activeCategory ? "1px solid var(--ink)" : "1px solid rgba(200,168,100,0.2)" }}
+          >
+            All Prompts
+          </button>
+          {GROUPS.map(g => {
+            const count = prompts.filter(p => g.tags.includes(p.tag)).length;
+            const active = activeCategory === g.label;
+            return (
+              <button
+                key={g.label}
+                onClick={() => { setActiveCategory(active ? null : g.label); setSearch(""); }}
+                className="px-4 py-2 rounded-xl text-[10px] tracking-wider uppercase transition-all whitespace-nowrap flex items-center gap-1.5"
+                style={{ fontFamily: FONT_LUXE, background: active ? "var(--ink)" : "rgba(255,255,255,0.65)", color: active ? "var(--gold)" : "rgba(30,15,10,0.5)", border: active ? "1px solid var(--ink)" : "1px solid rgba(200,168,100,0.2)" }}
+              >
+                <span>{g.icon}</span>
+                <span>{g.label}</span>
+                <span className="opacity-50">({count})</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
 
       {/* Search */}
       <div className="relative">
         <input
           type="text"
-          placeholder="Search prompts by title, tag, or keyword..."
+          placeholder={activeCategory ? `Search in ${activeCategory}...` : "Search all prompts by title, tag, or keyword..."}
           value={search}
           onChange={e => setSearch(e.target.value)}
           className="w-full rounded-xl px-5 py-3 focus:outline-none text-sm"
@@ -990,23 +1028,23 @@ Swap in your actual results once you have them. Specific numbers always outperfo
         )}
       </div>
 
-      {filtered ? (
+      {searchFiltered ? (
         <div>
           <p className="mb-4" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(30,15,10,0.4)" }}>
-            {filtered.length} result{filtered.length !== 1 ? "s" : ""} for &ldquo;{search}&rdquo;
+            {searchFiltered.length} result{searchFiltered.length !== 1 ? "s" : ""}{activeCategory ? ` in ${activeCategory}` : ""} for &ldquo;{search}&rdquo;
           </p>
-          {filtered.length === 0 ? (
+          {searchFiltered.length === 0 ? (
             <div className="text-center py-14 rounded-2xl" style={{ background: "rgba(255,255,255,0.5)", border: "1px dashed rgba(200,168,100,0.3)" }}>
               <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "rgba(30,15,10,0.35)", fontStyle: "italic" }}>No prompts found.</p>
               <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.3)" }}>Try a different keyword or clear the search.</p>
             </div>
           ) : (
-            <div className="space-y-4">{filtered.map(p => <PromptCard key={p.title} {...p} />)}</div>
+            <div className="space-y-4">{searchFiltered.map(p => <PromptCard key={p.title} {...p} />)}</div>
           )}
         </div>
       ) : (
         <div className="space-y-12">
-          {GROUPS.map(g => {
+          {visibleGroups.map(g => {
             const gp = prompts.filter(p => g.tags.includes(p.tag));
             if (!gp.length) return null;
             return (
