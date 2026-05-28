@@ -6105,6 +6105,7 @@ const WEEK_DAYS: WeekDay[] = [
 interface Milestone {
   period: string;
   goal: string;
+  cad: string;
   emoji: string;
   color: string;
   label: string;
@@ -6114,7 +6115,7 @@ interface Milestone {
 
 const MILESTONES: Milestone[] = [
   {
-    period: "First 30 Days", goal: "$2,000–$5,000", emoji: "🌱", color: "#c8a864", label: "First Revenue In",
+    period: "First 30 Days", goal: "$2,000–$5,000 USD", cad: "≈ $2,700–$6,750 CAD", emoji: "🌱", color: "#c8a864", label: "First Revenue In",
     targets: [
       "Sign first 1–3 clients (Starter package or brand kits)",
       "Post daily on all 4 platforms — no gap days, no excuses",
@@ -6124,23 +6125,23 @@ const MILESTONES: Milestone[] = [
       "Show AI avatar demo on every single call and every live",
       "Secure first client testimonial — this is your social proof engine",
     ],
-    math: "2 Starter clients = $2,000/mo recurring + $1,000 in setup fees collected day 1. Add 3 brand kits at $297 each = +$891. Total in month 1: ~$3,900–$5,000. This is completely achievable with 15 DMs/day from the start.",
+    math: "2 Starter clients = $2,000 USD/mo recurring + $1,000 USD in setup fees collected day 1. Add 3 brand kits at $97 each = +$291 USD. Total month 1: ~$3,300–$5,000 USD — that's roughly $4,500–$6,750 CAD hitting your bank account. Completely achievable with 15 DMs/day from the start.",
   },
   {
-    period: "60–90 Days", goal: "$10,000–$33,000/mo", emoji: "🚀", color: "#c97a7a", label: "Six-Figure Pace",
+    period: "60–90 Days", goal: "$10,000–$33,000 USD/mo", cad: "≈ $13,500–$44,500 CAD/mo", emoji: "🚀", color: "#c97a7a", label: "Six-Figure Pace",
     targets: [
       "5–10 active recurring clients (Starter and Growth mix)",
       "Upsell AI avatar add-on to at least half your clients",
       "First organic referral comes in from a happy client",
       "Hire a VA or editor (10–15 hrs/week) to free up your delivery time",
       "Revenue audit upsell offered to your best-fit clients",
-      "First month at $10,000+ in recurring monthly revenue",
+      "First month at $10,000+ USD in recurring monthly revenue",
       "Sales call → proposal → close cycle running in under 7 days",
     ],
-    math: "6 Growth clients × $2,500 = $15,000/mo. Add 2 Elite × $5,000 = $25,000/mo. Add-ons bring it to $30,000+/mo. Setup fees + one-time services add $5k–$10k/month on top. Six figures in 90 days = $33k/mo pace — aggressive but real if you close consistently.",
+    math: "6 Growth clients × $2,500 USD = $15,000 USD/mo. Add 2 Elite × $5,000 USD = $25,000 USD/mo. Add-ons bring it to $30,000+ USD/mo = roughly $40,500+ CAD/mo. Setup fees + one-time services add $5k–$10k USD/month on top. At $33k USD/mo you're earning more CAD than most Canadians make in a year — every single month.",
   },
   {
-    period: "4–12 Months", goal: "$83,000–$100,000+/mo", emoji: "👑", color: "#7b68ee", label: "The Million-Dollar Year",
+    period: "4–12 Months", goal: "$83,000–$100,000+ USD/mo", cad: "≈ $112,000–$135,000+ CAD/mo", emoji: "👑", color: "#7b68ee", label: "The Million-Dollar Year",
     targets: [
       "20+ active clients across all tiers",
       "Team of 3–5: account manager, content creator, sales closer, VA",
@@ -6150,7 +6151,7 @@ const MILESTONES: Milestone[] = [
       "White-label partnerships generating additional passive income",
       "Your personal brand IS the business — you are a known face in this space",
     ],
-    math: "10 Elite × $5,000 = $50,000. 10 Growth × $2,500 = $25,000. Add-ons + AI video packages = $10,000. Digital products/course = $5,000–$15,000/mo. Total: $90,000–$100,000/mo recurring. Multiply by 12 months = $1M+. The variable is close rate and client retention. Both are in your control.",
+    math: "10 Elite × $5,000 USD = $50,000 USD. 10 Growth × $2,500 USD = $25,000 USD. Add-ons + AI video packages = $10,000 USD. Digital products/course = $5,000–$15,000 USD/mo. Total: $90,000–$100,000 USD/mo recurring = $121,500–$135,000 CAD/mo. Multiply by 12 months = $1M+ USD / $1.35M+ CAD. You are a Canadian charging in US dollars. That exchange rate is your built-in advantage.",
   },
 ];
 
@@ -6210,7 +6211,10 @@ function ScheduleTab() {
 
       {/* Revenue North Stars */}
       <div className="mb-10">
-        <p className="text-[10px] tracking-[0.25em] uppercase mb-5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Your Revenue Targets</p>
+        <div className="flex items-center justify-between flex-wrap gap-2 mb-5">
+          <p className="text-[10px] tracking-[0.25em] uppercase" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Your Revenue Targets</p>
+          <span className="px-3 py-1 rounded-full text-[9px] tracking-wider uppercase" style={{ fontFamily: FONT_LUXE, background: "rgba(74,153,112,0.1)", color: "#4a9970", border: "1px solid rgba(74,153,112,0.28)" }}>🇨🇦 All prices in USD — you earn ~35% more in CAD</span>
+        </div>
         <div className="grid md:grid-cols-3 gap-4">
           {MILESTONES.map((m) => (
             <div key={m.period} className="rounded-2xl p-5" style={{ background: `${m.color}18`, border: `1px solid ${m.color}45` }}>
@@ -6218,7 +6222,8 @@ function ScheduleTab() {
                 <span style={{ fontSize: "1.5rem" }}>{m.emoji}</span>
                 <div>
                   <p style={{ fontFamily: FONT_LUXE, fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: m.color }}>{m.period}</p>
-                  <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.2rem", color: "var(--ink)", fontWeight: 600, lineHeight: 1.2 }}>{m.goal}</p>
+                  <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: "var(--ink)", fontWeight: 600, lineHeight: 1.2 }}>{m.goal}</p>
+                  <p style={{ fontFamily: FONT_LUXE, fontSize: "0.65rem", color: "#4a9970", marginTop: "2px" }}>{m.cad}</p>
                 </div>
               </div>
               <p style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "rgba(30,15,10,0.5)" }}>{m.label}</p>
@@ -6414,6 +6419,7 @@ function ScheduleTab() {
                   <div>
                     <p style={{ fontFamily: FONT_LUXE, fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: m.color }}>{m.period}</p>
                     <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "var(--ink)", fontWeight: 600, lineHeight: 1.15 }}>{m.goal} <span style={{ fontSize: "1rem", fontWeight: 400, color: "rgba(30,15,10,0.5)" }}>— {m.label}</span></p>
+                    <p style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", color: "#4a9970", marginTop: "3px", letterSpacing: "0.05em" }}>{m.cad}</p>
                   </div>
                 </div>
               </div>
@@ -6578,9 +6584,10 @@ function QuoteBuilderTab() {
     lines.push("  Custom Investment Proposal");
     if (bizName) lines.push(`  Prepared for: ${bizName}${city ? ` · ${city}` : ""}`);
     if (niche) lines.push(`  Industry: ${niche}`);
+    lines.push("  All prices in USD (US Dollars)");
     lines.push("═".repeat(54));
     lines.push("");
-    lines.push(`  ${p.emoji}  ${p.name} Package — $${p.monthly.toLocaleString()}/mo`);
+    lines.push(`  ${p.emoji}  ${p.name} Package — $${p.monthly.toLocaleString()} USD/mo`);
     lines.push("");
     lines.push("  What's included:");
     p.includes.forEach(item => lines.push(`    ✓ ${item}`));
@@ -6588,38 +6595,38 @@ function QuoteBuilderTab() {
     if (monthlyAddons.length > 0 || onetimeAddons.length > 0) {
       lines.push("");
       lines.push("  Add-On Services:");
-      monthlyAddons.forEach(a => lines.push(`    + ${a.name} — $${a.price}/mo`));
-      onetimeAddons.forEach(a => lines.push(`    + ${a.name} — $${a.price} one-time`));
+      monthlyAddons.forEach(a => lines.push(`    + ${a.name} — $${a.price} USD/mo`));
+      onetimeAddons.forEach(a => lines.push(`    + ${a.name} — $${a.price} USD one-time`));
     }
 
     lines.push("");
     lines.push("─".repeat(54));
-    lines.push("  INVESTMENT SUMMARY");
+    lines.push("  INVESTMENT SUMMARY  (all amounts USD)");
     lines.push("─".repeat(54));
     lines.push("");
-    lines.push(dotLine(`  ${p.name} Package`, `$${p.monthly.toLocaleString()}/mo`));
+    lines.push(dotLine(`  ${p.name} Package`, `$${p.monthly.toLocaleString()} USD/mo`));
     if (monthlyAddons.length > 0) {
-      monthlyAddons.forEach(a => lines.push(dotLine(`  + ${a.name}`, `$${a.price}/mo`)));
+      monthlyAddons.forEach(a => lines.push(dotLine(`  + ${a.name}`, `$${a.price} USD/mo`)));
     }
     if (annual) {
-      lines.push(dotLine("  Monthly Subtotal", `$${monthlySubtotal.toLocaleString()}/mo`));
-      lines.push(dotLine("  Annual Discount (15% off)", `−$${discount}/mo`));
+      lines.push(dotLine("  Monthly Subtotal", `$${monthlySubtotal.toLocaleString()} USD/mo`));
+      lines.push(dotLine("  Annual Discount (15% off)", `−$${discount} USD/mo`));
     }
-    lines.push(dotLine("  Monthly Total", `$${monthlyTotal.toLocaleString()}/mo`));
+    lines.push(dotLine("  Monthly Total", `$${monthlyTotal.toLocaleString()} USD/mo`));
     lines.push("");
-    lines.push(dotLine("  One-Time Setup Fee", `$${setupFee}`));
+    lines.push(dotLine("  One-Time Setup Fee", `$${setupFee} USD`));
     if (onetimeAddons.length > 0) {
-      onetimeAddons.forEach(a => lines.push(dotLine(`  + ${a.name}`, `$${a.price}`)));
+      onetimeAddons.forEach(a => lines.push(dotLine(`  + ${a.name}`, `$${a.price} USD`)));
     }
     if (adSpend) lines.push(`  * Client ad spend (paid direct): ${adSpend}`);
     lines.push("");
     lines.push("─".repeat(54));
     if (trial) {
-      lines.push(dotLine("  DUE TODAY (setup fee)", `$${dueToday.toLocaleString()}`));
+      lines.push(dotLine("  DUE TODAY (setup fee)", `$${dueToday.toLocaleString()} USD`));
       lines.push(dotLine("  First 2 Weeks", "FREE TRIAL"));
-      lines.push(dotLine("  Starting Month 1", `$${monthlyTotal.toLocaleString()}/mo`));
+      lines.push(dotLine("  Starting Month 1", `$${monthlyTotal.toLocaleString()} USD/mo`));
     } else {
-      lines.push(dotLine("  DUE TODAY", `$${dueToday.toLocaleString()}`));
+      lines.push(dotLine("  DUE TODAY", `$${dueToday.toLocaleString()} USD`));
     }
     lines.push("─".repeat(54));
     lines.push("");
@@ -6855,7 +6862,10 @@ function QuoteBuilderTab() {
 
           {/* Summary Card */}
           <div className="rounded-2xl p-6" style={{ background: "var(--ink)", border: "1px solid rgba(200,168,100,0.2)" }}>
-            <p className="text-[10px] tracking-[0.25em] uppercase mb-5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Investment Summary</p>
+            <div className="flex items-center justify-between mb-5">
+              <p className="text-[10px] tracking-[0.25em] uppercase" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Investment Summary</p>
+              <span className="text-[9px] tracking-wider uppercase px-2 py-1 rounded-full" style={{ fontFamily: FONT_LUXE, background: "rgba(74,153,112,0.15)", color: "#4a9970", border: "1px solid rgba(74,153,112,0.3)" }}>🇺🇸 USD</span>
+            </div>
             {!selectedPkg ? (
               <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(255,255,255,0.3)", textAlign: "center", padding: "2rem 0" }}>← Select a package to see pricing</p>
             ) : (
