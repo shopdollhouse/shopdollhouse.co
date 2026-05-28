@@ -5501,7 +5501,7 @@ function StartHereTab() {
         { task: "Set up Stripe (or the platform's built-in payments)", detail: "You cannot get paid without this. Takes 10 minutes. You need a bank account and a government ID. Once connected, you can send invoices and collect setup fees instantly." },
         { task: "Set up a professional email", detail: "hello@shopdollhouse.co — forward it to your personal Gmail for now. Free to set up with Google Workspace or just use a Gmail alias until you're ready to pay." },
         { task: "Create a booking link", detail: "Use Calendly (free) or your platform's built-in calendar. Set up one slot: 'Discovery Call — 30 minutes.' This link goes in every single DM when someone says they're interested. Never make them figure out your schedule." },
-        { task: "Download Canva (free)", detail: "You'll use Canva to build the brand kit product, design client content, and create your own social media graphics. The free plan is enough to start. Set up a Canva account with your business email." },
+        { task: "Download Canva (free)", detail: "You'll use Canva to design client content and create your own social media graphics. The free plan is enough to start. Set up a Canva account with your business email. (The brand kit product is already built — Canva is for your agency work.)" },
       ],
     },
     {
@@ -5523,18 +5523,18 @@ function StartHereTab() {
         { task: "Design 7 posts in Canva — one week of content", detail: "Use these 7 themes in order: 1) What The Dollhouse does (introduce the service) 2) Show your AI avatar demo video 3) Before/after concept — 'what your social media looks like vs. what it could look like' 4) Pricing transparency — 'here's what $1,000/mo gets you' 5) Behind the scenes — setting up the platform for a client 6) A tip for business owners — 'the one social media mistake costing you clients' 7) Your story — why you started this." },
         { task: "Write 7 captions using the prompts in the Content Prompts tab", detail: "Open the Content Prompts tab. Use the Caption Writing prompt. Give it the post concept and your brand voice. Edit the first line to sound like you — AI writes well, but the opening always needs your personality. Batch all 7 in one sitting. Never write one at a time." },
         { task: "Schedule all 7 posts across all 4 platforms right now", detail: "Post times that work: 9am, 12pm, or 6pm. Spread across Mon–Sun. Use your platform's scheduler or each platform's native scheduling. Don't post them all today — stagger them so you have content going live all week even when you're busy." },
-        { task: "Set up your link in bio on every platform", detail: "Use Linktree (free) or Stan.store's link page. Add three links: 1) 'Book a Free Discovery Call' (your Calendly link) 2) 'Get the Brand Kit — $97' (your Stan.store product link from Day 4) 3) Your website (shopdollhouse.co). This link goes in every single bio. Update it as you add more." },
+        { task: "Set up your link in bio on every platform", detail: "Use Linktree (free) or Stan.store's link page. Add three links: 1) 'Book a Free Discovery Call' (your Calendly link) 2) 'Get the Brand Kit — $97' (your Stan.store product link — already live) 3) Your website (shopdollhouse.co). This link goes in every single bio. Update it as you add more." },
       ],
     },
     {
-      day: 4, colour: "#4a9970", title: "Build the Brand Kit Digital Product",
-      warning: "This is your B2C offer — sold to women who want to start a business, NOT to your agency clients. Different audience, different pitch, different price.",
+      day: 4, colour: "#4a9970", title: "Brand Kit Is Live — Activate & Start Selling",
+      warning: "✅ Already built. The interactive brand builder is live at shopdollhouse.co/brand-room and the product is set up on Stan.store. Today is about testing the experience, getting your links, and filming the content that sells it.",
       tasks: [
-        { task: "Open Canva and build 5 brand template files", detail: "1) Logo kit — 3 logo variations in Canva: icon + text, text only, icon only. Build it so the buyer can swap out the business name and colour. Make 5 different style options (modern, luxury, playful, minimal, bold). 2) Brand colour palette card — a one-page Canva file showing 5 colours that work together with their hex codes. Include a 'how to use this' note. 3) Font pairing guide — one page, 3 different font combinations (heading + body) with examples of how they look on a post. 4) Social media profile kit — IG profile cover, 6 highlight cover icons, a story template, and a feed post template. All editable. 5) 10 social media caption templates — fill-in-the-blank captions for the 5 most common business posts: intro, offer, testimonial, tip, story." },
-        { task: "Write the 'First Sale Checklist' PDF (1 page)", detail: "This is the bonus that makes the kit worth $97. Simple, clear, actionable. Items: ✓ Pick your one offer ✓ Write your IG bio ✓ Post 3 times this week ✓ DM 5 people who follow you ✓ Tell 3 friends what you're launching ✓ Set up a free PayPal or Stripe ✓ Make your first ask. One page. No fluff. This is the thing women actually need but no one gives them." },
-        { task: "Set up a Stan.store account (free)", detail: "Stan.store is built for creators selling digital products. Create a product: 'The Dollhouse Brand Kit — Launch Your Business This Week.' Price: $97. Write the description using this formula: WHO it's for + WHAT problem it solves + WHAT'S INSIDE + what happens after they buy. Upload your Canva share links (set to 'anyone with the link can view/copy') and the PDF. Set up instant delivery." },
-        { task: "Test the purchase flow yourself", detail: "Go through the entire buying experience as a customer. Click buy. Enter a test card. Check the delivery email. Click the Canva links. Make sure everything opens. Fix anything that's slow, confusing, or broken. If it's annoying for you, it'll lose you sales." },
-        { task: "Create a 60-second TikTok showing what's in the kit", detail: "Film yourself scrolling through the kit in Canva. Show the logo templates, the colour palettes, the caption templates. Talk over it: 'I made this for anyone who wants to start a business but doesn't know where to begin. For $97 you get everything you need to look professional and make your first sale.' This video goes up tomorrow." },
+        { task: "Go to your Stan.store dashboard and copy your Brand Kit product link", detail: "This is the link you will paste everywhere: in the chat during every TikTok LIVE, in your link-in-bio, in DMs when someone says they want to start a business. Save it as a note on your phone. You should be able to copy-paste it in under 5 seconds." },
+        { task: "Buy your own product as a test customer", detail: "Use a real card (you can refund yourself). Go through the entire purchase flow: click buy, enter payment, check what email comes, click every link. If anything is slow, confusing, or broken — fix it before you send real customers through it. One bad buying experience will cost you more than it costs to fix." },
+        { task: "Open the brand builder at shopdollhouse.co/brand-room and screen record a 60-second walkthrough", detail: "This is your product demo video. Walk through the interactive tool — show how it works, what they can customise, what they get. Talk over it: 'I built this for anyone who wants to start a business but doesn't know where to begin. For $97 you get a full interactive brand builder — logo, colours, fonts, social templates, and a first-sale checklist. Everything you need to look professional and make your first sale this week.' Post this to TikTok and Instagram tomorrow." },
+        { task: "Set up the KIT keyword automation on TikTok, Instagram, and Facebook", detail: "Keyword: KIT → auto-DM: 'Here's your link to the Dollhouse Brand Kit 🌸 $97 and you get instant access to the full interactive brand builder — logos, colours, fonts, social templates, and your first-sale checklist: [YOUR STAN.STORE LINK]' This automation runs 24/7. Every person who comments KIT on any of your posts gets the link instantly." },
+        { task: "Add the Stan.store link to every single bio and link-in-bio page", detail: "Your link-in-bio should have three links minimum: 1) Book a Free Discovery Call 2) Get the Brand Kit — $97 (Stan.store link) 3) shopdollhouse.co. Check TikTok, Instagram, Facebook, and Threads. Update them all right now while you're thinking about it — not later." },
       ],
     },
     {
@@ -5586,8 +5586,8 @@ function StartHereTab() {
       what: "'Okay — I promised I'd show you something you've never seen. Here it is.' Play your AI avatar demo video. Let it play all the way through without talking over it. Then: 'That is an AI avatar — a digital version of a real business owner. I build one of these for every client. It posts content for their business every week and they never have to film a single thing. If you want to see what one would look like for YOUR business — DM me the word AVATAR right now.'",
       cta: "Drop 'DM me AVATAR' in the chat. Say it out loud. Say it again at the end of the demo. This is your primary B2B CTA." },
     { time: "50–58 min", label: "Brand Kit Offer (B2C)", colour: "#7b68ee", type: "Offer",
-      what: "Shift the audience. 'For those of you who are watching and you're not a business yet — you're thinking about starting something but you don't know where to begin — this next part is for you.' Show the brand kit on screen. 'I built a brand kit for $97. It gives you your logo, your colours, your fonts, your social media templates, and a first-sale checklist. Everything you need to look professional and make your first sale this week. The link is going in the chat right now.'",
-      cta: "Drop the Stan.store link in the chat. Say the price. Say what they get. Keep it under 3 minutes — it's a product, not a pitch." },
+      what: "Shift the audience. 'For those of you who are watching and you're not a business yet — you're thinking about starting something but you don't know where to begin — this next part is for you.' Pull up shopdollhouse.co/brand-room on your screen and show the interactive brand builder live. 'I built this for $97. You get a full interactive brand builder — you pick your logo, your colours, your fonts — plus social media templates and a first-sale checklist. Everything you need to look professional and make your first sale this week. The link is going in the chat right now.'",
+      cta: "Drop your Stan.store link in the chat. Say the price. Say what they get. Show them clicking through the brand builder — the demo sells itself. Keep it under 3 minutes." },
     { time: "58–60 min", label: "Wrap + Tomorrow's CTA", colour: "#c8a864", type: "Close",
       what: "'Thank you so much for being here today. If you're a business owner who wants to hand off your social media — DM me SOCIAL and let's talk. If you want to start your business and you need the brand kit — link is in the chat. And follow this account right now because I'm here every single morning at 8:30am.' Wave. End the live.",
       cta: "Within 30 minutes: DM every person who commented. Clip 3-5 moments from the live. Post the best clip as a TikTok right now." },
@@ -5820,7 +5820,11 @@ function StartHereTab() {
       <div className="mb-4">
         <p className="text-[10px] tracking-[0.25em] uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Separate B2C Offer — Different Audience</p>
         <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--rose)", fontWeight: 400, marginBottom: "6px" }}>The Brand Kit Digital Product</h3>
-        <p className="mb-5" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.5)" }}>This is NOT for your agency clients. This is sold directly to women who want to start a business and don't know where to begin. $97. Instant download. Two completely different audiences, two different revenue streams.</p>
+        <div className="flex items-center gap-3 mb-4">
+          <span className="px-3 py-1.5 rounded-full text-[9px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, background: "rgba(74,153,112,0.12)", color: "#4a9970", border: "1px solid rgba(74,153,112,0.3)" }}>✅ Already Live on Stan.store</span>
+          <span className="px-3 py-1.5 rounded-full text-[9px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, background: "rgba(74,100,200,0.1)", color: "#4a64c8", border: "1px solid rgba(74,100,200,0.2)" }}>Interactive Web App @ /brand-room</span>
+        </div>
+        <p className="mb-5" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.5)" }}>This is NOT for your agency clients. Sold directly to women who want to start a business and don't know where to begin. $97. The brand builder is live at shopdollhouse.co/brand-room and instant delivery is already configured on Stan.store. Two completely different audiences, two different revenue streams.</p>
 
         {/* What's in it */}
         <div className="grid md:grid-cols-2 gap-4 mb-5">
@@ -5828,9 +5832,9 @@ function StartHereTab() {
             <p className="text-[9px] tracking-widest uppercase mb-4" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>What's Inside the Kit</p>
             <div className="space-y-2.5">
               {[
-                { emoji: "🎨", item: "5 logo template options in Canva", sub: "Fully editable — they swap the name, change the colour, done" },
-                { emoji: "🎨", item: "Brand colour palette card", sub: "5 colours that work together, with hex codes and how to use them" },
-                { emoji: "✍️", item: "Font pairing guide", sub: "3 combinations: heading + body font, with real examples" },
+                { emoji: "🎨", item: "5 logo template options", sub: "Interactive — they pick a style, swap the name, change the colour, done" },
+                { emoji: "🎨", item: "Brand colour palette", sub: "5 colours that work together, with hex codes and usage guide" },
+                { emoji: "✍️", item: "Font pairing guide", sub: "3 combinations: heading + body font, with real visual examples" },
                 { emoji: "📱", item: "Social media profile kit", sub: "IG profile, highlight covers, story template, feed post template" },
                 { emoji: "📝", item: "10 fill-in-the-blank caption templates", sub: "Intro, offer, testimonial, tip, story — the 5 posts every new business needs" },
                 { emoji: "✅", item: "First Sale Checklist (the real value)", sub: "7 steps from 'I want to start something' to 'I just made my first sale'" },
@@ -5852,8 +5856,9 @@ function StartHereTab() {
               <div className="space-y-2">
                 {[
                   { label: "Price", val: "$97 — impulse buy, no-brainer for the value" },
-                  { label: "Platform", val: "Stan.store (free, built for creators)" },
-                  { label: "Delivery", val: "Instant download — Canva links + PDF" },
+                  { label: "Stan.store", val: "✅ Live — grab your product link from your dashboard" },
+                  { label: "Brand Builder", val: "shopdollhouse.co/brand-room — this is what you demo on LIVE" },
+                  { label: "Delivery", val: "Instant access link sent automatically after purchase" },
                   { label: "Where you sell it", val: "TikTok LIVE (primary), TikTok videos, IG Stories, DMs" },
                 ].map(({ label, val }) => (
                   <div key={label} className="flex justify-between items-start gap-3">
