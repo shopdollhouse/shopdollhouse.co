@@ -130,6 +130,8 @@ function WorkflowTab() {
         { text: "Schedule all approved posts through the platform" },
         { text: "Launch any ad campaigns — confirm budget, audience, creative" },
         { text: "Send client a 'You're live!' message with what to expect this month" },
+        { text: "Set up Comment-to-DM automation in the platform", sub: "Trigger: Instagram comment on any post → AI agent auto-replies in comments + sends a DM. This turns every comment into a conversation and signals the algorithm to push content further." },
+        { text: "Confirm the DM message is on-brand and points to the right next step", sub: "e.g. 'Hey [name], thanks for engaging! Here's [free resource / booking link / offer].' Customize per client." },
         { text: "Set a reminder for 2-week check-in call" },
       ]} />
 
@@ -196,6 +198,12 @@ function MonthlyTab() {
         <Phase key={phase.day} day={phase.day} title={phase.title} items={phase.items} />
       ))}
 
+      <div className="rounded-2xl p-5 mb-2" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.25)" }}>
+        <p className="text-[10px] tracking-widest uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>📊 2026 Content Insight</p>
+        <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: "var(--ink)", fontStyle: "italic" }}>Carousels are outperforming Reels right now. Prioritize carousel posts (3–7 slides) for education and social proof. Use Reels for reach and discovery. Both in the mix is ideal.</p>
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.55)" }}>Carousel structure that works: Hook slide → Value/Education → Testimonial or proof → CTA slide. Use the Carousel prompt to generate these in the platform's AI.</p>
+      </div>
+
       <div className="rounded-2xl p-6" style={{ background: "var(--ink)" }}>
         <p className="text-[10px] tracking-[0.25em] uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Mandy's Rule</p>
         <p className="italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--cream)", lineHeight: 1.4 }}>
@@ -209,6 +217,101 @@ function MonthlyTab() {
 /* ─── Tab: Prompts ────────────────────────────────────── */
 function PromptsTab() {
   const prompts = [
+    {
+      title: "AI Graphics — Single Posts (Platform Ask AI)",
+      tag: "Platform AI",
+      prompt: `Use this prompt inside our platform's Ask AI to create single-image social posts.
+
+Type into Ask AI:
+
+"Act as an elite social media marketer and create 12 Instagram graphics for [BUSINESS NAME]. Do some research to create compelling graphics that will capture attention and are trendy right now. Their website is [WEBSITE URL]. Focus on [1–2 content goals, e.g. lead generation + trust building].
+
+Include a mix of:
+- Service spotlight posts
+- Free estimate or offer post
+- Tip of the week
+- Seasonal or timely content
+- Customer testimonial graphic
+- Behind-the-scenes or brand story
+
+For each graphic, also provide:
+- The caption (with hashtags)
+- What content strategy goal it serves (lead gen / trust / education / social proof)"
+
+---
+💡 Tip: Start with 3–5 posts to review the style. If designs aren't right, respond with: "Act as an elite designer and enhance all the designs to feel more premium and on-brand."`,
+    },
+    {
+      title: "AI Graphics — Carousel Posts (Platform Ask AI)",
+      tag: "Platform AI",
+      prompt: `Use this prompt inside our platform's Ask AI to create carousel posts.
+
+Type into Ask AI:
+
+"Create a [5 / 7]-slide carousel for [BUSINESS NAME] on the topic: [TOPIC].
+
+Slide structure:
+- Slide 1: Hook — grab attention immediately (before/after, bold statement, or curiosity gap)
+- Slide 2: Core value or service overview
+- Slide 3: Educational or shareable content (tips, reasons, how-to)
+- Slide 4: Social proof — customer result or testimonial
+- Slide 5: CTA — drive them to [book / DM / visit site / follow]
+
+For each slide include:
+- Visual direction (colors, layout style, image type)
+- Headline text (under 10 words)
+- Supporting copy (1–2 sentences)
+- Caption for the full carousel post with hashtags"
+
+---
+💡 2026 tip: Carousels are outperforming Reels in engagement right now. Prioritize these for education and social proof content.`,
+    },
+    {
+      title: "Auto-Schedule via Platform AI",
+      tag: "Platform AI",
+      prompt: `After creating graphics and captions in the platform's Ask AI, use this prompt to schedule everything automatically.
+
+Once the content is approved, type into Ask AI:
+
+"Schedule all of these posts. You choose the best dates and times based on current best practices for [PLATFORM — Instagram / Facebook / TikTok]. Space them out evenly across [X] weeks."
+
+The AI will:
+- Pull the graphics already created in the conversation
+- Match each graphic with its caption and hashtags
+- Select optimal posting times
+- Push directly to the Social Planner — scheduled and ready
+
+No downloading. No uploading. No switching tabs.
+
+---
+⚠️ Make sure the client's social accounts are connected in Social Planner → Settings before running this step.`,
+    },
+    {
+      title: "Comment-to-DM Automation Setup",
+      tag: "Platform AI",
+      prompt: `Set up this workflow once per client inside our platform. It runs automatically from then on.
+
+Workflow name: "Comment to DM — [CLIENT NAME]"
+
+Step 1 — Trigger:
+Instagram Comments (any published post by this account)
+
+Step 2 — AI Agent Action:
+- Response channel: Instagram DM
+- Also reply in comments: Yes (short, warm reply — "Thanks! Check your DMs 👋")
+- Tag the contact in the CRM
+- Create a task if no reply within 24 hours
+
+DM message template (customize per client):
+"Hey [first name]! Thanks so much for engaging with our post 😊 We noticed you're interested in [topic/service] — we'd love to help. [Insert offer / free resource / booking link here]. Let us know if you have any questions!"
+
+---
+Why this works:
+1. Fast replies signal Instagram's algorithm → more reach
+2. Every comment becomes a DM conversation → more leads
+3. The client doesn't lift a finger — it's all automated
+4. You can pitch this as a standalone value-add in your service`,
+    },
     {
       title: "Brand Voice Extraction",
       tag: "Onboarding",
@@ -524,6 +627,35 @@ Wishing you a great [MONTH] regardless.
 — Mandy
 The Dollhouse Brand Studio
 shopdollhouse.co`,
+    },
+    {
+      title: "Full Service Pitch — What to Say on a Discovery Call",
+      tag: "Sales",
+      prompt: `Use this as your talking track when a prospect is on the phone or on a call. Customize to their business.
+
+---
+
+"So here's exactly what working with us looks like:
+
+First, we handle all your content — we create the graphics, write every caption, add the hashtags. You don't touch any of it.
+
+Then we schedule everything directly to your Instagram, Facebook, [TikTok / Google Business / wherever they're active]. One month of posts, fully planned and queued up. Done.
+
+But here's the part most social media agencies don't offer: we also set up an automation so that any time someone comments on one of your posts, they automatically get a DM from your account within seconds. So instead of those comments just sitting there, we're turning them into conversations — and conversations into booked appointments.
+
+And every month we send you a report so you can see exactly what's working — reach, engagement, what content your audience loved — so we keep getting smarter about your strategy.
+
+All of this, done for you, every single month.
+
+We charge $[PRICE]/month. There are no long-term contracts — if we're not delivering, you can walk away. But what I can tell you is that the businesses we work with stay because they see it working.
+
+Does that sound like something that would take a load off your plate?"
+
+---
+Price anchoring options:
+- Entry: $500/mo (content + scheduling)
+- Standard: $750/mo (+ comment-to-DM automation)
+- Full: $1,000/mo (+ ads management + monthly report call)`,
     },
     {
       title: "Referral Ask (Existing Client)",
