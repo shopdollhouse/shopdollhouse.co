@@ -5975,6 +5975,8 @@ const QB_ADDONS: QBAddon[] = [
   { key: "revenue_audit",   type: "onetime", price: 1500, emoji: "🔍", name: "AI Revenue Audit",                  desc: "Full pipeline + social + workflow audit with growth plan" },
   { key: "digital_product", type: "onetime", price: 297,  emoji: "📦", name: "AI Digital Product / Lead Gen Tool", desc: "Quiz, calculator, or checklist built in your branding" },
   { key: "brand_kit",       type: "onetime", price: 297,  emoji: "🎨", name: "Brand Kit",                         desc: "Logo, colours, fonts, templates — brand-ready package" },
+  { key: "merch_design",    type: "onetime", price: 297,  emoji: "👕", name: "Merch Design",                       desc: "Branded merch graphics — tees, hoodies, hats, stickers — print-ready files" },
+  { key: "digital_product_build", type: "onetime", price: 497, emoji: "💡", name: "Digital Product Build",        desc: "Sellable digital product — ebook, template pack, swipe file, or mini-course workbook" },
 ];
 
 function QuoteBuilderTab() {
