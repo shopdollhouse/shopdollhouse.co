@@ -344,8 +344,9 @@ function Hero() {
             Get a Free Proposal <span aria-hidden>→</span>
 
           </a>
-          <div
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--gold)]/40 bg-white/40 backdrop-blur-sm px-4 py-1.5 text-[var(--gold)]"
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 rounded-full border border-[var(--gold)]/40 bg-white/40 backdrop-blur-sm px-4 py-1.5 text-[var(--gold)] hover:bg-white/60 transition-colors"
           >
             <span style={{ fontSize: "0.65rem" }}>★</span>
             <span
@@ -354,7 +355,7 @@ function Hero() {
             >
               Try free for 14 days
             </span>
-          </div>
+          </a>
           <a href="#services" className="btn-ghost">
             See how it works <span aria-hidden>↓</span>
           </a>

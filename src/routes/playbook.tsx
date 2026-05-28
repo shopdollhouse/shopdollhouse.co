@@ -6578,6 +6578,7 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
   const [bizName, setBizName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [website, setWebsite] = useState("");
   const [niche, setNiche] = useState("");
   const [city, setCity] = useState("");
   const [pkg, setPkg] = useState<PkgKey | null>(null);
@@ -6600,6 +6601,7 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
       setPhone(linkedProspect.phone || "");
       setNiche(linkedProspect.niche || "");
       setCity(linkedProspect.city || "");
+      setWebsite("");
     }
   }, [prospectId]);
 
@@ -6653,6 +6655,7 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
     lines.push("  THE DOLLHOUSE BRAND STUDIO");
     lines.push(`  Your Custom Proposal${bizName ? ` — ${biz}` : ""}`);
     if (city) lines.push(`  ${city}${niche ? ` · ${niche}` : ""}`);
+    if (website) lines.push(`  ${website}`);
     lines.push("═".repeat(54));
     lines.push("");
 
@@ -6935,6 +6938,7 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
                 { label: "Business Name", val: bizName, set: setBizName, placeholder: "e.g. Bloom Med Spa" },
                 { label: "Email Address", val: email, set: setEmail, placeholder: "e.g. sarah@blomspa.com" },
                 { label: "Phone Number", val: phone, set: setPhone, placeholder: "e.g. 416-555-0100" },
+                { label: "Website", val: website, set: setWebsite, placeholder: "e.g. blomspa.com" },
                 { label: "Industry / Niche", val: niche, set: setNiche, placeholder: "e.g. Medical Aesthetics" },
                 { label: "City", val: city, set: setCity, placeholder: "e.g. Toronto, ON" },
               ] as const).map(({ label, val, set, placeholder }) => (
