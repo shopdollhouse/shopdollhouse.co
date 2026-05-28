@@ -603,6 +603,218 @@ Write:
 
 Tone: confident advisor, not defensive. Never apologize for numbers — contextualize them.`,
     },
+    {
+      title: "Lead Gen Research — Find Prospects by Niche + City",
+      tag: "Lead Gen",
+      prompt: `Act as a B2B Lead Generation Specialist and Market Researcher.
+
+I need to identify 25 small [NICHE — e.g. dental practices / med spas / personal injury law firms / restaurants] in [CITY] who are currently running Google Ads.
+
+Task:
+Use Google Search and the Google Ads Transparency Center to confirm which businesses in this area and niche are active advertisers.
+
+For each of the 25 businesses, provide the following in a clean markdown table:
+- Practice/Business Name
+- Website URL
+- Phone Number (publicly listed)
+- Email Address (search for 'contact@', 'info@', or listed owner emails — check the Contact and About Us pages if not on homepage)
+- Ad Evidence (briefly note if you saw their ad on Search, Maps, or the Ads Transparency Center)
+
+Constraints:
+- Only include small to medium-sized independently owned businesses
+- Avoid national chains or franchises (e.g. Aspen Dental, Heartland, corporate gyms, etc.)
+- All 25 must be unique leads
+- Only include verified information — no guesses
+
+---
+Swap [NICHE] and [CITY] for each outreach campaign.
+These become your cold outreach list.`,
+    },
+    {
+      title: "Lead Gen → CRM Pipeline Setup",
+      tag: "Lead Gen",
+      prompt: `Act as a B2B Lead Generation Specialist and Market Researcher.
+
+Step 1 — Research:
+Identify 25 small [NICHE] businesses in [CITY] who are currently running Google Ads.
+
+Use Google Search and the Google Ads Transparency Center to confirm active advertisers. For each business provide:
+- Business Name
+- Website URL
+- Phone Number
+- Email Address
+- Ad Evidence (where you saw their ad)
+
+Only include small/independent businesses. Avoid national chains. All 25 must be unique.
+
+Step 2 — CRM Setup:
+Once the list is complete:
+1. Create a new contact in the CRM for each business using the name, email, phone, and website found above
+2. Create a new pipeline called "[NICHE] Cold Outreach — [CITY] [MONTH/YEAR]"
+3. Add all 25 contacts to the first stage of the pipeline: "New Lead"
+4. Tag each contact with: [NICHE], [CITY], Cold Outreach, Google Ads Advertiser
+
+---
+This gives you a ready-to-work pipeline from a single prompt.`,
+    },
+    {
+      title: "Cold Email — AI Clone Video Pitch",
+      tag: "Outreach",
+      prompt: `Subject: quick question about your practice, [FIRST NAME]
+
+Hi {{first_name}},
+
+I noticed {{business_name}} is actively running Google Ads in [CITY] — smart move in such a competitive market.
+
+I have one quick question: would you be open to seeing an AI clone of yourself that promotes your practice 24/7 — without you ever recording a single video or piece of content?
+
+Patient FAQs, social content, appointment reminders — all delivered in your voice, your face, your style. You stay focused on your patients. The AI handles the rest.
+
+A handful of [CITY] [NICHE] businesses are already using this to attract new clients while spending zero time in front of a camera.
+
+Worth a 10-minute look?
+
+(Reply here or grab a time: [CALENDAR LINK])
+
+— Mandy Fortune
+The Dollhouse Brand Studio
+shopdollhouse.co
+
+---
+Notes:
+• {{first_name}} and {{business_name}} are merge tags — use your platform's personalization fields
+• Swap [CITY], [NICHE], and [CALENDAR LINK] before sending
+• This email works best as a follow-up to seeing their Google Ad — reference it in the first line`,
+    },
+    {
+      title: "Cold DM — After Email (Follow-Up)",
+      tag: "Outreach",
+      prompt: `Use this as a voice note script or typed DM — send 2–3 days after the cold email.
+
+---
+
+"Hey [NAME] — I reached out by email a few days ago. I'm the one who creates AI video clones of business owners for their social media.
+
+I'd love to make one of you for free just to show you what it looks like — would you be open to seeing it?"
+
+---
+Notes:
+• Keep it casual and short — this works best as a voice note on Instagram DM
+• The free video offer removes all risk for them
+• If they say yes → create a quick AI video using their photo → send it back
+• That video becomes your close`,
+    },
+    {
+      title: "DM — After Sending Free AI Video",
+      tag: "Outreach",
+      prompt: `Send this after you've created and delivered the free AI video to the prospect.
+
+---
+
+"Hey [NAME] — I made this AI video of you for your [BUSINESS TYPE]. Want to see it?
+
+[ATTACH OR LINK THE VIDEO]
+
+This is what we create for our clients every week — they never have to film anything. The AI speaks in their voice, with their face, on their brand.
+
+If you wanted this running for [BUSINESS NAME] on a weekly basis, I'd love to show you how it works. Totally low-key — just a quick 10-minute call.
+
+Worth it?"
+
+---
+Notes:
+• The video does the selling — your job is just to deliver it and ask one question
+• Don't over-explain. Let them react first.
+• If they ask "how much?" — that's a buying signal. Move to the call.`,
+    },
+    {
+      title: "AI Video — Multi-Scene Script (Talking Head + Action)",
+      tag: "AI Video",
+      prompt: `Use this structure to write AI video prompts for tools like Kling, Pika, Veo, or Runway.
+Upload a clear headshot or photo of the business owner as your reference image.
+
+---
+
+Scene 1 — [LOCATION: office / storefront / clinic / outdoor]
+Reference character: [UPLOAD CLIENT PHOTO]
+Vertical cinematic realism. Show [CLIENT DESCRIPTION — e.g. "a sharp personal injury attorney in a navy suit"] standing in [SETTING DESCRIPTION]. Medium shot. Looks directly into camera and speaks with calm confidence. Natural hand gestures, realistic facial movement, clean professional lighting, believable lip sync.
+Dialogue: "[OPENING LINE — hook, question, or bold statement]"
+
+Scene 2 — Action Sequence
+Reference character: [UPLOAD CLIENT PHOTO]
+Vertical cinematic realism. [SETTING]. Show a fast multi-shot sequence:
+1. [ACTION SHOT 1 — e.g. client next to a damaged car]
+2. [ACTION SHOT 2 — close-up of relevant object]
+3. [ACTION SHOT 3 — wide establishing shot]
+Smooth camera motion, realistic action, documentary feel.
+Dialogue: "[EDUCATIONAL TIP OR KEY POINT]"
+
+Scene 3 — [SETTING]
+Reference character: [UPLOAD CLIENT PHOTO]
+Vertical cinematic realism. [DESCRIBE SCENE]. Natural body movement, serious but helpful tone, realistic facial sync, clean cinematic motion.
+Dialogue: "[WARNING, PROOF POINT, OR NEXT STEP]"
+
+Scene 4 — Close / CTA
+Reference character: [UPLOAD CLIENT PHOTO]
+Vertical cinematic realism. Back in [ORIGINAL SETTING]. Medium close-up. Client looks directly into camera with a warm, authoritative expression. Subtle hand gesture, professional lighting.
+Dialogue: "[CTA — book, follow, call, DM]"
+
+---
+Tips:
+• Keep each scene's dialogue under 15 seconds — AI video stays sharp at short clips
+• Stitch scenes together in CapCut or your editing tool
+• Add captions — 85% of social video is watched on mute`,
+    },
+    {
+      title: "AI Video — Single Prompt (Quick Version)",
+      tag: "AI Video",
+      prompt: `Use this single prompt for a fast one-shot AI video. Best for simple talking head clips.
+
+Paste into your AI video tool with the client's reference photo uploaded.
+
+---
+
+"[CLIENT DESCRIPTION — e.g. 'A sharp personal injury attorney in a navy suit and tie'] standing in [SETTING — e.g. 'a modern law office with bookshelves and framed diplomas behind them']. They look into camera and speak clearly. Show action shots of them [RELEVANT SCENE — e.g. 'on scene at a car accident, photographing damage'].
+
+Dialogue (must match timing, approx [X] seconds):
+'[FULL SCRIPT HERE — write in their voice, short and punchy]'
+
+Ensure the audio matches what is being shown. Vertical cinematic realism. Smooth, realistic facial sync. Professional lighting."
+
+---
+Example script structure for a [BUSINESS TYPE]:
+• Hook (2–3 sec): "If you [SITUATION], here's the first thing you do:"
+• Tips (5–8 sec): 2–3 fast action items
+• Warning (2 sec): "Whatever you do, don't [COMMON MISTAKE]"
+• Close (2 sec): Warm, memorable line or CTA`,
+    },
+    {
+      title: "Carousel — Agency / Results Focused",
+      tag: "Platform AI",
+      prompt: `Create a stunning Instagram carousel post (1080×1080, 7 slides).
+
+Topic: [YOUR RESULT OR OFFER — e.g. "How to Grow Your Business on Social Media in 2026"]
+
+Slide structure:
+- Slide 1 (Hook): "[BOLD RESULT OR CLAIM — e.g. 'Our clients see real leads in 30 days — here's the system we use']"
+- Slide 2: Why [TOPIC] is the biggest opportunity right now
+- Slide 3: Step 1 — [KEY STRATEGY OR INSIGHT]
+- Slide 4: Step 2 — [TOOLS OR PROCESS]
+- Slide 5: Step 3 — How to get your first result / first client
+- Slide 6: The system — how it all connects (automation + content + ads)
+- Slide 7 (CTA): "Follow for more" + "[YOUR OFFER — free quiz / free call / DM us]"
+
+Design direction:
+- Dark premium background (deep navy, black, or charcoal)
+- Bold typography, gold or rose accent colors — match The Dollhouse brand
+- Clean minimal layouts — one big idea per slide
+- Branded: include The Dollhouse Brand Studio logo on slide 1 and 7
+
+Make it look professional, eye-catching, and ready to post.
+
+---
+Swap in your actual results once you have them. Specific numbers always outperform vague claims.`,
+    },
   ];
 
   return (
