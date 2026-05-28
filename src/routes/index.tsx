@@ -1900,6 +1900,18 @@ function Contact() {
           </div>
         </div>
 
+        {/* Business / Industry */}
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label className={labelClass} style={labelStyle}>Business Name</label>
+            <input type="text" name="business_name" placeholder="Bloom Med Spa" className={inputClass} style={inputStyle} />
+          </div>
+          <div>
+            <label className={labelClass} style={labelStyle}>Industry / Niche</label>
+            <input type="text" name="industry" placeholder="e.g. Medical Aesthetics" className={inputClass} style={inputStyle} />
+          </div>
+        </div>
+
         {/* Plan */}
         <div>
           <label className={labelClass} style={labelStyle}>Which plan interests you?</label>
