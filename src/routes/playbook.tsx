@@ -7457,7 +7457,46 @@ function DiscoveryCallTab() {
 
 // ─── Proposal Deck Tab ────────────────────────────────────────────────────────
 
-const PROP_IMGS_KEY = "dh_proposal_imgs_v1";
+// Media storage — IndexedDB for images and videos (no size limit vs localStorage)
+const MEDIA_DB_NAME = "dh_proposal_media_v1";
+const MEDIA_KEYS_LS  = "dh_proposal_media_keys_v1";
+
+interface MediaItem { url: string; isVideo: boolean; }
+
+function openMediaDB(): Promise<IDBDatabase> {
+  return new Promise((res, rej) => {
+    const r = indexedDB.open(MEDIA_DB_NAME, 1);
+    r.onupgradeneeded = () => r.result.createObjectStore("media");
+    r.onsuccess = () => res(r.result);
+    r.onerror = () => rej(r.error);
+  });
+}
+async function idbSave(key: string, file: File): Promise<void> {
+  const db = await openMediaDB();
+  return new Promise((res, rej) => {
+    const tx = db.transaction("media", "readwrite");
+    tx.objectStore("media").put(file, key);
+    tx.oncomplete = () => res();
+    tx.onerror = () => rej(tx.error);
+  });
+}
+async function idbLoad(key: string): Promise<File | null> {
+  const db = await openMediaDB();
+  return new Promise(res => {
+    const tx = db.transaction("media", "readonly");
+    const req = tx.objectStore("media").get(key);
+    req.onsuccess = () => res((req.result as File) ?? null);
+    req.onerror = () => res(null);
+  });
+}
+async function idbDelete(key: string): Promise<void> {
+  const db = await openMediaDB();
+  return new Promise(res => {
+    const tx = db.transaction("media", "readwrite");
+    tx.objectStore("media").delete(key);
+    tx.oncomplete = () => res();
+  });
+}
 
 interface PStep { n: string; title: string; desc: string; }
 interface PPrice { name: string; price: string; tag?: string; }
@@ -7949,7 +7988,7 @@ const PROPOSAL_DECKS: PDeck[] = [
 /* ── Slide visual renderer (1280 × 720 internal canvas) ─────────────────── */
 function renderSlideVisual(
   slide: PSlide,
-  imageUrl: string | undefined,
+  mediaItem: MediaItem | undefined,
   onUpload?: (file: File) => void,
   onRemove?: () => void,
 ) {
@@ -7974,26 +8013,34 @@ function renderSlideVisual(
     fontFamily: SANS,
   };
 
-  // Reusable image slot
+  // Reusable media slot — supports images and videos
   const ImgSlot = ({ w, h }: { w: number; h: number }) => (
     <div style={{ width: w, height: h, borderRadius: 16, overflow: "hidden", position: "relative", background: "rgba(128,80,60,0.12)", border: `2px dashed ${C.line}`, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 14, flexShrink: 0 }}>
-      {imageUrl ? (
+      {mediaItem ? (
         <>
-          <img src={imageUrl} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", position: "absolute", inset: 0 }} />
+          {mediaItem.isVideo ? (
+            <video
+              src={mediaItem.url}
+              controls
+              style={{ width: "100%", height: "100%", objectFit: "contain", position: "absolute", inset: 0, background: "#000" }}
+            />
+          ) : (
+            <img src={mediaItem.url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", position: "absolute", inset: 0 }} />
+          )}
           {onRemove && (
-            <button onClick={onRemove} style={{ position: "absolute", top: 12, right: 12, background: "rgba(0,0,0,0.6)", color: "#fff", border: "none", borderRadius: "50%", width: 34, height: 34, cursor: "pointer", fontSize: 18, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2 }}>×</button>
+            <button onClick={onRemove} style={{ position: "absolute", top: 12, right: 12, background: "rgba(0,0,0,0.7)", color: "#fff", border: "none", borderRadius: "50%", width: 34, height: 34, cursor: "pointer", fontSize: 18, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2 }}>×</button>
           )}
         </>
       ) : (
         <>
           <div style={{ fontSize: 52, opacity: 0.25 }}>📷</div>
           <div style={{ color: C.fg2, fontFamily: SANS, fontSize: 14, textAlign: "center", padding: "0 24px", lineHeight: 1.5 }}>
-            {slide.imageLabel || "Upload an image for this slide"}
+            {slide.imageLabel || "Upload an image or video for this slide"}
           </div>
           {onUpload && (
             <label style={{ cursor: "pointer", background: C.acc, color: C.bg, fontFamily: LUXE, fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", padding: "10px 26px", borderRadius: 9999, marginTop: 4 }}>
-              + Upload Image
-              <input type="file" accept="image/*" style={{ display: "none" }} onChange={e => { if (e.target.files?.[0]) onUpload(e.target.files[0]); }} />
+              + Upload Image / Video
+              <input type="file" accept="image/*,video/*" style={{ display: "none" }} onChange={e => { if (e.target.files?.[0]) onUpload(e.target.files[0]); }} />
             </label>
           )}
         </>
@@ -8158,16 +8205,36 @@ function ProposalTab() {
   const [deck, setDeck] = useState<PDeck | null>(null);
   const [slideIdx, setSlideIdx] = useState(0);
   const [mode, setMode] = useState<"select" | "overview" | "present">("select");
-  const [imgs, setImgs] = useState<Record<string, string>>({});
+  const [media, setMedia] = useState<Record<string, MediaItem>>({});
   const [scale, setScale] = useState(1);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showNotes, setShowNotes] = useState(false);
   const slideWrapRef = useRef<HTMLDivElement>(null);
+  const presentRef = useRef<HTMLDivElement>(null);
+  const revokeUrls = useRef<string[]>([]);
 
-  // Load saved images from localStorage
+  // Load all saved media from IndexedDB on mount
   useEffect(() => {
-    try { setImgs(JSON.parse(localStorage.getItem(PROP_IMGS_KEY) || "{}")); } catch {}
+    const keys: string[] = (() => { try { return JSON.parse(localStorage.getItem(MEDIA_KEYS_LS) || "[]"); } catch { return []; } })();
+    if (!keys.length) return;
+    (async () => {
+      const loaded: Record<string, MediaItem> = {};
+      for (const key of keys) {
+        const file = await idbLoad(key);
+        if (file) {
+          const url = URL.createObjectURL(file);
+          revokeUrls.current.push(url);
+          loaded[key] = { url, isVideo: file.type.startsWith("video/") };
+        }
+      }
+      setMedia(loaded);
+    })();
   }, []);
 
-  // Scale the slide to fit its container
+  // Revoke object URLs on unmount
+  useEffect(() => () => { revokeUrls.current.forEach(u => URL.revokeObjectURL(u)); }, []);
+
+  // Scale observer
   useEffect(() => {
     const el = slideWrapRef.current;
     if (!el || mode !== "present") return;
@@ -8176,37 +8243,60 @@ function ProposalTab() {
     ro.observe(el);
     update();
     return () => ro.disconnect();
-  }, [mode, deck]);
+  }, [mode, deck, isFullscreen]);
 
-  // Keyboard navigation in present mode
+  // Fullscreen change listener
+  useEffect(() => {
+    const handler = () => {
+      const fs = !!document.fullscreenElement;
+      setIsFullscreen(fs);
+      if (fs) setShowNotes(false);
+    };
+    document.addEventListener("fullscreenchange", handler);
+    return () => document.removeEventListener("fullscreenchange", handler);
+  }, []);
+
+  // Keyboard navigation
   useEffect(() => {
     if (mode !== "present" || !deck) return;
     const fn = (e: KeyboardEvent) => {
+      const tag = (e.target as HTMLElement).tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA") return;
       if (e.key === "ArrowRight" || e.key === " ") { e.preventDefault(); setSlideIdx(i => Math.min(i + 1, deck.slides.length - 1)); }
       else if (e.key === "ArrowLeft") setSlideIdx(i => Math.max(i - 1, 0));
-      else if (e.key === "Escape") setMode("overview");
+      else if (e.key === "s" || e.key === "S") setShowNotes(n => !n);
+      else if (e.key === "Escape" && !isFullscreen) setMode("overview");
     };
     window.addEventListener("keydown", fn);
     return () => window.removeEventListener("keydown", fn);
-  }, [mode, deck]);
+  }, [mode, deck, isFullscreen]);
 
-  const saveImg = (deckId: string, idx: number, file: File) => {
-    const reader = new FileReader();
-    reader.onload = e => {
-      const key = `${deckId}_${idx}`;
-      const next = { ...imgs, [key]: e.target!.result as string };
-      setImgs(next);
-      try { localStorage.setItem(PROP_IMGS_KEY, JSON.stringify(next)); } catch {}
-    };
-    reader.readAsDataURL(file);
+  const enterFullscreen = async () => {
+    try { if (presentRef.current) await presentRef.current.requestFullscreen(); } catch {}
   };
 
-  const clearImg = (deckId: string, idx: number) => {
+  const saveMediaFile = async (deckId: string, idx: number, file: File) => {
     const key = `${deckId}_${idx}`;
-    const next = { ...imgs };
-    delete next[key];
-    setImgs(next);
-    try { localStorage.setItem(PROP_IMGS_KEY, JSON.stringify(next)); } catch {}
+    if (media[key]) URL.revokeObjectURL(media[key].url);
+    await idbSave(key, file);
+    const url = URL.createObjectURL(file);
+    revokeUrls.current.push(url);
+    setMedia(prev => ({ ...prev, [key]: { url, isVideo: file.type.startsWith("video/") } }));
+    try {
+      const keys: string[] = JSON.parse(localStorage.getItem(MEDIA_KEYS_LS) || "[]");
+      if (!keys.includes(key)) { keys.push(key); localStorage.setItem(MEDIA_KEYS_LS, JSON.stringify(keys)); }
+    } catch {}
+  };
+
+  const clearMediaFile = async (deckId: string, idx: number) => {
+    const key = `${deckId}_${idx}`;
+    if (media[key]) URL.revokeObjectURL(media[key].url);
+    await idbDelete(key);
+    setMedia(prev => { const n = { ...prev }; delete n[key]; return n; });
+    try {
+      const keys: string[] = JSON.parse(localStorage.getItem(MEDIA_KEYS_LS) || "[]").filter((k: string) => k !== key);
+      localStorage.setItem(MEDIA_KEYS_LS, JSON.stringify(keys));
+    } catch {}
   };
 
   /* ── SELECT mode ─────────────────────────────────────────────────────── */
@@ -8219,11 +8309,11 @@ function ProposalTab() {
         Proposal Decks
       </h2>
       <p style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(30,18,16,0.55)", marginBottom: 40, lineHeight: 1.6 }}>
-        Choose a deck to set up or present. Upload your example images first, then hit Present.
+        Choose a deck to set up or present. Upload images or videos in the overview, then hit Present.
       </p>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 20 }}>
         {PROPOSAL_DECKS.map(d => {
-          const imgCount = d.slides.filter((_, i) => imgs[`${d.id}_${i}`]).length;
+          const mediaCount = d.slides.filter((_, i) => media[`${d.id}_${i}`]).length;
           const slotCount = d.slides.filter(s => s.imageSlot).length;
           return (
             <button
@@ -8241,8 +8331,8 @@ function ProposalTab() {
                   {d.slides.length} slides
                 </div>
                 {slotCount > 0 && (
-                  <div style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.15em", textTransform: "uppercase", color: imgCount === slotCount ? "#4a9970" : "rgba(30,18,16,0.35)" }}>
-                    {imgCount}/{slotCount} images
+                  <div style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.15em", textTransform: "uppercase", color: mediaCount === slotCount ? "#4a9970" : "rgba(30,18,16,0.35)" }}>
+                    {mediaCount}/{slotCount} media
                   </div>
                 )}
               </div>
@@ -8256,7 +8346,6 @@ function ProposalTab() {
   /* ── OVERVIEW mode ───────────────────────────────────────────────────── */
   if (mode === "overview" && deck) return (
     <div style={{ padding: "32px 48px" }}>
-      {/* Header */}
       <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 32, flexWrap: "wrap", gap: 16 }}>
         <div>
           <button
@@ -8269,58 +8358,68 @@ function ProposalTab() {
             {deck.icon} {deck.name}
           </h2>
           <p style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,18,16,0.5)", marginTop: 4 }}>
-            {deck.slides.length} slides · Upload images below, then click Present
+            {deck.slides.length} slides · Click a thumbnail to jump to that slide · Upload images or videos below
           </p>
         </div>
-        <button
-          onClick={() => { setSlideIdx(0); setMode("present"); }}
-          className="btn-ink"
-          style={{ alignSelf: "flex-end" }}
-        >
-          ▶ &nbsp;Present
-        </button>
+        <div style={{ display: "flex", gap: 12, alignItems: "center", alignSelf: "flex-end" }}>
+          <button
+            onClick={() => { setSlideIdx(0); setMode("present"); enterFullscreen(); }}
+            style={{ padding: "12px 24px", background: "var(--ink)", border: "none", borderRadius: 9999, color: "var(--gold)", fontFamily: FONT_LUXE, fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", cursor: "pointer" }}
+          >
+            ⛶ Fullscreen
+          </button>
+          <button
+            onClick={() => { setSlideIdx(0); setMode("present"); }}
+            className="btn-ink"
+          >
+            ▶ &nbsp;Present
+          </button>
+        </div>
       </div>
 
-      {/* Slide grid */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14 }}>
         {deck.slides.map((slide, i) => {
-          const imgKey = `${deck.id}_${i}`;
+          const mKey = `${deck.id}_${i}`;
+          const mItem = media[mKey];
           const hasBg = slide.bg === "dark" || slide.bg === "rose";
           const bgColor = slide.bg === "dark" ? "#1e1210" : slide.bg === "rose" ? "#6b2d30" : slide.bg === "light" ? "#f5e8e0" : "#f7e4df";
           const textColor = hasBg ? "#f5e8e0" : "#1e1210";
           return (
             <div key={i} style={{ background: "var(--cream)", border: "1px solid rgba(196,168,122,0.18)", borderRadius: 14, overflow: "hidden" }}>
-              {/* Mini preview */}
               <div
                 style={{ aspectRatio: "16/9", backgroundColor: bgColor, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", padding: "10px 14px", position: "relative", cursor: "pointer" }}
                 onClick={() => { setSlideIdx(i); setMode("present"); }}
               >
-                {imgs[imgKey] && slide.imageSlot && (
-                  <img src={imgs[imgKey]} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.35 }} />
+                {mItem && slide.imageSlot && (
+                  mItem.isVideo
+                    ? <video src={mItem.url} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.45 }} muted />
+                    : <img src={mItem.url} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.35 }} />
                 )}
                 <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 12, color: textColor, textAlign: "center", lineHeight: 1.3, position: "relative", zIndex: 1, whiteSpace: "pre-line", maxWidth: "100%" }}>
                   {slide.heading.length > 42 ? slide.heading.slice(0, 42) + "…" : slide.heading}
                 </div>
-                <div style={{ position: "absolute", top: 6, left: 8, fontFamily: "'Jost', sans-serif", fontSize: 9, color: "#c4a87a", letterSpacing: "0.1em" }}>
-                  {i + 1}
-                </div>
-                <div style={{ position: "absolute", top: 6, right: 8, fontFamily: "'Jost', sans-serif", fontSize: 9, color: "rgba(196,168,122,0.6)", letterSpacing: "0.06em", textTransform: "capitalize" }}>
-                  {slide.layout}
-                </div>
+                <div style={{ position: "absolute", top: 6, left: 8, fontFamily: "'Jost', sans-serif", fontSize: 9, color: "#c4a87a", letterSpacing: "0.1em" }}>{i + 1}</div>
+                <div style={{ position: "absolute", top: 6, right: 8, fontFamily: "'Jost', sans-serif", fontSize: 9, color: "rgba(196,168,122,0.6)", letterSpacing: "0.06em", textTransform: "capitalize" }}>{slide.layout}</div>
               </div>
-              {/* Card footer */}
               <div style={{ padding: "8px 12px", minHeight: 44 }}>
                 {slide.imageSlot ? (
-                  imgs[imgKey] ? (
+                  mItem ? (
                     <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <img src={imgs[imgKey]} alt="" style={{ width: 26, height: 26, borderRadius: 4, objectFit: "cover", flexShrink: 0 }} />
-                      <span style={{ fontFamily: FONT_BODY, fontSize: "0.7rem", color: "rgba(30,18,16,0.5)", flex: 1 }}>Image ready</span>
-                      <button onClick={() => clearImg(deck.id, i)} style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--rose)", background: "none", border: "none", cursor: "pointer", padding: 0, flexShrink: 0 }}>✕</button>
+                      <div style={{ width: 26, height: 26, borderRadius: 4, overflow: "hidden", flexShrink: 0, background: "#ccc" }}>
+                        {mItem.isVideo
+                          ? <video src={mItem.url} style={{ width: "100%", height: "100%", objectFit: "cover" }} muted />
+                          : <img src={mItem.url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                        }
+                      </div>
+                      <span style={{ fontFamily: FONT_BODY, fontSize: "0.7rem", color: "rgba(30,18,16,0.5)", flex: 1 }}>
+                        {mItem.isVideo ? "🎬 Video" : "🖼 Image"}
+                      </span>
+                      <button onClick={() => clearMediaFile(deck.id, i)} style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--rose)", background: "none", border: "none", cursor: "pointer", padding: 0, flexShrink: 0 }}>✕</button>
                     </div>
                   ) : (
                     <label style={{ cursor: "pointer", fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold)", display: "flex", alignItems: "center", gap: 5 }}>
-                      <span>📷 Upload Image</span>
-                      <input type="file" accept="image/*" style={{ display: "none" }} onChange={e => { if (e.target.files?.[0]) saveImg(deck.id, i, e.target.files[0]); }} />
+                      <span>📷 Upload</span>
+                      <input type="file" accept="image/*,video/*" style={{ display: "none" }} onChange={e => { if (e.target.files?.[0]) saveMediaFile(deck.id, i, e.target.files[0]); }} />
                     </label>
                   )
                 ) : (
@@ -8337,79 +8436,112 @@ function ProposalTab() {
   /* ── PRESENT mode ────────────────────────────────────────────────────── */
   if (mode === "present" && deck) {
     const curSlide = deck.slides[slideIdx];
-    const imgKey = `${deck.id}_${slideIdx}`;
+    const mKey = `${deck.id}_${slideIdx}`;
+    const mItem = media[mKey];
 
     return (
-      <div style={{ minHeight: "calc(100vh - 120px)", background: "#120a08", display: "flex", flexDirection: "column" }}>
+      <div
+        ref={presentRef}
+        style={{ background: "#100808", display: "flex", flexDirection: "column", height: isFullscreen ? "100vh" : "calc(100vh - 120px)", overflow: "hidden", position: "relative" }}
+      >
         {/* Top bar */}
-        <div style={{ padding: "10px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(255,255,255,0.07)", flexShrink: 0 }}>
-          <button
-            onClick={() => setMode("overview")}
-            style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer" }}
-          >
-            ← Overview
-          </button>
-          <div style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)" }}>
-            {deck.name}
+        <div style={{ padding: "9px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(255,255,255,0.06)", flexShrink: 0, zIndex: 10 }}>
+          <div style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.22)" }}>
+            {deck.name} &nbsp;·&nbsp; {slideIdx + 1}/{deck.slides.length}
           </div>
-          <div style={{ fontFamily: FONT_LUXE, fontSize: "11px", letterSpacing: "0.15em", color: "#c4a87a" }}>
-            {slideIdx + 1} / {deck.slides.length}
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            {/* Notes toggle — only shown in fullscreen, subtle */}
+            {isFullscreen && (
+              <button
+                onClick={() => setShowNotes(n => !n)}
+                title="Toggle script (S key)"
+                style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.15em", textTransform: "uppercase", color: showNotes ? "#c4a87a" : "rgba(255,255,255,0.2)", background: "none", border: `1px solid ${showNotes ? "rgba(196,168,122,0.3)" : "rgba(255,255,255,0.08)"}`, borderRadius: 6, padding: "3px 10px", cursor: "pointer" }}
+              >
+                S
+              </button>
+            )}
+            {/* Fullscreen toggle */}
+            {!isFullscreen && (
+              <button
+                onClick={enterFullscreen}
+                style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 6, padding: "4px 12px", cursor: "pointer" }}
+              >
+                ⛶ Fullscreen
+              </button>
+            )}
+            {/* Exit fullscreen or overview */}
+            <button
+              onClick={() => isFullscreen ? document.exitFullscreen() : setMode("overview")}
+              title={isFullscreen ? "Exit fullscreen (Esc)" : "Back to overview"}
+              style={{ width: 28, height: 28, borderRadius: "50%", background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.45)", cursor: "pointer", fontSize: 13, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}
+            >
+              ✕
+            </button>
           </div>
         </div>
 
         {/* Slide area */}
-        <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", padding: "20px 24px 0", overflow: "hidden" }}>
-          {/* Scale container */}
-          <div ref={slideWrapRef} style={{ width: "100%", maxWidth: 1160, position: "relative", borderRadius: 14, overflow: "hidden", boxShadow: "0 40px 120px -20px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.06)" }}>
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", padding: isFullscreen ? "12px 16px 0" : "14px 24px 0", overflow: "hidden", position: "relative", minHeight: 0 }}>
+          {/* Scaled slide */}
+          <div
+            ref={slideWrapRef}
+            style={{ width: "100%", maxWidth: isFullscreen ? "none" : 1120, flex: "0 0 auto", position: "relative", borderRadius: isFullscreen ? 8 : 12, overflow: "hidden", boxShadow: "0 40px 120px -20px rgba(0,0,0,0.95), 0 0 0 1px rgba(255,255,255,0.05)" }}
+          >
             <div style={{ paddingBottom: "56.25%" }} />
             <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
               <div style={{ width: 1280, height: 720, transform: `scale(${scale})`, transformOrigin: "top left" }}>
                 {renderSlideVisual(
                   curSlide,
-                  imgs[imgKey],
-                  (file) => saveImg(deck.id, slideIdx, file),
-                  () => clearImg(deck.id, slideIdx),
+                  mItem,
+                  (file) => saveMediaFile(deck.id, slideIdx, file),
+                  () => clearMediaFile(deck.id, slideIdx),
                 )}
               </div>
             </div>
           </div>
 
-          {/* Script */}
-          <div style={{ width: "100%", maxWidth: 1160, marginTop: 16, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(196,168,122,0.18)", borderRadius: 14, padding: "18px 26px", flexShrink: 0 }}>
-            <div style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.24em", textTransform: "uppercase", color: "#c4a87a", marginBottom: 10 }}>
-              🎙 Say this
+          {/* Script — shown below slide in normal mode, hidden in fullscreen (toggle with S) */}
+          {!isFullscreen && (
+            <div style={{ width: "100%", maxWidth: 1120, marginTop: 12, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(196,168,122,0.15)", borderRadius: 12, padding: "14px 22px", flexShrink: 0 }}>
+              <div style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(255,255,255,0.78)", lineHeight: 1.75 }}>
+                {curSlide.script}
+              </div>
             </div>
-            <div style={{ fontFamily: FONT_BODY, fontSize: "0.92rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.75 }}>
-              {curSlide.script}
+          )}
+
+          {/* Fullscreen notes overlay — press S to show/hide */}
+          {isFullscreen && showNotes && (
+            <div style={{ position: "absolute", bottom: 56, left: 0, right: 0, background: "rgba(8,4,4,0.9)", backdropFilter: "blur(16px)", padding: "14px 40px 10px", borderTop: "1px solid rgba(196,168,122,0.15)", zIndex: 20 }}>
+              <div style={{ fontFamily: FONT_BODY, fontSize: "0.86rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.7, maxWidth: 1000, margin: "0 auto" }}>
+                {curSlide.script}
+              </div>
+              <div style={{ marginTop: 4, textAlign: "right", fontFamily: FONT_LUXE, fontSize: "8px", color: "rgba(255,255,255,0.18)", letterSpacing: "0.12em" }}>Press S to hide</div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Nav bar */}
-        <div style={{ padding: "16px 24px", display: "flex", alignItems: "center", justifyContent: "center", gap: 14, flexShrink: 0 }}>
+        <div style={{ padding: "10px 24px", display: "flex", alignItems: "center", justifyContent: "center", gap: 12, flexShrink: 0, zIndex: 10 }}>
           <button
             onClick={() => setSlideIdx(i => Math.max(i - 1, 0))}
             disabled={slideIdx === 0}
-            style={{ padding: "9px 22px", background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 9999, color: slideIdx === 0 ? "rgba(255,255,255,0.18)" : "rgba(255,255,255,0.8)", fontFamily: FONT_LUXE, fontSize: "11px", letterSpacing: "0.15em", cursor: slideIdx === 0 ? "default" : "pointer" }}
+            style={{ padding: "8px 20px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.09)", borderRadius: 9999, color: slideIdx === 0 ? "rgba(255,255,255,0.14)" : "rgba(255,255,255,0.75)", fontFamily: FONT_LUXE, fontSize: "11px", letterSpacing: "0.15em", cursor: slideIdx === 0 ? "default" : "pointer" }}
           >
             ← Prev
           </button>
-
-          {/* Dot strip */}
-          <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+          <div style={{ display: "flex", gap: 5, alignItems: "center" }}>
             {deck.slides.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setSlideIdx(i)}
-                style={{ width: i === slideIdx ? 22 : 7, height: 7, borderRadius: 9999, background: i === slideIdx ? "#c4a87a" : "rgba(255,255,255,0.18)", border: "none", cursor: "pointer", transition: "all 0.2s ease", padding: 0 }}
+                style={{ width: i === slideIdx ? 20 : 6, height: 6, borderRadius: 9999, background: i === slideIdx ? "#c4a87a" : "rgba(255,255,255,0.16)", border: "none", cursor: "pointer", transition: "all 0.2s ease", padding: 0 }}
               />
             ))}
           </div>
-
           <button
             onClick={() => setSlideIdx(i => Math.min(i + 1, deck.slides.length - 1))}
             disabled={slideIdx === deck.slides.length - 1}
-            style={{ padding: "9px 22px", background: slideIdx === deck.slides.length - 1 ? "rgba(255,255,255,0.07)" : "#c4a87a", border: "none", borderRadius: 9999, color: slideIdx === deck.slides.length - 1 ? "rgba(255,255,255,0.18)" : "#1e1210", fontFamily: FONT_LUXE, fontSize: "11px", letterSpacing: "0.15em", cursor: slideIdx === deck.slides.length - 1 ? "default" : "pointer" }}
+            style={{ padding: "8px 20px", background: slideIdx === deck.slides.length - 1 ? "rgba(255,255,255,0.06)" : "#c4a87a", border: "none", borderRadius: 9999, color: slideIdx === deck.slides.length - 1 ? "rgba(255,255,255,0.14)" : "#1e1210", fontFamily: FONT_LUXE, fontSize: "11px", letterSpacing: "0.15em", cursor: slideIdx === deck.slides.length - 1 ? "default" : "pointer" }}
           >
             Next →
           </button>
