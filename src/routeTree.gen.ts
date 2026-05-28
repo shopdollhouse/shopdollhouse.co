@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SoftwareRouteImport } from './routes/software'
 import { Route as QuizRouteImport } from './routes/quiz'
+import { Route as PlaybookRouteImport } from './routes/playbook'
 import { Route as BrandRoomRouteImport } from './routes/brand-room'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -22,6 +23,11 @@ const SoftwareRoute = SoftwareRouteImport.update({
 const QuizRoute = QuizRouteImport.update({
   id: '/quiz',
   path: '/quiz',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlaybookRoute = PlaybookRouteImport.update({
+  id: '/playbook',
+  path: '/playbook',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BrandRoomRoute = BrandRoomRouteImport.update({
@@ -38,12 +44,14 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/brand-room': typeof BrandRoomRoute
+  '/playbook': typeof PlaybookRoute
   '/quiz': typeof QuizRoute
   '/software': typeof SoftwareRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/brand-room': typeof BrandRoomRoute
+  '/playbook': typeof PlaybookRoute
   '/quiz': typeof QuizRoute
   '/software': typeof SoftwareRoute
 }
@@ -51,20 +59,22 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/brand-room': typeof BrandRoomRoute
+  '/playbook': typeof PlaybookRoute
   '/quiz': typeof QuizRoute
   '/software': typeof SoftwareRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/brand-room' | '/quiz' | '/software'
+  fullPaths: '/' | '/brand-room' | '/playbook' | '/quiz' | '/software'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/brand-room' | '/quiz' | '/software'
-  id: '__root__' | '/' | '/brand-room' | '/quiz' | '/software'
+  to: '/' | '/brand-room' | '/playbook' | '/quiz' | '/software'
+  id: '__root__' | '/' | '/brand-room' | '/playbook' | '/quiz' | '/software'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BrandRoomRoute: typeof BrandRoomRoute
+  PlaybookRoute: typeof PlaybookRoute
   QuizRoute: typeof QuizRoute
   SoftwareRoute: typeof SoftwareRoute
 }
@@ -83,6 +93,13 @@ declare module '@tanstack/react-router' {
       path: '/quiz'
       fullPath: '/quiz'
       preLoaderRoute: typeof QuizRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/playbook': {
+      id: '/playbook'
+      path: '/playbook'
+      fullPath: '/playbook'
+      preLoaderRoute: typeof PlaybookRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/brand-room': {
@@ -105,6 +122,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BrandRoomRoute: BrandRoomRoute,
+  PlaybookRoute: PlaybookRoute,
   QuizRoute: QuizRoute,
   SoftwareRoute: SoftwareRoute,
 }
