@@ -3029,18 +3029,18 @@ Thanks again for trusting me with [BUSINESS NAME].
         <p className="text-[11px] tracking-widest uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The Golden Rule</p>
         <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: "var(--ink)", fontStyle: "italic" }}>Research before you reach out. One specific detail (their product, a post they made, their location) outperforms 100 generic messages every time.</p>
       </div>
-      <SectionHeader label="Word-for-Word Scripts" title="Exactly what to say — every step." sub="You haven't done this before, and that's okay. These scripts are written for someone starting from zero. Copy them exactly. Customize the bracketed fields. Every word is here on purpose." />
+      <SectionHeader label="Word-for-Word Scripts" title="Exactly what to say — every step." sub="Our lead strategy is the AI Clone. Every script follows one rule: professional flirting. Create desire first. The goal of each message is the next message — not the close. Price comes last." />
 
       {/* Mindset card */}
       <div className="rounded-2xl p-7" style={{ background: "var(--ink)" }}>
         <p className="text-[10px] tracking-widest uppercase mb-4" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Before You Reach Out to Anyone — Read This First</p>
         <div className="space-y-3">
           {[
-            { n: "1", text: "You are not bothering anyone. You're offering something that could genuinely help their business. Go in with confidence." },
-            { n: "2", text: "Nobody buys from a nervous, apologetic pitch. Be direct, be warm, be calm. You know what you offer and they probably need it." },
-            { n: "3", text: "Most people won't respond — that's not rejection, that's just how outreach works. Every 'no' gets you closer to a 'yes.'" },
-            { n: "4", text: "Research before you message. Know their business name, what they sell, and one specific thing about their current social media before you send a single word." },
-            { n: "5", text: "Your goal isn't to sell on the first message. Your goal is to get a reply. One conversation at a time." },
+            { n: "1", text: "You are not bothering anyone. You're offering something that could genuinely help their business. Go in with complete confidence." },
+            { n: "2", text: "Think of every outreach as professional flirting. Your job is to create curiosity and desire — not to close them on the first message. Pull, don't push." },
+            { n: "3", text: "The goal of the first message is to get a reply. The goal of the reply is to get a meeting. The goal of the meeting is to blow their mind. The close comes after that — in that order." },
+            { n: "4", text: "Never reveal the price until after they've already fallen in love with what you do. The AI Clone changes everything — let the wow moment do the selling." },
+            { n: "5", text: "Research before you message. Know their business name, what they sell, and one specific thing about their current social media before you send a single word." },
           ].map(({ n, text }) => (
             <div key={n} className="flex gap-4">
               <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ background: "rgba(200,168,100,0.15)", border: "1px solid rgba(200,168,100,0.3)" }}>
@@ -3051,6 +3051,52 @@ Thanks again for trusting me with [BUSINESS NAME].
           ))}
         </div>
       </div>
+
+      <ScriptCard
+        step="Primary Strategy — Always Lead With This"
+        title="The AI Clone Pitch — Full Funnel"
+        tag="DM · Email · Meeting · Proposal · Close"
+        lines={[
+          { type: "note", text: "This is our #1 lead strategy. The entire funnel is built around one idea: show them something they've never seen before, and let the wow moment close the deal. Never pitch the price until they're already in love. Professional flirting — every touch has one goal: get to the next touch." },
+          { type: "subhead", text: "Touch 1 — Create Curiosity (DM or Email)" },
+          { type: "note", text: "Research the business first. Find their name, their niche, their city, whether they have a face/mascot/character. Then send this — nothing else. No pitch. No price. Just curiosity." },
+          { type: "send", label: "DM — Instagram / Facebook / TikTok", text: "Hey [NAME] 👀\n\nRandom question — but we actually made something for [BUSINESS NAME] that I think you've never seen before.\n\nWould you want to take a look?" },
+          { type: "note", text: "That's it. Three lines. Do not explain what it is. The mystery is the hook. If they have a mascot or character instead of a personal brand, swap 'for you' with 'for [MASCOT NAME].'" },
+          { type: "send", label: "Email Version", text: "Subject: we made something for [BUSINESS NAME]\n\nHi [FIRST NAME],\n\nWe put together something for [BUSINESS NAME] that I genuinely think you haven't seen before. No pitch — I just wanted to ask:\n\nWould you want to take a look?\n\n— Mandy\nThe Dollhouse Brand Studio" },
+          { type: "note", text: "Short, mysterious, warm. That's the tone. They'll be curious. They'll reply." },
+          { type: "subhead", text: "Touch 2 — When They Say Yes (Get the Meeting)" },
+          { type: "note", text: "Their curiosity is the green light. Now your only goal is to get them on a 10-minute call or meet in person. Still no pitch. Still no price." },
+          { type: "if_say", text: "Yes! What is it? / I'm curious, what did you make? / Sure, show me!" },
+          { type: "you_say", text: "So glad you're curious — it honestly looks way better in person than over text, I don't want to ruin it.\n\nCan we grab 10 minutes on Zoom? I'll show you exactly what it is and you can tell me what you think.\n\n[CALENDAR LINK]" },
+          { type: "you_say", label: "If they're local", text: "So glad you're curious — it actually looks way better in person. Are you in [CITY]? I can swing by for 10 minutes and show you. You're going to love it." },
+          { type: "warn", text: "Do NOT send the AI Clone video in the DM or email. Do not reveal what it is yet. The reveal should happen face-to-face — that's where the magic lands. Get the meeting first." },
+          { type: "if_say", text: "Can you just tell me what it is? / What kind of thing did you make?" },
+          { type: "you_say", text: "I could describe it — but honestly it won't do it justice over text. It's an AI video of you [or your brand character] that we created for [BUSINESS NAME]. You'll get it the moment you see it. 10 minutes on Zoom?" },
+          { type: "subhead", text: "Touch 3 — The Meeting (Before They Arrive)" },
+          { type: "note", text: "Before the call: Make the AI Clone. Use their best photo or headshot (from their website, social media, or Google). If they have a mascot or character — use that. Build a short 15–30 second AI video using your video tool. Have the proposal ready — customized for their business." },
+          { type: "note", text: "Note: Them saying 'yes' to the meeting is their consent to seeing the AI version of them. If they later want to use it, they'll sign the contract which covers image rights. You don't need to ask permission to build it beforehand — you're building it as a demo." },
+          { type: "subhead", text: "Touch 3 — The Meeting (What to Say)" },
+          { type: "send", label: "How to open — say exactly this", text: "Thanks for making time — I'm going to keep this super short. I just want you to see something first, and then you can tell me what you think. Here it is.\n\n[PLAY THE AI CLONE VIDEO — share your screen or show your phone]" },
+          { type: "note", text: "Then stop talking. Let them watch the entire video. Let the reaction happen. Don't fill the silence. Their face will tell you everything." },
+          { type: "if_say", text: "Oh wow... / Wait, that's me?! / How did you do that? / This is incredible" },
+          { type: "you_say", text: "That's your AI clone — a digital version of you [or your brand character]. We make one of these every week for [BUSINESS NAME]. It posts on your social media, promotes your services, answers FAQs — whatever we script for it. You never have to film anything, plan anything, or think about content again.\n\nI actually put together a proposal for [BUSINESS NAME] specifically. Would you want to take a look?" },
+          { type: "note", text: "Show the proposal now. Walk through it page by page. Let them ask questions. Don't rush. This is where they go from 'wow' to 'I want this.'" },
+          { type: "subhead", text: "Touch 4 — The Trial Close (Not the Price Close)" },
+          { type: "note", text: "After they've seen the clone and the proposal — offer the trial. This is your close. Don't ask them to commit to a year or even a month yet. Just ask: want to try it?" },
+          { type: "send", label: "How to introduce the trial", text: "Here's what I'd love to do — rather than asking you to commit right now, I want to offer you a 14-day free trial. We run everything for [BUSINESS NAME] — the AI clone content, the automations, everything you just saw — for two weeks. You see real results before you decide anything.\n\nThe only thing upfront is a one-time $500 setup fee. That covers building everything out for your specific business. The first two weeks are completely on us.\n\nDoes that feel like something worth trying?" },
+          { type: "if_say", text: "Yeah, that sounds good / I'd like to try it / Let's do it" },
+          { type: "you_say", text: "Amazing — I'm so excited for you to see this running for [BUSINESS NAME]. So the monthly investment going forward is $1,000 a month — and since you're starting with the trial, all you pay today is the $500 setup fee. First two weeks are free. After that, if you love it — and you will — we just continue into monthly. Sound good?\n\n[Send the invoice for $500 and the agreement]" },
+          { type: "warn", text: "PRICE ORDER MATTERS: You reveal the monthly price ($1,000) only AFTER they've already agreed to try the trial. They're already emotionally in — the $1k feels reasonable after the wow moment and the free trial. Never lead with price. Ever." },
+          { type: "subhead", text: "If They Ask Price Before You're Ready to Tell Them" },
+          { type: "if_say", text: "How much is it? / What does it cost? / What's the monthly?" },
+          { type: "you_say", text: "I'd rather show you what you're getting first — the price makes a lot more sense after you actually see it. Can we do the 10 minutes on Zoom?" },
+          { type: "note", text: "If they absolutely won't meet without knowing: 'Packages start at $1,000/mo — but I'd love to show you what that includes before you make any decisions. The meeting is what sells it, not me telling you.'" },
+          { type: "subhead", text: "After They Sign — Getting Them on Monthly Retainer" },
+          { type: "note", text: "The trial is 14 days. On day 10–12, send this — before the trial ends. Don't wait for them to bring it up." },
+          { type: "send", label: "Day 10–12 of the trial — send this check-in", text: "Hey [NAME] 😊\n\nWe're about halfway through your trial and I just looked at [BUSINESS NAME]'s numbers — [SHARE A SPECIFIC RESULT, e.g., 'your reel hit 2.3k views' or 'we got 4 new inquiries through the automation'].\n\nI'd love to keep this going for you. To continue after the 14 days, it's just $1,000/mo — no long-term contract, month to month, you can cancel anytime.\n\nShould I send over the monthly invoice?" },
+          { type: "note", text: "They've been watching it work for 10 days. They don't want to stop. The retainer sell is easy from here — they're already sold." },
+        ]}
+      />
 
       <ScriptCard
         step="Step 1 — Start Here"
@@ -3470,7 +3516,7 @@ We are a small team. Trust and reliability are non-negotiable.`,
 type PStage = "new_lead" | "sent" | "responded" | "call_set" | "proposal" | "negotiating" | "won" | "lost";
 
 const STAGE_INFO: Record<PStage, { label: string; color: string; guide: string; nextStage?: PStage; nextLabel?: string }> = {
-  new_lead:    { label: "New Lead",        color: "#c8a864", nextStage: "sent",        nextLabel: "✓ Outreach Sent",     guide: "LEAD WITH THE AI CLONE. Our primary offer is the Starter package ($1,000/mo) built around their AI clone — a digital twin of the business owner that posts content automatically. Research this business first, then generate the AI Clone Pitch and send it. If they seem hesitant about price, pivot to the 14-day free trial ($500 setup upfront, first two weeks free, then monthly). It removes the risk and closes fast." },
+  new_lead:    { label: "New Lead",        color: "#c8a864", nextStage: "sent",        nextLabel: "✓ Outreach Sent",     guide: "LEAD WITH THE AI CLONE — but do NOT mention price yet. Step 1: send the AI Clone DM or Email. Goal: get them curious enough to say yes to seeing it. Step 2: once they say yes — get a 10-min Zoom or in-person meeting. Step 3: at the meeting, show the clone (build it beforehand), then show the proposal. Step 4: offer the 14-day free trial ($500 setup, first 2 weeks free). Step 5: AFTER they agree to the trial — tell them the monthly is $1,000. Price comes last. The wow moment does the selling." },
   sent:        { label: "Outreach Sent",   color: "#4a90d9", nextStage: "responded",   nextLabel: "✓ They Responded",    guide: "Outreach is out. Wait 2–3 business days. No response? Generate a follow-up — keep it to one sentence. It's all about volume and follow-through." },
   responded:   { label: "They Responded!", color: "#4a9970", nextStage: "call_set",    nextLabel: "✓ Call Booked",       guide: "Reply within 1 hour. Your only goal right now: get them on a 15-minute call. Don't pitch anything yet. Use the generator below to craft your reply." },
   call_set:    { label: "Call Scheduled",  color: "#7b68ee", nextStage: "proposal",    nextLabel: "✓ Proposal Sent",     guide: "Prep using the CLOSER notes below. Listen first, pitch second. Send the proposal within 24 hours of the call ending — while you're still fresh in their mind." },
@@ -3481,7 +3527,7 @@ const STAGE_INFO: Record<PStage, { label: string; color: string; guide: string; 
 };
 
 const STAGE_MSGS: Record<PStage, { label: string; key: string }[]> = {
-  new_lead:    [{ label: "🤖 AI Clone Pitch — $1k", key: "ai_clone_pitch" }, { label: "AI Clone DM", key: "ai_clone_dm" }, { label: "🎁 14-Day Free Trial Email", key: "free_trial" }, { label: "Free Trial DM", key: "free_trial_dm" }, { label: "Cold Email", key: "cold_email" }, { label: "Cold DM", key: "cold_dm" }, { label: "Compliment Email", key: "compliment" }],
+  new_lead:    [{ label: "🤖 AI Clone Email — Curiosity", key: "ai_clone_pitch" }, { label: "🤖 AI Clone DM — Curiosity", key: "ai_clone_dm" }, { label: "🎁 14-Day Free Trial Email", key: "free_trial" }, { label: "Free Trial DM", key: "free_trial_dm" }, { label: "Cold Email", key: "cold_email" }, { label: "Cold DM", key: "cold_dm" }, { label: "Compliment Email", key: "compliment" }],
   sent:        [{ label: "Follow-Up Email", key: "followup_email" }, { label: "Follow-Up DM", key: "followup_dm" }, { label: "Free AI Video Offer", key: "free_video" }],
   responded:   [{ label: "Book the Call", key: "book_call" }, { label: "Reply + Calendar", key: "call_reply" }],
   call_set:    [{ label: "CLOSER Prep Notes", key: "closer_prep" }, { label: "Pitch Deck Outline", key: "pitch_outline" }],
@@ -3514,32 +3560,24 @@ function genMessage(key: string, p: Prospect): string {
 
   const t: Record<string, string> = {
     ai_clone_pitch:
-`Subject: quick idea for ${biz} you haven't seen before
+`Subject: we made something for ${biz}
 
 Hi ${fn},
 
-I came across ${biz} and had an idea I think you're going to love.
+We put together something for ${biz} that I genuinely think you haven't seen before.
 
-We build an AI version of you — a digital character that looks and sounds like you — and use it to post branded video content for ${biz} every single week. You never film anything. You never script anything. Your AI twin just shows up online and does all of it for you.
+No pitch — I just wanted to ask: would you want to take a look?
 
-For ${niche} businesses in ${city} this is a huge edge right now because almost nobody in your market is doing video content. We'd change that overnight.
-
-It's $1,000 a month and there's a one-time $500 setup where we build your AI character. After that you just approve what goes out and watch the results come in.
-
-I'd love to show you what it actually looks like. Do you have 15 minutes this week? No pressure, I just want you to see it before someone else in ${city} does.
-
-Mandy Fortune
+— Mandy Fortune
 The Dollhouse Brand Studio
 shopdollhouse.co`,
 
     ai_clone_dm:
-`Hey ${fn}! Quick question for you.
+`Hey ${fn} 👀
 
-Does ${biz} do any video content right now?
+Random question — but we actually made something for ${biz} that I think you've never seen before.
 
-I ask because we just built something for ${niche} businesses that I've never seen anyone else offer. We create an AI version of you that posts video content for ${biz} every week. You never have to be on camera, never have to film anything. It looks incredibly real.
-
-It's $1,000 a month to run it. Would you want to see a quick demo? I think it'd genuinely blow your mind.`,
+Would you want to take a look?`,
 
     cold_email:
 `Subject: quick question about ${biz}'s social media
@@ -3589,26 +3627,22 @@ For the social media side I'd genuinely love to help. A lot of other ${niche} bu
 Would love to chat for a few minutes if you're open to it. Mandy`,
 
     free_trial:
-`Hey ${fn},
+`Subject: something for ${biz} — no commitment
 
-I wanted to reach out about something we're offering right now for ${niche} businesses.
+Hi ${fn},
 
-We do done-for-you social media — AI clone content, automations, booking systems, ads, all of it — and we're offering a 14-day free trial so you can see it working before you commit to anything.
+We do done-for-you social media for ${niche} businesses — AI clone content, automations, booking systems, the works — and we're offering a 14-day free trial right now so you can see real results before deciding anything.
 
-The only thing upfront is a one-time $500 setup fee so we can actually build everything out for ${biz} properly. After 14 days if you love it you stay on and we roll into the monthly plan. If it's not for you, no problem.
+Would it be worth a quick 10-minute call to see what it looks like for ${biz} specifically?
 
-Would that be worth a quick 15-minute call to see what it looks like?
-
-Mandy Fortune
+— Mandy Fortune
 The Dollhouse Brand Studio
 shopdollhouse.co`,
 
     free_trial_dm:
-`Hey ${fn}! Quick one.
+`Hey ${fn}! Quick one —
 
-We work with ${niche} businesses doing done-for-you social media — AI clone content, automations, the whole thing. We're offering a 14-day free trial right now so you can see real results before committing.
-
-Only thing upfront is $500 to set everything up for ${biz}. After that the first two weeks are on us.
+We're offering a 14-day free trial for ${niche} businesses right now. Done-for-you social media — AI clone content, automations, the whole thing — so you can see it working before deciding anything.
 
 Worth a 10-minute chat?`,
 
