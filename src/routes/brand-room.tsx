@@ -452,7 +452,7 @@ function Footer() {
       <Link
         to="/playbook"
         className="mt-3 inline-block hover:opacity-60 transition-opacity"
-        style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.2)" }}
+        style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.38)" }}
       >
         Admin
       </Link>

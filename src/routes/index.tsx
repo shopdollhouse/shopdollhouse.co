@@ -1918,7 +1918,7 @@ function Footer() {
       <Link
         to="/playbook"
         className="mt-4 inline-block hover:opacity-60 transition-opacity"
-        style={{ fontFamily: "'Jost', sans-serif", fontSize: "9px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.2)" }}
+        style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.38)" }}
       >
         Admin
       </Link>
