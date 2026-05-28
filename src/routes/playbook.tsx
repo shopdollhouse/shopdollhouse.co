@@ -113,6 +113,41 @@ function WorkflowTab() {
         { text: "Ask the 4 client interview questions — document the answers:", sub: "1) How did you find out about us?  2) What tools were you using before?  3) What results do you most want to see?  4) How will you know this is working for your business? — These answers shape your strategy and become your case study later." },
       ]} />
 
+      {/* Onboarding Questionnaire Card */}
+      <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+        <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+          <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Day 1 — Send With the Welcome Email</p>
+          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>Client Onboarding Questionnaire</h3>
+        </div>
+        <div className="px-6 py-5 space-y-4">
+          <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.7 }}>
+            Send this form right after they sign. Every answer shapes your strategy for Month 1. Don't start creating content until this is filled out. Use the "Client Intake / Onboarding Form" prompt in the Prompts tab to generate a full formatted version — or use these questions directly in a Google Form or the platform's form builder.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-3">
+            {[
+              { section: "Business Basics", qs: ["Business name + website", "Business type / industry", "City and main service area", "Business phone + primary contact email"] },
+              { section: "Social Media", qs: ["All platforms + usernames", "Who manages the accounts now?", "Which platform is most important to them?", "Do we have login access yet?"] },
+              { section: "Brand Identity", qs: ["Primary colours (hex codes if available)", "Fonts used (if they know)", "Brand voice: Professional / Friendly / Bold / Fun / Luxury", "Tagline or what they say about themselves"] },
+              { section: "Content", qs: ["3–5 topics they want to post about", "Topics to NEVER post about", "Do they have photos/videos we can use?", "Do they want to appear in content?"] },
+              { section: "Goals", qs: ["What does success look like in 30 days?", "#1 action they want followers to take", "Any upcoming events or promotions to plan around?", "3 competitors or brands they want to look like"] },
+              { section: "Access + Logins", qs: ["Social media access method (login / Business Manager / Creator Studio)", "Google Business Profile access", "Any other tools we need (booking system, e-commerce, etc.)", "Secure password-sharing method (use 1Password or platform vault — never email passwords)"] },
+            ].map(({ section, qs }) => (
+              <div key={section} className="rounded-xl p-4" style={{ background: "rgba(200,168,100,0.06)", border: "1px solid rgba(200,168,100,0.12)" }}>
+                <p className="mb-2" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gold)" }}>{section}</p>
+                <div className="space-y-1.5">
+                  {qs.map(q => (
+                    <div key={q} className="flex items-start gap-2">
+                      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0" style={{ width: "9px", height: "9px", color: "var(--gold)" }}><path d="M2.5 8.5L6 12L13.5 4.5" /></svg>
+                      <span style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "rgba(30,15,10,0.7)", lineHeight: 1.45 }}>{q}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* Onboarding Timeline Card */}
       <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
         <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
@@ -350,42 +385,42 @@ function MonthlyTab() {
           day: "Monday",
           title: "Strategy & Planning Day",
           items: [
-            { text: "Review all client analytics from prior week" },
-            { text: "Check in on any running ads — adjust budgets or creative if needed" },
-            { text: "Update content calendars for any clients needing next-week content" },
-            { text: "Reply to all client messages or questions" },
+            { text: "Review all client analytics from prior week", sub: "~15–20 min total. Check reach, engagement, follower growth, ad performance. Flag anything that needs a change." },
+            { text: "Check in on any running ads — adjust budgets or creative if needed", sub: "~10–15 min per client. If CTR is under 1% or cost per result is too high — pause the ad and swap creative before Friday." },
+            { text: "Update content calendars for any clients needing next-week content", sub: "~20 min per client. Make sure no client has a gap in their schedule this week." },
+            { text: "Reply to all client messages or questions", sub: "Do this first thing Monday. Never let a client message sit over a weekend without a reply on Monday morning." },
           ],
         },
         {
           day: "Tuesday–Wednesday",
           title: "Content Creation Days",
           items: [
-            { text: "Batch write all captions for the week — use the prompts, don't write from scratch" },
-            { text: "Design all graphics, edit photos, prep video content" },
-            { text: "Create ad creatives if any campaigns are launching" },
-            { text: "No client calls on these days — protect this time" },
+            { text: "Batch write all captions for the week — use the prompts, don't write from scratch", sub: "~20–30 min per client. Write all captions in one sitting per client — never one at a time." },
+            { text: "Design all graphics, edit photos, prep video content", sub: "~1–2 hrs per client depending on post volume. Use templates. Batch all clients back to back." },
+            { text: "Create ad creatives if any campaigns are launching", sub: "~30–45 min per client. Build 2 versions minimum — one image, one video or carousel." },
+            { text: "No client calls on these days — protect this time", sub: "Block Tuesday and Wednesday on your calendar. Creation time is your most valuable time. Guard it." },
           ],
         },
         {
           day: "Thursday",
           title: "Approval & Scheduling Day",
           items: [
-            { text: "Send content to any clients awaiting approval" },
-            { text: "Schedule all approved content through the platform" },
-            { text: "Set up any new ad sets launching next week" },
-            { text: "Pin the 3 best posts to the top of each client's profile", sub: "Pinned posts are the first thing anyone sees when they visit the page. Keep the 3 strongest pieces — AI videos or top-performing carousels — pinned at all times. Refresh monthly." },
-            { text: "Boost the 3 pinned posts ($50–$100 each)", sub: "Take posts already performing organically and put a small budget behind them. No complex targeting — just amplify what's already working. This turns 'nice-looking social' into real leads." },
-            { text: "Follow up with clients who haven't approved yet" },
+            { text: "Send content to any clients awaiting approval", sub: "~10 min per client. Share via Google Drive folder or the platform's content approval feature." },
+            { text: "Schedule all approved content through the platform", sub: "~15–20 min per client. Schedule the whole month at once if possible — not week by week." },
+            { text: "Set up any new ad sets launching next week", sub: "~30 min per ad set. Double-check: budget, audience, creative, pixel event, campaign objective." },
+            { text: "Pin the 3 best posts to the top of each client's profile", sub: "~10 min per client. Keep the 3 strongest pieces — AI videos or top-performing carousels — pinned at all times. Refresh monthly." },
+            { text: "Boost the 3 pinned posts ($50–$100 each)", sub: "~10 min per client. Take posts already performing organically and put a small budget behind them. This turns organic reach into real leads." },
+            { text: "Follow up with clients who haven't approved yet", sub: "~5 min per client. One polite message — 'Hey, content is ready for your review! Anything you'd like changed before I schedule it?'" },
           ],
         },
         {
           day: "Friday",
           title: "Admin, Outreach & Growth",
           items: [
-            { text: "Send any monthly reports due this week" },
-            { text: "Do outreach — cold emails, DMs, or follow-ups to prospects" },
-            { text: "Invoice any clients billed weekly or on the 1st" },
-            { text: "Review your own business metrics — revenue, churn risk, pipeline" },
+            { text: "Send any monthly reports due this week", sub: "~30–45 min per report. Use the 'Monthly Report — Explain the Numbers' prompt to generate the written section. Add 1–2 personal lines about what you saw that month." },
+            { text: "Do outreach — cold emails, DMs, or follow-ups to prospects", sub: "~1–2 hrs total. Aim for 10–15 new outreach messages + 5–10 follow-ups on existing leads." },
+            { text: "Invoice any clients billed weekly or on the 1st", sub: "~5 min per client. Use recurring invoices in the platform — set these up once during onboarding." },
+            { text: "Review your own business metrics — revenue, churn risk, pipeline", sub: "~20 min. How much MRR do you have? Any clients who seem quiet or disengaged? Any deals close to closing?" },
           ],
         },
       ].map((phase) => (
@@ -963,130 +998,64 @@ Once the list is complete:
 This gives you a ready-to-work pipeline from a single prompt.`,
     },
     {
-      title: "Cold Email — AI Clone Video Pitch",
+      title: "Custom Outreach Message Generator",
       tag: "Outreach",
-      prompt: `Subject: quick question about your practice, [FIRST NAME]
+      prompt: `Use this to write a personalised first-touch outreach message for any prospect. Paste into ChatGPT with the details filled in — it will write a custom message that sounds real, not like a template.
 
-Hi {{first_name}},
+Paste into ChatGPT:
 
-I noticed {{business_name}} is actively running Google Ads in [CITY] — smart move in such a competitive market.
+"Write a short, personalised first outreach message from Mandy Fortune at The Dollhouse Brand Studio to a business owner.
 
-I have one quick question: would you be open to seeing an AI clone of yourself that promotes your practice 24/7 — without you ever recording a single video or piece of content?
+Here are the details:
+- Business name: [NAME]
+- Owner's name (if known): [NAME]
+- Industry / niche: [NICHE]
+- City: [CITY]
+- What I noticed about their current social media: [OBSERVATION — e.g., 'they're posting inconsistently and have no engagement' / 'their photos are great but they have no captions' / 'they're running Google Ads but have no Instagram presence']
+- What I want to lead with: [AI Clone Pitch / Compliment + question / Free Trial offer / General intro]
+- Channel: [DM / Email]
 
-Patient FAQs, social content, appointment reminders — all delivered in your voice, your face, your style. You stay focused on your patients. The AI handles the rest.
+Rules for the message:
+- Under 80 words for DM, under 150 words for email
+- Sounds like a real person sent it — not a template
+- One specific observation about their business (use what I noted above)
+- Ends with ONE soft question — not a pitch, just a question
+- Warm and confident tone — professional flirting, not sales pressure
+- Do NOT mention price
+- Do NOT use bullet points in DM version
 
-A handful of [CITY] [NICHE] businesses are already using this to attract new clients while spending zero time in front of a camera.
-
-Worth a 10-minute look?
-
-(Reply here or grab a time: [CALENDAR LINK])
-
-— Mandy Fortune
-The Dollhouse Brand Studio
-shopdollhouse.co
-
----
-Notes:
-• {{first_name}} and {{business_name}} are merge tags — use your platform's personalization fields
-• Swap [CITY], [NICHE], and [CALENDAR LINK] before sending
-• This email works best as a follow-up to seeing their Google Ad — reference it in the first line`,
+Write 2 versions: one slightly more casual, one slightly more professional. I'll choose which fits better."`,
     },
     {
-      title: "Cold DM — After Email (Follow-Up)",
-      tag: "Outreach",
-      prompt: `Use this as a voice note script or typed DM — send 2–3 days after the cold email.
+      title: "LinkedIn Post Writer",
+      tag: "LinkedIn",
+      prompt: `Use this to write a LinkedIn post for any client or for The Dollhouse Brand Studio's own brand content. LinkedIn rewards longer, story-based posts with strong personal opinions. Keep the hook strong and the format scannable.
 
----
+Paste into ChatGPT:
 
-"Hey [NAME] — I reached out by email a few days ago. I'm the one who creates AI video clones of business owners for their social media.
+"Write a LinkedIn post for [BUSINESS NAME / THE DOLLHOUSE BRAND STUDIO].
 
-I'd love to make one of you for free just to show you what it looks like — would you be open to seeing it?"
+About the author: [WHO IS THIS — e.g., 'Mandy Fortune, founder of a social media studio for small businesses' / 'Dr. [NAME], owner of a dental practice in [CITY]']
+Post topic: [WHAT THIS POST IS ABOUT]
+Goal: [grow followers / get DMs / build authority / drive leads / share a lesson]
+Tone: [professional but human / bold and opinionated / educational / story-based]
+Length: [Short — under 150 words / Medium — 200–300 words / Long — 400+ words]
 
----
-Notes:
-• Keep it casual and short — this works best as a voice note on Instagram DM
-• The free video offer removes all risk for them
-• If they say yes → create a quick AI video using their photo → send it back
-• That video becomes your close`,
-    },
-    {
-      title: "DM — After Sending Free AI Video",
-      tag: "Outreach",
-      prompt: `Send this after you've created and delivered the free AI video to the prospect.
+Write the post using this LinkedIn structure:
 
----
+LINE 1 (the hook — shows before 'see more'):
+This line must be a scroll-stopper. Bold, opinionated, or curious. Make someone stop scrolling. Under 15 words.
 
-"Hey [NAME] — I made this AI video of you for your [BUSINESS TYPE]. Want to see it?
+BODY (3–5 short paragraphs):
+Short paragraphs — 1–3 lines each. Plenty of white space. Each paragraph is one idea. Use a real story, a specific result, or a strong point of view. No fluff. No corporate-speak. Reads like a smart human being, not a press release.
 
-[ATTACH OR LINK THE VIDEO]
+CLOSE + CTA:
+A memorable last line followed by a simple call to action — 'Follow for more' / 'What do you think?' / 'DM me [WORD]' / 'Comment below'
 
-This is what we create for our clients every week — they never have to film anything. The AI speaks in their voice, with their face, on their brand.
+HASHTAGS:
+5 hashtags at the very end — 2 broad (1M+ posts), 3 niche (under 200K)
 
-If you wanted this running for [BUSINESS NAME] on a weekly basis, I'd love to show you how it works. Totally low-key — just a quick 10-minute call.
-
-Worth it?"
-
----
-Notes:
-• The video does the selling — your job is just to deliver it and ask one question
-• Don't over-explain. Let them react first.
-• If they ask "how much?" — that's a buying signal. Move to the call.`,
-    },
-    {
-      title: "Cold Email — The Compliment Approach",
-      tag: "Outreach",
-      prompt: `Subject: compliments to your [team / chef / staff]
-
-Hi [FIRST NAME],
-
-Just wanted to shoot you a quick email to give my compliments to [YOUR TEAM / YOUR CHEF / YOUR STAFF]! I [stopped by / ordered / came in] last week and [SPECIFIC GENUINE COMPLIMENT].
-
-I wanted to share your business on social media — but when I looked, I noticed you guys aren't doing much with Facebook or Instagram ads. Any reason?
-
-I think more people need to hear about [BUSINESS NAME]. Would love to help get the word out.
-
-Also — where can I leave you a review? Happy to do that too.
-
-Thanks!
-— Mandy Fortune
-The Dollhouse Brand Studio
-
----
-
-[FOLLOW-UP EMAIL — send 2 days later if they respond positively]
-
-Hey [NAME]! Thanks for the response. Just left you [an awesome review / a 5-star review].
-
-Also for the social media stuff — I'd love to help you out. A lot of other [NICHE — e.g. "sushi restaurants / salons / dental practices"] in the area are using social media to get more customers. I think we could easily do the same for [BUSINESS NAME].
-
-Let me know! Would love to help.
-
-— Mandy
-
----
-Why this works:
-• Starts with a real compliment — completely disarms them
-• Opens a door naturally (you noticed something they're missing)
-• Low-pressure: asking where to leave a review makes you feel like a fan, not a salesperson
-• The follow-up does the close`,
-    },
-    {
-      title: "Cold DM — Free Trial Pitch",
-      tag: "Outreach",
-      prompt: `Use this when reaching out to a business owner for the first time via DM.
-
----
-
-"Hey [NAME], I just built a new AI system for [NICHE — e.g. 'landscapers' / 'dentists' / 'salons']. It helps [SPECIFIC OUTCOME — e.g. 'book more jobs automatically' / 'never miss a lead again' / 'fill your calendar without ad spend'].
-
-I'm looking for a few businesses to test it out. Would you want a free trial?"
-
----
-Notes:
-• Keep it under 3 sentences
-• "Free trial" is the lowest-friction offer — they don't have to decide anything yet
-• After they say yes → get them on a quick call → run the kickoff call checklist
-• The trial sells itself — once they see results, the close is easy`,
+Also write an alternate hook line so I can A/B test two versions."`,
     },
     {
       title: "AI Video — Multi-Scene Script (Talking Head + Action)",
@@ -2668,12 +2637,13 @@ After everything — give me one note on WHY this caption works for this specifi
     { label: "Platform AI", icon: "🤖", tags: ["Platform AI"] },
     { label: "4x4 Video Strategy", icon: "🧠", tags: ["4x4 Method"] },
     { label: "Content Creation", icon: "✍️", tags: ["Captions", "Video", "Stories", "Planning"] },
+    { label: "LinkedIn", icon: "💼", tags: ["LinkedIn"] },
     { label: "Content Sizes", icon: "📐", tags: ["Sizes"] },
     { label: "Ads & Email", icon: "📣", tags: ["Ads", "Email"] },
     { label: "Strategy & Reporting", icon: "📊", tags: ["Strategy", "Reporting", "Onboarding"] },
     { label: "AI Video", icon: "🎬", tags: ["AI Video"] },
     { label: "Platform Automations", icon: "⚡", tags: ["Automations"] },
-    { label: "Outreach Scripts", icon: "📤", tags: ["Outreach"] },
+    { label: "Outreach Generators", icon: "📤", tags: ["Outreach"] },
     { label: "Lead Generation", icon: "🎯", tags: ["Lead Gen"] },
     { label: "Proposals & Contracts", icon: "📄", tags: ["Proposals", "Contracts"] },
     { label: "Sales", icon: "💼", tags: ["Sales"] },
@@ -3176,6 +3146,77 @@ Thanks again for trusting me with [BUSINESS NAME].
         </p>
       </div>
 
+      {/* Golden Rules */}
+      <div className="rounded-2xl p-7" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
+        <p className="text-[10px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Read Before You Send Anything</p>
+        <h3 className="mb-5" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>The 5 Golden Rules</h3>
+        <div className="space-y-3">
+          {[
+            { n: "1", text: "Never pitch on the first message. Create curiosity. The goal of message one is just to get message two." },
+            { n: "2", text: "Professional flirting — pull, don't push. You are offering something genuinely amazing. Go in with confidence, not desperation." },
+            { n: "3", text: "Research before you reach out. Know their name, niche, and one specific thing about their social media. Generic messages get ignored instantly." },
+            { n: "4", text: "Price comes last — always. Reveal the monthly rate only after they've seen the AI clone and said yes to the trial. The wow moment does the selling." },
+            { n: "5", text: "Follow up 4 times minimum. Most closes happen on the 3rd or 4th touch. Most people quit after one. Don't be most people." },
+          ].map(({ n, text }) => (
+            <div key={n} className="flex gap-4">
+              <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ background: "var(--ink)", border: "1px solid rgba(200,168,100,0.25)" }}>
+                <span style={{ fontFamily: FONT_DISPLAY, fontSize: "0.9rem", color: "var(--gold)", fontStyle: "italic" }}>{n}</span>
+              </div>
+              <p className="leading-relaxed" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.75)", lineHeight: 1.7 }}>{text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Daily Activity Targets */}
+      <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+        <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+          <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Daily Outreach Targets</p>
+          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>What to Do Every Single Day</h3>
+        </div>
+        <div className="px-6 py-5">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+            {[
+              { value: "10–15", label: "New outreach sent", sub: "DMs, emails, or calls" },
+              { value: "5–10",  label: "Follow-ups sent",   sub: "People who haven't replied yet" },
+              { value: "15–20", label: "Leads researched",  sub: "Added to your pipeline" },
+              { value: "7–14",  label: "Days to close",     sub: "Average from first touch to signed" },
+            ].map(({ value, label, sub }) => (
+              <div key={label} className="rounded-xl p-4 text-center" style={{ background: "rgba(200,168,100,0.08)", border: "1px solid rgba(200,168,100,0.15)" }}>
+                <p className="italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.9rem", color: "var(--rose)", lineHeight: 1 }}>{value}</p>
+                <p className="mt-1" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--ink)" }}>{label}</p>
+                <p className="mt-0.5" style={{ fontFamily: FONT_BODY, fontSize: "0.73rem", color: "rgba(30,15,10,0.4)" }}>{sub}</p>
+              </div>
+            ))}
+          </div>
+          <p style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(30,15,10,0.55)", lineHeight: 1.7 }}>
+            These are targets, not rules. Some days you'll do less — that's fine. The key is consistency over perfection. One solid week of outreach beats one massive day every time. Build the habit first, scale the numbers later.
+          </p>
+        </div>
+      </div>
+
+      {/* Which strategy to lead with */}
+      <div className="rounded-2xl p-6" style={{ background: "var(--ink)" }}>
+        <p className="text-[10px] tracking-[0.25em] uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Which Strategy to Lead With</p>
+        <div className="space-y-2">
+          {[
+            { trigger: "They have a face or personal brand",              lead: "AI Clone Pitch — make an AI version of them" },
+            { trigger: "They're a business with a mascot or character",   lead: "AI Clone Pitch — use the character instead" },
+            { trigger: "They're already running Google or Facebook ads",  lead: "Lead Gen approach — they're already paying to grow" },
+            { trigger: "You've visited their location or ordered from them", lead: "Compliment approach — warmest and most disarming open" },
+            { trigger: "You have their email from a directory or listing", lead: "Cold Email 3-Part Sequence" },
+          ].map(({ trigger, lead }) => (
+            <div key={trigger} className="flex gap-3 rounded-xl p-4" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(200,168,100,0.12)" }}>
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0" style={{ width: "11px", height: "11px", color: "var(--gold)" }}><path d="M2.5 8.5L6 12L13.5 4.5" /></svg>
+              <div>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(250,243,234,0.7)", lineHeight: 1.4 }}>{trigger}</p>
+                <p className="mt-0.5" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gold)" }}>→ {lead}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       </>}
 
       {/* ── Sales Call ─────────────────────────────────── */}
@@ -3212,21 +3253,22 @@ Thanks again for trusting me with [BUSINESS NAME].
 
       {/* Pricing Spectrum */}
       <div className="rounded-2xl p-7" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
-        <p className="text-[10px] tracking-widest uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Reference</p>
-        <h3 className="mb-5" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--rose)" }}>The Pricing Spectrum</h3>
+        <p className="text-[10px] tracking-widest uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Our Packages — Know These Cold</p>
+        <h3 className="mb-2" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--rose)" }}>Dollhouse Pricing</h3>
+        <p className="mb-5" style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(30,15,10,0.5)", lineHeight: 1.6 }}>Always start by presenting Elite. Work your way down only if needed. All packages include a $500 one-time setup fee — never waived. Present the free trial after they say yes to a package, not before.</p>
         <div className="space-y-3">
           {[
             {
-              range: "$697–$997+/mo", label: "High-End", color: "#c97a7a",
-              items: ["AI voice agents, review automation, email campaigns, call tracking, analytics dashboards", "White-glove onboarding and ongoing support", "Best for high-LTV niches: lawyers, real estate, med spas"],
+              range: "$5,000+/mo", label: "Elite", color: "#7b68ee",
+              items: ["Full-service across 5 platforms (Instagram, TikTok, Facebook, YouTube, LinkedIn)", "AI brand clone + AI voice agent for inbound inquiries", "Full paid ad management — Meta + Google", "20–30 posts/month + email and SMS campaigns", "Dedicated account manager, weekly production, monthly strategy meeting"],
             },
             {
-              range: "$297–$497/mo", label: "Mid-Tier", color: "var(--gold)",
-              items: ["AI chatbots, 2-way SMS, advanced automations, CRM pipelines", "Often includes required sales call and structured onboarding", "Best for: dentists, gyms, salons"],
+              range: "$2,500/mo", label: "Growth", color: "#c97a7a",
+              items: ["Everything in Starter — expanded to 3 platforms", "Paid ad management — Facebook and Instagram ads included", "Email and SMS automation sequences for lead follow-up", "18 posts/month across platforms", "Full CRM pipeline setup and monthly strategy call"],
             },
             {
-              range: "$97–$197/mo", label: "Low-End / SaaS", color: "rgba(30,15,10,0.5)",
-              items: ["Funnels, forms, calendar booking, simple automations", "Good for self-serve or hands-off clients", "Best for: cleaning, landscaping, photography"],
+              range: "$1,000/mo", label: "Starter", color: "var(--gold)",
+              items: ["1 platform fully managed — content, captions, scheduling", "AI brand clone built out in their voice", "12 posts/month (Reels, carousels, static mix)", "Comment keyword trigger + auto-DM + missed call text-back", "Monthly performance report with plain-English breakdown"],
             },
           ].map(({ range, label, color, items }) => (
             <div key={label} className="flex gap-4 rounded-xl p-4" style={{ background: "rgba(200,168,100,0.06)", border: "1px solid rgba(200,168,100,0.15)" }}>
@@ -3363,6 +3405,77 @@ Thanks again for trusting me with [BUSINESS NAME].
           { type: "note", text: "They've been watching it work for 10 days. They don't want to stop. The retainer sell is easy from here — they're already sold." },
         ]}
       />
+
+      {/* AI Clone Video Script Templates */}
+      <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+        <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+          <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Build Before the Meeting</p>
+          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>AI Clone Video Script Templates</h3>
+        </div>
+        <div className="px-6 py-5 space-y-5">
+          <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.7 }}>
+            Build the AI clone before you get on the call — not after. Use a clear headshot or photo from their website, Instagram, or Google Business profile. Then write the script below and generate the video using your AI video tool. The reveal is the close. Keep it under 30 seconds.
+          </p>
+
+          <div>
+            <p className="text-[9px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Script Structure — Every Clone Uses This</p>
+            <div className="rounded-xl p-5" style={{ background: "var(--ink)" }}>
+              <div className="space-y-3">
+                {[
+                  { t: "Hook (0–3 sec)",    body: "One bold sentence about what they do or who they help. Make it specific to their business." },
+                  { t: "Value (3–18 sec)",  body: "2–3 sentences about what they offer and why it matters. Write in their voice — casual, confident, professional, whatever matches their brand." },
+                  { t: "CTA (18–25 sec)",   body: "One clear action. Book a call, visit the website, DM us, call us. That's it." },
+                ].map(({ t, body }) => (
+                  <div key={t} className="flex gap-3">
+                    <div className="shrink-0 px-2 py-0.5 rounded-md" style={{ background: "rgba(200,168,100,0.2)", height: "fit-content", marginTop: "2px" }}>
+                      <p style={{ fontFamily: FONT_LUXE, fontSize: "0.65rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gold)", whiteSpace: "nowrap" }}>{t}</p>
+                    </div>
+                    <p style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(250,243,234,0.65)", lineHeight: 1.6 }}>{body}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <p className="text-[9px] tracking-widest uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Example Scripts by Niche — Customize These</p>
+            {[
+              {
+                niche: "Lawyer / Law Firm",
+                script: `"If you've been in an accident and you don't know where to start — I do.\n\nI'm [NAME] from [FIRM NAME]. We've helped hundreds of clients in [CITY] get the compensation they deserve — without the stress of figuring it out alone.\n\nCall us today for a free consultation. We don't get paid unless you do."`,
+              },
+              {
+                niche: "Med Spa / Beauty",
+                script: `"You deserve to feel confident in your skin — and I can help you get there.\n\nI'm [NAME] at [SPA NAME] in [CITY]. We specialize in [TREATMENT] and have helped hundreds of clients look and feel their absolute best.\n\nBook your complimentary consultation this week. Spots are limited."`,
+              },
+              {
+                niche: "Restaurant / Food",
+                script: `"The best meal in [CITY] is waiting for you — and I'm not being modest.\n\nI'm [NAME], owner of [RESTAURANT NAME]. We use [SIGNATURE THING — fresh local ingredients / a family recipe / house-made everything] and every dish is made to order.\n\nCome see us this week. Your table is ready."`,
+              },
+              {
+                niche: "Service Business (HVAC / Plumbing / Landscaping)",
+                script: `"If your [problem — AC is making noise / pipes are leaking / lawn is out of control], don't wait.\n\nI'm [NAME] from [BUSINESS NAME]. We serve [CITY] and surrounding areas with fast, reliable [SERVICE TYPE] — same day when you need it most.\n\nCall or text us right now and we'll get you sorted."`,
+              },
+            ].map(({ niche, script }) => (
+              <div key={niche} className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.15)" }}>
+                <div className="px-4 py-2.5" style={{ background: "rgba(200,168,100,0.08)" }}>
+                  <p style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--ink)" }}>{niche}</p>
+                </div>
+                <div className="px-4 py-3">
+                  <p className="whitespace-pre-line italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "0.95rem", color: "rgba(30,15,10,0.75)", lineHeight: 1.65 }}>{script}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="rounded-xl p-4" style={{ background: "rgba(200,168,100,0.08)", border: "1px solid rgba(200,168,100,0.2)" }}>
+            <p style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.65 }}>
+              Use the <span style={{ fontFamily: FONT_LUXE, fontSize: "0.75rem", letterSpacing: "0.05em", color: "var(--ink)" }}>AI Video — Single Prompt</span> or <span style={{ fontFamily: FONT_LUXE, fontSize: "0.75rem", letterSpacing: "0.05em", color: "var(--ink)" }}>AI Video — Multi-Scene Script</span> prompts in the Content Prompts tab to generate the actual video prompt for your AI tool. Upload their photo, paste the script, and render the clone before the meeting.
+            </p>
+          </div>
+        </div>
+      </div>
+
       </>}
 
       {/* ── Cold Outreach ──────────────────────────────── */}
@@ -3523,14 +3636,83 @@ Thanks again for trusting me with [BUSINESS NAME].
       {/* ── Referrals ──────────────────────────────────── */}
       {section === "referral" && <>
       <SectionHeader label="Step 6 — Grow Without Cold Outreach" title="Referrals." sub="Your happiest clients are your best salespeople. Ask right after a win — when they're excited. One message can bring in 2 or 3 warm leads who already trust you." />
+
+      {/* Timing Guide */}
+      <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+        <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+          <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>When to Ask</p>
+          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>Referral Timing Guide</h3>
+        </div>
+        <div className="px-6 py-5 space-y-4">
+          <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.7 }}>
+            Timing is everything. Ask too early and they haven't felt the results yet. Ask too late and the excitement has faded. The sweet spot is right after a visible win.
+          </p>
+          <div className="space-y-2">
+            {[
+              { timing: "✅ Perfect time to ask", items: ["A reel or post went viral or hit a personal best", "They got a new booking or lead directly from your content", "Their follower count hit a milestone they cared about", "They just said 'wow, I've been getting so many compliments on my page'", "End of month report and the numbers look great"] },
+              { timing: "❌ Not the right time", items: ["First 30 days — too soon, they haven't felt the full value yet", "Right after a complaint or revision request", "During a slow month where results are below average", "Right after sending an invoice — feels transactional"] },
+            ].map(({ timing, items }) => (
+              <div key={timing} className="rounded-xl p-4" style={{ background: "rgba(200,168,100,0.06)", border: "1px solid rgba(200,168,100,0.12)" }}>
+                <p className="mb-2" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", color: timing.startsWith("✅") ? "#4a9970" : "#c97a7a" }}>{timing}</p>
+                <div className="space-y-1">
+                  {items.map(item => (
+                    <div key={item} className="flex items-start gap-2">
+                      <span style={{ fontFamily: FONT_BODY, fontSize: "0.75rem", color: "var(--gold)", lineHeight: 1.8, flexShrink: 0 }}>·</span>
+                      <p style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.7)", lineHeight: 1.55 }}>{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Incentive Framework */}
+      <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+        <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+          <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>How to Reward Referrals</p>
+          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>Incentive Framework</h3>
+        </div>
+        <div className="px-6 py-5 space-y-3">
+          <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.7 }}>
+            Incentives make clients feel appreciated and give them a reason to act now. Keep them simple and specific — vague rewards don't motivate. Pick the right one for the relationship.
+          </p>
+          <div className="space-y-2">
+            {[
+              { tier: "Standard", reward: "One free extra post that month", when: "Good for any client — low cost to you, high perceived value to them" },
+              { tier: "Valued", reward: "$100–$150 credit toward their next invoice", when: "For clients on $1,000+/mo who are strong referral sources" },
+              { tier: "Power Referrer", reward: "One free month of performance reporting ($150 value)", when: "For clients who refer multiple people — reward the behaviour you want to see more of" },
+              { tier: "Best Friend", reward: "A full extra content batch — 4 bonus posts", when: "For your all-time favourite client who sends you a high-ticket referral" },
+            ].map(({ tier, reward, when }) => (
+              <div key={tier} className="flex gap-4 rounded-xl p-4" style={{ background: "rgba(200,168,100,0.06)", border: "1px solid rgba(200,168,100,0.12)" }}>
+                <div className="shrink-0">
+                  <span className="px-2 py-0.5 rounded-full text-[9px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, background: "var(--ink)", color: "var(--gold)", whiteSpace: "nowrap" }}>{tier}</span>
+                </div>
+                <div>
+                  <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.85)", lineHeight: 1.5, fontWeight: 500 }}>{reward}</p>
+                  <p className="mt-0.5" style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "rgba(30,15,10,0.45)", lineHeight: 1.5 }}>{when}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="rounded-xl p-4 mt-2" style={{ background: "rgba(200,168,100,0.08)", border: "1px solid rgba(200,168,100,0.2)" }}>
+            <p style={{ fontFamily: FONT_DISPLAY, fontSize: "0.95rem", color: "var(--ink)", fontStyle: "italic", lineHeight: 1.55 }}>Always pay the incentive as soon as the referred client signs — not after 30 days. Pay it fast and they'll refer again. Make them wait and they'll forget about it.</p>
+          </div>
+        </div>
+      </div>
+
       <ScriptCard
         title="Referral Ask — For Existing Clients"
         tag="Use right after a win"
         lines={[
           { type: "note", text: "The best time to ask for a referral is right after a client sees a win — a spike in reach, a new booking, a viral post. Strike while they're excited about the results." },
           { type: "send", label: "Text or DM your client", text: "Hey [CLIENT NAME] 😊\n\nI was just looking at [BUSINESS NAME]'s numbers and [specific win — e.g., 'that reel last week hit over 4k views'] — seriously so great to see that working!\n\nQuick ask: if you know any other business owners who struggle with their social media or just don't have time for it, I would love a warm introduction. I'm selectively bringing on a few new clients this month and a referral from you carries a lot of weight.\n\nIf you send someone my way who signs on, I'll take care of you — [INCENTIVE — e.g., 'a free extra month of performance reporting' or '$100 off your next invoice'].\n\nAbsolutely no pressure — just thought I'd ask! And honestly, thank you for trusting me with [BUSINESS NAME]. It means a lot. 🙏" },
-          { type: "subhead", text: "Referral incentive ideas" },
-          { type: "note", text: "Keep it simple: a free month of reporting, a content bonus (extra posts that month), or a small invoice credit. Pick whatever feels right for your relationship with that specific client. The most important thing is to just ask — most happy clients will refer you if you simply remind them to." },
+          { type: "subhead", text: "After the referral signs — send this thank-you" },
+          { type: "send", label: "Thank-you message to the referring client", text: "Hey [CLIENT NAME]!\n\nI just wanted to say a HUGE thank you. [REFERRED PERSON'S NAME] just signed on and I'm so excited to work with them.\n\nAs promised — [YOUR INCENTIVE, e.g., 'I'm adding a free extra post to your content plan this month' / 'I've applied a $100 credit to your next invoice'].\n\nYou didn't have to do that and it honestly means the world. Referrals from people I trust carry so much more weight than cold outreach — I'm genuinely grateful. 🙏\n\nIf you ever know of anyone else who could use us, I'd love the introduction. And if there's ever anything extra I can do for [BUSINESS NAME] — just ask.\n\nThank you again, seriously." },
+          { type: "subhead", text: "If they refer but the person doesn't sign" },
+          { type: "you_say", text: "Hey [CLIENT NAME] — I reached out to [REFERRED NAME] and we had a great chat! The timing just wasn't right for them right now, but I let them know the door is always open.\n\nThank you so much for the introduction — it means a lot that you thought of me. 🙏" },
+          { type: "note", text: "Always acknowledge the referral attempt whether or not the person signs. The client went out of their way to help you — honour that. It keeps them in referral mode for the next person." },
         ]}
       />
       </>}
@@ -4265,7 +4447,7 @@ type PStage = "new_lead" | "sent" | "responded" | "call_set" | "proposal" | "neg
 const STAGE_INFO: Record<PStage, { label: string; color: string; guide: string; nextStage?: PStage; nextLabel?: string }> = {
   new_lead:    { label: "New Lead",        color: "#c8a864", nextStage: "sent",        nextLabel: "✓ Outreach Sent",     guide: "LEAD WITH THE AI CLONE — but do NOT mention price yet. Step 1: send the AI Clone DM or Email. Goal: get them curious enough to say yes to seeing it. Step 2: once they say yes — get a 10-min Zoom or in-person meeting. Step 3: at the meeting, show the clone (build it beforehand), then show the proposal. Step 4: offer the 14-day free trial ($500 setup, first 2 weeks free). Step 5: AFTER they agree to the trial — tell them the monthly is $1,000. Price comes last. The wow moment does the selling." },
   sent:        { label: "Outreach Sent",   color: "#4a90d9", nextStage: "responded",   nextLabel: "✓ They Responded",    guide: "Outreach is out. Wait 2–3 business days. No response? Generate a follow-up — keep it to one sentence. It's all about volume and follow-through." },
-  responded:   { label: "They Responded!", color: "#4a9970", nextStage: "call_set",    nextLabel: "✓ Call Booked",       guide: "Reply within 1 hour. Your only goal right now: get them on a 15-minute call. Don't pitch anything yet. Use the generator below to craft your reply." },
+  responded:   { label: "They Responded!", color: "#4a9970", nextStage: "call_set",    nextLabel: "✓ Call Booked",       guide: "They replied — green light! Do this in order: Step 1: BUILD THEIR AI CLONE NOW while the excitement is fresh. Grab their photo from their website, Instagram, or Google. Write a 20–25 second script in their voice. Generate the video using your AI video tool. Step 2: Use 'Build Their AI Clone' prompts below to write the script fast. Step 3: Book a 10-minute Zoom or in-person meeting using the 'Book the 10-Min Show & Tell' template. Step 4: Do NOT send the clone before the meeting — the reveal is face to face. That's where the wow moment happens and the deal closes." },
   call_set:    { label: "Call Scheduled",  color: "#7b68ee", nextStage: "proposal",    nextLabel: "✓ Proposal Sent",     guide: "Prep using the CLOSER notes below. Listen first, pitch second. Send the proposal within 24 hours of the call ending — while you're still fresh in their mind." },
   proposal:    { label: "Proposal Sent",   color: "#e08030", nextStage: "negotiating", nextLabel: "✓ They're Interested", guide: "Wait 24–48 hours. No reply? Follow up once. Don't resend the deck — just ask if they had a chance to look at it." },
   negotiating: { label: "Negotiating",     color: "#b8860b", nextStage: "won",         nextLabel: "✓ Mark as Won 🎉",   guide: "Price is the most common objection. First offer: the 14-day free trial ($500 setup upfront, first 2 weeks free, then monthly). If they want a longer commitment discount, offer 15% off annual. Don't drop the monthly price — protect your rate and add value instead." },
@@ -4276,7 +4458,7 @@ const STAGE_INFO: Record<PStage, { label: string; color: string; guide: string; 
 const STAGE_MSGS: Record<PStage, { label: string; key: string }[]> = {
   new_lead:    [{ label: "🤖 AI Clone Email — Curiosity", key: "ai_clone_pitch" }, { label: "🤖 AI Clone DM — Curiosity", key: "ai_clone_dm" }, { label: "🎁 14-Day Free Trial Email", key: "free_trial" }, { label: "Free Trial DM", key: "free_trial_dm" }, { label: "Cold Email", key: "cold_email" }, { label: "Cold DM", key: "cold_dm" }, { label: "Compliment Email", key: "compliment" }],
   sent:        [{ label: "Follow-Up Email", key: "followup_email" }, { label: "Follow-Up DM", key: "followup_dm" }, { label: "Free AI Video Offer", key: "free_video" }],
-  responded:   [{ label: "Book the Call", key: "book_call" }, { label: "Reply + Calendar", key: "call_reply" }],
+  responded:   [{ label: "🎬 Build Their AI Clone", key: "ai_clone_create" }, { label: "📅 Book the 10-Min Show & Tell", key: "book_show_tell" }, { label: "Book the Call", key: "book_call" }, { label: "Reply + Calendar", key: "call_reply" }],
   call_set:    [{ label: "CLOSER Prep Notes", key: "closer_prep" }, { label: "Pitch Deck Outline", key: "pitch_outline" }],
   proposal:    [{ label: "Proposal Follow-Up", key: "proposal_followup" }, { label: "Objection Handling", key: "objections" }],
   negotiating: [{ label: "Annual Deal Offer", key: "annual_deal" }, { label: "Objection Response", key: "obj_response" }],
@@ -4296,7 +4478,7 @@ const PKEY = "dh_deals_v1";
 const loadProspects = (): Prospect[] => { try { return JSON.parse(localStorage.getItem(PKEY) || "[]"); } catch { return []; } };
 const saveAllProspects = (list: Prospect[]) => localStorage.setItem(PKEY, JSON.stringify(list));
 const uid = () => Math.random().toString(36).slice(2);
-const fmt = (d: string) => new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric" });
+const fmt = (d: string) => new Date(d).toLocaleDateString("en-CA", { month: "short", day: "numeric" });
 
 function genMessage(key: string, p: Prospect): string {
   const fn  = p.contact ? p.contact.split(" ")[0] : "there";
@@ -4417,6 +4599,89 @@ Just reply yes and I'll send them over 🙂`,
 `Hey ${fn}! I reached out a few days ago. I'm the one who builds AI video clones for business owners.
 
 I'd love to make one for ${biz} for free just to show you what it looks like. Would you be open to seeing it?`,
+
+    ai_clone_create:
+`AI CLONE CREATION GUIDE — ${biz}
+Contact: ${fn}   Niche: ${niche}   City: ${city}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 1 — GET THEIR PHOTO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Find the clearest photo of ${fn} from:
+  • Their website About page or team page
+  • Their Instagram or Facebook profile photo
+  • Their Google Business Profile photo
+  • LinkedIn headshot
+
+Save the best quality version. A clear, well-lit front-facing photo works best.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 2 — WRITE THEIR SCRIPT (20–25 seconds)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Use this structure. Fill in the blanks for ${biz}:
+
+HOOK (0–4 sec):
+"[One bold sentence about what they do or who they help.
+Example: 'If you need a [NICHE SERVICE] in ${city}, you found the right person.']"
+
+VALUE (4–18 sec):
+"I'm [NAME] from ${biz}. We [WHAT THEY DO — 1 sentence].
+[PROOF OR RESULT — e.g. 'We've helped hundreds of ${niche} clients in ${city} [OUTCOME].']"
+
+CTA (18–25 sec):
+"[One clear action — book a call / visit the website / DM us / call us today.]"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 3 — GENERATE THE VIDEO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Go to your AI video tool (Kling, Pika, Veo, Runway, or HeyGen).
+Upload the photo.
+Paste this prompt with the script filled in:
+
+"[${fn} description — e.g. 'A professional ${niche} business owner in business casual attire'] standing in [SETTING — their office, storefront, or clean neutral background]. They look directly into camera and speak naturally with confidence. Vertical cinematic realism. Realistic facial sync. Professional lighting. Natural hand gestures.
+
+Dialogue:
+'[PASTE THE FULL SCRIPT HERE]'
+
+Make it feel real, not robotic. Smooth lip sync. Warm and professional energy."
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 4 — HAVE EVERYTHING READY FOR THE CALL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ AI clone video saved and ready to play (test it first)
+✓ Proposal built and customized for ${biz}
+✓ Meeting booked — Zoom link or in-person address confirmed
+✓ Do NOT send the video before the call — the reveal is face to face`,
+
+    book_show_tell:
+`Hi ${fn}!
+
+So great to hear from you. I have something really exciting to show you for ${biz} — it honestly looks way better in person than I could ever describe over text.
+
+Can we grab 10 minutes? I just want to show you something specific we built for ${biz} and get your reaction. That's it.
+
+Would any of these work for you?
+→ [DAY], [TIME]
+→ [DAY], [TIME]
+
+(Or grab a time directly here: [CALENDAR LINK])
+
+Either a quick Zoom or in person works — whatever is easier for you!
+
+Can't wait to show you.
+
+Mandy Fortune
+The Dollhouse Brand Studio
+shopdollhouse.co
+
+---
+(If they're local, use this version instead)
+
+Hey ${fn}! Great to hear back from you.
+
+I built something specific for ${biz} that I think you're going to love. Would you be open to me swinging by for 10 minutes to show you in person? I'd rather show you than try to explain it over text — it's way more impressive live.
+
+I'm free [DAY] or [DAY] this week — what works for you?`,
 
     book_call:
 `Hi ${fn},
@@ -4866,6 +5131,28 @@ function DealTrackerTab() {
             {STAGE_INFO[s].label} ({counts[s]})
           </button>
         ))}
+      </div>
+
+      {/* Stale Deal Protocol */}
+      <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+        <div className="px-5 py-3.5" style={{ borderBottom: "1px solid rgba(200,168,100,0.12)", background: "rgba(200,168,100,0.06)" }}>
+          <p style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)" }}>⏰ Stale Deal Protocol — What to Do When a Deal Isn't Moving</p>
+        </div>
+        <div className="px-5 py-4">
+          <div className="grid sm:grid-cols-3 gap-3">
+            {[
+              { stage: "7+ days — no reply after outreach", action: "Switch channels. If you emailed → DM. If you DM'd → call. If you called → email. People live in different inboxes. Don't give up, just change the door." },
+              { stage: "14+ days — responded but call not booked", action: "They're warm but stalling. Send the 'Book the 10-Min Show & Tell' message. Lead with what they'll actually see — the AI clone. Curiosity closes more than urgency." },
+              { stage: "21+ days — call had, proposal sent, gone quiet", action: "This is usually a soft no or cold feet. Send one warm check-in: 'Still thinking about it? Happy to answer any questions.' Then set a 30-day re-engage reminder and move on." },
+            ].map(({ stage, action }) => (
+              <div key={stage} className="rounded-xl p-4" style={{ background: "rgba(200,168,100,0.06)", border: "1px solid rgba(200,168,100,0.12)" }}>
+                <p className="mb-1.5" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#c8a864" }}>{stage}</p>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.55 }}>{action}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-3" style={{ fontFamily: FONT_DISPLAY, fontSize: "0.88rem", color: "rgba(30,15,10,0.5)", fontStyle: "italic", lineHeight: 1.5 }}>Rule of thumb: if a deal hasn't moved in 14 days and you haven't done anything about it — it's your fault, not theirs. One follow-up is all it takes most of the time.</p>
+        </div>
       </div>
 
       {filtered.length === 0 && (
