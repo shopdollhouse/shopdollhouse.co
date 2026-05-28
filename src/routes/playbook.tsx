@@ -9,7 +9,7 @@ const FONT_LUXE = "'Jost', sans-serif";
 const FONT_SCRIPT = "'Allura', cursive";
 
 /* ─── Types ───────────────────────────────────────────── */
-type Tab = "start" | "workflow" | "monthly" | "prompts" | "outreach" | "growth" | "newhire" | "deals" | "content" | "quote" | "schedule" | "discovery";
+type Tab = "start" | "workflow" | "monthly" | "prompts" | "outreach" | "growth" | "newhire" | "deals" | "content" | "quote" | "schedule" | "discovery" | "proposal";
 
 /* ─── Prompt Card ─────────────────────────────────────── */
 function PromptCard({ title, tag, prompt }: { title: string; tag: string; prompt: string }) {
@@ -7455,6 +7455,972 @@ function DiscoveryCallTab() {
   );
 }
 
+// ─── Proposal Deck Tab ────────────────────────────────────────────────────────
+
+const PROP_IMGS_KEY = "dh_proposal_imgs_v1";
+
+interface PStep { n: string; title: string; desc: string; }
+interface PPrice { name: string; price: string; tag?: string; }
+interface PSlide {
+  layout: "title" | "headline" | "bullets" | "steps" | "image" | "pricing" | "cta";
+  bg: "dark" | "light" | "blush" | "rose";
+  heading: string;
+  sub?: string;
+  body?: string;
+  bullets?: string[];
+  steps?: PStep[];
+  imageSlot?: true;
+  imageLabel?: string;
+  prices?: PPrice[];
+  script: string;
+}
+interface PDeck { id: string; name: string; icon: string; tagline: string; slides: PSlide[]; }
+
+const PROPOSAL_DECKS: PDeck[] = [
+  /* ── AI Clone ──────────────────────────────────────────────────────────── */
+  {
+    id: "ai_clone", name: "AI Clone Proposal", icon: "🤖",
+    tagline: "The done-for-you content system powered by your AI clone",
+    slides: [
+      {
+        layout: "title", bg: "dark",
+        heading: "Your AI-Powered\nBrand System",
+        sub: "The Dollhouse Brand Studio",
+        script: "Thank you so much for having me today. What I'm about to show you has completely transformed how our clients grow online — and by the end of this, I think you're going to see exactly why this is different from anything you've tried before.",
+      },
+      {
+        layout: "headline", bg: "blush",
+        heading: "You're great at what you do.",
+        sub: "Does your online presence show it?",
+        body: "The best businesses are often the most invisible online. That's the gap we close.",
+        script: "Here's the truth. You are incredible at what you do. Your clients love you. But if someone who doesn't know you looked you up right now — what would they see? Probably not the full picture. That gap between your actual quality and what shows up online? That's exactly what we're here to fix.",
+      },
+      {
+        layout: "bullets", bg: "dark",
+        heading: "What silence costs you",
+        bullets: [
+          "Your competitors are posting every single day",
+          "They might not be as good as you — but they're getting the call",
+          "Visibility builds trust. Trust builds clients.",
+          "Every day without content is a missed opportunity",
+          "The businesses winning online aren't luckier — they're just showing up",
+        ],
+        script: "Think about your top competitor right now. Are they active online? Even if they're not as talented as you — if they're showing up every day and you're not, who does a new customer choose? This is about making sure that customer chooses you. Every time.",
+      },
+      {
+        layout: "headline", bg: "rose",
+        heading: "Meet Your AI Clone",
+        sub: "Your face. Your voice. Your brand.",
+        body: "Showing up online every single day — without you filming a thing.",
+        script: "So here's what we build for you. Your AI clone. A digital version of you — trained on your face, your voice, your personality — that creates content on your behalf. You record once, and we handle everything from there. It posts every day while you're focused on running your business.",
+      },
+      {
+        layout: "steps", bg: "light",
+        heading: "How it works",
+        steps: [
+          { n: "01", title: "You record once", desc: "One 30-minute session. That's it. We capture your voice, your face, your energy." },
+          { n: "02", title: "We build your clone", desc: "Our team builds your AI model — trained to look and sound exactly like you." },
+          { n: "03", title: "Content goes live", desc: "We script, generate, schedule, and post everything. Done for you, every week." },
+        ],
+        script: "The process is incredibly simple. You do one recording session with us — about 30 minutes. We use that to build your AI model. From there, we write the scripts, generate your content, and post it for you every single week. You never have to film, edit, or think about what to post again.",
+      },
+      {
+        layout: "image", bg: "dark",
+        heading: "See it in action",
+        imageSlot: true,
+        imageLabel: "Upload an AI clone example — screenshot or sample content",
+        sub: "Real AI-generated content — created for our clients",
+        script: "This is what it actually looks like. [Pause and let them take it in] This is real content created by an AI clone we built for one of our clients. Notice the quality — the branding, the messaging, how natural it looks. Can you picture this for your business?",
+      },
+      {
+        layout: "image", bg: "blush",
+        heading: "Your branded content",
+        imageSlot: true,
+        imageLabel: "Upload static post or carousel example",
+        sub: "Branded posts and carousels — scheduled and posted every month",
+        script: "Beyond the AI video content, we create all of your branded static posts too — carousels, graphics, promotional content — everything your audience sees is polished, on-brand, and designed to build trust and drive action. Nothing generic. Everything made specifically for you.",
+      },
+      {
+        layout: "image", bg: "light",
+        heading: "More examples",
+        imageSlot: true,
+        imageLabel: "Upload additional content samples",
+        sub: "Different brands, same quality — all completely done for them",
+        script: "Here are a few more examples of work we've done for clients across different industries. Different looks, different audiences — but every single one done completely for them. Scripted, designed, scheduled, posted. This is what your feed could look like.",
+      },
+      {
+        layout: "bullets", bg: "dark",
+        heading: "More than content — it's a full system",
+        bullets: [
+          "AI clone video content — your face, your voice, no filming required",
+          "Branded posts & carousels — static and animated, every month",
+          "Automated follow-up — no lead ever falls through the cracks",
+          "Full content calendar — scheduled and posted for you",
+          "Monthly performance report — see exactly what's working",
+        ],
+        script: "But what we build is more than just content. It's a complete system. When someone reaches out, they hear from you automatically. Every lead is nurtured. Every post goes out on schedule. You're building trust and momentum in the background while you focus on serving the clients you already have.",
+      },
+      {
+        layout: "pricing", bg: "light",
+        heading: "Our plans",
+        prices: [
+          { name: "Content Starter", price: "$500/mo", tag: "Entry level" },
+          { name: "Starter", price: "$1,000/mo", tag: "Most popular" },
+          { name: "Growth", price: "$2,500/mo", tag: "Best results" },
+          { name: "Elite", price: "$5,000+/mo", tag: "Full system" },
+        ],
+        script: "We have four plans depending on where you're at and where you want to go. I'll be honest — based on what you've told me today, I already have one in mind for you. But let me walk you through all of them so you can see the full picture.",
+      },
+      {
+        layout: "bullets", bg: "blush",
+        heading: "What you get from day one",
+        bullets: [
+          "Your AI clone built and trained on your voice and face",
+          "Full platform setup — profile, bio, branding done right",
+          "Content scripted, generated, and posted every week",
+          "Branded posts and carousels every month",
+          "Automated DM responses and lead follow-up",
+          "Monthly report — results, reach, and engagement",
+        ],
+        script: "Here's exactly what you get from the moment we start. Everything is handled by us — you don't need to brief a designer, write a single caption, or figure out what to post. We own the entire content operation for your business. You just show up to serve the clients it brings in.",
+      },
+      {
+        layout: "steps", bg: "dark",
+        heading: "What happens when you say yes",
+        steps: [
+          { n: "Today", title: "Setup locked in", desc: "Setup fee secured. Onboarding call scheduled within 48 hours." },
+          { n: "Week 1", title: "Deep dive + recording", desc: "Brand call, recording session booked, AI model starts building." },
+          { n: "Month 1", title: "Live and running", desc: "Content is live, system is working, results start coming in." },
+        ],
+        script: "So here's exactly what the next 30 days look like. Today, we lock in your setup — it moves fast because we want to get you results as quickly as possible. This week, we go deep on your brand and get your recording booked. Within the first month, your content is live. The earlier we start, the earlier you see results.",
+      },
+      {
+        layout: "headline", bg: "light",
+        heading: "The math is simple.",
+        sub: "One new client covers your entire month.",
+        body: "What is one new client worth to your business? That's your answer.",
+        script: "Let me put this in perspective for you. What is one new client worth to your business — not over a year, just from one sale. Take that number. Now compare it to what this costs. For most of our clients, one or two new clients in the first month means the entire system has paid for itself. This isn't an expense. It's the most efficient investment you can make in your business right now.",
+      },
+      {
+        layout: "cta", bg: "rose",
+        heading: "Try it free for 14 days.",
+        sub: "$500 setup fee  ·  14-day free trial  ·  Month-to-month, no contract",
+        script: "Here's the offer. 14-day free trial. You only pay the $500 setup fee today — that covers the buildout. Your first two full weeks of content and service are completely on us. If after 14 days you don't feel like it's working, we part as friends. No long-term contract, no lock-in. I'm confident enough in what we deliver that I'm willing to put my money where my mouth is.",
+      },
+      {
+        layout: "title", bg: "dark",
+        heading: "Let's build\nyour brand.",
+        sub: "The Dollhouse Brand Studio",
+        script: "So — based on everything I've shown you today, can you see this working for your business? [Pause. Let them respond. Do not fill the silence. Whoever speaks first, loses. This moment is the most important part of the entire pitch.]",
+      },
+    ],
+  },
+
+  /* ── Website Proposal ──────────────────────────────────────────────────── */
+  {
+    id: "website", name: "Website Proposal", icon: "🌐",
+    tagline: "A high-converting website that works while you sleep",
+    slides: [
+      {
+        layout: "title", bg: "dark",
+        heading: "Your Website Should\nBe Working For You",
+        sub: "The Dollhouse Brand Studio",
+        script: "Thank you for sitting down with me today. What I want to show you is how a well-built website completely changes the way clients find you, trust you, and reach out — without you having to chase anyone.",
+      },
+      {
+        layout: "headline", bg: "blush",
+        heading: "Your website is your storefront.",
+        sub: "Is it open — or is it turning people away?",
+        body: "Most business websites lose leads before a single word is read.",
+        script: "Think of your website as the front door of your business. When someone Googles you, finds your Instagram, or hears about you from a friend — the first thing they do is go to your website. And in about three seconds, they've decided whether to stay or leave. We build websites that make them stay.",
+      },
+      {
+        layout: "bullets", bg: "dark",
+        heading: "What a bad website costs you",
+        bullets: [
+          "Looks unprofessional — kills trust before they read a word",
+          "Slow or broken — they leave before the page even loads",
+          "No clear call to action — they don't know what to do next",
+          "Not mobile-friendly — over 80% of your traffic is on phones",
+          "Not showing up on Google — invisible to people actively searching for you",
+        ],
+        script: "This is what most business websites are doing wrong. And the worst part is — you might not even know it's happening, because the people leaving never tell you. They just go to your competitor instead.",
+      },
+      {
+        layout: "headline", bg: "rose",
+        heading: "We build websites that convert.",
+        sub: "Designed for your brand. Built to generate leads.",
+        body: "Fast, mobile-first, and built to turn visitors into clients.",
+        script: "What we build is a premium, fully custom website designed around your brand — and more importantly, designed to get visitors to take action. Book a call. Fill out a form. Buy a product. That's what a website is actually for, and that's what we build.",
+      },
+      {
+        layout: "image", bg: "light",
+        heading: "Our work",
+        imageSlot: true,
+        imageLabel: "Upload a website screenshot or mockup",
+        sub: "Real websites built by The Dollhouse Brand Studio",
+        script: "Here's what our work actually looks like. [Let them look] Notice the quality of the design — how clean it is, how easy it is to understand what the business does within seconds. This is the standard we build to. This is what your website could look like.",
+      },
+      {
+        layout: "image", bg: "blush",
+        heading: "More examples",
+        imageSlot: true,
+        imageLabel: "Upload another website example",
+        sub: "Different businesses, different brands — same standard of quality",
+        script: "Here's another example — completely different industry, completely different brand, but the same level of quality. Clean, clear, and purposeful. Every element on the page is there for a reason, and that reason is to turn visitors into leads for your business.",
+      },
+      {
+        layout: "bullets", bg: "dark",
+        heading: "What's included",
+        bullets: [
+          "Custom design — built around your brand, not a template",
+          "Mobile-first — looks perfect on every device",
+          "Contact forms, booking links, and lead capture built in",
+          "SEO foundation — so Google can actually find you",
+          "Fast load times — built for performance",
+          "Ongoing support — we handle updates and fixes",
+        ],
+        script: "Here's exactly what's included. This is not a template or a website builder. This is a fully custom site built by our team from the ground up, designed specifically for your business and your ideal clients.",
+      },
+      {
+        layout: "steps", bg: "light",
+        heading: "Our process",
+        steps: [
+          { n: "01", title: "Discovery", desc: "We learn your brand, your clients, and exactly what action you want visitors to take." },
+          { n: "02", title: "Design & Build", desc: "We create your full site — you review, we refine. Usually 2–3 weeks." },
+          { n: "03", title: "Launch & Support", desc: "Your site goes live. We handle updates and keep everything running." },
+        ],
+        script: "The process is clear and fast. We start with a deep-dive to understand your brand and your goals. Then we design and build — you'll see the site before it goes live and can request changes. Once you approve it, we launch. And we don't disappear after that — we're here for ongoing support.",
+      },
+      {
+        layout: "pricing", bg: "blush",
+        heading: "Investment",
+        prices: [
+          { name: "Landing Page", price: "From $1,500", tag: "Single page" },
+          { name: "Business Site", price: "From $3,000", tag: "Most popular" },
+          { name: "E-commerce", price: "From $5,000", tag: "Full shop" },
+          { name: "Custom", price: "Let's talk", tag: "Complete brand" },
+        ],
+        script: "Investment depends on the scope of what you need. I'll walk you through the options — but honestly, based on what you've told me, I already have a recommendation in mind for you.",
+      },
+      {
+        layout: "title", bg: "dark",
+        heading: "Ready to open\nyour best storefront?",
+        sub: "The Dollhouse Brand Studio",
+        script: "So — what do you think? Does this feel like what your business needs right now? [Pause and let them answer. Don't rush this moment.]",
+      },
+    ],
+  },
+
+  /* ── Merch Proposal ────────────────────────────────────────────────────── */
+  {
+    id: "merch", name: "Merch Proposal", icon: "👕",
+    tagline: "Branded merchandise that turns customers into walking billboards",
+    slides: [
+      {
+        layout: "title", bg: "dark",
+        heading: "Your Brand.\nOn Everything.",
+        sub: "The Dollhouse Brand Studio",
+        script: "Thank you for sitting down with me. Today I want to show you something our clients absolutely love — and something most businesses in your space aren't doing yet. Which means there's a real opportunity for you right now.",
+      },
+      {
+        layout: "headline", bg: "blush",
+        heading: "Your best clients love your brand.",
+        sub: "Give them a way to show it.",
+        body: "Branded merchandise turns loyal customers into walking billboards — and creates a new revenue stream at the same time.",
+        script: "Think about your best clients. They love what you do. They talk about you. They refer people. Now imagine if they were also wearing your brand everywhere they go — the gym, grabbing coffee, running errands. That's what we build. A merchandise line your clients actually want.",
+      },
+      {
+        layout: "bullets", bg: "dark",
+        heading: "Why branded merch works",
+        bullets: [
+          "Turns loyal customers into brand ambassadors — for free",
+          "Creates a new revenue stream with no inventory risk",
+          "Builds perceived brand value and premium positioning",
+          "Free walking advertising every time someone wears it",
+          "Deepens the emotional connection clients have with your brand",
+          "Works for any industry — fitness, beauty, food, services, retail",
+        ],
+        script: "Here's why this works. It's not just about selling T-shirts. It's about creating something your clients feel proud to be associated with. When they wear your brand, they're telling the world — I trust these people. That's the most powerful marketing there is.",
+      },
+      {
+        layout: "image", bg: "light",
+        heading: "What we create",
+        imageSlot: true,
+        imageLabel: "Upload merch examples or product mockups",
+        sub: "Custom branded merchandise — designed for your brand",
+        script: "This is what we design and produce for our clients. [Let them look] Premium quality products — hoodies, tees, hats, tote bags, branded boxes, whatever fits your brand. Everything custom designed to match your look perfectly.",
+      },
+      {
+        layout: "image", bg: "blush",
+        heading: "More examples",
+        imageSlot: true,
+        imageLabel: "Upload more merch or packaging examples",
+        sub: "Real products, real brands, real quality",
+        script: "Here's more of what's possible. Different brands, different products, but the same level of craft in every single one. The goal is always the same — when someone holds this product, they feel the premium quality of your brand.",
+      },
+      {
+        layout: "bullets", bg: "dark",
+        heading: "Everything handled for you",
+        bullets: [
+          "Full custom design — apparel, accessories, packaging, and more",
+          "Premium suppliers — quality that actually reflects your brand",
+          "Print-on-demand option — zero inventory, zero risk",
+          "Custom online storefront — sell directly to your audience",
+          "Order fulfillment — we handle shipping and logistics",
+          "Brand consistency — everything matches your existing look",
+        ],
+        script: "We handle the entire process — design, production, fulfillment. You don't have to deal with a single supplier or worry about inventory. We set up your store, manage your orders, and you collect the revenue. Some of our clients are making two to five thousand dollars a month from merch alone.",
+      },
+      {
+        layout: "steps", bg: "light",
+        heading: "How it works",
+        steps: [
+          { n: "01", title: "Design", desc: "We design your full merch line — concepts to final production-ready files." },
+          { n: "02", title: "Setup", desc: "Your branded store goes live. Products listed, pricing set, ready to sell." },
+          { n: "03", title: "Sell & Scale", desc: "You promote to your audience. We handle fulfillment. You earn the revenue." },
+        ],
+        script: "The process is really simple. We design everything first — you approve the products before anything is printed. We set up your store and handle all the technical setup. Then you promote it to your audience and we handle every order from there.",
+      },
+      {
+        layout: "pricing", bg: "blush",
+        heading: "Investment",
+        prices: [
+          { name: "Merch Launch", price: "From $997", tag: "5 products" },
+          { name: "Brand Store", price: "From $1,997", tag: "10+ products" },
+          { name: "Full Collection", price: "Custom", tag: "Complete line" },
+          { name: "Bundle + Social", price: "Let's talk", tag: "Best value" },
+        ],
+        script: "Here's how the investment breaks down. The setup pays for itself with your first couple hundred in sales, and then it's pure profit after that. Let me show you what makes the most sense for your brand.",
+      },
+      {
+        layout: "headline", bg: "rose",
+        heading: "Your brand deserves to be everywhere.",
+        sub: "Let's put it there.",
+        body: "Branded merchandise. Custom store. Full fulfillment. Done for you.",
+        script: "Imagine your clients walking around with your brand on them every single day. Going to the gym. Grabbing coffee. Running errands. That's free advertising in the places your next client lives. That's what this builds.",
+      },
+      {
+        layout: "title", bg: "dark",
+        heading: "Ready to turn your\nbrand into a movement?",
+        sub: "The Dollhouse Brand Studio",
+        script: "So — can you see this for your brand? What does your gut tell you? [Pause and let them respond. Don't fill the silence.]",
+      },
+    ],
+  },
+
+  /* ── All-in-One Brand ──────────────────────────────────────────────────── */
+  {
+    id: "brand", name: "All-in-One Brand", icon: "✨",
+    tagline: "The complete brand system — content, website, merch, and automation",
+    slides: [
+      {
+        layout: "title", bg: "dark",
+        heading: "The Complete\nBrand System",
+        sub: "The Dollhouse Brand Studio",
+        script: "Thank you so much for being here. What I'm about to show you is the full picture — not just one piece of the puzzle, but the entire system we use to build brands that completely dominate in their space. This is what we've built for businesses just like yours.",
+      },
+      {
+        layout: "headline", bg: "blush",
+        heading: "Most businesses are built on a great service.",
+        sub: "The ones that dominate are built on a complete brand.",
+        body: "There's a difference between a business and a brand. One survives. The other grows.",
+        script: "Let me ask you something. When you think about the businesses in your industry that are really winning — not just doing okay, but genuinely dominating — what do they all have in common? They have a brand. A consistent, recognizable, trusted presence everywhere their customer goes. That's what we build.",
+      },
+      {
+        layout: "bullets", bg: "dark",
+        heading: "The four pillars of a dominant brand",
+        bullets: [
+          "Content — shows up every day, builds trust, drives awareness",
+          "Website — converts visitors into leads and clients around the clock",
+          "Merch — turns loyal clients into brand ambassadors",
+          "Automation — follows up instantly, nurtures every lead, never sleeps",
+        ],
+        script: "Here's how we think about it. A truly dominant brand operates on four pillars — and when all four are working together, the results compound. Content brings people in. Your website converts them. Merch deepens the relationship. And automation makes sure no opportunity is ever missed.",
+      },
+      {
+        layout: "headline", bg: "rose",
+        heading: "Pillar 1 — AI Content System",
+        sub: "Your face. Your voice. Online every day — without filming.",
+        body: "AI clone video content + branded posts, every single week.",
+        script: "Pillar one is your content system. We build your AI clone — a digital version of you that creates content without you having to film a thing. Combined with branded posts and carousels, you're showing up online every day, building trust with your audience consistently.",
+      },
+      {
+        layout: "image", bg: "light",
+        heading: "Content examples",
+        imageSlot: true,
+        imageLabel: "Upload content examples — AI clone, posts, carousels",
+        sub: "AI-generated content + branded posts — done for you every month",
+        script: "This is what that content actually looks like. [Pause] Real content, created by our team using your AI clone. Your audience sees you — every day, professionally, consistently — without you having to lift a finger.",
+      },
+      {
+        layout: "headline", bg: "blush",
+        heading: "Pillar 2 — A Website That Works",
+        sub: "Your 24/7 salesperson. Always open. Never misses a lead.",
+        body: "Premium custom website — designed to convert visitors into clients.",
+        script: "Pillar two is your website. Not just a nice-looking page — a conversion machine. When someone finds you online and lands on your site, everything about it should be moving them toward contacting you, booking with you, or buying from you. That's what we build.",
+      },
+      {
+        layout: "image", bg: "dark",
+        heading: "Website examples",
+        imageSlot: true,
+        imageLabel: "Upload website screenshot or mockup",
+        sub: "Custom-built, premium design — built to convert",
+        script: "Here's what our website work looks like. [Let them take it in] Premium design, clear messaging, fast, and built to get people to take action. This is the standard we hold every website to.",
+      },
+      {
+        layout: "headline", bg: "blush",
+        heading: "Pillar 3 — Branded Merchandise",
+        sub: "Turn loyal clients into walking billboards.",
+        body: "A custom merch line + online store — a new revenue stream that grows your brand.",
+        script: "Pillar three is your merchandise. Branded products your clients actually want to wear and use. This does two things — it creates a new revenue stream, and it turns your most loyal clients into brand ambassadors who spread your name everywhere they go.",
+      },
+      {
+        layout: "image", bg: "light",
+        heading: "Merch examples",
+        imageSlot: true,
+        imageLabel: "Upload merch or product examples",
+        sub: "Custom branded merchandise — designed, produced, fulfilled",
+        script: "Here's what that looks like in real life. Quality products, beautifully designed, perfectly on-brand. Your clients will want these — and every time they use them, your brand reaches new people.",
+      },
+      {
+        layout: "bullets", bg: "dark",
+        heading: "Pillar 4 — Automation",
+        bullets: [
+          "Every new lead gets an instant follow-up — automatically",
+          "Missed calls trigger a text response within seconds",
+          "Email sequences nurture leads over days and weeks",
+          "Appointment reminders reduce no-shows",
+          "Review requests sent automatically after every great experience",
+          "No lead ever falls through the cracks again",
+        ],
+        script: "Pillar four is your automation. This is the behind-the-scenes engine that makes everything else compound. When someone reaches out — at any hour, any day — they hear from you immediately. Leads are nurtured automatically. Appointments get confirmed. Your business is working even when you're not.",
+      },
+      {
+        layout: "bullets", bg: "blush",
+        heading: "The full picture — done for you",
+        bullets: [
+          "AI clone live — your content created automatically every week",
+          "Custom website — designed, built, launched, and maintained",
+          "Branded merch line + online store — fully set up and running",
+          "Full automation suite — follow-up, reminders, review requests",
+          "Monthly reporting — results across every platform",
+          "Dedicated account manager — one person who knows your brand inside out",
+        ],
+        script: "Here's the full picture of what you get when everything is running together. This is what a real brand system looks like — and this is what separates the businesses that are visible, trusted, and growing from the ones that are scrambling.",
+      },
+      {
+        layout: "pricing", bg: "light",
+        heading: "Investment",
+        prices: [
+          { name: "Growth", price: "$2,500/mo", tag: "3 platforms" },
+          { name: "Elite", price: "$5,000+/mo", tag: "Full system" },
+          { name: "Website", price: "From $3,000", tag: "One-time add-on" },
+          { name: "Merch Store", price: "From $997", tag: "One-time add-on" },
+        ],
+        script: "Here's how the all-in-one system is priced. The monthly plan covers your ongoing content, automation, and management. Website and merch are one-time buildouts on top of that. Based on what you've told me today, I have a specific recommendation — let me walk you through it.",
+      },
+      {
+        layout: "steps", bg: "dark",
+        heading: "What happens next",
+        steps: [
+          { n: "Today", title: "Setup secured", desc: "$500 setup fee locked in. Onboarding scheduled within 48 hours." },
+          { n: "Week 1–2", title: "Build phase", desc: "Brand deep-dive, AI recording, website design started, merch concepts." },
+          { n: "Month 1", title: "Everything live", desc: "Content running, website launched, store live, automation active." },
+        ],
+        script: "Here's what the launch timeline looks like. We move fast — and the reason we move fast is because every day your brand isn't fully operational online is a day you're potentially missing clients. Within 30 days, your entire brand system is live and working for you.",
+      },
+      {
+        layout: "cta", bg: "rose",
+        heading: "Try it free for 14 days.",
+        sub: "$500 setup fee  ·  14-day free trial  ·  No lock-in contract",
+        script: "And here's the offer to make this as easy a decision as possible. 14-day free trial. You only pay the $500 setup fee today. Your first two weeks are completely on us. If after 14 days it's not what you expected, we part as friends. I'm confident in what we build, which is why I'm willing to offer this.",
+      },
+      {
+        layout: "title", bg: "dark",
+        heading: "Let's build\nsomething real.",
+        sub: "The Dollhouse Brand Studio",
+        script: "So — based on everything I've shown you today, can you see this system working for your business? What's your honest reaction? [Pause. Let them speak. Do not fill the silence. This is the moment that matters most.]",
+      },
+    ],
+  },
+];
+
+/* ── Slide visual renderer (1280 × 720 internal canvas) ─────────────────── */
+function renderSlideVisual(
+  slide: PSlide,
+  imageUrl: string | undefined,
+  onUpload?: (file: File) => void,
+  onRemove?: () => void,
+) {
+  const C = slide.bg === "dark"
+    ? { bg: "#1e1210", fg: "#f5e8e0", fg2: "rgba(245,232,224,0.65)", acc: "#c4a87a", line: "rgba(196,168,122,0.35)", cardBg: "rgba(255,255,255,0.06)" }
+    : slide.bg === "rose"
+    ? { bg: "#6b2d30", fg: "#f5e8e0", fg2: "rgba(245,232,224,0.75)", acc: "#f0c898", line: "rgba(240,200,152,0.35)", cardBg: "rgba(255,255,255,0.1)" }
+    : slide.bg === "light"
+    ? { bg: "#f5e8e0", fg: "#1e1210", fg2: "rgba(30,18,16,0.58)", acc: "#b8956a", line: "rgba(184,149,106,0.4)", cardBg: "rgba(0,0,0,0.04)" }
+    : { bg: "#f7e4df", fg: "#1e1210", fg2: "rgba(30,18,16,0.58)", acc: "#b87060", line: "rgba(184,112,96,0.4)", cardBg: "rgba(0,0,0,0.04)" };
+
+  const SERIF = "'Cormorant Garamond', serif";
+  const SANS  = "'DM Sans', sans-serif";
+  const LUXE  = "'Jost', sans-serif";
+
+  const base: React.CSSProperties = {
+    width: "100%", height: "100%",
+    backgroundColor: C.bg,
+    position: "relative", overflow: "hidden",
+    boxSizing: "border-box",
+    padding: "60px 80px",
+    fontFamily: SANS,
+  };
+
+  // Reusable image slot
+  const ImgSlot = ({ w, h }: { w: number; h: number }) => (
+    <div style={{ width: w, height: h, borderRadius: 16, overflow: "hidden", position: "relative", background: "rgba(128,80,60,0.12)", border: `2px dashed ${C.line}`, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 14, flexShrink: 0 }}>
+      {imageUrl ? (
+        <>
+          <img src={imageUrl} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", position: "absolute", inset: 0 }} />
+          {onRemove && (
+            <button onClick={onRemove} style={{ position: "absolute", top: 12, right: 12, background: "rgba(0,0,0,0.6)", color: "#fff", border: "none", borderRadius: "50%", width: 34, height: 34, cursor: "pointer", fontSize: 18, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2 }}>×</button>
+          )}
+        </>
+      ) : (
+        <>
+          <div style={{ fontSize: 52, opacity: 0.25 }}>📷</div>
+          <div style={{ color: C.fg2, fontFamily: SANS, fontSize: 14, textAlign: "center", padding: "0 24px", lineHeight: 1.5 }}>
+            {slide.imageLabel || "Upload an image for this slide"}
+          </div>
+          {onUpload && (
+            <label style={{ cursor: "pointer", background: C.acc, color: C.bg, fontFamily: LUXE, fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", padding: "10px 26px", borderRadius: 9999, marginTop: 4 }}>
+              + Upload Image
+              <input type="file" accept="image/*" style={{ display: "none" }} onChange={e => { if (e.target.files?.[0]) onUpload(e.target.files[0]); }} />
+            </label>
+          )}
+        </>
+      )}
+    </div>
+  );
+
+  if (slide.layout === "title") return (
+    <div style={{ ...base, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center" }}>
+      <div style={{ position: "absolute", top: 44, left: 54, width: 72, height: 1, background: C.acc }} />
+      <div style={{ position: "absolute", top: 44, left: 54, width: 1, height: 72, background: C.acc }} />
+      <div style={{ position: "absolute", bottom: 44, right: 54, width: 72, height: 1, background: C.acc }} />
+      <div style={{ position: "absolute", bottom: 44, right: 54, width: 1, height: 72, background: C.acc }} />
+      <div style={{ fontFamily: LUXE, fontSize: 12, letterSpacing: "0.32em", textTransform: "uppercase", color: C.acc, marginBottom: 28 }}>
+        {slide.sub || "The Dollhouse Brand Studio"}
+      </div>
+      <div style={{ width: 36, height: 1, background: C.acc, marginBottom: 32 }} />
+      <div style={{ fontFamily: SERIF, fontSize: 84, fontWeight: 400, color: C.fg, lineHeight: 1.08, whiteSpace: "pre-line" }}>
+        {slide.heading}
+      </div>
+    </div>
+  );
+
+  if (slide.layout === "cta") return (
+    <div style={{ ...base, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center" }}>
+      <div style={{ position: "absolute", top: 44, left: 54, width: 72, height: 1, background: C.acc }} />
+      <div style={{ position: "absolute", top: 44, left: 54, width: 1, height: 72, background: C.acc }} />
+      <div style={{ position: "absolute", bottom: 44, right: 54, width: 72, height: 1, background: C.acc }} />
+      <div style={{ position: "absolute", bottom: 44, right: 54, width: 1, height: 72, background: C.acc }} />
+      <div style={{ fontFamily: SERIF, fontSize: 72, fontWeight: 400, color: C.fg, lineHeight: 1.1, marginBottom: 20 }}>
+        {slide.heading}
+      </div>
+      <div style={{ width: 160, height: 1, background: C.line, marginBottom: 24 }} />
+      <div style={{ fontFamily: SANS, fontSize: 22, color: C.fg2, marginBottom: 40, lineHeight: 1.5 }}>
+        {slide.sub}
+      </div>
+      <div style={{ border: `1px solid ${C.acc}`, color: C.acc, fontFamily: LUXE, fontSize: 12, letterSpacing: "0.22em", textTransform: "uppercase", padding: "16px 44px", borderRadius: 9999 }}>
+        The Dollhouse Brand Studio
+      </div>
+    </div>
+  );
+
+  if (slide.layout === "headline") return (
+    <div style={{ ...base, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+      <div style={{ fontFamily: LUXE, fontSize: 11, letterSpacing: "0.28em", textTransform: "uppercase", color: C.acc, marginBottom: 28 }}>
+        The Dollhouse Brand Studio
+      </div>
+      <div style={{ fontFamily: SERIF, fontSize: 58, fontWeight: 400, color: C.fg, lineHeight: 1.15, maxWidth: 880, marginBottom: 20 }}>
+        {slide.heading}
+      </div>
+      {slide.sub && (
+        <div style={{ fontFamily: SERIF, fontSize: 34, fontStyle: "italic", color: C.acc, marginBottom: 20, maxWidth: 780 }}>
+          {slide.sub}
+        </div>
+      )}
+      {slide.body && (
+        <div style={{ fontFamily: SANS, fontSize: 22, color: C.fg2, lineHeight: 1.65, maxWidth: 680 }}>
+          {slide.body}
+        </div>
+      )}
+      <div style={{ position: "absolute", right: 80, top: "50%", transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: 10 }}>
+        <div style={{ width: 3, height: 100, background: C.line }} />
+        <div style={{ width: 56, height: 3, background: C.line }} />
+      </div>
+    </div>
+  );
+
+  if (slide.layout === "bullets") return (
+    <div style={{ ...base, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+      <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 5, background: `linear-gradient(180deg, ${C.acc}, ${C.acc}44)` }} />
+      <div style={{ fontFamily: SERIF, fontSize: 46, fontWeight: 400, color: C.fg, marginBottom: 8, maxWidth: 860 }}>
+        {slide.heading}
+      </div>
+      <div style={{ width: 56, height: 2, background: C.acc, marginBottom: 36 }} />
+      <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+        {(slide.bullets || []).map((b, i) => (
+          <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 22 }}>
+            <div style={{ width: 7, height: 7, borderRadius: "50%", background: C.acc, marginTop: 10, flexShrink: 0 }} />
+            <div style={{ fontFamily: SANS, fontSize: 20, color: C.fg2, lineHeight: 1.55 }}>{b}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  if (slide.layout === "steps") return (
+    <div style={{ ...base, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+      <div style={{ fontFamily: LUXE, fontSize: 11, letterSpacing: "0.28em", textTransform: "uppercase", color: C.acc, marginBottom: 16 }}>
+        The Dollhouse Brand Studio
+      </div>
+      <div style={{ fontFamily: SERIF, fontSize: 46, fontWeight: 400, color: C.fg, marginBottom: 50 }}>
+        {slide.heading}
+      </div>
+      <div style={{ display: "flex", gap: 36 }}>
+        {(slide.steps || []).map((step, i) => (
+          <div key={i} style={{ flex: 1, borderTop: `2px solid ${C.acc}`, paddingTop: 24 }}>
+            <div style={{ fontFamily: SERIF, fontSize: 54, color: C.acc, lineHeight: 1, marginBottom: 18 }}>
+              {step.n}
+            </div>
+            <div style={{ fontFamily: SERIF, fontSize: 26, color: C.fg, marginBottom: 12 }}>
+              {step.title}
+            </div>
+            <div style={{ fontFamily: SANS, fontSize: 17, color: C.fg2, lineHeight: 1.6 }}>
+              {step.desc}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  if (slide.layout === "image") return (
+    <div style={{ ...base, padding: 0, display: "flex" }}>
+      <div style={{ flex: "0 0 520px", padding: "60px 56px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        <div style={{ fontFamily: LUXE, fontSize: 11, letterSpacing: "0.28em", textTransform: "uppercase", color: C.acc, marginBottom: 24 }}>
+          The Dollhouse Brand Studio
+        </div>
+        <div style={{ fontFamily: SERIF, fontSize: 48, fontWeight: 400, color: C.fg, lineHeight: 1.15, marginBottom: 20 }}>
+          {slide.heading}
+        </div>
+        {slide.sub && (
+          <div style={{ fontFamily: SANS, fontSize: 17, color: C.fg2, lineHeight: 1.6, maxWidth: 360 }}>
+            {slide.sub}
+          </div>
+        )}
+      </div>
+      <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "40px 56px 40px 0" }}>
+        <ImgSlot w={580} h={580} />
+      </div>
+    </div>
+  );
+
+  if (slide.layout === "pricing") return (
+    <div style={{ ...base, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+      <div style={{ fontFamily: LUXE, fontSize: 11, letterSpacing: "0.28em", textTransform: "uppercase", color: C.acc, marginBottom: 12 }}>
+        The Dollhouse Brand Studio
+      </div>
+      <div style={{ fontFamily: SERIF, fontSize: 46, fontWeight: 400, color: C.fg, marginBottom: 8 }}>
+        {slide.heading}
+      </div>
+      <div style={{ width: 48, height: 2, background: C.acc, marginBottom: 40 }} />
+      <div style={{ display: "flex", gap: 20 }}>
+        {(slide.prices || []).map((p, i) => (
+          <div key={i} style={{ flex: 1, background: C.cardBg, border: `1px solid ${C.line}`, borderRadius: 18, padding: "28px 24px", display: "flex", flexDirection: "column", gap: 10 }}>
+            {p.tag && (
+              <div style={{ fontFamily: LUXE, fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: C.acc }}>
+                {p.tag}
+              </div>
+            )}
+            <div style={{ fontFamily: SERIF, fontSize: 22, color: C.fg, lineHeight: 1.2 }}>{p.name}</div>
+            <div style={{ fontFamily: SERIF, fontSize: 40, fontWeight: 500, color: C.acc, lineHeight: 1 }}>{p.price}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  return <div style={{ ...base, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: SERIF, fontSize: 32, color: C.fg }}>Slide</div>;
+}
+
+function ProposalTab() {
+  const [deck, setDeck] = useState<PDeck | null>(null);
+  const [slideIdx, setSlideIdx] = useState(0);
+  const [mode, setMode] = useState<"select" | "overview" | "present">("select");
+  const [imgs, setImgs] = useState<Record<string, string>>({});
+  const [scale, setScale] = useState(1);
+  const slideWrapRef = useRef<HTMLDivElement>(null);
+
+  // Load saved images from localStorage
+  useEffect(() => {
+    try { setImgs(JSON.parse(localStorage.getItem(PROP_IMGS_KEY) || "{}")); } catch {}
+  }, []);
+
+  // Scale the slide to fit its container
+  useEffect(() => {
+    const el = slideWrapRef.current;
+    if (!el || mode !== "present") return;
+    const update = () => setScale(el.offsetWidth / 1280);
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    update();
+    return () => ro.disconnect();
+  }, [mode, deck]);
+
+  // Keyboard navigation in present mode
+  useEffect(() => {
+    if (mode !== "present" || !deck) return;
+    const fn = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight" || e.key === " ") { e.preventDefault(); setSlideIdx(i => Math.min(i + 1, deck.slides.length - 1)); }
+      else if (e.key === "ArrowLeft") setSlideIdx(i => Math.max(i - 1, 0));
+      else if (e.key === "Escape") setMode("overview");
+    };
+    window.addEventListener("keydown", fn);
+    return () => window.removeEventListener("keydown", fn);
+  }, [mode, deck]);
+
+  const saveImg = (deckId: string, idx: number, file: File) => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const key = `${deckId}_${idx}`;
+      const next = { ...imgs, [key]: e.target!.result as string };
+      setImgs(next);
+      try { localStorage.setItem(PROP_IMGS_KEY, JSON.stringify(next)); } catch {}
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const clearImg = (deckId: string, idx: number) => {
+    const key = `${deckId}_${idx}`;
+    const next = { ...imgs };
+    delete next[key];
+    setImgs(next);
+    try { localStorage.setItem(PROP_IMGS_KEY, JSON.stringify(next)); } catch {}
+  };
+
+  /* ── SELECT mode ─────────────────────────────────────────────────────── */
+  if (mode === "select") return (
+    <div style={{ padding: "40px 48px" }}>
+      <p style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 8 }}>
+        The Dollhouse Brand Studio
+      </p>
+      <h2 style={{ fontFamily: FONT_DISPLAY, fontSize: "2rem", color: "var(--ink)", fontWeight: 400, marginBottom: 6 }}>
+        Proposal Decks
+      </h2>
+      <p style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(30,18,16,0.55)", marginBottom: 40, lineHeight: 1.6 }}>
+        Choose a deck to set up or present. Upload your example images first, then hit Present.
+      </p>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 20 }}>
+        {PROPOSAL_DECKS.map(d => {
+          const imgCount = d.slides.filter((_, i) => imgs[`${d.id}_${i}`]).length;
+          const slotCount = d.slides.filter(s => s.imageSlot).length;
+          return (
+            <button
+              key={d.id}
+              onClick={() => { setDeck(d); setSlideIdx(0); setMode("overview"); }}
+              style={{ textAlign: "left", padding: "28px 32px", background: "var(--cream)", border: "1px solid rgba(196,168,122,0.25)", borderRadius: 20, cursor: "pointer", transition: "box-shadow 0.2s, transform 0.2s" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 12px 36px -10px rgba(60,30,20,0.18)"; (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "none"; (e.currentTarget as HTMLButtonElement).style.transform = "none"; }}
+            >
+              <div style={{ fontSize: 36, marginBottom: 16 }}>{d.icon}</div>
+              <div style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "var(--ink)", marginBottom: 8, fontWeight: 400 }}>{d.name}</div>
+              <div style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,18,16,0.55)", lineHeight: 1.55, marginBottom: 20 }}>{d.tagline}</div>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <div style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>
+                  {d.slides.length} slides
+                </div>
+                {slotCount > 0 && (
+                  <div style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.15em", textTransform: "uppercase", color: imgCount === slotCount ? "#4a9970" : "rgba(30,18,16,0.35)" }}>
+                    {imgCount}/{slotCount} images
+                  </div>
+                )}
+              </div>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+
+  /* ── OVERVIEW mode ───────────────────────────────────────────────────── */
+  if (mode === "overview" && deck) return (
+    <div style={{ padding: "32px 48px" }}>
+      {/* Header */}
+      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 32, flexWrap: "wrap", gap: 16 }}>
+        <div>
+          <button
+            onClick={() => setMode("select")}
+            style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)", background: "none", border: "none", cursor: "pointer", padding: "0 0 10px 0", display: "block" }}
+          >
+            ← All Decks
+          </button>
+          <h2 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.7rem", color: "var(--ink)", fontWeight: 400, margin: 0 }}>
+            {deck.icon} {deck.name}
+          </h2>
+          <p style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,18,16,0.5)", marginTop: 4 }}>
+            {deck.slides.length} slides · Upload images below, then click Present
+          </p>
+        </div>
+        <button
+          onClick={() => { setSlideIdx(0); setMode("present"); }}
+          className="btn-ink"
+          style={{ alignSelf: "flex-end" }}
+        >
+          ▶ &nbsp;Present
+        </button>
+      </div>
+
+      {/* Slide grid */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14 }}>
+        {deck.slides.map((slide, i) => {
+          const imgKey = `${deck.id}_${i}`;
+          const hasBg = slide.bg === "dark" || slide.bg === "rose";
+          const bgColor = slide.bg === "dark" ? "#1e1210" : slide.bg === "rose" ? "#6b2d30" : slide.bg === "light" ? "#f5e8e0" : "#f7e4df";
+          const textColor = hasBg ? "#f5e8e0" : "#1e1210";
+          return (
+            <div key={i} style={{ background: "var(--cream)", border: "1px solid rgba(196,168,122,0.18)", borderRadius: 14, overflow: "hidden" }}>
+              {/* Mini preview */}
+              <div
+                style={{ aspectRatio: "16/9", backgroundColor: bgColor, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", padding: "10px 14px", position: "relative", cursor: "pointer" }}
+                onClick={() => { setSlideIdx(i); setMode("present"); }}
+              >
+                {imgs[imgKey] && slide.imageSlot && (
+                  <img src={imgs[imgKey]} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.35 }} />
+                )}
+                <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 12, color: textColor, textAlign: "center", lineHeight: 1.3, position: "relative", zIndex: 1, whiteSpace: "pre-line", maxWidth: "100%" }}>
+                  {slide.heading.length > 42 ? slide.heading.slice(0, 42) + "…" : slide.heading}
+                </div>
+                <div style={{ position: "absolute", top: 6, left: 8, fontFamily: "'Jost', sans-serif", fontSize: 9, color: "#c4a87a", letterSpacing: "0.1em" }}>
+                  {i + 1}
+                </div>
+                <div style={{ position: "absolute", top: 6, right: 8, fontFamily: "'Jost', sans-serif", fontSize: 9, color: "rgba(196,168,122,0.6)", letterSpacing: "0.06em", textTransform: "capitalize" }}>
+                  {slide.layout}
+                </div>
+              </div>
+              {/* Card footer */}
+              <div style={{ padding: "8px 12px", minHeight: 44 }}>
+                {slide.imageSlot ? (
+                  imgs[imgKey] ? (
+                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                      <img src={imgs[imgKey]} alt="" style={{ width: 26, height: 26, borderRadius: 4, objectFit: "cover", flexShrink: 0 }} />
+                      <span style={{ fontFamily: FONT_BODY, fontSize: "0.7rem", color: "rgba(30,18,16,0.5)", flex: 1 }}>Image ready</span>
+                      <button onClick={() => clearImg(deck.id, i)} style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--rose)", background: "none", border: "none", cursor: "pointer", padding: 0, flexShrink: 0 }}>✕</button>
+                    </div>
+                  ) : (
+                    <label style={{ cursor: "pointer", fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold)", display: "flex", alignItems: "center", gap: 5 }}>
+                      <span>📷 Upload Image</span>
+                      <input type="file" accept="image/*" style={{ display: "none" }} onChange={e => { if (e.target.files?.[0]) saveImg(deck.id, i, e.target.files[0]); }} />
+                    </label>
+                  )
+                ) : (
+                  <div style={{ fontFamily: FONT_BODY, fontSize: "0.7rem", color: "rgba(30,18,16,0.3)" }}>—</div>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+
+  /* ── PRESENT mode ────────────────────────────────────────────────────── */
+  if (mode === "present" && deck) {
+    const curSlide = deck.slides[slideIdx];
+    const imgKey = `${deck.id}_${slideIdx}`;
+
+    return (
+      <div style={{ minHeight: "calc(100vh - 120px)", background: "#120a08", display: "flex", flexDirection: "column" }}>
+        {/* Top bar */}
+        <div style={{ padding: "10px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(255,255,255,0.07)", flexShrink: 0 }}>
+          <button
+            onClick={() => setMode("overview")}
+            style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer" }}
+          >
+            ← Overview
+          </button>
+          <div style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)" }}>
+            {deck.name}
+          </div>
+          <div style={{ fontFamily: FONT_LUXE, fontSize: "11px", letterSpacing: "0.15em", color: "#c4a87a" }}>
+            {slideIdx + 1} / {deck.slides.length}
+          </div>
+        </div>
+
+        {/* Slide area */}
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", padding: "20px 24px 0", overflow: "hidden" }}>
+          {/* Scale container */}
+          <div ref={slideWrapRef} style={{ width: "100%", maxWidth: 1160, position: "relative", borderRadius: 14, overflow: "hidden", boxShadow: "0 40px 120px -20px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.06)" }}>
+            <div style={{ paddingBottom: "56.25%" }} />
+            <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
+              <div style={{ width: 1280, height: 720, transform: `scale(${scale})`, transformOrigin: "top left" }}>
+                {renderSlideVisual(
+                  curSlide,
+                  imgs[imgKey],
+                  (file) => saveImg(deck.id, slideIdx, file),
+                  () => clearImg(deck.id, slideIdx),
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Script */}
+          <div style={{ width: "100%", maxWidth: 1160, marginTop: 16, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(196,168,122,0.18)", borderRadius: 14, padding: "18px 26px", flexShrink: 0 }}>
+            <div style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.24em", textTransform: "uppercase", color: "#c4a87a", marginBottom: 10 }}>
+              🎙 Say this
+            </div>
+            <div style={{ fontFamily: FONT_BODY, fontSize: "0.92rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.75 }}>
+              {curSlide.script}
+            </div>
+          </div>
+        </div>
+
+        {/* Nav bar */}
+        <div style={{ padding: "16px 24px", display: "flex", alignItems: "center", justifyContent: "center", gap: 14, flexShrink: 0 }}>
+          <button
+            onClick={() => setSlideIdx(i => Math.max(i - 1, 0))}
+            disabled={slideIdx === 0}
+            style={{ padding: "9px 22px", background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 9999, color: slideIdx === 0 ? "rgba(255,255,255,0.18)" : "rgba(255,255,255,0.8)", fontFamily: FONT_LUXE, fontSize: "11px", letterSpacing: "0.15em", cursor: slideIdx === 0 ? "default" : "pointer" }}
+          >
+            ← Prev
+          </button>
+
+          {/* Dot strip */}
+          <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+            {deck.slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setSlideIdx(i)}
+                style={{ width: i === slideIdx ? 22 : 7, height: 7, borderRadius: 9999, background: i === slideIdx ? "#c4a87a" : "rgba(255,255,255,0.18)", border: "none", cursor: "pointer", transition: "all 0.2s ease", padding: 0 }}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={() => setSlideIdx(i => Math.min(i + 1, deck.slides.length - 1))}
+            disabled={slideIdx === deck.slides.length - 1}
+            style={{ padding: "9px 22px", background: slideIdx === deck.slides.length - 1 ? "rgba(255,255,255,0.07)" : "#c4a87a", border: "none", borderRadius: 9999, color: slideIdx === deck.slides.length - 1 ? "rgba(255,255,255,0.18)" : "#1e1210", fontFamily: FONT_LUXE, fontSize: "11px", letterSpacing: "0.15em", cursor: slideIdx === deck.slides.length - 1 ? "default" : "pointer" }}
+          >
+            Next →
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return null;
+}
+
 function PlaybookPage() {
   const [authed, setAuthed] = useState(() => sessionStorage.getItem("dh_admin") === "1");
   const [tab, setTab] = useState<Tab>("deals");
@@ -7490,6 +8456,7 @@ function PlaybookPage() {
     { id: "deals",     label: "Deal Pipeline",    icon: "🎯" },
     { id: "quote",     label: "Quote Builder",    icon: "🧮" },
     { id: "discovery", label: "Discovery Call",   icon: "🎙️" },
+    { id: "proposal",  label: "Proposal Deck",    icon: "📊" },
     { id: "outreach",  label: "Outreach Scripts", icon: "📞" },
     { id: "workflow",  label: "Client Workflow",  icon: "📋" },
     { id: "prompts",   label: "Content Prompts",  icon: "✍️" },
@@ -7601,6 +8568,7 @@ function PlaybookPage() {
         {tab === "content" && <ContentStrategyTab />}
         {tab === "deals" && <DealTrackerTab prospects={prospects} persist={persist} onBuildQuote={openQuoteFor} />}
         {tab === "discovery" && <DiscoveryCallTab />}
+        {tab === "proposal" && <ProposalTab />}
         {tab === "newhire" && <NewHireTab />}
         {tab === "quote" && <QuoteBuilderTab prospects={prospects} persist={persist} prospectId={quoteProspectId} onGoToDeals={() => { setQuoteProspectId(null); setTab("deals"); }} onClearProspect={() => setQuoteProspectId(null)} />}
         {tab === "schedule" && <ScheduleTab />}
