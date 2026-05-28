@@ -6598,7 +6598,6 @@ function QuoteBuilderTab() {
     lines.push("  THE DOLLHOUSE BRAND STUDIO");
     lines.push(`  Your Custom Proposal${bizName ? ` — ${biz}` : ""}`);
     if (city) lines.push(`  ${city}${niche ? ` · ${niche}` : ""}`);
-    lines.push("  All prices are in USD");
     lines.push("═".repeat(54));
     lines.push("");
 
