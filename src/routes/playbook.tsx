@@ -259,6 +259,7 @@ function MonthlyTab() {
 
 /* ─── Tab: Prompts ────────────────────────────────────── */
 function PromptsTab() {
+  const [search, setSearch] = useState("");
   const prompts = [
     {
       title: "AI Graphics — Single Posts (Platform Ask AI)",
@@ -950,12 +951,79 @@ Swap in your actual results once you have them. Specific numbers always outperfo
     },
   ];
 
+  const GROUPS = [
+    { label: "Platform AI", icon: "🤖", tags: ["Platform AI"] },
+    { label: "Content Creation", icon: "✍️", tags: ["Captions", "Video", "Stories", "Planning"] },
+    { label: "Ads & Email", icon: "📣", tags: ["Ads", "Email"] },
+    { label: "Strategy & Reporting", icon: "📊", tags: ["Strategy", "Reporting", "Onboarding"] },
+    { label: "AI Video", icon: "🎬", tags: ["AI Video"] },
+    { label: "Outreach Scripts", icon: "📤", tags: ["Outreach"] },
+    { label: "Lead Generation", icon: "🎯", tags: ["Lead Gen"] },
+    { label: "Sales", icon: "💼", tags: ["Sales"] },
+    { label: "SEO & Blogging", icon: "🌐", tags: ["Blogging", "GEO"] },
+  ];
+
+  const q = search.toLowerCase().trim();
+  const filtered = q ? prompts.filter(p =>
+    p.title.toLowerCase().includes(q) ||
+    p.tag.toLowerCase().includes(q) ||
+    p.prompt.toLowerCase().includes(q)
+  ) : null;
+
   return (
     <div className="space-y-6">
       <SectionHeader label="Prompt Library" title="Copy. Paste. Customize. Done." sub="Every prompt you need to create client work. Replace bracketed placeholders with client details. Never start from scratch." />
-      <div className="space-y-4">
-        {prompts.map((p) => <PromptCard key={p.title} {...p} />)}
+
+      {/* Search */}
+      <div className="relative">
+        <input
+          type="text"
+          placeholder="Search prompts by title, tag, or keyword..."
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          className="w-full rounded-xl px-5 py-3 focus:outline-none text-sm"
+          style={{ fontFamily: FONT_BODY, color: "var(--ink)", background: "rgba(255,255,255,0.88)", border: "1px solid rgba(200,168,100,0.3)", paddingLeft: "2.75rem" }}
+        />
+        <span className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" style={{ fontSize: "0.95rem", opacity: 0.45 }}>🔍</span>
+        {search && (
+          <button onClick={() => setSearch("")} className="absolute right-4 top-1/2 -translate-y-1/2 hover:opacity-60 transition-opacity" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(30,15,10,0.4)" }}>Clear</button>
+        )}
       </div>
+
+      {filtered ? (
+        <div>
+          <p className="mb-4" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(30,15,10,0.4)" }}>
+            {filtered.length} result{filtered.length !== 1 ? "s" : ""} for &ldquo;{search}&rdquo;
+          </p>
+          {filtered.length === 0 ? (
+            <div className="text-center py-14 rounded-2xl" style={{ background: "rgba(255,255,255,0.5)", border: "1px dashed rgba(200,168,100,0.3)" }}>
+              <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "rgba(30,15,10,0.35)", fontStyle: "italic" }}>No prompts found.</p>
+              <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.3)" }}>Try a different keyword or clear the search.</p>
+            </div>
+          ) : (
+            <div className="space-y-4">{filtered.map(p => <PromptCard key={p.title} {...p} />)}</div>
+          )}
+        </div>
+      ) : (
+        <div className="space-y-12">
+          {GROUPS.map(g => {
+            const gp = prompts.filter(p => g.tags.includes(p.tag));
+            if (!gp.length) return null;
+            return (
+              <div key={g.label}>
+                <div className="flex items-center gap-3 mb-5 pb-3" style={{ borderBottom: "1px solid rgba(200,168,100,0.2)" }}>
+                  <span style={{ fontSize: "1.2rem" }}>{g.icon}</span>
+                  <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "var(--rose)", fontWeight: 400 }}>{g.label}</h3>
+                  <span className="px-2 py-0.5 rounded-full" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.12em", background: "rgba(200,168,100,0.12)", color: "var(--gold)" }}>{gp.length} prompt{gp.length !== 1 ? "s" : ""}</span>
+                </div>
+                <div className="space-y-4">
+                  {gp.map(p => <PromptCard key={p.title} {...p} />)}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
@@ -966,6 +1034,7 @@ function ServiceTiers() {
     {
       label: "Offer 1 — Door Opener",
       price: "$500/mo",
+      setup: "$500 one-time setup",
       tag: "Best to start with",
       tagColor: "var(--gold)",
       items: [
@@ -980,12 +1049,13 @@ function ServiceTiers() {
     {
       label: "Offer 2 — Wow Factor",
       price: "$1,000/mo",
+      setup: "$500 one-time setup",
       tag: "High perceived value",
       tagColor: "var(--rose)",
       items: [
         "Everything in Offer 1",
+        "AI clone / character of the business owner — they never have to be on camera",
         "3 AI-generated videos per week (branded, viral-style)",
-        "AI avatar or mascot clone — client on camera without filming",
         "Time-lapse / transformation / before-after video formats",
         "Videos pinned to top of profile as signature content",
       ],
@@ -994,6 +1064,7 @@ function ServiceTiers() {
     {
       label: "Offer 3 — Full System",
       price: "$750/mo + $250 ad budget",
+      setup: "$500 one-time setup",
       tag: "Best results",
       tagColor: "#4a7a4a",
       items: [
@@ -1023,7 +1094,10 @@ function ServiceTiers() {
               <span className="px-2 py-0.5 rounded-full text-[10px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, background: t.tagColor, color: "#fff" }}>{t.tag}</span>
               <span style={{ fontFamily: FONT_DISPLAY, fontSize: "1.15rem", color: "var(--ink)" }}>{t.label}</span>
             </div>
-            <span className="italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--gold)" }}>{t.price}</span>
+            <div className="text-right">
+              <span className="italic block" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--gold)" }}>{t.price}</span>
+              <span style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(30,15,10,0.4)" }}>{t.setup}</span>
+            </div>
           </div>
           <div className="px-6 py-5">
             <ul className="space-y-2 mb-4">
@@ -1685,56 +1759,47 @@ function genMessage(key: string, p: Prospect): string {
 
   const t: Record<string, string> = {
     ai_clone_pitch:
-`Subject: Your AI Twin for ${biz} — seriously cool idea
+`Subject: quick idea for ${biz} you haven't seen before
 
 Hi ${fn},
 
-I came across ${biz} and had an idea I've never pitched to anyone else in ${city}.
+I came across ${biz} and had an idea I think you're going to love.
 
-We build a custom AI clone — a digital character that looks, sounds, and speaks like you — and use it to post branded video content for ${biz} every single week. You never have to be on camera. You don't script anything. You don't film anything. Your AI twin does it for you.
+We build an AI version of you — a digital character that looks and sounds like you — and use it to post branded video content for ${biz} every single week. You never film anything. You never script anything. Your AI twin just shows up online and does all of it for you.
 
-Here's what you get with the AI Character Package ($1,000):
-✓ Your custom AI avatar — built to look and sound like ${fn}
-✓ Branded video content scripted and produced every week
-✓ Posted across Facebook, Instagram, and TikTok automatically
-✓ Comments and DMs handled by AI so no lead goes cold
-✓ Full social media presence — without you lifting a finger
+For ${niche} businesses in ${city} this is a huge edge right now because almost nobody in your market is doing video content. We'd change that overnight.
 
-For ${niche} businesses in ${city}, this is a massive competitive edge. Nobody else is doing this yet.
+It's $1,000 a month and there's a one-time $500 setup where we build your AI character. After that you just approve what goes out and watch the results come in.
 
-I'd love to show you a quick demo — 15 minutes, no pressure, just want you to see what this looks like before anyone else in your market does.
+I'd love to show you what it actually looks like. Do you have 15 minutes this week? No pressure, I just want you to see it before someone else in ${city} does.
 
-Would this week work?
-
-— Mandy Fortune
+Mandy Fortune
 The Dollhouse Brand Studio
 shopdollhouse.co`,
 
     ai_clone_dm:
-`Hey ${fn}! 👋
+`Hey ${fn}! Quick question for you.
 
-Random question — does ${biz} do any video content right now?
+Does ${biz} do any video content right now?
 
-I ask because I just built something for ${niche} businesses that I think you'd love. We create an AI version of you — a digital twin — that posts video content for ${biz} every week. You literally never have to be on camera.
+I ask because we just built something for ${niche} businesses that I've never seen anyone else offer. We create an AI version of you that posts video content for ${biz} every week. You never have to be on camera, never have to film anything. It looks incredibly real.
 
-It's $1,000 to set up and it's wild how real it looks.
-
-Would you want to see a quick demo? Takes 10 minutes and I think it'd blow your mind.`,
+It's $1,000 a month to run it. Would you want to see a quick demo? I think it'd genuinely blow your mind.`,
 
     cold_email:
 `Subject: quick question about ${biz}'s social media
 
 Hi ${fn},
 
-I was looking at ${biz} online — you're doing great work in the ${niche} space, but your social presence doesn't quite match the quality of what you're actually offering.
+I came across ${biz} online and you're clearly doing great work in the ${niche} space. The one thing I noticed is that your social presence doesn't quite match the quality of what you're actually offering.
 
-I run The Dollhouse Brand Studio. We handle done-for-you social media for ${niche} businesses in ${city} — content, posting, ads, all of it — so you don't have to think about it.
+I run The Dollhouse Brand Studio and we handle done-for-you social media for ${niche} businesses in ${city}. Content, posting, ads, automations, all of it. You don't have to think about any of it.
 
-I'd love to put together a quick look at what we'd do for ${biz} specifically. No pitch, no pressure — just a 15-minute call to see if it's a fit.
+I'd love to put together a quick look at what we'd specifically do for ${biz}. Not a pitch, just a 15-minute call to see if it makes sense.
 
-Would this week work for you?
+Would any time this week work?
 
-— Mandy Fortune
+Mandy Fortune
 The Dollhouse Brand Studio
 shopdollhouse.co`,
 
@@ -1750,23 +1815,23 @@ I run a done-for-you social media studio and I had a couple ideas for ${biz} tha
 
 Hi ${fn},
 
-Just wanted to shoot you a quick email — I came across ${biz} and was genuinely impressed with what you're doing in the ${niche} space.
+Just wanted to shoot you a quick email. I came across ${biz} and was genuinely impressed with what you're doing in the ${niche} space.
 
-I wanted to share you on social media, but noticed ${biz} isn't doing much with Facebook or Instagram. Any reason? I think more people need to hear about you.
+I wanted to share you on social media but noticed ${biz} isn't doing much with Facebook or Instagram. Any reason? I think more people need to hear about you.
 
-Also — where can I leave you a review? Happy to spread the word.
+Also where can I leave you a review? Happy to spread the word.
 
-— Mandy Fortune
+Mandy Fortune
 shopdollhouse.co
 
----
-[FOLLOW-UP — send 2 days later if they reply positively]
 
-Hey ${fn}! Thanks for responding.
+(Send this follow-up 2 days later if they reply positively)
 
-For the social media side — I'd love to help. A lot of other ${niche} businesses in ${city} are using social media to get more clients right now. I think we could easily do the same for ${biz}.
+Hey ${fn}! Thanks for getting back to me and so glad you liked it.
 
-Let me know — would love to help. — Mandy`,
+For the social media side I'd genuinely love to help. A lot of other ${niche} businesses in ${city} are using it to get more clients right now and I think we could do the same for ${biz} pretty quickly.
+
+Would love to chat for a few minutes if you're open to it. Mandy`,
 
     free_trial:
 `Hey ${fn}, I just built a new AI system for ${niche} businesses. It helps [outcome — e.g. book more jobs automatically / never miss a lead / fill the calendar without ad spend].
@@ -1803,84 +1868,83 @@ I'd love to make one for ${biz} for free just to show you what it looks like. Wo
 
 So glad you replied! I'd love to show you exactly what we'd do for ${biz}.
 
-Would you be open to a quick 15-minute call? I can walk you through what we're doing for other ${niche} businesses in ${city} and show you a few specific ideas for your page.
+Would you be open to a quick 15-minute call? I can walk you through what we're doing for other ${niche} businesses in ${city} and share a few specific ideas I already have for your page.
 
 Here's my calendar: [CALENDAR LINK]
 
-Looking forward to it!
-— Mandy`,
+Looking forward to connecting!
+Mandy`,
 
     call_reply:
 `Hi ${fn},
 
-Great to hear from you — I think there's a real opportunity for ${biz}, especially around ${pain}.
+So great to hear from you. I think there's a real opportunity for ${biz} especially around ${pain} and I'd love to show you what that could look like.
 
-Would [DAY] or [DAY] this week work for a quick 15-minute call? I'll show you exactly what we'd do and what the results look like in practice.
+Would [DAY] or [DAY] this week work for a quick 15-minute call? I'll show you exactly what we'd do and what the results look like for other ${niche} businesses.
 
-— Mandy Fortune
+Mandy Fortune
 The Dollhouse Brand Studio`,
 
     closer_prep:
 `CLOSER PREP — ${biz}
-Contact: ${p.contact} | Niche: ${niche} | City: ${city}
-Their pain: ${pain}
+Contact: ${p.contact}   Niche: ${niche}   City: ${city}
+Their pain point: ${pain}
 
-─────────────────────────────────
-C — CLARIFY the pain
-Ask: "What's your biggest challenge right now with ${pain}? Walk me through what that looks like day to day."
 
-L — LABEL them as a fit
-"So if I'm hearing you right, the main issue is [THEIR WORDS] — and that's costing ${biz} [leads / time / revenue]?"
+CLARIFY THE PAIN
+Open with this and really listen: "What's your biggest challenge right now with ${pain}? Walk me through what that actually looks like day to day for ${biz}."
 
-O — OUTLINE your solution
-"That's exactly why we built this system for ${niche} businesses. Here's how it works: [content + automations + ads]. ${biz} doesn't touch any of it."
+LABEL THEM AS A FIT
+Reflect it back so they feel heard: "So if I'm understanding you right, the main issue is [their words] and that's costing ${biz} [leads / time / revenue]?"
 
-S — SHARE a case study
-"We set this up for another ${niche} in ${city} and they [RESULT — e.g. booked 12 new clients in 30 days]."
+OUTLINE YOUR SOLUTION
+"That's exactly why we built this for ${niche} businesses. We handle the content, the ads, the automations, all of it. ${biz} doesn't touch any of it. You just run your business."
 
-E — EXPLAIN the offer
-Present all 3 tiers. Start high. Walk down if needed. Never lead with the cheapest option.
+SHARE A RESULT
+"We set this up for another ${niche} in ${city} and they [result — e.g. booked 12 new clients in 30 days]. That's what we're going for here."
 
-R — REQUEST the sale
-"Based on everything you've told me, I think [TIER] is the right fit for ${biz}. Do you want to get started?"
-Then stop talking. Let them answer.
-─────────────────────────────────
-Remember: listen first. The more they talk, the better you can close.`,
+EXPLAIN THE OFFER
+Present all 3 tiers. Start with Offer 2 or 3 first. Walk down if needed. Never open with the cheapest option. Every package includes a $500 one-time setup.
+
+ASK FOR THE SALE
+"Based on everything you've told me, I think [TIER] is the right fit for ${biz}. Do you want to get started?" Then stop talking. Let them answer.
+
+Listen first. The more they talk, the better you can close.`,
 
     pitch_outline:
 `PITCH DECK OUTLINE — ${biz}
 
 Slide 1 — Introduction
-The Dollhouse Brand Studio · Done-for-you social media, ads, and automation for ${niche} businesses.
+The Dollhouse Brand Studio. Done-for-you social media, ads, and automation for ${niche} businesses.
 
 Slide 2 — Their Problem
-"${pain}" — use ${fn}'s exact words from the call. Make them feel understood, not sold to.
+Use ${fn}'s exact words from the call: "${pain}". Make them feel understood, not sold to.
 
 Slide 3 — Our Solution
-Software + service working together. We handle content, ads, and automations. ${biz} handles their business.
+Software and service working together. We handle the content, the ads, the automations. ${biz} handles their business.
 
 Slide 4 — Proof
 [INSERT RESULT] — another ${niche} business we helped in ${city}.
 
 Slide 5 — Their Package
-Exactly what's included for ${biz} — listed clearly. Include 1–2 things NOT included so there are no surprises.
+Exactly what's included for ${biz}, listed clearly. Also list 1 or 2 things not included so there are zero surprises.
 
 Slide 6 — Investment
-$[PRICE]/month · Setup: $[AMOUNT or "none"] · Payment terms: [MONTHLY / UPFRONT]
+$[PRICE]/month + $500 one-time setup · Payment terms: [MONTHLY / UPFRONT]
 
 Slide 7 — Next Steps
-Step 1: Sign agreement → Step 2: Complete onboarding form → Step 3: Kickoff call within 48 hrs`,
+Step 1: Sign the agreement   Step 2: Complete the onboarding form (sent same day)   Step 3: Kickoff call within 48 hours`,
 
     proposal_followup:
 `Subject: Re: ${biz} proposal
 
 Hi ${fn},
 
-Just checking in — did you get a chance to look over the proposal?
+Just checking in to see if you had a chance to look over the proposal.
 
-Happy to answer any questions or jump on a quick call to walk through anything. No rush — just want to make sure you have everything you need to make the right call for ${biz}.
+Happy to answer any questions or jump on a quick call if it helps. No rush at all, I just want to make sure you have everything you need.
 
-— Mandy`,
+Mandy`,
 
     objections:
 `OBJECTION GUIDE — ${biz}
@@ -1901,39 +1965,36 @@ Happy to answer any questions or jump on a quick call to walk through anything. 
     annual_deal:
 `Hi ${fn},
 
-Quick thought — would ${biz} want to lock in the rate for the year? I can do 15% off if you pay annually, which works out to [ANNUAL PRICE].
+Quick thought. Would ${biz} want to lock in the rate for the year? I can do 15% off if you pay annually which works out to [ANNUAL PRICE].
 
-Most clients who do this save a few hundred dollars and don't have to think about the invoice every month.
+Most of our clients who go annual save a few hundred dollars and honestly just love not having to think about the invoice every month.
 
-Let me know — happy to put together the annual agreement.
+Let me know and I'll put together the annual agreement today.
 
-— Mandy`,
+Mandy`,
 
     obj_response:
 `Hi ${fn},
 
-Totally understand — [RESTATE THEIR OBJECTION IN ONE LINE].
+Totally get it. [Restate their objection in one short line here.]
 
-Here's what I'd say to that: the businesses we work with that had the same concern typically saw [RESULT] within the first [TIMEFRAME]. And honestly, if it's not working for ${biz} in the first 30 days, I'd want to know that too.
+Here's what I'd say to that. The businesses we work with who had the same concern typically saw [RESULT] within the first [TIMEFRAME]. And honestly if it's not working for ${biz} in the first 30 days I want to know that too.
 
-What would you need to see to feel confident moving forward?
+What would you need to see to feel good about moving forward?
 
-— Mandy`,
+Mandy`,
 
     welcome:
-`Subject: Welcome to The Dollhouse, ${fn}! 🎉
+`Subject: Welcome to The Dollhouse, ${fn}!
 
 Hi ${fn},
 
-So excited to have ${biz} on board — this is going to be great.
+So excited to have ${biz} on board. This is going to be great.
 
-Here's what happens next:
-1. I'm sending over the agreement and onboarding form today — please complete it within 24 hours so we can move fast.
-2. We'll schedule your kickoff call within 48 hours.
-3. Your first content goes live within 14 days.
+Here's what happens next. I'm sending over the agreement and onboarding form today and just need you to complete it within 24 hours so we can move fast. We'll get your kickoff call scheduled within 48 hours and your first content goes live within 14 days.
 
-Talk soon!
-— Mandy Fortune
+So glad you're here!
+Mandy Fortune
 The Dollhouse Brand Studio
 shopdollhouse.co`,
 
@@ -1942,43 +2003,39 @@ shopdollhouse.co`,
 
 Ready to kick things off for ${biz}!
 
-Let's schedule a 30-minute onboarding call. We'll:
-✓ Walk through brand assets and voice
-✓ Set up your automations live together
-✓ Confirm your posting schedule and content pillars
-✓ Make sure everything is running before we hang up
+Let's get a 30-minute onboarding call on the calendar. We'll walk through your brand assets and voice, set up your automations together live, confirm your posting schedule and content pillars, and make sure everything is running before we hang up.
 
 Grab a time here: [CALENDAR LINK]
 
 Can't wait to get started. See you soon!
-— Mandy`,
+Mandy`,
 
     breakup:
 `Subject: All the best, ${fn}
 
 Hi ${fn},
 
-No worries at all — I know the timing isn't always right.
+No worries at all. I know the timing isn't always right.
 
-If things change and ${biz} is ready to grow its social presence down the road, I hope you'll think of us. We'll be here.
+If things ever change and ${biz} is ready to grow its social presence, I genuinely hope you'll think of us. We'll be here.
 
-Wishing you a great rest of the [MONTH / QUARTER]!
+Wishing you a great rest of the [MONTH / QUARTER].
 
-— Mandy
+Mandy
 The Dollhouse Brand Studio`,
 
     reengage:
-`Subject: checking in — ${biz}
+`Subject: checking in on ${biz}
 
 Hi ${fn},
 
-It's been a little while since we last talked, and I wanted to check back in.
+It's been a little while since we talked and I wanted to check back in.
 
-A lot has shifted on the social media side recently — [MENTION ONE: carousels are outperforming Reels / AI video is changing how ${niche} businesses generate leads / etc.] — and ${biz} came to mind immediately.
+A lot has shifted on the social media side recently. [Mention one thing: carousels are outperforming Reels / AI video is changing how ${niche} businesses generate leads / etc.] and ${biz} came to mind right away.
 
-Still happy to put together a quick overview of what we'd do. No pressure — just wanted to make sure the door was still open.
+Still happy to put together a quick look at what we'd do. No pressure at all, just wanted to make sure the door was still open.
 
-— Mandy`,
+Mandy`,
   };
   return t[key] ?? "Message template not found.";
 }
@@ -2224,7 +2281,7 @@ function DealTrackerTab() {
               <span className="text-lg">🤖</span>
               <p className="text-[9px] tracking-[0.25em] uppercase" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Lead Strategy #1 · Featured Offer</p>
             </div>
-            <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--cream)", fontWeight: 400, lineHeight: 1.1 }}>AI Clone / Character Package — <span style={{ color: "var(--gold)" }}>$1,000</span></h3>
+            <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--cream)", fontWeight: 400, lineHeight: 1.1 }}>AI Clone / Character Package — <span style={{ color: "var(--gold)" }}>$1,000/mo</span> <span style={{ fontFamily: FONT_LUXE, fontSize: "0.75rem", letterSpacing: "0.1em", color: "rgba(250,243,234,0.45)", fontStyle: "normal" }}>+ $500 one-time setup</span></h3>
             <p className="mt-2 leading-relaxed" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(250,243,234,0.7)" }}>
               We build a custom AI avatar of the business owner — a digital twin that looks, sounds, and speaks like them — and use it to post branded video content automatically every week. They never film anything. They never script anything. Their AI character does it for them.
             </p>
