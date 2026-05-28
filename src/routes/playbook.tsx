@@ -6452,6 +6452,17 @@ function ScheduleTab() {
 
 /* ─── Quote Builder ───────────────────────────────────── */
 const QB_PACKAGES = {
+  content_starter: {
+    name: "Content Starter", monthly: 500, setup: 500, emoji: "🌱", color: "#a8b87a",
+    tagline: "Entry-level done-for-you content — branded posts, scheduled and managed.",
+    includes: [
+      "8 branded posts/month (static & carousels)",
+      "1 platform managed",
+      "Branded, scheduled, and done for you",
+      "No AI avatar, no automation — text & image posts only",
+      "Monthly performance report",
+    ],
+  },
   starter: {
     name: "Starter", monthly: 1000, setup: 500, emoji: "✨", color: "#c8a864",
     tagline: "Perfect for local businesses getting started with done-for-you social.",
