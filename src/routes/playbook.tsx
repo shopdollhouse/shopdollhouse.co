@@ -5114,8 +5114,11 @@ Mandy`,
 
 const EMPTY_FORM = { biz: "", contact: "", email: "", phone: "", niche: "", city: "", pain: "", source: "Cold Email" };
 
-function DealTrackerTab() {
-  const [prospects, setProspects] = useState<Prospect[]>(() => loadProspects());
+function DealTrackerTab({ prospects, persist, onBuildQuote }: {
+  prospects: Prospect[];
+  persist: (list: Prospect[]) => void;
+  onBuildQuote: (id: string) => void;
+}) {
   const [view, setView] = useState<"list" | "detail" | "add">("list");
   const [selected, setSelected] = useState<string | null>(null);
   const [form, setForm] = useState({ ...EMPTY_FORM });
@@ -5126,8 +5129,6 @@ function DealTrackerTab() {
   const [msgSaved, setMsgSaved] = useState(false);
   const [noteText, setNoteText] = useState("");
   const [stageFilter, setStageFilter] = useState<PStage | "all">("all");
-
-  const persist = (list: Prospect[]) => { setProspects(list); saveAllProspects(list); };
 
   function addProspect() {
     if (!form.biz.trim()) return;
@@ -5251,6 +5252,9 @@ function DealTrackerTab() {
           <select onChange={e => markStage(prospect.id, e.target.value as PStage)} value={prospect.stage} className="px-3 py-2 rounded-xl text-xs" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.12em", background: "rgba(255,255,255,0.08)", color: "rgba(250,243,234,0.5)", border: "1px solid rgba(255,255,255,0.1)" }}>
             {(Object.keys(STAGE_INFO) as PStage[]).map(s => <option key={s} value={s}>{STAGE_INFO[s].label}</option>)}
           </select>
+          <button onClick={() => onBuildQuote(prospect.id)} className="px-4 py-2 rounded-xl transition-all hover:opacity-90 flex items-center gap-1.5" style={{ background: "rgba(200,168,100,0.2)", fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gold)", border: "1px solid rgba(200,168,100,0.4)" }}>
+            🧮 Build Quote →
+          </button>
         </div>
       </div>
 
@@ -6563,9 +6567,17 @@ const QB_ADDONS: QBAddon[] = [
   { key: "merch_design",      type: "onetime", price: 500,  emoji: "👕", name: "Merch & Brand Design",                desc: "On-brand merch, apparel, and print-ready assets designed to match your business identity." },
 ];
 
-function QuoteBuilderTab() {
+function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearProspect }: {
+  prospects: Prospect[];
+  persist: (list: Prospect[]) => void;
+  prospectId: string | null;
+  onGoToDeals: () => void;
+  onClearProspect: () => void;
+}) {
   const [clientName, setClientName] = useState("");
   const [bizName, setBizName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [niche, setNiche] = useState("");
   const [city, setCity] = useState("");
   const [pkg, setPkg] = useState<PkgKey | null>(null);
@@ -6576,6 +6588,20 @@ function QuoteBuilderTab() {
   const [note, setNote] = useState("");
   const [copied, setCopied] = useState<"quote" | "email" | null>(null);
   const [saved, setSaved] = useState(false);
+
+  const linkedProspect = prospectId ? prospects.find(p => p.id === prospectId) : null;
+
+  // Pre-fill form when a prospect is passed in from Deal Pipeline
+  useEffect(() => {
+    if (linkedProspect) {
+      setClientName(linkedProspect.contact || "");
+      setBizName(linkedProspect.biz || "");
+      setEmail(linkedProspect.email || "");
+      setPhone(linkedProspect.phone || "");
+      setNiche(linkedProspect.niche || "");
+      setCity(linkedProspect.city || "");
+    }
+  }, [prospectId]);
 
   const selectedPkg = pkg ? QB_PACKAGES[pkg] : null;
   const monthlyAddons = QB_ADDONS.filter(a => a.type === "monthly" && addons.has(a.key));
@@ -6791,31 +6817,41 @@ function QuoteBuilderTab() {
   function saveToPipeline() {
     if (!selectedPkg) return;
     const now = new Date().toISOString();
-    const newProspect: Prospect = {
+    const quoteMsg = {
       id: uid(),
-      biz: bizName || "Unknown Business",
-      contact: clientName || "",
-      email: "",
-      phone: "",
-      niche,
-      city,
-      pain: "",
-      source: "Quote Builder",
-      stage: "proposal",
-      notes: [],
-      savedMsgs: [{
-        id: uid(),
-        label: `Quote — ${selectedPkg.name} · $${monthlyTotal.toLocaleString()}/mo`,
-        body: generateQuote("quote"),
-        at: now,
-      }],
-      created: now,
-      quoteSentAt: now,
+      label: `Quote — ${selectedPkg.name} · $${monthlyTotal.toLocaleString()}/mo`,
+      body: generateQuote("quote"),
+      at: now,
     };
-    const existing = loadProspects();
-    saveAllProspects([newProspect, ...existing]);
+
+    if (prospectId) {
+      // Attach quote to existing prospect — move to Proposal stage, no duplicate
+      persist(prospects.map(p =>
+        p.id === prospectId
+          ? { ...p, stage: "proposal" as PStage, quoteSentAt: now, savedMsgs: [quoteMsg, ...p.savedMsgs] }
+          : p
+      ));
+    } else {
+      // No existing prospect — create a new one
+      const newProspect: Prospect = {
+        id: uid(),
+        biz: bizName || "Unknown Business",
+        contact: clientName || "",
+        email,
+        phone,
+        niche,
+        city,
+        pain: "",
+        source: "Quote Builder",
+        stage: "proposal",
+        notes: [],
+        savedMsgs: [quoteMsg],
+        created: now,
+        quoteSentAt: now,
+      };
+      persist([newProspect, ...prospects]);
+    }
     setSaved(true);
-    setTimeout(() => setSaved(false), 3000);
   }
 
   const quoteReady = !!selectedPkg;
@@ -6882,11 +6918,23 @@ function QuoteBuilderTab() {
 
           {/* Step 1 — Client Info */}
           <div className="rounded-2xl p-6" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
-            <p className="text-[10px] tracking-[0.25em] uppercase mb-4" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Step 1 — Client Info</p>
+            <div className="flex items-center justify-between mb-4">
+              <p className="text-[10px] tracking-[0.25em] uppercase" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Step 1 — Client Info</p>
+              {linkedProspect && (
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] px-2.5 py-1 rounded-full" style={{ fontFamily: FONT_LUXE, background: "rgba(74,153,112,0.12)", color: "#4a9970", border: "1px solid rgba(74,153,112,0.3)" }}>
+                    🔗 Linked: {linkedProspect.biz}
+                  </span>
+                  <button onClick={onClearProspect} className="hover:opacity-60 transition-opacity" style={{ fontFamily: FONT_LUXE, fontSize: "9px", color: "rgba(30,15,10,0.4)", letterSpacing: "0.1em" }}>× unlink</button>
+                </div>
+              )}
+            </div>
             <div className="grid sm:grid-cols-2 gap-4">
               {([
                 { label: "Client Name", val: clientName, set: setClientName, placeholder: "e.g. Sarah" },
                 { label: "Business Name", val: bizName, set: setBizName, placeholder: "e.g. Bloom Med Spa" },
+                { label: "Email Address", val: email, set: setEmail, placeholder: "e.g. sarah@blomspa.com" },
+                { label: "Phone Number", val: phone, set: setPhone, placeholder: "e.g. 416-555-0100" },
                 { label: "Industry / Niche", val: niche, set: setNiche, placeholder: "e.g. Medical Aesthetics" },
                 { label: "City", val: city, set: setCity, placeholder: "e.g. Toronto, ON" },
               ] as const).map(({ label, val, set, placeholder }) => (
@@ -7095,23 +7143,33 @@ function QuoteBuilderTab() {
           </div>
 
           {/* Save to Pipeline */}
-          <button
-            onClick={() => quoteReady && saveToPipeline()}
-            className="w-full py-3.5 rounded-xl text-[11px] tracking-widest uppercase transition-all"
-            style={{
-              fontFamily: FONT_LUXE,
-              background: saved ? "#4a7a4a" : (quoteReady ? "rgba(74,153,112,0.12)" : "rgba(30,15,10,0.04)"),
-              color: saved ? "#fff" : (quoteReady ? "#4a9970" : "rgba(30,15,10,0.2)"),
-              cursor: quoteReady ? "pointer" : "not-allowed",
-              border: quoteReady ? "1px solid rgba(74,153,112,0.35)" : "1px solid rgba(30,15,10,0.08)",
-            }}
-          >
-            {saved ? "✓ Saved to Pipeline! (auto-expires in 7 days)" : "➕ Save to Pipeline"}
-          </button>
-          {saved && (
-            <p className="text-center text-[10px]" style={{ fontFamily: FONT_BODY, color: "rgba(74,153,112,0.8)" }}>
-              Go to the <strong>Deals</strong> tab to see it — it'll be in the Proposal Sent stage.
-            </p>
+          {!saved ? (
+            <button
+              onClick={() => quoteReady && saveToPipeline()}
+              className="w-full py-3.5 rounded-xl text-[11px] tracking-widest uppercase transition-all"
+              style={{
+                fontFamily: FONT_LUXE,
+                background: quoteReady ? "rgba(74,153,112,0.12)" : "rgba(30,15,10,0.04)",
+                color: quoteReady ? "#4a9970" : "rgba(30,15,10,0.2)",
+                cursor: quoteReady ? "pointer" : "not-allowed",
+                border: quoteReady ? "1px solid rgba(74,153,112,0.35)" : "1px solid rgba(30,15,10,0.08)",
+              }}
+            >
+              {linkedProspect ? `➕ Attach Quote to ${linkedProspect.biz}` : "➕ Save to Pipeline"}
+            </button>
+          ) : (
+            <div className="rounded-xl p-4 text-center space-y-3" style={{ background: "rgba(74,153,112,0.1)", border: "1px solid rgba(74,153,112,0.3)" }}>
+              <p style={{ fontFamily: FONT_LUXE, fontSize: "11px", letterSpacing: "0.15em", textTransform: "uppercase", color: "#4a9970" }}>
+                ✓ {linkedProspect ? `Quote attached to ${linkedProspect.biz}` : "Saved to pipeline"} — expires in 7 days
+              </p>
+              <button
+                onClick={onGoToDeals}
+                className="w-full py-2.5 rounded-xl text-[11px] tracking-widest uppercase transition-all hover:opacity-90"
+                style={{ fontFamily: FONT_LUXE, background: "#4a9970", color: "#fff" }}
+              >
+                Go to Deal Pipeline →
+              </button>
+            </div>
           )}
 
           {/* Live Quote Preview */}
@@ -7136,6 +7194,19 @@ function PlaybookPage() {
   const [tab, setTab] = useState<Tab>("deals");
   const [refOpen, setRefOpen] = useState(false);
   const refDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Shared prospect state — single source of truth for both Deal Pipeline and Quote Builder
+  const [prospects, setProspects] = useState<Prospect[]>(() => loadProspects());
+  const persist = (list: Prospect[]) => { setProspects(list); saveAllProspects(list); };
+
+  // Which prospect to pre-fill in Quote Builder (null = blank/new)
+  const [quoteProspectId, setQuoteProspectId] = useState<string | null>(null);
+
+  function openQuoteFor(id: string) {
+    setQuoteProspectId(id);
+    setTab("quote");
+    setRefOpen(false);
+  }
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
@@ -7166,7 +7237,6 @@ function PlaybookPage() {
     { id: "schedule", label: "Daily Schedule",   icon: "⏰" },
   ];
 
-  const allTabs = [...primaryTabs, ...referenceTabs];
   const activeRefTab = referenceTabs.find(t => t.id === tab);
 
   return (
@@ -7262,9 +7332,9 @@ function PlaybookPage() {
         {tab === "outreach" && <OutreachTab />}
         {tab === "growth" && <GrowthTab />}
         {tab === "content" && <ContentStrategyTab />}
-        {tab === "deals" && <DealTrackerTab />}
+        {tab === "deals" && <DealTrackerTab prospects={prospects} persist={persist} onBuildQuote={openQuoteFor} />}
         {tab === "newhire" && <NewHireTab />}
-        {tab === "quote" && <QuoteBuilderTab />}
+        {tab === "quote" && <QuoteBuilderTab prospects={prospects} persist={persist} prospectId={quoteProspectId} onGoToDeals={() => { setQuoteProspectId(null); setTab("deals"); }} onClearProspect={() => setQuoteProspectId(null)} />}
         {tab === "schedule" && <ScheduleTab />}
       </div>
 
