@@ -9,7 +9,7 @@ const FONT_LUXE = "'Jost', sans-serif";
 const FONT_SCRIPT = "'Allura', cursive";
 
 /* ─── Types ───────────────────────────────────────────── */
-type Tab = "workflow" | "monthly" | "prompts" | "outreach" | "growth" | "newhire" | "deals" | "content" | "quote";
+type Tab = "workflow" | "monthly" | "prompts" | "outreach" | "growth" | "newhire" | "deals" | "content" | "quote" | "schedule";
 
 /* ─── Prompt Card ─────────────────────────────────────── */
 function PromptCard({ title, tag, prompt }: { title: string; tag: string; prompt: string }) {
@@ -5487,6 +5487,428 @@ function LoginGate({ onAuth }: { onAuth: () => void }) {
   );
 }
 
+/* ─── Schedule Tab ───────────────────────────────────── */
+const BLOCK_COLORS: Record<string, { bg: string; border: string; dot: string; label: string }> = {
+  live:     { bg: "rgba(220,38,38,0.1)",    border: "rgba(220,38,38,0.28)",    dot: "#dc2626", label: "LIVE" },
+  content:  { bg: "rgba(74,100,200,0.09)",  border: "rgba(74,100,200,0.22)",   dot: "#4a64c8", label: "Content" },
+  outreach: { bg: "rgba(201,122,122,0.1)",  border: "rgba(201,122,122,0.25)",  dot: "#c97a7a", label: "Outreach" },
+  sales:    { bg: "rgba(74,153,112,0.1)",   border: "rgba(74,153,112,0.28)",   dot: "#4a9970", label: "Sales" },
+  client:   { bg: "rgba(200,168,100,0.1)",  border: "rgba(200,168,100,0.28)",  dot: "#c8a864", label: "Clients" },
+  admin:    { bg: "rgba(110,110,130,0.07)", border: "rgba(110,110,130,0.18)",  dot: "#8a8a9a", label: "Admin" },
+  personal: { bg: "rgba(240,170,80,0.09)",  border: "rgba(240,170,80,0.22)",   dot: "#d48e28", label: "Mindset" },
+  rest:     { bg: "rgba(255,255,255,0.38)", border: "rgba(200,168,100,0.12)",  dot: "#b0a898", label: "Rest" },
+};
+
+interface TimeBlock {
+  time: string;
+  label: string;
+  desc: string;
+  type: keyof typeof BLOCK_COLORS;
+  duration: string;
+}
+
+const DAILY_BLOCKS: TimeBlock[] = [
+  {
+    time: "8:00am", duration: "30 min", type: "personal",
+    label: "Wake Up & Mindset",
+    desc: "Coffee before your feet hit the floor. Read your goals out loud. 5 minutes of visualisation — see yourself on the call, see the client saying yes. No social media, no news, no scrolling. This 30 minutes sets the tone for everything that follows.",
+  },
+  {
+    time: "8:30am", duration: "60–90 min", type: "live",
+    label: "🔴 TikTok LIVE",
+    desc: "Show up every single day without fail. Even if 4 people are watching — those 4 could become clients. Lead with value first: a tip, a transformation, behind-the-scenes. Drop your offer naturally every 10 minutes: 'If you want me to build your AI avatar, DM me AVATAR.' Show the AI clone demo at least once per live. The algorithm rewards consistency more than virality. The live IS your storefront.",
+  },
+  {
+    time: "10:00am", duration: "30 min", type: "content",
+    label: "Live Wrap-Up & DM Blitz",
+    desc: "Save your best live moments to drafts — clip them for TikTok and Reels immediately. Reply to every comment from the live. DM every person who followed during the live: 'Hey! Thanks for joining today — were you curious about the AI avatar or the social media service?' This is warm outreach. These people already know you. Don't skip it.",
+  },
+  {
+    time: "10:30am", duration: "90 min", type: "content",
+    label: "Content Creation Block",
+    desc: "Create today's content across all 4 platforms: TikTok, Instagram, Facebook, Threads. One concept, five pieces — the video becomes a Reel, a Threads post, a Facebook post, and a story. Priority themes: AI avatar demos, client transformations, pricing transparency ('Here's what $1,000/mo gets you'), behind-the-scenes of what you do, and direct calls to action.",
+  },
+  {
+    time: "12:00pm", duration: "45 min", type: "rest",
+    label: "Lunch — Screens Off",
+    desc: "Non-negotiable. Full stop. You cannot close clients on a depleted brain. Eat something real. Step outside if you can. You have a full afternoon ahead — protect your energy for the hours that actually make you money.",
+  },
+  {
+    time: "12:45pm", duration: "75 min", type: "outreach",
+    label: "Outreach Block",
+    desc: "15–20 new cold DMs every single day using the Google Maps method and Outreach Scripts tab. Then follow up with every lead in your pipeline who hasn't replied in 48+ hours. This is the highest-revenue activity of your day — not content, not live, not admin. Consistent outreach closes consistent deals. Don't skip this because you feel like creating instead.",
+  },
+  {
+    time: "2:00pm", duration: "60–90 min", type: "sales",
+    label: "Sales Calls & Demos",
+    desc: "Money time. Run your Zoom discovery calls and demos here. Show the AI avatar demo live on every single call — the wow moment is your close. Have your packages memorised. Send the proposal within 1 hour of hanging up while they're still excited. Aim for 1 call per day, 5 per week minimum.",
+  },
+  {
+    time: "3:30pm", duration: "60 min", type: "admin",
+    label: "Pipeline + Platform Admin",
+    desc: "Update every deal in the Deal Tracker — it only works if it's current. Schedule today's content using the platform. Reply to DMs and emails (fast replies build trust faster than anything). Send any pending onboarding questionnaires or overdue proposals.",
+  },
+  {
+    time: "4:30pm", duration: "60 min", type: "client",
+    label: "Client Deliverables",
+    desc: "Once you have clients: create their content, submit for approval, make edits, send monthly reports. Always deliver before the promised deadline — your first clients become your best testimonials. No clients yet? Use this time for extra lead research — find 10 more leads, study their brands, personalise your outreach for tomorrow.",
+  },
+  {
+    time: "5:30pm", duration: "60 min", type: "content",
+    label: "Second Content Push",
+    desc: "Film 2–3 short videos while energy is still there. Write Threads and Facebook posts for tomorrow. This second push is what separates the accounts that grow fast from the ones that plateau — the algorithm loves volume and consistency together. Done is better than perfect.",
+  },
+  {
+    time: "6:30pm", duration: "30 min", type: "admin",
+    label: "Analytics Check",
+    desc: "15 minutes per platform. What performed today? Note the format, topic, and time — do more of that tomorrow. Check follower growth, DM volume, profile visits. Don't spiral into overthinking — in and out in 30 minutes total.",
+  },
+  {
+    time: "7:00pm", duration: "30 min", type: "admin",
+    label: "Tomorrow Prep",
+    desc: "Write your 3 priorities for tomorrow. Set your TikTok LIVE topic. Lay out your outreach targets. This 30 minutes saves you 2 hours of morning confusion and keeps you in execution mode rather than planning mode all day.",
+  },
+  {
+    time: "7:30pm", duration: "30 min", type: "personal",
+    label: "Shutdown Ritual",
+    desc: "Close every tab. Write 3 wins from today — even small ones count. 'Sent 15 DMs.' 'Got one reply.' 'Had 10 people on the live.' Acknowledge the work. The compound effect of daily wins is exactly what builds a million-dollar business. Then silence all work notifications.",
+  },
+  {
+    time: "8:00pm", duration: "30 min", type: "rest",
+    label: "Wind-Down",
+    desc: "Dinner, TV, walk, skincare, music, family — whatever fills your cup. You are fully off the clock. Rest is not laziness. Recovery is part of the strategy. You need to be able to do this for 12 months straight, and that requires protecting this time.",
+  },
+  {
+    time: "8:30pm", duration: "—", type: "rest",
+    label: "🚫 Business Ends Here",
+    desc: "Hard boundary, every day. No DMs. No content ideas. No strategy planning before bed. The work will be there tomorrow. This line is the difference between building a sustainable business and burning out at month 3. Hold it.",
+  },
+];
+
+interface WeekDay {
+  day: string;
+  emoji: string;
+  theme: string;
+  color: string;
+  focus: string;
+  blocks: string[];
+}
+
+const WEEK_DAYS: WeekDay[] = [
+  {
+    day: "Monday", emoji: "🗓️", theme: "Plan + Batch", color: "#c8a864",
+    focus: "Start with direction, not chaos. What gets planned on Monday gets done all week.",
+    blocks: [
+      "Write this week's content pillars — pick 3 themes to rotate across all platforms",
+      "Batch-film 3–5 videos in one session (saves 5+ hours across the week)",
+      "Plan your TikTok LIVE topic for every day this week so you never scramble",
+      "Review last week: what content performed? What fell flat? Do more of what worked.",
+      "Send 10 Monday outreach DMs — people check messages on Monday mornings",
+    ],
+  },
+  {
+    day: "Tuesday", emoji: "📤", theme: "Heavy Outreach Day", color: "#c97a7a",
+    focus: "Maximum new lead generation. This is your full cold-outreach day. Nothing else competes.",
+    blocks: [
+      "Google Maps method: research and list 20 new leads in your target niches",
+      "Send 20 personalised cold DMs using the scripts from the Outreach Scripts tab",
+      "Follow up with every lead who hasn't replied in 48+ hours",
+      "Book sales calls for Wednesday and Thursday — aim for 3 calls minimum",
+      "Post your Monday-batched content to all 4 platforms",
+    ],
+  },
+  {
+    day: "Wednesday", emoji: "📞", theme: "Sales Call Day", color: "#7b68ee",
+    focus: "Block 2–4 hours for calls. This is your highest-value activity. Protect it fiercely.",
+    blocks: [
+      "Run all booked discovery calls and Zoom demos — aim for 2–3 today",
+      "Show the AI avatar demo live on every single call — this moment closes deals",
+      "Send proposals within 1 hour of every call while excitement is still high",
+      "Follow up with Tuesday leads who opened your message but haven't replied",
+      "Update the Deal Tracker after every call — move every deal to its correct stage",
+    ],
+  },
+  {
+    day: "Thursday", emoji: "🎬", theme: "Content Production Day", color: "#4a90d9",
+    focus: "Your creative day. Film more than you think you need — excess content is never a problem.",
+    blocks: [
+      "Film your big weekly piece: educational, storytelling, or a client transformation",
+      "Record 2 AI avatar demo videos to post as social proof this week",
+      "Film behind-the-scenes content — people buy you before they buy the service",
+      "Edit and schedule the remaining content for the week's queue",
+      "Write 5 Threads posts to go out Monday through Friday next week",
+    ],
+  },
+  {
+    day: "Friday", emoji: "💰", theme: "Close + Clean Up", color: "#4a9970",
+    focus: "Turn open deals into closed deals. Follow up on everything. Collect what you're owed.",
+    blocks: [
+      "Send a warm follow-up on every open proposal — 'Just checking in — any questions?'",
+      "Move all stale deals to the correct stage or archive them to keep the pipeline clean",
+      "Collect any outstanding setup fees and send invoices",
+      "Review this week's revenue number vs. your monthly goal — adjust next week if needed",
+      "Write down your 3 biggest wins this week. Celebrate them. You showed up.",
+    ],
+  },
+  {
+    day: "Saturday", emoji: "📊", theme: "Light Review Day", color: "#9a8080",
+    focus: "Analyse, plan, and breathe. No heavy execution — you've earned a lighter Saturday.",
+    blocks: [
+      "Weekly analytics review: follower growth, engagement rate, top-performing content",
+      "Write 3 things that worked this week + 3 things to change next week",
+      "Pre-plan Monday's batch content topics so you start strong",
+      "Optional: reply to comments and DMs if you feel like it — no pressure",
+      "Do one thing that is purely for you. You earned it.",
+    ],
+  },
+  {
+    day: "Sunday", emoji: "🌙", theme: "Full Rest — No Exceptions", color: "#6a5a8a",
+    focus: "Complete rest. This is the rule, not the suggestion. You cannot build $1M while burned out.",
+    blocks: [
+      "No posting. No DMs. No strategy sessions. The business will survive one day off.",
+      "Journal: what do you want next week to look and feel like?",
+      "Visualise your next client saying yes on the call",
+      "Set Monday's TikTok LIVE topic — 5 minutes max, then close it",
+      "Sleep. You are building something that requires your absolute best self every single day.",
+    ],
+  },
+];
+
+interface Milestone {
+  period: string;
+  goal: string;
+  emoji: string;
+  color: string;
+  label: string;
+  targets: string[];
+  math: string;
+}
+
+const MILESTONES: Milestone[] = [
+  {
+    period: "First 30 Days", goal: "$2,000–$5,000", emoji: "🌱", color: "#c8a864", label: "First Revenue In",
+    targets: [
+      "Sign first 1–3 clients (Starter package or brand kits)",
+      "Post daily on all 4 platforms — no gap days, no excuses",
+      "TikTok LIVE every morning at 8:30am, even if 3 people are watching",
+      "Send 300+ outreach DMs total (15/day × 20 weekdays)",
+      "Book and run 5–10 discovery calls",
+      "Show AI avatar demo on every single call and every live",
+      "Secure first client testimonial — this is your social proof engine",
+    ],
+    math: "2 Starter clients = $2,000/mo recurring + $1,000 in setup fees collected day 1. Add 3 brand kits at $297 each = +$891. Total in month 1: ~$3,900–$5,000. This is completely achievable with 15 DMs/day from the start.",
+  },
+  {
+    period: "60–90 Days", goal: "$10,000–$33,000/mo", emoji: "🚀", color: "#c97a7a", label: "Six-Figure Pace",
+    targets: [
+      "5–10 active recurring clients (Starter and Growth mix)",
+      "Upsell AI avatar add-on to at least half your clients",
+      "First organic referral comes in from a happy client",
+      "Hire a VA or editor (10–15 hrs/week) to free up your delivery time",
+      "Revenue audit upsell offered to your best-fit clients",
+      "First month at $10,000+ in recurring monthly revenue",
+      "Sales call → proposal → close cycle running in under 7 days",
+    ],
+    math: "6 Growth clients × $2,500 = $15,000/mo. Add 2 Elite × $5,000 = $25,000/mo. Add-ons bring it to $30,000+/mo. Setup fees + one-time services add $5k–$10k/month on top. Six figures in 90 days = $33k/mo pace — aggressive but real if you close consistently.",
+  },
+  {
+    period: "4–12 Months", goal: "$83,000–$100,000+/mo", emoji: "👑", color: "#7b68ee", label: "The Million-Dollar Year",
+    targets: [
+      "20+ active clients across all tiers",
+      "Team of 3–5: account manager, content creator, sales closer, VA",
+      "Your TikTok LIVE becomes a full inbound funnel — clients come to you",
+      "Digital product or AI course revenue stream running in the background",
+      "Referral engine running — clients are sending clients without you asking",
+      "White-label partnerships generating additional passive income",
+      "Your personal brand IS the business — you are a known face in this space",
+    ],
+    math: "10 Elite × $5,000 = $50,000. 10 Growth × $2,500 = $25,000. Add-ons + AI video packages = $10,000. Digital products/course = $5,000–$15,000/mo. Total: $90,000–$100,000/mo recurring. Multiply by 12 months = $1M+. The variable is close rate and client retention. Both are in your control.",
+  },
+];
+
+const GROUND_RULES = [
+  { emoji: "🔴", rule: "Live at 8:30am. Every single day.", desc: "The algorithm and your audience reward reliability over perfection. Show up even when the room is empty. Especially then. Those are the lives that build the habit." },
+  { emoji: "🚫", rule: "8:30pm is the hard stop.", desc: "No exceptions. Close the laptop. Silence the notifications. Rest is how you sustain this for 12 months instead of burning out at 6 weeks." },
+  { emoji: "🥗", rule: "Lunch is mandatory — 45 minutes, screens away.", desc: "You cannot close clients on a depleted brain. Hunger is not hustle. You eat, you rest, you come back sharper." },
+  { emoji: "📊", rule: "Every lead goes in the Deal Tracker.", desc: "If it's not tracked, it doesn't exist. Leads fall through the cracks when they live only in your head or buried in DMs." },
+  { emoji: "💎", rule: "Do outstanding work for client number one.", desc: "One raving client is worth 50 cold DMs. Their testimonial, their referral, and their case study are your best marketing. Prioritise their experience." },
+  { emoji: "📱", rule: "Post every day. Imperfectly.", desc: "An imperfect post beats no post every single time. You are building a personal brand — disappearing for 3 days resets your momentum to zero." },
+  { emoji: "🧭", rule: "Your revenue goal is your daily filter.", desc: "Every evening ask: 'Did what I did today move me toward $X?' If the answer is no two days running, something has to change tomorrow." },
+];
+
+function ScheduleTab() {
+  const [expandedDay, setExpandedDay] = useState<string | null>("Monday");
+
+  return (
+    <div>
+      <SectionHeader
+        label="Daily Schedule"
+        title="Your Day, Week & 90-Day Roadmap"
+        sub="You are the entire business right now. This schedule is built to get your first clients, grow the Dollhouse brand across all four platforms, and protect you from working yourself into the ground."
+      />
+
+      {/* Revenue North Stars */}
+      <div className="mb-10">
+        <p className="text-[10px] tracking-[0.25em] uppercase mb-5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Your Revenue Targets</p>
+        <div className="grid md:grid-cols-3 gap-4">
+          {MILESTONES.map((m) => (
+            <div key={m.period} className="rounded-2xl p-5" style={{ background: `${m.color}18`, border: `1px solid ${m.color}45` }}>
+              <div className="flex items-center gap-3 mb-2">
+                <span style={{ fontSize: "1.5rem" }}>{m.emoji}</span>
+                <div>
+                  <p style={{ fontFamily: FONT_LUXE, fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: m.color }}>{m.period}</p>
+                  <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.2rem", color: "var(--ink)", fontWeight: 600, lineHeight: 1.2 }}>{m.goal}</p>
+                </div>
+              </div>
+              <p style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "rgba(30,15,10,0.5)" }}>{m.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Ground Rules */}
+      <div className="rounded-2xl p-6 md:p-8 mb-12" style={{ background: "var(--ink)", border: "1px solid rgba(200,168,100,0.2)" }}>
+        <p className="text-[10px] tracking-[0.25em] uppercase mb-6" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The Non-Negotiables — Hold These or Nothing Else Works</p>
+        <div className="grid md:grid-cols-2 gap-5">
+          {GROUND_RULES.map((r, i) => (
+            <div key={i} className="flex gap-4">
+              <span style={{ fontSize: "1.25rem", flexShrink: 0, marginTop: "1px" }}>{r.emoji}</span>
+              <div>
+                <p style={{ fontFamily: FONT_LUXE, fontSize: "0.85rem", color: "var(--gold)", fontWeight: 500, marginBottom: "4px" }}>{r.rule}</p>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.55 }}>{r.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Daily Time Blocks */}
+      <div className="mb-12">
+        <p className="text-[10px] tracking-[0.25em] uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Your Daily Schedule</p>
+        <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--rose)", fontWeight: 400, marginBottom: "6px" }}>8:30am → 8:30pm · 12 Hours</h3>
+        <p className="mb-6" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.5)" }}>Bounded, intentional, and repeatable for 12 months. Every block has a purpose.</p>
+        {/* Legend */}
+        <div className="flex flex-wrap gap-2 mb-6">
+          {Object.entries(BLOCK_COLORS).map(([key, val]) => (
+            <span key={key} className="flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] tracking-wider uppercase" style={{ fontFamily: FONT_LUXE, background: val.bg, border: `1px solid ${val.border}`, color: val.dot }}>
+              <span className="w-1.5 h-1.5 rounded-full inline-block shrink-0" style={{ background: val.dot }} />
+              {val.label}
+            </span>
+          ))}
+        </div>
+        <div className="space-y-3">
+          {DAILY_BLOCKS.map((block, i) => {
+            const c = BLOCK_COLORS[block.type];
+            return (
+              <div key={i} className="rounded-2xl p-4 md:p-5" style={{ background: c.bg, border: `1px solid ${c.border}` }}>
+                <div className="flex items-start gap-4">
+                  <div className="shrink-0 text-right pt-0.5" style={{ minWidth: "62px" }}>
+                    <p style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", color: c.dot, fontWeight: 600 }}>{block.time}</p>
+                    <p style={{ fontFamily: FONT_BODY, fontSize: "0.65rem", color: "rgba(30,15,10,0.38)" }}>{block.duration}</p>
+                  </div>
+                  <div className="w-px self-stretch shrink-0" style={{ background: c.border, minHeight: "24px" }} />
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                      <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: "var(--ink)", fontWeight: 500 }}>{block.label}</p>
+                      <span className="px-2 py-0.5 rounded-full text-[8px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, background: c.border, color: c.dot }}>{c.label}</span>
+                    </div>
+                    <p style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.65 }}>{block.desc}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Weekly Rhythm */}
+      <div className="mb-12">
+        <p className="text-[10px] tracking-[0.25em] uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Weekly Rhythm</p>
+        <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--rose)", fontWeight: 400, marginBottom: "6px" }}>Every Day Has a Job</h3>
+        <p className="mb-6" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.5)" }}>Each day has a primary focus. This prevents decision fatigue and keeps you moving forward without burning out on the same tasks every single day.</p>
+        <div className="space-y-2">
+          {WEEK_DAYS.map((d) => {
+            const isOpen = expandedDay === d.day;
+            return (
+              <div key={d.day} className="rounded-2xl overflow-hidden transition-all" style={{ border: `1px solid ${d.color}35`, background: isOpen ? `${d.color}10` : "rgba(255,255,255,0.55)" }}>
+                <button
+                  onClick={() => setExpandedDay(isOpen ? null : d.day)}
+                  className="w-full flex items-center justify-between px-5 py-4 text-left"
+                >
+                  <div className="flex items-center gap-4">
+                    <span style={{ fontSize: "1.3rem" }}>{d.emoji}</span>
+                    <div>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: "var(--ink)" }}>{d.day}</p>
+                        <span className="px-2.5 py-0.5 rounded-full text-[9px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, background: `${d.color}22`, color: d.color, border: `1px solid ${d.color}45` }}>{d.theme}</span>
+                      </div>
+                      <p style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "rgba(30,15,10,0.5)", marginTop: "2px" }}>{d.focus}</p>
+                    </div>
+                  </div>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4 shrink-0 ml-3 transition-transform" style={{ color: "rgba(30,15,10,0.3)", transform: isOpen ? "rotate(180deg)" : "none" }}><path d="M6 9l6 6 6-6" /></svg>
+                </button>
+                {isOpen && (
+                  <div className="px-5 pb-5 pt-2 space-y-3" style={{ borderTop: `1px solid ${d.color}20` }}>
+                    {d.blocks.map((b, i) => (
+                      <div key={i} className="flex items-start gap-3">
+                        <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ background: `${d.color}22`, border: `1px solid ${d.color}45` }}>
+                          <span style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", color: d.color, fontWeight: 700 }}>{i + 1}</span>
+                        </div>
+                        <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.75)", lineHeight: 1.55 }}>{b}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 30/90/12mo Milestones */}
+      <div>
+        <p className="text-[10px] tracking-[0.25em] uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The 30 / 90 / 12-Month Plan</p>
+        <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--rose)", fontWeight: 400, marginBottom: "6px" }}>How You Get to $1M</h3>
+        <p className="mb-6" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.5)" }}>The math works. Here's exactly what needs to happen at each stage and why the numbers add up.</p>
+        <div className="space-y-5">
+          {MILESTONES.map((m) => (
+            <div key={m.period} className="rounded-2xl overflow-hidden" style={{ border: `1px solid ${m.color}35` }}>
+              <div className="px-6 py-5" style={{ background: `${m.color}18` }}>
+                <div className="flex items-center gap-3">
+                  <span style={{ fontSize: "1.6rem" }}>{m.emoji}</span>
+                  <div>
+                    <p style={{ fontFamily: FONT_LUXE, fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: m.color }}>{m.period}</p>
+                    <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "var(--ink)", fontWeight: 600, lineHeight: 1.15 }}>{m.goal} <span style={{ fontSize: "1rem", fontWeight: 400, color: "rgba(30,15,10,0.5)" }}>— {m.label}</span></p>
+                  </div>
+                </div>
+              </div>
+              <div className="grid md:grid-cols-[1fr,340px] gap-0" style={{ background: "rgba(255,255,255,0.5)" }}>
+                <div className="px-6 py-5" style={{ borderRight: "1px solid rgba(200,168,100,0.12)" }}>
+                  <p className="mb-3 text-[9px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, color: "rgba(30,15,10,0.38)" }}>What You're Doing</p>
+                  <div className="space-y-2">
+                    {m.targets.map((t, i) => (
+                      <div key={i} className="flex items-start gap-2">
+                        <span style={{ color: m.color, flexShrink: 0, marginTop: "3px", fontSize: "0.7rem", fontWeight: 700 }}>✓</span>
+                        <p style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(30,15,10,0.75)", lineHeight: 1.55 }}>{t}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="px-6 py-5">
+                  <p className="mb-3 text-[9px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, color: m.color }}>The Math</p>
+                  <div className="rounded-xl p-4" style={{ background: `${m.color}12`, border: `1px solid ${m.color}30` }}>
+                    <p style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(30,15,10,0.7)", lineHeight: 1.7 }}>{m.math}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ─── Quote Builder ───────────────────────────────────── */
 const QB_PACKAGES = {
   starter: {
@@ -6004,6 +6426,7 @@ function PlaybookPage() {
     { id: "deals", label: "Deal Pipeline", icon: "🎯" },
     { id: "newhire", label: "New Hire Guide", icon: "👋" },
     { id: "quote", label: "Quote Builder", icon: "🧮" },
+    { id: "schedule", label: "Daily Schedule", icon: "⏰" },
   ];
 
   return (
@@ -6057,6 +6480,7 @@ function PlaybookPage() {
         {tab === "deals" && <DealTrackerTab />}
         {tab === "newhire" && <NewHireTab />}
         {tab === "quote" && <QuoteBuilderTab />}
+        {tab === "schedule" && <ScheduleTab />}
       </div>
 
       <footer className="px-6 py-8 text-center border-t border-[var(--gold)]/10">
