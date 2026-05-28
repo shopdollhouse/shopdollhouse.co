@@ -3059,19 +3059,19 @@ Thanks again for trusting me with [BUSINESS NAME].
         lines={[
           { type: "note", text: "This is our #1 lead strategy. The entire funnel is built around one idea: show them something they've never seen before, and let the wow moment close the deal. Never pitch the price until they're already in love. Professional flirting — every touch has one goal: get to the next touch." },
           { type: "subhead", text: "Touch 1 — Create Curiosity (DM or Email)" },
-          { type: "note", text: "Research the business first. Find their name, their niche, their city, whether they have a face/mascot/character. Then send this — nothing else. No pitch. No price. Just curiosity." },
-          { type: "send", label: "DM — Instagram / Facebook / TikTok", text: "Hey [NAME] 👀\n\nRandom question — but we actually made something for [BUSINESS NAME] that I think you've never seen before.\n\nWould you want to take a look?" },
-          { type: "note", text: "That's it. Three lines. Do not explain what it is. The mystery is the hook. If they have a mascot or character instead of a personal brand, swap 'for you' with 'for [MASCOT NAME].'" },
-          { type: "send", label: "Email Version", text: "Subject: we made something for [BUSINESS NAME]\n\nHi [FIRST NAME],\n\nWe put together something for [BUSINESS NAME] that I genuinely think you haven't seen before. No pitch — I just wanted to ask:\n\nWould you want to take a look?\n\n— Mandy\nThe Dollhouse Brand Studio" },
-          { type: "note", text: "Short, mysterious, warm. That's the tone. They'll be curious. They'll reply." },
+          { type: "note", text: "Research the business first. Find their name, their niche, their city, whether they have a face or a brand character. Then send this. Short, specific, human. No dashes, no brackets, no pitch." },
+          { type: "send", label: "DM — Instagram / Facebook / TikTok", text: "Hey [NAME] 👀\n\nWe made an AI version of you for [BUSINESS NAME]. It posts content for your business automatically every week and you never have to film anything.\n\nWould you want to see it?" },
+          { type: "note", text: "If they have a mascot or character: swap 'an AI version of you' with 'an AI version of [MASCOT NAME] for [BUSINESS NAME].' Same energy, same message." },
+          { type: "send", label: "Email Version", text: "Subject: we made an AI version of you for [BUSINESS NAME]\n\nHi [FIRST NAME],\n\nWe actually built an AI version of you for [BUSINESS NAME]. It posts video content to your social media every week automatically. You never have to film anything or show up on camera.\n\nWould you want to see what it looks like?\n\nMandy\nThe Dollhouse Brand Studio\nshopdollhouse.co" },
+          { type: "note", text: "Short, human, direct. Reads like a real person sent it. That's the goal." },
           { type: "subhead", text: "Touch 2 — When They Say Yes (Get the Meeting)" },
-          { type: "note", text: "Their curiosity is the green light. Now your only goal is to get them on a 10-minute call or meet in person. Still no pitch. Still no price." },
-          { type: "if_say", text: "Yes! What is it? / I'm curious, what did you make? / Sure, show me!" },
-          { type: "you_say", text: "So glad you're curious — it honestly looks way better in person than over text, I don't want to ruin it.\n\nCan we grab 10 minutes on Zoom? I'll show you exactly what it is and you can tell me what you think.\n\n[CALENDAR LINK]" },
-          { type: "you_say", label: "If they're local", text: "So glad you're curious — it actually looks way better in person. Are you in [CITY]? I can swing by for 10 minutes and show you. You're going to love it." },
-          { type: "warn", text: "Do NOT send the AI Clone video in the DM or email. Do not reveal what it is yet. The reveal should happen face-to-face — that's where the magic lands. Get the meeting first." },
+          { type: "note", text: "Their reply is the green light. Now your only goal is to get them on a 10 minute call or meet in person. Still no pitch. Still no price." },
+          { type: "if_say", text: "Yes! / Wait, what? / How did you do that? / I want to see it!" },
+          { type: "you_say", text: "So glad you're curious! It honestly looks way better in person than over text. Can we grab 10 minutes on Zoom? I'll show you exactly what it looks like and you can tell me what you think." },
+          { type: "you_say", label: "If they're local", text: "So glad you're curious! Are you in [CITY]? I can swing by for 10 minutes and show you in person. You're going to love it." },
+          { type: "warn", text: "Do NOT send the AI Clone video in the DM or email. The reveal happens face to face. That is where the magic lands. Get the meeting first." },
           { type: "if_say", text: "Can you just tell me what it is? / What kind of thing did you make?" },
-          { type: "you_say", text: "I could describe it — but honestly it won't do it justice over text. It's an AI video of you [or your brand character] that we created for [BUSINESS NAME]. You'll get it the moment you see it. 10 minutes on Zoom?" },
+          { type: "you_say", text: "It's an AI video of you that we created for [BUSINESS NAME]. It honestly won't do it justice over text though. Can we do 10 minutes on Zoom so you can actually see it?" },
           { type: "subhead", text: "Touch 3 — The Meeting (Before They Arrive)" },
           { type: "note", text: "Before the call: Make the AI Clone. Use their best photo or headshot (from their website, social media, or Google). If they have a mascot or character — use that. Build a short 15–30 second AI video using your video tool. Have the proposal ready — customized for their business." },
           { type: "note", text: "Note: Them saying 'yes' to the meeting is their consent to seeing the AI version of them. If they later want to use it, they'll sign the contract which covers image rights. You don't need to ask permission to build it beforehand — you're building it as a demo." },
@@ -4013,33 +4013,31 @@ function genMessage(key: string, p: Prospect): string {
 
 Hi ${fn},
 
-We created an AI clone of you — a digital version of you [or your brand character] that can post video content for ${biz} every single week without you ever filming anything.
+We actually built an AI version of you for ${biz}. It posts video content to your social media every week automatically. You never have to film anything or show up on camera.
 
 Would you want to see what it looks like?
 
-— Mandy Fortune
+Mandy
 The Dollhouse Brand Studio
 shopdollhouse.co`,
 
     ai_clone_dm:
 `Hey ${fn} 👀
 
-Random question — we actually made an AI clone of you for ${biz}. It's a digital version of you that can post content for your business automatically, without you ever filming anything.
+We made an AI version of you for ${biz}. It posts content for your business automatically every week and you never have to film anything.
 
-Would you want to see what it looks like?`,
+Would you want to see it?`,
 
     cold_email:
-`Subject: quick question about ${biz}'s social media
+`Subject: quick question about ${biz}
 
 Hi ${fn},
 
-I came across ${biz} online and you're clearly doing great work in the ${niche} space. The one thing I noticed is that your social presence doesn't quite match the quality of what you're actually offering.
+I came across ${biz} online and I love what you're doing in the ${niche} space. One thing I noticed though is that your social media presence doesn't really match the quality of what you're actually offering.
 
-I run The Dollhouse Brand Studio and we handle done-for-you social media for ${niche} businesses in ${city}. Content, posting, ads, automations, all of it. You don't have to think about any of it.
+I run The Dollhouse Brand Studio. We handle done-for-you social media for ${niche} businesses in ${city}. Content, posting, ads, automations, all of it. You never have to think about any of it.
 
-I'd love to put together a quick look at what we'd specifically do for ${biz}. Not a pitch, just a 15-minute call to see if it makes sense.
-
-Would any time this week work?
+Would you be open to a quick 15 minute call? I'd love to show you what we'd do specifically for ${biz}.
 
 Mandy Fortune
 The Dollhouse Brand Studio
@@ -4048,20 +4046,20 @@ shopdollhouse.co`,
     cold_dm:
 `Hey ${fn} 👋
 
-Love what you're doing with ${biz}. Quick question: are you handling your own social content right now, or does someone help you?
+Love what you're doing with ${biz}! Quick question, are you handling your own social content right now or does someone help you with it?
 
-I run a done-for-you social media studio and I had a couple ideas for ${biz} that I think could really perform. Happy to share them — no strings.`,
+I run a done-for-you social media studio and I already have a couple ideas for ${biz} that I think could really perform. Happy to share them for free, no strings at all.`,
 
     compliment:
 `Subject: compliments to your team at ${biz}
 
 Hi ${fn},
 
-Just wanted to shoot you a quick email. I came across ${biz} and was genuinely impressed with what you're doing in the ${niche} space.
+Just wanted to shoot you a quick note. I came across ${biz} and was genuinely impressed with what you're doing in the ${niche} space.
 
-I wanted to share you on social media but noticed ${biz} isn't doing much with Facebook or Instagram. Any reason? I think more people need to hear about you.
+I wanted to share you on social media but noticed ${biz} isn't doing much on Instagram or Facebook. Any reason? I really think more people need to hear about you.
 
-Also where can I leave you a review? Happy to spread the word.
+Also where can I leave you a review? I'd love to spread the word.
 
 Mandy Fortune
 shopdollhouse.co
@@ -4069,75 +4067,76 @@ shopdollhouse.co
 
 (Send this follow-up 2 days later if they reply positively)
 
-Hey ${fn}! Thanks for getting back to me and so glad you liked it.
+Hey ${fn}! Thanks for getting back to me, so glad you liked it.
 
-For the social media side I'd genuinely love to help. A lot of other ${niche} businesses in ${city} are using it to get more clients right now and I think we could do the same for ${biz} pretty quickly.
+For the social media side I would genuinely love to help. A lot of other ${niche} businesses in ${city} are using it to get more clients right now and I think we could do the same for ${biz} pretty quickly.
 
-Would love to chat for a few minutes if you're open to it. Mandy`,
+Would love to chat for a few minutes if you're open to it!
+
+Mandy`,
 
     free_trial:
-`Subject: something for ${biz} — no commitment
+`Subject: something for ${biz}, no strings
 
 Hi ${fn},
 
-We do done-for-you social media for ${niche} businesses — AI clone content, automations, booking systems, the works — and we're offering a 14-day free trial right now so you can see real results before deciding anything.
+We do done-for-you social media for ${niche} businesses. AI clone content, automations, booking systems, all of it. And right now we're offering a 14 day free trial so you can see real results before committing to anything.
 
-Would it be worth a quick 10-minute call to see what it looks like for ${biz} specifically?
+Would it be worth a quick 10 minute call to see what that looks like for ${biz}?
 
-— Mandy Fortune
+Mandy Fortune
 The Dollhouse Brand Studio
 shopdollhouse.co`,
 
     free_trial_dm:
-`Hey ${fn}! Quick one —
+`Hey ${fn}! Quick question.
 
-We're offering a 14-day free trial for ${niche} businesses right now. Done-for-you social media — AI clone content, automations, the whole thing — so you can see it working before deciding anything.
+We're offering a 14 day free trial for ${niche} businesses right now. Done-for-you social media, AI clone content, automations, the whole thing. So you can see it actually working before you decide anything.
 
-Worth a 10-minute chat?`,
+Worth a 10 minute chat?`,
 
     followup_email:
 `Subject: Re: ${biz}
 
 Hi ${fn},
 
-Just bumping this in case my last email got buried!
+Just bumping this up in case my last email got buried!
 
-I had a few specific ideas for ${biz} that I think could really move the needle — happy to share them on a quick 15-minute call.
+I had a few specific ideas for ${biz} that I think could really move things forward. Happy to run through them on a quick 15 minute call.
 
 Would any time this week work for you?
 
-— Mandy`,
+Mandy`,
 
     followup_dm:
-`Hey ${fn} — just wanted to bump this up in case it got buried!
+`Hey ${fn}! Just wanted to bump this in case it got buried.
 
-I genuinely think there's an opportunity for ${biz} here. Happy to share some specific ideas for your page — no strings.
+I genuinely think there's something here for ${biz}. Happy to share a couple of specific ideas for your page, no strings at all.
 
-Reply "yes" and I'll send them over 🙂`,
+Just reply yes and I'll send them over 🙂`,
 
     free_video:
-`Hey ${fn} — I reached out a few days ago. I'm the one who creates AI video clones of business owners for their social media.
+`Hey ${fn}! I reached out a few days ago. I'm the one who builds AI video clones for business owners.
 
 I'd love to make one for ${biz} for free just to show you what it looks like. Would you be open to seeing it?`,
 
     book_call:
 `Hi ${fn},
 
-So glad you replied! I'd love to show you exactly what we'd do for ${biz}.
+So glad you replied! I would love to show you exactly what we'd do for ${biz}.
 
-Would you be open to a quick 15-minute call? I can walk you through what we're doing for other ${niche} businesses in ${city} and share a few specific ideas I already have for your page.
+Would you be open to a quick 15 minute call? I can walk you through what we're doing for other ${niche} businesses in ${city} and share a few ideas I already have for your page.
 
-Here's my calendar: [CALENDAR LINK]
+Just let me know what day works best for you this week!
 
-Looking forward to connecting!
 Mandy`,
 
     call_reply:
 `Hi ${fn},
 
-So great to hear from you. I think there's a real opportunity for ${biz} especially around ${pain} and I'd love to show you what that could look like.
+So great to hear from you. I think there's a real opportunity here for ${biz}, especially around ${pain}. I would love to show you what that could look like.
 
-Would [DAY] or [DAY] this week work for a quick 15-minute call? I'll show you exactly what we'd do and what the results look like for other ${niche} businesses.
+What day works best for you this week for a quick 15 minute call? I'll show you exactly what the results look like for other ${niche} businesses.
 
 Mandy Fortune
 The Dollhouse Brand Studio`,
