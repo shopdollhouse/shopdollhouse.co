@@ -9,7 +9,7 @@ const FONT_LUXE = "'Jost', sans-serif";
 const FONT_SCRIPT = "'Allura', cursive";
 
 /* ─── Types ───────────────────────────────────────────── */
-type Tab = "workflow" | "monthly" | "prompts" | "outreach" | "growth" | "newhire" | "deals";
+type Tab = "workflow" | "monthly" | "prompts" | "outreach" | "growth" | "newhire" | "deals" | "content";
 
 /* ─── Prompt Card ─────────────────────────────────────── */
 function PromptCard({ title, tag, prompt }: { title: string; tag: string; prompt: string }) {
@@ -3511,6 +3511,455 @@ We are a small team. Trust and reliability are non-negotiable.`,
   );
 }
 
+/* ─── Tab: 4x4 Content Strategy ─────────────────────── */
+function ContentStrategyTab() {
+  const [openStep, setOpenStep] = useState<number | null>(null);
+
+  const steps = [
+    {
+      n: "01",
+      label: "Hook",
+      timing: "First 4 seconds",
+      color: "var(--rose)",
+      icon: "⚡",
+      tagline: "Interrupt. Disrupt. Make it personal.",
+      body: `The hook is not an introduction — it is an interruption. In 1–3 seconds, the viewer's brain makes a single decision: is this about me? If the answer isn't immediately obvious, they scroll. You never get them back.
+
+Your hook is two sentences. Two. Not three. Not a paragraph. Two sentences — and each one has a specific job.`,
+      details: [
+        {
+          label: "Sentence 1 — The Pattern Interrupt",
+          text: `This is the shock. It disrupts, accuses, reveals, or exposes something. The viewer's brain should fire with "wait, what?" It challenges them, calls them out, or says something they weren't expecting. It is confrontational without being mean.
+
+Examples of what works:
+"You don't have a content problem — you have a courage problem."
+"You've been posting for a year and you still have 300 followers — and you know why."
+"The reason you're not booking clients isn't your price. It's your visibility."`,
+        },
+        {
+          label: "Sentence 2 — The Personal Relevance",
+          text: `This is the clarity. It tells the viewer exactly who this video is for. It makes them feel seen, heard, and understood. Without this sentence, they leave after the shock. Without sentence 1, they scroll before sentence 2 even registers.
+
+You need both. Together they do this:
+Shock without clarity → they leave confused.
+Clarity without shock → they scroll before they feel anything.
+Both together → they stop, lean in, and watch.
+
+Example of the pair:
+S1: "You don't have a content problem — you have a courage problem."
+S2: "And if you've been posting inconsistently for months, you already know what I'm talking about."`,
+        },
+        {
+          label: "On-Screen Title + Subtitle",
+          text: `After the two-sentence hook, show a title on screen. The title anchors the theme of the video — it does NOT repeat what you just said in the hook. Think of it as a chapter title.
+
+The subtitle adds one more layer of specificity. Put it in the caption.
+
+Example:
+Hook: "You don't have a content problem — you have a courage problem. And if you've been posting inconsistently, you already know exactly what I mean."
+On-Screen Title: The Psychology of Inconsistent Creators
+Caption Subtitle: How low self-esteem sabotages visibility
+
+The hook grabs them. The title grounds them. The subtitle tells them this is educational, worth watching to the end.`,
+        },
+      ],
+      example: {
+        label: "Hook Example — For a Business Account",
+        hook: "You've been in business for three years and you still don't have a consistent online presence. And the reason isn't time. It's fear.",
+        title: "Why Local Businesses Stay Invisible Online",
+        subtitle: "And what low visibility is actually costing you every month",
+      },
+    },
+    {
+      n: "02",
+      label: "Proof",
+      timing: "Right after the hook",
+      color: "var(--gold)",
+      icon: "📊",
+      tagline: "Earn the right to be heard.",
+      body: `Nobody cares what you say in the hook until you prove it. The hook creates curiosity. The proof creates trust. Without proof, you're just another person on the internet making bold claims. With it, you're someone worth listening to.
+
+Proof doesn't have to be complex. It has to be real.`,
+      details: [
+        {
+          label: "What counts as proof",
+          text: `A relevant stat or study (cited, real, specific — not vague).
+A client result (name the niche, name the outcome, name the timeline).
+Your own personal results (be specific — not 'I grew a lot,' but 'I went from 300 to 12,000 followers in 4 months while working from a shelter').
+A before/after that the viewer can see or feel.
+A testimonial — what a real person said after working with you.
+
+The more specific the proof, the more it lands. "Most businesses see results" means nothing. "A dental office in Phoenix went from 0 bookings through social media to 14 a month in 6 weeks" means everything.`,
+        },
+        {
+          label: "How to deliver proof without bragging",
+          text: `Don't announce it. Slide it in. Make it feel like a natural part of the story — not a credential flex.
+
+Wrong: "I've helped over 500 businesses and I have 10 years of experience."
+Right: "I've watched the same pattern in hundreds of businesses — and it always starts the same way."
+
+The second version carries proof without feeling like a resume. It positions you as someone who has seen enough to recognize patterns — which is actual authority.`,
+        },
+      ],
+      example: {
+        label: "Proof in Context",
+        hook: "Most small businesses that struggle with social media think it's a content problem. It's not.",
+        proof: "I've set up content systems for over 40 local businesses in the past year. The ones that grew weren't posting more — they were posting differently. There's a reason for that.",
+      },
+    },
+    {
+      n: "03",
+      label: "Value",
+      timing: "The body — longest section",
+      color: "#8a6cb0",
+      icon: "🪞",
+      tagline: "Hold up the mirror. Tell the story. Expose the pattern.",
+      body: `People do not connect to information. They connect to mirrors. Your job in this section is to hold up a mirror so the viewer can see their own patterns, behaviors, and blind spots — without shaming them for it.
+
+This is where the video earns its saves, shares, and comments. This is where authority is built or lost. Everything before this section gets them watching. This section makes them feel something.`,
+      details: [
+        {
+          label: "The Mirror Technique",
+          text: `Describe the viewer's experience back to them in a way they've never heard it put before. Name the behavior. Name the feeling. Name the pattern. When someone hears themselves described — not judged, described — the walls come down.
+
+Example: "You said you wanted to go viral. But when the views came, you got nervous. You second-guessed every caption. You almost deleted the post. Because you weren't actually scared of failure — you were scared of being seen."
+
+That's a mirror. Nobody told them they were scared of being seen. But they know it's true the second they hear it. That recognition is what drives comments. It's what makes them screenshot the caption. It's what makes them share it with someone who needs to hear it.
+
+The rule: do not shame people. Expose their patterns. Exposing a pattern is authority. Shaming is alienation.`,
+        },
+        {
+          label: "Stories — Why They Are Not Optional",
+          text: `Stories do three things that no list, stat, or tip can do:
+1. Build trust (you lived this — you didn't just read it)
+2. Build emotional connection (they feel it with you)
+3. Lower resistance (their guard comes down and they actually receive what you say)
+
+Don't teach from theory. Teach from scars that you turned into strategy.
+
+The story doesn't have to be dramatic. It has to be real. The detail that seems embarrassing or too specific to share is often the exact detail that makes someone feel less alone. Your story is the thing that separates you from every other creator in your niche posting the same tips.
+
+Tell it like a scene. Not a summary. "I remember sitting in the parking lot of the shelter, posting from my phone at 10pm, refreshing the page every 5 minutes" hits differently than "I posted while going through a hard time."`,
+        },
+        {
+          label: "Emotional Triggers — Use Intentionally",
+          text: `Triggers are not manipulation. Emotional triggers are the reason people take action — and the reason they stay stuck. When content doesn't trigger something, it doesn't convert. It gets watched and forgotten. If something doesn't trigger, it doesn't convert.
+
+The 6 core triggers to use (never shame — always pattern exposure):
+
+SHAME EXPOSURE — Expose the gap between what they say they want and what they actually do. "You say you want to grow your business, but you haven't posted in 6 weeks."
+
+HOPE — They are closer than they think. This activates people on the edge of quitting. "Most people quit three feet from the gold. You might be there right now."
+
+IDENTITY CHALLENGE — Challenge who they believe they are. "You don't lack a skill. You lack a belief system." This hits high-achievers especially hard.
+
+FEAR OF REGRET — Activate the fear that time is being wasted. "The version of you that started five years ago would be disappointed in where you're still standing."
+
+ASPIRATION / EXPOSURE — Show what is possible. Let them feel the gap between where they are and what's available to them. This is what luxury lifestyle content does — it doesn't shame, it exposes possibility.
+
+BELONGING / RECOGNITION — Make them feel seen in a way nobody else has. "Finally someone who gets it." This is what builds communities.
+
+Pick one. Use it with purpose. Never layer shame on top of a trigger — expose the pattern, not the person. That's the difference between authority and aggression.`,
+        },
+      ],
+      example: {
+        label: "Value in Context — Personal Brand",
+        hook: "You've been posting for eight months and you still feel invisible.",
+        value: "Here's what I see when I look at your content: you're hiding. The posts that got 12 likes are the ones where you shared an opinion. The ones that got 0 are the ones where you played it safe. You already know which version of you people actually respond to. You're just scared to be her consistently. I know this because I spent a year posting content that looked professional and said nothing. Then I posted one video from my car, crying, talking about something real — and it hit 40,000 people in a week. That video cost me nothing but honesty. The polished ones cost me everything and gave me nothing.",
+      },
+    },
+    {
+      n: "04",
+      label: "Call to Action",
+      timing: "Last 4 seconds",
+      color: "var(--ink)",
+      icon: "🎯",
+      tagline: "One ask. Say it directly. Stop talking.",
+      body: `The last 4 seconds of every video must include a clear, direct call to action. This is not optional — it is the engine that feeds the algorithm and converts viewers into followers, leads, and clients.
+
+One CTA. Not three. Not "like, comment, share, AND follow, AND DM me, AND check the link in bio." One thing. The most important thing.`,
+      details: [
+        {
+          label: "CTA options — pick the one that fits",
+          text: `COMMENT — "Comment [WORD] below and I'll DM you [RESOURCE]."
+This is the highest-performing CTA for algorithm reach. Comments signal engagement. The keyword trigger turns comments into automatic DMs, which turns DMs into leads.
+
+FOLLOW — "Follow for more content like this."
+Use when the video is specifically designed to grow your audience. Best for broad, viral-targeted content.
+
+SHARE — "Share this with someone who needs to hear it."
+Use when the content hits an emotional truth that people recognize in someone they love. This is how videos spread outside your audience.
+
+DM — "DM me the word [WORD] and I'll send you [SPECIFIC THING]."
+Lower volume than comment, higher intent. Someone who DMs you is further along than someone who just comments.
+
+SAVE — "Save this — you're going to want to come back to it."
+Saves signal to the algorithm that your content has long-term value. Use for educational, instructional, or reference content.
+
+BOOK / BUY — "Book a free call — link in bio." / "Shop — link in bio."
+Use when the video has already done the selling. Don't use this if you haven't fully earned it in the previous 3 sections.`,
+        },
+        {
+          label: "How to deliver the CTA",
+          text: `Say it like you mean it. Not apologetically. Not in a rushed whisper at the end like you're embarrassed to ask.
+
+Say it directly, with the same energy you brought to the hook. Look into the camera. Pause after you say it. Let it land.
+
+Wrong: "Um, and if you liked this, maybe follow me or whatever, and you can also leave a comment I guess."
+Right: "Comment 'GUIDE' below and I'll send you the full framework directly in your DMs. Right now. Let's go."
+
+Urgency is okay. Desperation isn't. The difference is confidence.`,
+        },
+      ],
+      example: {
+        label: "CTA in Context",
+        cta: "If this hit you — share it with someone in your world who's been playing small. And follow me because we go deeper than this every single week.",
+      },
+    },
+  ];
+
+  const triggers = [
+    { name: "Shame Exposure", icon: "🪞", desc: "Expose the gap between what they say they want and what they actually do.", ex: '"You say you want wealth but you avoid every money conversation."', note: "Expose the pattern. Never shame the person." },
+    { name: "Hope", icon: "✨", desc: "They are closer than they think. Activates people on the edge of quitting.", ex: '"You are closer than you think. Most people quit three feet from the gold."', note: "Use this when the audience is tired and almost ready to give up." },
+    { name: "Identity Challenge", icon: "🔥", desc: "Challenge who they believe they are at a fundamental level.", ex: '"You don\'t lack a skill. You lack a belief system."', note: "Hits hardest for high-achievers in a rut." },
+    { name: "Fear of Regret", icon: "⏳", desc: "Activate the fear that they are wasting their potential or their time.", ex: '"The version of you that started five years ago would be disappointed."', note: "Use sparingly — very powerful but can feel heavy if overused." },
+    { name: "Aspiration / Exposure", icon: "🏆", desc: "Show what is possible. Let them feel the gap between now and what's available.", ex: "Showing your lifestyle, results, or client wins — and letting the contrast do the work.", note: "This is what luxury creators do. The exposure IS the trigger." },
+    { name: "Belonging / Recognition", icon: "💜", desc: "Make them feel seen in a way nobody else has. Finally, someone who gets it.", ex: `"If you've been thinking this for years and didn't know how to say it — this is for you."`, note: "Builds the deepest loyalty. Creates community." },
+  ];
+
+  return (
+    <div className="space-y-8">
+      <SectionHeader
+        label="The 4x4 Method"
+        title="Psychology of Viral Content."
+        sub="This is not just a structure — it is nervous system sequencing. Every video guides the viewer through: curiosity → recognition → regulation → belief → action. This framework is hardcoded into everything we create."
+      />
+
+      {/* Nervous System Flow */}
+      <div className="rounded-2xl p-7" style={{ background: "var(--ink)" }}>
+        <p className="text-[10px] tracking-widest uppercase mb-5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The Viewer's Journey — Every Video Must Move Through All 5</p>
+        <div className="flex flex-wrap gap-0">
+          {[
+            { label: "Curiosity", sub: "Hook lands", dot: true },
+            { label: "Recognition", sub: "They see themselves", dot: true },
+            { label: "Regulation", sub: "Their guard drops", dot: true },
+            { label: "Belief", sub: "They trust you", dot: true },
+            { label: "Action", sub: "They move", dot: false },
+          ].map(({ label, sub, dot }) => (
+            <div key={label} className="flex items-center gap-0">
+              <div className="flex flex-col items-center px-3 py-2">
+                <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.05rem", color: "var(--gold)", fontStyle: "italic" }}>{label}</p>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.7rem", color: "rgba(250,243,234,0.4)", marginTop: "2px" }}>{sub}</p>
+              </div>
+              {dot && <span style={{ color: "rgba(200,168,100,0.35)", fontSize: "1.2rem", padding: "0 2px" }}>→</span>}
+            </div>
+          ))}
+        </div>
+        <p className="mt-5 pt-4" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(250,243,234,0.45)", lineHeight: 1.7, borderTop: "1px solid rgba(200,168,100,0.12)" }}>If any step in this sequence is missing or weak, the video loses momentum. Curiosity without recognition loses them after the hook. Recognition without regulation keeps their guard up. Regulation without belief earns no trust. Belief without action earns no business.</p>
+      </div>
+
+      {/* Before You Script */}
+      <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+        <div className="px-6 py-5" style={{ borderBottom: "1px solid rgba(200,168,100,0.12)", background: "rgba(200,168,100,0.06)" }}>
+          <p className="text-[10px] tracking-widest uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Before You Script Anything</p>
+          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "var(--ink)" }}>Set Your Intention — Start With a Strong Topic</h3>
+        </div>
+        <div className="px-6 py-6 space-y-6">
+          <p style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.75 }}>Your topic is the foundation. A weak topic produces a weak video no matter how well the script is written. A strong topic exposes a pattern, challenges an identity, and makes the ideal viewer feel called out — in the best way. The topic should be something you are genuinely passionate about. Something that frustrates you, upsets you, or that you know most people are getting wrong.</p>
+
+          {/* Weak vs Strong */}
+          <div>
+            <p className="text-[10px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "rgba(30,15,10,0.4)" }}>Weak vs. Strong</p>
+            <div className="grid gap-3">
+              {[
+                { weak: "Why you need discipline", strong: "Why your low self-esteem is disguised as waiting for motivation", why: "The weak version is generic advice anyone could give. The strong version exposes a specific, uncomfortable pattern — and names it in a way the viewer recognizes immediately." },
+                { weak: "How to grow your business on social media", strong: "You're not posting consistently because deep down you don't believe your business is worth the attention", why: "The weak version is a tutorial. The strong version is a confrontation with a belief system. That confrontation is what makes people stop scrolling." },
+                { weak: "Why you need to post more content", strong: "The real reason you keep starting over every Monday is that you're performing productivity instead of building a system", why: "The weak version gives advice. The strong version calls out a specific behavior — 'performing productivity' — that the right audience immediately recognizes in themselves." },
+              ].map(({ weak, strong, why }) => (
+                <div key={weak} className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.15)" }}>
+                  <div className="grid sm:grid-cols-2">
+                    <div className="p-4" style={{ background: "rgba(201,122,122,0.05)", borderRight: "1px solid rgba(200,168,100,0.1)" }}>
+                      <p className="text-[9px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "rgba(180,80,80,0.7)" }}>Weak — generic, no one cares</p>
+                      <p style={{ fontFamily: FONT_DISPLAY, fontSize: "0.95rem", color: "rgba(30,15,10,0.5)", fontStyle: "italic" }}>{weak}</p>
+                    </div>
+                    <div className="p-4" style={{ background: "rgba(200,168,100,0.04)" }}>
+                      <p className="text-[9px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Strong — exposes a pattern</p>
+                      <p style={{ fontFamily: FONT_DISPLAY, fontSize: "0.95rem", color: "var(--ink)", fontStyle: "italic" }}>{strong}</p>
+                    </div>
+                  </div>
+                  <div className="px-4 py-3" style={{ background: "rgba(200,168,100,0.04)", borderTop: "1px solid rgba(200,168,100,0.1)" }}>
+                    <p style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "rgba(30,15,10,0.5)", lineHeight: 1.6 }}>{why}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Psychological target */}
+          <div className="rounded-xl p-5" style={{ background: "rgba(200,168,100,0.08)", border: "1px solid rgba(200,168,100,0.2)" }}>
+            <p className="text-[10px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Define Your Psychological Target Before You Script</p>
+            <div className="space-y-2">
+              {[
+                "Who is this video for? Be specific — not 'entrepreneurs,' but 'women who started a business 2 years ago and still feel invisible online.'",
+                "What identity does this confront in them? What belief are they holding that this video is challenging?",
+                "What pain or frustration am I bringing to light? Not creating new pain — surfacing what's already there.",
+                "What transformation am I offering? What does the viewer's life look like after they hear this?",
+                "Why does this matter to ME to say it? Content that comes from genuine passion is felt. Content that doesn't come from passion is forgotten.",
+              ].map((q, i) => (
+                <div key={i} className="flex gap-3">
+                  <span className="shrink-0 mt-0.5" style={{ fontFamily: FONT_DISPLAY, fontSize: "0.9rem", color: "var(--gold)", fontStyle: "italic" }}>{i + 1}.</span>
+                  <p style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(30,15,10,0.7)", lineHeight: 1.65 }}>{q}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* The 4 Steps */}
+      <div>
+        <p className="text-[10px] tracking-widest uppercase mb-4" style={{ fontFamily: FONT_LUXE, color: "rgba(30,15,10,0.35)" }}>The Four Steps — Tap to expand each one</p>
+        <div className="space-y-3">
+          {steps.map((s, idx) => {
+            const open = openStep === idx;
+            return (
+              <div key={s.n} className="rounded-2xl overflow-hidden" style={{ border: `1px solid ${s.color}22`, background: "rgba(255,255,255,0.65)" }}>
+                {/* Header — always visible, clickable */}
+                <button
+                  onClick={() => setOpenStep(open ? null : idx)}
+                  className="w-full px-6 py-5 flex items-center gap-4 text-left"
+                  style={{ background: open ? `${s.color}08` : "transparent" }}
+                >
+                  <div className="w-12 h-12 rounded-xl flex flex-col items-center justify-center shrink-0" style={{ background: "var(--ink)" }}>
+                    <span style={{ fontFamily: FONT_BODY, fontSize: "0.55rem", letterSpacing: "0.12em", textTransform: "uppercase", color: `${s.color}`, opacity: 0.7 }}>Step</span>
+                    <span style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: s.color, fontStyle: "italic", lineHeight: 1 }}>{s.n}</span>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-baseline gap-2 flex-wrap">
+                      <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>{s.label}</h3>
+                      <span className="px-2 py-0.5 rounded-full text-[9px] tracking-wider uppercase" style={{ fontFamily: FONT_LUXE, background: `${s.color}14`, color: s.color }}>{s.timing}</span>
+                    </div>
+                    <p style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.5)", marginTop: "2px" }}>{s.tagline}</p>
+                  </div>
+                  <span style={{ fontFamily: FONT_LUXE, fontSize: "11px", color: "rgba(30,15,10,0.3)", transform: open ? "rotate(180deg)" : "none", transition: "transform 0.2s" }}>▼</span>
+                </button>
+
+                {/* Expanded content */}
+                {open && (
+                  <div className="px-6 pb-7 space-y-5" style={{ borderTop: `1px solid ${s.color}18` }}>
+                    {/* Intro paragraph */}
+                    <p className="pt-5" style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.8 }}>{s.body}</p>
+
+                    {/* Detail blocks */}
+                    {s.details.map((d) => (
+                      <div key={d.label} className="rounded-xl p-5" style={{ background: `${s.color}07`, border: `1px solid ${s.color}18` }}>
+                        <p className="mb-2" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: s.color }}>{d.label}</p>
+                        <p className="whitespace-pre-line" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.7)", lineHeight: 1.75 }}>{d.text}</p>
+                      </div>
+                    ))}
+
+                    {/* Example */}
+                    {"example" in s && s.example && (
+                      <div className="rounded-xl p-5" style={{ background: "var(--ink)" }}>
+                        <p className="mb-3" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)" }}>{s.example.label}</p>
+                        {Object.entries(s.example).filter(([k]) => k !== "label").map(([k, v]) => (
+                          <div key={k} className="mb-3">
+                            <p className="mb-1" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(200,168,100,0.5)" }}>{k}</p>
+                            <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: "var(--cream)", fontStyle: "italic", lineHeight: 1.6 }}>{String(v)}</p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Emotional Triggers Reference */}
+      <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+        <div className="px-6 py-5" style={{ borderBottom: "1px solid rgba(200,168,100,0.12)", background: "rgba(200,168,100,0.06)" }}>
+          <p className="text-[10px] tracking-widest uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Step 3 Reference</p>
+          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "var(--ink)" }}>The 6 Emotional Triggers</h3>
+          <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(30,15,10,0.5)" }}>If content doesn't trigger something, it doesn't convert. Pick one per video. Never shame — always expose the pattern.</p>
+        </div>
+        <div className="px-6 py-5 space-y-4">
+          {triggers.map((t) => (
+            <div key={t.name} className="rounded-xl p-5" style={{ background: "rgba(200,168,100,0.05)", border: "1px solid rgba(200,168,100,0.12)" }}>
+              <div className="flex items-start gap-3">
+                <span style={{ fontSize: "1.3rem", lineHeight: 1 }}>{t.icon}</span>
+                <div className="flex-1 min-w-0">
+                  <p style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--ink)" }}>{t.name}</p>
+                  <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.65 }}>{t.desc}</p>
+                  <div className="mt-2 rounded-lg px-4 py-2.5" style={{ background: "var(--ink)" }}>
+                    <p style={{ fontFamily: FONT_DISPLAY, fontSize: "0.9rem", color: "var(--cream)", fontStyle: "italic" }}>{t.ex}</p>
+                  </div>
+                  <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.75rem", color: "rgba(30,15,10,0.4)", lineHeight: 1.5 }}>Note: {t.note}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Story principle */}
+      <div className="rounded-2xl p-7" style={{ background: "var(--ink)" }}>
+        <p className="text-[10px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The Story Principle — Non-Negotiable</p>
+        <p className="italic mb-5" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.35rem", color: "var(--cream)", lineHeight: 1.45 }}>"Teach from the scars you turned into strategy — not just from theory."</p>
+        <div className="grid sm:grid-cols-3 gap-4">
+          {[
+            { label: "Stories build trust", body: "You lived it. You didn't just read it or study it. That lived experience is the thing that separates you from every other person saying the same words." },
+            { label: "Stories build emotional connection", body: "Data doesn't move people. Emotion moves people. Stories create the emotional bridge between your content and your viewer's life." },
+            { label: "Stories lower resistance", body: "When someone hears a real story they recognize — a struggle, a low point, a moment of doubt — their walls come down. They stop judging and start listening." },
+          ].map(({ label, body }) => (
+            <div key={label} className="rounded-xl p-4" style={{ background: "rgba(200,168,100,0.08)", border: "1px solid rgba(200,168,100,0.15)" }}>
+              <p className="mb-2" style={{ fontFamily: FONT_LUXE, fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gold)" }}>{label}</p>
+              <p style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(250,243,234,0.65)", lineHeight: 1.65 }}>{body}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-5 rounded-xl p-4" style={{ background: "rgba(200,168,100,0.06)", border: "1px solid rgba(200,168,100,0.12)" }}>
+          <p className="text-[9px] tracking-widest uppercase mb-1.5" style={{ fontFamily: FONT_LUXE, color: "rgba(200,168,100,0.5)" }}>How to tell a story in a short-form video</p>
+          <p style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(250,243,234,0.6)", lineHeight: 1.7 }}>Tell it like a scene, not a summary. "I remember sitting in the parking lot at 10pm, refreshing the page every 5 minutes, with $11 in my account" lands completely differently than "I posted while going through a hard time." The specific detail is the emotional truth. The more specific, the more universal.</p>
+        </div>
+      </div>
+
+      {/* Quick Reference Card */}
+      <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.25)", background: "rgba(255,255,255,0.65)" }}>
+        <div className="px-6 py-4" style={{ background: "var(--ink)", borderBottom: "1px solid rgba(200,168,100,0.15)" }}>
+          <p style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)" }}>Quick Reference — Print This Out</p>
+        </div>
+        <div className="grid sm:grid-cols-4">
+          {[
+            { n: "01", label: "Hook", time: "First 4 sec", color: "var(--rose)", items: ["Pattern interrupt (shock)", "Personal relevance (clarity)", "On-screen title anchors theme", "Subtitle goes in caption"] },
+            { n: "02", label: "Proof", time: "Right after hook", color: "var(--gold)", items: ["Stat or study", "Client result (specific)", "Your own results (with numbers)", "Earns the right to be heard"] },
+            { n: "03", label: "Value", time: "The body", color: "#8a6cb0", items: ["Hold up the mirror", "Tell a real story", "Expose patterns (not shame)", "Use one emotional trigger"] },
+            { n: "04", label: "CTA", time: "Last 4 sec", color: "var(--ink)", items: ["One ask only", "Say it with confidence", "Comment / Follow / Share / DM", "Algorithm rewards engagement"] },
+          ].map(({ n, label, time, color, items }, i) => (
+            <div key={n} className="p-5" style={{ borderRight: i < 3 ? "1px solid rgba(200,168,100,0.12)" : "none" }}>
+              <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style={{ background: color === "var(--ink)" ? "var(--ink)" : `${color}15`, border: `1px solid ${color}30` }}>
+                <span style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: color === "var(--ink)" ? "var(--gold)" : color, fontStyle: "italic" }}>{n}</span>
+              </div>
+              <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: "var(--ink)" }}>{label}</p>
+              <p className="mb-3" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(30,15,10,0.35)", marginTop: "2px" }}>{time}</p>
+              <ul className="space-y-1.5">
+                {items.map(item => (
+                  <li key={item} className="flex items-start gap-2">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0" style={{ width: "9px", height: "9px", color }}><path d="M2.5 8.5L6 12L13.5 4.5" /></svg>
+                    <span style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "rgba(30,15,10,0.6)", lineHeight: 1.5 }}>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ─── Deal Tracker ───────────────────────────────────── */
 
 type PStage = "new_lead" | "sent" | "responded" | "call_set" | "proposal" | "negotiating" | "won" | "lost";
@@ -4228,6 +4677,7 @@ function PlaybookPage() {
     { id: "workflow", label: "Client Workflow", icon: "📋" },
     { id: "monthly", label: "Monthly Process", icon: "📅" },
     { id: "prompts", label: "Content Prompts", icon: "✍️" },
+    { id: "content", label: "4x4 Strategy", icon: "🧠" },
     { id: "outreach", label: "Outreach Scripts", icon: "📞" },
     { id: "growth", label: "Inbound Growth", icon: "📈" },
     { id: "deals", label: "Deal Pipeline", icon: "🎯" },
@@ -4281,6 +4731,7 @@ function PlaybookPage() {
         {tab === "prompts" && <PromptsTab />}
         {tab === "outreach" && <OutreachTab />}
         {tab === "growth" && <GrowthTab />}
+        {tab === "content" && <ContentStrategyTab />}
         {tab === "deals" && <DealTrackerTab />}
         {tab === "newhire" && <NewHireTab />}
       </div>
