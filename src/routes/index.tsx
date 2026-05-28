@@ -1428,7 +1428,7 @@ function Pricing() {
               </p>
             </div>
             <p className="mt-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.3rem", color: "var(--ink)", fontStyle: "italic" }}>
-              Content Starter — <span style={{ color: "var(--gold)" }}>$500<span style={{ fontSize: "0.6em", letterSpacing: "0.15em", opacity: 0.7 }}> USD</span>/mo</span>
+              Content Starter — <span style={{ color: "var(--gold)", fontSize: "1.5rem", fontWeight: 500 }}>$500<span style={{ fontSize: "0.5em", letterSpacing: "0.15em", opacity: 0.7, fontWeight: 400 }}> USD</span><span style={{ fontSize: "0.75em", fontWeight: 400 }}>/mo</span></span>
             </p>
             <div className="mt-1.5 flex items-center gap-3 flex-wrap justify-center sm:justify-start">
               {["1 Platform", "8 Posts/mo", "Static & Carousels"].map((tag) => (
