@@ -321,12 +321,12 @@ function Bundle() {
                   <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "12px", height: "12px", color: "var(--gold)", flexShrink: 0 }}><path d="M2.5 8.5L6 12L13.5 4.5" /></svg>
                   <span style={{ fontFamily: FONT_BODY, fontSize: "0.9rem", color: "rgba(250,243,234,0.8)" }}>{p.name}</span>
                 </div>
-                <span className="shrink-0 italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: "rgba(250,243,234,0.45)" }}>{p.price}</span>
+                <span className="shrink-0 italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: "rgba(250,243,234,0.45)" }}>{p.originalPrice ?? p.price}</span>
               </div>
             ))}
             <div className="flex items-center justify-between pt-2">
               <span style={{ fontFamily: FONT_LUXE, fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(250,243,234,0.35)" }}>Regular total</span>
-              <span className="line-through" style={{ fontFamily: FONT_BODY, color: "rgba(250,243,234,0.3)", fontSize: "0.95rem" }}>$161</span>
+              <span className="line-through" style={{ fontFamily: FONT_BODY, color: "rgba(250,243,234,0.3)", fontSize: "0.95rem" }}>$423</span>
             </div>
           </div>
 
@@ -336,7 +336,7 @@ function Bundle() {
               $127
             </span>
             <div className="flex flex-col items-start gap-1">
-              <span className="px-2 py-0.5 rounded-full text-[var(--ink)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", background: "var(--gold)" }}>Save $34</span>
+              <span className="px-2 py-0.5 rounded-full text-[var(--ink)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", background: "var(--gold)" }}>Save $296</span>
             </div>
           </div>
           <p className="mt-3" style={{ fontFamily: FONT_LUXE, fontSize: "0.7rem", letterSpacing: "0.2em", color: "rgba(255,255,255,0.4)", textTransform: "uppercase" }}>
