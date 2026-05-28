@@ -106,6 +106,7 @@ function WorkflowTab() {
         { text: "Audit their existing social profiles", sub: "Bio, profile photo, link in bio, pinned posts, highlight covers if applicable." },
         { text: "Update or optimize profiles where needed" },
         { text: "Set up and verify Meta Pixel on their website", sub: "Install via Events Manager → connect to their website domain. Confirm it's firing using Meta Pixel Helper (Chrome extension). Pixel must be live before any ads run." },
+        { text: "Set up the Brand Board in the platform", sub: "Add client's exact colors (hex codes), fonts, logo, and visual aesthetic. The platform's AI will pull from this when generating content — so everything looks custom, not generic." },
         { text: "Define their 4–5 content pillars", sub: "Education / Behind the Scenes / Social Proof / Promotion / Personality" },
         { text: "Build their brand voice guide (use the Brand Voice prompt below)" },
         { text: "Set up their content calendar template for Month 1" },
@@ -132,7 +133,10 @@ function WorkflowTab() {
         { text: "Set ads to launch at 12:00am the next day", sub: "Never launch ads mid-day. Starting at midnight gives you a full 24-hour data window from day one — cleaner results and easier to compare day-over-day performance." },
         { text: "Confirm ad campaign settings — budget, audience, placement, creative, pixel event" },
         { text: "Send client a 'You're live!' message with what to expect this month" },
-        { text: "Set up Comment-to-DM automation in the platform", sub: "Trigger: Instagram comment on any post → AI agent auto-replies in comments + sends a DM. This turns every comment into a conversation and signals the algorithm to push content further." },
+        { text: "Set up keyword-triggered comment automation", sub: "Put a keyword CTA on the last slide of each carousel — e.g. 'Comment GLOW for a free guide.' In the platform, build a workflow: Trigger = comment contains keyword → AI agent DMs them the lead magnet and starts a conversation. No human needed." },
+        { text: "Build their AI lead magnet using the platform's AI Studio", sub: "One prompt generates the whole thing: cover page with their branding, tips/value content, and a CTA to book. Deliver it as a PDF or link in the auto-DM. Use the Lead Magnet prompt in the Prompts tab." },
+        { text: "Set up missed call text back", sub: "In the platform: any missed call → auto-SMS fires immediately: 'Hey, sorry we missed your call! How can we help?' This alone saves leads the client would have lost. Takes 5 minutes to set up, runs forever." },
+        { text: "Set up Comment-to-DM automation (general engagement)", sub: "Separate from the keyword trigger — this fires on any comment. AI agent sends a warm DM, tags the contact in CRM, and creates a task if no reply in 24 hours." },
         { text: "Confirm the DM message is on-brand and points to the right next step", sub: "e.g. 'Hey [name], thanks for engaging! Here's [free resource / booking link / offer].' Customize per client." },
         { text: "Set a reminder for 2-week check-in call" },
       ]} />
@@ -183,6 +187,8 @@ function MonthlyTab() {
             { text: "Send content to any clients awaiting approval" },
             { text: "Schedule all approved content through the platform" },
             { text: "Set up any new ad sets launching next week" },
+            { text: "Pin the 3 best posts to the top of each client's profile", sub: "Pinned posts are the first thing anyone sees when they visit the page. Keep the 3 strongest pieces — AI videos or top-performing carousels — pinned at all times. Refresh monthly." },
+            { text: "Boost the 3 pinned posts ($50–$100 each)", sub: "Take posts already performing organically and put a small budget behind them. No complex targeting — just amplify what's already working. This turns 'nice-looking social' into real leads." },
             { text: "Follow up with clients who haven't approved yet" },
           ],
         },
@@ -470,6 +476,61 @@ Generate:
 Also recommend: how many hashtags to use per post and whether to put them in caption or first comment.`,
     },
     {
+      title: "AI Lead Magnet Creator",
+      tag: "Platform AI",
+      prompt: `Use this prompt inside the platform's AI Studio to create a branded lead magnet for a client in one shot.
+
+Type into AI Studio:
+
+"Create a lead magnet for [BUSINESS NAME], a [BUSINESS TYPE] serving [TARGET AUDIENCE].
+
+The lead magnet is called: [TITLE — e.g. 'The Summer Glow Guide' / '5 Things to Ask Before Booking a Cleaner' / 'Local Restaurant's Free Date Night Menu']
+
+Include:
+1. Cover page — [BUSINESS NAME] logo/branding, lead magnet title, tagline
+2. Introduction — 2–3 sentences on why this guide matters to the reader
+3. [3–5 tip sections or checklist items relevant to the business]
+4. Each section: title + 2–3 sentences of value
+5. Final page — CTA to book, call, or visit: [BOOKING LINK / PHONE / WEBSITE]
+
+Brand colors: [HEX CODES]
+Tone: [WARM / PROFESSIONAL / FUN — match brand voice]"
+
+---
+How it gets delivered:
+→ When someone comments the keyword on the carousel post (e.g. "GLOW")
+→ The keyword automation triggers
+→ AI agent DMs them the lead magnet link automatically
+→ No human involvement required`,
+    },
+    {
+      title: "Keyword CTA — Carousel Last Slide",
+      tag: "Platform AI",
+      prompt: `Use this to write the CTA that goes on the last slide of a keyword-trigger carousel.
+
+Business: [CLIENT NAME]
+Offer / lead magnet: [WHAT THEY'RE GETTING — e.g. "free skincare guide," "free estimate," "discount code"]
+Keyword: [WHAT THEY SHOULD COMMENT — keep it short, relevant, and memorable: GLOW / QUOTE / MENU / BOOK]
+
+Write 3 options for the last slide text:
+
+Option 1: Direct ask
+"Comment [KEYWORD] and we'll send you [OFFER] right to your DMs 👇"
+
+Option 2: Value-first
+"Want [BENEFIT]? Drop [KEYWORD] in the comments — we'll send you [OFFER] instantly."
+
+Option 3: Curiosity
+"There's a free [OFFER] waiting for you. Just comment [KEYWORD] below 👇"
+
+---
+Platform setup reminder:
+After posting, go to the platform → Workflows → Create trigger:
+Trigger: Instagram comment contains "[KEYWORD]"
+Action: AI Agent sends DM with lead magnet link + starts conversation
+Tag contact in CRM → create follow-up task`,
+    },
+    {
       title: "SEO Blog Post Writer",
       tag: "Blogging",
       prompt: `Write a detailed SEO blog post for The Dollhouse Brand Studio targeting the following keyword.
@@ -549,6 +610,95 @@ Tone: confident advisor, not defensive. Never apologize for numbers — contextu
       <SectionHeader label="Prompt Library" title="Copy. Paste. Customize. Done." sub="Every prompt you need to create client work. Replace bracketed placeholders with client details. Never start from scratch." />
       <div className="space-y-4">
         {prompts.map((p) => <PromptCard key={p.title} {...p} />)}
+      </div>
+    </div>
+  );
+}
+
+/* ─── Service Tiers ───────────────────────────────────── */
+function ServiceTiers() {
+  const tiers = [
+    {
+      label: "Offer 1 — Door Opener",
+      price: "$500/mo",
+      tag: "Best to start with",
+      tagColor: "var(--gold)",
+      items: [
+        "AI-generated branded content — 5 posts/week (carousels + graphics)",
+        "Comment keyword automation → AI sends DM + lead magnet automatically",
+        "AI-built lead magnet (1 per client — guide, checklist, or offer)",
+        "Missed call text back — auto-texts anyone who calls and doesn't get answered",
+        "Platform mobile app access so client sees everything in real time",
+      ],
+      note: "Gets the client online, looking professional, and generating their first leads. Build trust here, then upgrade.",
+    },
+    {
+      label: "Offer 2 — Wow Factor",
+      price: "$1,000/mo",
+      tag: "High perceived value",
+      tagColor: "var(--rose)",
+      items: [
+        "Everything in Offer 1",
+        "3 AI-generated videos per week (branded, viral-style)",
+        "AI avatar or mascot clone — client on camera without filming",
+        "Time-lapse / transformation / before-after video formats",
+        "Videos pinned to top of profile as signature content",
+      ],
+      note: "Lead with this when you want to stand out immediately. Most local businesses have never seen AI video — it's an instant 'I've never seen anything like this.'",
+    },
+    {
+      label: "Offer 3 — Full System",
+      price: "$750/mo + $250 ad budget",
+      tag: "Best results",
+      tagColor: "#4a7a4a",
+      items: [
+        "Daily content — 5 posts/week (carousels + graphics)",
+        "Comment keyword automation + AI DM + lead magnet",
+        "Missed call text back",
+        "3 high-impact AI videos per month — pinned at top of profile",
+        "Boosted posts — $250/mo ad budget behind the 3 pinned videos",
+        "Monthly analytics report",
+      ],
+      note: "Most beginner-friendly to sell. The boosted posts are what turns 'nice-looking social media' into real phone calls and booked appointments. Goal: 10 clients = $7,500/mo.",
+    },
+  ];
+
+  return (
+    <div className="space-y-5 mb-10">
+      <div>
+        <p className="text-[10px] tracking-[0.25em] uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Service Menu</p>
+        <h2 style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.8rem, 3vw, 2.5rem)", color: "var(--rose)", fontWeight: 400, lineHeight: 1.1 }}>The 3-Offer Stack</h2>
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.9rem", color: "rgba(30,15,10,0.55)" }}>You don't have to offer all three right away. Pick the one you're most comfortable delivering, get your first clients, then layer on the others. The goal is to get moving.</p>
+      </div>
+
+      {tiers.map((t) => (
+        <div key={t.label} className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+          <div className="px-6 py-4 flex flex-wrap items-center justify-between gap-3" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+            <div className="flex items-center gap-3 flex-wrap">
+              <span className="px-2 py-0.5 rounded-full text-[10px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, background: t.tagColor, color: "#fff" }}>{t.tag}</span>
+              <span style={{ fontFamily: FONT_DISPLAY, fontSize: "1.15rem", color: "var(--ink)" }}>{t.label}</span>
+            </div>
+            <span className="italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--gold)" }}>{t.price}</span>
+          </div>
+          <div className="px-6 py-5">
+            <ul className="space-y-2 mb-4">
+              {t.items.map((item) => (
+                <li key={item} className="flex items-start gap-2.5">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0" style={{ width: "12px", height: "12px", color: "var(--gold)" }}><path d="M2.5 8.5L6 12L13.5 4.5" /></svg>
+                  <span style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(30,15,10,0.8)" }}>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "0.95rem", color: "rgba(30,15,10,0.5)" }}>{t.note}</p>
+          </div>
+        </div>
+      ))}
+
+      <div className="rounded-2xl p-5" style={{ background: "var(--ink)" }}>
+        <p className="text-[10px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Upgrade Path</p>
+        <p style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(250,243,234,0.75)", lineHeight: 1.7 }}>
+          Start every client on Offer 1. Once they see their social media looking professional and leads starting to come in — usually 30–60 days — introduce Offer 2 or upgrade them to the Full System. Never pitch the upgrade before they've felt the win from Offer 1.
+        </p>
       </div>
     </div>
   );
@@ -727,6 +877,7 @@ Thanks again for trusting me with [BUSINESS NAME].
 
   return (
     <div className="space-y-6">
+      <ServiceTiers />
       <SectionHeader label="Outreach Scripts" title="How to get clients." sub="Scripts for cold email, DMs, calls, and follow-ups. Customize the bracketed fields for each prospect. Always be specific — never send a generic message." />
       <div className="rounded-2xl p-5" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.25)" }}>
         <p className="text-[11px] tracking-widest uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The Golden Rule</p>
