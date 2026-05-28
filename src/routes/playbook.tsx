@@ -1032,59 +1032,78 @@ Swap in your actual results once you have them. Specific numbers always outperfo
 function ServiceTiers() {
   const tiers = [
     {
-      label: "Offer 1 — Door Opener",
-      price: "$500/mo",
-      setup: "$500 one-time setup",
-      tag: "Best to start with",
-      tagColor: "var(--gold)",
-      items: [
-        "AI-generated branded content — 5 posts/week (carousels + graphics)",
-        "Comment keyword automation → AI sends DM + lead magnet automatically",
-        "AI-built lead magnet (1 per client — guide, checklist, or offer)",
-        "Missed call text back — auto-texts anyone who calls and doesn't get answered",
-        "Platform mobile app access so client sees everything in real time",
-      ],
-      note: "Gets the client online, looking professional, and generating their first leads. Build trust here, then upgrade.",
-    },
-    {
-      label: "Offer 2 — Wow Factor",
+      label: "Starter",
       price: "$1,000/mo",
       setup: "$500 one-time setup",
-      tag: "High perceived value",
-      tagColor: "var(--rose)",
+      tag: "Start here",
+      tagColor: "var(--gold)",
       items: [
-        "Everything in Offer 1",
-        "AI clone / character of the business owner — they never have to be on camera",
-        "3 AI-generated videos per week (branded, viral-style)",
-        "Time-lapse / transformation / before-after video formats",
-        "Videos pinned to top of profile as signature content",
+        "1 platform fully managed — nothing to post, nothing to schedule",
+        "AI clone or custom brand character — content that sounds like you, without filming",
+        "Reels, carousels & static posts — 3x per week (12 posts/mo)",
+        "Comment keyword triggers — auto-DM lead magnet when they comment a word",
+        "DM automation — every inquiry gets an instant reply that guides them to book or buy",
+        "Online booking system — clients book directly from the page",
+        "Lead funnels & automations that turn followers into booked appointments",
+        "Missed call text back — auto-texts anyone who calls and doesn't get answered",
       ],
-      note: "Lead with this when you want to stand out immediately. Most local businesses have never seen AI video — it's an instant 'I've never seen anything like this.'",
+      note: "Best starting point. Gets the client online, consistent, and converting. Build trust here, then upgrade.",
     },
     {
-      label: "Offer 3 — Full System",
-      price: "$750/mo + $250 ad budget",
+      label: "Growth",
+      price: "$2,500/mo",
       setup: "$500 one-time setup",
-      tag: "Best results",
+      tag: "Most popular",
+      tagColor: "var(--rose)",
+      items: [
+        "Everything in Starter — AI clone content now running across 3 platforms: Instagram, TikTok & Facebook",
+        "Paid ads — Facebook & Instagram ad management included",
+        "Email & SMS automations that follow up with every lead while you sleep",
+        "Automated appointment reminders — reduce no-shows before they happen",
+        "Reputation & review management — 5-star presence built on autopilot",
+        "More content, more reach — 3–5x per week (up to 20 posts/mo)",
+        "Monthly strategy call to double down on what's working",
+      ],
+      note: "Best for clients who want to scale. The ads + AI clone content combo is what drives real consistent inbound.",
+    },
+    {
+      label: "Elite",
+      price: "$5,000+/mo",
+      setup: "$500 one-time setup",
+      tag: "Full system",
       tagColor: "#4a7a4a",
       items: [
-        "Daily content — 5 posts/week (carousels + graphics)",
-        "Comment keyword automation + AI DM + lead magnet",
-        "Missed call text back",
-        "3 high-impact AI videos per month — pinned at top of profile",
-        "Boosted posts — $250/mo ad budget behind the 3 pinned videos",
-        "Monthly analytics report",
+        "Everything in Growth — expanded to 5 platforms: Instagram, TikTok, Facebook, LinkedIn & Threads",
+        "AI voice agent — answers calls, handles inquiries & books appointments 24/7",
+        "Full AI booking system — chat, reminders, follow-up & review collection automated",
+        "AI website design & build — a complete conversion-ready site done for you",
+        "Google, Facebook, Instagram & TikTok ad management — all platforms, fully managed",
+        "Daily content — 5–7x per week (up to 28 posts/mo) across every platform",
+        "Monthly email newsletter — written, designed & sent for you",
+        "Bi-weekly strategy calls & weekly performance reports",
       ],
-      note: "Most beginner-friendly to sell. The boosted posts are what turns 'nice-looking social media' into real phone calls and booked appointments. Goal: 10 clients = $7,500/mo.",
+      note: "For high-LTV clients who want their entire online presence fully managed. Goal: 5 Elite clients = $25,000+/mo.",
     },
   ];
 
   return (
     <div className="space-y-5 mb-10">
       <div>
-        <p className="text-[10px] tracking-[0.25em] uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Service Menu</p>
-        <h2 style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.8rem, 3vw, 2.5rem)", color: "var(--rose)", fontWeight: 400, lineHeight: 1.1 }}>The 3-Offer Stack</h2>
-        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.9rem", color: "rgba(30,15,10,0.55)" }}>You don't have to offer all three right away. Pick the one you're most comfortable delivering, get your first clients, then layer on the others. The goal is to get moving.</p>
+        <p className="text-[10px] tracking-[0.25em] uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Service Packages</p>
+        <h2 style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.8rem, 3vw, 2.5rem)", color: "var(--rose)", fontWeight: 400, lineHeight: 1.1 }}>What We Offer</h2>
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.9rem", color: "rgba(30,15,10,0.55)" }}>Three plans that mirror the main website. Every plan starts at $1,000/mo and includes the AI clone as a core feature. All plans have a $500 one-time setup fee and a 14-day free trial to close hesitant prospects.</p>
+      </div>
+
+      {/* Free Trial Banner */}
+      <div className="rounded-2xl p-5 flex items-start gap-4" style={{ background: "linear-gradient(135deg, var(--ink) 0%, #2a1a10 100%)", border: "1px solid rgba(200,168,100,0.3)" }}>
+        <span style={{ fontSize: "1.5rem", flexShrink: 0 }}>🎁</span>
+        <div>
+          <p style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "4px" }}>Lead Closer</p>
+          <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.2rem", color: "var(--cream)", fontWeight: 400 }}>14-Day Free Trial — available on any plan</p>
+          <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(250,243,234,0.65)", lineHeight: 1.65 }}>
+            When a prospect is hesitant, offer them a 14-day free trial. Full access, no commitment. The $500 setup fee is still collected upfront — this protects our time and filters serious clients. After 14 days they roll into the monthly plan automatically.
+          </p>
+        </div>
       </div>
 
       {tiers.map((t) => (
@@ -1116,7 +1135,7 @@ function ServiceTiers() {
       <div className="rounded-2xl p-5" style={{ background: "var(--ink)" }}>
         <p className="text-[10px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Upgrade Path</p>
         <p style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(250,243,234,0.75)", lineHeight: 1.7 }}>
-          Start every client on Offer 1. Once they see their social media looking professional and leads starting to come in — usually 30–60 days — introduce Offer 2 or upgrade them to the Full System. Never pitch the upgrade before they've felt the win from Offer 1.
+          Start most clients on Starter. Once they see real results — usually 30–60 days — introduce Growth or Elite. Never push the upgrade before they've felt the win. The AI clone + content system sells itself once they see it working.
         </p>
       </div>
     </div>
@@ -1269,11 +1288,12 @@ We charge $[PRICE]/month. There are no long-term contracts — if we're not deli
 
 Does that sound like something that would take a load off your plate?"
 
----
-Price anchoring options:
-- Entry: $500/mo (content + scheduling)
-- Standard: $750/mo (+ comment-to-DM automation)
-- Full: $1,000/mo (+ ads management + monthly report call)`,
+Pricing — start high, work down only if needed:
+- Starter: $1,000/mo + $500 one-time setup (1 platform, AI clone, automations)
+- Growth: $2,500/mo + $500 one-time setup (3 platforms, ads, email/SMS automations)
+- Elite: $5,000+/mo + $500 one-time setup (5 platforms, AI voice agent, full system)
+
+If they hesitate on price: "We do offer a 14-day free trial. The $500 setup still applies so we can build everything out — but the first two weeks are on us so you can see the results before committing."`,
     },
     {
       title: "Referral Ask (Existing Client)",
@@ -1715,18 +1735,18 @@ We are a small team. Trust and reliability are non-negotiable.`,
 type PStage = "new_lead" | "sent" | "responded" | "call_set" | "proposal" | "negotiating" | "won" | "lost";
 
 const STAGE_INFO: Record<PStage, { label: string; color: string; guide: string; nextStage?: PStage; nextLabel?: string }> = {
-  new_lead:    { label: "New Lead",        color: "#c8a864", nextStage: "sent",        nextLabel: "✓ Outreach Sent",     guide: "LEAD WITH THE AI CLONE. Our #1 opening offer is the AI Character Package ($1k) — a digital twin of the business owner that posts video content for them automatically. Research this business first — check their social pages, reviews, and whether they're on video at all. Then generate the AI Clone Pitch below and send it. It hooks people because it's personal and completely different from what they've heard before." },
+  new_lead:    { label: "New Lead",        color: "#c8a864", nextStage: "sent",        nextLabel: "✓ Outreach Sent",     guide: "LEAD WITH THE AI CLONE. Our primary offer is the Starter package ($1,000/mo) built around their AI clone — a digital twin of the business owner that posts content automatically. Research this business first, then generate the AI Clone Pitch and send it. If they seem hesitant about price, pivot to the 14-day free trial ($500 setup upfront, first two weeks free, then monthly). It removes the risk and closes fast." },
   sent:        { label: "Outreach Sent",   color: "#4a90d9", nextStage: "responded",   nextLabel: "✓ They Responded",    guide: "Outreach is out. Wait 2–3 business days. No response? Generate a follow-up — keep it to one sentence. It's all about volume and follow-through." },
   responded:   { label: "They Responded!", color: "#4a9970", nextStage: "call_set",    nextLabel: "✓ Call Booked",       guide: "Reply within 1 hour. Your only goal right now: get them on a 15-minute call. Don't pitch anything yet. Use the generator below to craft your reply." },
   call_set:    { label: "Call Scheduled",  color: "#7b68ee", nextStage: "proposal",    nextLabel: "✓ Proposal Sent",     guide: "Prep using the CLOSER notes below. Listen first, pitch second. Send the proposal within 24 hours of the call ending — while you're still fresh in their mind." },
   proposal:    { label: "Proposal Sent",   color: "#e08030", nextStage: "negotiating", nextLabel: "✓ They're Interested", guide: "Wait 24–48 hours. No reply? Follow up once. Don't resend the deck — just ask if they had a chance to look at it." },
-  negotiating: { label: "Negotiating",     color: "#b8860b", nextStage: "won",         nextLabel: "✓ Mark as Won 🎉",   guide: "Price is the most common objection. Don't discount — offer the annual deal (10–20% off) or add value. Address their specific concern directly." },
+  negotiating: { label: "Negotiating",     color: "#b8860b", nextStage: "won",         nextLabel: "✓ Mark as Won 🎉",   guide: "Price is the most common objection. First offer: the 14-day free trial ($500 setup upfront, first 2 weeks free, then monthly). If they want a longer commitment discount, offer 15% off annual. Don't drop the monthly price — protect your rate and add value instead." },
   won:         { label: "🎉 Won!",         color: "#2a8a50",                                                              guide: "Send the agreement and onboarding form TODAY. Schedule the kickoff call within 48 hours. Strike while they're excited." },
   lost:        { label: "Not Now",         color: "#888",    nextStage: "new_lead",    nextLabel: "↩ Re-Open",           guide: "Send a warm break-up email. Leave the door open. Set a 30-60 day reminder to circle back — people's situations change." },
 };
 
 const STAGE_MSGS: Record<PStage, { label: string; key: string }[]> = {
-  new_lead:    [{ label: "🤖 AI Clone Pitch — $1k", key: "ai_clone_pitch" }, { label: "AI Clone DM", key: "ai_clone_dm" }, { label: "Cold Email", key: "cold_email" }, { label: "Cold DM", key: "cold_dm" }, { label: "Compliment Email", key: "compliment" }, { label: "Free Trial DM", key: "free_trial" }],
+  new_lead:    [{ label: "🤖 AI Clone Pitch — $1k", key: "ai_clone_pitch" }, { label: "AI Clone DM", key: "ai_clone_dm" }, { label: "🎁 14-Day Free Trial Email", key: "free_trial" }, { label: "Free Trial DM", key: "free_trial_dm" }, { label: "Cold Email", key: "cold_email" }, { label: "Cold DM", key: "cold_dm" }, { label: "Compliment Email", key: "compliment" }],
   sent:        [{ label: "Follow-Up Email", key: "followup_email" }, { label: "Follow-Up DM", key: "followup_dm" }, { label: "Free AI Video Offer", key: "free_video" }],
   responded:   [{ label: "Book the Call", key: "book_call" }, { label: "Reply + Calendar", key: "call_reply" }],
   call_set:    [{ label: "CLOSER Prep Notes", key: "closer_prep" }, { label: "Pitch Deck Outline", key: "pitch_outline" }],
@@ -1834,9 +1854,28 @@ For the social media side I'd genuinely love to help. A lot of other ${niche} bu
 Would love to chat for a few minutes if you're open to it. Mandy`,
 
     free_trial:
-`Hey ${fn}, I just built a new AI system for ${niche} businesses. It helps [outcome — e.g. book more jobs automatically / never miss a lead / fill the calendar without ad spend].
+`Hey ${fn},
 
-I'm looking for a few businesses to test it out — would ${biz} want a free trial?`,
+I wanted to reach out about something we're offering right now for ${niche} businesses.
+
+We do done-for-you social media — AI clone content, automations, booking systems, ads, all of it — and we're offering a 14-day free trial so you can see it working before you commit to anything.
+
+The only thing upfront is a one-time $500 setup fee so we can actually build everything out for ${biz} properly. After 14 days if you love it you stay on and we roll into the monthly plan. If it's not for you, no problem.
+
+Would that be worth a quick 15-minute call to see what it looks like?
+
+Mandy Fortune
+The Dollhouse Brand Studio
+shopdollhouse.co`,
+
+    free_trial_dm:
+`Hey ${fn}! Quick one.
+
+We work with ${niche} businesses doing done-for-you social media — AI clone content, automations, the whole thing. We're offering a 14-day free trial right now so you can see real results before committing.
+
+Only thing upfront is $500 to set everything up for ${biz}. After that the first two weeks are on us.
+
+Worth a 10-minute chat?`,
 
     followup_email:
 `Subject: Re: ${biz}
@@ -1904,7 +1943,7 @@ SHARE A RESULT
 "We set this up for another ${niche} in ${city} and they [result — e.g. booked 12 new clients in 30 days]. That's what we're going for here."
 
 EXPLAIN THE OFFER
-Present all 3 tiers. Start with Offer 2 or 3 first. Walk down if needed. Never open with the cheapest option. Every package includes a $500 one-time setup.
+Present all 3 plans. Always start with Elite or Growth. Walk down to Starter only if needed. Never open with the cheapest option. Every plan includes a $500 one-time setup fee. If they hesitate on price say: "We do offer a 14-day free trial — the $500 setup applies but the first two weeks are completely free so you can see results before committing."
 
 ASK FOR THE SALE
 "Based on everything you've told me, I think [TIER] is the right fit for ${biz}. Do you want to get started?" Then stop talking. Let them answer.
@@ -2283,10 +2322,10 @@ function DealTrackerTab() {
             </div>
             <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--cream)", fontWeight: 400, lineHeight: 1.1 }}>AI Clone / Character Package — <span style={{ color: "var(--gold)" }}>$1,000/mo</span> <span style={{ fontFamily: FONT_LUXE, fontSize: "0.75rem", letterSpacing: "0.1em", color: "rgba(250,243,234,0.45)", fontStyle: "normal" }}>+ $500 one-time setup</span></h3>
             <p className="mt-2 leading-relaxed" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(250,243,234,0.7)" }}>
-              We build a custom AI avatar of the business owner — a digital twin that looks, sounds, and speaks like them — and use it to post branded video content automatically every week. They never film anything. They never script anything. Their AI character does it for them.
+              We build a custom AI avatar of the business owner — a digital twin that looks, sounds, and speaks like them — and use it to post branded video content automatically every week. It's included in every plan starting at $1,000/mo with a $500 one-time setup. Hesitant prospects get the 14-day free trial pitch: $500 setup upfront, first two weeks free, then monthly.
             </p>
             <div className="mt-4 grid sm:grid-cols-2 gap-2">
-              {["Custom AI avatar built to look & sound like the owner","Branded video content scripted + produced weekly","Posted across Facebook, Instagram & TikTok automatically","Comments & DMs handled by AI — no lead goes cold"].map(f => (
+              {["Custom AI avatar built to look & sound like the owner","Branded video content scripted + produced weekly","Posted to their platforms automatically — nothing for them to do","Comments & DMs handled by AI — no lead goes cold"].map(f => (
                 <div key={f} className="flex items-start gap-2">
                   <span style={{ color: "var(--gold)", marginTop: "1px", flexShrink: 0 }}>✓</span>
                   <p style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "rgba(250,243,234,0.65)" }}>{f}</p>
