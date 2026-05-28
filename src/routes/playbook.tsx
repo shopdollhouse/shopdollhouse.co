@@ -2720,6 +2720,7 @@ function ScriptCard({ step, title, tag, lines }: { step?: string; title: string;
 
 /* ─── Tab: Outreach ───────────────────────────────────── */
 function OutreachTab() {
+  const [section, setSection] = useState<"blueprint"|"aipitch"|"cold"|"salescall"|"objections"|"referral">("blueprint");
   const _scripts = [
     {
       title: "Cold Email — Local Business",
@@ -2890,10 +2891,44 @@ Thanks again for trusting me with [BUSINESS NAME].
     },
   ];
 
+  const sections: { id: typeof section; label: string; icon: string; sub: string }[] = [
+    { id: "blueprint",  icon: "🗺️",  label: "The Blueprint",      sub: "Strategy, mindset, the numbers game" },
+    { id: "aipitch",   icon: "🤖",  label: "AI Clone Pitch",      sub: "Our lead strategy — start here" },
+    { id: "cold",      icon: "📨",  label: "Cold Outreach",       sub: "DM, email, and call scripts" },
+    { id: "salescall", icon: "📞",  label: "The Sales Call",      sub: "CLOSER, discovery call, pitch deck" },
+    { id: "objections",icon: "🛡️",  label: "Objections & Close",  sub: "Handle pushback and close the deal" },
+    { id: "referral",  icon: "🤝",  label: "Referrals",           sub: "Turn clients into your best leads" },
+  ];
+
   return (
     <div className="space-y-6">
       <ServiceTiers />
-      <SectionHeader label="Outreach Scripts" title="How to get clients." sub="Scripts for cold email, DMs, calls, and follow-ups. Customize the bracketed fields for each prospect. Always be specific — never send a generic message." />
+      <SectionHeader label="Outreach Scripts" title="How to get clients." sub="Follow these steps in order. Each section is its own focused guide. Start with the Blueprint, lead with the AI Clone, and work through the funnel from there." />
+
+      {/* Sub-navigation */}
+      <div className="overflow-x-auto pb-1">
+        <div className="flex gap-2 min-w-max">
+          {sections.map(s => {
+            const active = section === s.id;
+            return (
+              <button
+                key={s.id}
+                onClick={() => setSection(s.id)}
+                className="flex flex-col items-start px-4 py-3 rounded-2xl transition-all text-left"
+                style={{ background: active ? "var(--ink)" : "rgba(255,255,255,0.65)", border: active ? "1px solid var(--ink)" : "1px solid rgba(200,168,100,0.2)", minWidth: "140px" }}
+              >
+                <span style={{ fontSize: "1.1rem", lineHeight: 1, marginBottom: "4px" }}>{s.icon}</span>
+                <span style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase", color: active ? "var(--gold)" : "var(--ink)", fontWeight: 500 }}>{s.label}</span>
+                <span style={{ fontFamily: FONT_BODY, fontSize: "0.68rem", color: active ? "rgba(250,243,234,0.5)" : "rgba(30,15,10,0.38)", marginTop: "2px", lineHeight: 1.3 }}>{s.sub}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ── Blueprint ─────────────────────────────────── */}
+      {section === "blueprint" && <>
+      <SectionHeader label="Step 0 — Before You Start" title="The Blueprint." sub="Understand the numbers, the mindset, and the golden rules before you send a single message." />
       {/* Numbers Game */}
       <div className="rounded-2xl p-6" style={{ background: "var(--ink)" }}>
         <p className="text-[10px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The Blueprint — It's a Numbers Game</p>
@@ -2915,6 +2950,11 @@ Thanks again for trusting me with [BUSINESS NAME].
         </p>
       </div>
 
+      </>}
+
+      {/* ── Sales Call ─────────────────────────────────── */}
+      {section === "salescall" && <>
+      <SectionHeader label="Step 4 — The Sales Call" title="Run the call like a pro." sub="Use the CLOSER method to structure every discovery call. Then present the proposal and close. In that order." />
       {/* CLOSER Framework */}
       <div className="rounded-2xl p-7" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
         <p className="text-[10px] tracking-widest uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Sales Call Framework</p>
@@ -3025,11 +3065,11 @@ Thanks again for trusting me with [BUSINESS NAME].
         </div>
       </div>
 
-      <div className="rounded-2xl p-5" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.25)" }}>
-        <p className="text-[11px] tracking-widest uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The Golden Rule</p>
-        <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: "var(--ink)", fontStyle: "italic" }}>Research before you reach out. One specific detail (their product, a post they made, their location) outperforms 100 generic messages every time.</p>
-      </div>
-      <SectionHeader label="Word-for-Word Scripts" title="Exactly what to say — every step." sub="Our lead strategy is the AI Clone. Every script follows one rule: professional flirting. Create desire first. The goal of each message is the next message — not the close. Price comes last." />
+      </>}
+
+      {/* ── AI Clone Pitch ─────────────────────────────── */}
+      {section === "aipitch" && <>
+      <SectionHeader label="Step 1 — Lead With This Always" title="The AI Clone Pitch." sub="This is our primary strategy. Every outreach starts here. Professional flirting only. The goal of each touch is the next touch. Price comes last." />
 
       {/* Mindset card */}
       <div className="rounded-2xl p-7" style={{ background: "var(--ink)" }}>
@@ -3097,6 +3137,11 @@ Thanks again for trusting me with [BUSINESS NAME].
           { type: "note", text: "They've been watching it work for 10 days. They don't want to stop. The retainer sell is easy from here — they're already sold." },
         ]}
       />
+      </>}
+
+      {/* ── Cold Outreach ──────────────────────────────── */}
+      {section === "cold" && <>
+      <SectionHeader label="Step 2 — Start the Conversation" title="Cold Outreach Scripts." sub="DM first, email second, call third. Pick the channel that fits. Every script is word for word. Customize the bracketed fields and send." />
 
       <ScriptCard
         step="Step 1 — Start Here"
@@ -3170,6 +3215,10 @@ Thanks again for trusting me with [BUSINESS NAME].
         ]}
       />
 
+      </>}
+
+      {/* ── Discovery Call added to salescall section ──── */}
+      {section === "salescall" && <>
       <ScriptCard
         step="Step 4"
         title="The Discovery Call — Full Conversation Guide"
@@ -3193,6 +3242,11 @@ Thanks again for trusting me with [BUSINESS NAME].
         ]}
       />
 
+      </>}
+
+      {/* ── Objections & Close ─────────────────────────── */}
+      {section === "objections" && <>
+      <SectionHeader label="Step 5 — Handle Pushback" title="Objections and the Close." sub="Every objection has an exact answer. Stay calm, never discount immediately, and use the free trial as your close when they hesitate on price." />
       <ScriptCard
         step="Step 5"
         title="Handling Objections — Exact Words"
@@ -3227,6 +3281,11 @@ Thanks again for trusting me with [BUSINESS NAME].
         ]}
       />
 
+      </>}
+
+      {/* ── Referrals ──────────────────────────────────── */}
+      {section === "referral" && <>
+      <SectionHeader label="Step 6 — Grow Without Cold Outreach" title="Referrals." sub="Your happiest clients are your best salespeople. Send this right after a win — when they're excited. One ask can bring in 2 or 3 warm leads who are already pre-sold." />
       <ScriptCard
         title="Referral Ask — For Existing Clients"
         tag="Use right after a win"
@@ -3237,6 +3296,8 @@ Thanks again for trusting me with [BUSINESS NAME].
           { type: "note", text: "Keep it simple: a free month of reporting, a content bonus (extra posts that month), or a small invoice credit. Pick whatever feels right for your relationship with that specific client. The most important thing is to just ask — most happy clients will refer you if you simply remind them to." },
         ]}
       />
+      </>}
+
     </div>
   );
 }
