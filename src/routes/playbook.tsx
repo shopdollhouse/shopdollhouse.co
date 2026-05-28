@@ -6580,99 +6580,173 @@ function QuoteBuilderTab() {
     if (!selectedPkg) return "";
     const p = selectedPkg;
     const lines: string[] = [];
+    const name = clientName || "there";
+    const biz = bizName || "your business";
 
     if (mode === "email") {
-      lines.push(`Subject: Your Custom Proposal — ${bizName || "Your Business"}`);
+      lines.push(`Subject: Here's Everything We're Going to Do for ${biz} ✨`);
       lines.push("");
-      lines.push(`Hi ${clientName || "there"},`);
+      lines.push(`Hi ${name},`);
       lines.push("");
-      lines.push(`Thank you for your time! As promised, here's the custom investment proposal I've put together for ${bizName || "your business"}. Everything is tailored specifically to what we discussed.`);
+      lines.push(`It was so great connecting with you! I put this together just for ${biz} — every single thing we talked about is in here.`);
+      lines.push("");
+      lines.push(`Take a read through. I think you're going to love it.`);
       lines.push("");
     }
 
     lines.push("═".repeat(54));
     lines.push("  THE DOLLHOUSE BRAND STUDIO");
-    lines.push("  Custom Investment Proposal");
-    if (bizName) lines.push(`  Prepared for: ${bizName}${city ? ` · ${city}` : ""}`);
-    if (niche) lines.push(`  Industry: ${niche}`);
-    lines.push("  All prices in USD (US Dollars)");
+    lines.push(`  Your Custom Proposal${bizName ? ` — ${biz}` : ""}`);
+    if (city) lines.push(`  ${city}${niche ? ` · ${niche}` : ""}`);
+    lines.push("  All prices are in USD");
     lines.push("═".repeat(54));
     lines.push("");
-    lines.push(`  ${p.emoji}  ${p.name} Package — $${p.monthly.toLocaleString()} USD/mo`);
+
+    // --- The Big Promise ---
+    lines.push("  HERE'S WHAT'S GOING TO HAPPEN:");
+    lines.push("─".repeat(54));
     lines.push("");
-    lines.push("  What's included:");
-    p.includes.forEach(item => lines.push(`    ✓ ${item}`));
+    lines.push(`  We are going to take ${biz} and make it look`);
+    lines.push("  amazing online — every single day.");
+    lines.push("");
+    lines.push("  You won't have to film anything.");
+    lines.push("  You won't have to write a single caption.");
+    lines.push("  You won't have to touch your phone to post.");
+    lines.push("");
+    lines.push("  We handle ALL of it. 100% done for you.");
+    lines.push("");
+
+    // --- The Plan ---
+    lines.push(`  ${p.emoji}  YOUR PLAN: ${p.name.toUpperCase()}`);
+    lines.push("─".repeat(54));
+    lines.push("");
+    lines.push(`  ${p.tagline}`);
+    lines.push("");
+    lines.push("  What we do for you every single month:");
+    lines.push("");
+    p.includes.forEach(item => lines.push(`    ✓  ${item}`));
 
     if (monthlyAddons.length > 0 || onetimeAddons.length > 0) {
       lines.push("");
-      lines.push("  Add-On Services:");
-      monthlyAddons.forEach(a => lines.push(`    + ${a.name} — $${a.price} USD/mo`));
-      onetimeAddons.forEach(a => lines.push(`    + ${a.name} — $${a.price} USD one-time`));
+      lines.push("  EXTRAS WE'RE ADDING FOR YOU:");
+      lines.push("");
+      monthlyAddons.forEach(a => {
+        lines.push(`    + ${a.name}  ($${a.price} USD/mo)`);
+        lines.push(`      ${a.desc}`);
+      });
+      onetimeAddons.forEach(a => {
+        lines.push(`    + ${a.name}  ($${a.price} USD — one time)`);
+        lines.push(`      ${a.desc}`);
+      });
     }
 
     lines.push("");
     lines.push("─".repeat(54));
-    lines.push("  INVESTMENT SUMMARY  (all amounts USD)");
+    lines.push("  WHY THIS WORKS:");
     lines.push("─".repeat(54));
     lines.push("");
-    lines.push(dotLine(`  ${p.name} Package`, `$${p.monthly.toLocaleString()} USD/mo`));
+    lines.push("  Most business owners never show up online because");
+    lines.push("  it takes too much time. We fix that.");
+    lines.push("");
+    lines.push("  Your content goes out every week — on time, on brand,");
+    lines.push("  without you doing a thing.");
+    lines.push("");
+    lines.push("  People start seeing your business everywhere.");
+    lines.push("  They trust you. They reach out. You get more clients.");
+    lines.push("");
+
+    // --- Pricing ---
+    lines.push("─".repeat(54));
+    lines.push("  WHAT IT COSTS:");
+    lines.push("─".repeat(54));
+    lines.push("");
+
+    if (trial) {
+      lines.push("  ★  YOU HAVE A FREE 14-DAY TRIAL!");
+      lines.push("");
+      lines.push("  Try the full service for 2 weeks — completely free.");
+      lines.push("  You only pay the setup fee today to lock in your spot.");
+      lines.push("");
+    }
+
+    lines.push(dotLine(`  ${p.name} Plan`, `$${p.monthly.toLocaleString()} USD/mo`));
     if (monthlyAddons.length > 0) {
       monthlyAddons.forEach(a => lines.push(dotLine(`  + ${a.name}`, `$${a.price} USD/mo`)));
     }
     if (annual) {
-      lines.push(dotLine("  Monthly Subtotal", `$${monthlySubtotal.toLocaleString()} USD/mo`));
-      lines.push(dotLine("  Annual Discount (15% off)", `−$${discount} USD/mo`));
+      lines.push(dotLine("  Subtotal", `$${monthlySubtotal.toLocaleString()} USD/mo`));
+      lines.push(dotLine("  Annual Savings (15% off — you save!)", `−$${discount} USD/mo`));
     }
     lines.push(dotLine("  Monthly Total", `$${monthlyTotal.toLocaleString()} USD/mo`));
     lines.push("");
-    lines.push(dotLine("  One-Time Setup Fee", `$${setupFee} USD`));
+    lines.push("  One-Time Setup Fee (charged only once, ever):");
+    lines.push(dotLine("  Build-out & account setup", `$${setupFee} USD`));
     if (onetimeAddons.length > 0) {
       onetimeAddons.forEach(a => lines.push(dotLine(`  + ${a.name}`, `$${a.price} USD`)));
     }
-    if (adSpend) lines.push(`  * Client ad spend (paid direct): ${adSpend}`);
+    if (adSpend) {
+      lines.push("");
+      lines.push(`  * Ad budget (you pay this direct to Meta): ${adSpend}`);
+      lines.push("    This is NOT paid to us — it goes straight to your ads.");
+    }
     lines.push("");
     lines.push("─".repeat(54));
     if (trial) {
-      lines.push(dotLine("  DUE TODAY (setup fee)", `$${dueToday.toLocaleString()} USD`));
-      lines.push(dotLine("  First 2 Weeks", "FREE TRIAL"));
-      lines.push(dotLine("  Starting Month 1", `$${monthlyTotal.toLocaleString()} USD/mo`));
+      lines.push(dotLine("  DUE TODAY (to lock in your spot)", `$${dueToday.toLocaleString()} USD`));
+      lines.push(dotLine("  First 14 days", "FREE — on us"));
+      lines.push(dotLine("  Then monthly starting Day 15", `$${monthlyTotal.toLocaleString()} USD/mo`));
     } else {
-      lines.push(dotLine("  DUE TODAY", `$${dueToday.toLocaleString()} USD`));
+      lines.push(dotLine("  DUE TODAY (to get started)", `$${dueToday.toLocaleString()} USD`));
+      lines.push(dotLine("  Then every month", `$${monthlyTotal.toLocaleString()} USD/mo`));
     }
     lines.push("─".repeat(54));
     lines.push("");
-    lines.push("  DELIVERY TIMELINE:");
+
+    // --- Timeline ---
+    lines.push("  WHAT HAPPENS AFTER YOU SAY YES:");
     lines.push("─".repeat(54));
-    lines.push(dotLine("  Week 1–2", "Onboarding, brand assets, content plan"));
-    lines.push(dotLine("  Week 2–3", "Content created, designed + sent for approval"));
-    lines.push(dotLine("  Week 3–4", "Final approval + everything goes live"));
-    lines.push(dotLine("  Month 1+", "Ongoing management + monthly reports"));
     lines.push("");
-    lines.push("  NEXT STEPS:");
-    lines.push("  1. Review this proposal — let me know if you have questions");
-    lines.push("  2. Confirm your start date");
-    lines.push("  3. Setup fee is collected to lock in your spot");
-    if (trial) lines.push("  4. Your 14-day free trial begins immediately after setup");
-    lines.push(`  ${trial ? "5" : "4"}. We get to work — your content goes live within the first month`);
+    lines.push("  Week 1–2  →  We learn your brand, set everything up");
+    lines.push("  Week 2–3  →  Your first content is created + you approve it");
+    lines.push("  Week 3–4  →  Everything goes live and starts working for you");
+    lines.push("  Month 2+  →  Fully running on autopilot. Reports every month.");
+    lines.push("");
+
+    // --- Next Steps ---
+    lines.push("─".repeat(54));
+    lines.push("  HOW TO GET STARTED:");
+    lines.push("─".repeat(54));
+    lines.push("");
+    lines.push("  Step 1 — Read this and ask me anything");
+    lines.push("  Step 2 — Tell me your start date");
+    lines.push("  Step 3 — Pay the one-time setup fee to lock in your spot");
+    if (trial) lines.push("  Step 4 — Your free 14-day trial starts right away");
+    lines.push(`  Step ${trial ? "5" : "4"} — We get to work. That's it.`);
+    lines.push("");
+    lines.push("  This offer is held for 7 days.");
+    lines.push("");
 
     if (note) {
-      lines.push("");
       lines.push("─".repeat(54));
-      lines.push("  Note from Amanda:");
+      lines.push("  A NOTE FROM AMANDA:");
+      lines.push("");
       lines.push(`  ${note}`);
+      lines.push("");
     }
 
-    lines.push("");
     lines.push("═".repeat(54));
     lines.push("  The Dollhouse Brand Studio");
     lines.push("  hello@shopdollhouse.co");
+    lines.push("  shopdollhouse.co");
     lines.push("═".repeat(54));
 
     if (mode === "email") {
       lines.push("");
-      lines.push("This proposal is valid for 7 days. I'm so excited to get started — let me know when you're ready to move forward!");
+      lines.push(`I'm genuinely excited about what we can do for ${biz}.`);
+      lines.push("If you have any questions at all — just reply to this email.");
       lines.push("");
-      lines.push("With love,");
+      lines.push("Ready when you are! 🤍");
+      lines.push("");
       lines.push("Amanda");
       lines.push("The Dollhouse Brand Studio");
     }
