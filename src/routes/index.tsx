@@ -1145,7 +1145,7 @@ function Pricing() {
       software: "$497/mo",
       tagline: "Your entire online business — run, managed, and scaled completely for you.",
       featured: true,
-      topBadge: { label: "Featured", tone: "gold" as const },
+      topBadge: { label: "Featured", tone: "gold" as "gold" | "pink" },
       cta: "Apply for Elite →",
       features: [
         "Everything in Growth — expanded to 5 platforms: Instagram, TikTok, Facebook, LinkedIn & Threads",

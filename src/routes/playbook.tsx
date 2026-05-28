@@ -9,7 +9,7 @@ const FONT_LUXE = "'Jost', sans-serif";
 const FONT_SCRIPT = "'Allura', cursive";
 
 /* ─── Types ───────────────────────────────────────────── */
-type Tab = "start" | "workflow" | "monthly" | "prompts" | "outreach" | "growth" | "newhire" | "deals" | "content" | "quote" | "schedule";
+type Tab = "start" | "workflow" | "monthly" | "prompts" | "outreach" | "growth" | "newhire" | "deals" | "content" | "quote" | "schedule" | "discovery";
 
 /* ─── Prompt Card ─────────────────────────────────────── */
 function PromptCard({ title, tag, prompt }: { title: string; tag: string; prompt: string }) {
@@ -7193,6 +7193,268 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
   );
 }
 
+/* ─── Tab: Discovery Call Script Generator ────────────── */
+
+type DStep = "setup" | "opening" | "source" | "situation" | "pain" | "pitch" | "package" | "reaction" | "close" | "done";
+
+function DiscoveryCallTab() {
+  const [clientName, setClientName] = useState("");
+  const [bizName, setBizName] = useState("");
+  const [step, setStep] = useState<DStep>("setup");
+  const [history, setHistory] = useState<DStep[]>([]);
+  const [choices, setChoices] = useState<Record<string, string>>({});
+  const [copied, setCopied] = useState(false);
+
+  const firstName = clientName.split(" ")[0] || "them";
+  const biz = bizName || "your business";
+
+  function choose(key: string, value: string, next: DStep) {
+    setChoices(c => ({ ...c, [key]: value }));
+    setHistory(h => [...h, step]);
+    setStep(next);
+  }
+  function advance(next: DStep) { setHistory(h => [...h, step]); setStep(next); }
+  function goBack() { const prev = history[history.length - 1]; if (prev) { setHistory(h => h.slice(0, -1)); setStep(prev); } }
+  function reset() { setStep("setup"); setHistory([]); setChoices({}); setCopied(false); }
+
+  const STEPS: DStep[] = ["setup","opening","source","situation","pain","pitch","package","reaction","close","done"];
+  const stepIndex = STEPS.indexOf(step);
+
+  const STAGE_LABELS: Partial<Record<DStep, { label: string; color: string }>> = {
+    setup:     { label: "Setup",     color: "rgba(200,168,100,0.9)" },
+    opening:   { label: "Opening",   color: "#4a9970" },
+    source:    { label: "Discovery", color: "#5a8ad0" },
+    situation: { label: "Discovery", color: "#5a8ad0" },
+    pain:      { label: "Discovery", color: "#5a8ad0" },
+    pitch:     { label: "The Pitch", color: "var(--rose)" },
+    package:   { label: "Pricing",   color: "#c8a864" },
+    reaction:  { label: "Reaction",  color: "#a068d0" },
+    close:     { label: "Close",     color: "#4a9970" },
+    done:      { label: "Complete",  color: "#4a9970" },
+  };
+
+  // Scripts —— dynamically constructed from choices
+  const scripts: Partial<Record<DStep, { heading: string; script: string; choices?: { label: string; key: string; value: string; next: DStep }[]; next?: DStep }>> = {
+
+    opening: {
+      heading: "Open the call",
+      script: `"Hey ${firstName}! Thanks so much for making the time — I really appreciate it. I want to make sure this call is actually useful for you, so before I talk about anything on our end, I'd love to ask a couple quick questions about ${biz}. Is that okay?"\n\n[Wait for yes]\n\n"Perfect. So tell me — what's going on with ${biz} right now? Like what made you want to look into this?"`,
+      next: "source",
+    },
+
+    source: {
+      heading: "How did they find you?",
+      script: `Listen to their answer, then pick what applies:`,
+      choices: [
+        { label: "They came inbound (found our site / form)", key: "source", value: "inbound", next: "situation" },
+        { label: "Referral sent them", key: "source", value: "referral", next: "situation" },
+        { label: "I reached out to them cold", key: "source", value: "cold", next: "situation" },
+      ],
+    },
+
+    situation: {
+      heading: "Understand their current situation",
+      script: choices.source === "inbound"
+        ? `"I'm glad you found us! Before I tell you anything about what we do — what's going on right now with your marketing and social media? Like what does that currently look like for ${biz}?"`
+        : choices.source === "referral"
+        ? `"Love it — [name] is great. So tell me, what did they say to you about us? And what's going on right now with ${biz}'s online presence?"`
+        : `"So I came across ${biz} and honestly, I thought — incredible business, but the online presence doesn't match the quality of what you're actually doing. Does that resonate at all? Tell me what the marketing side of things looks like for you right now."`,
+      choices: [
+        { label: "Nothing — too busy, it just doesn't happen", key: "situation", value: "nothing", next: "pain" },
+        { label: "Posting here and there, but no consistency", key: "situation", value: "inconsistent", next: "pain" },
+        { label: "Working with someone else, not happy with results", key: "situation", value: "unhappy_agency", next: "pain" },
+        { label: "Just starting out, nothing set up yet", key: "situation", value: "starting_out", next: "pain" },
+      ],
+    },
+
+    pain: {
+      heading: "Find the real pain",
+      script: choices.situation === "nothing"
+        ? `"Okay so right now social media is basically not happening. You know it matters, but between running ${biz} there's just no time. Does that sound right?"\n\n[Pause — let them confirm or add to it]\n\n"So if I could fix one thing for ${biz} right now, what would make the biggest difference?"`
+        : choices.situation === "inconsistent"
+        ? `"So you're posting but it's whenever you get a chance — no real strategy, no consistency. Some weeks are great, some weeks nothing goes up. And you're probably not seeing the results you'd hope for.\n\n[Pause] What would feel like a win to you? Like what's the actual goal here — more clients, more visibility, something else?"`
+        : choices.situation === "unhappy_agency"
+        ? `"Got it — so you've got something in place but it's not working. What's been the biggest frustration with it?\n\n[Listen fully]\n\nYeah, that's honestly one of the most common things we hear. What would it need to look like for you to actually feel good about it?"`
+        : `"So you're basically building from zero. That's actually a great position to be in — we get to set everything up right from the start. What's the most important thing for you to get out of this — like if we nail one thing, what is it?"`,
+      choices: [
+        { label: "More leads / more booked clients", key: "pain", value: "leads", next: "pitch" },
+        { label: "More time — they're overwhelmed doing it themselves", key: "pain", value: "time", next: "pitch" },
+        { label: "Look more professional / credible online", key: "pain", value: "credibility", next: "pitch" },
+        { label: "Beat competitors who are outranking them online", key: "pain", value: "competition", next: "pitch" },
+        { label: "Build brand awareness in their area", key: "pain", value: "awareness", next: "pitch" },
+      ],
+    },
+
+    pitch: {
+      heading: "Deliver the pitch",
+      script: choices.pain === "leads"
+        ? `"Okay so here's exactly what I'd do for ${biz}. We build your full done-for-you content system — your AI clone so your face and voice is showing up every day without you filming, automated follow-up so nobody falls through the cracks, and your ads running and optimised to bring in real leads. The whole thing runs in the background while you focus on serving clients. People start seeing you everywhere, trusting you, reaching out.\n\nBasically — a consistent, predictable flow of new clients. That's the goal, right?"`
+        : choices.pain === "time"
+        ? `"So here's how we solve that. We take the entire marketing side of ${biz} completely off your plate. Content? We do it. Posting? We do it. DMs and comments? We handle them. Follow-up when someone shows interest? Automated. You literally never have to think about what to post again. It all runs on autopilot.\n\nHow much time are you spending on this stuff right now?"`
+        : choices.pain === "credibility"
+        ? `"So what we build for ${biz} is a complete branded content system — everything designed to look premium and consistent with who you actually are. Your AI brand character shows up professionally online every single day. When someone looks you up, it immediately says 'this is a serious, established business.'\n\nRight now when people find you online — what do they see?"`
+        : choices.pain === "competition"
+        ? `"Here's the thing — ${biz} showing up online every single day, with high-quality branded content and ads targeting your exact local audience? That's how you take the space your competitors are currently owning. You become the one people see first, trust first, and call first. While they're posting once a week, you're everywhere.\n\nWho's the main competitor you're thinking about right now?"`
+        : `"So we build your content system and run your local awareness push. Every week, new content going out. Every month, more people in your area who've seen your name, trust your brand, know what you do. ${biz} becomes the business people think of first.\n\nWhat area are you targeting — like just [city] or a wider region?"`,
+      next: "package",
+    },
+
+    package: {
+      heading: "Present your package",
+      script: `Based on everything they told you — pick the right plan:`,
+      choices: [
+        { label: "Content Starter — $500/mo", key: "package", value: "content_starter", next: "reaction" },
+        { label: "Starter — $1,000/mo", key: "package", value: "starter", next: "reaction" },
+        { label: "Growth — $2,500/mo", key: "package", value: "growth", next: "reaction" },
+        { label: "Elite — $5,000+/mo", key: "package", value: "elite", next: "reaction" },
+      ],
+    },
+
+    reaction: {
+      heading: "What was their reaction?",
+      script: choices.package === "content_starter"
+        ? `"So there's actually a perfect entry-point for this. It's called our Content Starter — $500 a month. We create 8 branded posts for you every month, schedule everything, and it's completely done for you. No AI avatar, no automation — just really clean, on-brand content going out consistently. There's a one-time $500 setup fee to get everything built out, and after that it's month-to-month.\n\nWhat do you think?"`
+        : choices.package === "starter"
+        ? `"So the plan I'd recommend for ${biz} is our Starter. It's $1,000 a month — and you get your full AI clone built so your face and voice is showing up in content without you filming, one platform fully managed, all your automations set up, and a monthly performance report. There's a one-time $500 setup fee to build everything out, and then it's month-to-month with no contract.\n\nWant me to walk you through what that specifically looks like for ${biz}?"`
+        : choices.package === "growth"
+        ? `"For ${biz}, I'd actually go with our Growth plan. It's $2,500 a month — and this gets you across three platforms fully managed, Instagram, TikTok, and Facebook. Your AI clone running, paid ad management, email and SMS automation so leads get followed up automatically. One-time $500 setup fee to kick things off. Based on what you told me about [pain], this is the one that's really going to move the needle.\n\nDoes that feel like the right level for where you want to take ${biz}?"`
+        : `"Honestly, based on everything you've told me, I think Elite is the right move for ${biz}. It's $5,000 a month — and it's the full system. Five platforms, AI clone, AI voice agent so your phone is never unmanned, full ad management, everything. Your business completely dominating online, nothing left to chance. One-time $500 setup fee.\n\nThis is what we build for businesses that are serious about growth. What's your reaction to that?"`,
+      choices: [
+        { label: "Sounds great — they want to move forward", key: "reaction", value: "ready", next: "close" },
+        { label: "That's more than they expected / too expensive", key: "reaction", value: "price", next: "close" },
+        { label: "Need to think about it", key: "reaction", value: "think", next: "close" },
+        { label: "Need to talk to their partner / spouse", key: "reaction", value: "partner", next: "close" },
+        { label: "Not interested right now", key: "reaction", value: "no", next: "close" },
+      ],
+    },
+
+    close: {
+      heading: "Close the call",
+      script: choices.reaction === "ready"
+        ? `"Perfect! So here's exactly what happens next. I'll send you over a full proposal today — it'll have everything we talked about laid out clearly with all the numbers. All you need to do is confirm and we collect the $500 setup fee to lock in your spot. Once that's in, we start your buildout immediately and your content goes live within the first month.\n\nDoes today or tomorrow work to get that moving?"`
+        : choices.reaction === "price"
+        ? `"I totally get it — it's a real investment and I respect that you're being careful with it. Can I ask — what are you currently spending to get new clients? Because for most of the businesses we work with, one or two new clients from this system pays for the entire month.\n\nBut I hear you. A couple options — we could start you on the [lower plan] and upgrade once you see results. Or we do have a 14-day free trial where you only pay the $500 setup today and your first two weeks are completely on us. That way there's basically zero risk. Does either of those feel like a better fit?"`
+        : choices.reaction === "think"
+        ? `"Absolutely — this is a real decision and I want you to feel good about it. Can I ask, what specifically are you wanting to think through? [Listen] Okay that makes sense.\n\nHere's what I'll do — I'll send you the full proposal today so you have everything in writing with all the details. What's a good day for a quick 10-minute check-in? I just want to make sure all your questions get answered and nothing falls through the cracks.\n\nDoes [2 days from now] work?"`
+        : choices.reaction === "partner"
+        ? `"Of course — big decisions are always better made together. I'm going to send you the full proposal right now so you both have something to look at together.\n\nWould it make sense to get your partner on a quick 20-minute call? A lot of times it helps to hear it directly from us and get questions answered on the spot. When do you think you'd both have a few minutes?"`
+        : `"No worries at all — I really appreciate your honesty, it saves us both time. Can I ask what made it not feel like a fit right now? [Listen]\n\nGot it. Well look — if anything changes or the timing gets better down the road, the door is completely open. I'll send you our info so you have it. And if you know anyone who might be a good fit for this, I'd love a referral. Thanks so much for your time, ${firstName} — I genuinely wish you the best with ${biz}."`,
+      next: "done",
+    },
+
+    done: {
+      heading: "Call complete",
+      script: `Great work. Here's what to do right now:\n\n1. Send the proposal (go to Quote Builder, build it for ${biz})\n2. Add them to the Deal Pipeline at the right stage\n3. Log a note on what they said\n4. Follow up in ${choices.reaction === "think" || choices.reaction === "partner" ? "2–3 days" : "24 hours"} if you haven't heard back`,
+    },
+  };
+
+  const current = scripts[step];
+  const stageInfo = STAGE_LABELS[step];
+
+  const S = { fontFamily: FONT_BODY } as const;
+  const SL = { fontFamily: FONT_LUXE } as const;
+
+  // Setup screen
+  if (step === "setup") return (
+    <div>
+      <SectionHeader label="Discovery Call" title="Script Generator" sub="Enter the client's name and business — then follow each step. Every button generates exactly what to say next." />
+      <div className="max-w-lg mx-auto mt-8 rounded-2xl p-8 space-y-5" style={{ background: "rgba(255,255,255,0.7)", border: "1px solid rgba(200,168,100,0.2)" }}>
+        <div>
+          <label className="block mb-1.5" style={{ ...SL, fontSize: "0.68rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(30,15,10,0.5)" }}>Client First Name</label>
+          <input value={clientName} onChange={e => setClientName(e.target.value)} placeholder="e.g. Sarah" className="w-full px-4 py-3 rounded-xl outline-none" style={{ ...S, fontSize: "1rem", background: "rgba(255,255,255,0.9)", border: "1px solid rgba(200,168,100,0.3)", color: "var(--ink)" }} />
+        </div>
+        <div>
+          <label className="block mb-1.5" style={{ ...SL, fontSize: "0.68rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(30,15,10,0.5)" }}>Business Name</label>
+          <input value={bizName} onChange={e => setBizName(e.target.value)} placeholder="e.g. Bloom Med Spa" className="w-full px-4 py-3 rounded-xl outline-none" style={{ ...S, fontSize: "1rem", background: "rgba(255,255,255,0.9)", border: "1px solid rgba(200,168,100,0.3)", color: "var(--ink)" }} />
+        </div>
+        <button onClick={() => advance("opening")} className="w-full py-4 rounded-xl transition-all hover:opacity-90" style={{ background: "var(--ink)", ...SL, fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)" }}>
+          Start the Call →
+        </button>
+        <p style={{ ...S, fontSize: "0.75rem", color: "rgba(30,15,10,0.35)", textAlign: "center" }}>You can also start without filling these in — scripts will use placeholders.</p>
+      </div>
+    </div>
+  );
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
+        <div className="flex items-center gap-3">
+          {history.length > 0 && (
+            <button onClick={goBack} style={{ ...SL, fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold)" }} className="hover:opacity-60 transition-opacity">← Back</button>
+          )}
+          <div className="flex items-center gap-2">
+            {stageInfo && (
+              <span className="px-3 py-1 rounded-full text-[9px] tracking-widest uppercase" style={{ ...SL, background: `${stageInfo.color}22`, color: stageInfo.color, border: `1px solid ${stageInfo.color}44` }}>
+                {stageInfo.label}
+              </span>
+            )}
+            <span style={{ ...S, fontSize: "0.75rem", color: "rgba(30,15,10,0.4)" }}>Step {stepIndex} of {STEPS.length - 1}</span>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <span style={{ ...S, fontSize: "0.8rem", color: "rgba(30,15,10,0.4)" }}>{firstName} · {biz}</span>
+          <button onClick={reset} style={{ ...SL, fontSize: "9px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(30,15,10,0.35)" }} className="hover:opacity-60 transition-opacity ml-2">✕ Reset</button>
+        </div>
+      </div>
+
+      {/* Progress bar */}
+      <div className="h-1 rounded-full mb-8" style={{ background: "rgba(200,168,100,0.15)" }}>
+        <div className="h-full rounded-full transition-all" style={{ width: `${(stepIndex / (STEPS.length - 1)) * 100}%`, background: "linear-gradient(90deg, var(--gold), var(--rose))" }} />
+      </div>
+
+      {current && (
+        <div className="space-y-5">
+          {/* Heading */}
+          <p style={{ ...SL, fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--gold)" }}>{current.heading}</p>
+
+          {/* Script block */}
+          <div className="rounded-2xl p-7 relative" style={{ background: "var(--ink)", border: "1px solid rgba(200,168,100,0.2)" }}>
+            <p style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1rem, 2vw, 1.2rem)", color: "var(--cream)", lineHeight: 1.8, whiteSpace: "pre-line" }}>
+              {current.script}
+            </p>
+            <button
+              onClick={() => { navigator.clipboard.writeText(current.script); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
+              className="absolute top-4 right-4 px-3 py-1.5 rounded-lg transition-all hover:opacity-80"
+              style={{ ...SL, fontSize: "8px", letterSpacing: "0.15em", textTransform: "uppercase", background: copied ? "rgba(74,153,112,0.3)" : "rgba(200,168,100,0.12)", color: copied ? "#4a9970" : "rgba(200,168,100,0.7)", border: `1px solid ${copied ? "rgba(74,153,112,0.3)" : "rgba(200,168,100,0.2)"}` }}
+            >
+              {copied ? "✓ Copied" : "Copy"}
+            </button>
+          </div>
+
+          {/* Choices or advance button */}
+          {current.choices ? (
+            <div className="space-y-2.5">
+              <p style={{ ...SL, fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(30,15,10,0.4)" }}>They said / situation is →</p>
+              {current.choices.map(c => (
+                <button
+                  key={c.value}
+                  onClick={() => choose(c.key, c.value, c.next)}
+                  className="w-full text-left px-5 py-4 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-md"
+                  style={{ background: "rgba(255,255,255,0.75)", border: "1px solid rgba(200,168,100,0.25)", ...S, fontSize: "0.9rem", color: "var(--ink)" }}
+                >
+                  <span style={{ color: "var(--gold)", marginRight: "10px" }}>→</span>{c.label}
+                </button>
+              ))}
+            </div>
+          ) : current.next ? (
+            <button
+              onClick={() => advance(current.next!)}
+              className="w-full py-4 rounded-xl transition-all hover:opacity-90"
+              style={{ background: stageInfo ? `${stageInfo.color}` : "var(--ink)", ...SL, fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: step === "opening" ? "var(--ink)" : "#fff" }}
+            >
+              {step === "opening" ? "They said yes — continue →" : step === "pitch" ? "They're listening — present pricing →" : "Continue →"}
+            </button>
+          ) : step === "done" ? (
+            <button onClick={reset} className="w-full py-4 rounded-xl transition-all hover:opacity-90" style={{ background: "rgba(74,153,112,0.15)", ...SL, fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#4a9970", border: "1px solid rgba(74,153,112,0.3)" }}>
+              ✓ Start a New Call
+            </button>
+          ) : null}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function PlaybookPage() {
   const [authed, setAuthed] = useState(() => sessionStorage.getItem("dh_admin") === "1");
   const [tab, setTab] = useState<Tab>("deals");
@@ -7225,11 +7487,12 @@ function PlaybookPage() {
   if (!authed) return <LoginGate onAuth={() => setAuthed(true)} />;
 
   const primaryTabs: { id: Tab; label: string; icon: string }[] = [
-    { id: "deals",    label: "Deal Pipeline",    icon: "🎯" },
-    { id: "quote",    label: "Quote Builder",    icon: "🧮" },
-    { id: "outreach", label: "Outreach Scripts", icon: "📞" },
-    { id: "workflow", label: "Client Workflow",  icon: "📋" },
-    { id: "prompts",  label: "Content Prompts",  icon: "✍️" },
+    { id: "deals",     label: "Deal Pipeline",    icon: "🎯" },
+    { id: "quote",     label: "Quote Builder",    icon: "🧮" },
+    { id: "discovery", label: "Discovery Call",   icon: "🎙️" },
+    { id: "outreach",  label: "Outreach Scripts", icon: "📞" },
+    { id: "workflow",  label: "Client Workflow",  icon: "📋" },
+    { id: "prompts",   label: "Content Prompts",  icon: "✍️" },
   ];
 
   const referenceTabs: { id: Tab; label: string; icon: string }[] = [
@@ -7337,6 +7600,7 @@ function PlaybookPage() {
         {tab === "growth" && <GrowthTab />}
         {tab === "content" && <ContentStrategyTab />}
         {tab === "deals" && <DealTrackerTab prospects={prospects} persist={persist} onBuildQuote={openQuoteFor} />}
+        {tab === "discovery" && <DiscoveryCallTab />}
         {tab === "newhire" && <NewHireTab />}
         {tab === "quote" && <QuoteBuilderTab prospects={prospects} persist={persist} prospectId={quoteProspectId} onGoToDeals={() => { setQuoteProspectId(null); setTab("deals"); }} onClearProspect={() => setQuoteProspectId(null)} />}
         {tab === "schedule" && <ScheduleTab />}
