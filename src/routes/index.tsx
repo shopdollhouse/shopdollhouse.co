@@ -1292,7 +1292,7 @@ function Pricing() {
                   <span
                     style={{
                       fontFamily: "'Jost', sans-serif",
-                      fontSize: "0.7rem",
+                      fontSize: "0.5rem",
                       letterSpacing: "0.2em",
                       color: isFilled ? "rgba(255,255,255,0.45)" : "rgba(30,15,10,0.45)",
                       marginTop: "4px",
@@ -1428,7 +1428,7 @@ function Pricing() {
               </p>
             </div>
             <p className="mt-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.3rem", color: "var(--ink)", fontStyle: "italic" }}>
-              Content Starter — <span style={{ color: "var(--gold)" }}>$500 USD/mo</span>
+              Content Starter — <span style={{ color: "var(--gold)" }}>$500<span style={{ fontSize: "0.6em", letterSpacing: "0.15em", opacity: 0.7 }}> USD</span>/mo</span>
             </p>
             <div className="mt-1.5 flex items-center gap-3 flex-wrap justify-center sm:justify-start">
               {["1 Platform", "8 Posts/mo", "Static & Carousels"].map((tag) => (
