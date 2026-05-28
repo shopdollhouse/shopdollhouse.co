@@ -5928,8 +5928,8 @@ interface TimeBlock {
 const DAILY_BLOCKS: TimeBlock[] = [
   {
     time: "7:30am", duration: "20 min", type: "bella",
-    label: "🐾 Bella — Morning Routine",
-    desc: "First thing before your own coffee: take Bella to the balcony. Stay with her — don't rush back inside. The moment she goes on the balcony, celebrate big: 'Good girl!' and give a treat immediately. Timing is everything with potty training — the reward has to happen right as she finishes, not after. Then fill her water bowl and put down her one daily meal. Same time every morning, same routine. Remove the bowl after 20 minutes whether she ate or not — this keeps her on a consistent schedule that also helps her bladder timing. She's 45 in human years and transitioning from pee pad to balcony, so patience and repetition are the whole game.",
+    label: "🐾 Bella — Morning Balcony",
+    desc: "First thing before your own coffee: take Bella to the balcony. Stay with her — don't rush back inside. The moment she goes, celebrate big: 'Good girl!' and give a treat immediately. Timing is everything with potty training — the reward has to happen right as she finishes, not after. She's 45 in human years and transitioning from pee pad to balcony, so patience and repetition are the whole game. Fill her water bowl now so she stays hydrated. Feeding comes later in the day.",
   },
   {
     time: "8:00am", duration: "30 min", type: "personal",
@@ -5953,8 +5953,8 @@ const DAILY_BLOCKS: TimeBlock[] = [
   },
   {
     time: "12:00pm", duration: "45 min", type: "rest",
-    label: "Lunch + Bella Midday Break",
-    desc: "Take Bella to the balcony first — she's been in for about 3 hours. Wait for her to go, reward her, then come back inside and eat. Screens off while you eat something real. Bella will likely nap after her outdoor time, which gives you a clean stretch of focus in the afternoon. You both need this break — protect it.",
+    label: "Lunch + Bella Midday Break + Feed",
+    desc: "Take Bella to the balcony first — she's been in for about 3 hours. Wait for her to go, reward her, then come back inside. This is also when you put down her one daily meal. Same time every day keeps her digestive rhythm consistent, which directly helps with the potty training — she'll need to go again about 1–2 hours after eating, which lines up perfectly with the 3pm balcony break. Remove the bowl after 20 minutes whether she finished or not. Then eat your own lunch, screens off. You both need this break.",
   },
   {
     time: "12:45pm", duration: "75 min", type: "outreach",
@@ -5969,7 +5969,7 @@ const DAILY_BLOCKS: TimeBlock[] = [
   {
     time: "3:00pm", duration: "10 min", type: "bella",
     label: "🐾 Bella — Afternoon Balcony Break",
-    desc: "Quick balcony trip — she's been inside for about 3 hours since lunch. This is one of the key reinforcement windows for the pee pad → balcony transition. If she's been holding it and goes outside, that's exactly what you're training her to do. Reward every single time, no exceptions. Keep a small jar of treats near the balcony door so it's automatic and instant.",
+    desc: "This is the post-meal window — she ate at noon and this is right when she needs to go. Taking her out consistently at this time reinforces the habit faster than almost anything else. Reward every single time, no exceptions. Keep a small jar of treats right by the balcony door so the reward is instant — not after you've walked back to the kitchen.",
   },
   {
     time: "3:30pm", duration: "60 min", type: "admin",
