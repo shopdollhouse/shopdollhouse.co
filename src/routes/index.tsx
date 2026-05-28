@@ -1350,7 +1350,7 @@ function Pricing() {
       </div>
 
       {/* Add-on Services */}
-      <div className="mt-20 max-w-4xl mx-auto">
+      <div className="mt-20 max-w-5xl mx-auto">
         <div className="text-center mb-10">
           <p className="text-[var(--gold)] text-[11px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
             Available on any plan
@@ -1365,39 +1365,77 @@ function Pricing() {
             Add exactly what your business needs — priced into your custom quote.
           </p>
         </div>
-        <div className="grid sm:grid-cols-2 gap-4">
+
+        {/* Monthly add-ons */}
+        <p className="text-[9px] tracking-luxe uppercase text-[var(--ink)]/45 mb-4" style={{ fontFamily: "'Jost', sans-serif" }}>
+          Monthly Add-Ons
+        </p>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {[
-            { title: "AI Voice Agent", desc: "Never miss a call. Your AI answers 24/7, qualifies leads, and books appointments — in your brand voice." },
-            { title: "Review & Reputation Management", desc: "Automatically request reviews, respond to feedback, and build your 5-star presence on Google and beyond." },
-            { title: "Email & SMS Marketing", desc: "Done-for-you campaigns, broadcasts, and nurture sequences that keep your audience warm and ready to buy." },
-            { title: "Additional Content Creation", desc: "Need more posts or platforms? Extra content created and scheduled for you — same quality, more volume." },
-            { title: "Website & Landing Page Design", desc: "A conversion-ready website or landing page — designed for your brand and built to turn visitors into clients." },
-            { title: "Merch & Brand Design", desc: "On-brand merch, apparel, and print-ready assets designed to match your business identity." },
+            { emoji: "🎬", title: "AI Avatar Videos", desc: "4–8 branded AI avatar videos/month — your face, your voice, on autopilot." },
+            { emoji: "📞", title: "AI Voice Agent", desc: "Never miss a call. Your AI answers 24/7, qualifies leads, and books appointments." },
+            { emoji: "⭐", title: "Review & Reputation Management", desc: "Automated review requests, respond to feedback, and 5-star Google presence." },
+            { emoji: "📧", title: "Email & SMS Marketing", desc: "Done-for-you campaigns, broadcasts, and nurture sequences." },
+            { emoji: "📲", title: "Additional Content Creation", desc: "More posts, more platforms — same quality, more volume." },
+            { emoji: "💼", title: "LinkedIn Management", desc: "Daily posts, connection outreach, and professional content." },
+            { emoji: "📍", title: "Google Business Profile", desc: "Weekly posts, review monitoring, and Q&A management." },
+            { emoji: "🎯", title: "Google Ads Management", desc: "Full campaign management — ad spend is separate." },
           ].map((addon) => (
             <div
               key={addon.title}
-              className="rounded-2xl px-7 py-6 flex gap-4 items-start"
+              className="rounded-xl px-5 py-4 flex gap-3 items-start"
               style={{
                 background: "linear-gradient(160deg, rgba(255,255,255,0.7) 0%, rgba(251,240,235,0.6) 100%)",
-                border: "1px solid color-mix(in oklab, var(--gold) 30%, transparent)",
-                boxShadow: "0 8px 24px -12px rgba(160,110,95,0.2)",
+                border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",
                 backdropFilter: "blur(8px)",
               }}
             >
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "14px", height: "14px", color: "var(--gold)", marginTop: "4px", flexShrink: 0 }}>
-                <path d="M2.5 8.5L6 12L13.5 4.5" />
-              </svg>
+              <span className="text-base mt-0.5 shrink-0">{addon.emoji}</span>
               <div>
-                <p className="font-medium" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.15rem", fontStyle: "italic", color: "var(--ink)" }}>
+                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.05rem", fontStyle: "italic", color: "var(--ink)" }}>
                   {addon.title}
                 </p>
-                <p className="mt-1" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.82rem", color: "rgba(30,15,10,0.62)", lineHeight: 1.55 }}>
+                <p className="mt-0.5" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.76rem", color: "rgba(30,15,10,0.58)", lineHeight: 1.5 }}>
                   {addon.desc}
                 </p>
               </div>
             </div>
           ))}
         </div>
+
+        {/* One-time services */}
+        <p className="text-[9px] tracking-luxe uppercase text-[var(--ink)]/45 mb-4 mt-8" style={{ fontFamily: "'Jost', sans-serif" }}>
+          One-Time Services
+        </p>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {[
+            { emoji: "🏗️", title: "Website & Landing Page Design", desc: "Conversion-ready site built for your brand." },
+            { emoji: "🔍", title: "AI Revenue Audit", desc: "Full pipeline + social + workflow audit with growth plan." },
+            { emoji: "📦", title: "Digital Product Build", desc: "A fully interactive web app — not a PDF. The next level of digital products." },
+            { emoji: "👕", title: "Merch & Brand Design", desc: "On-brand merch, apparel, and print-ready assets." },
+          ].map((addon) => (
+            <div
+              key={addon.title}
+              className="rounded-xl px-5 py-4 flex gap-3 items-start"
+              style={{
+                background: "linear-gradient(160deg, rgba(255,255,255,0.7) 0%, rgba(251,240,235,0.6) 100%)",
+                border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",
+                backdropFilter: "blur(8px)",
+              }}
+            >
+              <span className="text-base mt-0.5 shrink-0">{addon.emoji}</span>
+              <div>
+                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.05rem", fontStyle: "italic", color: "var(--ink)" }}>
+                  {addon.title}
+                </p>
+                <p className="mt-0.5" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.76rem", color: "rgba(30,15,10,0.58)", lineHeight: 1.5 }}>
+                  {addon.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
         <p className="text-center mt-8 text-[var(--ink)]/45 text-[11px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
           Add-on pricing included in your custom quote · mention it when you apply
         </p>
@@ -1671,7 +1709,6 @@ function FAQ() {
 /* ─── Contact ─────────────────────────────────────────── */
 function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
-  const [hasWebsite, setHasWebsite] = useState("Yes");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -1759,53 +1796,48 @@ function Contact() {
           </select>
         </div>
 
-        {/* Website? */}
-        <div>
-          <label className={labelClass} style={labelStyle}>Do you have a website?</label>
-          <select
-            name="has_website"
-            value={hasWebsite}
-            onChange={(e) => setHasWebsite(e.target.value)}
-            className={inputClass}
-            style={inputStyle}
-          >
-            <option>Yes</option>
-            <option>No</option>
-          </select>
-        </div>
-
-        {/* Website URL — shown only if Yes */}
-        {hasWebsite === "Yes" && (
-          <div>
-            <label className={labelClass} style={labelStyle}>Website URL</label>
-            <input type="text" name="website" placeholder="yourbrand.com" className={inputClass} style={inputStyle} />
-          </div>
-        )}
-
         {/* Add-ons */}
         <div>
-          <label className={labelClass} style={labelStyle}>Interested in any add-ons? <span className="normal-case opacity-60">(optional)</span></label>
-          <div className="grid grid-cols-1 gap-2">
+          <label className={labelClass} style={labelStyle}>
+            Any add-ons? <span className="normal-case opacity-60">(optional)</span>
+          </label>
+          <p className="text-[9px] tracking-luxe uppercase text-[var(--ink)]/40 mb-2" style={{ fontFamily: "'Jost', sans-serif" }}>Monthly</p>
+          <div className="grid grid-cols-2 gap-1.5 mb-3">
             {[
+              "AI Avatar Videos",
               "AI Voice Agent",
-              "Review & Reputation Management",
+              "Review Management",
               "Email & SMS Marketing",
-              "Additional Content Creation",
-              "Website & Landing Page Design",
+              "Extra Content / Platforms",
+              "LinkedIn Management",
+              "Google Business Profile",
+              "Google Ads Management",
+            ].map((addon) => (
+              <label
+                key={addon}
+                className="flex items-center gap-2 px-3 py-2.5 rounded-xl cursor-pointer transition-all"
+                style={{ background: "rgba(255,255,255,0.5)", border: "1px solid color-mix(in oklab, var(--gold) 25%, transparent)" }}
+              >
+                <input type="checkbox" name="addons" value={addon} className="accent-[var(--gold)] w-3.5 h-3.5 shrink-0" />
+                <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.72rem", letterSpacing: "0.03em", color: "var(--ink)", lineHeight: 1.3 }}>{addon}</span>
+              </label>
+            ))}
+          </div>
+          <p className="text-[9px] tracking-luxe uppercase text-[var(--ink)]/40 mb-2" style={{ fontFamily: "'Jost', sans-serif" }}>One-Time</p>
+          <div className="grid grid-cols-2 gap-1.5">
+            {[
+              "Website Design",
+              "AI Revenue Audit",
+              "Digital Product Build",
               "Merch & Brand Design",
             ].map((addon) => (
               <label
                 key={addon}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer transition-all hover:border-[var(--gold)]/50"
+                className="flex items-center gap-2 px-3 py-2.5 rounded-xl cursor-pointer transition-all"
                 style={{ background: "rgba(255,255,255,0.5)", border: "1px solid color-mix(in oklab, var(--gold) 25%, transparent)" }}
               >
-                <input
-                  type="checkbox"
-                  name="addons"
-                  value={addon}
-                  className="accent-[var(--gold)] w-4 h-4 shrink-0"
-                />
-                <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "var(--ink)" }}>{addon}</span>
+                <input type="checkbox" name="addons" value={addon} className="accent-[var(--gold)] w-3.5 h-3.5 shrink-0" />
+                <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.72rem", letterSpacing: "0.03em", color: "var(--ink)", lineHeight: 1.3 }}>{addon}</span>
               </label>
             ))}
           </div>
