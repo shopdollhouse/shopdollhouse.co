@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export const Route = createFileRoute("/playbook")({ component: PlaybookPage });
 
@@ -7133,23 +7133,41 @@ function QuoteBuilderTab() {
 
 function PlaybookPage() {
   const [authed, setAuthed] = useState(() => sessionStorage.getItem("dh_admin") === "1");
-  const [tab, setTab] = useState<Tab>("start");
+  const [tab, setTab] = useState<Tab>("deals");
+  const [refOpen, setRefOpen] = useState(false);
+  const refDropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (refDropdownRef.current && !refDropdownRef.current.contains(e.target as Node)) {
+        setRefOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
 
   if (!authed) return <LoginGate onAuth={() => setAuthed(true)} />;
 
-  const tabs: { id: Tab; label: string; icon: string }[] = [
-    { id: "start", label: "Start Here", icon: "🌟" },
-    { id: "workflow", label: "Client Workflow", icon: "📋" },
-    { id: "monthly", label: "Monthly Process", icon: "📅" },
-    { id: "prompts", label: "Content Prompts", icon: "✍️" },
-    { id: "content", label: "4x4 Strategy", icon: "🧠" },
+  const primaryTabs: { id: Tab; label: string; icon: string }[] = [
+    { id: "deals",    label: "Deal Pipeline",    icon: "🎯" },
+    { id: "quote",    label: "Quote Builder",    icon: "🧮" },
     { id: "outreach", label: "Outreach Scripts", icon: "📞" },
-    { id: "growth", label: "Inbound Growth", icon: "📈" },
-    { id: "deals", label: "Deal Pipeline", icon: "🎯" },
-    { id: "newhire", label: "New Hire Guide", icon: "👋" },
-    { id: "quote", label: "Quote Builder", icon: "🧮" },
-    { id: "schedule", label: "Daily Schedule", icon: "⏰" },
+    { id: "workflow", label: "Client Workflow",  icon: "📋" },
+    { id: "prompts",  label: "Content Prompts",  icon: "✍️" },
   ];
+
+  const referenceTabs: { id: Tab; label: string; icon: string }[] = [
+    { id: "start",    label: "Start Here",       icon: "🌟" },
+    { id: "monthly",  label: "Monthly Process",  icon: "📅" },
+    { id: "content",  label: "4x4 Strategy",     icon: "🧠" },
+    { id: "growth",   label: "Inbound Growth",   icon: "📈" },
+    { id: "newhire",  label: "New Hire Guide",   icon: "👋" },
+    { id: "schedule", label: "Daily Schedule",   icon: "⏰" },
+  ];
+
+  const allTabs = [...primaryTabs, ...referenceTabs];
+  const activeRefTab = referenceTabs.find(t => t.id === tab);
 
   return (
     <main className="min-h-screen text-[var(--ink)]" style={{ background: "linear-gradient(135deg, #f4dcdc 0%, #f7e6dc 45%, #f1d3cf 100%)" }}>
@@ -7172,11 +7190,13 @@ function PlaybookPage() {
 
       {/* Tabs */}
       <div className="sticky top-0 z-30 px-6 md:px-12 py-3 overflow-x-auto" style={{ background: "rgba(247,230,220,0.92)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(200,168,100,0.12)" }}>
-        <div className="max-w-6xl mx-auto flex gap-2 min-w-max">
-          {tabs.map((t) => (
+        <div className="max-w-6xl mx-auto flex gap-2 min-w-max items-center">
+
+          {/* Primary tabs */}
+          {primaryTabs.map((t) => (
             <button
               key={t.id}
-              onClick={() => setTab(t.id)}
+              onClick={() => { setTab(t.id); setRefOpen(false); }}
               className="px-4 py-2 rounded-xl text-[11px] tracking-wider uppercase transition-all whitespace-nowrap"
               style={{
                 fontFamily: FONT_LUXE,
@@ -7188,6 +7208,48 @@ function PlaybookPage() {
               {t.icon} {t.label}
             </button>
           ))}
+
+          {/* Divider */}
+          <div className="w-px h-5 mx-1" style={{ background: "rgba(200,168,100,0.25)" }} />
+
+          {/* Reference dropdown */}
+          <div className="relative" ref={refDropdownRef}>
+            <button
+              onClick={() => setRefOpen(o => !o)}
+              className="px-4 py-2 rounded-xl text-[11px] tracking-wider uppercase transition-all whitespace-nowrap flex items-center gap-1.5"
+              style={{
+                fontFamily: FONT_LUXE,
+                background: activeRefTab ? "var(--ink)" : (refOpen ? "rgba(255,255,255,0.8)" : "rgba(255,255,255,0.5)"),
+                color: activeRefTab ? "var(--gold)" : "rgba(30,15,10,0.55)",
+                border: activeRefTab ? "1px solid var(--ink)" : "1px solid rgba(200,168,100,0.2)",
+              }}
+            >
+              {activeRefTab ? `${activeRefTab.icon} ${activeRefTab.label}` : "📚 Reference"}
+              <span style={{ fontSize: "8px", opacity: 0.6 }}>{refOpen ? "▲" : "▼"}</span>
+            </button>
+
+            {refOpen && (
+              <div className="absolute top-full left-0 mt-1.5 rounded-xl overflow-hidden shadow-xl z-50" style={{ background: "rgba(252,244,238,0.98)", border: "1px solid rgba(200,168,100,0.25)", minWidth: "180px", backdropFilter: "blur(12px)" }}>
+                {referenceTabs.map((t) => (
+                  <button
+                    key={t.id}
+                    onClick={() => { setTab(t.id); setRefOpen(false); }}
+                    className="w-full text-left px-4 py-2.5 text-[11px] tracking-wider uppercase transition-all flex items-center gap-2.5"
+                    style={{
+                      fontFamily: FONT_LUXE,
+                      background: tab === t.id ? "rgba(200,168,100,0.15)" : "transparent",
+                      color: tab === t.id ? "var(--gold)" : "rgba(30,15,10,0.6)",
+                      borderLeft: tab === t.id ? "2px solid var(--gold)" : "2px solid transparent",
+                    }}
+                  >
+                    <span>{t.icon}</span>
+                    <span>{t.label}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
         </div>
       </div>
 
