@@ -85,12 +85,12 @@ function Phase({ day, title, items }: { day: string; title: string; items: { tex
 function WorkflowTab() {
   return (
     <div className="space-y-6">
-      <SectionHeader label="Client Lifecycle" title="From lead to live — step by step." sub="Every phase you need to execute when a new client signs. Check items off as you go." />
+      <SectionHeader label="Client Lifecycle" title="From lead to live — step by step." sub="Every step you need to do when a new client signs on. Check items off as you go." />
 
       <Phase day="Lead Stage" title="Before They Sign" items={[
-        { text: "Discovery call booked via contact form or DM", sub: "Use the call to understand their goals, platforms, budget, and current content situation." },
+        { text: "Discovery call booked via contact form or DM", sub: "Use the call to learn about their goals, platforms, budget, and how they're doing content now." },
         { text: "Send proposal within 24 hours of the call", sub: "Include the plan tier, what's covered, ad spend note (minimum $500/mo paid directly to Meta), and contract link." },
-        { text: "Follow up if no response in 48 hours", sub: "One follow-up email or DM — keep it warm, not pushy." },
+        { text: "Follow up if no response in 48 hours", sub: "One follow-up email or DM. Keep it warm, not pushy." },
         { text: "Contract signed + first invoice paid before any work begins" },
       ]} />
 
@@ -104,7 +104,7 @@ function WorkflowTab() {
 
       <Phase day="Day 1–2" title="Onboarding" items={[
         { text: "Send welcome email with onboarding questionnaire", sub: "Brand voice, target audience, competitors they love, content pillars, posting goals." },
-        { text: "Request all brand assets", sub: "Logo files (PNG + SVG), brand colors (hex codes), fonts, any existing photos or video." },
+        { text: "Request all brand assets", sub: "Logo files (PNG + SVG), brand colours (hex codes), fonts, any existing photos or video." },
         { text: "Get social media logins or request admin access", sub: "Facebook Business Manager, Instagram, TikTok, Google Business if applicable." },
         { text: "Set up client in CRM", sub: "Create contact, pipeline stage, add tags, assign to the correct workflow/automation. Every client must be in the CRM before any work starts." },
         { text: "Verify Meta ad account access + pixel is installed", sub: "If no pixel — walk them through installing it or do it via GTM." },
@@ -115,7 +115,7 @@ function WorkflowTab() {
         { text: "Audit their existing social profiles", sub: "Bio, profile photo, link in bio, pinned posts, highlight covers if applicable." },
         { text: "Update or optimize profiles where needed" },
         { text: "Set up and verify Meta Pixel on their website", sub: "Install via Events Manager → connect to their website domain. Confirm it's firing using Meta Pixel Helper (Chrome extension). Pixel must be live before any ads run." },
-        { text: "Set up the Brand Board in the platform", sub: "Add client's exact colors (hex codes), fonts, logo, and visual aesthetic. The platform's AI will pull from this when generating content — so everything looks custom, not generic." },
+        { text: "Set up the Brand Board in the platform", sub: "Add client's exact colours (hex codes), fonts, logo, and visual style. The platform's AI pulls from this when making content — so everything looks custom, not generic." },
         { text: "Define their 4–5 content pillars", sub: "Education / Behind the Scenes / Social Proof / Promotion / Personality" },
         { text: "Build their brand voice guide (use the Brand Voice prompt below)" },
         { text: "Set up their content calendar template for Month 1" },
@@ -124,7 +124,7 @@ function WorkflowTab() {
 
       <Phase day="Day 6–10" title="Content Creation" items={[
         { text: "Write all captions for Month 1", sub: "Use the Caption Writing prompt. Batch all posts at once — never write one at a time." },
-        { text: "Design graphics or pull/edit photos", sub: "Match their brand colors, fonts, and aesthetic. Use Canva or provided templates." },
+        { text: "Design graphics or pull/edit photos", sub: "Match their brand colours, fonts, and style. Use Canva or provided templates." },
         { text: "Create any Reel scripts or video hooks if video is included" },
         { text: "Build 2–4 ad creatives if ads are in their plan", sub: "One image ad, one video/carousel. Use the Ad Copy prompt." },
         { text: "Internal review — does everything sound like them? Is it on-brand?" },
@@ -192,7 +192,7 @@ function WorkflowTab() {
 function MonthlyTab() {
   return (
     <div className="space-y-6">
-      <SectionHeader label="Monthly Rhythm" title="Your repeating weekly schedule." sub="This is how you structure every week to serve multiple clients without burning out." />
+      <SectionHeader label="Monthly Rhythm" title="Your weekly schedule — every week." sub="This is how you run each week so you can serve multiple clients without burning out." />
 
       {[
         {
@@ -209,7 +209,7 @@ function MonthlyTab() {
           day: "Tuesday–Wednesday",
           title: "Content Creation Days",
           items: [
-            { text: "Batch write all captions for the week — use prompts, don't freelance it" },
+            { text: "Batch write all captions for the week — use the prompts, don't write from scratch" },
             { text: "Design all graphics, edit photos, prep video content" },
             { text: "Create ad creatives if any campaigns are launching" },
             { text: "No client calls on these days — protect this time" },
@@ -243,8 +243,8 @@ function MonthlyTab() {
 
       <div className="rounded-2xl p-5 mb-2" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.25)" }}>
         <p className="text-[10px] tracking-widest uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>📊 2026 Content Insight</p>
-        <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: "var(--ink)", fontStyle: "italic" }}>Carousels are outperforming Reels right now. Prioritize carousel posts (3–7 slides) for education and social proof. Use Reels for reach and discovery. Both in the mix is ideal.</p>
-        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.55)" }}>Carousel structure that works: Hook slide → Value/Education → Testimonial or proof → CTA slide. Use the Carousel prompt to generate these in the platform's AI.</p>
+        <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: "var(--ink)", fontStyle: "italic" }}>Carousels are getting more reach than Reels right now. Focus on carousels (3–7 slides) for education and social proof. Use Reels for reach and new followers. Both in the mix is ideal.</p>
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.55)" }}>Carousel structure that works: Hook slide → Value or Education → Testimonial or proof → CTA slide. Use the Carousel prompt to build these in the platform's AI.</p>
       </div>
 
       <div className="rounded-2xl p-6" style={{ background: "var(--ink)" }}>
@@ -303,7 +303,7 @@ Slide structure:
 - Slide 5: CTA — drive them to [book / DM / visit site / follow]
 
 For each slide include:
-- Visual direction (colors, layout style, image type)
+- Visual direction (colours, layout style, image type)
 - Headline text (under 10 words)
 - Supporting copy (1–2 sentences)
 - Caption for the full carousel post with hashtags"
@@ -489,7 +489,7 @@ Brand voice: [DESCRIBE]
 For each slide:
 - Slide number
 - Main text (under 15 words — Stories are read fast)
-- Visual direction (color, image type, background — keep it simple)
+- Visual direction (colour, image type, background — keep it simple)
 - Any interactive element: poll / question box / swipe up / link sticker
 
 End with a clear CTA slide. Make it feel like a conversation, not an ad.`,
@@ -530,7 +530,7 @@ Include:
 4. Each section: title + 2–3 sentences of value
 5. Final page — CTA to book, call, or visit: [BOOKING LINK / PHONE / WEBSITE]
 
-Brand colors: [HEX CODES]
+Brand colours: [HEX CODES]
 Tone: [WARM / PROFESSIONAL / FUN — match brand voice]"
 
 ---
@@ -941,7 +941,7 @@ Slide structure:
 
 Design direction:
 - Dark premium background (deep navy, black, or charcoal)
-- Bold typography, gold or rose accent colors — match The Dollhouse brand
+- Bold typography, gold or rose accent colours — match The Dollhouse brand
 - Clean minimal layouts — one big idea per slide
 - Branded: include The Dollhouse Brand Studio logo on slide 1 and 7
 
@@ -1008,7 +1008,7 @@ DESIGN TIPS
 ═══════════════════════════════════
 • Safe zone: keep text and logos 150px from all edges on Stories/Reels
 • Portrait (4:5) takes up more feed space than square — use it for static posts
-• Export all graphics at 72 DPI, sRGB color, JPG or PNG
+• Export all graphics at 72 DPI, sRGB colour, JPG or PNG
 • Keep file sizes under 8MB for fast loading`,
     },
     {
@@ -1034,8 +1034,8 @@ Include:
 - Headline text (under 6 words, big and bold)
 - Subheadline or supporting copy (1–2 lines)
 - Call to action text (e.g., 'Book Now' / 'Link in Bio' / 'DM us')
-- Color palette direction (pull from their brand colors if known: [BRAND COLORS])
-- Image or background direction (photo, gradient, solid color, texture)
+- Colour palette direction (pull from their brand colours if known: [BRAND COLOURS])
+- Image or background direction (photo, gradient, solid colour, texture)
 - Font style direction (bold/modern, script/elegant, clean/minimal)
 - Mood/vibe: [e.g., luxury, approachable, clinical, warm, bold]
 
@@ -1098,7 +1098,7 @@ Paste this into ChatGPT:
 Business type: [e.g., salon / law firm / fitness coach]
 Carousel topic: [e.g., '5 signs you need [SERVICE]' / '3 things to know before [PURCHASE]' / 'Why [BUSINESS NAME] is different']
 Canvas size per slide: 1080 × 1080 px
-Brand colors: [LIST COLORS or 'use professional defaults']
+Brand colours: [LIST COLOURS or 'use professional defaults']
 Tone: [e.g., educational / motivational / luxury / friendly]
 
 For each of the 5 slides, give me:
@@ -1146,7 +1146,7 @@ Include:
 - CTA text (e.g., 'Call Now' / 'Get a Free Quote' / 'Book Online')
 - Phone number or website to include: [PHONE / URL]
 - Visual direction: [photo of the business, before/after, product shot, or text-only]
-- Color palette: [BRAND COLORS or describe the vibe]
+- Colour palette: [BRAND COLOURS or describe the vibe]
 - Mood: [e.g., trustworthy and local / bold and promotional / clean and modern]
 
 Also write the Facebook caption for this post:
@@ -1850,7 +1850,7 @@ SECTION 2 — Social Media Accounts
 
 SECTION 3 — Brand Identity
 - Do you have a brand kit? (Yes — attach / No — we'll build one)
-- Primary colors (hex codes if available)
+- Primary colours (hex codes if available)
 - Fonts used (if known)
 - Tagline or brand statement
 - Tone of voice: check all that apply [Professional / Friendly / Bold / Luxurious / Fun / Educational / Authoritative]
@@ -1884,8 +1884,8 @@ Format as a clean intake form with clear section headers, short answer fields, a
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 THE GOAL
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-This is not just a structure — it is nervous system sequencing.
-You are guiding the viewer through: Curiosity → Recognition → Regulation → Belief → Action.
+This is not just a formula — it walks the viewer through five steps.
+Curiosity → Recognition → Trust → Belief → Action.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 BEFORE YOU SCRIPT: SET YOUR INTENTION
@@ -1896,7 +1896,7 @@ Weak: "Why you need discipline"       → Generic. No one reacts.
 Strong: "Why your low self-esteem is disguised as waiting for motivation" → Exposes a pattern. Everyone reacts.
 
 A strong topic:
-✓ Calls out a specific behavior
+✓ Calls out a specific behaviour
 ✓ Challenges the viewer's identity
 ✓ Interrupts a delusion they're holding
 ✓ Makes the ideal client say "this is for ME"
@@ -1984,7 +1984,7 @@ Ideal client: [DESCRIBE — e.g., 'women 30–45 who want to lose weight but kee
 Content goal: [e.g., get DMs / build trust / sell a service / grow followers / go viral]
 
 STRONG topic criteria:
-✓ Calls out a specific behavior or pattern
+✓ Calls out a specific behaviour or pattern
 ✓ Challenges the viewer's identity
 ✓ Interrupts a delusion they're holding
 ✓ Speaks directly to the ideal client — no one else is confused
@@ -2115,7 +2115,7 @@ Also give me:
       tag: "4x4 Method",
       prompt: `Use this to write a 4x4 video script specifically for local service businesses — salons, dentists, chiropractors, HVAC, plumbers, landscapers, gyms, med spas, restaurants, etc.
 
-These clients aren't personal brands — but the 4x4 method still applies. The business owner becomes the face, and the content exposes patterns in potential customers' behavior.
+These clients aren't personal brands — but the 4x4 method still applies. The business owner becomes the face, and the content exposes patterns in how their customers behave.
 
 Paste this into ChatGPT:
 
@@ -2132,7 +2132,7 @@ Owner's name (if they'll be on camera): [NAME]
 Use the full 4x4 structure:
 
 HOOK (First 4 sec):
-→ Sentence 1: Expose or interrupt — call out the behavior their customers have
+→ Sentence 1: Expose or interrupt — call out the behaviour their customers have
 → Sentence 2: Make it personal to their specific audience (locals who need this service)
 
 Example hook for a dentist:
@@ -2471,7 +2471,7 @@ After everything — give me one note on WHY this caption works for this specifi
 
   return (
     <div className="space-y-5">
-      <SectionHeader label="Prompt Library" title="Copy. Paste. Customize. Done." sub="Every prompt you need to create client work. Replace bracketed placeholders with client details. Never start from scratch." />
+      <SectionHeader label="Prompt Library" title="Copy. Paste. Fill in the blanks. Done." sub="Every prompt you need to create client work. Swap out the bracketed parts with client details. Never write from scratch." />
 
       {/* Category nav */}
       <div className="overflow-x-auto pb-1">
@@ -2619,7 +2619,7 @@ function ServiceTiers() {
       <div>
         <p className="text-[10px] tracking-[0.25em] uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Service Packages</p>
         <h2 style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.8rem, 3vw, 2.5rem)", color: "var(--rose)", fontWeight: 400, lineHeight: 1.1 }}>What We Offer</h2>
-        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.9rem", color: "rgba(30,15,10,0.55)" }}>Three plans that mirror the main website. Every plan starts at $1,000/mo and includes the AI clone as a core feature. All plans have a $500 one-time setup fee and a 14-day free trial to close hesitant prospects.</p>
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.9rem", color: "rgba(30,15,10,0.55)" }}>Three plans — same as the main website. Every plan starts at $1,000/mo and includes the AI clone. All plans have a $500 one-time setup fee. Use the 14-day free trial to close clients who are on the fence.</p>
       </div>
 
       {/* Free Trial Banner */}
@@ -2629,7 +2629,7 @@ function ServiceTiers() {
           <p style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "4px" }}>Lead Closer</p>
           <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.2rem", color: "var(--cream)", fontWeight: 400 }}>14-Day Free Trial — available on any plan</p>
           <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(250,243,234,0.65)", lineHeight: 1.65 }}>
-            When a prospect is hesitant, offer them a 14-day free trial. Full access, no commitment. The $500 setup fee is still collected upfront — this protects our time and filters serious clients. After 14 days they roll into the monthly plan automatically.
+            When someone is unsure, offer the 14-day free trial. Full service, no monthly commitment yet. The $500 setup fee is still paid upfront — this protects our time and shows they're serious. After 14 days they move to the monthly plan automatically.
           </p>
         </div>
       </div>
@@ -2663,7 +2663,7 @@ function ServiceTiers() {
       <div className="rounded-2xl p-5" style={{ background: "var(--ink)" }}>
         <p className="text-[10px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Upgrade Path</p>
         <p style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(250,243,234,0.75)", lineHeight: 1.7 }}>
-          Start most clients on Starter. Once they see real results — usually 30–60 days — introduce Growth or Elite. Never push the upgrade before they've felt the win. The AI clone + content system sells itself once they see it working.
+          Start most clients on Starter. Once they see real results — usually 30–60 days — bring up Growth or Elite. Never push an upgrade before they've seen the win. The AI clone and content system sells itself once it's running.
         </p>
       </div>
     </div>
@@ -2903,7 +2903,7 @@ Thanks again for trusting me with [BUSINESS NAME].
   return (
     <div className="space-y-6">
       <ServiceTiers />
-      <SectionHeader label="Outreach Scripts" title="How to get clients." sub="Follow these steps in order. Each section is its own focused guide. Start with the Blueprint, lead with the AI Clone, and work through the funnel from there." />
+      <SectionHeader label="Outreach Scripts" title="How to get clients." sub="Follow these steps in order. Each section is its own guide. Start with the Blueprint, lead with the AI Clone, and work your way through from there." />
 
       {/* Sub-navigation */}
       <div className="overflow-x-auto pb-1">
@@ -2928,7 +2928,7 @@ Thanks again for trusting me with [BUSINESS NAME].
 
       {/* ── Blueprint ─────────────────────────────────── */}
       {section === "blueprint" && <>
-      <SectionHeader label="Step 0 — Before You Start" title="The Blueprint." sub="Understand the numbers, the mindset, and the golden rules before you send a single message." />
+      <SectionHeader label="Step 0 — Before You Start" title="The Blueprint." sub="Know the numbers and the mindset before you send a single message." />
       {/* Numbers Game */}
       <div className="rounded-2xl p-6" style={{ background: "var(--ink)" }}>
         <p className="text-[10px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The Blueprint — It's a Numbers Game</p>
@@ -2954,19 +2954,19 @@ Thanks again for trusting me with [BUSINESS NAME].
 
       {/* ── Sales Call ─────────────────────────────────── */}
       {section === "salescall" && <>
-      <SectionHeader label="Step 4 — The Sales Call" title="Run the call like a pro." sub="Use the CLOSER method to structure every discovery call. Then present the proposal and close. In that order." />
+      <SectionHeader label="Step 4 — The Sales Call" title="Run the call like a pro." sub="Use the CLOSER method to guide every call. Present your proposal, then ask for the close. In that order, every time." />
       {/* CLOSER Framework */}
       <div className="rounded-2xl p-7" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
         <p className="text-[10px] tracking-widest uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Sales Call Framework</p>
         <h3 className="mb-5" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--rose)" }}>The CLOSER Method</h3>
         <div className="space-y-4">
           {[
-            { letter: "C", word: "Clarify the Pain", body: `Ask: "What's your biggest problem right now? Missed calls? No-shows? Not enough leads?" Get them talking. The more they say, the more you can tailor your pitch.` },
-            { letter: "L", word: "Label Them as a Fit", body: `Show them you understand their business. Repeat their pain points back: "So if I'm hearing you right, the main issue is your team is missing calls and you're losing jobs because of it?"` },
-            { letter: "O", word: "Outline Your Solution", body: `Connect the dots to your service: "That's exactly why we set up a missed-call text-back system. Every time a call is missed, the customer gets a text instantly — you never lose a lead again."` },
-            { letter: "S", word: "Share a Case Study", body: `Back it up with proof. Even one result from an early client or your own business works: "We set this up for another [NICHE] business and they booked [X] new clients in the first month."` },
-            { letter: "E", word: "Explain the Offer", body: `Present your 3-tier pricing. Always start with the highest tier to anchor the value — then work down if needed. Never lead with the cheapest option.` },
-            { letter: "R", word: "Request the Sale", body: `Don't leave the call open-ended. Ask directly: "Do you want to get started today?" Then stop talking. Let them answer. Silence is not your job to fill.` },
+            { letter: "C", word: "Clarify the Pain", body: `Ask: "What's your biggest problem right now? Missed calls? No-shows? Not enough leads?" Get them talking. The more they share, the better you can tailor what you say.` },
+            { letter: "L", word: "Label Them as a Fit", body: `Show them you were listening. Repeat their pain back to them: "So if I'm hearing you right, the main issue is missed calls and you're losing jobs because of it?"` },
+            { letter: "O", word: "Outline Your Solution", body: `Connect the dots to what you offer: "That's exactly why we set up a missed-call text-back system. Every time a call is missed, the customer gets a text instantly — you never lose a lead again."` },
+            { letter: "S", word: "Share a Case Study", body: `Back it up with a real result. Even one example works: "We set this up for another [NICHE] business and they booked [X] new clients in the first month."` },
+            { letter: "E", word: "Explain the Offer", body: `Show them the 3 pricing tiers. Always start with the highest tier first — it anchors the value. Only go down if needed. Never open with the cheapest option.` },
+            { letter: "R", word: "Request the Sale", body: `Don't leave the call open. Ask directly: "Do you want to get started today?" Then stop talking. Let them answer. Silence is not yours to fill.` },
           ].map(({ letter, word, body }) => (
             <div key={letter} className="flex gap-4">
               <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 mt-0.5" style={{ background: "var(--ink)" }}>
@@ -2980,7 +2980,7 @@ Thanks again for trusting me with [BUSINESS NAME].
           ))}
         </div>
         <div className="mt-5 p-4 rounded-xl" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.2)" }}>
-          <p className="italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: "var(--ink)" }}>During the call: focus on learning about their business, knowing their pain points, and helping them reach their goals. You're a consultant, not a salesperson.</p>
+          <p className="italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: "var(--ink)" }}>On every call: focus on learning about their business. Understand what they need. Help them see the solution. You're a consultant, not a salesperson.</p>
         </div>
       </div>
 
@@ -3029,7 +3029,7 @@ Thanks again for trusting me with [BUSINESS NAME].
         </div>
         <div className="px-6 py-6 space-y-5">
           <p style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(30,15,10,0.7)", lineHeight: 1.7 }}>
-            After you've had the discovery call and run the CLOSER framework, send a pitch deck before asking for the close. It makes you look like a real agency, removes hesitation, and gives them something concrete to look at. Keep it under 15 slides. It should feel like a proposal, not a presentation.
+            After the discovery call, send a pitch deck before asking for the close. It shows you're professional, takes away hesitation, and gives them something real to look at. Keep it under 15 slides. It should feel like a proposal, not a big formal presentation.
           </p>
 
           <div>
@@ -3069,7 +3069,7 @@ Thanks again for trusting me with [BUSINESS NAME].
 
       {/* ── AI Clone Pitch ─────────────────────────────── */}
       {section === "aipitch" && <>
-      <SectionHeader label="Step 1 — Lead With This Always" title="The AI Clone Pitch." sub="This is our primary strategy. Every outreach starts here. Professional flirting only. The goal of each touch is the next touch. Price comes last." />
+      <SectionHeader label="Step 1 — Always Lead With This" title="The AI Clone Pitch." sub="This is our main strategy. Every outreach starts here. Be professionally curious. The goal of each message is to get the next one. Price comes last — always." />
 
       {/* Mindset card */}
       <div className="rounded-2xl p-7" style={{ background: "var(--ink)" }}>
@@ -3141,7 +3141,7 @@ Thanks again for trusting me with [BUSINESS NAME].
 
       {/* ── Cold Outreach ──────────────────────────────── */}
       {section === "cold" && <>
-      <SectionHeader label="Step 2 — Start the Conversation" title="Cold Outreach Scripts." sub="DM first, email second, call third. Pick the channel that fits. Every script is word for word. Customize the bracketed fields and send." />
+      <SectionHeader label="Step 2 — Start the Conversation" title="Cold Outreach Scripts." sub="DM first, email second, call third. Pick what fits. Every script is word for word. Fill in the bracketed parts and send." />
 
       <ScriptCard
         step="Step 1 — Start Here"
@@ -3246,7 +3246,7 @@ Thanks again for trusting me with [BUSINESS NAME].
 
       {/* ── Objections & Close ─────────────────────────── */}
       {section === "objections" && <>
-      <SectionHeader label="Step 5 — Handle Pushback" title="Objections and the Close." sub="Every objection has an exact answer. Stay calm, never discount immediately, and use the free trial as your close when they hesitate on price." />
+      <SectionHeader label="Step 5 — Handle Pushback" title="Objections and the Close." sub="Every objection has an answer. Stay calm. Don't drop your price right away. Use the free trial to close when they hesitate." />
       <ScriptCard
         step="Step 5"
         title="Handling Objections — Exact Words"
@@ -3285,7 +3285,7 @@ Thanks again for trusting me with [BUSINESS NAME].
 
       {/* ── Referrals ──────────────────────────────────── */}
       {section === "referral" && <>
-      <SectionHeader label="Step 6 — Grow Without Cold Outreach" title="Referrals." sub="Your happiest clients are your best salespeople. Send this right after a win — when they're excited. One ask can bring in 2 or 3 warm leads who are already pre-sold." />
+      <SectionHeader label="Step 6 — Grow Without Cold Outreach" title="Referrals." sub="Your happiest clients are your best salespeople. Ask right after a win — when they're excited. One message can bring in 2 or 3 warm leads who already trust you." />
       <ScriptCard
         title="Referral Ask — For Existing Clients"
         tag="Use right after a win"
@@ -3309,17 +3309,17 @@ function GrowthTab() {
       <SectionHeader
         label="Inbound Growth Strategy"
         title="Make clients come to you."
-        sub="Cold outreach gets your first clients. This system gets you to 20+ inbound leads a month without spending on ads. It compounds over time — the earlier you start, the bigger the payoff."
+        sub="Cold outreach gets your first clients. This system brings 20+ leads a month to you without paying for ads. The sooner you start, the better it gets."
       />
 
       {/* Philosophy callout */}
       <div className="rounded-2xl p-6" style={{ background: "var(--ink)" }}>
         <p className="text-[10px] tracking-[0.25em] uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The Shift</p>
         <p className="italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.2rem", color: "var(--cream)", lineHeight: 1.5 }}>
-          Cold outreach is the fastest method when you're starting from zero. But it doesn't scale — if you stop calling, clients stop coming. Inbound flips that. You build once, it works forever.
+          Cold outreach is the fastest way to start from zero. But if you stop reaching out, clients stop coming. Inbound flips that. Build it once and it keeps working.
         </p>
         <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(250,243,234,0.5)" }}>
-          Use cold outreach to get your first 3–5 clients. Use this system to grow past that without trading your time for every single lead.
+          Use cold outreach to land your first 3–5 clients. Use this system to grow beyond that without spending all your time chasing leads.
         </p>
       </div>
 
@@ -3330,10 +3330,10 @@ function GrowthTab() {
           <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "var(--rose)" }}>GEO — Generative Engine Optimization</h3>
         </div>
         <p className="mb-4" style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(30,15,10,0.7)", lineHeight: 1.7 }}>
-          People are now searching for services on ChatGPT, Gemini, and Perplexity — not just Google. When someone asks "who can help me with social media for my restaurant?" an AI answers. GEO is how you become the answer.
+          People now search for services on ChatGPT, Gemini, and Perplexity — not just Google. When someone asks "who can help me with social media for my restaurant?" an AI gives them an answer. GEO is how you become that answer.
         </p>
         <p className="mb-5" style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(30,15,10,0.7)", lineHeight: 1.7 }}>
-          Traditional SEO works at the page level (keywords, meta titles). GEO works at the <em>fact level</em> — AI models are looking at your brand's authority, how consistently you show up across the internet, whether you have real case studies with measurable outcomes, and whether credible third-party sources mention you.
+          Regular SEO is about keywords and page titles. GEO is about trust. AI tools look at how well-known your brand is, how consistently you show up online, whether you have real results with real numbers, and whether other websites mention you.
         </p>
 
         <p className="text-[10px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>What to do</p>
@@ -3500,16 +3500,16 @@ function GrowthTab() {
 function NewHireTab() {
   return (
     <div className="space-y-8">
-      <SectionHeader label="New Hire Guide" title="Welcome to The Dollhouse." sub="Everything you need to know before you touch a single client account." />
+      <SectionHeader label="New Hire Guide" title="Welcome to The Dollhouse." sub="Read this before you touch any client account. Everything you need to know is right here." />
 
       {[
         {
           title: "Who We Are",
           content: `The Dollhouse Brand Studio is a done-for-you social media agency. We handle content creation, scheduling, paid ads, and strategy for small business owners who don't have time to do it themselves.
 
-Our clients pay a monthly retainer and trust us to show up for their brand every single day. That means consistent quality, on-brand content, and proactive communication — no excuses.
+Our clients pay a monthly fee and trust us to show up for their brand every single day. That means consistent quality, on-brand content, and clear communication — no excuses.
 
-We are a boutique operation. Every client gets a premium experience. We do not cut corners.`,
+We are a small, close-knit team. Every client gets a premium experience. We do not cut corners.`,
         },
         {
           title: "Our Brand Standards",
@@ -3517,7 +3517,7 @@ We are a boutique operation. Every client gets a premium experience. We do not c
 
 ✓ Does this sound like the client — not like a template?
 ✓ Is the grammar and spelling perfect? (Use Grammarly — no exceptions.)
-✓ Does this match the brand colors, fonts, and visual style?
+✓ Does this match the brand colours, fonts, and visual style?
 ✓ Would we be proud if a competitor saw this?
 ✓ Is the CTA clear — does the audience know exactly what to do next?
 
@@ -3535,32 +3535,32 @@ Ask for login credentials on Day 1. Do not create your own accounts on behalf of
         },
         {
           title: "Client Communication Rules",
-          content: `1. Respond to all client messages within 4 business hours — same day, always.
-2. Never promise something you can't deliver. If you're unsure, say "Let me confirm that and get back to you."
-3. Bring problems to Mandy first — do not freestyle solutions on active client accounts.
+          content: `1. Reply to all client messages within 4 business hours — same day, always.
+2. Never promise something you can't deliver. If you're not sure, say "Let me check on that and get back to you."
+3. Bring problems to Mandy first. Do not try to fix things on active client accounts without approval.
 4. Monthly reports go out within the first 3 days of the new month. No exceptions.
-5. If a client is unhappy, listen first. Do not get defensive. Escalate to Mandy immediately.
-6. Never discuss pricing, contracts, or upgrades with a client — that goes through Mandy.`,
+5. If a client is unhappy, listen first. Do not get defensive. Tell Mandy right away.
+6. Never talk pricing, contracts, or upgrades with a client. That always goes through Mandy.`,
         },
         {
           title: "Content Creation Rules",
           content: `1. Always use the prompts in the Prompt Library. Do not write captions from scratch.
-2. All AI-generated copy must be reviewed, edited, and made to sound human before it's used.
-3. Never copy content from competitors or other brands — even as inspiration.
-4. Batch content creation — never create for one client at a time. Write all captions first, then design, then schedule.
-5. Get written client approval before anything is scheduled or published.
-6. You are allowed ONE round of revisions per content batch. Communicate this clearly.`,
+2. All AI-generated copy must be read, edited, and made to sound human before it goes anywhere.
+3. Never copy content from other brands — not even as a starting point.
+4. Batch your work — never create for one client at a time. Write all captions first, then design, then schedule.
+5. Get written client approval before anything is scheduled or posted.
+6. You get ONE round of revisions per content batch. Be clear about that upfront.`,
         },
         {
           title: "What Will Get You Let Go",
-          content: `• Missing deadlines without communicating in advance
-• Sending content to a client without internal review first
-• Making changes to a live ad campaign without approval
-• Speaking negatively about any client (to other clients, online, anywhere)
-• Sharing client information, content, or logins outside the team
-• Ghosting — on a client, on Mandy, or on a deadline
+          content: `• Missing deadlines without giving a heads up first
+• Sending content to a client without checking it internally first
+• Making changes to a live ad without approval
+• Talking negatively about any client — to other clients, online, or anywhere
+• Sharing client info, content, or logins outside the team
+• Going silent — on a client, on Mandy, or on a deadline
 
-We are a small team. Trust and reliability are non-negotiable.`,
+We are a small team. Trust and showing up are non-negotiable.`,
         },
       ].map(({ title, content }) => (
         <div key={title} className="rounded-2xl p-7" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
@@ -3584,9 +3584,9 @@ function ContentStrategyTab() {
       color: "var(--rose)",
       icon: "⚡",
       tagline: "Interrupt. Disrupt. Make it personal.",
-      body: `The hook is not an introduction — it is an interruption. In 1–3 seconds, the viewer's brain makes a single decision: is this about me? If the answer isn't immediately obvious, they scroll. You never get them back.
+      body: `The hook is not an intro — it is a disruption. In 1–3 seconds, the viewer decides: is this about me? If they're not sure, they scroll. You never get them back.
 
-Your hook is two sentences. Two. Not three. Not a paragraph. Two sentences — and each one has a specific job.`,
+Your hook is two sentences. Two. Not three. Not a paragraph. Two sentences — and each one has one job.`,
       details: [
         {
           label: "Sentence 1 — The Pattern Interrupt",
@@ -3638,9 +3638,9 @@ The hook grabs them. The title grounds them. The subtitle tells them this is edu
       color: "var(--gold)",
       icon: "📊",
       tagline: "Earn the right to be heard.",
-      body: `Nobody cares what you say in the hook until you prove it. The hook creates curiosity. The proof creates trust. Without proof, you're just another person on the internet making bold claims. With it, you're someone worth listening to.
+      body: `Nobody cares what you say in the hook until you back it up. The hook creates curiosity. The proof creates trust. Without proof, you're just another person online making big claims. With it, you're someone worth listening to.
 
-Proof doesn't have to be complex. It has to be real.`,
+Proof doesn't have to be complicated. It just has to be real.`,
       details: [
         {
           label: "What counts as proof",
@@ -3659,7 +3659,7 @@ The more specific the proof, the more it lands. "Most businesses see results" me
 Wrong: "I've helped over 500 businesses and I have 10 years of experience."
 Right: "I've watched the same pattern in hundreds of businesses — and it always starts the same way."
 
-The second version carries proof without feeling like a resume. It positions you as someone who has seen enough to recognize patterns — which is actual authority.`,
+The second version carries proof without feeling like a resume. It positions you as someone who has seen enough to recognise patterns — which is real authority.`,
         },
       ],
       example: {
@@ -3675,13 +3675,13 @@ The second version carries proof without feeling like a resume. It positions you
       color: "#8a6cb0",
       icon: "🪞",
       tagline: "Hold up the mirror. Tell the story. Expose the pattern.",
-      body: `People do not connect to information. They connect to mirrors. Your job in this section is to hold up a mirror so the viewer can see their own patterns, behaviors, and blind spots — without shaming them for it.
+      body: `People don't connect to information. They connect to themselves. Your job here is to hold up a mirror so the viewer can see their own patterns and blind spots — without making them feel bad about it.
 
-This is where the video earns its saves, shares, and comments. This is where authority is built or lost. Everything before this section gets them watching. This section makes them feel something.`,
+This is where the video earns saves, shares, and comments. This is where trust is built or lost. Everything before this gets them watching. This section makes them feel something.`,
       details: [
         {
           label: "The Mirror Technique",
-          text: `Describe the viewer's experience back to them in a way they've never heard it put before. Name the behavior. Name the feeling. Name the pattern. When someone hears themselves described — not judged, described — the walls come down.
+          text: `Describe the viewer's experience back to them in a way they've never heard it put before. Name the behaviour. Name the feeling. Name the pattern. When someone hears themselves described — not judged, described — the walls come down.
 
 Example: "You said you wanted to go viral. But when the views came, you got nervous. You second-guessed every caption. You almost deleted the post. Because you weren't actually scared of failure — you were scared of being seen."
 
@@ -3704,9 +3704,9 @@ Tell it like a scene. Not a summary. "I remember sitting in the parking lot of t
         },
         {
           label: "Emotional Triggers — Use Intentionally",
-          text: `Triggers are not manipulation. Emotional triggers are the reason people take action — and the reason they stay stuck. When content doesn't trigger something, it doesn't convert. It gets watched and forgotten. If something doesn't trigger, it doesn't convert.
+          text: `Triggers are not tricks. They are the real reason people take action — or stay stuck. If content doesn't trigger a feeling, people watch it and forget it.
 
-The 6 core triggers to use (never shame — always pattern exposure):
+The 6 core triggers to use (never shame — always expose the pattern):
 
 SHAME EXPOSURE — Expose the gap between what they say they want and what they actually do. "You say you want to grow your business, but you haven't posted in 6 weeks."
 
@@ -3736,9 +3736,9 @@ Pick one. Use it with purpose. Never layer shame on top of a trigger — expose 
       color: "var(--ink)",
       icon: "🎯",
       tagline: "One ask. Say it directly. Stop talking.",
-      body: `The last 4 seconds of every video must include a clear, direct call to action. This is not optional — it is the engine that feeds the algorithm and converts viewers into followers, leads, and clients.
+      body: `The last 4 seconds of every video must have one clear ask. This is not optional. It feeds the algorithm and turns viewers into followers, leads, and clients.
 
-One CTA. Not three. Not "like, comment, share, AND follow, AND DM me, AND check the link in bio." One thing. The most important thing.`,
+One CTA. Not three. Not "like, comment, share, AND follow, AND DM me, AND check the link in bio." Pick one. The most important one.`,
       details: [
         {
           label: "CTA options — pick the one that fits",
@@ -3749,7 +3749,7 @@ FOLLOW — "Follow for more content like this."
 Use when the video is specifically designed to grow your audience. Best for broad, viral-targeted content.
 
 SHARE — "Share this with someone who needs to hear it."
-Use when the content hits an emotional truth that people recognize in someone they love. This is how videos spread outside your audience.
+Use when the content hits an emotional truth that people recognise in someone they love. This is how videos spread outside your audience.
 
 DM — "DM me the word [WORD] and I'll send you [SPECIFIC THING]."
 Lower volume than comment, higher intent. Someone who DMs you is further along than someone who just comments.
@@ -3792,13 +3792,13 @@ Urgency is okay. Desperation isn't. The difference is confidence.`,
     <div className="space-y-8">
       <SectionHeader
         label="The 4x4 Method"
-        title="Psychology of Viral Content."
-        sub="This is not just a structure — it is nervous system sequencing. Every video guides the viewer through: curiosity → recognition → regulation → belief → action. This framework is hardcoded into everything we create."
+        title="How to Make Videos People Can't Stop Watching."
+        sub="Every video we make follows this exact formula. It walks the viewer through five steps: curiosity → recognition → trust → belief → action. Skip a step and the video won't work."
       />
 
       {/* Nervous System Flow */}
       <div className="rounded-2xl p-7" style={{ background: "var(--ink)" }}>
-        <p className="text-[10px] tracking-widest uppercase mb-5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The Viewer's Journey — Every Video Must Move Through All 5</p>
+        <p className="text-[10px] tracking-widest uppercase mb-5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The Viewer's Journey — Every Video Must Hit All 5 Steps</p>
         <div className="flex flex-wrap gap-0">
           {[
             { label: "Curiosity", sub: "Hook lands", dot: true },
@@ -3816,26 +3816,26 @@ Urgency is okay. Desperation isn't. The difference is confidence.`,
             </div>
           ))}
         </div>
-        <p className="mt-5 pt-4" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(250,243,234,0.45)", lineHeight: 1.7, borderTop: "1px solid rgba(200,168,100,0.12)" }}>If any step in this sequence is missing or weak, the video loses momentum. Curiosity without recognition loses them after the hook. Recognition without regulation keeps their guard up. Regulation without belief earns no trust. Belief without action earns no business.</p>
+        <p className="mt-5 pt-4" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(250,243,234,0.45)", lineHeight: 1.7, borderTop: "1px solid rgba(200,168,100,0.12)" }}>If any step is missing, the video won't work. No curiosity = they scroll away. No recognition = they don't see themselves. No trust = they don't believe you. No belief = no action. No action = no clients.</p>
       </div>
 
       {/* Before You Script */}
       <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
         <div className="px-6 py-5" style={{ borderBottom: "1px solid rgba(200,168,100,0.12)", background: "rgba(200,168,100,0.06)" }}>
           <p className="text-[10px] tracking-widest uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Before You Script Anything</p>
-          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "var(--ink)" }}>Set Your Intention — Start With a Strong Topic</h3>
+          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "var(--ink)" }}>Start With a Strong Topic — Before You Write Anything</h3>
         </div>
         <div className="px-6 py-6 space-y-6">
-          <p style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.75 }}>Your topic is the foundation. A weak topic produces a weak video no matter how well the script is written. A strong topic exposes a pattern, challenges an identity, and makes the ideal viewer feel called out — in the best way. The topic should be something you are genuinely passionate about. Something that frustrates you, upsets you, or that you know most people are getting wrong.</p>
+          <p style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.75 }}>Your topic is everything. A weak topic makes a weak video — no matter how good the script is. A strong topic calls out a real pattern. It makes the right viewer think "this is about me." Pick a topic that genuinely frustrates you, or that you know most people are getting wrong.</p>
 
           {/* Weak vs Strong */}
           <div>
             <p className="text-[10px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "rgba(30,15,10,0.4)" }}>Weak vs. Strong</p>
             <div className="grid gap-3">
               {[
-                { weak: "Why you need discipline", strong: "Why your low self-esteem is disguised as waiting for motivation", why: "The weak version is generic advice anyone could give. The strong version exposes a specific, uncomfortable pattern — and names it in a way the viewer recognizes immediately." },
+                { weak: "Why you need discipline", strong: "Why your low self-esteem is disguised as waiting for motivation", why: "The weak version is generic advice anyone could give. The strong version exposes a specific, uncomfortable pattern — and names it in a way the viewer recognises immediately." },
                 { weak: "How to grow your business on social media", strong: "You're not posting consistently because deep down you don't believe your business is worth the attention", why: "The weak version is a tutorial. The strong version is a confrontation with a belief system. That confrontation is what makes people stop scrolling." },
-                { weak: "Why you need to post more content", strong: "The real reason you keep starting over every Monday is that you're performing productivity instead of building a system", why: "The weak version gives advice. The strong version calls out a specific behavior — 'performing productivity' — that the right audience immediately recognizes in themselves." },
+                { weak: "Why you need to post more content", strong: "The real reason you keep starting over every Monday is that you're performing productivity instead of building a system", why: "The weak version gives advice. The strong version calls out a specific behaviour — 'performing productivity' — that the right audience immediately recognises in themselves." },
               ].map(({ weak, strong, why }) => (
                 <div key={weak} className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.15)" }}>
                   <div className="grid sm:grid-cols-2">
@@ -3858,14 +3858,14 @@ Urgency is okay. Desperation isn't. The difference is confidence.`,
 
           {/* Psychological target */}
           <div className="rounded-xl p-5" style={{ background: "rgba(200,168,100,0.08)", border: "1px solid rgba(200,168,100,0.2)" }}>
-            <p className="text-[10px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Define Your Psychological Target Before You Script</p>
+            <p className="text-[10px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Answer These Questions Before You Write Anything</p>
             <div className="space-y-2">
               {[
-                "Who is this video for? Be specific — not 'entrepreneurs,' but 'women who started a business 2 years ago and still feel invisible online.'",
-                "What identity does this confront in them? What belief are they holding that this video is challenging?",
-                "What pain or frustration am I bringing to light? Not creating new pain — surfacing what's already there.",
-                "What transformation am I offering? What does the viewer's life look like after they hear this?",
-                "Why does this matter to ME to say it? Content that comes from genuine passion is felt. Content that doesn't come from passion is forgotten.",
+                "Who is this video for? Be specific — not 'business owners,' but 'women who started a business 2 years ago and still feel invisible online.'",
+                "What belief does this challenge in them? What are they telling themselves that this video is going to shake up?",
+                "What pain am I surfacing? Not creating new pain — just bringing up what's already there.",
+                "What does their life look like after they watch this? What changes for them?",
+                "Why does this matter to ME to say it? Content that comes from real passion is felt. Content that doesn't come from passion is forgotten.",
               ].map((q, i) => (
                 <div key={i} className="flex gap-3">
                   <span className="shrink-0 mt-0.5" style={{ fontFamily: FONT_DISPLAY, fontSize: "0.9rem", color: "var(--gold)", fontStyle: "italic" }}>{i + 1}.</span>
@@ -3944,7 +3944,7 @@ Urgency is okay. Desperation isn't. The difference is confidence.`,
         <div className="px-6 py-5" style={{ borderBottom: "1px solid rgba(200,168,100,0.12)", background: "rgba(200,168,100,0.06)" }}>
           <p className="text-[10px] tracking-widest uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Step 3 Reference</p>
           <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "var(--ink)" }}>The 6 Emotional Triggers</h3>
-          <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(30,15,10,0.5)" }}>If content doesn't trigger something, it doesn't convert. Pick one per video. Never shame — always expose the pattern.</p>
+          <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(30,15,10,0.5)" }}>If a video doesn't make the viewer feel something, they forget it. Pick one trigger per video. Never shame — expose the pattern.</p>
         </div>
         <div className="px-6 py-5 space-y-4">
           {triggers.map((t) => (
@@ -3973,7 +3973,7 @@ Urgency is okay. Desperation isn't. The difference is confidence.`,
           {[
             { label: "Stories build trust", body: "You lived it. You didn't just read it or study it. That lived experience is the thing that separates you from every other person saying the same words." },
             { label: "Stories build emotional connection", body: "Data doesn't move people. Emotion moves people. Stories create the emotional bridge between your content and your viewer's life." },
-            { label: "Stories lower resistance", body: "When someone hears a real story they recognize — a struggle, a low point, a moment of doubt — their walls come down. They stop judging and start listening." },
+            { label: "Stories lower resistance", body: "When someone hears a real story they recognise — a struggle, a low point, a moment of doubt — their walls come down. They stop judging and start listening." },
           ].map(({ label, body }) => (
             <div key={label} className="rounded-xl p-4" style={{ background: "rgba(200,168,100,0.08)", border: "1px solid rgba(200,168,100,0.15)" }}>
               <p className="mb-2" style={{ fontFamily: FONT_LUXE, fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gold)" }}>{label}</p>
