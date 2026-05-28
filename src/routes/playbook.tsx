@@ -5963,20 +5963,25 @@ interface QBAddon {
 }
 
 const QB_ADDONS: QBAddon[] = [
-  { key: "ai_video_std",    type: "monthly", price: 500,  emoji: "🎬", name: "AI Avatar Video — Standard",          desc: "4 branded AI avatar videos/month" },
-  { key: "ai_video_prem",   type: "monthly", price: 1000, emoji: "🎥", name: "AI Avatar Video — Premium",           desc: "8 videos/month + custom scripts + full editing" },
-  { key: "linkedin",        type: "monthly", price: 300,  emoji: "💼", name: "LinkedIn Management",                desc: "Daily posts + connection outreach + content" },
-  { key: "gbp",             type: "monthly", price: 200,  emoji: "📍", name: "Google Business Profile",            desc: "Weekly posts + review monitoring + Q&A" },
-  { key: "extra_platform",  type: "monthly", price: 300,  emoji: "➕", name: "Extra Platform Add-On",              desc: "Add Pinterest, YouTube, or X management" },
-  { key: "email_sms",       type: "monthly", price: 300,  emoji: "📧", name: "Email + SMS Marketing",              desc: "2 campaigns/month — designed, written, sent" },
-  { key: "google_ads",      type: "monthly", price: 500,  emoji: "🎯", name: "Google Ads Management",              desc: "Campaign setup, copy, optimisation (ad spend separate)" },
-  { key: "website_hosting", type: "monthly", price: 97,   emoji: "🌐", name: "Website Hosting & Maintenance",      desc: "Hosting, updates, uptime monitoring" },
-  { key: "website_build",   type: "onetime", price: 500,  emoji: "🏗️", name: "AI Website Build",                  desc: "Full branded website — delivered in 5–7 days" },
-  { key: "revenue_audit",   type: "onetime", price: 1500, emoji: "🔍", name: "AI Revenue Audit",                  desc: "Full pipeline + social + workflow audit with growth plan" },
-  { key: "digital_product", type: "onetime", price: 297,  emoji: "📦", name: "AI Digital Product / Lead Gen Tool", desc: "Quiz, calculator, or checklist built in your branding" },
-  { key: "brand_kit",       type: "onetime", price: 297,  emoji: "🎨", name: "Brand Kit",                         desc: "Logo, colours, fonts, templates — brand-ready package" },
-  { key: "merch_design",    type: "onetime", price: 297,  emoji: "👕", name: "Merch Design",                       desc: "Branded merch graphics — tees, hoodies, hats, stickers — print-ready files" },
-  { key: "digital_product_build", type: "onetime", price: 497, emoji: "💡", name: "Digital Product Build",        desc: "Sellable digital product — ebook, template pack, swipe file, or mini-course workbook" },
+  // ── Monthly Add-Ons ──────────────────────────────────────────────────────
+  { key: "ai_video_std",      type: "monthly", price: 500,  emoji: "🎬", name: "AI Avatar Video — Standard",          desc: "4 branded AI avatar videos/month" },
+  { key: "ai_video_prem",     type: "monthly", price: 1000, emoji: "🎥", name: "AI Avatar Video — Premium",           desc: "8 videos/month + custom scripts + full editing" },
+  { key: "ai_voice",          type: "monthly", price: 300,  emoji: "📞", name: "AI Voice Agent",                      desc: "Never miss a call. Your AI answers 24/7, qualifies leads, and books appointments — in your brand voice." },
+  { key: "reputation",        type: "monthly", price: 200,  emoji: "⭐", name: "Review & Reputation Management",      desc: "Automatically request reviews, respond to feedback, and build your 5-star presence on Google and beyond." },
+  { key: "email_sms",         type: "monthly", price: 300,  emoji: "📧", name: "Email & SMS Marketing",               desc: "Done-for-you campaigns, broadcasts, and nurture sequences that keep your audience warm and ready to buy." },
+  { key: "extra_content",     type: "monthly", price: 500,  emoji: "📲", name: "Additional Content Creation",         desc: "Need more posts or platforms? Extra content created and scheduled for you — same quality, more volume." },
+  { key: "linkedin",          type: "monthly", price: 300,  emoji: "💼", name: "LinkedIn Management",                 desc: "Daily posts + connection outreach + content" },
+  { key: "gbp",               type: "monthly", price: 200,  emoji: "📍", name: "Google Business Profile",             desc: "Weekly posts + review monitoring + Q&A" },
+  { key: "extra_platform",    type: "monthly", price: 300,  emoji: "➕", name: "Extra Platform Add-On",               desc: "Add Pinterest, YouTube, or X management" },
+  { key: "google_ads",        type: "monthly", price: 500,  emoji: "🎯", name: "Google Ads Management",               desc: "Campaign setup, copy, optimisation (ad spend separate)" },
+  { key: "website_hosting",   type: "monthly", price: 97,   emoji: "🌐", name: "Website Hosting & Maintenance",       desc: "Hosting, updates, uptime monitoring" },
+  // ── One-Time Services ────────────────────────────────────────────────────
+  { key: "website_build",     type: "onetime", price: 500,  emoji: "🏗️", name: "Website & Landing Page Design",       desc: "A conversion-ready website or landing page — designed for your brand and built to turn visitors into clients." },
+  { key: "revenue_audit",     type: "onetime", price: 1500, emoji: "🔍", name: "AI Revenue Audit",                    desc: "Full pipeline + social + workflow audit with growth plan" },
+  { key: "digital_product",   type: "onetime", price: 297,  emoji: "📦", name: "AI Digital Product / Lead Gen Tool",  desc: "Quiz, calculator, or checklist built in your branding" },
+  { key: "digital_product_build", type: "onetime", price: 497, emoji: "💡", name: "Digital Product Build",            desc: "Sellable digital product — ebook, template pack, swipe file, or mini-course workbook" },
+  { key: "brand_kit",         type: "onetime", price: 297,  emoji: "🎨", name: "Brand Kit",                           desc: "Logo, colours, fonts, templates — brand-ready package" },
+  { key: "merch_design",      type: "onetime", price: 297,  emoji: "👕", name: "Merch & Brand Design",                desc: "On-brand merch, apparel, and print-ready assets designed to match your business identity." },
 ];
 
 function QuoteBuilderTab() {
