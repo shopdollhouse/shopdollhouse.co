@@ -2070,6 +2070,134 @@ SECTION 6 — Access & Logins
 Format as a clean intake form with clear section headers, short answer fields, and multiple choice where appropriate. Tone: professional, warm, easy to fill out."`,
     },
 
+    // ─── Additional Services ─────────────────────────────
+    {
+      title: "AI Website Builder — Full Site in One Prompt",
+      tag: "Platform AI",
+      prompt: `Use this inside the platform's AI Studio to build a full, professional website for a client in one shot. The AI researches the business, generates industry-matched imagery, and writes conversion-focused copy — all from a single prompt.
+
+Type into AI Studio:
+
+"Act as an elite web designer and developer. Build a complete, professional website for [BUSINESS NAME], a [BUSINESS TYPE] located in [CITY].
+
+Here is their Google Business listing for context: [PASTE THE GOOGLE MAPS LINK OR LISTING URL]
+
+Their website is: [WEBSITE URL — or write 'they have no website currently']
+
+Build a full site that includes:
+1. Homepage — with a strong headline, hero section, and above-the-fold CTA ('Book Now' / 'Get a Free Quote' / 'Call Us')
+2. About page — who they are, how long they've been in business, why they're the best choice
+3. Services page — list each service with a 2–3 sentence description
+4. Gallery or before/after section (if applicable to their industry)
+5. Testimonials / Reviews section — pull from their Google reviews if available
+6. Contact page — form, phone number, address, Google Maps embed, hours
+
+Design direction:
+- Colours: [BRAND COLOURS or 'pull from their existing branding']
+- Tone: [PROFESSIONAL / WARM / LUXURY / MODERN / APPROACHABLE]
+- Mobile-responsive layout
+- Fast-loading, clean, conversion-focused
+
+Make the copy feel like a real copywriter spent hours on it — specific to their services, their city, and their customers. No filler. Every line earns its place."
+
+---
+After the site is built:
+→ Review all copy and images for accuracy
+→ Set up their custom domain
+→ Connect the contact form to their CRM pipeline
+→ Charge: $500 build fee + $97/mo hosting (set up as a recurring invoice)`,
+    },
+    {
+      title: "AI Revenue Audit — Find the Hidden Money",
+      tag: "Strategy",
+      prompt: `Use this to run a deep AI analysis of a client's (or your own) CRM pipeline, workflows, and lead data. The AI finds missed opportunities, stalled leads, and 'silent money problems' — then tells you exactly what to do about them. Charge $1,000–$2,500 for this as a standalone service, or include it as a monthly retainer add-on.
+
+Type into the platform's Ask AI (with the client sub-account open):
+
+"Review all of the data in this account and tell me how to generate the maximum revenue in the next 30 days.
+
+Specifically, I need you to:
+
+1. PIPELINE AUDIT
+Scan all pipelines and stages. Identify:
+- Leads with buying signals (requested pricing, had a call, received a proposal but never signed)
+- Leads that have been in a stage for more than 14 days with no movement
+- Any contacts with opportunity values set to zero or blank
+- Any pipeline stages that have no clear next action
+
+2. WORKFLOW AUDIT
+Review all workflows and automations. Flag:
+- Workflows that were built but never published (still in draft)
+- Workflows that have been paused or disabled
+- Any workflows with errors or contacts stuck in sequences
+- Automations missing key steps (e.g., no follow-up SMS after email, no task created after stage move)
+
+3. COMMUNICATION AUDIT
+Check all unread messages, missed conversations, and contacts with no recent activity. Flag:
+- Leads who messaged and never got a reply
+- Contacts who clicked a link or booked but were never followed up
+- Any contacts tagged 'cold' or 'lost' in the last 90 days who could be re-engaged
+
+4. SOCIAL MEDIA AUDIT
+Review active social channels. Flag:
+- Any channels that haven't posted in 7+ days
+- Posts with low engagement that could be boosted
+- Any campaigns running that should be paused or optimised
+
+5. REVENUE PROJECTION
+Based on everything you found, give me:
+- An estimate of how much monthly recurring revenue could be unlocked if we acted on the top 3 findings
+- A prioritised 30-day action plan (what to do first, second, third)
+- A confidence rating for each recommendation (High / Medium / Low)
+
+Present the findings as a client-ready report with section headers, bullet points, and clear language. No jargon."
+
+---
+Deliver the output as a PDF or Google Doc.
+Charge $1,000–$2,500 for a one-time audit.
+Or offer a monthly retainer to implement the recommendations ongoing.`,
+    },
+    {
+      title: "AI Digital Product Creator — Build a Lead Gen Tool",
+      tag: "Platform AI",
+      prompt: `Use this to build a simple interactive digital product for a client — a quiz, calculator, or checklist that they can sell for $27–$97, or give away free as a lead magnet. The sale covers ad spend, and the buyer becomes a warm lead for the higher-ticket service.
+
+Type into AI Studio:
+
+"Build an interactive [QUIZ / CALCULATOR / CHECKLIST] for [BUSINESS NAME], a [BUSINESS TYPE].
+
+The tool is called: [TITLE — e.g., 'Tax Strategy Score Card' / 'Home Value Calculator' / 'Skin Type Quiz']
+
+Target user: [DESCRIBE — e.g., 'small business owners who want to reduce their tax bill' / 'homeowners in [CITY] thinking about selling' / 'women looking for the right skincare routine']
+
+What the tool does:
+[DESCRIBE — e.g., 'asks 5 questions about the user's business finances and gives them a personalised tax strategy score + recommendations' / 'asks for address and home details and estimates value range + equity' / 'asks about skin type and concerns and recommends a product routine']
+
+After they complete the tool, they should get:
+1. A personalised result or score (based on their answers)
+2. 2–3 specific recommendations relevant to their result
+3. A clear CTA: [BOOK A CALL / BUY THE PRODUCT / DM US / DOWNLOAD THE GUIDE]
+
+Design:
+- Clean, simple, mobile-first
+- [BRAND COLOURS and LOGO]
+- Progress bar showing how far through the tool they are
+- Final result page should feel like a personalised report — not a generic 'thanks for completing this'
+
+Also build:
+- A thank-you page with the next step clearly shown
+- An automated email that delivers the result and the CTA
+- A CRM tag applied to everyone who completes the tool: '[TOOL NAME] — Completed'
+
+---
+How to use this to liquidate ad spend:
+→ Client runs a $300–$500 ad to the tool
+→ Tool sells for $27–$97 — sales cover the ad cost
+→ Everyone who bought = warm lead already inside the CRM
+→ Run a follow-up sequence to pitch the $1,000+/mo service
+→ Leads are essentially free once the product pays for the ads`,
+    },
+
     // ─── 4x4 Video Strategy ──────────────────────────────
     {
       title: "4x4 Method — Overview & Framework Reference",
@@ -2640,7 +2768,7 @@ After everything — give me one note on WHY this caption works for this specifi
     { label: "LinkedIn", icon: "💼", tags: ["LinkedIn"] },
     { label: "Content Sizes", icon: "📐", tags: ["Sizes"] },
     { label: "Ads & Email", icon: "📣", tags: ["Ads", "Email"] },
-    { label: "Strategy & Reporting", icon: "📊", tags: ["Strategy", "Reporting", "Onboarding"] },
+    { label: "Strategy & Reporting", icon: "📊", tags: ["Strategy", "Reporting", "Onboarding", "Business Consulting"] },
     { label: "AI Video", icon: "🎬", tags: ["AI Video"] },
     { label: "Platform Automations", icon: "⚡", tags: ["Automations"] },
     { label: "Outreach Generators", icon: "📤", tags: ["Outreach"] },
@@ -3214,6 +3342,54 @@ Thanks again for trusting me with [BUSINESS NAME].
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Google Maps Prospecting Method */}
+      <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+        <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+          <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Find Prospects in 5 Minutes</p>
+          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>The Google Maps Method</h3>
+        </div>
+        <div className="px-6 py-5 space-y-4">
+          <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.7 }}>
+            You don't need a paid lead tool to find prospects. Google Maps alone can fill your pipeline for months. Here's how to do it in under 10 minutes.
+          </p>
+          <div className="space-y-2">
+            {[
+              { n: "1", text: `Open Google Maps and search: "[NICHE] near [CITY]" — e.g. "dentists in Calgary" or "plumbers in Toronto"` },
+              { n: "2", text: "Click any result and find their social media link on the Google Business Profile or their website" },
+              { n: "3", text: "Look for these red flags: fewer than 200 followers, last post was 4+ weeks ago, no profile photo, bad quality graphics, generic captions" },
+              { n: "4", text: "That business is your prospect. They already know they need help — they just haven't found the right person yet" },
+            ].map(({ n, text }) => (
+              <div key={n} className="flex gap-3 rounded-xl p-3" style={{ background: "rgba(200,168,100,0.06)", border: "1px solid rgba(200,168,100,0.1)" }}>
+                <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ background: "var(--ink)" }}>
+                  <span style={{ fontFamily: FONT_DISPLAY, fontSize: "0.82rem", color: "var(--gold)", fontStyle: "italic" }}>{n}</span>
+                </div>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(30,15,10,0.72)", lineHeight: 1.55 }}>{text}</p>
+              </div>
+            ))}
+          </div>
+          <div className="rounded-xl p-4" style={{ background: "rgba(200,168,100,0.08)", border: "1px solid rgba(200,168,100,0.18)" }}>
+            <p className="text-[9px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>What to look for before you reach out</p>
+            <div className="grid sm:grid-cols-3 gap-2">
+              {[
+                { label: "Are they active?", check: "Check reviews, website, Google listing — are they actually open and operating?" },
+                { label: "Budget signals?", check: "Nice location, premium service, running any ads, website looks like money was spent?" },
+                { label: "AI clone potential?", check: "Does the owner have a face or personal brand? Mascot or character? Or is it fully logo-based?" },
+              ].map(({ label, check }) => (
+                <div key={label} className="rounded-lg p-3" style={{ background: "rgba(255,255,255,0.5)", border: "1px solid rgba(200,168,100,0.1)" }}>
+                  <p className="mb-1" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--ink)" }}>{label}</p>
+                  <p style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "rgba(30,15,10,0.55)", lineHeight: 1.5 }}>{check}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-xl p-4" style={{ background: "var(--ink)" }}>
+            <p style={{ fontFamily: FONT_DISPLAY, fontSize: "0.95rem", color: "var(--cream)", fontStyle: "italic", lineHeight: 1.55 }}>
+              Volume tip: use the "Lead Gen Research" prompt in the Prompts tab to generate 25 qualified prospects for any niche + city in one AI prompt. Run it once and you'll have a full week of outreach ready to go.
+            </p>
+          </div>
         </div>
       </div>
 
@@ -3884,6 +4060,65 @@ function GrowthTab() {
             text="Track your mentions — set up a Google Alert for your business name"
             sub="Free. Takes 2 minutes. Alerts you any time your name appears online — so you can see your GEO footprint growing and respond to any mentions."
           />
+        </div>
+      </div>
+
+      {/* Additional Revenue Lines */}
+      <div className="rounded-2xl p-7" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
+        <div className="flex items-center gap-3 mb-2">
+          <span className="px-3 py-1 rounded-full text-[10px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, background: "var(--ink)", color: "var(--gold)" }}>Revenue Upsells</span>
+          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "var(--rose)" }}>Additional Services You Can Sell Right Now</h3>
+        </div>
+        <p className="mb-6" style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(30,15,10,0.6)", lineHeight: 1.7 }}>
+          Beyond core social media packages, these are adjacent services that increase revenue per client and attract new ones. All validated by agencies doing $1M+ a year. Pick the ones that fit where you're at.
+        </p>
+        <div className="space-y-4">
+          {[
+            {
+              name: "AI Website Build + Hosting",
+              price: "$500 build · $97/mo passive",
+              color: "#4a90d9",
+              how: "Use the platform's AI Studio to build a full, professional website from one prompt. It researches the business, generates industry-matched imagery, and writes conversion-focused copy — in one shot. Takes about 30–45 minutes to build. Once it's live, $97/mo is passive income just to host and maintain it.",
+              best: "Best for businesses with no website, or one that's embarrassingly outdated. Pitch it as: 'I noticed your website hasn't been updated in a while — let me show you what we can build in an afternoon.'",
+              prompt: "Use the 'AI Website Builder' prompt in the Prompts tab to generate the full site in one shot.",
+            },
+            {
+              name: "AI Revenue Audit / Business Consultation",
+              price: "$1,000–$2,500 one-time · or monthly retainer",
+              color: "#7b68ee",
+              how: "Run a deep AI analysis of a client's CRM pipeline, workflows, automations, and lead sources. The AI finds 'silent money problems' — leads that were never followed up, workflows that were built but never activated, opportunity values set to zero. Package the findings as a 30-day action plan with projected ROI.",
+              best: "Best for established clients already in your system with data to analyse. It can be a standalone paid audit, or a monthly retainer to implement and keep optimising. This is a premium upsell — it requires access to their CRM data and a solid understanding of how their pipeline works.",
+              prompt: "Use the 'AI Revenue Audit' prompt in the Prompts tab to run the analysis and format the deliverable.",
+            },
+            {
+              name: "AI Digital Product / Lead Gen Tool",
+              price: "$97–$500 build fee (client keeps the revenue)",
+              color: "#4a9970",
+              how: "Build a simple interactive quiz, calculator, or checklist for a client in their niche. Clients use these as low-ticket digital products ($27–$97) to sell, or give them away as lead magnets for ads. The product sale covers ad spend — so their leads are essentially free. Works on any platform, takes under an hour to build.",
+              best: "Best for: accountants (tax calculators), coaches (readiness quizzes), fitness businesses, real estate agents. Use the platform's AI Studio to build the tool. Then build the automation that captures leads and starts the follow-up sequence.",
+              prompt: "Use the 'AI Digital Product Creator' prompt in the Prompts tab to build the product and the supporting automation.",
+            },
+            {
+              name: "AI Avatar / Video Upgrade Package",
+              price: "+$500–$1,500/mo added on top of existing package",
+              color: "#c8a864",
+              how: "Clients start on the Starter ($1,000/mo) for image posts and AI clone videos. When they see results and want more: upsell to weekly talking head clips, animated mascot content, or time-lapse videos. Video outperforms static images on every platform. Once they've seen their image content working, the upsell is easy.",
+              best: "Video content is where the market is going. Businesses know they need video — they just don't know how to create it affordably. You have the AI tools to make it fast and profitable. This is the conversation: 'Your posts are performing well. Want to see what happens when we add video to the mix?'",
+              prompt: "Use the 'AI Video — Multi-Scene Script' or 'AI Video — Single Prompt' in the Prompts tab to produce the content.",
+            },
+          ].map(({ name, price, color, how, best, prompt }) => (
+            <div key={name} className="rounded-xl overflow-hidden" style={{ border: `1px solid ${color}33` }}>
+              <div className="px-5 py-3.5 flex items-center justify-between gap-3 flex-wrap" style={{ background: `${color}12`, borderBottom: `1px solid ${color}22` }}>
+                <h4 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.15rem", color: "var(--ink)" }}>{name}</h4>
+                <span className="px-3 py-1 rounded-full text-[9px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, background: color, color: "#fff" }}>{price}</span>
+              </div>
+              <div className="px-5 py-4 space-y-2.5" style={{ background: "rgba(255,255,255,0.5)" }}>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(30,15,10,0.72)", lineHeight: 1.65 }}>{how}</p>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.81rem", color: "rgba(30,15,10,0.5)", lineHeight: 1.55, fontStyle: "italic" }}>{best}</p>
+                <p className="text-[9px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, color }}>{prompt}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
