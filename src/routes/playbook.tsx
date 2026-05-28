@@ -104,12 +104,69 @@ function WorkflowTab() {
 
       <Phase day="Day 1–2" title="Onboarding" items={[
         { text: "Send welcome email with onboarding questionnaire", sub: "Brand voice, target audience, competitors they love, content pillars, posting goals." },
-        { text: "Request all brand assets", sub: "Logo files (PNG + SVG), brand colours (hex codes), fonts, any existing photos or video." },
+        { text: "Send the client their launch timeline right away", sub: "They need to know exactly what happens next or they'll feel anxious. See the timeline template below — fill in the real dates and send it with the welcome email." },
+        { text: "Request all brand assets", sub: "Logo files (PNG + SVG), brand colours (hex codes), fonts, any existing photos or video. Don't start creating anything until you have these." },
+        { text: "Ask for 2–3 competitor accounts they love", sub: "Ask: 'Are there any businesses — local or anywhere — whose social media you really like? I want to understand the vibe you're going for.' This saves you from creating content in the wrong direction." },
         { text: "Get social media logins or request admin access", sub: "Facebook Business Manager, Instagram, TikTok, Google Business if applicable." },
         { text: "Set up client in CRM", sub: "Create contact, pipeline stage, add tags, assign to the correct workflow/automation. Every client must be in the CRM before any work starts." },
         { text: "Verify Meta ad account access + pixel is installed", sub: "If no pixel — walk them through installing it or do it via GTM." },
         { text: "Ask the 4 client interview questions — document the answers:", sub: "1) How did you find out about us?  2) What tools were you using before?  3) What results do you most want to see?  4) How will you know this is working for your business? — These answers shape your strategy and become your case study later." },
       ]} />
+
+      {/* Onboarding Timeline Card */}
+      <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+        <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+          <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Send This With the Welcome Email</p>
+          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>Your Launch Timeline Template</h3>
+        </div>
+        <div className="px-6 py-5 space-y-4">
+          <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.7 }}>
+            Happy clients are informed clients. Send this timeline on Day 1 so they know exactly what to expect and when. Fill in the real dates. This one message stops 90% of "how's it going?" check-in messages before they start.
+          </p>
+          <div className="rounded-xl p-5" style={{ background: "var(--ink)" }}>
+            <p className="mb-3" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)" }}>Copy and send — fill in the dates</p>
+            <p className="whitespace-pre-line leading-relaxed" style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: "var(--cream)", fontStyle: "italic" }}>{`Hey [NAME]!
+
+So excited to have [BUSINESS NAME] on board. Here's exactly what the next two weeks look like so you always know what's happening:
+
+📋 Today — I'll send you a short onboarding form. Takes about 5 minutes to fill out.
+
+🎨 [DATE +1–2 days] — I'll need your logo, brand colours, and any photos you want to use. I'll remind you about this.
+
+📅 [DATE +3–5 days] — I'll build your content plan and share it with you for a quick look before anything goes live.
+
+✅ [DATE +7–10 days] — Your content is ready for approval. You'll have 48 hours to review and request any changes.
+
+🚀 [DATE +14 days] — Everything goes live! Your first posts start publishing and your automations are running.
+
+📊 [DATE + end of month] — I'll send your first performance report with a full breakdown of how everything is performing.
+
+Questions at any point? Just reply to this email.
+
+Can't wait to get started!
+Mandy`}</p>
+          </div>
+          <div className="rounded-xl p-4" style={{ background: "rgba(200,168,100,0.08)", border: "1px solid rgba(200,168,100,0.2)" }}>
+            <p className="text-[9px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>What to collect before Day 5</p>
+            <div className="grid sm:grid-cols-2 gap-2">
+              {[
+                "Logo files — PNG with transparent background + original file if they have it",
+                "Brand colours — exact hex codes, or photos of packaging/website",
+                "Fonts — if they have specific ones, otherwise you choose",
+                "2–3 competitor or inspiration accounts — 'who do you want to look like?'",
+                "Any existing photos, videos, or product shots they have",
+                "Their Google review link (for the review automation)",
+                "Their booking link or main CTA link (for automations and CTAs)",
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-2">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0" style={{ width: "10px", height: "10px", color: "var(--gold)" }}><path d="M2.5 8.5L6 12L13.5 4.5" /></svg>
+                  <span style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.7)", lineHeight: 1.5 }}>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
 
       <Phase day="Day 3–5" title="Account Setup" items={[
         { text: "Audit their existing social profiles", sub: "Bio, profile photo, link in bio, pinned posts, highlight covers if applicable." },
@@ -151,15 +208,109 @@ function WorkflowTab() {
       ]} />
 
       <Phase day="Ongoing" title="Monthly Retention Loop" items={[
-        { text: "Mid-month check-in — how are posts performing? Any feedback?" },
+        { text: "Mid-month check-in — how are posts performing? Any feedback?", sub: "A quick voice note or DM goes a long way. Clients who feel looked after refer people. Clients who feel forgotten cancel." },
         { text: "Pull end-of-month analytics report", sub: "Reach, engagement rate, follower growth, ad results (CTR, cost per result, ROAS)." },
-        { text: "Send report to client with a short summary of wins + next month focus" },
+        { text: "Send the report with a plain-English breakdown — not just numbers", sub: "Translate every metric into what it means for their business. See the 'How to Explain Your Report' card below." },
         { text: "Begin next month's content creation in the last week of the current month", sub: "Never let them see a gap. Always be 2 weeks ahead." },
         { text: "Invoice sent on the same day each month (set up recurring in platform)" },
         { text: "Quarterly review call — bigger picture strategy, upsell opportunities" },
         { text: "At 3 months: pitch the annual deal", sub: `Say: "Hey, do you want to unlock some savings for the next year? I can give you 10–20% off what you're paying right now if you lock in an annual plan." This improves your cash flow and locks in retention at the same time.` },
         { text: "After 3–6 months: offer a software upgrade if they're not already on it", sub: "Show the results first (saved X hours, booked X jobs). Then: 'Do you want to continue with the full system for $[PRICE]/month?' — Never pitch the upgrade before they've felt the win." },
+        { text: "Ask for a referral after every major win", sub: "Your goal is not just to keep clients — it's to turn each one into a source of new clients. Happy clients who feel the value will refer people without hesitation. Unhappy or ignored clients won't. Do good work and then ask." },
       ]} />
+
+      {/* How to Explain Your Report Card */}
+      <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+        <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+          <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Monthly Reports — Prove the Value</p>
+          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>How to Explain Your Report to a Client</h3>
+        </div>
+        <div className="px-6 py-5 space-y-5">
+          <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.7 }}>
+            Most clients don't know what "reach" or "engagement rate" means. If you just send them a dashboard screenshot, they feel nothing. Your job is to translate the numbers into business language — what the win is, why it matters, and what it means for them going forward.
+          </p>
+          <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.7)", lineHeight: 1.7, fontStyle: "italic" }}>
+            A great report is what keeps clients long-term. It's also what makes them refer you. When someone sees their business growing on paper — in plain English — they want to share that feeling with other business owners they know.
+          </p>
+
+          <div className="space-y-3">
+            <p className="text-[10px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Translate every number — here's how</p>
+            {[
+              {
+                metric: "Reach — e.g. 14,200 people",
+                explain: "What it is: how many unique people saw your content this month.",
+                business: "What it means for them: '14,200 people in [CITY/NICHE] saw [BUSINESS NAME] this month. Before we started, that number was close to zero.'"
+              },
+              {
+                metric: "Engagement Rate — e.g. 4.8%",
+                explain: "What it is: the percentage of people who saw your post and did something (liked, commented, saved, shared).",
+                business: "What it means for them: 'An engagement rate above 3% is strong. Yours is 4.8% — that means people aren't just seeing your content, they're reacting to it. That's trust being built.'"
+              },
+              {
+                metric: "New Followers — e.g. +87",
+                explain: "What it is: new people who chose to follow the account this month.",
+                business: "What it means for them: '87 new people said 'I want to keep seeing this business.' Every one of them is a potential future customer or referral.'"
+              },
+              {
+                metric: "Ad Results — e.g. 32 leads, $18 cost per lead",
+                explain: "What it is: people who clicked your ad and took action (booked, filled a form, called).",
+                business: "What it means for them: 'We brought in 32 new leads this month at $18 each. If even 10 of those become clients at $[THEIR AVG VALUE], that's $[AMOUNT] in potential new revenue from one month of ads.'"
+              },
+              {
+                metric: "Top Post — e.g. carousel hit 4,200 views",
+                explain: "What it is: your best performing piece of content this month.",
+                business: "What it means for them: 'This post outperformed everything else. We know this type of content works best for your audience — so we'll lead with more like it next month.'"
+              },
+            ].map(({ metric, explain, business }) => (
+              <div key={metric} className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.15)" }}>
+                <div className="px-4 py-3" style={{ background: "var(--ink)" }}>
+                  <p style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", letterSpacing: "0.08em", color: "var(--gold)" }}>{metric}</p>
+                </div>
+                <div className="px-4 py-3 space-y-1.5" style={{ background: "rgba(200,168,100,0.04)" }}>
+                  <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.5)", lineHeight: 1.55 }}>{explain}</p>
+                  <p style={{ fontFamily: FONT_DISPLAY, fontSize: "0.92rem", color: "var(--ink)", fontStyle: "italic", lineHeight: 1.6 }}>{business}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="rounded-xl p-5" style={{ background: "var(--ink)" }}>
+            <p className="mb-2" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)" }}>The 3-Part Report Formula</p>
+            <div className="space-y-2">
+              {[
+                { n: "1", label: "The Win", text: "Start with something good. Always lead with a positive result — even if it was a small month. 'Here's what worked this month.'" },
+                { n: "2", label: "What It Means", text: "Explain the numbers in plain English. No jargon. Connect it to their business — leads, bookings, visibility, revenue." },
+                { n: "3", label: "What's Next", text: "Tell them what you'll do differently or double down on next month. This shows you're thinking ahead and paying attention." },
+              ].map(({ n, label, text }) => (
+                <div key={n} className="flex gap-3">
+                  <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ background: "rgba(200,168,100,0.15)", border: "1px solid rgba(200,168,100,0.3)" }}>
+                    <span style={{ fontFamily: FONT_DISPLAY, fontSize: "0.85rem", color: "var(--gold)", fontStyle: "italic" }}>{n}</span>
+                  </div>
+                  <div>
+                    <p style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gold)" }}>{label}</p>
+                    <p className="mt-0.5" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(250,243,234,0.65)", lineHeight: 1.6 }}>{text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-xl p-4" style={{ background: "rgba(200,168,100,0.08)", border: "1px solid rgba(200,168,100,0.2)" }}>
+            <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: "var(--ink)", fontStyle: "italic", lineHeight: 1.55 }}>Use the 'Monthly Report — Explain the Numbers' prompt in the Prompts tab to generate the full written report in minutes. Then add your own 1–2 sentences of context from what you saw that month.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Referral Goal Callout */}
+      <div className="rounded-2xl p-6" style={{ background: "var(--ink)" }}>
+        <p className="text-[10px] tracking-[0.25em] uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The Bigger Goal</p>
+        <p className="italic mb-3" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.25rem", color: "var(--cream)", lineHeight: 1.4 }}>
+          Your goal is not just to keep clients. It's to turn every client into a referral source.
+        </p>
+        <p style={{ fontFamily: FONT_BODY, fontSize: "0.84rem", color: "rgba(250,243,234,0.6)", lineHeight: 1.7 }}>
+          A client who sees results, feels looked after, and gets a clear report every month will naturally tell other business owners about you. You don't have to pitch them on referring — they'll do it on their own because you made them look good. Do the work well, send the report on time, and ask for a referral after every win. That's the whole system.
+        </p>
+      </div>
 
       {/* Customer Journey Map */}
       <div className="rounded-2xl p-7" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
@@ -591,6 +742,45 @@ Then I will:
 Write in a confident, helpful, expert tone. Not salesy. Genuinely useful first.`,
     },
     {
+      title: "Post-Call Proposal, Contract & Invoice — Send Today",
+      tag: "Sales",
+      prompt: `Use this right after a discovery call. Fill in your notes from the call and paste into ChatGPT to generate a complete, personalised proposal in minutes. Then send it with the contract and invoice — all in one email.
+
+Paste into ChatGPT:
+
+"Write a short, personalised social media proposal for [BUSINESS NAME] from The Dollhouse Brand Studio.
+
+Here are my notes from the discovery call today:
+- Business type: [TYPE]
+- Their biggest pain point (in their own words): [WHAT THEY SAID]
+- What they want most: [THEIR GOAL]
+- Platforms they're on: [PLATFORMS]
+- Package I recommended: [Starter / Growth / Elite]
+- Did I offer the 14-day free trial? [YES / NO]
+- Monthly fee: $[AMOUNT] + $500 one-time setup
+- Anything specific I promised to address: [NOTES]
+
+Write a proposal with these 5 sections only — keep it under 400 words total:
+1. A personalised opening (reference something specific from our call — make them feel heard)
+2. The Problem (restate their pain point in their own words — show you listened)
+3. Our Solution (describe what we'll do for THEIR business specifically — not generic)
+4. What's Included (clean bullet list for the package they chose)
+5. Next Steps (Step 1: sign the agreement / Step 2: pay the setup invoice / Step 3: kickoff call within 48 hours)
+
+Tone: warm, confident, specific. Not salesy. Not template-y. Reads like it was written just for them.
+
+After the proposal, also write:
+- A short 3-line email subject + body to send the proposal (friendly, excited, not pushy)
+- One reminder follow-up message to send 48 hours later if no reply"
+
+---
+After ChatGPT gives you the proposal:
+1. Copy it into your proposal template (Canva, Google Docs, or PDF)
+2. Attach the service agreement (use the contract template in the Contracts prompt)
+3. Send the invoice for $500 (setup fee only if they're doing the free trial) or the full setup + first month
+4. Send everything in one email — not three separate ones`,
+    },
+    {
       title: "Pitch Deck Builder",
       tag: "Sales",
       prompt: `Build a 7-slide sales pitch deck for The Dollhouse Brand Studio for a specific prospect.
@@ -680,7 +870,43 @@ Write:
 4. Focus for next month (2–3 sentences on strategy shift or continuation)
 5. Closing (warm, professional)
 
-Tone: confident advisor, not defensive. Never apologize for numbers — contextualize them.`,
+Tone: confident advisor, not defensive. Never apologize for numbers — contextualise them.`,
+    },
+    {
+      title: "Monthly Report — Explain the Numbers in Plain English",
+      tag: "Reporting",
+      prompt: `Use this prompt to turn raw analytics data into a clear, plain-English report that a client actually understands. Most clients don't know what 'reach' or 'engagement rate' means. Your job is to translate every number into what it means for their business.
+
+Paste into ChatGPT:
+
+"You are writing a monthly social media report for [CLIENT NAME], owner of [BUSINESS NAME], a [BUSINESS TYPE] in [CITY].
+
+Here are the stats for [MONTH]:
+- Reach: [X]
+- Impressions: [X]
+- Engagement rate: [X%]
+- New followers: [+X]
+- Top post: [DESCRIBE — what it was, what format, how it performed]
+- Ad results (if applicable): spent $[X], generated [X] leads/clicks at $[X] each
+- Compared to last month: [better / worse / about the same — note any key changes]
+
+Write a short, easy-to-read report using this structure:
+
+🏆 THE WIN — Start with the best result of the month. Lead with something positive. One sentence.
+
+📊 WHAT THE NUMBERS MEAN — Explain each key metric in plain language:
+- Reach [X]: What this number means. What changed vs. last month. What it means for their business in simple terms.
+- Engagement rate [X%]: Whether this is strong or average. What it tells us about how people are responding to the content.
+- New followers [+X]: What this means. Are these potential customers? Local people? Why it matters.
+- Ads (if applicable): How many leads came in, what each cost, and what that's worth to the business.
+
+💡 WHAT WORKED — 2–3 sentences on which type of content performed best and why.
+
+📅 WHAT'S NEXT — What we'll do differently or double down on next month. Show them you're thinking ahead.
+
+Tone: friendly and confident. Write like you're explaining this to a smart person who isn't a marketer. No jargon. No disclaimers. No apologising for numbers — put them in context instead.
+
+End with one sentence that reminds them why showing up consistently online matters for their business."`,
     },
     {
       title: "Lead Gen Research — Find Prospects by Niche + City",
@@ -3224,9 +3450,15 @@ Thanks again for trusting me with [BUSINESS NAME].
         title="The Discovery Call — Full Conversation Guide"
         tag="Video Call or Phone"
         lines={[
-          { type: "note", text: "This is your most important conversation. Your goal: listen first, pitch second. The more they talk, the better you can tailor exactly what you present. Budget 20–30 minutes." },
-          { type: "subhead", text: "Opening — The First 60 Seconds" },
-          { type: "send", label: "Start with this", text: "Thanks so much for making time — I know you're busy and I want to make this worth every minute.\n\nBefore I tell you anything about us, I'd love to learn a little about [BUSINESS NAME] first. That way I can show you something that actually makes sense for where you are. Sound good?" },
+          { type: "note", text: "This is your most important conversation. Your goal: listen first, pitch second. The more they talk, the better you can tailor what you say. Budget 20–30 minutes." },
+          { type: "subhead", text: "Step 1 — Break the Ice Before Anything Else" },
+          { type: "note", text: "Before you talk business, warm them up. This takes 60 seconds and makes the rest of the call 10x easier. Cold calls close less. Warm people do." },
+          { type: "send", label: "First thing you say when they show up", text: "Hey [NAME]! So glad we got to connect today. Quick question before we dive in — where in the world are you joining from?" },
+          { type: "if_say", text: "[City / Town / Country]" },
+          { type: "you_say", text: "Oh I love that! What's the weather like over there right now? [Let them answer. Laugh. Share something back about where you are too.]\n\n[Give it 30–60 seconds. Be real. Ask a follow-up if something interesting comes up.]" },
+          { type: "note", text: "This is not small talk — it's strategy. Warm people buy. Cold people don't. Always do this, even if it feels awkward at first. By call #5 it's second nature." },
+          { type: "subhead", text: "Step 2 — The Opening" },
+          { type: "send", label: "Transition into the call", text: "Okay so — I'm excited to learn more about [BUSINESS NAME]. Before I tell you anything about us, I'd love to hear about where you're at first. That way whatever I share actually makes sense for your situation. Sound good?" },
           { type: "subhead", text: "Questions to Ask — Listen More Than You Talk" },
           { type: "note", text: "Ask these one at a time. Let them answer fully before moving on. Take notes. Their answers become your pitch." },
           { type: "send", label: "Your questions", text: "1. How are you currently handling your social media?\n\n2. Is posting consistently something you struggle with, or do you have a good system?\n\n3. What platforms are you on — Instagram, Facebook, TikTok?\n\n4. Are you running any paid ads right now, or just organic?\n\n5. What's the biggest frustration with social media for your business right now?\n\n6. What would winning look like for you? More leads, more sales, more visibility — what matters most?" },
@@ -3239,6 +3471,11 @@ Thanks again for trusting me with [BUSINESS NAME].
           { type: "subhead", text: "The Close — Ask Directly" },
           { type: "send", label: "Ask for the sale — say exactly this", text: "So — does this feel like the right fit for [BUSINESS NAME]? Are you ready to get started?" },
           { type: "warn", text: "After you ask that closing question, stop talking. Do not fill the silence. Do not say 'I know it's a big decision' or 'no pressure.' Ask, then wait. Let them answer. Whoever speaks next loses the power in that moment — don't let it be you." },
+          { type: "subhead", text: "After the Call — Send Everything Within 2 Hours" },
+          { type: "note", text: "Speed is part of the impression. Sending your proposal the same day shows you are professional, prepared, and excited about their business. Most people wait 2–3 days. Don't be that person — send everything today." },
+          { type: "send", label: "Your follow-up message — send this right after you hang up", text: "Hey [NAME]! So great talking to you today.\n\nAs promised, here's the proposal for [BUSINESS NAME] — I kept it short and specific to what we talked about.\n\n[ATTACH PROPOSAL]\n\nOnce you're happy with everything, I'll send over the service agreement and invoice so we can get your 14-day trial started.\n\nLet me know if you have any questions at all. I'm really excited about this one.\n\nMandy\nThe Dollhouse Brand Studio\nshopdollhouse.co" },
+          { type: "note", text: "Use the 'Post-Call Proposal Generator' prompt in the Prompts tab to build a custom proposal in minutes using your notes from the call. Then send the proposal, contract, and invoice all in one go — never make them chase you for three separate things." },
+          { type: "warn", text: "If you said 14-day free trial on the call — the invoice is for $500 only (setup fee). The monthly starts after they see results. Make sure the invoice matches what you promised." },
         ]}
       />
 
