@@ -1641,7 +1641,7 @@ We are a small team. Trust and reliability are non-negotiable.`,
 type PStage = "new_lead" | "sent" | "responded" | "call_set" | "proposal" | "negotiating" | "won" | "lost";
 
 const STAGE_INFO: Record<PStage, { label: string; color: string; guide: string; nextStage?: PStage; nextLabel?: string }> = {
-  new_lead:    { label: "New Lead",        color: "#c8a864", nextStage: "sent",        nextLabel: "✓ Outreach Sent",     guide: "Research this business first — check their Google reviews, social pages, and whether they're running ads. Then generate your first outreach below and send it." },
+  new_lead:    { label: "New Lead",        color: "#c8a864", nextStage: "sent",        nextLabel: "✓ Outreach Sent",     guide: "LEAD WITH THE AI CLONE. Our #1 opening offer is the AI Character Package ($1k) — a digital twin of the business owner that posts video content for them automatically. Research this business first — check their social pages, reviews, and whether they're on video at all. Then generate the AI Clone Pitch below and send it. It hooks people because it's personal and completely different from what they've heard before." },
   sent:        { label: "Outreach Sent",   color: "#4a90d9", nextStage: "responded",   nextLabel: "✓ They Responded",    guide: "Outreach is out. Wait 2–3 business days. No response? Generate a follow-up — keep it to one sentence. It's all about volume and follow-through." },
   responded:   { label: "They Responded!", color: "#4a9970", nextStage: "call_set",    nextLabel: "✓ Call Booked",       guide: "Reply within 1 hour. Your only goal right now: get them on a 15-minute call. Don't pitch anything yet. Use the generator below to craft your reply." },
   call_set:    { label: "Call Scheduled",  color: "#7b68ee", nextStage: "proposal",    nextLabel: "✓ Proposal Sent",     guide: "Prep using the CLOSER notes below. Listen first, pitch second. Send the proposal within 24 hours of the call ending — while you're still fresh in their mind." },
@@ -1652,7 +1652,7 @@ const STAGE_INFO: Record<PStage, { label: string; color: string; guide: string; 
 };
 
 const STAGE_MSGS: Record<PStage, { label: string; key: string }[]> = {
-  new_lead:    [{ label: "Cold Email", key: "cold_email" }, { label: "Cold DM", key: "cold_dm" }, { label: "Compliment Email", key: "compliment" }, { label: "Free Trial DM", key: "free_trial" }],
+  new_lead:    [{ label: "🤖 AI Clone Pitch — $1k", key: "ai_clone_pitch" }, { label: "AI Clone DM", key: "ai_clone_dm" }, { label: "Cold Email", key: "cold_email" }, { label: "Cold DM", key: "cold_dm" }, { label: "Compliment Email", key: "compliment" }, { label: "Free Trial DM", key: "free_trial" }],
   sent:        [{ label: "Follow-Up Email", key: "followup_email" }, { label: "Follow-Up DM", key: "followup_dm" }, { label: "Free AI Video Offer", key: "free_video" }],
   responded:   [{ label: "Book the Call", key: "book_call" }, { label: "Reply + Calendar", key: "call_reply" }],
   call_set:    [{ label: "CLOSER Prep Notes", key: "closer_prep" }, { label: "Pitch Deck Outline", key: "pitch_outline" }],
@@ -1684,6 +1684,43 @@ function genMessage(key: string, p: Prospect): string {
   const pain  = p.pain  || "managing social media and getting more leads";
 
   const t: Record<string, string> = {
+    ai_clone_pitch:
+`Subject: Your AI Twin for ${biz} — seriously cool idea
+
+Hi ${fn},
+
+I came across ${biz} and had an idea I've never pitched to anyone else in ${city}.
+
+We build a custom AI clone — a digital character that looks, sounds, and speaks like you — and use it to post branded video content for ${biz} every single week. You never have to be on camera. You don't script anything. You don't film anything. Your AI twin does it for you.
+
+Here's what you get with the AI Character Package ($1,000):
+✓ Your custom AI avatar — built to look and sound like ${fn}
+✓ Branded video content scripted and produced every week
+✓ Posted across Facebook, Instagram, and TikTok automatically
+✓ Comments and DMs handled by AI so no lead goes cold
+✓ Full social media presence — without you lifting a finger
+
+For ${niche} businesses in ${city}, this is a massive competitive edge. Nobody else is doing this yet.
+
+I'd love to show you a quick demo — 15 minutes, no pressure, just want you to see what this looks like before anyone else in your market does.
+
+Would this week work?
+
+— Mandy Fortune
+The Dollhouse Brand Studio
+shopdollhouse.co`,
+
+    ai_clone_dm:
+`Hey ${fn}! 👋
+
+Random question — does ${biz} do any video content right now?
+
+I ask because I just built something for ${niche} businesses that I think you'd love. We create an AI version of you — a digital twin — that posts video content for ${biz} every week. You literally never have to be on camera.
+
+It's $1,000 to set up and it's wild how real it looks.
+
+Would you want to see a quick demo? Takes 10 minutes and I think it'd blow your mind.`,
+
     cold_email:
 `Subject: quick question about ${biz}'s social media
 
@@ -2177,6 +2214,35 @@ function DealTrackerTab() {
         <button onClick={() => { setForm({ ...EMPTY_FORM }); setEditingId(null); setView("add"); }} className="px-5 py-2.5 rounded-xl shrink-0 hover:opacity-90 transition" style={{ background: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold)" }}>
           + Add Prospect
         </button>
+      </div>
+
+      {/* Lead Strategy Spotlight */}
+      <div className="rounded-2xl p-6" style={{ background: "linear-gradient(135deg, var(--ink) 0%, #2a1a10 100%)", border: "1px solid rgba(200,168,100,0.3)" }}>
+        <div className="flex items-start gap-4 flex-wrap">
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-lg">🤖</span>
+              <p className="text-[9px] tracking-[0.25em] uppercase" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Lead Strategy #1 · Featured Offer</p>
+            </div>
+            <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--cream)", fontWeight: 400, lineHeight: 1.1 }}>AI Clone / Character Package — <span style={{ color: "var(--gold)" }}>$1,000</span></h3>
+            <p className="mt-2 leading-relaxed" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(250,243,234,0.7)" }}>
+              We build a custom AI avatar of the business owner — a digital twin that looks, sounds, and speaks like them — and use it to post branded video content automatically every week. They never film anything. They never script anything. Their AI character does it for them.
+            </p>
+            <div className="mt-4 grid sm:grid-cols-2 gap-2">
+              {["Custom AI avatar built to look & sound like the owner","Branded video content scripted + produced weekly","Posted across Facebook, Instagram & TikTok automatically","Comments & DMs handled by AI — no lead goes cold"].map(f => (
+                <div key={f} className="flex items-start gap-2">
+                  <span style={{ color: "var(--gold)", marginTop: "1px", flexShrink: 0 }}>✓</span>
+                  <p style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "rgba(250,243,234,0.65)" }}>{f}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-xl p-4 text-center shrink-0" style={{ background: "rgba(200,168,100,0.12)", border: "1px solid rgba(200,168,100,0.25)", minWidth: "120px" }}>
+            <p style={{ fontFamily: FONT_SCRIPT, fontSize: "1.1rem", color: "var(--gold)" }}>open a prospect</p>
+            <p className="mt-1" style={{ fontFamily: FONT_LUXE, fontSize: "8px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(250,243,234,0.4)" }}>to generate the</p>
+            <p style={{ fontFamily: FONT_LUXE, fontSize: "8px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(250,243,234,0.4)" }}>AI clone pitch</p>
+          </div>
+        </div>
       </div>
 
       {/* Stage filter */}
