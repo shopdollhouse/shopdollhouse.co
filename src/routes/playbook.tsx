@@ -9,7 +9,7 @@ const FONT_LUXE = "'Jost', sans-serif";
 const FONT_SCRIPT = "'Allura', cursive";
 
 /* ─── Types ───────────────────────────────────────────── */
-type Tab = "workflow" | "monthly" | "prompts" | "outreach" | "growth" | "newhire";
+type Tab = "workflow" | "monthly" | "prompts" | "outreach" | "growth" | "newhire" | "deals";
 
 /* ─── Prompt Card ─────────────────────────────────────── */
 function PromptCard({ title, tag, prompt }: { title: string; tag: string; prompt: string }) {
@@ -1636,6 +1636,596 @@ We are a small team. Trust and reliability are non-negotiable.`,
   );
 }
 
+/* ─── Deal Tracker ───────────────────────────────────── */
+
+type PStage = "new_lead" | "sent" | "responded" | "call_set" | "proposal" | "negotiating" | "won" | "lost";
+
+const STAGE_INFO: Record<PStage, { label: string; color: string; guide: string; nextStage?: PStage; nextLabel?: string }> = {
+  new_lead:    { label: "New Lead",        color: "#c8a864", nextStage: "sent",        nextLabel: "✓ Outreach Sent",     guide: "Research this business first — check their Google reviews, social pages, and whether they're running ads. Then generate your first outreach below and send it." },
+  sent:        { label: "Outreach Sent",   color: "#4a90d9", nextStage: "responded",   nextLabel: "✓ They Responded",    guide: "Outreach is out. Wait 2–3 business days. No response? Generate a follow-up — keep it to one sentence. It's all about volume and follow-through." },
+  responded:   { label: "They Responded!", color: "#4a9970", nextStage: "call_set",    nextLabel: "✓ Call Booked",       guide: "Reply within 1 hour. Your only goal right now: get them on a 15-minute call. Don't pitch anything yet. Use the generator below to craft your reply." },
+  call_set:    { label: "Call Scheduled",  color: "#7b68ee", nextStage: "proposal",    nextLabel: "✓ Proposal Sent",     guide: "Prep using the CLOSER notes below. Listen first, pitch second. Send the proposal within 24 hours of the call ending — while you're still fresh in their mind." },
+  proposal:    { label: "Proposal Sent",   color: "#e08030", nextStage: "negotiating", nextLabel: "✓ They're Interested", guide: "Wait 24–48 hours. No reply? Follow up once. Don't resend the deck — just ask if they had a chance to look at it." },
+  negotiating: { label: "Negotiating",     color: "#b8860b", nextStage: "won",         nextLabel: "✓ Mark as Won 🎉",   guide: "Price is the most common objection. Don't discount — offer the annual deal (10–20% off) or add value. Address their specific concern directly." },
+  won:         { label: "🎉 Won!",         color: "#2a8a50",                                                              guide: "Send the agreement and onboarding form TODAY. Schedule the kickoff call within 48 hours. Strike while they're excited." },
+  lost:        { label: "Not Now",         color: "#888",    nextStage: "new_lead",    nextLabel: "↩ Re-Open",           guide: "Send a warm break-up email. Leave the door open. Set a 30-60 day reminder to circle back — people's situations change." },
+};
+
+const STAGE_MSGS: Record<PStage, { label: string; key: string }[]> = {
+  new_lead:    [{ label: "Cold Email", key: "cold_email" }, { label: "Cold DM", key: "cold_dm" }, { label: "Compliment Email", key: "compliment" }, { label: "Free Trial DM", key: "free_trial" }],
+  sent:        [{ label: "Follow-Up Email", key: "followup_email" }, { label: "Follow-Up DM", key: "followup_dm" }, { label: "Free AI Video Offer", key: "free_video" }],
+  responded:   [{ label: "Book the Call", key: "book_call" }, { label: "Reply + Calendar", key: "call_reply" }],
+  call_set:    [{ label: "CLOSER Prep Notes", key: "closer_prep" }, { label: "Pitch Deck Outline", key: "pitch_outline" }],
+  proposal:    [{ label: "Proposal Follow-Up", key: "proposal_followup" }, { label: "Objection Handling", key: "objections" }],
+  negotiating: [{ label: "Annual Deal Offer", key: "annual_deal" }, { label: "Objection Response", key: "obj_response" }],
+  won:         [{ label: "Welcome Email", key: "welcome" }, { label: "Kickoff Invite", key: "kickoff" }],
+  lost:        [{ label: "Graceful Break-Up", key: "breakup" }, { label: "30-Day Re-Engagement", key: "reengage" }],
+};
+
+interface PNote { id: string; text: string; at: string; }
+interface PMsg  { id: string; label: string; body: string; at: string; }
+interface Prospect {
+  id: string; biz: string; contact: string; email: string; phone: string;
+  niche: string; city: string; pain: string; source: string;
+  stage: PStage; notes: PNote[]; savedMsgs: PMsg[]; created: string;
+}
+
+const PKEY = "dh_deals_v1";
+const loadProspects = (): Prospect[] => { try { return JSON.parse(localStorage.getItem(PKEY) || "[]"); } catch { return []; } };
+const saveAllProspects = (list: Prospect[]) => localStorage.setItem(PKEY, JSON.stringify(list));
+const uid = () => Math.random().toString(36).slice(2);
+const fmt = (d: string) => new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric" });
+
+function genMessage(key: string, p: Prospect): string {
+  const fn  = p.contact ? p.contact.split(" ")[0] : "there";
+  const biz  = p.biz  || "your business";
+  const niche = p.niche || "local business";
+  const city  = p.city  || "your area";
+  const pain  = p.pain  || "managing social media and getting more leads";
+
+  const t: Record<string, string> = {
+    cold_email:
+`Subject: quick question about ${biz}'s social media
+
+Hi ${fn},
+
+I was looking at ${biz} online — you're doing great work in the ${niche} space, but your social presence doesn't quite match the quality of what you're actually offering.
+
+I run The Dollhouse Brand Studio. We handle done-for-you social media for ${niche} businesses in ${city} — content, posting, ads, all of it — so you don't have to think about it.
+
+I'd love to put together a quick look at what we'd do for ${biz} specifically. No pitch, no pressure — just a 15-minute call to see if it's a fit.
+
+Would this week work for you?
+
+— Mandy Fortune
+The Dollhouse Brand Studio
+shopdollhouse.co`,
+
+    cold_dm:
+`Hey ${fn} 👋
+
+Love what you're doing with ${biz}. Quick question: are you handling your own social content right now, or does someone help you?
+
+I run a done-for-you social media studio and I had a couple ideas for ${biz} that I think could really perform. Happy to share them — no strings.`,
+
+    compliment:
+`Subject: compliments to your team at ${biz}
+
+Hi ${fn},
+
+Just wanted to shoot you a quick email — I came across ${biz} and was genuinely impressed with what you're doing in the ${niche} space.
+
+I wanted to share you on social media, but noticed ${biz} isn't doing much with Facebook or Instagram. Any reason? I think more people need to hear about you.
+
+Also — where can I leave you a review? Happy to spread the word.
+
+— Mandy Fortune
+shopdollhouse.co
+
+---
+[FOLLOW-UP — send 2 days later if they reply positively]
+
+Hey ${fn}! Thanks for responding.
+
+For the social media side — I'd love to help. A lot of other ${niche} businesses in ${city} are using social media to get more clients right now. I think we could easily do the same for ${biz}.
+
+Let me know — would love to help. — Mandy`,
+
+    free_trial:
+`Hey ${fn}, I just built a new AI system for ${niche} businesses. It helps [outcome — e.g. book more jobs automatically / never miss a lead / fill the calendar without ad spend].
+
+I'm looking for a few businesses to test it out — would ${biz} want a free trial?`,
+
+    followup_email:
+`Subject: Re: ${biz}
+
+Hi ${fn},
+
+Just bumping this in case my last email got buried!
+
+I had a few specific ideas for ${biz} that I think could really move the needle — happy to share them on a quick 15-minute call.
+
+Would any time this week work for you?
+
+— Mandy`,
+
+    followup_dm:
+`Hey ${fn} — just wanted to bump this up in case it got buried!
+
+I genuinely think there's an opportunity for ${biz} here. Happy to share some specific ideas for your page — no strings.
+
+Reply "yes" and I'll send them over 🙂`,
+
+    free_video:
+`Hey ${fn} — I reached out a few days ago. I'm the one who creates AI video clones of business owners for their social media.
+
+I'd love to make one for ${biz} for free just to show you what it looks like. Would you be open to seeing it?`,
+
+    book_call:
+`Hi ${fn},
+
+So glad you replied! I'd love to show you exactly what we'd do for ${biz}.
+
+Would you be open to a quick 15-minute call? I can walk you through what we're doing for other ${niche} businesses in ${city} and show you a few specific ideas for your page.
+
+Here's my calendar: [CALENDAR LINK]
+
+Looking forward to it!
+— Mandy`,
+
+    call_reply:
+`Hi ${fn},
+
+Great to hear from you — I think there's a real opportunity for ${biz}, especially around ${pain}.
+
+Would [DAY] or [DAY] this week work for a quick 15-minute call? I'll show you exactly what we'd do and what the results look like in practice.
+
+— Mandy Fortune
+The Dollhouse Brand Studio`,
+
+    closer_prep:
+`CLOSER PREP — ${biz}
+Contact: ${p.contact} | Niche: ${niche} | City: ${city}
+Their pain: ${pain}
+
+─────────────────────────────────
+C — CLARIFY the pain
+Ask: "What's your biggest challenge right now with ${pain}? Walk me through what that looks like day to day."
+
+L — LABEL them as a fit
+"So if I'm hearing you right, the main issue is [THEIR WORDS] — and that's costing ${biz} [leads / time / revenue]?"
+
+O — OUTLINE your solution
+"That's exactly why we built this system for ${niche} businesses. Here's how it works: [content + automations + ads]. ${biz} doesn't touch any of it."
+
+S — SHARE a case study
+"We set this up for another ${niche} in ${city} and they [RESULT — e.g. booked 12 new clients in 30 days]."
+
+E — EXPLAIN the offer
+Present all 3 tiers. Start high. Walk down if needed. Never lead with the cheapest option.
+
+R — REQUEST the sale
+"Based on everything you've told me, I think [TIER] is the right fit for ${biz}. Do you want to get started?"
+Then stop talking. Let them answer.
+─────────────────────────────────
+Remember: listen first. The more they talk, the better you can close.`,
+
+    pitch_outline:
+`PITCH DECK OUTLINE — ${biz}
+
+Slide 1 — Introduction
+The Dollhouse Brand Studio · Done-for-you social media, ads, and automation for ${niche} businesses.
+
+Slide 2 — Their Problem
+"${pain}" — use ${fn}'s exact words from the call. Make them feel understood, not sold to.
+
+Slide 3 — Our Solution
+Software + service working together. We handle content, ads, and automations. ${biz} handles their business.
+
+Slide 4 — Proof
+[INSERT RESULT] — another ${niche} business we helped in ${city}.
+
+Slide 5 — Their Package
+Exactly what's included for ${biz} — listed clearly. Include 1–2 things NOT included so there are no surprises.
+
+Slide 6 — Investment
+$[PRICE]/month · Setup: $[AMOUNT or "none"] · Payment terms: [MONTHLY / UPFRONT]
+
+Slide 7 — Next Steps
+Step 1: Sign agreement → Step 2: Complete onboarding form → Step 3: Kickoff call within 48 hrs`,
+
+    proposal_followup:
+`Subject: Re: ${biz} proposal
+
+Hi ${fn},
+
+Just checking in — did you get a chance to look over the proposal?
+
+Happy to answer any questions or jump on a quick call to walk through anything. No rush — just want to make sure you have everything you need to make the right call for ${biz}.
+
+— Mandy`,
+
+    objections:
+`OBJECTION GUIDE — ${biz}
+
+"It's too expensive."
+→ "What's it worth if we book ${biz} [X] new ${niche} clients this month? Most clients make it back in the first month."
+→ Offer annual: "If budget's a concern, I can do 15% off if ${biz} locks in a year — works out to [ANNUAL PRICE]."
+
+"I need to think about it."
+→ "Of course — what's the one thing you're not sure about? I'd rather talk through it now."
+
+"I'm already working with someone."
+→ "How's that going? Are you seeing the results you want?" [Listen] "That's actually why clients come to us — [what we do differently]."
+
+"I don't have time to deal with this right now."
+→ "That's exactly the point — you won't have to. We handle everything. The only thing ${fn} will do is approve content once a month."`,
+
+    annual_deal:
+`Hi ${fn},
+
+Quick thought — would ${biz} want to lock in the rate for the year? I can do 15% off if you pay annually, which works out to [ANNUAL PRICE].
+
+Most clients who do this save a few hundred dollars and don't have to think about the invoice every month.
+
+Let me know — happy to put together the annual agreement.
+
+— Mandy`,
+
+    obj_response:
+`Hi ${fn},
+
+Totally understand — [RESTATE THEIR OBJECTION IN ONE LINE].
+
+Here's what I'd say to that: the businesses we work with that had the same concern typically saw [RESULT] within the first [TIMEFRAME]. And honestly, if it's not working for ${biz} in the first 30 days, I'd want to know that too.
+
+What would you need to see to feel confident moving forward?
+
+— Mandy`,
+
+    welcome:
+`Subject: Welcome to The Dollhouse, ${fn}! 🎉
+
+Hi ${fn},
+
+So excited to have ${biz} on board — this is going to be great.
+
+Here's what happens next:
+1. I'm sending over the agreement and onboarding form today — please complete it within 24 hours so we can move fast.
+2. We'll schedule your kickoff call within 48 hours.
+3. Your first content goes live within 14 days.
+
+Talk soon!
+— Mandy Fortune
+The Dollhouse Brand Studio
+shopdollhouse.co`,
+
+    kickoff:
+`Hi ${fn},
+
+Ready to kick things off for ${biz}!
+
+Let's schedule a 30-minute onboarding call. We'll:
+✓ Walk through brand assets and voice
+✓ Set up your automations live together
+✓ Confirm your posting schedule and content pillars
+✓ Make sure everything is running before we hang up
+
+Grab a time here: [CALENDAR LINK]
+
+Can't wait to get started. See you soon!
+— Mandy`,
+
+    breakup:
+`Subject: All the best, ${fn}
+
+Hi ${fn},
+
+No worries at all — I know the timing isn't always right.
+
+If things change and ${biz} is ready to grow its social presence down the road, I hope you'll think of us. We'll be here.
+
+Wishing you a great rest of the [MONTH / QUARTER]!
+
+— Mandy
+The Dollhouse Brand Studio`,
+
+    reengage:
+`Subject: checking in — ${biz}
+
+Hi ${fn},
+
+It's been a little while since we last talked, and I wanted to check back in.
+
+A lot has shifted on the social media side recently — [MENTION ONE: carousels are outperforming Reels / AI video is changing how ${niche} businesses generate leads / etc.] — and ${biz} came to mind immediately.
+
+Still happy to put together a quick overview of what we'd do. No pressure — just wanted to make sure the door was still open.
+
+— Mandy`,
+  };
+  return t[key] ?? "Message template not found.";
+}
+
+/* ─── Deal Tracker UI ─────────────────────────────────── */
+
+const EMPTY_FORM = { biz: "", contact: "", email: "", phone: "", niche: "", city: "", pain: "", source: "Cold Email" };
+
+function DealTrackerTab() {
+  const [prospects, setProspects] = useState<Prospect[]>(() => loadProspects());
+  const [view, setView] = useState<"list" | "detail" | "add">("list");
+  const [selected, setSelected] = useState<string | null>(null);
+  const [form, setForm] = useState({ ...EMPTY_FORM });
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [genKey, setGenKey] = useState<string | null>(null);
+  const [genBody, setGenBody] = useState("");
+  const [copied, setCopied] = useState(false);
+  const [msgSaved, setMsgSaved] = useState(false);
+  const [noteText, setNoteText] = useState("");
+  const [stageFilter, setStageFilter] = useState<PStage | "all">("all");
+
+  const persist = (list: Prospect[]) => { setProspects(list); saveAllProspects(list); };
+
+  function addProspect() {
+    if (!form.biz.trim()) return;
+    const np: Prospect = { id: uid(), ...form, stage: "new_lead", notes: [], savedMsgs: [], created: new Date().toISOString() };
+    const updated = editingId
+      ? prospects.map(p => p.id === editingId ? { ...p, biz: form.biz, contact: form.contact, email: form.email, phone: form.phone, niche: form.niche, city: form.city, pain: form.pain, source: form.source } : p)
+      : [np, ...prospects];
+    persist(updated);
+    setForm({ ...EMPTY_FORM }); setEditingId(null); setView("list");
+  }
+
+  function deleteProspect(id: string) {
+    if (!confirm("Delete this prospect?")) return;
+    persist(prospects.filter(p => p.id !== id));
+    if (selected === id) { setView("list"); setSelected(null); }
+  }
+
+  function advanceStage(id: string) {
+    persist(prospects.map(p => { if (p.id !== id) return p; const ns = STAGE_INFO[p.stage].nextStage; return ns ? { ...p, stage: ns } : p; }));
+  }
+
+  function markStage(id: string, stage: PStage) {
+    persist(prospects.map(p => p.id === id ? { ...p, stage } : p));
+  }
+
+  function generate(key: string, p: Prospect) {
+    setGenKey(key);
+    setGenBody(genMessage(key, p));
+    setCopied(false); setMsgSaved(false);
+  }
+
+  function copyGen() { navigator.clipboard.writeText(genBody); setCopied(true); setTimeout(() => setCopied(false), 2000); }
+
+  function saveMsg(pid: string) {
+    const lbl = STAGE_MSGS[prospects.find(p => p.id === pid)!.stage].find(m => m.key === genKey)?.label ?? genKey ?? "";
+    persist(prospects.map(p => p.id === pid ? { ...p, savedMsgs: [{ id: uid(), label: lbl!, body: genBody, at: new Date().toISOString() }, ...p.savedMsgs] } : p));
+    setMsgSaved(true); setTimeout(() => setMsgSaved(false), 2000);
+  }
+
+  function addNote(pid: string) {
+    if (!noteText.trim()) return;
+    persist(prospects.map(p => p.id === pid ? { ...p, notes: [{ id: uid(), text: noteText.trim(), at: new Date().toISOString() }, ...p.notes] } : p));
+    setNoteText("");
+  }
+
+  function deleteNote(pid: string, nid: string) { persist(prospects.map(p => p.id === pid ? { ...p, notes: p.notes.filter(n => n.id !== nid) } : p)); }
+  function deleteMsg(pid: string, mid: string) { persist(prospects.map(p => p.id === pid ? { ...p, savedMsgs: p.savedMsgs.filter(m => m.id !== mid) } : p)); }
+
+  const openEdit = (p: Prospect) => { setForm({ biz: p.biz, contact: p.contact, email: p.email, phone: p.phone, niche: p.niche, city: p.city, pain: p.pain, source: p.source }); setEditingId(p.id); setView("add"); };
+  const openDetail = (id: string) => { setSelected(id); setGenKey(null); setGenBody(""); setView("detail"); };
+
+  const prospect = prospects.find(p => p.id === selected);
+  const stage = prospect ? STAGE_INFO[prospect.stage] : null;
+  const filtered = stageFilter === "all" ? prospects : prospects.filter(p => p.stage === stageFilter);
+
+  const inputCls = "w-full rounded-xl px-4 py-2.5 focus:outline-none text-sm";
+  const inputStyle = { fontFamily: FONT_BODY, color: "var(--ink)", background: "rgba(255,255,255,0.85)", border: "1px solid rgba(200,168,100,0.3)" };
+
+  /* ── Add / Edit Form ── */
+  if (view === "add") return (
+    <div className="space-y-5">
+      <div className="flex items-center gap-3">
+        <button onClick={() => { setView("list"); setEditingId(null); setForm({ ...EMPTY_FORM }); }} className="hover:opacity-60 transition-opacity" style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>← Back</button>
+        <h2 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--rose)" }}>{editingId ? "Edit Prospect" : "Add New Prospect"}</h2>
+      </div>
+      <div className="rounded-2xl p-7 space-y-4" style={{ background: "rgba(255,255,255,0.7)", border: "1px solid rgba(200,168,100,0.2)" }}>
+        <div className="grid sm:grid-cols-2 gap-4">
+          {([["biz","Business Name *","text"],["contact","Contact Name","text"],["email","Email Address","email"],["phone","Phone Number","tel"],["niche","Niche / Industry *","text"],["city","City","text"]] as [keyof typeof form, string, string][]).map(([k, ph, t]) => (
+            <div key={k}>
+              <label className="block mb-1" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>{ph}</label>
+              <input type={t} value={form[k]} onChange={e => setForm(f => ({ ...f, [k]: e.target.value }))} placeholder={ph} className={inputCls} style={inputStyle} />
+            </div>
+          ))}
+        </div>
+        <div>
+          <label className="block mb-1" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>How Did You Find Them</label>
+          <select value={form.source} onChange={e => setForm(f => ({ ...f, source: e.target.value }))} className={inputCls} style={inputStyle}>
+            {["Cold Email","Cold DM","Cold Call","Referral","Google Ads Research","Walked In","Social Media","Other"].map(s => <option key={s}>{s}</option>)}
+          </select>
+        </div>
+        <div>
+          <label className="block mb-1" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>Their Pain Points / Notes</label>
+          <textarea value={form.pain} onChange={e => setForm(f => ({ ...f, pain: e.target.value }))} placeholder="What problems do they have? What did they say on the call? The more detail, the better the generated messages." rows={3} className={inputCls} style={{ ...inputStyle, resize: "vertical" as const }} />
+        </div>
+        <button onClick={addProspect} disabled={!form.biz.trim()} className="w-full rounded-xl py-3 transition-all hover:opacity-90 disabled:opacity-40" style={{ background: "var(--ink)", fontFamily: FONT_DISPLAY, fontSize: "1.05rem", fontStyle: "italic", fontWeight: 700, color: "var(--gold)" }}>
+          {editingId ? "Save Changes" : "Add to Pipeline →"}
+        </button>
+      </div>
+    </div>
+  );
+
+  /* ── Detail View ── */
+  if (view === "detail" && prospect && stage) return (
+    <div className="space-y-5">
+      {/* Header */}
+      <div className="flex items-start justify-between gap-4 flex-wrap">
+        <div className="flex items-center gap-3">
+          <button onClick={() => { setView("list"); setSelected(null); setGenKey(null); setGenBody(""); }} className="hover:opacity-60 transition-opacity shrink-0" style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>← Pipeline</button>
+          <div>
+            <h2 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.6rem", color: "var(--rose)", lineHeight: 1 }}>{prospect.biz}</h2>
+            {prospect.contact && <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.5)" }}>{prospect.contact}{prospect.email ? ` · ${prospect.email}` : ""}{prospect.phone ? ` · ${prospect.phone}` : ""}</p>}
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="px-3 py-1 rounded-full text-[10px] tracking-widest uppercase font-medium" style={{ fontFamily: FONT_LUXE, background: `${stage.color}22`, color: stage.color, border: `1px solid ${stage.color}44` }}>{stage.label}</span>
+          <button onClick={() => openEdit(prospect)} className="px-3 py-1 rounded-lg hover:opacity-70 transition-opacity" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(30,15,10,0.4)", border: "1px solid rgba(200,168,100,0.2)" }}>Edit</button>
+          <button onClick={() => deleteProspect(prospect.id)} className="px-3 py-1 rounded-lg hover:opacity-70 transition-opacity" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.15em", textTransform: "uppercase", color: "#c97a7a", border: "1px solid rgba(201,122,122,0.2)" }}>Delete</button>
+        </div>
+      </div>
+
+      {/* Stage Guide */}
+      <div className="rounded-2xl p-6" style={{ background: "var(--ink)", border: `1px solid ${stage.color}33` }}>
+        <p className="text-[9px] tracking-[0.25em] uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: stage.color }}>What to do right now</p>
+        <p className="mb-4" style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(250,243,234,0.8)", lineHeight: 1.7 }}>{stage.guide}</p>
+        <div className="flex flex-wrap gap-2">
+          {stage.nextStage && (
+            <button onClick={() => advanceStage(prospect.id)} className="px-4 py-2 rounded-xl text-sm font-medium transition-all hover:opacity-90" style={{ background: stage.color, fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#fff" }}>
+              {stage.nextLabel}
+            </button>
+          )}
+          <select onChange={e => markStage(prospect.id, e.target.value as PStage)} value={prospect.stage} className="px-3 py-2 rounded-xl text-xs" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.12em", background: "rgba(255,255,255,0.08)", color: "rgba(250,243,234,0.5)", border: "1px solid rgba(255,255,255,0.1)" }}>
+            {(Object.keys(STAGE_INFO) as PStage[]).map(s => <option key={s} value={s}>{STAGE_INFO[s].label}</option>)}
+          </select>
+        </div>
+      </div>
+
+      {/* Message Generator */}
+      <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+        <div className="px-5 py-3" style={{ borderBottom: "1px solid rgba(200,168,100,0.12)", background: "rgba(200,168,100,0.06)" }}>
+          <p className="text-[10px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Message Generator</p>
+        </div>
+        <div className="p-5">
+          <div className="flex flex-wrap gap-2 mb-4">
+            {STAGE_MSGS[prospect.stage].map(m => (
+              <button key={m.key} onClick={() => generate(m.key, prospect)} className="px-4 py-2 rounded-xl transition-all hover:opacity-90" style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", background: genKey === m.key ? "var(--ink)" : "rgba(200,168,100,0.12)", color: genKey === m.key ? "var(--gold)" : "rgba(30,15,10,0.65)", border: "1px solid rgba(200,168,100,0.25)" }}>
+                {m.label}
+              </button>
+            ))}
+          </div>
+          {genBody && (
+            <div className="space-y-3">
+              <textarea value={genBody} onChange={e => setGenBody(e.target.value)} rows={10} className="w-full rounded-xl px-4 py-3 text-sm leading-relaxed focus:outline-none" style={{ fontFamily: FONT_BODY, color: "var(--ink)", background: "rgba(255,255,255,0.9)", border: "1px solid rgba(200,168,100,0.3)", resize: "vertical" as const }} />
+              <div className="flex gap-2">
+                <button onClick={copyGen} className="flex-1 py-2.5 rounded-xl transition-all hover:opacity-90" style={{ background: copied ? "#4a7a4a" : "var(--ink)", fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: copied ? "#fff" : "var(--gold)" }}>{copied ? "✓ Copied!" : "Copy"}</button>
+                <button onClick={() => saveMsg(prospect.id)} className="flex-1 py-2.5 rounded-xl transition-all hover:opacity-90" style={{ background: msgSaved ? "#4a7a4a" : "rgba(200,168,100,0.15)", fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: msgSaved ? "#fff" : "var(--gold)", border: "1px solid rgba(200,168,100,0.3)" }}>{msgSaved ? "✓ Saved!" : "Save to History"}</button>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Notes */}
+      <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+        <div className="px-5 py-3" style={{ borderBottom: "1px solid rgba(200,168,100,0.12)", background: "rgba(200,168,100,0.06)" }}>
+          <p className="text-[10px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Notes</p>
+        </div>
+        <div className="p-5 space-y-3">
+          <div className="flex gap-2">
+            <input value={noteText} onChange={e => setNoteText(e.target.value)} onKeyDown={e => e.key === "Enter" && addNote(prospect.id)} placeholder="Add a note — what happened, what they said, next step..." className="flex-1 rounded-xl px-4 py-2.5 text-sm focus:outline-none" style={inputStyle} />
+            <button onClick={() => addNote(prospect.id)} disabled={!noteText.trim()} className="px-4 py-2.5 rounded-xl disabled:opacity-40 hover:opacity-90 transition" style={{ background: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gold)" }}>Add</button>
+          </div>
+          {prospect.notes.length === 0 && <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.35)" }}>No notes yet. Log what happened after each touchpoint.</p>}
+          {prospect.notes.map(n => (
+            <div key={n.id} className="flex items-start justify-between gap-3 rounded-xl px-4 py-3" style={{ background: "rgba(200,168,100,0.06)", border: "1px solid rgba(200,168,100,0.12)" }}>
+              <div>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.8)" }}>{n.text}</p>
+                <p style={{ fontFamily: FONT_LUXE, fontSize: "8px", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(30,15,10,0.3)", marginTop: "2px" }}>{fmt(n.at)}</p>
+              </div>
+              <button onClick={() => deleteNote(prospect.id, n.id)} className="shrink-0 hover:opacity-50 transition-opacity" style={{ fontFamily: FONT_LUXE, fontSize: "9px", color: "rgba(201,122,122,0.6)" }}>✕</button>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Saved Messages */}
+      {prospect.savedMsgs.length > 0 && (
+        <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+          <div className="px-5 py-3" style={{ borderBottom: "1px solid rgba(200,168,100,0.12)", background: "rgba(200,168,100,0.06)" }}>
+            <p className="text-[10px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Saved Messages</p>
+          </div>
+          <div className="p-5 space-y-3">
+            {prospect.savedMsgs.map(m => (
+              <div key={m.id} className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.15)" }}>
+                <div className="px-4 py-2 flex items-center justify-between" style={{ background: "rgba(200,168,100,0.06)", borderBottom: "1px solid rgba(200,168,100,0.1)" }}>
+                  <div className="flex items-center gap-2">
+                    <span className="px-2 py-0.5 rounded-full text-[9px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, background: "rgba(200,168,100,0.18)", color: "#9a7a3a" }}>{m.label}</span>
+                    <span style={{ fontFamily: FONT_LUXE, fontSize: "8px", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(30,15,10,0.3)" }}>{fmt(m.at)}</span>
+                  </div>
+                  <div className="flex gap-2">
+                    <button onClick={() => { navigator.clipboard.writeText(m.body); }} className="hover:opacity-60 transition-opacity" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gold)" }}>Copy</button>
+                    <button onClick={() => deleteMsg(prospect.id, m.id)} className="hover:opacity-50 transition-opacity" style={{ fontFamily: FONT_LUXE, fontSize: "9px", color: "rgba(201,122,122,0.5)" }}>✕</button>
+                  </div>
+                </div>
+                <pre className="px-4 py-3 text-xs leading-relaxed whitespace-pre-wrap" style={{ fontFamily: FONT_BODY, color: "rgba(30,15,10,0.65)", margin: 0 }}>{m.body}</pre>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+
+  /* ── List View ── */
+  const stages = Object.keys(STAGE_INFO) as PStage[];
+  const counts = stages.reduce((acc, s) => ({ ...acc, [s]: prospects.filter(p => p.stage === s).length }), {} as Record<PStage, number>);
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-start justify-between gap-4 flex-wrap">
+        <SectionHeader label="Deal Pipeline" title="Close your next client." sub="Every prospect in one place. Click to open, generate personalized messages, log notes, and track every deal from first contact to signed." />
+        <button onClick={() => { setForm({ ...EMPTY_FORM }); setEditingId(null); setView("add"); }} className="px-5 py-2.5 rounded-xl shrink-0 hover:opacity-90 transition" style={{ background: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold)" }}>
+          + Add Prospect
+        </button>
+      </div>
+
+      {/* Stage filter */}
+      <div className="flex flex-wrap gap-2">
+        <button onClick={() => setStageFilter("all")} className="px-3 py-1.5 rounded-lg text-xs transition-all" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase", background: stageFilter === "all" ? "var(--ink)" : "rgba(255,255,255,0.6)", color: stageFilter === "all" ? "var(--gold)" : "rgba(30,15,10,0.5)", border: "1px solid rgba(200,168,100,0.2)" }}>
+          All ({prospects.length})
+        </button>
+        {stages.filter(s => counts[s] > 0).map(s => (
+          <button key={s} onClick={() => setStageFilter(s)} className="px-3 py-1.5 rounded-lg text-xs transition-all" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase", background: stageFilter === s ? STAGE_INFO[s].color : "rgba(255,255,255,0.6)", color: stageFilter === s ? "#fff" : "rgba(30,15,10,0.5)", border: `1px solid ${STAGE_INFO[s].color}44` }}>
+            {STAGE_INFO[s].label} ({counts[s]})
+          </button>
+        ))}
+      </div>
+
+      {filtered.length === 0 && (
+        <div className="text-center py-16 rounded-2xl" style={{ background: "rgba(255,255,255,0.5)", border: "1px dashed rgba(200,168,100,0.3)" }}>
+          <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "rgba(30,15,10,0.35)", fontStyle: "italic" }}>No prospects yet.</p>
+          <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.3)" }}>Add your first prospect to start the pipeline.</p>
+          <button onClick={() => { setForm({ ...EMPTY_FORM }); setEditingId(null); setView("add"); }} className="mt-5 px-6 py-2.5 rounded-xl hover:opacity-90 transition" style={{ background: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold)" }}>
+            + Add First Prospect
+          </button>
+        </div>
+      )}
+
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {filtered.map(p => {
+          const s = STAGE_INFO[p.stage];
+          return (
+            <button key={p.id} onClick={() => openDetail(p.id)} className="text-left rounded-2xl p-5 transition-all hover:-translate-y-0.5 hover:shadow-lg" style={{ background: "rgba(255,255,255,0.7)", border: "1px solid rgba(200,168,100,0.2)", boxShadow: "0 4px 16px -8px rgba(160,110,95,0.15)" }}>
+              <div className="flex items-start justify-between gap-2 mb-3">
+                <span className="px-2.5 py-0.5 rounded-full text-[9px] tracking-widest uppercase font-medium" style={{ fontFamily: FONT_LUXE, background: `${s.color}22`, color: s.color, border: `1px solid ${s.color}44` }}>{s.label}</span>
+                <span style={{ fontFamily: FONT_LUXE, fontSize: "8px", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(30,15,10,0.3)" }}>{fmt(p.created)}</span>
+              </div>
+              <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.2rem", color: "var(--ink)", lineHeight: 1.2 }}>{p.biz}</h3>
+              {p.contact && <p style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "rgba(30,15,10,0.5)", marginTop: "2px" }}>{p.contact}</p>}
+              {p.niche && <p style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "rgba(30,15,10,0.45)", marginTop: "1px" }}>{p.niche}{p.city ? ` · ${p.city}` : ""}</p>}
+              <div className="flex items-center gap-3 mt-3 pt-3" style={{ borderTop: "1px solid rgba(200,168,100,0.12)" }}>
+                <span style={{ fontFamily: FONT_LUXE, fontSize: "8px", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(30,15,10,0.35)" }}>{p.notes.length} note{p.notes.length !== 1 ? "s" : ""}</span>
+                <span style={{ fontFamily: FONT_LUXE, fontSize: "8px", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(30,15,10,0.35)" }}>{p.savedMsgs.length} saved msg{p.savedMsgs.length !== 1 ? "s" : ""}</span>
+                <span className="ml-auto" style={{ fontFamily: FONT_BODY, fontSize: "0.75rem", color: "var(--gold)" }}>Open →</span>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 /* ─── Page ─────────────────────────────────────────────── */
 const PW_HASH = "aa15f6cd8c0cb47ab513439d925bc35b9352f1f43718ce566613643804770458";
 
@@ -1709,6 +2299,7 @@ function PlaybookPage() {
     { id: "prompts", label: "Content Prompts", icon: "✍️" },
     { id: "outreach", label: "Outreach Scripts", icon: "📞" },
     { id: "growth", label: "Inbound Growth", icon: "📈" },
+    { id: "deals", label: "Deal Pipeline", icon: "🎯" },
     { id: "newhire", label: "New Hire Guide", icon: "👋" },
   ];
 
@@ -1759,6 +2350,7 @@ function PlaybookPage() {
         {tab === "prompts" && <PromptsTab />}
         {tab === "outreach" && <OutreachTab />}
         {tab === "growth" && <GrowthTab />}
+        {tab === "deals" && <DealTrackerTab />}
         {tab === "newhire" && <NewHireTab />}
       </div>
 
