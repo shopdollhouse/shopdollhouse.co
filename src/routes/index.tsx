@@ -1464,7 +1464,7 @@ function Pricing() {
                 backdropFilter: "blur(8px)",
               }}
             >
-              <span className="text-base mt-0.5 shrink-0">{addon.emoji}</span>
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "13px", height: "13px", color: "var(--gold)", marginTop: "5px", flexShrink: 0 }}><path d="M2.5 8.5L6 12L13.5 4.5" /></svg>
               <div>
                 <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.05rem", fontStyle: "italic", color: "var(--ink)" }}>
                   {addon.title}
@@ -1497,7 +1497,7 @@ function Pricing() {
                 backdropFilter: "blur(8px)",
               }}
             >
-              <span className="text-base mt-0.5 shrink-0">{addon.emoji}</span>
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "13px", height: "13px", color: "var(--gold)", marginTop: "5px", flexShrink: 0 }}><path d="M2.5 8.5L6 12L13.5 4.5" /></svg>
               <div>
                 <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.05rem", fontStyle: "italic", color: "var(--ink)" }}>
                   {addon.title}
