@@ -7,9 +7,9 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: "Italiana", serif;
+  --font-display: "Cormorant Garamond", serif;
   --font-serif: "Cormorant Garamond", serif;
-  --font-sans: "Inter", sans-serif;
+  --font-sans: "DM Sans", sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -78,14 +78,14 @@
   html, body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: var(--font-sans);
+    font-family: "DM Sans", sans-serif;
     -webkit-font-smoothing: antialiased;
   }
   html {
     scroll-behavior: smooth;
   }
   h1, h2, h3, h4 {
-    font-family: var(--font-serif);
+    font-family: "Cormorant Garamond", serif;
     font-weight: 400;
     letter-spacing: -0.01em;
   }
