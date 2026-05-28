@@ -162,17 +162,17 @@ function WorkflowTab() {
             <p className="mb-3" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)" }}>Copy and send — fill in the dates</p>
             <p className="whitespace-pre-line leading-relaxed" style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: "var(--cream)", fontStyle: "italic" }}>{`Hey [NAME]!
 
-So excited to have [BUSINESS NAME] on board. Here's exactly what the next two weeks look like so you always know what's happening:
+So excited to have [BUSINESS NAME] on board. Here's exactly what the next three weeks look like so you always know what's happening:
 
 📋 Today — I'll send you a short onboarding form. Takes about 5 minutes to fill out.
 
-🎨 [DATE +1–2 days] — I'll need your logo, brand colours, and any photos you want to use. I'll remind you about this.
+🎨 [DATE +3–4 days] — I'll need your logo, brand colours, and any photos you want to use. I'll remind you.
 
-📅 [DATE +3–5 days] — I'll build your content plan and share it with you for a quick look before anything goes live.
+📅 [DATE +5–7 days] — I'll build your content plan and share it with you for a quick look before anything goes live.
 
-✅ [DATE +7–10 days] — Your content is ready for approval. You'll have 48 hours to review and request any changes.
+✅ [DATE +14–16 days] — Your content is ready for approval. You'll have 48 hours to review and request any changes.
 
-🚀 [DATE +14 days] — Everything goes live! Your first posts start publishing and your automations are running.
+🚀 [DATE +21 days] — Everything goes live! Your first posts start publishing and your automations are running.
 
 📊 [DATE + end of month] — I'll send your first performance report with a full breakdown of how everything is performing.
 
@@ -6089,12 +6089,19 @@ function QuoteBuilderTab() {
     }
     lines.push("─".repeat(54));
     lines.push("");
+    lines.push("  DELIVERY TIMELINE:");
+    lines.push("─".repeat(54));
+    lines.push(dotLine("  Week 1–2", "Onboarding, brand assets, content plan"));
+    lines.push(dotLine("  Week 2–3", "Content created, designed + sent for approval"));
+    lines.push(dotLine("  Week 3–4", "Final approval + everything goes live"));
+    lines.push(dotLine("  Month 1+", "Ongoing management + monthly reports"));
+    lines.push("");
     lines.push("  NEXT STEPS:");
     lines.push("  1. Review this proposal — let me know if you have questions");
     lines.push("  2. Confirm your start date");
     lines.push("  3. Setup fee is collected to lock in your spot");
     if (trial) lines.push("  4. Your 14-day free trial begins immediately after setup");
-    lines.push(`  ${trial ? "5" : "4"}. We get to work — you see results within the first week`);
+    lines.push(`  ${trial ? "5" : "4"}. We get to work — your content goes live within the first month`);
 
     if (note) {
       lines.push("");
