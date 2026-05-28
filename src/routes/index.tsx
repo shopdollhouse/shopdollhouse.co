@@ -1438,7 +1438,7 @@ function Pricing() {
               ))}
             </div>
             <p className="mt-2" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "rgba(30,15,10,0.55)", lineHeight: 1.5 }}>
-              Branded, scheduled, and done for you — no AI avatar, no automation. Perfect for staying consistent without the full system.
+              Branded, scheduled, and done for you. Perfect for staying consistent without the full system. (No AI avatar, no automation — text &amp; image posts only.)
             </p>
             <p className="mt-1.5" style={{ fontFamily: "'Jost', sans-serif", fontSize: "9px", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(30,15,10,0.35)" }}>
               + $500 one-time setup fee
