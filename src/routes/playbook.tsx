@@ -1180,9 +1180,57 @@ function ServiceTiers() {
   );
 }
 
+/* ─── Script Card ─────────────────────────────────────── */
+type SLine = { type: "send" | "if_say" | "you_say" | "note" | "subhead" | "warn"; label?: string; text: string };
+function ScriptCard({ step, title, tag, lines }: { step?: string; title: string; tag?: string; lines: SLine[] }) {
+  return (
+    <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+      <div className="px-6 py-4 flex items-center gap-3 flex-wrap" style={{ borderBottom: "1px solid rgba(200,168,100,0.12)", background: "rgba(200,168,100,0.06)" }}>
+        {step && <span className="px-3 py-1 rounded-full text-[10px] tracking-widest uppercase shrink-0" style={{ fontFamily: FONT_LUXE, background: "var(--ink)", color: "var(--gold)" }}>{step}</span>}
+        {tag && <span className="px-2 py-0.5 rounded-full text-[10px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, background: "rgba(200,168,100,0.18)", color: "#9a7a3a" }}>{tag}</span>}
+        <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.2rem", color: "var(--ink)" }}>{title}</h3>
+      </div>
+      <div className="px-6 py-5 space-y-3">
+        {lines.map((l, i) => {
+          if (l.type === "send") return (
+            <div key={i} className="rounded-xl p-5" style={{ background: "var(--ink)" }}>
+              <p className="mb-2.5" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)" }}>{l.label ?? "Send this"}</p>
+              <p className="whitespace-pre-line leading-relaxed" style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: "var(--cream)", fontStyle: "italic" }}>{l.text}</p>
+            </div>
+          );
+          if (l.type === "if_say") return (
+            <div key={i} className="flex items-baseline gap-2 pt-1 flex-wrap">
+              <span className="shrink-0" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--rose)" }}>If they say:</span>
+              <span style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.6)", fontStyle: "italic" }}>"{l.text}"</span>
+            </div>
+          );
+          if (l.type === "you_say") return (
+            <div key={i} className="rounded-xl p-4 ml-4" style={{ background: "rgba(200,168,100,0.08)", border: "1px solid rgba(200,168,100,0.2)" }}>
+              <p className="mb-2" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>You say</p>
+              <p className="whitespace-pre-line leading-relaxed" style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: "var(--ink)", fontStyle: "italic" }}>{l.text}</p>
+            </div>
+          );
+          if (l.type === "note") return (
+            <p key={i} style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.5)", lineHeight: 1.7 }}>{l.text}</p>
+          );
+          if (l.type === "subhead") return (
+            <p key={i} style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)", borderTop: "1px solid rgba(200,168,100,0.18)", paddingTop: "12px", marginTop: "8px" }}>{l.text}</p>
+          );
+          if (l.type === "warn") return (
+            <div key={i} className="rounded-xl p-4" style={{ background: "rgba(201,122,122,0.07)", border: "1px solid rgba(201,122,122,0.2)" }}>
+              <p style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(150,40,40,0.85)", lineHeight: 1.65 }}>{l.text}</p>
+            </div>
+          );
+          return null;
+        })}
+      </div>
+    </div>
+  );
+}
+
 /* ─── Tab: Outreach ───────────────────────────────────── */
 function OutreachTab() {
-  const scripts = [
+  const _scripts = [
     {
       title: "Cold Email — Local Business",
       tag: "Email",
@@ -1491,9 +1539,168 @@ Thanks again for trusting me with [BUSINESS NAME].
         <p className="text-[11px] tracking-widest uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The Golden Rule</p>
         <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: "var(--ink)", fontStyle: "italic" }}>Research before you reach out. One specific detail (their product, a post they made, their location) outperforms 100 generic messages every time.</p>
       </div>
-      <div className="space-y-4">
-        {scripts.map((s) => <PromptCard key={s.title} {...s} />)}
+      <SectionHeader label="Word-for-Word Scripts" title="Exactly what to say — every step." sub="You haven't done this before, and that's okay. These scripts are written for someone starting from zero. Copy them exactly. Customize the bracketed fields. Every word is here on purpose." />
+
+      {/* Mindset card */}
+      <div className="rounded-2xl p-7" style={{ background: "var(--ink)" }}>
+        <p className="text-[10px] tracking-widest uppercase mb-4" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Before You Reach Out to Anyone — Read This First</p>
+        <div className="space-y-3">
+          {[
+            { n: "1", text: "You are not bothering anyone. You're offering something that could genuinely help their business. Go in with confidence." },
+            { n: "2", text: "Nobody buys from a nervous, apologetic pitch. Be direct, be warm, be calm. You know what you offer and they probably need it." },
+            { n: "3", text: "Most people won't respond — that's not rejection, that's just how outreach works. Every 'no' gets you closer to a 'yes.'" },
+            { n: "4", text: "Research before you message. Know their business name, what they sell, and one specific thing about their current social media before you send a single word." },
+            { n: "5", text: "Your goal isn't to sell on the first message. Your goal is to get a reply. One conversation at a time." },
+          ].map(({ n, text }) => (
+            <div key={n} className="flex gap-4">
+              <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ background: "rgba(200,168,100,0.15)", border: "1px solid rgba(200,168,100,0.3)" }}>
+                <span style={{ fontFamily: FONT_DISPLAY, fontSize: "0.9rem", color: "var(--gold)", fontStyle: "italic" }}>{n}</span>
+              </div>
+              <p className="leading-relaxed" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(250,243,234,0.75)", lineHeight: 1.7 }}>{text}</p>
+            </div>
+          ))}
+        </div>
       </div>
+
+      <ScriptCard
+        step="Step 1 — Start Here"
+        title="Cold DM Script"
+        tag="Instagram / Facebook / TikTok"
+        lines={[
+          { type: "note", text: "Find a local business or brand. Look at their profile. Find something real and specific to mention. Then send this:" },
+          { type: "send", label: "Your first message — send exactly this", text: "Hey [NAME] 👋\n\nLove what you're doing with [BUSINESS NAME] — [one specific genuine compliment, e.g., 'the packaging on your products is so clean' or 'that reel you posted last week was really well done'].\n\nQuick question — are you handling your social media yourself right now, or do you have someone helping you with it?" },
+          { type: "note", text: "Then stop. Don't explain yourself. Don't pitch. Just send that and wait. The question is intentional — it starts a conversation." },
+          { type: "subhead", text: "When they reply" },
+          { type: "if_say", text: "I do it myself" },
+          { type: "you_say", text: "Got it — how's that going? Are you finding time to post consistently, or does it kind of fall off when you get busy?" },
+          { type: "note", text: "Let them talk. Ask follow-up questions. When they admit it's hard or inconsistent — that's your opening to pitch." },
+          { type: "if_say", text: "I have someone / we have a team" },
+          { type: "you_say", text: "Oh nice! Are you happy with what they're doing, or is there something you wish was different?" },
+          { type: "note", text: "If they're happy, move on. If they have any complaints at all — that's your opening. Listen for it." },
+          { type: "if_say", text: "What do you do exactly?" },
+          { type: "you_say", text: "We're a done-for-you social media studio — we handle all the content, captions, posting, and ads. You don't touch any of it. We also build an AI version of you so the content actually sounds like your brand, and we set up automations so every comment or message gets responded to automatically.\n\nWould it be worth a quick 15-minute call? I can show you exactly what it would look like for [BUSINESS NAME] specifically." },
+          { type: "if_say", text: "How much is it?" },
+          { type: "you_say", text: "It depends on what makes sense for your business — packages start at $1,000/mo. We also have a 14-day free trial if you want to see it working before you commit.\n\nWould a quick 15-minute call help? I can walk you through it and figure out what fits." },
+          { type: "if_say", text: "Just send me your info / can you send me a link?" },
+          { type: "you_say", text: "Of course! Here's our site: shopdollhouse.co\n\nI'll follow up in a couple days too — sometimes a quick 10-minute call makes way more sense than reading through everything. But take a look and let me know what you think!" },
+          { type: "warn", text: "Don't just send the link and disappear. Always follow up 2–3 days later if they go quiet. Most people who say 'send me info' forget to look — your follow-up is what actually closes it." },
+          { type: "subhead", text: "If they don't reply — follow up after 3 days" },
+          { type: "send", label: "Follow-up DM", text: "Hey [NAME] — just wanted to bump this in case it got buried!\n\nNo pressure at all — I just think there's a real opportunity here for [BUSINESS NAME] and didn't want to leave it hanging. Happy to do a free quick audit of your current social media if that's helpful. Totally free, no strings.\n\nJust reply 'audit' and I'll put it together for you. 😊" },
+          { type: "note", text: "If still no reply after the follow-up, move on. Two touches is enough for a cold DM. Your time is better spent on the next prospect." },
+        ]}
+      />
+
+      <ScriptCard
+        step="Step 2"
+        title="Cold Email — Full 3-Part Sequence"
+        tag="Email"
+        lines={[
+          { type: "note", text: "Use this when you have their email address. Send all 3 emails over about 10 days. Customize the bracketed fields for every single person — never send a generic blast." },
+          { type: "subhead", text: "Email 1 — The Opener" },
+          { type: "send", label: "Subject line", text: "quick question about [BUSINESS NAME]'s social" },
+          { type: "send", label: "Email body", text: "Hi [FIRST NAME],\n\nI was looking at [BUSINESS NAME] online — [one specific genuine observation, e.g., 'really love the quality of your product photography'] — but I noticed your social media presence doesn't quite match the quality of what you're actually offering.\n\nI run The Dollhouse Brand Studio. We handle done-for-you social media for small businesses — content, posting, ads, automations — so you don't have to think about it.\n\nI'd love to put together a quick look at what we'd do for you specifically. No pitch deck, no pressure — just a 15-minute call to see if it's even a fit.\n\nWould [DAY] or [DAY] this week work for you?\n\n— Mandy\nThe Dollhouse Brand Studio\nshopdollhouse.co" },
+          { type: "subhead", text: "Email 2 — The Follow-Up (send 3 days after Email 1 if no reply)" },
+          { type: "send", label: "Subject line", text: "Re: quick question about [BUSINESS NAME]'s social" },
+          { type: "send", label: "Email body", text: "Hi [FIRST NAME],\n\nJust bumping this up — I know inboxes get busy.\n\nI actually had a few quick ideas for [BUSINESS NAME] based on what I can see from your current pages. Happy to share them — no strings, just genuine ideas.\n\nWorth a 15-minute call?\n\n— Mandy" },
+          { type: "subhead", text: "Email 3 — The Breakup (send 5 days after Email 2 if still no reply)" },
+          { type: "send", label: "Subject line", text: "last one from me" },
+          { type: "send", label: "Email body", text: "Hi [FIRST NAME],\n\nI don't want to be that person who emails five times — so this is my last one.\n\nIf now isn't the right time for [BUSINESS NAME], I completely understand. But if things change and social media becomes something you want fully handled, I'd love to be the first call you make.\n\nWishing you a great month regardless. 😊\n\n— Mandy\nThe Dollhouse Brand Studio\nshopdollhouse.co" },
+          { type: "note", text: "After the 3-email sequence with no reply — switch channels. Send a DM or make a phone call. Some people just don't respond to email. That doesn't mean they're not interested." },
+        ]}
+      />
+
+      <ScriptCard
+        step="Step 3"
+        title="Cold Call Script"
+        tag="Phone"
+        lines={[
+          { type: "note", text: "This feels scary at first. That's completely normal. Read this out loud 5 times before your first call. By call #10, you'll have it memorized and it'll feel natural." },
+          { type: "subhead", text: "When they pick up" },
+          { type: "send", label: "Your opening — say exactly this", text: "Hi, is this [NAME]? Hey — this is Mandy calling from The Dollhouse Brand Studio. I know this is a bit out of the blue — do you have like 60 seconds?" },
+          { type: "if_say", text: "Not right now / I'm in the middle of something" },
+          { type: "you_say", text: "Totally understand — I'll be super quick, I promise. I was looking at [BUSINESS NAME] and had a couple of ideas I think you'd genuinely want to hear. Could I get 60 seconds?" },
+          { type: "note", text: "If they still say no: 'No problem at all — what's a better time to call back?' Get a specific time. Don't just say 'I'll try again later.'" },
+          { type: "if_say", text: "Sure, go ahead / What's this about?" },
+          { type: "send", label: "Your pitch — say this naturally, conversationally", text: "I appreciate it. So I was doing some research on [industry] businesses in [area] and came across [BUSINESS NAME]. You're doing [genuine compliment — their product, their service, something real].\n\nI noticed your social media presence doesn't quite match the quality of what you're actually doing — and honestly, that's leaving real money on the table.\n\nWe handle everything for businesses like yours — content, posting, ads, automations — completely done for you so you can focus on running your business.\n\nIs that something that's on your radar at all?" },
+          { type: "if_say", text: "Yeah actually / Tell me more / How does that work?" },
+          { type: "you_say", text: "I'd love to show you exactly what that would look like for [BUSINESS NAME] specifically. Can we get 15 minutes on the calendar this week? I can do [DAY] or [DAY] — which works better for you?" },
+          { type: "note", text: "Give them two specific options. Not 'whenever works for you' — that puts the work on them and people procrastinate. Two days, let them pick one." },
+          { type: "if_say", text: "Not interested / We're already handled on that / No thanks" },
+          { type: "you_say", text: "Totally fair — can I ask, is it a timing thing, or is social media just not a priority right now?" },
+          { type: "note", text: "Listen carefully. 'Not a priority right now' often means 'I don't see the value yet.' 'Timing' means they might be ready in 30–60 days. This one question often opens the door." },
+          { type: "subhead", text: "If they don't pick up — voicemail script" },
+          { type: "send", label: "Voicemail — under 20 seconds", text: "Hey [NAME], this is Mandy from The Dollhouse Brand Studio. I had a couple of ideas specifically for [BUSINESS NAME]'s social media that I think you'd genuinely find valuable. I'll shoot you a quick email too — talk soon!" },
+          { type: "note", text: "Always send an email right after leaving a voicemail — same day. Reference that you just called. It shows you're real and serious, not a robo-dialer." },
+        ]}
+      />
+
+      <ScriptCard
+        step="Step 4"
+        title="The Discovery Call — Full Conversation Guide"
+        tag="Video Call or Phone"
+        lines={[
+          { type: "note", text: "This is your most important conversation. Your goal: listen first, pitch second. The more they talk, the better you can tailor exactly what you present. Budget 20–30 minutes." },
+          { type: "subhead", text: "Opening — The First 60 Seconds" },
+          { type: "send", label: "Start with this", text: "Thanks so much for making time — I know you're busy and I want to make this worth every minute.\n\nBefore I tell you anything about us, I'd love to learn a little about [BUSINESS NAME] first. That way I can show you something that actually makes sense for where you are. Sound good?" },
+          { type: "subhead", text: "Questions to Ask — Listen More Than You Talk" },
+          { type: "note", text: "Ask these one at a time. Let them answer fully before moving on. Take notes. Their answers become your pitch." },
+          { type: "send", label: "Your questions", text: "1. How are you currently handling your social media?\n\n2. Is posting consistently something you struggle with, or do you have a good system?\n\n3. What platforms are you on — Instagram, Facebook, TikTok?\n\n4. Are you running any paid ads right now, or just organic?\n\n5. What's the biggest frustration with social media for your business right now?\n\n6. What would winning look like for you? More leads, more sales, more visibility — what matters most?" },
+          { type: "subhead", text: "The Pitch — After You've Listened" },
+          { type: "send", label: "Transition into your pitch — say this", text: "Okay, so based on what you just told me — [restate their main pain point in their own words] — here's exactly what I'd do for [BUSINESS NAME]:\n\nFirst, we handle all your content. Every graphic, every caption, every post — done for you. You never have to think about what to post again.\n\nWe schedule everything directly to your [PLATFORMS THEY MENTIONED] — a full month of content, queued up and ready.\n\nWe also build your AI brand clone so the content actually sounds like you, not generic. And we set up automations so anyone who comments or messages your page gets responded to automatically — turning engagement into conversations, and conversations into bookings.\n\nEvery month, you get a report showing what's working — reach, engagement, what your audience responded to — so we keep getting smarter about your strategy.\n\nAll of this, completely done for you." },
+          { type: "subhead", text: "Presenting the Packages — Always Start High" },
+          { type: "send", label: "How to introduce pricing", text: "So we have three ways to work together, depending on what makes sense right now.\n\nThe most popular for businesses at your stage is our Starter package — $1,000 a month. That gets you one platform fully managed, your AI brand clone built out, all the automations set up, and your monthly performance report. There's a one-time $500 setup fee that covers building everything out for your specific business.\n\nIf you want to scale faster — multiple platforms, paid ads, email and SMS automations — that's our Growth package at $2,500 a month.\n\nAnd for businesses that want the full system — AI voice agent, five platforms, the works — that's Elite, starting at $5,000 a month.\n\nBased on what you told me, I think [RECOMMEND ONE] makes the most sense for where you are right now. What's your gut reaction to that?" },
+          { type: "if_say", text: "Which one do you recommend?" },
+          { type: "you_say", text: "Honestly — based on everything you told me, especially the [specific pain point they mentioned] — I'd start with [Starter/Growth]. It gets you everything you need without overcomplicating it. You can always add more once you see it working." },
+          { type: "subhead", text: "The Close — Ask Directly" },
+          { type: "send", label: "Ask for the sale — say exactly this", text: "So — does this feel like the right fit for [BUSINESS NAME]? Are you ready to get started?" },
+          { type: "warn", text: "After you ask that closing question, stop talking. Do not fill the silence. Do not say 'I know it's a big decision' or 'no pressure.' Ask, then wait. Let them answer. Whoever speaks next loses the power in that moment — don't let it be you." },
+        ]}
+      />
+
+      <ScriptCard
+        step="Step 5"
+        title="Handling Objections — Exact Words"
+        lines={[
+          { type: "note", text: "Every objection has an answer. The key is to stay calm, don't panic, and never discount immediately. These exact words work." },
+          { type: "subhead", text: `"It's too expensive / I can't afford that right now"` },
+          { type: "you_say", text: "I totally get it — $1,000/mo is a real investment. Can I ask — if social media was fully handled for you and brought in even one or two new clients a month, would that more than pay for itself?\n\n[Let them answer. Usually the answer is yes.]\n\nWe also have a 14-day free trial. The $500 setup still applies — that's how we build everything out for you — but the first two weeks are completely free so you can see real results before committing to the monthly. Does that change anything?" },
+          { type: "subhead", text: `"Let me think about it / I need to talk to my partner"` },
+          { type: "you_say", text: "Of course — I want this to be the right decision for you. Can I ask — what's the main thing you're weighing? Is it the price, the timing, or something you're unsure about with the service?" },
+          { type: "note", text: "'Let me think about it' almost always means there's a specific concern they haven't said out loud. Your job is to find it." },
+          { type: "you_say", label: "After they explain", text: "That makes total sense. How about this — let me schedule a quick follow-up for [specific day], give you time to talk it over, and if it's a yes we can get everything kicked off same day. Does [DAY] at [TIME] work?" },
+          { type: "subhead", text: `"I tried social media before and it didn't work"` },
+          { type: "you_say", text: "I hear that a lot — and honestly, most agencies drop the ball because they post generic content and call it done.\n\nWhat we do is different. We build your AI brand clone so the content actually sounds like you. We set up automations so leads don't fall through the cracks. And every month you see the actual numbers, not just pretty graphics.\n\nWhat specifically didn't work last time? I want to make sure we address that directly." },
+          { type: "subhead", text: `"I already have someone doing my social media"` },
+          { type: "you_say", text: "That's great — are you happy with what they're doing? What are the results looking like?\n\n[Let them answer.]\n\nIf they're delivering and you're genuinely happy, I wouldn't change a thing. But if there's something you wish was different — the consistency, the results, the communication — that's usually exactly where we come in." },
+          { type: "subhead", text: `"Just send me some info and I'll take a look"` },
+          { type: "you_say", text: "Absolutely — I'll send that right over. Can I also grab 10 minutes with you later this week? Most people find a quick call way more useful than reading through a bunch of info — I can answer questions in real time and show you exactly what it would look like for [BUSINESS NAME].\n\nI can do [DAY] or [DAY] — which is better for you?" },
+          { type: "subhead", text: `"What if it doesn't work?"` },
+          { type: "you_say", text: "That's exactly why we have the 14-day free trial — so you can see it working before you commit to anything monthly.\n\nAnd there are no long-term contracts. If we're not delivering, you can walk away. We stay because we work, not because you're locked in.\n\nHonestly, the only real risk is staying where you are while your competitors keep showing up online every single day." },
+        ]}
+      />
+
+      <ScriptCard
+        title="The Free Trial Close — When and How to Use It"
+        lines={[
+          { type: "note", text: "The 14-day free trial is your secret weapon for hesitant leads. Use it when someone is interested but nervous about committing, when they want to 'think about it,' or when price is the main concern." },
+          { type: "subhead", text: "Exact words to introduce the free trial" },
+          { type: "send", label: "Say this", text: "Here's something I can offer you — we have a 14-day free trial.\n\nThe $500 setup fee still applies, because that's how we actually build everything out for your business — your AI brand clone, your content calendar, your automation workflows. That part is real work and it takes real time.\n\nBut the first two weeks of the monthly service are completely free. So you get real content going live on your pages, real automations running, real results — before you pay a single dollar of the monthly fee.\n\nIf you love it, we continue. If not, you paid $500 and walked away with a fully built content system for your brand.\n\nDoes that feel like something worth trying?" },
+          { type: "warn", text: "The $500 setup fee is never negotiable and never waived. It covers real work — building the AI brand clone, setting up automations, creating the content system. If they push back on the $500, explain what it covers calmly and firmly. Do not offer to skip it. Ever." },
+          { type: "subhead", text: `If they push back: "Can you waive the setup fee?"` },
+          { type: "you_say", text: "I wish I could, but the setup fee covers the actual labor of building everything out for your business. Your AI clone, your content templates, your automation workflows — that takes real work, and it's the foundation that everything else runs on. Without it, we'd just be posting generic content, and that's not what we do.\n\nWhat I can do is apply the $500 as a credit toward your second month if you decide to continue after the trial. So it's not gone — it's credit." },
+        ]}
+      />
+
+      <ScriptCard
+        title="Referral Ask — For Existing Clients"
+        tag="Use right after a win"
+        lines={[
+          { type: "note", text: "The best time to ask for a referral is right after a client sees a win — a spike in reach, a new booking, a viral post. Strike while they're excited about the results." },
+          { type: "send", label: "Text or DM your client", text: "Hey [CLIENT NAME] 😊\n\nI was just looking at [BUSINESS NAME]'s numbers and [specific win — e.g., 'that reel last week hit over 4k views'] — seriously so great to see that working!\n\nQuick ask: if you know any other business owners who struggle with their social media or just don't have time for it, I would love a warm introduction. I'm selectively bringing on a few new clients this month and a referral from you carries a lot of weight.\n\nIf you send someone my way who signs on, I'll take care of you — [INCENTIVE — e.g., 'a free extra month of performance reporting' or '$100 off your next invoice'].\n\nAbsolutely no pressure — just thought I'd ask! And honestly, thank you for trusting me with [BUSINESS NAME]. It means a lot. 🙏" },
+          { type: "subhead", text: "Referral incentive ideas" },
+          { type: "note", text: "Keep it simple: a free month of reporting, a content bonus (extra posts that month), or a small invoice credit. Pick whatever feels right for your relationship with that specific client. The most important thing is to just ask — most happy clients will refer you if you simply remind them to." },
+        ]}
+      />
     </div>
   );
 }
