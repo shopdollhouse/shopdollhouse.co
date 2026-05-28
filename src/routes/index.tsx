@@ -88,7 +88,7 @@ function Nav() {
     { href: "#services", label: "Services" },
     { href: "#about", label: "About" },
     { href: "#pricing", label: "Pricing" },
-    { href: "#faq", label: "FAQ" },
+    { href: "#booking", label: "Book a Call" },
     { href: "#contact", label: "Contact" },
   ];
 
@@ -355,8 +355,8 @@ function Hero() {
               Try free for 14 days
             </span>
           </div>
-          <a href="#services" className="btn-ghost">
-            See how it works <span aria-hidden>↓</span>
+          <a href="#booking" className="btn-ghost">
+            Book a free discovery call <span aria-hidden>→</span>
           </a>
         </div>
 
@@ -1784,6 +1784,59 @@ function FAQ() {
   );
 }
 
+/* ─── Booking ─────────────────────────────────────────── */
+function BookingEmbed() {
+  useEffect(() => {
+    const existing = document.getElementById("ghl-booking-script");
+    if (existing) return;
+    const script = document.createElement("script");
+    script.id = "ghl-booking-script";
+    script.src = "https://api.leadconnectorhq.com/js/form_embed.js";
+    script.type = "text/javascript";
+    document.body.appendChild(script);
+    return () => {
+      const s = document.getElementById("ghl-booking-script");
+      if (s) document.body.removeChild(s);
+    };
+  }, []);
+
+  return (
+    <section
+      id="booking"
+      className="py-24 md:py-32 px-6"
+      style={{ background: "var(--cream)" }}
+    >
+      <SectionTitle
+        eyebrow="Free Discovery Call"
+        title={<>Let's talk about<br />your business</>}
+        italic="30 minutes. No pressure. No pitch. Just a real conversation."
+      />
+      <div
+        className="mt-12 max-w-3xl mx-auto rounded-2xl overflow-hidden"
+        style={{
+          border: "1px solid color-mix(in oklab, var(--gold) 30%, transparent)",
+          boxShadow: "0 25px 50px -25px rgba(180,120,120,0.2)",
+          background: "rgba(255,255,255,0.6)",
+        }}
+      >
+        <iframe
+          src="https://api.leadconnectorhq.com/widget/booking/9mOtVmE8ihxgAX2AMzge"
+          style={{ width: "100%", border: "none", overflow: "hidden", minHeight: "700px", display: "block" }}
+          scrolling="no"
+          id="9mOtVmE8ihxgAX2AMzge_1779983060858"
+          title="Book a Free Discovery Call"
+        />
+      </div>
+      <p
+        className="mt-6 text-center text-[var(--ink)]/40 italic"
+        style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem" }}
+      >
+        Prefer to send a message instead? Scroll down ↓
+      </p>
+    </section>
+  );
+}
+
 /* ─── Contact ─────────────────────────────────────────── */
 function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
@@ -1832,9 +1885,9 @@ function Contact() {
   return (
     <section id="contact" className="pt-10 md:pt-14 pb-24 md:pb-32 px-6">
       <SectionTitle
-        eyebrow="Get Started"
-        title={<>Ready to grow<br />your business?</>}
-        italic="Tell us about your business and we'll reach out within 24 hours."
+        eyebrow="Or Send a Message"
+        title={<>Prefer to<br />send a proposal?</>}
+        italic="Fill out the form and we'll reach out within 24 hours."
       />
 
       <form
@@ -2092,6 +2145,7 @@ function Index() {
       <Pricing />
       <ComparisonTable />
       <FAQ />
+      <BookingEmbed />
       <Contact />
       <StarterKitBanner />
       <Footer />
