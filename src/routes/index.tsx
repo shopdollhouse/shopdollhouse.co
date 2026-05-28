@@ -426,7 +426,7 @@ function Hero() {
 
 /* ─── Trust bar ───────────────────────────────────────── */
 function TrustBar() {
-  const logos = ["Meta", "TikTok", "Instagram"];
+  const logos = ["Meta", "Google", "TikTok", "Instagram", "LinkedIn"];
   return (
     <section className="py-14 px-6 bg-[var(--cream)]/60 backdrop-blur-sm border-y border-[var(--gold)]/15">
       <p
@@ -444,6 +444,80 @@ function TrustBar() {
             {l}
           </span>
         ))}
+      </div>
+    </section>
+  );
+}
+
+/* ─── How It Works ───────────────────────────────────── */
+function HowItWorks() {
+  const steps = [
+    {
+      num: "01",
+      title: "Apply in 2 minutes",
+      body: "Fill out the free proposal form. Tell us about your business, your goals, and the plan you're interested in. We'll reach out within 24 hours.",
+    },
+    {
+      num: "02",
+      title: "We build everything for you",
+      body: "Your AI clone, branded content, automation sequences, and full platform setup — all done within your first week. Nothing to learn, nothing to do.",
+    },
+    {
+      num: "03",
+      title: "Content goes live. Leads come in.",
+      body: "Branded posts start flowing, your AI handles every inquiry, and the whole system runs in the background — every single day — while you run your business.",
+    },
+  ];
+
+  return (
+    <section className="py-24 md:py-32 px-6" style={{ background: "var(--cream)" }}>
+      <SectionTitle
+        eyebrow="The Process"
+        title="How it works"
+        italic="Three steps from invisible to everywhere."
+      />
+      <div className="mt-20 max-w-5xl mx-auto grid md:grid-cols-3 gap-12 md:gap-8 relative">
+        {/* Connector line between steps */}
+        <div
+          aria-hidden
+          className="hidden md:block absolute top-8 left-[calc(16.67%+1.5rem)] right-[calc(16.67%+1.5rem)] h-px"
+          style={{ background: "linear-gradient(90deg, transparent, rgba(200,168,100,0.4) 20%, rgba(200,168,100,0.4) 80%, transparent)" }}
+        />
+        {steps.map((step) => (
+          <div key={step.num} className="flex flex-col items-center text-center">
+            <div
+              className="w-16 h-16 rounded-full flex items-center justify-center relative z-10"
+              style={{
+                background: "linear-gradient(160deg, rgba(255,255,255,0.95), rgba(251,240,235,0.9))",
+                border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)",
+                boxShadow: "0 10px 30px -12px rgba(200,168,100,0.4)",
+              }}
+            >
+              <span
+                style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.4rem", fontStyle: "italic", color: "var(--gold)" }}
+              >
+                {step.num}
+              </span>
+            </div>
+            <h3
+              className="mt-6 text-[var(--ink)]"
+              style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.45rem", lineHeight: 1.2 }}
+            >
+              {step.title}
+            </h3>
+            <p
+              className="mt-3 text-[var(--ink)]/60 leading-relaxed"
+              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem" }}
+            >
+              {step.body}
+            </p>
+          </div>
+        ))}
+      </div>
+      <div className="mt-14 text-center">
+        <a href="#contact" className="btn-ink">
+          Get my free proposal <span aria-hidden>→</span>
+        </a>
       </div>
     </section>
   );
@@ -1539,8 +1613,12 @@ function About() {
             </div>
 
             {/* Stats */}
-            <div className="mt-7 flex gap-10 justify-center md:justify-start">
-              {[["11 Years", "Brand & Design"]].map(([value, label]) => (
+            <div className="mt-7 flex gap-8 justify-center md:justify-start flex-wrap">
+              {[
+                ["11 Years", "Brand & Design"],
+                ["15+", "Web Apps Built"],
+                ["100%", "Done For You"],
+              ].map(([value, label]) => (
                 <div key={value}>
                   <p
                     className="italic text-[var(--rose)]"
@@ -1676,7 +1754,7 @@ function FAQ() {
     ["What is your refund policy?", "All sales are final — we do not offer refunds. Once your system is built and your plan is active, the work has begun. If you have concerns at any point, reach out and we'll work through it together."],
   ];
   return (
-    <section id="faq" className="py-24 md:py-32 px-6">
+    <section id="faq" className="pt-24 md:pt-32 pb-10 md:pb-14 px-6">
       <SectionTitle eyebrow="Common Questions" title="FAQ" />
       <div className="mt-12 max-w-3xl mx-auto space-y-3">
         {faqs.map(([q, a]) => (
@@ -1752,7 +1830,7 @@ function Contact() {
   const labelStyle = { fontFamily: "'Jost', sans-serif" };
 
   return (
-    <section id="contact" className="py-24 md:py-32 px-6">
+    <section id="contact" className="pt-10 md:pt-14 pb-24 md:pb-32 px-6">
       <SectionTitle
         eyebrow="Get Started"
         title={<>Ready to grow<br />your business?</>}
@@ -1907,7 +1985,7 @@ function StarterKitBanner() {
         className="mt-4 text-[var(--ink)]/65 max-w-md mx-auto"
         style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", lineHeight: 1.6 }}
       >
-        The Blueprint, Brand Workbook & AI Prompt Kit — everything you need to build a solid brand foundation.
+        An interactive brand-builder designed for women launching their first business. Build your brand identity in minutes — no designer needed.
       </p>
       <Link
         to="/brand-room"
@@ -1936,23 +2014,40 @@ function Footer() {
       </div>
       <Link
         to="/brand-room"
-        className="mt-5 inline-block text-[var(--gold)] text-[15px] tracking-[0.2em] uppercase hover:opacity-70 transition-opacity"
+        className="mt-5 block text-[var(--gold)] text-[15px] tracking-[0.2em] uppercase hover:opacity-70 transition-opacity"
         style={{ fontFamily: "'Jost', sans-serif" }}
       >
         Enter The Brand Room →
       </Link>
+      <a
+        href="mailto:hello@shopdollhouse.co"
+        className="mt-4 block text-[var(--ink)]/45 hover:text-[var(--rose)] transition-colors"
+        style={{ fontFamily: "'Jost', sans-serif", fontSize: "11px", letterSpacing: "0.16em" }}
+      >
+        hello@shopdollhouse.co
+      </a>
+      <Link
+        to="/privacy"
+        className="mt-3 block text-[var(--ink)]/30 hover:text-[var(--ink)]/55 transition-colors"
+        style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase" }}
+      >
+        Privacy Policy
+      </Link>
       <p
-        className="text-xs text-[var(--ink)]/35 mt-8"
+        className="text-xs text-[var(--ink)]/28 mt-5"
         style={{ fontFamily: "'DM Sans', sans-serif" }}
       >
         © {new Date().getFullYear()} The Dollhouse Brand Studio. All rights reserved.
       </p>
+      {/* Admin access — subtle */}
       <Link
         to="/playbook"
-        className="mt-4 inline-block hover:opacity-60 transition-opacity"
-        style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.38)" }}
+        className="mt-3 inline-block opacity-0 hover:opacity-30 transition-opacity select-none"
+        aria-hidden
+        tabIndex={-1}
+        style={{ fontSize: "6px", color: "transparent" }}
       >
-        Admin
+        ·
       </Link>
     </footer>
   );
@@ -1996,6 +2091,7 @@ function Index() {
       <TrustBar />
       <Services />
       <About />
+      <HowItWorks />
       <Pricing />
       <ComparisonTable />
       <FAQ />
