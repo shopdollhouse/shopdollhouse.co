@@ -98,13 +98,14 @@ function WorkflowTab() {
         { text: "Send welcome email with onboarding questionnaire", sub: "Brand voice, target audience, competitors they love, content pillars, posting goals." },
         { text: "Request all brand assets", sub: "Logo files (PNG + SVG), brand colors (hex codes), fonts, any existing photos or video." },
         { text: "Get social media logins or request admin access", sub: "Facebook Business Manager, Instagram, TikTok, Google Business if applicable." },
-        { text: "Set up client in the platform", sub: "Create contact, pipeline stage, add tags, set up automations." },
+        { text: "Set up client in CRM", sub: "Create contact, pipeline stage, add tags, assign to the correct workflow/automation. Every client must be in the CRM before any work starts." },
         { text: "Verify Meta ad account access + pixel is installed", sub: "If no pixel — walk them through installing it or do it via GTM." },
       ]} />
 
       <Phase day="Day 3–5" title="Account Setup" items={[
         { text: "Audit their existing social profiles", sub: "Bio, profile photo, link in bio, pinned posts, highlight covers if applicable." },
         { text: "Update or optimize profiles where needed" },
+        { text: "Set up and verify Meta Pixel on their website", sub: "Install via Events Manager → connect to their website domain. Confirm it's firing using Meta Pixel Helper (Chrome extension). Pixel must be live before any ads run." },
         { text: "Define their 4–5 content pillars", sub: "Education / Behind the Scenes / Social Proof / Promotion / Personality" },
         { text: "Build their brand voice guide (use the Brand Voice prompt below)" },
         { text: "Set up their content calendar template for Month 1" },
@@ -128,7 +129,8 @@ function WorkflowTab() {
 
       <Phase day="Day 13–14" title="Schedule & Launch" items={[
         { text: "Schedule all approved posts through the platform" },
-        { text: "Launch any ad campaigns — confirm budget, audience, creative" },
+        { text: "Set ads to launch at 12:00am the next day", sub: "Never launch ads mid-day. Starting at midnight gives you a full 24-hour data window from day one — cleaner results and easier to compare day-over-day performance." },
+        { text: "Confirm ad campaign settings — budget, audience, placement, creative, pixel event" },
         { text: "Send client a 'You're live!' message with what to expect this month" },
         { text: "Set up Comment-to-DM automation in the platform", sub: "Trigger: Instagram comment on any post → AI agent auto-replies in comments + sends a DM. This turns every comment into a conversation and signals the algorithm to push content further." },
         { text: "Confirm the DM message is on-brand and points to the right next step", sub: "e.g. 'Hey [name], thanks for engaging! Here's [free resource / booking link / offer].' Customize per client." },
