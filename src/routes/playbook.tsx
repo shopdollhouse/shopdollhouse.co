@@ -94,12 +94,21 @@ function WorkflowTab() {
         { text: "Contract signed + first invoice paid before any work begins" },
       ]} />
 
+      <Phase day="Day 1" title="1-on-1 Kickoff Call" items={[
+        { text: "Welcome them and set the tone — make them feel like they made the right decision" },
+        { text: "Clarify what problems they want to solve", sub: "Ask: 'What's your biggest problem right now? Missed calls? Not enough leads? No time for content?' Get them talking — the more they say, the better you can tailor the work." },
+        { text: "Walk them through the key features of their system", sub: "Show them what's running: content scheduling, automations, missed call text back, comment-to-DM. Make it feel like their business just got a team." },
+        { text: "Set expectations for next steps — when content goes live, what they'll see in the app" },
+        { text: "Make sure the account is set up A–Z before you hang up:", sub: "✓ Log in together (confirm access works) ✓ Connect their business email/domain ✓ Add their business phone number ✓ Load their calendar or booking link ✓ Import their contact list ✓ Trigger a test workflow (send test SMS so they see it work) ✓ Customize their first message template to sound like their brand ✓ Walk them through the conversations tab" },
+      ]} />
+
       <Phase day="Day 1–2" title="Onboarding" items={[
         { text: "Send welcome email with onboarding questionnaire", sub: "Brand voice, target audience, competitors they love, content pillars, posting goals." },
         { text: "Request all brand assets", sub: "Logo files (PNG + SVG), brand colors (hex codes), fonts, any existing photos or video." },
         { text: "Get social media logins or request admin access", sub: "Facebook Business Manager, Instagram, TikTok, Google Business if applicable." },
         { text: "Set up client in CRM", sub: "Create contact, pipeline stage, add tags, assign to the correct workflow/automation. Every client must be in the CRM before any work starts." },
         { text: "Verify Meta ad account access + pixel is installed", sub: "If no pixel — walk them through installing it or do it via GTM." },
+        { text: "Ask the 4 client interview questions — document the answers:", sub: "1) How did you find out about us?  2) What tools were you using before?  3) What results do you most want to see?  4) How will you know this is working for your business? — These answers shape your strategy and become your case study later." },
       ]} />
 
       <Phase day="Day 3–5" title="Account Setup" items={[
@@ -148,7 +157,33 @@ function WorkflowTab() {
         { text: "Begin next month's content creation in the last week of the current month", sub: "Never let them see a gap. Always be 2 weeks ahead." },
         { text: "Invoice sent on the same day each month (set up recurring in platform)" },
         { text: "Quarterly review call — bigger picture strategy, upsell opportunities" },
+        { text: "At 3 months: pitch the annual deal", sub: `Say: "Hey, do you want to unlock some savings for the next year? I can give you 10–20% off what you're paying right now if you lock in an annual plan." This improves your cash flow and locks in retention at the same time.` },
+        { text: "After 3–6 months: offer a software upgrade if they're not already on it", sub: "Show the results first (saved X hours, booked X jobs). Then: 'Do you want to continue with the full system for $[PRICE]/month?' — Never pitch the upgrade before they've felt the win." },
       ]} />
+
+      {/* Customer Journey Map */}
+      <div className="rounded-2xl p-7" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
+        <p className="text-[10px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Reference — Customer Journey Map</p>
+        <p className="italic mb-5" style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: "var(--ink)" }}>Every client's automation system should handle all three stages. Set this up during onboarding.</p>
+        <div className="grid grid-cols-3 gap-4 text-center">
+          {[
+            { label: "Trigger", color: "var(--ink)", items: ["Form Fill", "Inbound Call", "Missed Call"] },
+            { label: "What Happens Next", color: "var(--gold)", items: ["SMS", "Email", "AI Chatbot", "Booking Link"] },
+            { label: "Where It Ends", color: "var(--rose)", items: ["Appointment Booked", "Google Review", "Paid Invoice"] },
+          ].map(({ label, color, items }) => (
+            <div key={label}>
+              <p className="text-[9px] tracking-widest uppercase mb-2 font-semibold" style={{ fontFamily: FONT_LUXE, color }}>{label}</p>
+              <div className="space-y-1.5">
+                {items.map((item) => (
+                  <div key={item} className="px-2 py-1.5 rounded-lg text-center" style={{ background: `${color}18`, border: `1px solid ${color}30` }}>
+                    <span style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "rgba(30,15,10,0.8)" }}>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
@@ -728,6 +763,62 @@ Notes:
 • If they ask "how much?" — that's a buying signal. Move to the call.`,
     },
     {
+      title: "Cold Email — The Compliment Approach",
+      tag: "Outreach",
+      prompt: `Subject: compliments to your [team / chef / staff]
+
+Hi [FIRST NAME],
+
+Just wanted to shoot you a quick email to give my compliments to [YOUR TEAM / YOUR CHEF / YOUR STAFF]! I [stopped by / ordered / came in] last week and [SPECIFIC GENUINE COMPLIMENT].
+
+I wanted to share your business on social media — but when I looked, I noticed you guys aren't doing much with Facebook or Instagram ads. Any reason?
+
+I think more people need to hear about [BUSINESS NAME]. Would love to help get the word out.
+
+Also — where can I leave you a review? Happy to do that too.
+
+Thanks!
+— Mandy Fortune
+The Dollhouse Brand Studio
+
+---
+
+[FOLLOW-UP EMAIL — send 2 days later if they respond positively]
+
+Hey [NAME]! Thanks for the response. Just left you [an awesome review / a 5-star review].
+
+Also for the social media stuff — I'd love to help you out. A lot of other [NICHE — e.g. "sushi restaurants / salons / dental practices"] in the area are using social media to get more customers. I think we could easily do the same for [BUSINESS NAME].
+
+Let me know! Would love to help.
+
+— Mandy
+
+---
+Why this works:
+• Starts with a real compliment — completely disarms them
+• Opens a door naturally (you noticed something they're missing)
+• Low-pressure: asking where to leave a review makes you feel like a fan, not a salesperson
+• The follow-up does the close`,
+    },
+    {
+      title: "Cold DM — Free Trial Pitch",
+      tag: "Outreach",
+      prompt: `Use this when reaching out to a business owner for the first time via DM.
+
+---
+
+"Hey [NAME], I just built a new AI system for [NICHE — e.g. 'landscapers' / 'dentists' / 'salons']. It helps [SPECIFIC OUTCOME — e.g. 'book more jobs automatically' / 'never miss a lead again' / 'fill your calendar without ad spend'].
+
+I'm looking for a few businesses to test it out. Would you want a free trial?"
+
+---
+Notes:
+• Keep it under 3 sentences
+• "Free trial" is the lowest-friction offer — they don't have to decide anything yet
+• After they say yes → get them on a quick call → run the kickoff call checklist
+• The trial sells itself — once they see results, the close is easy`,
+    },
+    {
       title: "AI Video — Multi-Scene Script (Talking Head + Action)",
       tag: "AI Video",
       prompt: `Use this structure to write AI video prompts for tools like Kling, Pika, Veo, or Runway.
@@ -1091,6 +1182,93 @@ Thanks again for trusting me with [BUSINESS NAME].
     <div className="space-y-6">
       <ServiceTiers />
       <SectionHeader label="Outreach Scripts" title="How to get clients." sub="Scripts for cold email, DMs, calls, and follow-ups. Customize the bracketed fields for each prospect. Always be specific — never send a generic message." />
+      {/* Numbers Game */}
+      <div className="rounded-2xl p-6" style={{ background: "var(--ink)" }}>
+        <p className="text-[10px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The Blueprint — It's a Numbers Game</p>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
+          {[
+            { num: "400", label: "Potential clients to reach" },
+            { num: "4×", label: "Follow-ups per contact" },
+            { num: "20", label: "Conversations you'll have" },
+            { num: "2", label: "Will become paying clients" },
+          ].map(({ num, label }) => (
+            <div key={num} className="rounded-xl p-4 text-center" style={{ background: "rgba(200,168,100,0.12)", border: "1px solid rgba(200,168,100,0.2)" }}>
+              <p className="italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "2rem", color: "var(--gold)", lineHeight: 1 }}>{num}</p>
+              <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.75rem", color: "rgba(250,243,234,0.6)" }}>{label}</p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-4" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(250,243,234,0.5)" }}>
+          Don't overthink it. Even if most businesses don't respond — it's okay. There are a lot of businesses. Volume beats hesitation every time. Use DMs and emails so you can do it fast.
+        </p>
+      </div>
+
+      {/* CLOSER Framework */}
+      <div className="rounded-2xl p-7" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
+        <p className="text-[10px] tracking-widest uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Sales Call Framework</p>
+        <h3 className="mb-5" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--rose)" }}>The CLOSER Method</h3>
+        <div className="space-y-4">
+          {[
+            { letter: "C", word: "Clarify the Pain", body: `Ask: "What's your biggest problem right now? Missed calls? No-shows? Not enough leads?" Get them talking. The more they say, the more you can tailor your pitch.` },
+            { letter: "L", word: "Label Them as a Fit", body: `Show them you understand their business. Repeat their pain points back: "So if I'm hearing you right, the main issue is your team is missing calls and you're losing jobs because of it?"` },
+            { letter: "O", word: "Outline Your Solution", body: `Connect the dots to your service: "That's exactly why we set up a missed-call text-back system. Every time a call is missed, the customer gets a text instantly — you never lose a lead again."` },
+            { letter: "S", word: "Share a Case Study", body: `Back it up with proof. Even one result from an early client or your own business works: "We set this up for another [NICHE] business and they booked [X] new clients in the first month."` },
+            { letter: "E", word: "Explain the Offer", body: `Present your 3-tier pricing. Always start with the highest tier to anchor the value — then work down if needed. Never lead with the cheapest option.` },
+            { letter: "R", word: "Request the Sale", body: `Don't leave the call open-ended. Ask directly: "Do you want to get started today?" Then stop talking. Let them answer. Silence is not your job to fill.` },
+          ].map(({ letter, word, body }) => (
+            <div key={letter} className="flex gap-4">
+              <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 mt-0.5" style={{ background: "var(--ink)" }}>
+                <span className="italic font-bold" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: "var(--gold)" }}>{letter}</span>
+              </div>
+              <div>
+                <p className="font-medium" style={{ fontFamily: FONT_LUXE, fontSize: "0.8rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--ink)" }}>{word}</p>
+                <p className="mt-0.5 leading-relaxed" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.65)" }}>{body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="mt-5 p-4 rounded-xl" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.2)" }}>
+          <p className="italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: "var(--ink)" }}>During the call: focus on learning about their business, knowing their pain points, and helping them reach their goals. You're a consultant, not a salesperson.</p>
+        </div>
+      </div>
+
+      {/* Pricing Spectrum */}
+      <div className="rounded-2xl p-7" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
+        <p className="text-[10px] tracking-widest uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Reference</p>
+        <h3 className="mb-5" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--rose)" }}>The Pricing Spectrum</h3>
+        <div className="space-y-3">
+          {[
+            {
+              range: "$697–$997+/mo", label: "High-End", color: "#c97a7a",
+              items: ["AI voice agents, review automation, email campaigns, call tracking, analytics dashboards", "White-glove onboarding and ongoing support", "Best for high-LTV niches: lawyers, real estate, med spas"],
+            },
+            {
+              range: "$297–$497/mo", label: "Mid-Tier", color: "var(--gold)",
+              items: ["AI chatbots, 2-way SMS, advanced automations, CRM pipelines", "Often includes required sales call and structured onboarding", "Best for: dentists, gyms, salons"],
+            },
+            {
+              range: "$97–$197/mo", label: "Low-End / SaaS", color: "rgba(30,15,10,0.5)",
+              items: ["Funnels, forms, calendar booking, simple automations", "Good for self-serve or hands-off clients", "Best for: cleaning, landscaping, photography"],
+            },
+          ].map(({ range, label, color, items }) => (
+            <div key={label} className="flex gap-4 rounded-xl p-4" style={{ background: "rgba(200,168,100,0.06)", border: "1px solid rgba(200,168,100,0.15)" }}>
+              <div className="shrink-0 w-20 text-center">
+                <p className="font-bold" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color }}>{range}</p>
+                <p className="mt-0.5" style={{ fontFamily: FONT_LUXE, fontSize: "0.65rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(30,15,10,0.4)" }}>{label}</p>
+              </div>
+              <ul className="space-y-1">
+                {items.map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0" style={{ width: "10px", height: "10px", color: "var(--gold)" }}><path d="M2.5 8.5L6 12L13.5 4.5" /></svg>
+                    <span style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.7)" }}>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="rounded-2xl p-5" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.25)" }}>
         <p className="text-[11px] tracking-widest uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The Golden Rule</p>
         <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: "var(--ink)", fontStyle: "italic" }}>Research before you reach out. One specific detail (their product, a post they made, their location) outperforms 100 generic messages every time.</p>
