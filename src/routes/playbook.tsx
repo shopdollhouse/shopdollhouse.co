@@ -5909,6 +5909,7 @@ const BLOCK_COLORS: Record<string, { bg: string; border: string; dot: string; la
   admin:    { bg: "rgba(110,110,130,0.07)", border: "rgba(110,110,130,0.18)",  dot: "#8a8a9a", label: "Admin" },
   personal: { bg: "rgba(240,170,80,0.09)",  border: "rgba(240,170,80,0.22)",   dot: "#d48e28", label: "Mindset" },
   rest:     { bg: "rgba(255,255,255,0.38)", border: "rgba(200,168,100,0.12)",  dot: "#b0a898", label: "Rest" },
+  bella:    { bg: "rgba(232,149,90,0.1)",   border: "rgba(232,149,90,0.25)",   dot: "#e8955a", label: "Bella 🐾" },
 };
 
 interface TimeBlock {
@@ -5921,9 +5922,14 @@ interface TimeBlock {
 
 const DAILY_BLOCKS: TimeBlock[] = [
   {
+    time: "7:30am", duration: "20 min", type: "bella",
+    label: "🐾 Bella — Morning Routine",
+    desc: "First thing before your own coffee: take Bella to the balcony. Stay with her — don't rush back inside. The moment she goes on the balcony, celebrate big: 'Good girl!' and give a treat immediately. Timing is everything with potty training — the reward has to happen right as she finishes, not after. Then fill her water bowl and put down her one daily meal. Same time every morning, same routine. Remove the bowl after 20 minutes whether she ate or not — this keeps her on a consistent schedule that also helps her bladder timing. She's 45 in human years and transitioning from pee pad to balcony, so patience and repetition are the whole game.",
+  },
+  {
     time: "8:00am", duration: "30 min", type: "personal",
     label: "Wake Up & Mindset",
-    desc: "Coffee before your feet hit the floor. Read your goals out loud. 5 minutes of visualisation — see yourself on the call, see the client saying yes. No social media, no news, no scrolling. This 30 minutes sets the tone for everything that follows.",
+    desc: "Coffee now — you've earned it. Read your goals out loud. 5 minutes of visualisation: see yourself on the call, see the client saying yes. No social media, no news, no scrolling. This 30 minutes sets the tone for everything that follows.",
   },
   {
     time: "8:30am", duration: "60–90 min", type: "live",
@@ -5942,8 +5948,8 @@ const DAILY_BLOCKS: TimeBlock[] = [
   },
   {
     time: "12:00pm", duration: "45 min", type: "rest",
-    label: "Lunch — Screens Off",
-    desc: "Non-negotiable. Full stop. You cannot close clients on a depleted brain. Eat something real. Step outside if you can. You have a full afternoon ahead — protect your energy for the hours that actually make you money.",
+    label: "Lunch + Bella Midday Break",
+    desc: "Take Bella to the balcony first — she's been in for about 3 hours. Wait for her to go, reward her, then come back inside and eat. Screens off while you eat something real. Bella will likely nap after her outdoor time, which gives you a clean stretch of focus in the afternoon. You both need this break — protect it.",
   },
   {
     time: "12:45pm", duration: "75 min", type: "outreach",
@@ -5956,6 +5962,11 @@ const DAILY_BLOCKS: TimeBlock[] = [
     desc: "Money time. Run your Zoom discovery calls and demos here. Show the AI avatar demo live on every single call — the wow moment is your close. Have your packages memorised. Send the proposal within 1 hour of hanging up while they're still excited. Aim for 1 call per day, 5 per week minimum.",
   },
   {
+    time: "3:00pm", duration: "10 min", type: "bella",
+    label: "🐾 Bella — Afternoon Balcony Break",
+    desc: "Quick balcony trip — she's been inside for about 3 hours since lunch. This is one of the key reinforcement windows for the pee pad → balcony transition. If she's been holding it and goes outside, that's exactly what you're training her to do. Reward every single time, no exceptions. Keep a small jar of treats near the balcony door so it's automatic and instant.",
+  },
+  {
     time: "3:30pm", duration: "60 min", type: "admin",
     label: "Pipeline + Platform Admin",
     desc: "Update every deal in the Deal Tracker — it only works if it's current. Schedule today's content using the platform. Reply to DMs and emails (fast replies build trust faster than anything). Send any pending onboarding questionnaires or overdue proposals.",
@@ -5966,29 +5977,29 @@ const DAILY_BLOCKS: TimeBlock[] = [
     desc: "Once you have clients: create their content, submit for approval, make edits, send monthly reports. Always deliver before the promised deadline — your first clients become your best testimonials. No clients yet? Use this time for extra lead research — find 10 more leads, study their brands, personalise your outreach for tomorrow.",
   },
   {
-    time: "5:30pm", duration: "60 min", type: "content",
+    time: "5:30pm", duration: "30 min", type: "bella",
+    label: "🐾 Bella — Evening Walk",
+    desc: "Clip the leash and get outside. Bella needs this for mental stimulation and physical health — she may be 45 in human years but she still needs to sniff, explore, and move. Let her lead and sniff everything she wants. This is also one of the best outdoor potty opportunities of the day. This is your decompression too — leave the phone in your pocket, just walk. 20–30 minutes of real movement clears your head more than anything else. You'll think more clearly and close more calls because of this walk.",
+  },
+  {
+    time: "6:00pm", duration: "60 min", type: "content",
     label: "Second Content Push",
     desc: "Film 2–3 short videos while energy is still there. Write Threads and Facebook posts for tomorrow. This second push is what separates the accounts that grow fast from the ones that plateau — the algorithm loves volume and consistency together. Done is better than perfect.",
   },
   {
-    time: "6:30pm", duration: "30 min", type: "admin",
+    time: "7:00pm", duration: "30 min", type: "admin",
     label: "Analytics Check",
     desc: "15 minutes per platform. What performed today? Note the format, topic, and time — do more of that tomorrow. Check follower growth, DM volume, profile visits. Don't spiral into overthinking — in and out in 30 minutes total.",
   },
   {
-    time: "7:00pm", duration: "30 min", type: "admin",
-    label: "Tomorrow Prep",
-    desc: "Write your 3 priorities for tomorrow. Set your TikTok LIVE topic. Lay out your outreach targets. This 30 minutes saves you 2 hours of morning confusion and keeps you in execution mode rather than planning mode all day.",
-  },
-  {
-    time: "7:30pm", duration: "30 min", type: "personal",
-    label: "Shutdown Ritual",
-    desc: "Close every tab. Write 3 wins from today — even small ones count. 'Sent 15 DMs.' 'Got one reply.' 'Had 10 people on the live.' Acknowledge the work. The compound effect of daily wins is exactly what builds a million-dollar business. Then silence all work notifications.",
+    time: "7:30pm", duration: "30 min", type: "admin",
+    label: "Daily Wrap + Tomorrow Prep",
+    desc: "Write your 3 priorities for tomorrow. Set your TikTok LIVE topic. Lay out your outreach targets. Write 3 wins from today — even small ones count: 'Sent 15 DMs,' 'Got one reply,' '10 people on the live.' Last thing before you shut down: take Bella for her final balcony trip of the night. Same routine, same reward. This last trip is important — it's the one that prevents 3am accidents while she's still learning. Then close every tab and silence all work notifications.",
   },
   {
     time: "8:00pm", duration: "30 min", type: "rest",
-    label: "Wind-Down",
-    desc: "Dinner, TV, walk, skincare, music, family — whatever fills your cup. You are fully off the clock. Rest is not laziness. Recovery is part of the strategy. You need to be able to do this for 12 months straight, and that requires protecting this time.",
+    label: "Wind-Down + Bella Bedtime",
+    desc: "Get Bella settled in her crate — blanket inside, maybe a small toy. Keep it calm and consistent: same words, same soft tone every night ('Bedtime, baby girl'). She may fuss a little at first while she adjusts to the crate being her safe space — that's normal and will stop within 1–2 weeks if you're consistent. Don't go back in when she cries or it resets the training. Once she's settled: dinner, TV, skincare, music, whatever fills your cup. You are fully off the clock. Rest is not laziness. Recovery is part of the strategy.",
   },
   {
     time: "8:30pm", duration: "—", type: "rest",
@@ -6151,12 +6162,45 @@ const GROUND_RULES = [
 function ScheduleTab() {
   const [expandedDay, setExpandedDay] = useState<string | null>("Monday");
 
+  // Date-keyed checkmark system — auto-resets every new day
+  const todayKey = new Date().toISOString().slice(0, 10);
+  const storageKey = `dh_schedule_${todayKey}`;
+
+  const [checked, setChecked] = useState<Set<string>>(() => {
+    try {
+      const raw = localStorage.getItem(storageKey);
+      return raw ? new Set<string>(JSON.parse(raw) as string[]) : new Set<string>();
+    } catch {
+      return new Set<string>();
+    }
+  });
+
+  function toggleCheck(id: string) {
+    setChecked(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id); else next.add(id);
+      try { localStorage.setItem(storageKey, JSON.stringify([...next])); } catch {}
+      return next;
+    });
+  }
+
+  function resetDay() {
+    setChecked(new Set<string>());
+    try { localStorage.removeItem(storageKey); } catch {}
+  }
+
+  const checkableBlocks = DAILY_BLOCKS.filter(b => b.type !== "rest");
+  const doneCount = checkableBlocks.filter(b => checked.has(`${b.time}-${b.label}`)).length;
+  const totalBlocks = checkableBlocks.length;
+  const pct = totalBlocks > 0 ? Math.round((doneCount / totalBlocks) * 100) : 0;
+  const allDone = doneCount === totalBlocks && totalBlocks > 0;
+
   return (
     <div>
       <SectionHeader
         label="Daily Schedule"
         title="Your Day, Week & 90-Day Roadmap"
-        sub="You are the entire business right now. This schedule is built to get your first clients, grow the Dollhouse brand across all four platforms, and protect you from working yourself into the ground."
+        sub="You are the entire business right now. This schedule is built to get your first clients, grow the Dollhouse brand across all four platforms, protect you from burnout — and keep Bella on track too."
       />
 
       {/* Revenue North Stars */}
@@ -6197,10 +6241,11 @@ function ScheduleTab() {
       {/* Daily Time Blocks */}
       <div className="mb-12">
         <p className="text-[10px] tracking-[0.25em] uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Your Daily Schedule</p>
-        <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--rose)", fontWeight: 400, marginBottom: "6px" }}>8:30am → 8:30pm · 12 Hours</h3>
-        <p className="mb-6" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.5)" }}>Bounded, intentional, and repeatable for 12 months. Every block has a purpose.</p>
+        <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--rose)", fontWeight: 400, marginBottom: "6px" }}>7:30am → 8:30pm · Amanda + Bella</h3>
+        <p className="mb-5" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.5)" }}>Tap any block to check it off as you go. Resets automatically each new day.</p>
+
         {/* Legend */}
-        <div className="flex flex-wrap gap-2 mb-6">
+        <div className="flex flex-wrap gap-2 mb-5">
           {Object.entries(BLOCK_COLORS).map(([key, val]) => (
             <span key={key} className="flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] tracking-wider uppercase" style={{ fontFamily: FONT_LUXE, background: val.bg, border: `1px solid ${val.border}`, color: val.dot }}>
               <span className="w-1.5 h-1.5 rounded-full inline-block shrink-0" style={{ background: val.dot }} />
@@ -6208,23 +6253,96 @@ function ScheduleTab() {
             </span>
           ))}
         </div>
+
+        {/* Progress strip */}
+        <div className="rounded-2xl p-4 mb-6" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
+          <div className="flex items-center justify-between mb-3">
+            <div>
+              <p className="text-[10px] tracking-[0.2em] uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "rgba(30,15,10,0.38)" }}>Today's Progress</p>
+              <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.15rem", color: allDone ? "#4a9970" : "var(--ink)", fontWeight: 500, lineHeight: 1.2 }}>
+                {allDone ? "You crushed today! 🎉" : `${doneCount} of ${totalBlocks} blocks done`}
+              </p>
+            </div>
+            <div className="flex items-center gap-3 shrink-0">
+              <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.6rem", fontWeight: 600, color: allDone ? "#4a9970" : "var(--gold)" }}>{pct}%</p>
+              <button
+                onClick={resetDay}
+                className="px-3 py-1.5 rounded-lg text-[10px] tracking-wider uppercase transition-all"
+                style={{ fontFamily: FONT_LUXE, background: "rgba(200,168,100,0.08)", color: "rgba(30,15,10,0.38)", border: "1px solid rgba(200,168,100,0.18)", cursor: "pointer" }}
+              >
+                Reset
+              </button>
+            </div>
+          </div>
+          <div className="h-2 rounded-full overflow-hidden" style={{ background: "rgba(200,168,100,0.15)" }}>
+            <div
+              className="h-full rounded-full transition-all duration-500"
+              style={{
+                width: `${pct}%`,
+                background: allDone ? "#4a9970" : "linear-gradient(90deg, var(--gold), #e8955a)",
+              }}
+            />
+          </div>
+        </div>
+
         <div className="space-y-3">
           {DAILY_BLOCKS.map((block, i) => {
             const c = BLOCK_COLORS[block.type];
+            const blockId = `${block.time}-${block.label}`;
+            const isDone = checked.has(blockId);
+            const isRest = block.type === "rest";
             return (
-              <div key={i} className="rounded-2xl p-4 md:p-5" style={{ background: c.bg, border: `1px solid ${c.border}` }}>
-                <div className="flex items-start gap-4">
+              <div
+                key={i}
+                className="rounded-2xl p-4 md:p-5 transition-all duration-300"
+                style={{
+                  background: isDone ? "rgba(74,153,112,0.07)" : c.bg,
+                  border: isDone ? "1px solid rgba(74,153,112,0.28)" : `1px solid ${c.border}`,
+                  opacity: isDone ? 0.65 : 1,
+                }}
+              >
+                <div className="flex items-start gap-3 md:gap-4">
+                  {/* Tap-to-check circle */}
+                  {!isRest ? (
+                    <button
+                      onClick={() => toggleCheck(blockId)}
+                      aria-label={isDone ? "Mark undone" : "Mark done"}
+                      className="shrink-0 mt-1 w-6 h-6 rounded-full flex items-center justify-center transition-all"
+                      style={{
+                        background: isDone ? "#4a9970" : "rgba(255,255,255,0.75)",
+                        border: isDone ? "none" : `1.5px solid ${c.dot}66`,
+                        cursor: "pointer",
+                        flexShrink: 0,
+                      }}
+                    >
+                      {isDone && (
+                        <svg viewBox="0 0 16 16" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3">
+                          <path d="M2.5 8.5L6 12L13.5 4.5" />
+                        </svg>
+                      )}
+                    </button>
+                  ) : (
+                    <div className="w-6 shrink-0" />
+                  )}
                   <div className="shrink-0 text-right pt-0.5" style={{ minWidth: "62px" }}>
-                    <p style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", color: c.dot, fontWeight: 600 }}>{block.time}</p>
+                    <p style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", color: isDone ? "#4a9970" : c.dot, fontWeight: 600 }}>{block.time}</p>
                     <p style={{ fontFamily: FONT_BODY, fontSize: "0.65rem", color: "rgba(30,15,10,0.38)" }}>{block.duration}</p>
                   </div>
-                  <div className="w-px self-stretch shrink-0" style={{ background: c.border, minHeight: "24px" }} />
+                  <div className="w-px self-stretch shrink-0" style={{ background: isDone ? "rgba(74,153,112,0.25)" : c.border, minHeight: "24px" }} />
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                      <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: "var(--ink)", fontWeight: 500 }}>{block.label}</p>
+                      <p style={{
+                        fontFamily: FONT_DISPLAY, fontSize: "1rem",
+                        color: isDone ? "#4a9970" : "var(--ink)",
+                        fontWeight: 500,
+                        textDecoration: isDone ? "line-through" : "none",
+                      }}>{block.label}</p>
                       <span className="px-2 py-0.5 rounded-full text-[8px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, background: c.border, color: c.dot }}>{c.label}</span>
+                      {isDone && (
+                        <span className="px-2 py-0.5 rounded-full text-[8px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, background: "rgba(74,153,112,0.12)", color: "#4a9970", border: "1px solid rgba(74,153,112,0.28)" }}>✓ Done</span>
+                      )}
                     </div>
-                    <p style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.65 }}>{block.desc}</p>
+                    <p style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: isDone ? "rgba(30,15,10,0.35)" : "rgba(30,15,10,0.65)", lineHeight: 1.65 }}>{block.desc}</p>
                   </div>
                 </div>
               </div>
