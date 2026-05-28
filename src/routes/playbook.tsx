@@ -9,7 +9,7 @@ const FONT_LUXE = "'Jost', sans-serif";
 const FONT_SCRIPT = "'Allura', cursive";
 
 /* ─── Types ───────────────────────────────────────────── */
-type Tab = "workflow" | "monthly" | "prompts" | "outreach" | "newhire";
+type Tab = "workflow" | "monthly" | "prompts" | "outreach" | "growth" | "newhire";
 
 /* ─── Prompt Card ─────────────────────────────────────── */
 function PromptCard({ title, tag, prompt }: { title: string; tag: string; prompt: string }) {
@@ -468,6 +468,53 @@ Generate:
 Also recommend: how many hashtags to use per post and whether to put them in caption or first comment.`,
     },
     {
+      title: "SEO Blog Post Writer",
+      tag: "Blogging",
+      prompt: `Write a detailed SEO blog post for The Dollhouse Brand Studio targeting the following keyword.
+
+Target keyword: [KEYWORD — e.g. "social media marketing for med spas"]
+Target audience: [WHO THIS POST IS FOR — e.g. med spa owners]
+Goal: Drive inbound leads from business owners searching this topic
+
+Blog post structure:
+1. Title (include the exact keyword, under 65 characters)
+2. Meta description (under 155 characters — include keyword, compelling hook)
+3. Introduction (2–3 paragraphs — open with a pain point or question, introduce The Dollhouse Brand Studio as the solution, state what the post will cover)
+4. 5–7 H2 sections covering: common problems, what good social media looks like for this niche, content ideas, how to measure results, what to look for in an agency
+5. Conclusion with CTA (invite them to book a discovery call or visit shopdollhouse.co)
+
+Then I will:
+- Add real client examples and results
+- Add our own images and screenshots
+- Publish to the blog and repurpose as a LinkedIn article
+
+Write in a confident, helpful, expert tone. Not salesy. Genuinely useful first.`,
+    },
+    {
+      title: "GEO Brand Audit Prompt",
+      tag: "GEO",
+      prompt: `Run a GEO (Generative Engine Optimization) audit for The Dollhouse Brand Studio.
+
+Our niche: Done-for-you social media marketing for small businesses
+Location: [CITY / REGION]
+Website: shopdollhouse.co
+
+Check and score us on the following (rate each 1–5, 5 = strong):
+
+1. Brand name consistency — does "The Dollhouse Brand Studio" appear the same way across website, Google Business Profile, Instagram, Facebook, and directories?
+2. Niche clarity — is it immediately clear from our online presence exactly who we serve and what we do?
+3. Case studies and proof — do we have publicly visible results with specific numbers (follower growth, leads, engagement)?
+4. Third-party mentions — are we being mentioned, linked to, or cited by other websites?
+5. Review count and quality — how many Google reviews do we have, and do they include specific service details?
+6. Content consistency — are we posting regularly across Instagram, Facebook, LinkedIn?
+7. AI search visibility — if someone asks ChatGPT or Gemini "best social media agency for [niche]," would we appear?
+
+For each category:
+- Current score (1–5)
+- What's missing or weak
+- Specific action to fix it this month`,
+    },
+    {
       title: "Monthly Analytics Report Summary",
       tag: "Reporting",
       prompt: `Write a monthly social media report summary to send to a client.
@@ -690,6 +737,200 @@ Thanks again for trusting me with [BUSINESS NAME].
   );
 }
 
+/* ─── Tab: Inbound Growth ────────────────────────────── */
+function GrowthTab() {
+  return (
+    <div className="space-y-8">
+      <SectionHeader
+        label="Inbound Growth Strategy"
+        title="Make clients come to you."
+        sub="Cold outreach gets your first clients. This system gets you to 20+ inbound leads a month without spending on ads. It compounds over time — the earlier you start, the bigger the payoff."
+      />
+
+      {/* Philosophy callout */}
+      <div className="rounded-2xl p-6" style={{ background: "var(--ink)" }}>
+        <p className="text-[10px] tracking-[0.25em] uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The Shift</p>
+        <p className="italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.2rem", color: "var(--cream)", lineHeight: 1.5 }}>
+          Cold outreach is the fastest method when you're starting from zero. But it doesn't scale — if you stop calling, clients stop coming. Inbound flips that. You build once, it works forever.
+        </p>
+        <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(250,243,234,0.5)" }}>
+          Use cold outreach to get your first 3–5 clients. Use this system to grow past that without trading your time for every single lead.
+        </p>
+      </div>
+
+      {/* Strategy 1: GEO */}
+      <div className="rounded-2xl p-7" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
+        <div className="flex items-center gap-3 mb-4">
+          <span className="px-3 py-1 rounded-full text-[10px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, background: "var(--ink)", color: "var(--gold)" }}>Strategy 1</span>
+          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "var(--rose)" }}>GEO — Generative Engine Optimization</h3>
+        </div>
+        <p className="mb-4" style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(30,15,10,0.7)", lineHeight: 1.7 }}>
+          People are now searching for services on ChatGPT, Gemini, and Perplexity — not just Google. When someone asks "who can help me with social media for my restaurant?" an AI answers. GEO is how you become the answer.
+        </p>
+        <p className="mb-5" style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(30,15,10,0.7)", lineHeight: 1.7 }}>
+          Traditional SEO works at the page level (keywords, meta titles). GEO works at the <em>fact level</em> — AI models are looking at your brand's authority, how consistently you show up across the internet, whether you have real case studies with measurable outcomes, and whether credible third-party sources mention you.
+        </p>
+
+        <p className="text-[10px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>What to do</p>
+        <div className="space-y-3">
+          <CheckItem
+            text="Pick a niche — and own it"
+            sub='Instead of "social media agency," become "social media for med spas" or "social media for local restaurants." Niche = less competition, faster recommendations, better-fit clients who stay longer.'
+          />
+          <CheckItem
+            text="Make your brand name appear consistently everywhere"
+            sub="Website, Google Business Profile, Instagram bio, Facebook page, Yelp, directories — same name, same services, same city. AI models are trained on this data. Consistency = credibility."
+          />
+          <CheckItem
+            text="Add real case studies with specific numbers"
+            sub={"Not \"great results\" — actual outcomes. \"Grew follower count by 340% in 60 days.\" \"Generated 47 inbound leads in one month.\" AI platforms cite specific outcomes because that's what searchers want."}
+          />
+          <CheckItem
+            text="Get third-party mentions and backlinks"
+            sub="Being mentioned on other websites, featured in articles, or appearing on podcasts signals trust to AI models. This is the signal most people skip — and the one that matters most."
+          />
+          <CheckItem
+            text="Post on social media consistently — it feeds GEO"
+            sub="Every post with your business name, services, and location is another brand mention the internet indexes. Social media and GEO work hand-in-hand. Posting consistently is not just for leads — it's for authority."
+          />
+        </div>
+      </div>
+
+      {/* Strategy 2: Organic Social + Boost */}
+      <div className="rounded-2xl p-7" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
+        <div className="flex items-center gap-3 mb-4">
+          <span className="px-3 py-1 rounded-full text-[10px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, background: "var(--ink)", color: "var(--gold)" }}>Strategy 2</span>
+          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "var(--rose)" }}>Organic Social Media + the $150 Boost</h3>
+        </div>
+        <p className="mb-4" style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(30,15,10,0.7)", lineHeight: 1.7 }}>
+          Post consistently on Instagram, Facebook, and LinkedIn — content about what you do, who you help, and the results you get. When someone is finally ready to hire a social media agency, you're the first person they think of because they've been seeing your content.
+        </p>
+        <div className="space-y-3">
+          <CheckItem
+            text="Post for your own brand every single day — use the platform AI to batch it"
+            sub="Use the same AI content creation prompts from the Content Prompts tab. Create a full month of your own content in 15 minutes. If you're selling social media, your own pages need to be proof."
+          />
+          <CheckItem
+            text="The $150/month boost — amplify what's already working"
+            sub="Don't run complex ad campaigns for yourself. Take your 2–3 best organic posts each month (the ones already getting engagement) and put $50 behind each to extend their reach. That's it. Proven content, bigger audience."
+          />
+          <CheckItem
+            text="Your content pillars for your own brand"
+            sub="1) Client results / case studies  2) Behind the scenes — how you work  3) Education — social media tips for business owners  4) Your story / personality  5) Offers and services. Rotate through all five."
+          />
+        </div>
+      </div>
+
+      {/* Strategy 3: Blogging + LinkedIn */}
+      <div className="rounded-2xl p-7" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
+        <div className="flex items-center gap-3 mb-4">
+          <span className="px-3 py-1 rounded-full text-[10px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, background: "var(--ink)", color: "var(--gold)" }}>Strategy 3</span>
+          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "var(--rose)" }}>SEO Blogging + LinkedIn Articles</h3>
+        </div>
+        <p className="mb-4" style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(30,15,10,0.7)", lineHeight: 1.7 }}>
+          A single well-written blog post can drive traffic for years. This is the strategy with the highest long-term ROI — it takes the most time to start working, but once it does, it runs on autopilot.
+        </p>
+        <div className="space-y-3">
+          <CheckItem
+            text="Find niche keywords your ideal clients are actually searching"
+            sub='Examples if your niche is med spas: "social media marketing for med spas," "how to get more med spa clients from Instagram," "best content ideas for med spas." Low competition, high-intent searchers.'
+          />
+          <CheckItem
+            text="Write one blog post per week that answers a real question"
+            sub="Use AI to draft it, then add your own experience, real client examples, and actual results. AI-generated content that's just copy-pasted doesn't rank — originality and first-hand data does."
+          />
+          <CheckItem
+            text="Publish LinkedIn articles using the same blog content"
+            sub="LinkedIn is indexed by Google. Articles you publish there show up in search results, get shared by your network, and position you as an authority. Repurpose each blog post into a LinkedIn article — minimal extra effort, double the reach."
+          />
+          <CheckItem
+            text="Include a CTA at the end of every post"
+            sub='"Book a free call," "DM us to see what this would look like for your business," or a link to your contact page. Every post should have a next step.'
+          />
+        </div>
+      </div>
+
+      {/* Strategy 4: YouTube */}
+      <div className="rounded-2xl p-7" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
+        <div className="flex items-center gap-3 mb-4">
+          <span className="px-3 py-1 rounded-full text-[10px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, background: "var(--ink)", color: "var(--gold)" }}>Strategy 4</span>
+          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "var(--rose)" }}>YouTube / Long-Form Video</h3>
+        </div>
+        <p className="mb-4" style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(30,15,10,0.7)", lineHeight: 1.7 }}>
+          YouTube videos now show up in Google search results and are being cited in AI search results on ChatGPT and Gemini. A video you make today can be driving leads 5 years from now. This is the hardest strategy to stay consistent with — but the payoff is massive if you do.
+        </p>
+        <div className="p-4 rounded-xl mb-4" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.2)" }}>
+          <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", fontStyle: "italic", color: "var(--ink)" }}>You don't need to post 3× a week. You don't need thousands of subscribers. 10 really good videos that answer the specific questions your ideal clients are asking is enough to start driving strong, qualified inbound leads.</p>
+        </div>
+        <div className="space-y-3">
+          <CheckItem
+            text="Pick 10 questions your ideal clients are Googling right now"
+            sub='Example niche: salons. Videos: "How to get more salon clients from Instagram," "Social media ideas for hair salons," "Should my salon run Facebook ads?" — these are exact searches your clients make.'
+          />
+          <CheckItem
+            text="Make one video per topic — thorough, real, useful"
+            sub="Use AI to write the script. The leads from video are your best leads — they watched you, they trust you, they're already sold before they reach out."
+          />
+          <CheckItem
+            text="Every video trains AI models to associate your brand with that topic"
+            sub="Showing up on YouTube + Google + AI search for the same niche topic is compounding authority. It takes time, but it becomes impossible to ignore."
+          />
+        </div>
+      </div>
+
+      {/* Strategy 5: Guest Blogging + Podcasts */}
+      <div className="rounded-2xl p-7" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
+        <div className="flex items-center gap-3 mb-4">
+          <span className="px-3 py-1 rounded-full text-[10px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, background: "var(--ink)", color: "var(--gold)" }}>Strategy 5</span>
+          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "var(--rose)" }}>Guest Blogging, Features & Podcasts</h3>
+        </div>
+        <p className="mb-4" style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(30,15,10,0.7)", lineHeight: 1.7 }}>
+          Getting mentioned on other websites is the fastest way to build third-party credibility — which is exactly what AI search engines are looking for. Every feature or backlink is another signal that your brand is real and trustworthy.
+        </p>
+        <div className="space-y-3">
+          <CheckItem
+            text="Reach out to industry blogs in your niche and offer a guest post"
+            sub='Example: if you serve restaurants, pitch a post to a restaurant industry blog: "5 Social Media Mistakes Restaurants Make (And How to Fix Them)." They get free content. You get a backlink and credibility.'
+          />
+          <CheckItem
+            text="Pitch yourself to podcasts — even small ones count"
+            sub="Find podcasts your ideal clients listen to. Pitch a specific topic you can speak on. Podcast appearances get shared, indexed, and cited. Every appearance is a backlink and a brand mention."
+          />
+          <CheckItem
+            text="Track your mentions — set up a Google Alert for your business name"
+            sub="Free. Takes 2 minutes. Alerts you any time your name appears online — so you can see your GEO footprint growing and respond to any mentions."
+          />
+        </div>
+      </div>
+
+      {/* GEO Checklist summary */}
+      <div className="rounded-2xl p-7" style={{ background: "var(--ink)" }}>
+        <p className="text-[10px] tracking-[0.25em] uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Your GEO Starter Checklist</p>
+        <p className="italic mb-5" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: "var(--cream)", lineHeight: 1.4 }}>Do these once to lay the foundation. Then create content consistently and let it compound.</p>
+        <div className="space-y-2">
+          {[
+            "Pick a clear niche — one industry, one type of business",
+            "Claim and fully fill out your Google Business Profile",
+            "Make sure your name, services, and city match on every platform (Instagram, Facebook, website, directories)",
+            "Write 3 detailed case studies with real numbers — add them to your website",
+            "Collect 10+ Google reviews (ask every happy client)",
+            "Publish your first blog post targeting a niche keyword",
+            "Create a LinkedIn company page and publish your first article",
+            "Post on your own social media 5x a week minimum",
+            "Reach out to one podcast or blog for a guest feature this month",
+            "Set up a Google Alert for your business name",
+          ].map((item, i) => (
+            <div key={i} className="flex items-start gap-3">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0" style={{ width: "12px", height: "12px", color: "var(--gold)" }}><path d="M2.5 8.5L6 12L13.5 4.5" /></svg>
+              <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(250,243,234,0.78)" }}>{item}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ─── Tab: New Hire ───────────────────────────────────── */
 function NewHireTab() {
   return (
@@ -775,6 +1016,7 @@ function PlaybookPage() {
     { id: "monthly", label: "Monthly Process", icon: "📅" },
     { id: "prompts", label: "Content Prompts", icon: "✍️" },
     { id: "outreach", label: "Outreach Scripts", icon: "📞" },
+    { id: "growth", label: "Inbound Growth", icon: "📈" },
     { id: "newhire", label: "New Hire Guide", icon: "👋" },
   ];
 
@@ -824,6 +1066,7 @@ function PlaybookPage() {
         {tab === "monthly" && <MonthlyTab />}
         {tab === "prompts" && <PromptsTab />}
         {tab === "outreach" && <OutreachTab />}
+        {tab === "growth" && <GrowthTab />}
         {tab === "newhire" && <NewHireTab />}
       </div>
 
