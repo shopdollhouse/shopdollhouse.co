@@ -950,16 +950,943 @@ Make it look professional, eye-catching, and ready to post.
 ---
 Swap in your actual results once you have them. Specific numbers always outperform vague claims.`,
     },
+
+    // ─── Content Sizes ───────────────────────────────────
+    {
+      title: "Size Cheat Sheet — All Platforms Quick Reference",
+      tag: "Sizes",
+      prompt: `Use this as your go-to reference before creating any content. Always build at these sizes so nothing gets cropped or distorted when posted.
+
+═══════════════════════════════════
+INSTAGRAM
+═══════════════════════════════════
+Static Post (Square)       1080 × 1080 px  (1:1)
+Static Post (Portrait)     1080 × 1350 px  (4:5) ← best for feed reach
+Static Post (Landscape)    1080 × 566 px   (1.91:1)
+Reel / Video               1080 × 1920 px  (9:16 vertical)
+Carousel Slides            1080 × 1080 px  (square) or 1080 × 1350 px (portrait)
+Story                      1080 × 1920 px  (9:16 vertical)
+Profile Photo              320 × 320 px    (displays at 110px)
+
+═══════════════════════════════════
+FACEBOOK
+═══════════════════════════════════
+Feed Post (Square)         1080 × 1080 px
+Feed Post (Landscape)      1200 × 630 px
+Reel / Video               1080 × 1920 px  (9:16 vertical)
+Story                      1080 × 1920 px  (9:16 vertical)
+Cover Photo                820 × 312 px
+Profile Photo              170 × 170 px
+
+═══════════════════════════════════
+TIKTOK
+═══════════════════════════════════
+Video                      1080 × 1920 px  (9:16 vertical)
+Photo Carousel             1080 × 1920 px  per slide (or 1080 × 1080 square)
+Profile Photo              200 × 200 px
+
+═══════════════════════════════════
+GOOGLE BUSINESS PROFILE
+═══════════════════════════════════
+Post Photo                 1200 × 900 px   (4:3 landscape) ← recommended
+Logo                       250 × 250 px
+Cover Photo                1080 × 608 px
+Product Photo              1200 × 900 px
+
+═══════════════════════════════════
+LINKEDIN
+═══════════════════════════════════
+Feed Post (Landscape)      1200 × 627 px
+Feed Post (Square)         1200 × 1200 px
+Document / Carousel        1080 × 1080 px  per slide
+Video                      1080 × 1920 px  (vertical) or 1920 × 1080 (horizontal)
+Profile Photo              400 × 400 px
+Banner                     1584 × 396 px
+
+═══════════════════════════════════
+DESIGN TIPS
+═══════════════════════════════════
+• Safe zone: keep text and logos 150px from all edges on Stories/Reels
+• Portrait (4:5) takes up more feed space than square — use it for static posts
+• Export all graphics at 72 DPI, sRGB color, JPG or PNG
+• Keep file sizes under 8MB for fast loading`,
+    },
+    {
+      title: "Instagram Static Post — Design Brief Prompt",
+      tag: "Sizes",
+      prompt: `Use this prompt to brief an AI image tool, designer, or Canva to create a static Instagram post for a client.
+
+Canvas: 1080 × 1350 px (portrait, 4:5) — this size gets the most feed real estate.
+If square is needed: 1080 × 1080 px.
+Export: PNG or JPG, max 8MB, sRGB.
+
+---
+
+Paste this into ChatGPT or your AI tool:
+
+"Create a detailed design brief for a static Instagram post for [BUSINESS NAME].
+
+Business type: [e.g., med spa / restaurant / real estate agent]
+Post goal: [e.g., promote a service / share a tip / announce a sale / build trust]
+Canvas size: 1080 × 1350 px
+
+Include:
+- Headline text (under 6 words, big and bold)
+- Subheadline or supporting copy (1–2 lines)
+- Call to action text (e.g., 'Book Now' / 'Link in Bio' / 'DM us')
+- Color palette direction (pull from their brand colors if known: [BRAND COLORS])
+- Image or background direction (photo, gradient, solid color, texture)
+- Font style direction (bold/modern, script/elegant, clean/minimal)
+- Mood/vibe: [e.g., luxury, approachable, clinical, warm, bold]
+
+Give me the layout as: what's at the top, middle, and bottom of the graphic."
+
+---
+Once you have the brief — build it in Canva, Adobe Express, or your design tool at the correct canvas size above.`,
+    },
+    {
+      title: "Instagram Reel — Script & Spec Prompt",
+      tag: "Sizes",
+      prompt: `Use this prompt to generate a full Reel script with the correct video specs for Instagram.
+
+Video Specs:
+Canvas: 1080 × 1920 px (9:16 vertical — full screen)
+Length: 15–60 seconds ideal (up to 90 sec allowed)
+Safe zone for text/graphics: keep all elements 250px from top and bottom edges (UI overlays)
+Captions: Always add — 85% of Reels are watched on mute
+Export: MP4, H.264, max 4GB
+
+---
+
+Paste this into ChatGPT:
+
+"Write a complete Instagram Reel script for [BUSINESS NAME].
+
+Business type: [e.g., chiropractor / clothing boutique / personal trainer]
+Reel goal: [e.g., get viewers to book / educate about a service / show a transformation / drive DMs]
+Target length: [15 / 30 / 45 / 60] seconds
+Tone: [e.g., fun and energetic / calm and professional / bold and direct]
+Hook style: [e.g., question / bold statement / surprising fact / 'Did you know...']
+
+Write it in this format:
+- 0:00–0:03 HOOK — [what to say or show to stop the scroll]
+- 0:03–0:10 SETUP — [the problem or context]
+- 0:10–0:35 VALUE — [tips, transformation, story, or proof]
+- 0:35–0:45 CTA — [exactly what to say at the end: DM us / book / follow / comment]
+
+Also include:
+- 3 on-screen text overlay suggestions (what to put on the screen at key moments)
+- 2 trending audio vibes that would fit this Reel (describe the type, not a specific song)
+- Caption for the post (under 150 characters + 5 hashtags)"`,
+    },
+    {
+      title: "Instagram Carousel — 5 Slides (Client Content)",
+      tag: "Sizes",
+      prompt: `Use this prompt to generate a complete 5-slide carousel for any client. Max 5 slides — clean, scannable, and converts.
+
+Canvas: 1080 × 1080 px (square) or 1080 × 1350 px (portrait)
+Each slide is its own graphic — same size for all slides
+File: PNG or JPG per slide, export in order (Slide 1, 2, 3, 4, 5)
+Max slides: 5 — keep it tight. People swipe less as carousels get longer.
+
+---
+
+Paste this into ChatGPT:
+
+"Create a complete 5-slide Instagram carousel for [BUSINESS NAME].
+
+Business type: [e.g., salon / law firm / fitness coach]
+Carousel topic: [e.g., '5 signs you need [SERVICE]' / '3 things to know before [PURCHASE]' / 'Why [BUSINESS NAME] is different']
+Canvas size per slide: 1080 × 1080 px
+Brand colors: [LIST COLORS or 'use professional defaults']
+Tone: [e.g., educational / motivational / luxury / friendly]
+
+For each of the 5 slides, give me:
+• Slide number and type (Hook / Content / Content / Proof / CTA)
+• Headline text (under 7 words — big, bold)
+• Body copy (1–3 short lines max per slide)
+• Visual direction (what image, icon, or background works on this slide)
+• Design note (what makes this slide stand out visually)
+
+Slide structure:
+- Slide 1 (Hook): Bold claim, question, or result that makes them swipe
+- Slide 2: First point / tip / reason
+- Slide 3: Second point / tip / reason
+- Slide 4: Third point — OR a testimonial / proof / stat
+- Slide 5 (CTA): Direct ask — 'Book now' / 'DM us [WORD]' / 'Follow for more'
+
+End with: suggested caption for the post (under 200 characters + 5–8 hashtags)"`,
+    },
+    {
+      title: "Facebook Feed Post — Design Brief Prompt",
+      tag: "Sizes",
+      prompt: `Use this prompt to generate a Facebook static post brief for any client.
+
+Canvas:
+- Square: 1080 × 1080 px (shows well on both desktop and mobile)
+- Landscape: 1200 × 630 px (better for link previews and boosted posts)
+- Portrait: 1080 × 1350 px (4:5 — max height Facebook allows in feed)
+
+Recommended: 1080 × 1080 px square for most posts.
+Export: JPG or PNG, under 8MB, sRGB.
+
+---
+
+Paste this into ChatGPT:
+
+"Create a Facebook static post design brief for [BUSINESS NAME].
+
+Business type: [TYPE]
+Post goal: [promote a service / share a testimonial / announce an offer / holiday post]
+Canvas: 1080 × 1080 px
+
+Include:
+- Primary headline (6 words or fewer, large and bold)
+- Supporting copy (2–3 short lines)
+- CTA text (e.g., 'Call Now' / 'Get a Free Quote' / 'Book Online')
+- Phone number or website to include: [PHONE / URL]
+- Visual direction: [photo of the business, before/after, product shot, or text-only]
+- Color palette: [BRAND COLORS or describe the vibe]
+- Mood: [e.g., trustworthy and local / bold and promotional / clean and modern]
+
+Also write the Facebook caption for this post:
+- 2–4 sentences max
+- Include a CTA at the end
+- Add 3–5 relevant hashtags"`,
+    },
+    {
+      title: "TikTok Video — Script & Spec Prompt",
+      tag: "Sizes",
+      prompt: `Use this prompt to generate a TikTok-specific video script with correct specs.
+
+Video Specs:
+Canvas: 1080 × 1920 px (9:16 vertical — ALWAYS vertical for TikTok)
+Length: 7–60 seconds for most reach; 3–5 min for educational content
+Safe zone: keep text 150px from all 4 edges (TikTok overlays UI on top and bottom)
+Captions: essential — add them in CapCut or TikTok's auto-caption tool
+Export: MP4, H.264, max 287.6MB
+
+---
+
+Paste this into ChatGPT:
+
+"Write a TikTok script for [BUSINESS NAME] designed to get views and followers.
+
+Business type: [TYPE — e.g., nail tech / HVAC company / life coach]
+Goal: [get bookings / go viral / educate / show a before/after / trend participation]
+Length: [15 / 30 / 60] seconds
+Tone: [real and relatable / professional but approachable / fun and trendy]
+
+TikTok script format:
+- 0:00–0:03: HOOK — [the first words. Must be a scroll-stopper. Often a question or bold statement]
+- 0:03–0:08: PROMISE — [what they'll learn or see if they keep watching]
+- 0:08–0:45: CONTENT — [the actual value, story, or transformation]
+- 0:45–0:60: CTA — [follow us / comment / book / DM the word [WORD]]
+
+Also include:
+- 2 on-screen text overlays (what words appear on screen at key moments)
+- Audio direction (describe the vibe: hype beat, calm background music, trending sound style)
+- Caption for TikTok (1–2 punchy lines + 5 hashtags mixing popular and niche)
+- Thumbnail text (the 3–5 words shown before they play the video)"`,
+    },
+    {
+      title: "TikTok Carousel / Photo Slideshow — 5 Slides",
+      tag: "Sizes",
+      prompt: `Use this prompt to generate a TikTok photo carousel (slideshow post). TikTok photo carousels are getting massive organic reach right now.
+
+Canvas: 1080 × 1920 px per slide (9:16 vertical) — TikTok shows them full-screen
+OR: 1080 × 1080 px square (also works, shows with black bars)
+Max slides: Up to 35 — but 3–7 slides performs best for engagement
+File: JPG or PNG per slide
+
+---
+
+Paste this into ChatGPT:
+
+"Create a 5-slide TikTok photo carousel for [BUSINESS NAME].
+
+Business type: [TYPE]
+Topic: [e.g., '5 things your [SERVICE PROVIDER] isn't telling you' / '[NUMBER] mistakes to avoid' / 'how we do [PROCESS] step by step']
+Canvas: 1080 × 1920 px per slide
+Tone: [educational / motivational / behind-the-scenes / trendy list format]
+
+For each of the 5 slides:
+• Slide number + type
+• Big bold text overlay (under 8 words — this is the main message on screen)
+• Brief visual direction (what photo or background works here)
+
+Slide structure:
+- Slide 1 (Hook): Bold statement or question — makes them tap to swipe
+- Slides 2–4: The content, tips, facts, or steps
+- Slide 5 (CTA): 'Follow for more' or 'Comment [WORD] for [OFFER]'
+
+Also write:
+- The TikTok caption (1–2 lines + 5 hashtags)
+- On-screen text style direction (e.g., big white bold on dark, split layout, minimal)"`,
+    },
+    {
+      title: "Google Business Post — Design & Copy Prompt",
+      tag: "Sizes",
+      prompt: `Use this prompt to generate a Google Business Profile post for any client. These posts show up in Google Maps and Google Search — very high visibility for local businesses.
+
+Image Specs:
+Recommended: 1200 × 900 px (4:3 landscape) — shows best in the GMB interface
+Minimum: 400 × 300 px
+Max file size: 10MB
+Format: JPG or PNG
+Post character limit: 1,500 characters (but 150–300 is the sweet spot — most people don't read long GMB posts)
+
+Post types available in Google Business:
+• What's New — general update or offer
+• Event — for classes, sales, pop-ups (requires start/end date)
+• Offer — for promotions with a redemption code or link
+• Product — for specific service or product highlights
+
+---
+
+Paste this into ChatGPT:
+
+"Write a Google Business Profile post for [BUSINESS NAME].
+
+Business type: [TYPE — e.g., plumber / dentist / bakery]
+Post type: [What's New / Offer / Event / Product]
+Goal: [get more calls / promote a service / share a seasonal offer / get more reviews]
+Image size for this post: 1200 × 900 px
+
+Write:
+1. The post copy (150–300 characters — short, local, conversational. Include the city/neighborhood name.)
+2. A call to action suggestion (Book / Call / Learn More / Get Offer)
+3. Brief image direction: what photo would work best for this post (interior shot, product, team, before/after, etc.)
+4. 3 keywords to naturally include in the post for local SEO
+
+Also suggest: best day/time to post this for a [TYPE] business."`,
+    },
+
+    // ─── Platform Automations ────────────────────────────
+    {
+      title: "Missed Call Text-Back — Automation Setup",
+      tag: "Automations",
+      prompt: `This is the #1 automation to build for every single client. Set it up during onboarding — every client gets this regardless of package.
+
+WHAT IT DOES:
+When a customer calls [CLIENT BUSINESS] and no one answers, the system automatically sends them a text within 60 seconds — so you never lose a lead to a missed call.
+
+HOW TO BUILD IT IN THE PLATFORM:
+Trigger: "Call Status = Missed / No Answer"
+Action 1: Wait — 1 minute
+Action 2: Send SMS from [CLIENT PHONE NUMBER]
+Action 3 (optional): Add tag "Missed Call — Needs Follow-Up" to contact
+Action 4 (optional): Add to pipeline stage "New Lead"
+
+---
+
+Paste this into ChatGPT to write the SMS message for your client:
+
+"Write a missed call text-back message for [BUSINESS NAME].
+
+Business type: [TYPE — e.g., dental office / law firm / plumbing company]
+Tone: [professional / warm and friendly / urgent]
+
+Requirements:
+- Under 160 characters (one SMS credit)
+- Acknowledge the missed call
+- Include a way to respond or book (link, reply to text, or call back option)
+- Sound human — NOT automated
+
+Write 3 versions: one warm/friendly, one direct/professional, one with a light urgency."
+
+---
+
+After the message is written — paste it into the SMS field in the workflow.
+Test it by calling the client's number from a separate phone before going live.`,
+    },
+    {
+      title: "New Lead Welcome Sequence — Email + SMS",
+      tag: "Automations",
+      prompt: `Build this automation the moment a new lead comes in through any form, funnel, or ad. This sequence warms them up before you ever talk to them.
+
+WHAT IT DOES:
+When someone submits a form or fills out a lead capture — they immediately receive a welcome message, then a follow-up sequence over the next 4 days to move them toward booking.
+
+HOW TO BUILD IT IN THE PLATFORM:
+Trigger: "Form Submitted" (or "Contact Created" from ad / funnel)
+Action 1: Send SMS — immediately (welcome message)
+Action 2: Send Email — immediately (welcome email)
+Action 3: Wait — 1 day
+Action 4: Send Email — follow-up #1 (value + social proof)
+Action 5: Wait — 2 days
+Action 6: Send SMS — follow-up nudge
+Action 7: Wait — 1 day
+Action 8: Send Email — follow-up #2 (urgency / CTA to book)
+Action 9: Add tag "Lead Sequence Complete"
+
+---
+
+Paste this into ChatGPT to write all the messages:
+
+"Write a 4-touch lead welcome sequence for [BUSINESS NAME].
+
+Business type: [TYPE]
+Lead source: [e.g., Facebook ad / website contact form / free trial sign-up]
+Offer they responded to: [e.g., free consultation / 14-day trial / discount]
+Tone: [warm and personal / professional / energetic]
+
+Write all of the following:
+
+1. WELCOME SMS (immediately after opt-in) — under 160 characters. Warm, personal, confirms they're in the right place.
+
+2. WELCOME EMAIL (immediately after opt-in)
+   Subject line + full body. Thank them, remind them what they signed up for, tell them exactly what happens next, include a CTA to book or call.
+
+3. FOLLOW-UP EMAIL — Day 2
+   Subject line + body. Share one piece of value (tip, stat, or mini case study). Soft CTA at the end.
+
+4. FOLLOW-UP SMS — Day 3
+   Under 160 characters. Casual check-in. Ask if they have questions or are ready to schedule.
+
+5. FINAL EMAIL — Day 4
+   Subject line + body. Light urgency (spots filling, offer ending, etc.). Clear CTA: 'Book your call here: [LINK]'
+
+Make every message sound like it's coming from a real person named Mandy, not a company."`,
+    },
+    {
+      title: "Review Request Automation — Post-Service",
+      tag: "Automations",
+      prompt: `Build this automation for every client immediately after a client onboarding or first service completion. Google reviews are the fastest way to build credibility for local businesses.
+
+WHAT IT DOES:
+After a client marks a job complete or an appointment status updates to "Completed" — the system automatically sends a review request via SMS and email.
+
+HOW TO BUILD IT IN THE PLATFORM:
+Trigger: "Appointment Status Changed → Completed" (or "Pipeline Stage = Completed / Job Done")
+Action 1: Wait — 2 hours (let them get home and settle)
+Action 2: Send SMS (review request)
+Action 3: Wait — 1 day
+Action 4: If no review link clicked → Send Email (review follow-up)
+Action 5: Add tag "Review Requested"
+
+---
+
+Paste this into ChatGPT to write the messages:
+
+"Write a review request sequence for [BUSINESS NAME].
+
+Business type: [TYPE]
+Google Review Link: [PASTE CLIENT'S GOOGLE REVIEW LINK HERE]
+Tone: [warm / professional / genuine — not salesy]
+
+Write:
+
+1. REVIEW REQUEST SMS (sent 2 hours after service)
+Under 160 characters. Personal. Ask how the experience was. Include the Google review link. Do NOT use the word 'automated' or 'system.'
+
+2. REVIEW REQUEST EMAIL (sent next day if no click)
+Subject line + full body. Thank them by name for choosing [BUSINESS NAME]. Share the Google review link clearly. Make it feel like a personal note from [OWNER NAME], not a corporate email.
+
+Both messages should feel like they were typed personally, not mass-sent."
+
+---
+
+Note: Always get the client's Google Review shortlink before building this. To find it: Google 'your business name' → click 'Write a Review' → copy that URL → shorten with bit.ly if needed.`,
+    },
+    {
+      title: "Appointment Reminder Sequence",
+      tag: "Automations",
+      prompt: `Build this for every client who has appointment-based bookings. Reduces no-shows by up to 80%.
+
+WHAT IT DOES:
+After an appointment is booked in the system — the contact automatically receives reminders at 24 hours, 2 hours, and 15 minutes before their appointment.
+
+HOW TO BUILD IT IN THE PLATFORM:
+Trigger: "Appointment Booked" (calendar event created)
+
+Reminder 1:
+Action: Wait until [24 hours before appointment start time]
+Action: Send SMS (24-hour reminder)
+Action: Send Email (24-hour reminder)
+
+Reminder 2:
+Action: Wait until [2 hours before appointment start time]
+Action: Send SMS (2-hour reminder)
+
+Reminder 3:
+Action: Wait until [15 minutes before appointment start time]
+Action: Send SMS (15-minute reminder)
+
+---
+
+Paste this into ChatGPT to write the messages:
+
+"Write an appointment reminder sequence for [BUSINESS NAME].
+
+Business type: [TYPE — e.g., chiropractor / salon / financial advisor]
+Appointment type: [e.g., consultation / adjustment / haircut / onboarding call]
+Tone: [warm / professional]
+Business address: [ADDRESS] (include in reminders)
+Cancellation/reschedule instructions: [e.g., 'Reply CANCEL to cancel' or 'Call us at [PHONE]']
+
+Write:
+
+1. 24-HOUR REMINDER SMS — under 160 characters. Confirm the appointment time and date. Include address or Zoom link. Include how to reschedule.
+
+2. 24-HOUR REMINDER EMAIL — Subject line + body. Friendly tone. Recap what to bring / prepare if applicable. Confirm time, date, address/link.
+
+3. 2-HOUR REMINDER SMS — under 160 characters. Quick reminder. Keep it warm and short.
+
+4. 15-MINUTE REMINDER SMS — under 160 characters. 'We're ready for you!' style. Very short."`,
+    },
+    {
+      title: "Instagram Comment → Auto-DM Trigger",
+      tag: "Automations",
+      prompt: `This is one of the highest-converting automations for social media. When someone comments a specific keyword on a client's post — they instantly get a DM with the offer or lead magnet. Turns every viral post into a lead generator.
+
+WHAT IT DOES:
+Someone comments a trigger word on a post (e.g., "INFO" or "PRICE" or "YES") → they instantly receive a DM with the resource, link, or offer → their contact is created in the CRM automatically.
+
+HOW TO BUILD IT IN THE PLATFORM:
+Trigger: "Instagram Comment Received" — containing keyword [TRIGGER WORD]
+Action 1: Send Instagram DM (automated — instant)
+Action 2: Create Contact (if not already exists)
+Action 3: Add tag "[TRIGGER WORD] — Requested"
+Action 4: Add to Pipeline stage "New Lead"
+
+---
+
+Paste this into ChatGPT to write the messages and set up the post:
+
+"Write an Instagram comment-trigger campaign for [BUSINESS NAME].
+
+Business type: [TYPE]
+The offer / lead magnet: [e.g., free price guide / free consultation / free checklist / discount code]
+Trigger word: [choose one easy word — e.g., GUIDE / INFO / YES / FREE / PRICE]
+Tone: [warm / fun / professional]
+
+Write:
+
+1. THE POST CAPTION (for the original Instagram post)
+- Hook line that tells them to comment [TRIGGER WORD] to get the thing
+- 2–3 lines of value about why the offer matters
+- Clear CTA: 'Comment [TRIGGER WORD] below and I'll DM you instantly!'
+- 5–8 hashtags
+
+2. THE AUTO-DM (sent instantly when they comment)
+Under 300 characters. Personal, warm, instant. Include the link or resource. Ask a soft qualifying question at the end (e.g., 'Are you located in [CITY]?' or 'Have you tried [SERVICE] before?')
+
+3. A FOLLOW-UP DM (send 24 hours later if they don't respond to the first DM)
+Short and casual — checking in, still offering the resource."
+
+---
+
+Test this thoroughly before going live: make a test comment on the post from a personal account and confirm the DM fires correctly.`,
+    },
+    {
+      title: "New Client Onboarding Sequence",
+      tag: "Automations",
+      prompt: `Build this automation the moment a new client pays their invoice or signs their contract. It sets the tone for the entire relationship and makes you look like a premium operation from day one.
+
+WHAT IT DOES:
+When a new client signs or pays → they receive a welcome sequence over the first week that introduces them to how the service works, sets expectations, and collects what you need to get started.
+
+HOW TO BUILD IT IN THE PLATFORM:
+Trigger: "Invoice Paid" OR "Contract Signed" OR "Tag Added: New Client"
+
+Action 1: Send SMS — immediately (welcome)
+Action 2: Send Email — immediately (welcome + next steps)
+Action 3: Create Task — "Send onboarding questionnaire to [CLIENT NAME]" (assign to yourself)
+Action 4: Wait — 1 day
+Action 5: Send Email — Day 2 (what to expect this week)
+Action 6: Wait — 3 days
+Action 7: Send Email — Day 5 (check-in + content kickoff)
+Action 8: Create Task — "First content draft ready for review" (set due date 7 days)
+Action 9: Add tag "Onboarding — Week 1"
+
+---
+
+Paste this into ChatGPT to write the messages:
+
+"Write a new client onboarding sequence for The Dollhouse Brand Studio.
+
+New client name: [NAME]
+Business name: [BUSINESS NAME]
+Package they signed up for: [Starter / Growth / Elite]
+Platform they're on: [Instagram / Facebook / TikTok / etc.]
+
+Write:
+
+1. WELCOME SMS (sent immediately after payment/signing)
+Under 160 characters. Exciting, warm, personal. Make them feel like they made the right decision.
+
+2. WELCOME EMAIL (sent immediately)
+Subject line + full body. Thank them for joining. Outline exactly what happens in the next 7 days step by step (Day 1, Day 3, Day 7). Include what they need to send you: login access, brand kit, photos, logo. Make them feel taken care of.
+
+3. DAY 2 EMAIL — 'What to Expect This Week'
+Subject line + body. Set expectations for content review process, posting schedule, how to give feedback. Keep it simple and reassuring. Light tone.
+
+4. DAY 5 EMAIL — 'We're Getting Started!'
+Subject line + body. Let them know content creation has begun. Give them a sneak peek or first deliverable update. Ask if they have any questions or anything they want to make sure we include."`,
+    },
+    {
+      title: "7-Day Lead Nurture Drip Sequence",
+      tag: "Automations",
+      prompt: `Build this for leads who showed interest but didn't book. This automated sequence keeps you top of mind over 7 days and converts cold leads into warm ones.
+
+WHAT IT DOES:
+A lead comes in and doesn't book right away → they enter this 7-day sequence → by day 7 they've received 5 touches and are far more likely to say yes when you follow up manually.
+
+HOW TO BUILD IT IN THE PLATFORM:
+Trigger: "Tag Added: Nurture Sequence" (add this tag manually or from a pipeline stage)
+
+Day 0: SMS — immediate (entered sequence)
+Day 1: Email — value content
+Day 2: SMS — soft check-in
+Day 3: Email — case study or social proof
+Day 5: Email — objection-handling
+Day 7: SMS + Email — final offer / urgency close
+End: Add tag "Nurture Complete" → Create Task "Manual Follow-Up Call"
+
+---
+
+Paste this into ChatGPT to write all messages:
+
+"Write a 7-day lead nurture drip sequence for The Dollhouse Brand Studio targeting [TYPE OF BUSINESS OWNER — e.g., local service businesses / e-commerce brands / restaurant owners].
+
+The lead didn't book after the initial outreach. They're warm but haven't committed. Goal: build trust, show proof, handle objections, and get them to book a call or start the free trial.
+
+Our packages: Starter $1,000/mo, Growth $2,500/mo, Elite $5,000+/mo. All with a $500 one-time setup and 14-day free trial option.
+
+Write:
+1. Day 0 SMS — immediate. Short and warm. 'We've got some good stuff coming your way.'
+2. Day 1 Email — Subject + body. Share one valuable tip about social media for [THEIR INDUSTRY]. No pitch. Pure value.
+3. Day 2 SMS — Check-in. Casual. 'Quick question — what's your biggest frustration with social media right now?'
+4. Day 3 Email — Subject + body. Mini case study or proof point. What results a similar business got. Keep it short and real.
+5. Day 5 Email — Subject + body. Handle the 3 most common objections: price, timing, 'I tried this before.' Warm and conversational tone.
+6. Day 7 SMS — Short urgency nudge. Mention the free trial.
+7. Day 7 Email — Subject + body. The final touch. Make the case one more time. Clear CTA: 'Book a 15-minute call' or 'Start your 14-day free trial.' After this — personal follow-up from Mandy."`,
+    },
+    {
+      title: "Re-engagement Campaign — Dormant Contacts",
+      tag: "Automations",
+      prompt: `Use this automation to re-engage leads who went cold — haven't responded in 30+ days. Run it once a month on any contact with the tag "Cold Lead" or "No Response."
+
+WHAT IT DOES:
+Contacts who went dark get a 3-touch re-engagement sequence over 5 days. If they respond — remove from sequence and book them. If no response — tag as "Inactive" and move on.
+
+HOW TO BUILD IT IN THE PLATFORM:
+Trigger: "Tag Added: Re-Engagement" (add manually each month to cold contacts)
+
+Action 1: Send SMS — Day 0 (the pattern interrupt)
+Action 2: Wait — 2 days
+Action 3: Send Email — Day 2 (the value-add reachout)
+Action 4: Wait — 3 days
+Action 5: Send SMS — Day 5 (the final nudge)
+Action 6: Add tag "Re-Engagement Sent"
+Action 7: If no reply within 7 days → Add tag "Inactive — Archive"
+
+---
+
+Paste this into ChatGPT to write the messages:
+
+"Write a 3-touch re-engagement campaign for The Dollhouse Brand Studio targeting leads who went silent 30+ days ago.
+
+Lead type: [local business owners / e-commerce brand owners]
+Last touchpoint: [they saw our pricing / had a call / requested info / tried the free trial]
+Tone: warm and honest — not desperate, not salesy
+
+Write:
+
+1. RE-ENGAGEMENT SMS — Day 0
+Under 160 characters. A pattern interrupt — say something real, honest, and human. Not a generic 'just checking in.' Something like acknowledging time has passed and asking a direct question.
+
+2. RE-ENGAGEMENT EMAIL — Day 2
+Subject: something that stands out in an inbox (creative, not a boring 'follow up')
+Body: short. Acknowledge you haven't spoken in a while. Share something genuinely new or valuable — a tip, a result, a new offer. Soft CTA.
+
+3. FINAL SMS — Day 5
+The breakup text. Short, kind, and honest. Tell them this is the last message. Leave the door open for when timing is better."`,
+    },
+
+    // ─── Proposals ───────────────────────────────────────
+    {
+      title: "Client Proposal — Starter Package ($1,000/mo)",
+      tag: "Proposals",
+      prompt: `Use this prompt to generate a full professional proposal for any prospective client on the Starter package. Customize all bracketed fields before sending.
+
+Paste this into ChatGPT:
+
+"Write a professional social media management proposal for [CLIENT/BUSINESS NAME] from The Dollhouse Brand Studio.
+
+Discovery call notes:
+- Business type: [TYPE — e.g., dental office / boutique salon / landscaping company]
+- Their biggest pain point: [what they told you on the call]
+- Their goal: [e.g., more leads / more bookings / more brand awareness]
+- Platforms they want: [e.g., Instagram + Facebook]
+- Their current social situation: [e.g., posting inconsistently / no presence at all / had someone before but unhappy]
+
+Package: Starter — $1,000/mo + $500 one-time setup fee
+Includes:
+- 1 platform fully managed (content creation, captions, scheduling)
+- AI brand clone — content in their voice without filming
+- 12 posts/month (mix of reels, carousels, and static posts)
+- Comment keyword trigger + auto-DM automation
+- Missed call text-back
+- Online booking integration
+- Monthly performance report
+- 14-day free trial option ($500 setup required, first 2 weeks free)
+
+Format the proposal with these sections:
+1. Introduction — personalized, reference their business specifically
+2. The Problem We Solve — restate their pain points in their own words
+3. Our Solution — describe the Starter package as it applies to THEIR business
+4. What's Included — formatted list of deliverables
+5. Pricing — $1,000/mo + $500 setup. Mention 14-day free trial option.
+6. Next Steps — Step 1 / Step 2 / Step 3 (sign, pay setup, onboarding call)
+7. About The Dollhouse Brand Studio — 2–3 sentences on who we are
+
+Tone: professional but warm. Confident, not pushy. Make it feel custom — not like a template.
+Length: 400–600 words. Clean, scannable formatting. No fluff."`,
+    },
+    {
+      title: "Client Proposal — Growth Package ($2,500/mo)",
+      tag: "Proposals",
+      prompt: `Use this prompt to generate a full proposal for the Growth package. Best for clients who want multiple platforms, paid ads, and faster growth.
+
+Paste this into ChatGPT:
+
+"Write a professional social media management proposal for [CLIENT/BUSINESS NAME] from The Dollhouse Brand Studio.
+
+Discovery call notes:
+- Business type: [TYPE]
+- Their biggest pain point: [what they told you]
+- Their goal: [e.g., scale lead volume / run ads effectively / expand to multiple platforms]
+- Platforms they want: [e.g., Instagram + TikTok + Facebook]
+- Current situation: [e.g., have one platform but want more / running ads but no results / need full system]
+
+Package: Growth — $2,500/mo + $500 one-time setup fee
+Includes:
+- Everything in Starter — now across 3 platforms (Instagram, TikTok, Facebook)
+- Paid ad management — Facebook & Instagram ads included
+- Email + SMS automation sequences for lead follow-up
+- 18 posts/month across platforms
+- Full CRM pipeline setup and lead management
+- Monthly strategy call + performance report
+- 14-day free trial option ($500 setup required)
+
+Format the proposal with these sections:
+1. Introduction — personal, reference their discovery call
+2. The Problem We Solve — restate their pain points (use their exact words if possible)
+3. Our Solution — describe Growth package as it applies to their specific business and goals
+4. What's Included — clean formatted deliverable list
+5. Pricing — $2,500/mo + $500 setup. Mention free trial option.
+6. Results You Can Expect — be honest, set realistic expectations for first 30/60/90 days
+7. Next Steps — Step 1 / Step 2 / Step 3
+8. About The Dollhouse Brand Studio — 2–3 sentences
+
+Tone: premium and results-focused. This client is investing more — the proposal should match that seriousness.
+Length: 500–700 words. Scannable, professional, no fluff."`,
+    },
+    {
+      title: "Client Proposal — Elite Package ($5,000+/mo)",
+      tag: "Proposals",
+      prompt: `Use this prompt for high-ticket prospects. The Elite proposal should feel like it came from a real agency — premium, thorough, and specific to their business.
+
+Paste this into ChatGPT:
+
+"Write a high-end social media and digital marketing proposal for [CLIENT/BUSINESS NAME] from The Dollhouse Brand Studio.
+
+Discovery call notes:
+- Business type: [TYPE — e.g., med spa chain / law firm / e-commerce brand scaling to $1M+]
+- Their biggest challenge: [what they told you]
+- Their goals: [e.g., dominate local market / build a content machine / scale with ads]
+- Platforms: [e.g., all 5: Instagram, TikTok, Facebook, YouTube, LinkedIn or Google Business]
+- Budget appetite: [$5,000–$10,000/mo]
+- Current operation: [e.g., has marketing person internally / running ads already / large team]
+
+Package: Elite — Starting at $5,000/mo + $500 one-time setup fee
+Includes:
+- Full-service management across 5 platforms
+- AI brand clone + AI voice agent for inbound inquiries
+- Full paid ad management (Meta + Google)
+- Email + SMS campaigns + advanced automation workflows
+- Weekly content production (20–30 pieces/month)
+- Dedicated account manager (Mandy personally involved)
+- Monthly strategy meeting + detailed reporting dashboard
+- Priority support and same-day response SLA
+
+Format this proposal with:
+1. Executive Summary — 1 powerful paragraph on the opportunity and what we'll build together
+2. Situation Analysis — their current position and what's being left on the table
+3. Our Strategy — a high-level content + paid ads + automation game plan specific to their business
+4. Full Scope of Work — detailed deliverable list by category
+5. Investment — $5,000/mo starting rate (note: final quote based on scope) + $500 setup
+6. Timeline — what happens in weeks 1, 2, 3, 4 after they start
+7. Why The Dollhouse Brand Studio — 3–4 sentences. Confident. Why us, not anyone else.
+8. Next Steps — exactly how to move forward today
+
+Tone: premium agency tone. Polished, data-aware, strategic. This is a high-ticket close — every word should earn trust.
+Length: 700–1,000 words. Well-formatted sections, clean and professional."`,
+    },
+    {
+      title: "Custom Proposal Builder — Any Client, Any Package",
+      tag: "Proposals",
+      prompt: `Use this when you need a proposal built fast for a client who doesn't fit neatly into one package, or when you want to customize pricing for a specific situation.
+
+Paste this into ChatGPT:
+
+"Build a custom social media management proposal for [CLIENT/BUSINESS NAME] from The Dollhouse Brand Studio.
+
+Here's everything from the discovery call:
+[PASTE YOUR NOTES FROM THE CALL — be as detailed as possible: what they said, what they need, their budget reaction, what got them excited, what concerned them]
+
+Based on my notes above, do the following:
+
+1. Recommend the best package for this client (Starter $1k, Growth $2.5k, or Elite $5k+) and explain why in 2–3 sentences. If they should start on one and upgrade, note that.
+
+2. Write a complete custom proposal with these sections:
+   - Personal intro referencing something specific from our call
+   - Their problem, in their own words
+   - Our custom solution (tailor the deliverables to what they actually need — not just the standard list)
+   - Pricing and what's included
+   - 14-day free trial mention if applicable
+   - Exact next steps to sign and start
+   - A closing line that feels personal, not template-y
+
+3. Suggest: should I mention the free trial in this proposal based on what you know about this client? Why or why not?
+
+Tone: match their energy from the call. If they were formal — be polished. If they were casual — be warm and conversational. This proposal should feel like it was written specifically for them."`,
+    },
+
+    // ─── Contracts ───────────────────────────────────────
+    {
+      title: "Month-to-Month Service Agreement — Template",
+      tag: "Contracts",
+      prompt: `Use this prompt to generate a clean, professional month-to-month service agreement. Have a lawyer review before using for clients over $2,000/mo.
+
+Paste this into ChatGPT:
+
+"Draft a month-to-month social media management service agreement for The Dollhouse Brand Studio.
+
+Details to include:
+- Service Provider: The Dollhouse Brand Studio (Mandy Fortune, Owner)
+- Client: [CLIENT FULL NAME or BUSINESS LEGAL NAME]
+- Service Start Date: [DATE]
+- Services Provided: [LIST — e.g., social media management for Instagram, content creation, scheduling, monthly reporting]
+- Package: [Starter / Growth / Elite]
+- Monthly Fee: $[AMOUNT]/month
+- One-Time Setup Fee: $500 (due before work begins)
+- Billing Date: [e.g., 1st of each month / same date as signup]
+- Payment Method: [e.g., credit card on file / ACH / invoice]
+
+Write a complete agreement with these sections:
+1. Services — what The Dollhouse Brand Studio will provide
+2. Term — month-to-month, either party can cancel with [14 / 30] days written notice
+3. Fees & Payment — monthly fee, setup fee, late payment policy (add 10% after 7 days late)
+4. Client Responsibilities — what the client must provide (logins, photos, feedback within 48 hrs)
+5. Intellectual Property — content created belongs to the client after payment
+6. Confidentiality — both parties agree not to share proprietary information
+7. Limitation of Liability — The Dollhouse Brand Studio is not liable for platform algorithm changes, ad performance fluctuations, or results beyond our direct control
+8. Termination — either party may cancel with [14/30] days notice in writing
+9. Governing Law — [YOUR STATE]
+10. Signatures — Client signature, date / The Dollhouse Brand Studio signature, date
+
+Tone: professional and clear. Plain English where possible — not overly legalese. Client should be able to read and understand it in under 5 minutes."`,
+    },
+    {
+      title: "14-Day Free Trial Agreement",
+      tag: "Contracts",
+      prompt: `Use this prompt to generate a simple free trial agreement. This is a lighter document — not a full contract — but it protects you and sets expectations before the client converts to monthly billing.
+
+Paste this into ChatGPT:
+
+"Write a 14-day free trial agreement for The Dollhouse Brand Studio.
+
+Details:
+- Service Provider: The Dollhouse Brand Studio (Mandy Fortune)
+- Client: [NAME / BUSINESS NAME]
+- Trial Start Date: [DATE]
+- Trial End Date: [DATE + 14 days]
+- Setup Fee (collected upfront, non-refundable): $500
+- Platform Managed During Trial: [e.g., Instagram]
+- Monthly Fee After Trial (if they continue): $[AMOUNT]/month
+- Billing Starts: Automatically on Day 15 unless client cancels in writing before trial end
+
+Write this agreement with:
+1. Trial Description — what's included during the 14 days (full Starter service, or subset — specify)
+2. Setup Fee — $500 is collected before work begins. Non-refundable. Covers AI clone build, content system setup, and automation configuration.
+3. Trial Period — 14 days of service at no additional charge
+4. Conversion to Monthly — unless client cancels in writing [48 hours] before trial end, monthly billing of $[AMOUNT] begins automatically
+5. Cancellation During Trial — client may cancel at end of trial with no obligation beyond the $500 setup fee
+6. Client Responsibilities — provide logins, brand assets, and feedback promptly
+7. Signatures — Client / The Dollhouse Brand Studio / Date
+
+Tone: friendly and clear. This should feel like a simple, honest agreement — not intimidating. Client should sign this in under 2 minutes."`,
+    },
+    {
+      title: "Client Intake / Onboarding Form — Questions",
+      tag: "Contracts",
+      prompt: `Use this prompt to create the onboarding intake form that every new client fills out. Build this as a form in the platform or send as a fillable PDF/Google Form.
+
+Paste this into ChatGPT:
+
+"Create a detailed new client onboarding intake form for The Dollhouse Brand Studio.
+
+This form is filled out by new clients after they sign and pay. It collects everything we need to start creating their content and setting up their automations.
+
+Write a complete form with the following sections:
+
+SECTION 1 — Business Basics
+- Business legal name
+- Business type / industry
+- Website URL
+- Location(s) — city/state
+- Business phone number
+- Primary contact name and email
+- Who should we contact for content approvals?
+
+SECTION 2 — Social Media Accounts
+- List all platforms and usernames
+- Who currently manages their accounts?
+- Do we have login access? (Yes / Need to share)
+- Which platform is most important to them right now?
+
+SECTION 3 — Brand Identity
+- Do you have a brand kit? (Yes — attach / No — we'll build one)
+- Primary colors (hex codes if available)
+- Fonts used (if known)
+- Tagline or brand statement
+- Tone of voice: check all that apply [Professional / Friendly / Bold / Luxurious / Fun / Educational / Authoritative]
+
+SECTION 4 — Content Preferences
+- What topics should we post about? (List 3–5)
+- What topics should we NEVER post about?
+- Do you have existing photos/videos we can use? (Yes — please submit / No)
+- Do you want to be in the content? (Yes / Sometimes / No — use stock/AI)
+- Competitors you admire (if any):
+
+SECTION 5 — Goals & Strategy
+- What does success look like in the first 30 days?
+- What's the #1 action you want followers to take? (Book / Call / Buy / DM / Follow)
+- Any upcoming events, promotions, or launches we should plan content around?
+
+SECTION 6 — Access & Logins
+(Remind client to use the secure password-sharing method — never send passwords in email)
+- Social media account access method: [Creator Studio / Direct login / Two-factor via their phone]
+- Any other tools or apps we'll need access to?
+
+Format as a clean intake form with clear section headers, short answer fields, and multiple choice where appropriate. Tone: professional, warm, easy to fill out."`,
+    },
   ];
 
   const GROUPS = [
     { label: "Platform AI", icon: "🤖", tags: ["Platform AI"] },
     { label: "Content Creation", icon: "✍️", tags: ["Captions", "Video", "Stories", "Planning"] },
+    { label: "Content Sizes", icon: "📐", tags: ["Sizes"] },
     { label: "Ads & Email", icon: "📣", tags: ["Ads", "Email"] },
     { label: "Strategy & Reporting", icon: "📊", tags: ["Strategy", "Reporting", "Onboarding"] },
     { label: "AI Video", icon: "🎬", tags: ["AI Video"] },
+    { label: "Platform Automations", icon: "⚡", tags: ["Automations"] },
     { label: "Outreach Scripts", icon: "📤", tags: ["Outreach"] },
     { label: "Lead Generation", icon: "🎯", tags: ["Lead Gen"] },
+    { label: "Proposals & Contracts", icon: "📄", tags: ["Proposals", "Contracts"] },
     { label: "Sales", icon: "💼", tags: ["Sales"] },
     { label: "SEO & Blogging", icon: "🌐", tags: ["Blogging", "GEO"] },
   ];
