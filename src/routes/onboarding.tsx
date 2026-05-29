@@ -181,7 +181,7 @@ export default function OnboardingForm() {
     };
 
     try {
-      const res = await fetch("https://formspree.io/f/mwvrvrzj", {
+      const res = await fetch("https://formspree.io/f/xaqkkopk", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(payload),
