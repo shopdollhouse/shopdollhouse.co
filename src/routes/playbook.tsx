@@ -1980,9 +1980,10 @@ Write a complete agreement with these sections:
 5. Intellectual Property — content created belongs to the client after payment
 6. Confidentiality — both parties agree not to share proprietary information
 7. Limitation of Liability — The Dollhouse Brand Studio is not liable for platform algorithm changes, ad performance fluctuations, or results beyond our direct control
-8. Termination — after the minimum term, either party may cancel with 30 days' written notice in writing; early termination of a fixed-term contract requires payment of remaining balance
-9. Governing Law — Ontario, Canada
-10. Signatures — Client signature, date / The Dollhouse Brand Studio signature, date
+8. No Guarantee of Results — The Client acknowledges that social media marketing results vary based on industry, market conditions, product or service quality, audience, and other factors outside of The Dollhouse Brand Studio's control. The Dollhouse Brand Studio makes no guarantee of specific outcomes including but not limited to follower growth, leads, bookings, or revenue. Our commitment is to deliver the agreed services with skill, care, and consistency.
+9. Termination — after the minimum term, either party may cancel with 30 days' written notice in writing; early termination of a fixed-term contract requires payment of remaining balance
+10. Governing Law — Ontario, Canada
+11. Signatures — Client signature, date / The Dollhouse Brand Studio signature, date
 
 Tone: professional and clear. Plain English where possible — not overly legalese. Client should be able to read and understand it in under 5 minutes."`,
     },
