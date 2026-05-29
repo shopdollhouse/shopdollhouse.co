@@ -1967,14 +1967,14 @@ Details to include:
 - Services Provided: [LIST — e.g., social media management for Instagram, content creation, scheduling, monthly reporting]
 - Package: [Content Starter / Starter / Growth / Elite]
 - Monthly Fee: $[AMOUNT]/month
-- Contract Term: [3-month minimum / 6-month / 12-month annual] — specify which applies
+- Contract Term: [6-month minimum / 12-month annual] — specify which applies
 - One-Time Setup Fee: $500 (due before work begins, non-refundable)
 - Billing Date: [e.g., 1st of each month / same date as signup]
 - Payment Method: [e.g., credit card on file / ACH / invoice]
 
 Write a complete agreement with these sections:
 1. Services — what The Dollhouse Brand Studio will provide
-2. Term & Minimum Commitment — minimum 3-month initial term; after the minimum term, either party may cancel with 30 days' written notice; 6-month and 12-month contracts are available at a discount and have their own minimum terms
+2. Term & Minimum Commitment — minimum 6-month initial term; after the minimum term, either party may cancel with 30 days' written notice; 12-month contracts are available at a 10% discount and have their own minimum term
 3. Fees & Payment — monthly fee, setup fee, late payment policy (add 10% after 7 days late)
 4. Client Responsibilities — what the client must provide (logins, photos, feedback within 48 hrs)
 5. Intellectual Property — content created belongs to the client after payment
@@ -3521,7 +3521,7 @@ And every month we send you a report so you can see exactly what's working — r
 
 All of this, done for you, every single month.
 
-We charge $[PRICE]/month. There's a 3-month minimum to start — that's how long it takes to build the momentum and really see results. After that, you can go month-to-month or lock in a longer term for a discount. But what I can tell you is that the businesses we work with stay because they see it working.
+We charge $[PRICE]/month. There's a 6-month minimum to start — that's how long it takes to build the momentum and really see results. You can also lock in 12 months for 10% off. But what I can tell you is that the businesses we work with stay because they see it working.
 
 Does that sound like something that would take a load off your plate?"
 
@@ -5246,7 +5246,7 @@ const STAGE_INFO: Record<PStage, { label: string; color: string; guide: string; 
   responded:   { label: "They Responded!", color: "#4a9970", nextStage: "call_set",    nextLabel: "✓ Call Booked",       guide: "They replied — green light! Do this in order: Step 1: BUILD THEIR AI CLONE NOW while the excitement is fresh. Grab their photo from their website, Instagram, or Google. Write a 20–25 second script in their voice. Generate the video using your AI video tool. Step 2: Use 'Build Their AI Clone' prompts below to write the script fast. Step 3: Book a 10-minute Zoom or in-person meeting using the 'Book the 10-Min Show & Tell' template. Step 4: Do NOT send the clone before the meeting — the reveal is face to face. That's where the wow moment happens and the deal closes." },
   call_set:    { label: "Call Scheduled",  color: "#7b68ee", nextStage: "proposal",    nextLabel: "✓ Proposal Sent",     guide: "Prep using the CLOSER notes below. Listen first, pitch second. Send the proposal within 24 hours of the call ending — while you're still fresh in their mind." },
   proposal:    { label: "Proposal Sent",   color: "#e08030", nextStage: "negotiating", nextLabel: "✓ They're Interested", guide: "Wait 24–48 hours. No reply? Follow up once. Don't resend the deck — just ask if they had a chance to look at it." },
-  negotiating: { label: "Negotiating",     color: "#b8860b", nextStage: "won",         nextLabel: "✓ Mark as Won 🎉",   guide: "Price is the most common objection. First offer: the 14-day free trial ($500 setup upfront, first 2 weeks free, then monthly). If they want a longer commitment discount, offer 10% off a 6-month agreement or 20% off a 12-month agreement. Don't drop the monthly price — protect your rate and add value instead." },
+  negotiating: { label: "Negotiating",     color: "#b8860b", nextStage: "won",         nextLabel: "✓ Mark as Won 🎉",   guide: "Price is the most common objection. First offer: the 14-day free trial ($500 setup upfront, first 2 weeks free, then monthly). If they want a longer commitment discount, offer 10% off a 12-month agreement. Don't drop the monthly price — protect your rate and add value instead." },
   won:         { label: "🎉 Won!",         color: "#2a8a50",                                                              guide: "Send the agreement and onboarding form TODAY. Schedule the kickoff call within 48 hours. Strike while they're excited." },
   lost:        { label: "Not Now",         color: "#888",    nextStage: "new_lead",    nextLabel: "↩ Re-Open",           guide: "Send a warm break-up email. Leave the door open. Set a 30-60 day reminder to circle back — people's situations change." },
 };
@@ -5582,7 +5582,7 @@ Mandy`,
 
 "It's too expensive."
 → "What's it worth if we book ${biz} [X] new ${niche} clients this month? Most clients make it back in the first month."
-→ Offer a term discount: "If budget's a concern, I can do 10% off on a 6-month agreement, or 20% off if ${biz} locks in for the full year — works out to [DISCOUNTED PRICE]/mo."
+→ Offer a term discount: "If budget's a concern, I can do 10% off if ${biz} locks in for the full year — works out to [DISCOUNTED PRICE]/mo."
 
 "I need to think about it."
 → "Of course — what's the one thing you're not sure about? I'd rather talk through it now."
@@ -5596,7 +5596,7 @@ Mandy`,
     annual_deal:
 `Hi ${fn},
 
-Quick thought. Would ${biz} want to lock in the rate for the year? I can do 20% off your monthly rate if you commit to a 12-month plan — which works out to [ANNUAL PRICE]/mo.
+Quick thought. Would ${biz} want to lock in the rate for the year? I can do 10% off your monthly rate if you commit to a 12-month plan — which works out to [ANNUAL PRICE]/mo.
 
 If a full year feels like a lot, we also offer 10% off on a 6-month agreement. Either way you're saving money and locking in the same rate with no surprises.
 
@@ -7149,7 +7149,7 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
   const [pkg, setPkg] = useState<PkgKey | null>(null);
   const [addons, setAddons] = useState<Set<string>>(new Set());
   const [trial, setTrial] = useState(false);
-  const [contractLen, setContractLen] = useState<"3mo" | "6mo" | "12mo">("3mo");
+  const [contractLen, setContractLen] = useState<"6mo" | "12mo">("6mo");
   const [adSpend, setAdSpend] = useState("");
   const [note, setNote] = useState("");
   const [copied, setCopied] = useState<"quote" | "email" | null>(null);
@@ -7177,7 +7177,7 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
   const monthlyBase = selectedPkg?.monthly ?? 0;
   const monthlyAddonsTotal = monthlyAddons.reduce((s, a) => s + a.price, 0);
   const monthlySubtotal = monthlyBase + monthlyAddonsTotal;
-  const discountPct = contractLen === "6mo" ? 0.10 : contractLen === "12mo" ? 0.20 : 0;
+  const discountPct = contractLen === "12mo" ? 0.10 : 0;
   const discount = Math.round(monthlySubtotal * discountPct);
   const monthlyTotal = monthlySubtotal - discount;
   const setupFee = selectedPkg ? 500 : 0;
@@ -7296,10 +7296,9 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
     if (monthlyAddons.length > 0) {
       monthlyAddons.forEach(a => lines.push(dotLine(`  + ${a.name}`, `$${a.price} USD/mo`)));
     }
-    if (contractLen !== "3mo") {
-      const label = contractLen === "6mo" ? "6-Month Discount (10% off)" : "12-Month Discount (20% off — you save!)";
+    if (contractLen === "12mo") {
       lines.push(dotLine("  Subtotal", `$${monthlySubtotal.toLocaleString()} USD/mo`));
-      lines.push(dotLine(`  ${label}`, `−$${discount} USD/mo`));
+      lines.push(dotLine("  12-Month Discount (10% off)", `−$${discount} USD/mo`));
     }
     lines.push(dotLine("  Monthly Total", `$${monthlyTotal.toLocaleString()} USD/mo`));
     lines.push("");
@@ -7331,14 +7330,15 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
     lines.push("");
 
     // --- Contract Terms ---
-    const contractLabel = contractLen === "6mo" ? "6-Month Agreement (10% discount applied)" : contractLen === "12mo" ? "12-Month Agreement (20% discount applied)" : "3-Month Minimum";
+    const contractLabel = contractLen === "12mo" ? "12-Month Agreement (10% discount applied)" : "6-Month Minimum";
     lines.push("─".repeat(54));
     lines.push("  COMMITMENT & CANCELLATION:");
     lines.push("─".repeat(54));
     lines.push("");
     lines.push(`  Contract: ${contractLabel}`);
     lines.push("  After your minimum term: cancel with 30 days' written notice.");
-    if (contractLen !== "3mo") lines.push("  Discount locked for the full term. Rate does not change.");
+    if (contractLen === "12mo") lines.push("  Discount locked for the full term. Rate does not change.");
+    lines.push("  Billing: Monthly · 3.7% payment processing fee applies.");
     lines.push("");
 
     // --- Timeline ---
@@ -7606,12 +7606,11 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
               {/* Contract Length Selector */}
               <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.4)", border: "1px solid rgba(200,168,100,0.2)" }}>
                 <p style={{ fontFamily: FONT_BODY, fontSize: "0.875rem", color: "var(--ink)" }}>Contract Length</p>
-                <p style={{ fontFamily: FONT_BODY, fontSize: "0.75rem", color: "rgba(30,15,10,0.5)", marginTop: "2px" }}>3-month minimum · 10% off 6 months · 20% off 12 months</p>
-                <div className="grid grid-cols-3 gap-2 mt-3">
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.75rem", color: "rgba(30,15,10,0.5)", marginTop: "2px" }}>6-month minimum · 10% off 12 months</p>
+                <div className="grid grid-cols-2 gap-2 mt-3">
                   {([
-                    { val: "3mo", label: "3 Months", sub: "Standard" },
-                    { val: "6mo", label: "6 Months", sub: "10% off" },
-                    { val: "12mo", label: "12 Months", sub: "20% off" },
+                    { val: "6mo", label: "6 Months", sub: "Standard" },
+                    { val: "12mo", label: "12 Months", sub: "10% off" },
                   ] as const).map(opt => {
                     const active = contractLen === opt.val;
                     return (
@@ -7682,9 +7681,9 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
                       <span style={{ fontFamily: FONT_LUXE, fontSize: "0.8rem", color: "rgba(255,255,255,0.6)" }}>+${a.price}/mo</span>
                     </div>
                   ))}
-                  {contractLen !== "3mo" && (
+                  {contractLen === "12mo" && (
                     <div className="flex justify-between items-center pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
-                      <span style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "#4a9970" }}>{contractLen === "6mo" ? "6-Month Discount (10%)" : "12-Month Discount (20%)"}</span>
+                      <span style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "#4a9970" }}>12-Month Discount (10%)</span>
                       <span style={{ fontFamily: FONT_LUXE, fontSize: "0.8rem", color: "#4a9970" }}>−${discount.toLocaleString()}/mo</span>
                     </div>
                   )}
