@@ -1952,35 +1952,36 @@ Tone: match their energy from the call. If they were formal — be polished. If 
 
     // ─── Contracts ───────────────────────────────────────
     {
-      title: "Month-to-Month Service Agreement — Template",
+      title: "Service Agreement — Template",
       tag: "Contracts",
-      prompt: `Use this prompt to generate a clean, professional month-to-month service agreement. Have a lawyer review before using for clients over $2,000/mo.
+      prompt: `Use this prompt to generate a clean, professional service agreement. Have a lawyer review before using for clients over $2,000/mo.
 
 Paste this into ChatGPT:
 
-"Draft a month-to-month social media management service agreement for The Dollhouse Brand Studio.
+"Draft a social media management service agreement for The Dollhouse Brand Studio with the following terms:
 
 Details to include:
 - Service Provider: The Dollhouse Brand Studio (Mandy Fortune, Owner)
 - Client: [CLIENT FULL NAME or BUSINESS LEGAL NAME]
 - Service Start Date: [DATE]
 - Services Provided: [LIST — e.g., social media management for Instagram, content creation, scheduling, monthly reporting]
-- Package: [Starter / Growth / Elite]
+- Package: [Content Starter / Starter / Growth / Elite]
 - Monthly Fee: $[AMOUNT]/month
-- One-Time Setup Fee: $500 (due before work begins)
+- Contract Term: [3-month minimum / 6-month / 12-month annual] — specify which applies
+- One-Time Setup Fee: $500 (due before work begins, non-refundable)
 - Billing Date: [e.g., 1st of each month / same date as signup]
 - Payment Method: [e.g., credit card on file / ACH / invoice]
 
 Write a complete agreement with these sections:
 1. Services — what The Dollhouse Brand Studio will provide
-2. Term — month-to-month, either party can cancel with [14 / 30] days written notice
+2. Term & Minimum Commitment — minimum 3-month initial term; after the minimum term, either party may cancel with 30 days' written notice; 6-month and 12-month contracts are available at a discount and have their own minimum terms
 3. Fees & Payment — monthly fee, setup fee, late payment policy (add 10% after 7 days late)
 4. Client Responsibilities — what the client must provide (logins, photos, feedback within 48 hrs)
 5. Intellectual Property — content created belongs to the client after payment
 6. Confidentiality — both parties agree not to share proprietary information
 7. Limitation of Liability — The Dollhouse Brand Studio is not liable for platform algorithm changes, ad performance fluctuations, or results beyond our direct control
-8. Termination — either party may cancel with [14/30] days notice in writing
-9. Governing Law — [YOUR STATE]
+8. Termination — after the minimum term, either party may cancel with 30 days' written notice in writing; early termination of a fixed-term contract requires payment of remaining balance
+9. Governing Law — Ontario, Canada
 10. Signatures — Client signature, date / The Dollhouse Brand Studio signature, date
 
 Tone: professional and clear. Plain English where possible — not overly legalese. Client should be able to read and understand it in under 5 minutes."`,
@@ -2759,6 +2760,340 @@ Give me 8 hashtags — a mix of:
 
 After everything — give me one note on WHY this caption works for this specific audience and video topic."`,
     },
+
+    // ─── Graphics ────────────────────────────────────────
+    {
+      title: "Create 9 Instagram Graphics — Reach & Followers",
+      tag: "Graphics",
+      prompt: `Act as an elite social media marketer and create 9 Instagram graphics for this business. Do some research to create compelling graphics that will capture attention and are trendy right now. The goal for each post is more reach, more followers.
+
+Business Name: [NAME]
+Niche/Industry: [NICHE]
+Location: [CITY]
+Brand Colours: [HEX CODES or describe from website — e.g. navy blue + gold + white]
+Target Audience: [WHO THEY WANT TO REACH — e.g. homeowners in Atlanta / women 25–45 / local business owners]
+Tone: [Professional / Playful / Bold / Luxurious / Friendly / Educational]
+
+For each of the 9 graphics, provide:
+1. Format: 1080×1080 (square) or 1080×1350 (portrait — better for feed reach)
+2. Headline / hook text (bold, thumb-stopping, max 8 words)
+3. Supporting text or subheadline (optional, 1 line)
+4. Visual concept description (what should be in the image — colours, layout, imagery, text placement)
+5. Caption direction (1–2 sentences — what the post copy should say)
+6. Goal of this specific post: Reach / Save / Follow / Share / Comment / Click
+
+Mix content types:
+- 2–3 educational (tips, how-tos, myth busting)
+- 2 promotional (offer, result, or service highlight)
+- 2 social proof (client win, stat, testimonial-style)
+- 1–2 brand personality (relatable, behind the scenes, or trending format)
+
+Make each one feel like it was designed by a premium creative agency — not a template.`,
+    },
+    {
+      title: "Enhance Graphics for Mobile — Stop the Scroll",
+      tag: "Graphics",
+      prompt: `Act as an elite graphic designer and review all the social media posts listed below. Find ways to enhance the designs even further so that people on their phones will stop scrolling and pay attention.
+
+Business website: [URL — the AI will check brand colours, fonts, and style]
+Platform: [Instagram / Facebook / TikTok]
+Posts to review: [PASTE LIST or describe the current post designs]
+
+For each post, provide:
+1. Current design assessment (what's working / what's not)
+2. 2–3 specific design enhancements — be precise:
+   - Typography: font size, weight, contrast improvements
+   - Visual hierarchy: what the eye should hit first
+   - Colour usage: is the brand consistent with the website?
+   - Mobile readability: can it be read at 3 inches wide?
+   - Thumb-stopping factor: does the first frame make someone stop?
+3. Flag: "Minor tweak" or "Redesign recommended"
+4. One scroll-stopping headline rewrite (if applicable)
+
+Priority rules:
+- Keep brand colours consistent with the business website at all times
+- Every graphic must be readable on a 4-inch phone screen at a glance
+- Bold typography beats beautiful typography every time for reach`,
+    },
+    {
+      title: "Schedule Posts for the Month",
+      tag: "Graphics",
+      prompt: `Schedule all posts for the month of [MONTH YEAR] to the connected [Facebook / Instagram] page.
+
+Posts ready to schedule:
+[PASTE YOUR POST LIST — include content type (video / carousel / static), caption, and any specific timing notes]
+
+Platform: [Instagram / Facebook / Both]
+Posting frequency goal: [e.g. Daily / 5x per week / Every other day]
+Business niche: [NICHE]
+Time zone: [TIMEZONE]
+
+Create a complete posting schedule based on best practices:
+- Post at peak engagement times for [NICHE] businesses (research optimal times)
+- Vary content types throughout the week — no two same-format posts back to back
+- Space posts evenly with no dead weeks
+- Pin the strongest content at the start of the month for first impressions
+- Spread promotional posts evenly — no more than 1 in every 3 posts
+
+Output format — clean week-by-week table:
+| Date | Day | Time | Platform | Content Type | Post Title/Description | Goal | Notes |
+
+Also flag:
+⭐ Which single post should be boosted with the $150 Meta ad budget — choose the most shareable or highest-reach type for the niche.
+📌 Which post should be pinned to the top of the profile this month.`,
+    },
+
+    // ─── Mascot / AI Character ────────────────────────────
+    {
+      title: "Mascot / AI Character — OpenArt AI Full Workflow",
+      tag: "AI Video",
+      prompt: `WORKFLOW GUIDE — Creating a Client Mascot with OpenArt AI
+Use this step by step to build a branded AI mascot for a client, then bring it to life as a video.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 1 — CREATE THE MASCOT IMAGE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Tool: OpenArt.ai → Image Generation
+Option A: ChatGPT (Image creation tab) — good for realistic human characters
+Option B: Nanabana — good for stylised/cartoon mascots
+
+Upload a reference image of:
+- The business owner (for a human AI clone mascot)
+- Their logo or brand asset (for a brand character)
+- A photo that captures the vibe you want
+
+Prompt to generate the mascot on OpenArt:
+"I will be adding a reference image. Bring this image to life making [him/her/them] a real life character as a mascot for [BUSINESS NAME]. [DESCRIBE STYLE — e.g. photorealistic / 3D rendered / illustrated / cartoon]. Wearing [OUTFIT that matches the brand]. Background: [branded setting — e.g. a modern dental office / a luxury salon / outdoors]. Professional, likeable, memorable."
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 2 — ANIMATE THE MASCOT (IMAGE TO VIDEO)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Tool: OpenArt.ai → Image to Video → Select Seedance 2.0
+
+Upload your mascot image as the reference.
+
+Example video prompt structure:
+"Show [CHARACTER DESCRIPTION] in [SETTING — e.g. a modern home / dental chair / salon]. The character is moving, talking, and demonstrating [ACTION — e.g. how to change an air filter / proper brushing technique / a skincare routine]. Include action shots. Character should be expressive, engaging, and natural. Cinematic realism."
+
+Output quality settings:
+- Start at 480p — saves credits while testing prompts
+- Once you're happy with the motion and script → click UPSCALE
+- Upscale improves quality from 480p to 4K
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 3 — THE OUTREACH HOOK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Once the video is ready, send this DM or email to the business owner:
+
+DM/Email:
+"Hey [NAME] 👋 — I brought [BUSINESS NAME]'s mascot to life and it can promote your business 24/7. Would you like to see it?"
+
+If they say yes:
+Option A: Send the video right away — let it speak for itself.
+Option B: "Great — it's ready. When do you have 5 minutes to take a look?"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 4 — THE MEETING PITCH
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+When you get them on a meeting or Zoom, show them the mascot video and say:
+
+"What I'd love to do for [BUSINESS NAME] is create 3–4 pillar mascot videos a month — these get pinned at the top of your page so every new visitor sees them first. Then for the rest of the month, we fill your feed with daily posts that our AI creates for you.
+
+On top of that, we boost your best-performing mascot video with a small Meta ad budget — even $150 a month goes a long way. People start seeing your mascot everywhere on social media — it builds brand recognition fast. Then from there, we can grow into ad management, Google Business, email marketing — whatever makes sense for where your business is at."
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MASCOT CLIENT PRICING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Social media posts (with mascot content): $500–$750/mo
+Meta / Facebook Ads Management:          $500/mo
+Google Business Profile:                 $500 (one-time setup)
+Email Marketing:                         $500/mo
+                                        ─────────────
+Potential monthly per client:            ~$2,000/mo
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CONTENT STRATEGY FOR MASCOT CLIENTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Week 1: Drop the first pillar mascot video — pinned to top of profile
+Week 2–4: Daily AI-generated branded posts fill the feed
+Monthly: Create 3–4 new mascot videos, boost the best one as a Meta ad
+Retargeting: People who engaged with the mascot post get shown the ad again — they keep seeing the mascot everywhere → brand recognition builds → trust → they book.`,
+    },
+
+    // ─── Mascot / AI Clone Outreach ──────────────────────
+    {
+      title: "AI Clone Cold Email — Personalised Intro",
+      tag: "Outreach",
+      prompt: `Use this to write a short personalised cold email for any prospect asking if they'd be interested in seeing an AI clone of themselves that promotes their business without them recording content.
+
+Paste into ChatGPT:
+
+"Create a short personalised email from Mandy Fortune at The Dollhouse Brand Studio.
+
+Recipient name: [NAME]
+Business name: [BUSINESS NAME]
+Niche: [NICHE — e.g. dental practice / med spa / personal injury law]
+City: [CITY]
+What I noticed about them: [OBSERVATION — e.g. 'they're running Google Ads but have no organic social presence' / 'their photos look great but they barely post' / 'they have 200 followers but their Google reviews are amazing']
+
+Rules:
+- Under 100 words
+- Subject line: something curiosity-driven — no clickbait
+- Warm and genuine — not salesy
+- Lead with something specific about their business (shows you did research)
+- One clear, easy question at the end — make it a yes/no
+- Sound like a human, not a template
+- Do NOT mention price
+- Goal: get a reply that says 'yes I'm interested' or 'tell me more'
+
+The hook: ask if they'd be interested in seeing an AI version of themselves that can promote their business online 24/7 — without them ever recording content."`,
+    },
+    {
+      title: "Mascot Outreach — \"I Brought Your Mascot to Life\"",
+      tag: "Outreach",
+      prompt: `Use this DM or email after you've built a prospect's mascot/AI character using OpenArt AI. Send BEFORE pitching — let the video do the selling.
+
+━━━ DM VERSION (Instagram / Facebook) ━━━
+"Hey [NAME] 👋
+
+I brought [BUSINESS NAME]'s mascot to life — and it can promote your business 24/7 without you ever having to record anything.
+
+Would you like to see it?"
+
+━━━ EMAIL VERSION ━━━
+Subject: I made something for [BUSINESS NAME]
+
+Hi [NAME],
+
+I know this is a bit different from a normal outreach email — but hear me out.
+
+I was looking at [BUSINESS NAME]'s social media and thought there was an opportunity to do something really cool for your brand.
+
+So I went ahead and created an AI mascot character for your business that can show up on your social media, talk about your services, and build brand recognition — completely on autopilot.
+
+Would you want to see it?
+
+[YOUR NAME]
+The Dollhouse Brand Studio
+
+━━━ IF THEY SAY YES ━━━
+Option A — Send the video immediately: attach or link the video and let it speak.
+Option B — Build curiosity: "Great — it's ready. When do you have 5 minutes to take a look? I want to show you what it could do for [BUSINESS NAME]."
+
+━━━ FOLLOW-UP IF NO RESPONSE (3–5 days later) ━━━
+"Hey [NAME], just checking — did you see my message about the [BUSINESS NAME] mascot? I'd love to show it to you this week if you have a few minutes."`,
+    },
+    {
+      title: "Mascot Cold Call Script",
+      tag: "Outreach",
+      prompt: `Use this when calling a prospect who hasn't responded to your initial email or DM about the AI clone/mascot.
+
+━━━ OPENING ━━━
+"Hey [NAME], this is [YOUR NAME] — I reached out by email a few days ago. I'm the one who creates AI video clones of business owners for their social media.
+
+I'd love to make one of you for free, just to show you what it looks like. Would you be open to seeing it?"
+
+━━━ IF THEY SAY YES ━━━
+"Amazing. I can have it ready within 24 hours. What's the best email to send it to?
+
+[OR] — Do you have 10 minutes this week for a quick Zoom? I'd rather show you in person — it makes way more sense when you can see it running."
+
+━━━ IF THEY SAY "WHAT IS IT EXACTLY?" ━━━
+"So basically — we take a photo of you and use AI to create a video of you talking, moving, promoting your business. It looks completely real. You never have to film anything. Your content just goes out every day on autopilot.
+
+Most business owners have never seen anything like it until I show them. That's why I'd rather just send it to you — want me to put one together for you for free?"
+
+━━━ IF THEY SAY "I'M NOT INTERESTED" ━━━
+"No worries at all — can I ask, is it just the timing, or is social media not something you're focused on right now? [Let them answer. This tells you if it's a no forever or a not now.]"
+
+━━━ IF THEY WANT TO THINK ABOUT IT ━━━
+"Of course — how about this: I'll put the free sample together anyway and just send it over. No strings. You can see it and decide from there. Fair enough?"
+
+━━━ NOTES ━━━
+• Always offer the free sample — it's a zero-resistance yes
+• The free sample isn't a full build — it's a 15–20 second demo video
+• Your goal on this call: get a yes to see the sample, then book the meeting from there
+• Calls work best between 10am–12pm and 2pm–4pm local time`,
+    },
+
+    // ─── Meta Boost ──────────────────────────────────────
+    {
+      title: "Meta Boost — How to Recommend the $150 Monthly Boost",
+      tag: "Ads",
+      prompt: `Use this to explain the $150 Meta boost recommendation to clients. This is the baseline ad spend you recommend to every client — even those not on a full ads management plan.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+THE RECOMMENDATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Every month, we identify the single best-performing post from your feed — highest reach, most engagement, most saves — and put $150 behind it as a Meta boost.
+
+This is the minimum effective budget to get meaningful reach outside of your current followers.
+
+The $150 goes directly from the client to Meta (Facebook/Instagram) — it is NOT paid to us. It's the client's own ad spend.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+HOW TO PITCH IT TO A CLIENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"One thing I always recommend alongside the content plan is a small monthly boost budget — $150 directly to Meta, paid by you. Every month we take your best-performing post and push it out to a targeted audience in [CITY] who match your ideal customer.
+
+For context — organic reach gets you in front of people who already follow you. The boost gets you in front of people who don't know you yet. At $150, you're getting thousands of new eyes on your best content every single month.
+
+That's separate from what you pay us — it goes straight to Meta. But it makes everything we're creating for you work 5x harder."
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FOR MASCOT / AI CHARACTER CLIENTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+For mascot clients: boost the best-performing mascot video as a retargeting ad. People who engaged with the original post (liked, saved, watched) get shown the ad again — they keep seeing the same character over and over. Brand recognition builds. Trust builds. They book.
+
+"$150 a month and your mascot is everywhere on social media in [CITY]. People start to feel like they already know your business before they ever reach out."
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+WHEN TO INCLUDE IN YOUR PROPOSAL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Always include a line in the quote:
+"Recommended: $150/mo Meta boost (client pays directly to Meta) — boosts your best post each month for maximum reach."
+
+Add it to the 'Ad Spend' field in the Quote Builder — it does not affect your fees.`,
+    },
+
+    // ─── Lead Gen — Mascot Niche ─────────────────────────
+    {
+      title: "Lead Gen — Find Niche Clients Running Google Ads (Detailed)",
+      tag: "Lead Gen",
+      prompt: `Act as a B2B Lead Generation Specialist and Market Researcher. I need to identify 25 small [NICHE] businesses in [CITY] who are currently running Google Ads.
+
+EXAMPLE (swap for your niche + city):
+Niche: Dental practices (general dentistry, cosmetic dentistry, pediatric dentistry, or orthodontics)
+City: Atlanta, GA
+
+Task:
+Use Google Search and the Google Ads Transparency Center to confirm which practices in this area and niche are active advertisers.
+
+For each of the 25 businesses, provide the following in a clean markdown table:
+| Business Name | Website URL | Phone Number | Email Address | Ad Evidence |
+
+Email rules: Search for 'contact@', 'info@', or listed owner/doctor emails — check Contact and About Us pages if not on homepage.
+
+Ad Evidence: briefly note if you saw their ad on Search, Maps, or the Google Ads Transparency Center.
+
+Constraints:
+- Only small to medium independently owned businesses
+- Avoid national chains or franchises (e.g. Aspen Dental, Heartland, Pacific Dental, corporate gyms, etc.)
+- If an email isn't on the homepage, check the Contact or About Us page
+- All 25 must be unique leads
+- Only include verified information — no guesses
+
+---
+After the table, output a second section:
+
+NEXT STEP — CRM PIPELINE SETUP:
+1. Create a new contact in the CRM for each business using the name, email, phone, and website
+2. Create a new pipeline called "[NICHE] Cold Outreach — [CITY] [MONTH/YEAR]"
+3. Add all 25 contacts to the first stage: "New Lead"
+4. Tag each contact: [NICHE], [CITY], Cold Outreach, Google Ads Advertiser
+
+This gives you a ready-to-work outreach pipeline from a single prompt.`,
+    },
   ];
 
   const GROUPS = [
@@ -2770,6 +3105,7 @@ After everything — give me one note on WHY this caption works for this specifi
     { label: "Ads & Email", icon: "📣", tags: ["Ads", "Email"] },
     { label: "Strategy & Reporting", icon: "📊", tags: ["Strategy", "Reporting", "Onboarding", "Business Consulting"] },
     { label: "AI Video", icon: "🎬", tags: ["AI Video"] },
+    { label: "Graphics & Scheduling", icon: "🎨", tags: ["Graphics"] },
     { label: "Platform Automations", icon: "⚡", tags: ["Automations"] },
     { label: "Outreach Generators", icon: "📤", tags: ["Outreach"] },
     { label: "Lead Generation", icon: "🎯", tags: ["Lead Gen"] },
@@ -3044,7 +3380,7 @@ function ScriptCard({ step, title, tag, lines }: { step?: string; title: string;
 
 /* ─── Tab: Outreach ───────────────────────────────────── */
 function OutreachTab() {
-  const [section, setSection] = useState<"blueprint"|"aipitch"|"cold"|"salescall"|"objections"|"referral">("blueprint");
+  const [section, setSection] = useState<"blueprint"|"aipitch"|"cold"|"salescall"|"objections"|"referral"|"mascot">("blueprint");
   const _scripts = [
     {
       title: "Cold Email — Local Business",
@@ -3185,7 +3521,7 @@ And every month we send you a report so you can see exactly what's working — r
 
 All of this, done for you, every single month.
 
-We charge $[PRICE]/month. There are no long-term contracts — if we're not delivering, you can walk away. But what I can tell you is that the businesses we work with stay because they see it working.
+We charge $[PRICE]/month. There's a 3-month minimum to start — that's how long it takes to build the momentum and really see results. After that, you can go month-to-month or lock in a longer term for a discount. But what I can tell you is that the businesses we work with stay because they see it working.
 
 Does that sound like something that would take a load off your plate?"
 
@@ -3222,6 +3558,7 @@ Thanks again for trusting me with [BUSINESS NAME].
     { id: "salescall", icon: "📞",  label: "The Sales Call",      sub: "CLOSER, discovery call, pitch deck" },
     { id: "objections",icon: "🛡️",  label: "Objections & Close",  sub: "Handle pushback and close the deal" },
     { id: "referral",  icon: "🤝",  label: "Referrals",           sub: "Turn clients into your best leads" },
+    { id: "mascot",    icon: "🎭",  label: "Mascot Strategy",     sub: "AI character hook — full workflow" },
   ];
 
   return (
@@ -3577,7 +3914,7 @@ Thanks again for trusting me with [BUSINESS NAME].
           { type: "note", text: "If they absolutely won't meet without knowing: 'Packages start at $1,000/mo — but I'd love to show you what that includes before you make any decisions. The meeting is what sells it, not me telling you.'" },
           { type: "subhead", text: "After They Sign — Getting Them on Monthly Retainer" },
           { type: "note", text: "The trial is 14 days. On day 10–12, send this — before the trial ends. Don't wait for them to bring it up." },
-          { type: "send", label: "Day 10–12 of the trial — send this check-in", text: "Hey [NAME] 😊\n\nWe're about halfway through your trial and I just looked at [BUSINESS NAME]'s numbers — [SHARE A SPECIFIC RESULT, e.g., 'your reel hit 2.3k views' or 'we got 4 new inquiries through the automation'].\n\nI'd love to keep this going for you. To continue after the 14 days, it's just $1,000/mo — no long-term contract, month to month, you can cancel anytime.\n\nShould I send over the monthly invoice?" },
+          { type: "send", label: "Day 10–12 of the trial — send this check-in", text: "Hey [NAME] 😊\n\nWe're about halfway through your trial and I just looked at [BUSINESS NAME]'s numbers — [SHARE A SPECIFIC RESULT, e.g., 'your reel hit 2.3k views' or 'we got 4 new inquiries through the automation'].\n\nI'd love to keep this going for you. To continue after the 14 days, it's just $1,000/mo. We start with a 3-month minimum — that's the window where you really start seeing the compound effect. After that you're free to stay month-to-month or lock in a longer term for a discount.\n\nShould I send over the agreement and first invoice?" },
           { type: "note", text: "They've been watching it work for 10 days. They don't want to stop. The retainer sell is easy from here — they're already sold." },
         ]}
       />
@@ -3791,7 +4128,7 @@ Thanks again for trusting me with [BUSINESS NAME].
           { type: "subhead", text: `"Just send me some info and I'll take a look"` },
           { type: "you_say", text: "Absolutely — I'll send that right over. Can I also grab 10 minutes with you later this week? Most people find a quick call way more useful than reading through a bunch of info — I can answer questions in real time and show you exactly what it would look like for [BUSINESS NAME].\n\nI can do [DAY] or [DAY] — which is better for you?" },
           { type: "subhead", text: `"What if it doesn't work?"` },
-          { type: "you_say", text: "That's exactly why we have the 14-day free trial — so you can see it working before you commit to anything monthly.\n\nAnd there are no long-term contracts. If we're not delivering, you can walk away. We stay because we work, not because you're locked in.\n\nHonestly, the only real risk is staying where you are while your competitors keep showing up online every single day." },
+          { type: "you_say", text: "That's exactly why we have the 14-day free trial — so you can see it working before you commit to anything.\n\nOnce you sign on, there's a 3-month minimum — and honestly, that's for your benefit. Social media takes 60–90 days to build real momentum. Clients who stick through that window see the results. After 3 months, you can cancel with 30 days' written notice.\n\nWe stay because we work, not because you're stuck. But I want you to actually give it enough time to work.\n\nHonestly, the only real risk is staying where you are while your competitors keep showing up online every single day." },
         ]}
       />
 
@@ -3892,6 +4229,230 @@ Thanks again for trusting me with [BUSINESS NAME].
         ]}
       />
       </>}
+
+      {/* ─── Mascot Strategy ─────────────────────────────────── */}
+      {section === "mascot" && <>
+      <SectionHeader label="Mascot Strategy" title="The AI Character Hook." sub="Build a mascot or AI character for a prospect before you ever pitch them. The reveal is the close. Use this as a lead magnet, a conversation starter, and a retention strategy." />
+
+      {/* Revenue model */}
+      <div className="rounded-2xl p-6" style={{ background: "var(--ink)", border: "1px solid rgba(200,168,100,0.2)" }}>
+        <p className="text-[10px] tracking-[0.25em] uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Revenue Model — Mascot Clients</p>
+        <p className="mb-5 italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: "var(--cream)", lineHeight: 1.5 }}>
+          "3–4 pillar mascot videos pinned to the top. Daily posts filling the feed. Best video boosted with $150 Meta ads. People see the mascot everywhere — trust builds, leads follow."
+        </p>
+        <div className="grid sm:grid-cols-2 gap-3">
+          {([
+            { label: "Social Media Posts (with mascot)", price: "$500–$750/mo", note: "Daily branded posts + 3–4 mascot videos/mo" },
+            { label: "Meta / Facebook Ads Management", price: "$500/mo", note: "$150 client ad spend to Meta (separate)" },
+            { label: "Google Business Profile Setup", price: "$500", note: "One-time setup + weekly posts" },
+            { label: "Email Marketing", price: "$500/mo", note: "Done-for-you campaigns + nurture sequences" },
+          ] as const).map(({ label, price, note }) => (
+            <div key={label} className="rounded-xl p-3" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.2)" }}>
+              <p style={{ fontFamily: FONT_LUXE, fontSize: "0.8rem", color: "var(--gold)" }}>{price}</p>
+              <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "var(--cream)", marginTop: "2px" }}>{label}</p>
+              <p style={{ fontFamily: FONT_BODY, fontSize: "0.72rem", color: "rgba(255,255,255,0.4)", marginTop: "2px" }}>{note}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-4 pt-4" style={{ borderTop: "1px solid rgba(200,168,100,0.2)" }}>
+          <div className="flex justify-between items-center">
+            <span style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", color: "rgba(200,168,100,0.7)", textTransform: "uppercase", letterSpacing: "0.12em" }}>Potential Per Client Monthly</span>
+            <span style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--gold)", fontWeight: 600 }}>~$2,000/mo</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Step-by-step workflow */}
+      <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+        <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+          <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Full Workflow</p>
+          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>Build → Reveal → Close</h3>
+        </div>
+        <div className="px-6 py-5 space-y-6">
+
+          {/* Step 1 */}
+          <div>
+            <p className="text-[9px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Step 1 — Build the mascot (OpenArt AI)</p>
+            <div className="space-y-2">
+              {([
+                { n: "1", title: "Choose your tool", body: "OpenArt.ai → Image Generation. Options: ChatGPT Image tab (realistic humans) or Nanabana (stylised/cartoon). Upload a clear reference photo of the business owner or their logo." },
+                { n: "2", title: "Generate the character", body: "Prompt: \"I will be adding a reference image. Bring this image to life making [him/her] a real life character as a mascot for [BUSINESS NAME].\" Describe their outfit, setting, and brand style." },
+                { n: "3", title: "Animate it (Image to Video)", body: "OpenArt → Image to Video → Select Seedance 2.0. Upload the mascot image. Write a video prompt: \"Show [character] in [setting] explaining [service tip]. Character is moving, talking, demonstrating — natural and engaging.\"" },
+                { n: "4", title: "Quality settings", body: "Start at 480p — saves credits while testing prompts. Once happy → click Upscale → improves from 480p to 4K. Keep testing until the motion and lip sync look natural." },
+              ] as const).map(({ n, title, body }) => (
+                <div key={n} className="flex gap-3 p-3 rounded-xl" style={{ background: "rgba(255,255,255,0.5)", border: "1px solid rgba(200,168,100,0.12)" }}>
+                  <div className="w-6 h-6 rounded-full shrink-0 flex items-center justify-center text-[11px] font-bold" style={{ background: "var(--gold)", color: "var(--ink)" }}>{n}</div>
+                  <div>
+                    <p style={{ fontFamily: FONT_LUXE, fontSize: "0.82rem", color: "var(--ink)", fontWeight: 500 }}>{title}</p>
+                    <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.65)", marginTop: "3px", lineHeight: 1.6 }}>{body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Step 2 — Outreach */}
+          <div>
+            <p className="text-[9px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Step 2 — Send the hook</p>
+            <ScriptCard
+              title="I Brought Your Mascot to Life — DM / Email"
+              tag="Send after building the video"
+              lines={[
+                { type: "note", text: "Don't pitch. Just tease. The video does the selling." },
+                { type: "send", label: "DM (Instagram / Facebook)", text: "Hey [NAME] 👋\n\nI brought [BUSINESS NAME]'s mascot to life — and it can promote your business 24/7 without you ever having to record anything.\n\nWould you like to see it?" },
+                { type: "send", label: "Email version", text: "Subject: I made something for [BUSINESS NAME]\n\nHi [NAME],\n\nI was looking at [BUSINESS NAME]'s social media and thought there was an opportunity to do something really cool for your brand.\n\nSo I went ahead and created an AI mascot character for your business — it can show up on your social media, talk about your services, and build brand recognition on autopilot.\n\nWould you want to see it?\n\nMandy\nThe Dollhouse Brand Studio" },
+                { type: "subhead", text: "When they say yes" },
+                { type: "you_say", text: "Option A — Send the video immediately and let it speak for itself.\n\nOption B — \"Great — it's ready. When do you have 5 minutes to take a look? I want to show you what it could do for [BUSINESS NAME].\"" },
+                { type: "subhead", text: "Follow-up if no response (3–5 days)" },
+                { type: "send", label: "Follow-up message", text: "Hey [NAME], just checking — did you see my message about the [BUSINESS NAME] mascot? I'd love to show it to you this week if you have a few minutes 😊" },
+              ]}
+            />
+          </div>
+
+          {/* Step 3 — Cold Call */}
+          <div>
+            <p className="text-[9px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Step 3 — Cold call (if no email reply)</p>
+            <ScriptCard
+              title="Mascot Cold Call Script"
+              tag="Call 3–5 days after no reply"
+              lines={[
+                { type: "you_say", text: "\"Hey [NAME], this is [YOUR NAME] — I reached out by email a few days ago. I'm the one who creates AI video clones of business owners for their social media.\n\nI'd love to make one of you for free, just to show you what it looks like. Would you be open to seeing it?\"" },
+                { type: "subhead", text: "If they ask \"what is it exactly?\"" },
+                { type: "you_say", text: "\"So basically — we take a photo of you and use AI to create a video of you talking, moving, promoting your business. It looks completely real. You never have to film anything.\n\nMost business owners have never seen anything like it until I show them. That's why I'd rather just send it to you — want me to put one together for free?\"" },
+                { type: "subhead", text: "If they say they're not interested" },
+                { type: "you_say", text: "\"No worries at all — can I ask, is it just the timing, or is social media not something you're focused on right now?\" [Let them answer — tells you if it's a no forever or a not now.]" },
+                { type: "subhead", text: "If they want to think about it" },
+                { type: "you_say", text: "\"Of course — how about this: I'll put the free sample together anyway and just send it over. No strings. You can see it and decide from there. Fair enough?\"" },
+                { type: "warn", text: "Always offer the free sample — it's a zero-resistance yes. The sample is a 15–20 second demo video, not a full build. Your only goal on this call: get them to agree to see it." },
+              ]}
+            />
+          </div>
+
+          {/* Step 4 — Meeting close */}
+          <div>
+            <p className="text-[9px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Step 4 — The meeting pitch</p>
+            <ScriptCard
+              title="Mascot Meeting — What to Say"
+              tag="Zoom or in-person"
+              lines={[
+                { type: "note", text: "Show the mascot video first. Let them react. Then pitch." },
+                { type: "you_say", text: "\"What I'd love to do for [BUSINESS NAME] is create 3–4 pillar mascot videos a month — these get pinned at the top of your page so every new visitor sees them first. Then for the rest of the month, we fill your feed with daily posts that our AI creates for you.\n\nOn top of that, we boost your best-performing mascot video with a small Meta budget — even $150 a month goes a long way. People start seeing your mascot everywhere on social media. They see the same character showing up over and over — brand recognition builds, trust builds, they book.\n\nThen from there we can layer in ad management, Google Business setup, email marketing — whatever makes sense for where your business is at right now.\n\nThe base package starts at $500 to $750 a month for the content. Add-ons from there.\"" },
+                { type: "subhead", text: "Content strategy breakdown" },
+                { type: "note", text: "Week 1: Drop the first pillar mascot video — pin it to the top of the profile.\nWeeks 2–4: Daily AI-generated branded posts fill the feed.\nEach month: Create 3–4 new mascot videos, boost the best one as a Meta ad.\nRetargeting: People who engaged get shown the ad again → they keep seeing the mascot → trust builds → they book." },
+                { type: "subhead", text: "The $150 Meta boost — say this" },
+                { type: "you_say", text: "\"The $150 goes directly from you to Meta — not to us. We just manage it. But every month we take your best mascot video and push it out to a targeted audience in [CITY] who match your exact ideal customer. At $150, you're getting thousands of fresh eyes on your best content every single month. It makes everything we're creating work 5x harder.\"" },
+              ]}
+            />
+          </div>
+
+        </div>
+      </div>
+      </>}
+
+      {/* ─── Platform Downsell ─────────────────────────────── */}
+      <SectionHeader
+        label="Step 7 — Retention"
+        title="Don't lose them completely."
+        sub="When a DFY client wants to cancel, offer the platform. Keep the relationship, keep the revenue — even if they're not ready for full service."
+      />
+
+      <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+        <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+          <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Internal — Downsell Script</p>
+          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>The Platform Downsell — 3 Tiers</h3>
+          <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.5)" }}>Never mention the platform by name. Always say "our platform" or "the platform."</p>
+        </div>
+        <div className="px-6 py-5 space-y-5">
+          <div className="rounded-xl p-4" style={{ background: "rgba(200,168,100,0.07)", border: "1px solid rgba(200,168,100,0.18)" }}>
+            <p className="text-[9px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>When to use this</p>
+            <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.7)", lineHeight: 1.65 }}>
+              A client says they want to cancel or pause their DFY service. Before you let them walk, offer the platform as a self-serve option. This keeps them in your ecosystem, keeps monthly recurring revenue flowing, and leaves the door wide open to upsell them back to full service when they're ready.
+            </p>
+          </div>
+
+          {/* Tier Cards */}
+          <div className="grid gap-4 sm:grid-cols-3">
+            {([
+              { name: "Basic", price: "$97/mo", color: "#b8a070", items: ["CRM & contact management", "Automated follow-up sequences", "Calendar + booking system", "2-way SMS & email", "Pipeline tracking", "Mobile app access"] },
+              { name: "Growth", price: "$297/mo", color: "var(--rose)", items: ["Everything in Basic", "Social media scheduler", "AI content tools", "Review request automation", "Email & SMS broadcast", "Funnel & landing pages", "Missed call text-back"] },
+              { name: "Elite", price: "$497/mo", color: "var(--ink)", items: ["Everything in Growth", "AI voice agent (phone)", "DM auto-responder (IG/FB)", "Advanced reporting dashboard", "Workflow automation builder", "Priority support", "White-glove onboarding call"] },
+            ] as const).map(tier => (
+              <div key={tier.name} className="rounded-xl p-4" style={{ background: tier.name === "Elite" ? "var(--ink)" : "rgba(255,255,255,0.7)", border: `1.5px solid ${tier.color}40` }}>
+                <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: tier.name === "Elite" ? "var(--gold)" : tier.color, fontWeight: 500 }}>{tier.name}</p>
+                <p style={{ fontFamily: FONT_LUXE, fontSize: "1.3rem", color: tier.name === "Elite" ? "var(--cream)" : "var(--ink)", fontWeight: 700, marginTop: "2px" }}>{tier.price}</p>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.7rem", color: tier.name === "Elite" ? "rgba(255,255,255,0.4)" : "rgba(30,15,10,0.4)", marginTop: "2px", marginBottom: "10px" }}>per month</p>
+                <div className="space-y-1.5">
+                  {tier.items.map((item, i) => (
+                    <p key={i} style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: tier.name === "Elite" ? "rgba(255,255,255,0.7)" : "rgba(30,15,10,0.65)", display: "flex", gap: "6px" }}>
+                      <span style={{ color: tier.name === "Elite" ? "var(--gold)" : tier.color, flexShrink: 0 }}>✓</span>
+                      {item}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Downsell scripts */}
+          <div className="space-y-4">
+            <p className="text-[9px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Word-for-Word Scripts</p>
+
+            <div className="rounded-xl p-4 space-y-3" style={{ background: "rgba(255,255,255,0.5)", border: "1px solid rgba(200,168,100,0.15)" }}>
+              <p className="text-[9px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, color: "rgba(30,15,10,0.4)" }}>When they say: "I need to cancel / pause / can't afford it right now"</p>
+              <div className="rounded-lg p-3" style={{ background: "var(--ink)" }}>
+                <p className="text-[9px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>You say</p>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.7, whiteSpace: "pre-line" }}>{`"I completely understand — and I appreciate you being upfront with me.
+
+Before we close everything out, I want to make sure you know this doesn't have to be all-or-nothing.
+
+We have a self-serve option where you keep access to our platform — the same system your automations have been running on. You keep your CRM, your contacts, your booking system, your follow-up sequences — everything your business depends on — for just $97 a month.
+
+If you want more — the social scheduler, the AI tools, the review automation — that's $297. And if you ever want the voice agent and DM responder back, that's $497.
+
+It's not the full done-for-you service, but it keeps everything running and keeps the door open. A lot of clients who step back end up coming back to the full service once things settle.
+
+Would that work as a middle ground for right now?"`}
+                </p>
+              </div>
+            </div>
+
+            <div className="rounded-xl p-4 space-y-3" style={{ background: "rgba(255,255,255,0.5)", border: "1px solid rgba(200,168,100,0.15)" }}>
+              <p className="text-[9px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, color: "rgba(30,15,10,0.4)" }}>If they want to know more before deciding</p>
+              <div className="rounded-lg p-3" style={{ background: "var(--ink)" }}>
+                <p className="text-[9px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>You say</p>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.7, whiteSpace: "pre-line" }}>{`"So there are three tiers.
+
+The Basic at $97 keeps your CRM, automations, calendar, and 2-way messaging live. That's the core of everything.
+
+The Growth at $297 adds the content scheduling tools, email and SMS broadcasting, your review automation, and funnel pages — so you can still do some of your own marketing through the platform.
+
+The Elite at $497 puts the AI voice agent and DM responder back on — so leads never fall through the cracks even if you're managing the rest yourself.
+
+I'd start at whichever level makes sense for where you are right now. You can upgrade anytime."`}
+                </p>
+              </div>
+            </div>
+
+            <div className="rounded-xl p-4 space-y-3" style={{ background: "rgba(255,255,255,0.5)", border: "1px solid rgba(200,168,100,0.15)" }}>
+              <p className="text-[9px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, color: "rgba(30,15,10,0.4)" }}>If they still say no to everything</p>
+              <div className="rounded-lg p-3" style={{ background: "rgba(30,15,10,0.07)" }}>
+                <p className="text-[9px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "rgba(30,15,10,0.4)" }}>You say</p>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(30,15,10,0.7)", lineHeight: 1.7, whiteSpace: "pre-line" }}>{`"No worries at all — I appreciate you giving us the chance. When the timing is better, the door is always open. I'll keep your account on file so getting back up and running is easy.
+
+And if you ever refer someone our way who signs on, I'll make sure you're taken care of.
+
+Thank you for the time we had — I genuinely wish you the best with [BUSINESS NAME]."`}
+                </p>
+              </div>
+              <div className="rounded-lg p-3" style={{ background: "rgba(200,168,100,0.08)", border: "1px solid rgba(200,168,100,0.2)" }}>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "var(--ink)", lineHeight: 1.6 }}>
+                  <strong>After they leave:</strong> Keep them warm. Follow up in 60–90 days with a win story or a relevant tip. Clients who leave and come back are often the most loyal ones. Never burn bridges.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
   );
@@ -4685,7 +5246,7 @@ const STAGE_INFO: Record<PStage, { label: string; color: string; guide: string; 
   responded:   { label: "They Responded!", color: "#4a9970", nextStage: "call_set",    nextLabel: "✓ Call Booked",       guide: "They replied — green light! Do this in order: Step 1: BUILD THEIR AI CLONE NOW while the excitement is fresh. Grab their photo from their website, Instagram, or Google. Write a 20–25 second script in their voice. Generate the video using your AI video tool. Step 2: Use 'Build Their AI Clone' prompts below to write the script fast. Step 3: Book a 10-minute Zoom or in-person meeting using the 'Book the 10-Min Show & Tell' template. Step 4: Do NOT send the clone before the meeting — the reveal is face to face. That's where the wow moment happens and the deal closes." },
   call_set:    { label: "Call Scheduled",  color: "#7b68ee", nextStage: "proposal",    nextLabel: "✓ Proposal Sent",     guide: "Prep using the CLOSER notes below. Listen first, pitch second. Send the proposal within 24 hours of the call ending — while you're still fresh in their mind." },
   proposal:    { label: "Proposal Sent",   color: "#e08030", nextStage: "negotiating", nextLabel: "✓ They're Interested", guide: "Wait 24–48 hours. No reply? Follow up once. Don't resend the deck — just ask if they had a chance to look at it." },
-  negotiating: { label: "Negotiating",     color: "#b8860b", nextStage: "won",         nextLabel: "✓ Mark as Won 🎉",   guide: "Price is the most common objection. First offer: the 14-day free trial ($500 setup upfront, first 2 weeks free, then monthly). If they want a longer commitment discount, offer 15% off annual. Don't drop the monthly price — protect your rate and add value instead." },
+  negotiating: { label: "Negotiating",     color: "#b8860b", nextStage: "won",         nextLabel: "✓ Mark as Won 🎉",   guide: "Price is the most common objection. First offer: the 14-day free trial ($500 setup upfront, first 2 weeks free, then monthly). If they want a longer commitment discount, offer 10% off a 6-month agreement or 20% off a 12-month agreement. Don't drop the monthly price — protect your rate and add value instead." },
   won:         { label: "🎉 Won!",         color: "#2a8a50",                                                              guide: "Send the agreement and onboarding form TODAY. Schedule the kickoff call within 48 hours. Strike while they're excited." },
   lost:        { label: "Not Now",         color: "#888",    nextStage: "new_lead",    nextLabel: "↩ Re-Open",           guide: "Send a warm break-up email. Leave the door open. Set a 30-60 day reminder to circle back — people's situations change." },
 };
@@ -5021,7 +5582,7 @@ Mandy`,
 
 "It's too expensive."
 → "What's it worth if we book ${biz} [X] new ${niche} clients this month? Most clients make it back in the first month."
-→ Offer annual: "If budget's a concern, I can do 15% off if ${biz} locks in a year — works out to [ANNUAL PRICE]."
+→ Offer a term discount: "If budget's a concern, I can do 10% off on a 6-month agreement, or 20% off if ${biz} locks in for the full year — works out to [DISCOUNTED PRICE]/mo."
 
 "I need to think about it."
 → "Of course — what's the one thing you're not sure about? I'd rather talk through it now."
@@ -5035,9 +5596,11 @@ Mandy`,
     annual_deal:
 `Hi ${fn},
 
-Quick thought. Would ${biz} want to lock in the rate for the year? I can do 15% off if you pay annually which works out to [ANNUAL PRICE].
+Quick thought. Would ${biz} want to lock in the rate for the year? I can do 20% off your monthly rate if you commit to a 12-month plan — which works out to [ANNUAL PRICE]/mo.
 
-Most of our clients who go annual save a few hundred dollars and honestly just love not having to think about the invoice every month.
+If a full year feels like a lot, we also offer 10% off on a 6-month agreement. Either way you're saving money and locking in the same rate with no surprises.
+
+Most of our clients who go annual save a few hundred dollars and honestly just love not having to think about it month to month.
 
 Let me know and I'll put together the annual agreement today.
 
@@ -6557,7 +7120,9 @@ const QB_ADDONS: QBAddon[] = [
   { key: "linkedin",          type: "monthly", price: 500,  emoji: "💼", name: "LinkedIn Management",                 desc: "Daily posts + connection outreach + content" },
   { key: "gbp",               type: "monthly", price: 250,  emoji: "📍", name: "Google Business Profile",             desc: "Weekly posts + review monitoring + Q&A" },
   { key: "extra_platform",    type: "monthly", price: 400,  emoji: "➕", name: "Extra Platform Add-On",               desc: "Add Pinterest, YouTube, or X management" },
+  { key: "fb_ads",            type: "monthly", price: 500,  emoji: "📘", name: "Meta / Facebook Ads Management",      desc: "Ad campaign setup, audience targeting, creative, and monthly optimisation. Recommended: $150/mo client boost budget paid direct to Meta." },
   { key: "google_ads",        type: "monthly", price: 700,  emoji: "🎯", name: "Google Ads Management",               desc: "Campaign setup, copy, optimisation (ad spend separate)" },
+  { key: "mascot_content",    type: "monthly", price: 600,  emoji: "🎭", name: "Mascot / AI Character Content",        desc: "3–4 pillar mascot videos/mo + daily branded posts featuring your AI character. Pinned content + feed filler." },
   { key: "website_hosting",   type: "monthly", price: 97,   emoji: "🌐", name: "Website Hosting & Maintenance",       desc: "Hosting, updates, uptime monitoring" },
   // ── One-Time Services ────────────────────────────────────────────────────
   { key: "website_build",     type: "onetime", price: 2000, emoji: "🏗️", name: "Website & Landing Page Design",       desc: "A conversion-ready website or landing page — designed for your brand and built to turn visitors into clients." },
@@ -6584,7 +7149,7 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
   const [pkg, setPkg] = useState<PkgKey | null>(null);
   const [addons, setAddons] = useState<Set<string>>(new Set());
   const [trial, setTrial] = useState(false);
-  const [annual, setAnnual] = useState(false);
+  const [contractLen, setContractLen] = useState<"3mo" | "6mo" | "12mo">("3mo");
   const [adSpend, setAdSpend] = useState("");
   const [note, setNote] = useState("");
   const [copied, setCopied] = useState<"quote" | "email" | null>(null);
@@ -6612,7 +7177,8 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
   const monthlyBase = selectedPkg?.monthly ?? 0;
   const monthlyAddonsTotal = monthlyAddons.reduce((s, a) => s + a.price, 0);
   const monthlySubtotal = monthlyBase + monthlyAddonsTotal;
-  const discount = annual ? Math.round(monthlySubtotal * 0.15) : 0;
+  const discountPct = contractLen === "6mo" ? 0.10 : contractLen === "12mo" ? 0.20 : 0;
+  const discount = Math.round(monthlySubtotal * discountPct);
   const monthlyTotal = monthlySubtotal - discount;
   const setupFee = selectedPkg ? 500 : 0;
   const onetimeTotal = onetimeAddons.reduce((s, a) => s + a.price, 0);
@@ -6730,9 +7296,10 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
     if (monthlyAddons.length > 0) {
       monthlyAddons.forEach(a => lines.push(dotLine(`  + ${a.name}`, `$${a.price} USD/mo`)));
     }
-    if (annual) {
+    if (contractLen !== "3mo") {
+      const label = contractLen === "6mo" ? "6-Month Discount (10% off)" : "12-Month Discount (20% off — you save!)";
       lines.push(dotLine("  Subtotal", `$${monthlySubtotal.toLocaleString()} USD/mo`));
-      lines.push(dotLine("  Annual Savings (15% off — you save!)", `−$${discount} USD/mo`));
+      lines.push(dotLine(`  ${label}`, `−$${discount} USD/mo`));
     }
     lines.push(dotLine("  Monthly Total", `$${monthlyTotal.toLocaleString()} USD/mo`));
     lines.push("");
@@ -6743,8 +7310,12 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
     }
     if (adSpend) {
       lines.push("");
-      lines.push(`  * Ad budget (you pay this direct to Meta): ${adSpend}`);
+      lines.push(`  * Ad budget (paid directly by you to the platform): ${adSpend}`);
       lines.push("    This is NOT paid to us — it goes straight to your ads.");
+    } else if (addons.has("fb_ads") || addons.has("google_ads")) {
+      lines.push("");
+      lines.push("  * Recommended: $150/mo Meta budget to boost your best-performing post each month.");
+      lines.push("    This is paid directly to Meta by you — not included in your retainer.");
     }
     lines.push("");
     lines.push("─".repeat(54));
@@ -6757,6 +7328,17 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
       lines.push(dotLine("  Then every month", `$${monthlyTotal.toLocaleString()} USD/mo`));
     }
     lines.push("─".repeat(54));
+    lines.push("");
+
+    // --- Contract Terms ---
+    const contractLabel = contractLen === "6mo" ? "6-Month Agreement (10% discount applied)" : contractLen === "12mo" ? "12-Month Agreement (20% discount applied)" : "3-Month Minimum";
+    lines.push("─".repeat(54));
+    lines.push("  COMMITMENT & CANCELLATION:");
+    lines.push("─".repeat(54));
+    lines.push("");
+    lines.push(`  Contract: ${contractLabel}`);
+    lines.push("  After your minimum term: cancel with 30 days' written notice.");
+    if (contractLen !== "3mo") lines.push("  Discount locked for the full term. Rate does not change.");
     lines.push("");
 
     // --- Timeline ---
@@ -7021,17 +7603,40 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
                 sub="$500 setup collected today · first 2 weeks free · month 1 billed on day 15"
                 activeColor="#4a9970"
               />
-              <Toggle
-                active={annual} onToggle={() => setAnnual(!annual)}
-                label="Annual Commitment Discount"
-                sub="15% off monthly total when client commits to 12 months"
-              />
+              {/* Contract Length Selector */}
+              <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.4)", border: "1px solid rgba(200,168,100,0.2)" }}>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.875rem", color: "var(--ink)" }}>Contract Length</p>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.75rem", color: "rgba(30,15,10,0.5)", marginTop: "2px" }}>3-month minimum · 10% off 6 months · 20% off 12 months</p>
+                <div className="grid grid-cols-3 gap-2 mt-3">
+                  {([
+                    { val: "3mo", label: "3 Months", sub: "Standard" },
+                    { val: "6mo", label: "6 Months", sub: "10% off" },
+                    { val: "12mo", label: "12 Months", sub: "20% off" },
+                  ] as const).map(opt => {
+                    const active = contractLen === opt.val;
+                    return (
+                      <button
+                        key={opt.val}
+                        onClick={() => setContractLen(opt.val)}
+                        className="py-2.5 px-2 rounded-xl text-center transition-all"
+                        style={{
+                          background: active ? "var(--gold)" : "rgba(255,255,255,0.6)",
+                          border: active ? "2px solid var(--gold)" : "1px solid rgba(200,168,100,0.25)",
+                        }}
+                      >
+                        <p style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", color: active ? "var(--cream)" : "var(--ink)", fontWeight: active ? 600 : 400 }}>{opt.label}</p>
+                        <p style={{ fontFamily: FONT_BODY, fontSize: "0.68rem", color: active ? "rgba(250,243,234,0.75)" : "#4a9970", marginTop: "2px" }}>{opt.sub}</p>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
               <div>
                 <label className="block mb-1.5" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.12em", color: "rgba(30,15,10,0.5)", textTransform: "uppercase" }}>Client Ad Spend Budget <span style={{ fontWeight: 300 }}>(optional)</span></label>
                 <input
                   value={adSpend}
                   onChange={e => setAdSpend(e.target.value)}
-                  placeholder="e.g. $500/mo Meta · $300/mo Google (paid directly by client)"
+                  placeholder="e.g. $150/mo Meta boost (recommended minimum) · $500/mo Google (paid directly by client)"
                   className="w-full px-4 py-2.5 rounded-xl outline-none"
                   style={inputStyle}
                 />
@@ -7077,9 +7682,9 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
                       <span style={{ fontFamily: FONT_LUXE, fontSize: "0.8rem", color: "rgba(255,255,255,0.6)" }}>+${a.price}/mo</span>
                     </div>
                   ))}
-                  {annual && (
+                  {contractLen !== "3mo" && (
                     <div className="flex justify-between items-center pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
-                      <span style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "#4a9970" }}>Annual Discount (15%)</span>
+                      <span style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "#4a9970" }}>{contractLen === "6mo" ? "6-Month Discount (10%)" : "12-Month Discount (20%)"}</span>
                       <span style={{ fontFamily: FONT_LUXE, fontSize: "0.8rem", color: "#4a9970" }}>−${discount.toLocaleString()}/mo</span>
                     </div>
                   )}
@@ -7313,9 +7918,9 @@ function DiscoveryCallTab() {
     reaction: {
       heading: "What was their reaction?",
       script: choices.package === "content_starter"
-        ? `"So there's actually a perfect entry-point for this. It's called our Content Starter — $500 a month. We create 8 branded posts for you every month, schedule everything, and it's completely done for you. No AI avatar, no automation — just really clean, on-brand content going out consistently. There's a one-time $500 setup fee to get everything built out, and after that it's month-to-month.\n\nWhat do you think?"`
+        ? `"So there's actually a perfect entry-point for this. It's called our Content Starter — $500 a month. We create 8 branded posts for you every month, schedule everything, and it's completely done for you. No AI avatar, no automation — just really clean, on-brand content going out consistently. There's a one-time $500 setup fee to get everything built out, and we start with a 3-month minimum so we actually have time to build momentum. After that you can stay month-to-month or lock in a longer term for a discount.\n\nWhat do you think?"`
         : choices.package === "starter"
-        ? `"So the plan I'd recommend for ${biz} is our Starter. It's $1,000 a month — and you get your full AI clone built so your face and voice is showing up in content without you filming, one platform fully managed, all your automations set up, and a monthly performance report. There's a one-time $500 setup fee to build everything out, and then it's month-to-month with no contract.\n\nWant me to walk you through what that specifically looks like for ${biz}?"`
+        ? `"So the plan I'd recommend for ${biz} is our Starter. It's $1,000 a month — and you get your full AI clone built so your face and voice is showing up in content without you filming, one platform fully managed, all your automations set up, and a monthly performance report. There's a one-time $500 setup fee to build everything out, and we start with a 3-month minimum — that's what it takes to really see it working. After that it's flexible.\n\nWant me to walk you through what that specifically looks like for ${biz}?"`
         : choices.package === "growth"
         ? `"For ${biz}, I'd actually go with our Growth plan. It's $2,500 a month — and this gets you across three platforms fully managed, Instagram, TikTok, and Facebook. Your AI clone running, paid ad management, email and SMS automation so leads get followed up automatically. One-time $500 setup fee to kick things off. Based on what you told me about [pain], this is the one that's really going to move the needle.\n\nDoes that feel like the right level for where you want to take ${biz}?"`
         : `"Honestly, based on everything you've told me, I think Elite is the right move for ${biz}. It's $5,000 a month — and it's the full system. Five platforms, AI clone, AI voice agent so your phone is never unmanned, full ad management, everything. Your business completely dominating online, nothing left to chance. One-time $500 setup fee.\n\nThis is what we build for businesses that are serious about growth. What's your reaction to that?"`,
@@ -7643,14 +8248,20 @@ const PROPOSAL_DECKS: PDeck[] = [
       {
         layout: "cta", bg: "rose",
         heading: "Try it free for 14 days.",
-        sub: "$500 setup fee  ·  14-day free trial  ·  Month-to-month, no contract",
-        script: "Here's the offer. 14-day free trial. You only pay the $500 setup fee today — that covers the buildout. Your first two full weeks of content and service are completely on us. If after 14 days you don't feel like it's working, we part as friends. No long-term contract, no lock-in. I'm confident enough in what we deliver that I'm willing to put my money where my mouth is.",
+        sub: "$500 setup fee  ·  14-day free trial  ·  3-month minimum  ·  30-day cancellation notice",
+        script: "Here's the offer. 14-day free trial. You only pay the $500 setup fee today — that covers the buildout. Your first two full weeks of content and service are completely on us. After the trial, we start with a 3-month minimum — social media needs 60 to 90 days to build real momentum and I want you to actually see results before you make any bigger decisions. After 3 months, 30 days' notice and you're out. I'm confident enough in what we deliver that I'm willing to put my money where my mouth is.",
       },
       {
         layout: "title", bg: "dark",
         heading: "Let's build\nyour brand.",
         sub: "The Dollhouse Brand Studio",
         script: "So — based on everything I've shown you today, can you see this working for your business? [Pause. Let them respond. Do not fill the silence. Whoever speaks first, loses. This moment is the most important part of the entire pitch.]",
+      },
+      {
+        layout: "title", bg: "dark",
+        heading: "Thank you.",
+        sub: "The Dollhouse Brand Studio  ·  hello@shopdollhouse.co",
+        script: "Thank you so much for your time today. I genuinely believe in what we can build together — and I'm excited about what's possible for your business. The door is always open. Reach out any time. [Smile. Give them your card. Let them leave feeling great.]",
       },
     ],
   },
@@ -7748,6 +8359,12 @@ const PROPOSAL_DECKS: PDeck[] = [
         sub: "The Dollhouse Brand Studio",
         script: "So — what do you think? Does this feel like what your business needs right now? [Pause and let them answer. Don't rush this moment.]",
       },
+      {
+        layout: "title", bg: "dark",
+        heading: "Thank you.",
+        sub: "The Dollhouse Brand Studio  ·  hello@shopdollhouse.co",
+        script: "Thank you so much for your time today. I'm really excited about what we can build together. Reach out any time — I'm here. [Smile. Hand over your card. Let them leave on a high note.]",
+      },
     ],
   },
 
@@ -7844,6 +8461,12 @@ const PROPOSAL_DECKS: PDeck[] = [
         heading: "Ready to turn your\nbrand into a movement?",
         sub: "The Dollhouse Brand Studio",
         script: "So — can you see this for your brand? What does your gut tell you? [Pause and let them respond. Don't fill the silence.]",
+      },
+      {
+        layout: "title", bg: "dark",
+        heading: "Thank you.",
+        sub: "The Dollhouse Brand Studio  ·  hello@shopdollhouse.co",
+        script: "Thank you so much for your time today. This is going to be something really special. The door is always open — reach out any time. [Smile. Give them your card. Let them go excited.]",
       },
     ],
   },
@@ -7972,14 +8595,20 @@ const PROPOSAL_DECKS: PDeck[] = [
       {
         layout: "cta", bg: "rose",
         heading: "Try it free for 14 days.",
-        sub: "$500 setup fee  ·  14-day free trial  ·  No lock-in contract",
-        script: "And here's the offer to make this as easy a decision as possible. 14-day free trial. You only pay the $500 setup fee today. Your first two weeks are completely on us. If after 14 days it's not what you expected, we part as friends. I'm confident in what we build, which is why I'm willing to offer this.",
+        sub: "$500 setup fee  ·  14-day free trial  ·  3-month minimum  ·  30-day cancellation notice",
+        script: "And here's the offer to make this as easy a decision as possible. 14-day free trial. You only pay the $500 setup fee today. Your first two weeks are completely on us. After the trial, there's a 3-month minimum — because that's what it takes for the system to really build momentum for your brand. After 3 months, 30 days' notice and you're free to leave. I'm confident in what we build, which is why I'm willing to put the first two weeks on us.",
       },
       {
         layout: "title", bg: "dark",
         heading: "Let's build\nsomething real.",
         sub: "The Dollhouse Brand Studio",
         script: "So — based on everything I've shown you today, can you see this system working for your business? What's your honest reaction? [Pause. Let them speak. Do not fill the silence. This is the moment that matters most.]",
+      },
+      {
+        layout: "title", bg: "dark",
+        heading: "Thank you.",
+        sub: "The Dollhouse Brand Studio  ·  hello@shopdollhouse.co",
+        script: "Thank you so much for your time today. I'm genuinely excited about what we can do for your business. The door is always open — I'm here whenever you're ready. [Smile. Give them your card. End on warmth.]",
       },
     ],
   },
@@ -8093,93 +8722,157 @@ const PROPOSAL_DECKS: PDeck[] = [
         sub: "The Dollhouse Brand Studio",
         script: "So — when you imagine your brand looking like the examples I just showed you — how does that feel? Can you see it? [Pause and let them sit with it. This is an emotional decision. Give them space to feel it.]",
       },
+      {
+        layout: "title", bg: "dark",
+        heading: "Thank you.",
+        sub: "The Dollhouse Brand Studio  ·  hello@shopdollhouse.co",
+        script: "Thank you so much for sitting with me today. I can already picture what your brand is going to look like — and I'm excited to build it. Reach out whenever you're ready. [Smile. Give them your card. End warm.]",
+      },
     ],
   },
 
   /* ── We Made This For You ──────────────────────────────────────────────── */
   {
     id: "made_for_you", name: "We Made This For You", icon: "🎬",
-    tagline: "A personalised reveal deck — show them exactly what you built for them",
+    tagline: "Personalised reveal deck — show the AI clone you built, then close on the $1,000/mo Starter",
     slides: [
       {
         layout: "title", bg: "dark",
         heading: "We built something\nfor you.",
         sub: "The Dollhouse Brand Studio",
-        script: "[Say nothing at first. Let them read the slide. Give it a full 5 seconds.] Before I say a word — I want to show you something. Before this meeting today, we went ahead and built your AI content system. What you're about to see is real content we created specifically for your business. This isn't a demo. This isn't an example. This is yours.",
-      },
-      {
-        layout: "headline", bg: "blush",
-        heading: "We took your brand and imagined what it could look like everywhere.",
-        sub: "Then we built it.",
-        body: "Your AI clone. Your branded content. Your voice — without you filming a thing.",
-        script: "We looked at your business, your audience, your brand — and we asked ourselves: what would it look like if this business had a fully professional, completely consistent content presence? Then we built it. What you're going to see right now is your content. Made for you. Ready to go.",
+        script: "[Say nothing at first. Let them read the slide. Full 5 seconds.] Before I say a word — I want to show you something we did before this meeting. We went ahead and built your AI content system. What you're about to see is real content we created specifically for your business. This isn't a demo. This isn't an example of someone else. This is yours.",
       },
       {
         layout: "image", bg: "dark",
         heading: "This is you.",
         imageSlot: true,
-        imageLabel: "Upload their AI clone video here — this is the big reveal moment",
-        sub: "Your AI clone — created specifically for your brand",
-        script: "[Play the video or show the image. Stay quiet. Watch their reaction. This is the most powerful moment in the pitch. Do not talk over this slide. Let them experience it. After a moment:] That's you. Your face. Your voice. Created by our AI — without you ever having to film. This is what shows up on your social media, every single day, completely done for you.",
+        imageLabel: "⭐ Upload their AI clone video here — this is the moment the deal closes. Play it. Stay silent.",
+        sub: "Your AI clone — built specifically for your brand before this meeting",
+        script: "[Hit play. Say absolutely nothing. Watch their reaction — this is the most powerful moment in the entire pitch. Do not talk over this slide. Let them experience it fully. After a beat:] That's you. Your face. Your voice. Built by our AI — without you ever having to pick up a camera. This is what shows up on your social media every single day. Completely done for you.",
       },
       {
         layout: "image", bg: "blush",
-        heading: "Your branded content",
+        heading: "Your branded posts",
         imageSlot: true,
-        imageLabel: "Upload their branded posts — show content made specifically for them",
-        sub: "Branded posts designed for your business — ready to post",
-        script: "And here's the supporting content we built alongside it. Branded posts, carousels, announcements — everything designed around your specific brand. Your colours, your fonts, your messaging, your audience. This is what your feed could look like every single week.",
+        imageLabel: "Upload branded post examples designed for their business — carousels, graphics, announcements",
+        sub: "Branded content made for your business — ready to publish",
+        script: "And alongside your AI clone, we built out supporting content. Branded posts, carousels, announcements — every single thing designed around your brand. Your colours, your fonts, your messaging, your audience. This is what your feed looks like every week.",
       },
       {
         layout: "image", bg: "light",
         heading: "More of your content",
         imageSlot: true,
-        imageLabel: "Upload more of their content — more examples of what was made for them",
-        sub: "More content examples made specifically for your brand",
-        script: "Here's more of what we created. [Let them look] Every single piece of this was made specifically for your business — not adapted from a template, not repurposed from something else. Made. For. You. This is what our team builds every single month for the businesses we work with.",
+        imageLabel: "Upload more examples — stories, quote cards, product or service posts",
+        sub: "More branded content — every piece made specifically for you",
+        script: "Here's more of what we created. [Let them look.] Every piece of this was made for your business — not adapted from a template. Not repurposed. Made. For. You. This is what our team builds every single month for the businesses we work with.",
       },
       {
         layout: "image", bg: "blush",
-        heading: "One more look",
+        heading: "One more example",
         imageSlot: true,
-        imageLabel: "Upload a final example — reel, carousel, or branded post",
-        sub: "This content is yours — ready to go the moment you say yes",
-        script: "[Another quiet moment. Let them sit with it.] I want to be very clear about something: all of this — everything you've just seen — is already made. It exists. It's yours. All that's left is you saying yes, and this goes live for your business.",
+        imageLabel: "Upload a reel cover, carousel, or second AI clone example — drive the point home",
+        sub: "This content is already done — it goes live the moment you say yes",
+        script: "[Let them absorb this slide quietly.] I want to be completely clear: everything you've seen so far — it exists right now. It's done. It's sitting ready to be scheduled. All that needs to happen is you say yes, and this goes live for your business.",
       },
       {
-        layout: "bullets", bg: "dark",
-        heading: "What this does for your business — every month",
+        layout: "headline", bg: "dark",
+        heading: "This is what your\nsocial media looks like\nevery single week.",
+        sub: "Professionally managed. Completely done for you. Zero effort on your end.",
+        script: "This isn't a one-time thing. This is what we deliver every month — new content, new clone videos, new branded posts, all built around what's working for your audience. Consistently. On brand. Every week. Without you touching it.",
+      },
+      {
+        layout: "bullets", bg: "blush",
+        heading: "What changes for your business",
         bullets: [
           "You show up professionally online every single day — without filming",
           "New people discover your business through consistent content",
-          "You build trust with your audience before they ever reach out",
+          "You build trust before anyone has even spoken to you",
           "Your competitors wonder how you're posting so much",
-          "Leads start coming to you instead of you chasing them",
-          "You focus on your clients while we run your marketing",
+          "Automations follow up with leads so none fall through the cracks",
+          "You focus on your clients — we run your entire marketing",
         ],
-        script: "Here's what changes when this system is running for your business. You stop being invisible. You start showing up every day — professionally, consistently — while you're focused on what you actually do. People discover you. They see you everywhere. They trust you before you've even spoken to them. That's the power of consistent, high-quality content.",
+        script: "Here's what actually changes. You stop being invisible online. You start showing up every day — professionally, consistently — while you're doing the actual work you're good at. People discover you. They see you everywhere. They trust you before they've ever spoken to you. And the automated follow-up system means every inquiry gets responded to instantly, even when you're busy.",
       },
       {
-        layout: "steps", bg: "light",
-        heading: "What happens from here",
-        steps: [
-          { n: "Today", title: "You say yes", desc: "$500 setup fee locked in. Your onboarding call booked within 48 hours." },
-          { n: "Week 1", title: "We finalise everything", desc: "Quick brand call to confirm details. Your clone and content get approved." },
-          { n: "Month 1", title: "You go live", desc: "Everything we built goes live. Your content starts reaching your audience." },
+        layout: "bullets", bg: "light",
+        heading: "The Starter Plan — what's included",
+        bullets: [
+          "Your custom AI brand clone — your face and voice, without filming",
+          "1 platform fully managed (Instagram, Facebook, or TikTok)",
+          "16–20 pieces of content per month — planned, created, and posted",
+          "Automated DM follow-up — every comment turns into a conversation",
+          "Lead capture and booking automation set up",
+          "Monthly performance report — reach, engagement, what's working",
+          "$500 one-time setup fee — everything built before your first month begins",
         ],
-        script: "Here's all that needs to happen now. You confirm today — we collect the setup fee, and your onboarding call is booked within 48 hours. We get on a quick call to finalise the details and get your approval on everything. And then you go live. The content we already made starts reaching your audience. That's it.",
+        script: "So here's exactly what you get. Your AI clone is built — your face and voice showing up in content without you doing a thing. We manage one platform completely — Instagram, Facebook, or TikTok, whichever is right for your audience. We create, plan, and post 16 to 20 pieces of content every single month. Every comment on your posts triggers an automatic DM, turning engagement into conversations. And every month you get a full report showing exactly what's working. All of this, done for you.",
+      },
+      {
+        layout: "pricing", bg: "dark",
+        heading: "The investment",
+        prices: [
+          { name: "One-Time Setup Fee", price: "$500", tag: "Charged once — never again" },
+          { name: "Starter Plan", price: "$1,000/mo", tag: "Everything, done for you, every month" },
+          { name: "14-Day Free Trial", price: "On us", tag: "$500 setup today · 2 weeks free · then $1,000/mo" },
+        ],
+        script: "Here's the investment. One-time $500 setup fee — that covers building your AI clone, your content system, your automations, everything. Then $1,000 a month, and we handle all of it every single month. And because I want you to see results before you commit to anything, we offer a 14-day free trial. You pay the $500 setup today to lock in your spot, and your first two weeks of service are completely on us. You see it working before your first monthly invoice.",
+      },
+      {
+        layout: "headline", bg: "blush",
+        heading: "One new client pays\nfor the whole month.",
+        sub: "What's a single new client worth to your business?",
+        body: "For most businesses we work with, one or two new bookings from this system covers the entire investment — every month.",
+        script: "Let me put this in perspective. What's one new client worth to your business? Not over a year — just one. Take that number. Now compare it to $1,000 a month. For most of the businesses we work with, the system pays for itself in the first month. This isn't a marketing expense. It's the most efficient investment you can make in your business right now.",
+      },
+      {
+        layout: "image", bg: "light",
+        heading: "Your results start here",
+        imageSlot: true,
+        imageLabel: "Optional — upload a before/after comparison, a result screenshot, or a client win to add social proof",
+        sub: "Real results from real businesses — this is what consistent content does",
+        script: "[If you have a result to show — show it here. A reach screenshot, a booking spike, an engagement win from another client.] This is what we see when a business commits to showing up consistently. Reach goes up. Engagement goes up. Bookings go up. Because when people see you everywhere, they trust you — and when they trust you, they reach out.",
+      },
+      {
+        layout: "steps", bg: "dark",
+        heading: "What happens after you say yes",
+        steps: [
+          { n: "Today", title: "Lock in your spot", desc: "$500 setup fee collected. Onboarding call scheduled within 48 hours." },
+          { n: "Week 1–2", title: "We build everything", desc: "Quick brand call, final approvals on your clone and content. Trial begins." },
+          { n: "Month 1", title: "You go live", desc: "Your content is live, automations are running, leads are being followed up." },
+          { n: "Month 2+", title: "Full momentum", desc: "Monthly reports, ongoing content, refining what works. Fully on autopilot." },
+        ],
+        script: "Here's exactly what happens from here. Today — you confirm, we collect the $500 setup fee, and your onboarding call is in the calendar within 48 hours. Week one and two — we finalise everything, get your approvals, and your trial begins. By month one, your content is live and your automations are running. By month two, you're in full momentum — reporting every month, content running on autopilot, leads being followed up automatically. It moves fast because we want you seeing results as quickly as possible.",
+      },
+      {
+        layout: "bullets", bg: "blush",
+        heading: "Let's be real about what you're choosing between",
+        bullets: [
+          "Keep doing what you're doing — hoping it eventually picks up",
+          "Hire someone in-house — $3,000–$6,000/mo + benefits + management",
+          "DIY it yourself — hours every week, inconsistent results",
+          "Work with us — $1,000/mo, fully done for you, starting today",
+          "Your content is already built. It costs you nothing to look at it.",
+          "Every day you wait is a day your competitors keep showing up.",
+        ],
+        script: "I want to put this in context. You've got a few options. Keep doing what you're doing and hope things pick up on their own. Hire someone in-house — which runs $3,000 to $6,000 a month once you factor in salary and benefits, and you still have to manage them. Do it yourself — which costs you the most valuable thing you have, your time. Or work with us for $1,000 a month, and we handle everything. Your content is already built and sitting there. The only question is whether you use it.",
       },
       {
         layout: "cta", bg: "rose",
-        heading: "This is already built.",
-        sub: "All you have to do is say yes.",
-        script: "I want to be direct with you. We built this before you walked in today because we believed in your business enough to invest in it first. Everything you saw — it exists. It's ready. The only thing standing between your business and this content going live is one decision. What do you think?",
+        heading: "This is already built.\nAll you have to do\nis say yes.",
+        sub: "$500 setup fee  ·  14-day free trial  ·  3-month minimum  ·  30-day cancellation notice",
+        script: "I want to be direct with you. We built this before you walked in today because we believed in your business enough to invest in it first. Everything you saw — it exists, it's ready, it can go live this week. The only thing standing between your business and this content running is one decision. We start with a 3-month minimum — because that's what it takes to build real momentum — and after that, 30 days' notice if you ever need to stop. But I'm confident enough in what we build that I'm willing to put the first two weeks on us. So — what do you think?",
       },
       {
         layout: "title", bg: "dark",
         heading: "All that's left\nis one decision.",
         sub: "The Dollhouse Brand Studio",
-        script: "[Say nothing. Just let them sit with everything they've seen. If they ask a question, answer it. If they go quiet — let them. The first person to speak loses. You've already done the work. Now let them decide.]",
+        script: "[Say nothing. Let them sit with everything they've seen. If they ask a question, answer it calmly. If they go quiet — let them. Do not fill the silence. You've done the work. You showed them what's possible. Now let them decide. The first person to speak after this slide loses.]",
+      },
+      {
+        layout: "title", bg: "dark",
+        heading: "Thank you.",
+        sub: "The Dollhouse Brand Studio  ·  hello@shopdollhouse.co",
+        script: "Thank you so much for your time today. We built all of this for you because we genuinely believe in your business — and I hope you can feel that. I'm excited for what comes next. The door is always open. [Smile. Give them your card. Let them leave on a high.]",
       },
     ],
   },
@@ -8314,6 +9007,12 @@ const PROPOSAL_DECKS: PDeck[] = [
         heading: "Your business should\nbe running 24/7.",
         sub: "The Dollhouse Brand Studio",
         script: "So — how many leads do you think you're losing right now every week? And what would it mean for your business if you stopped losing them? [Let them answer. This question plants the seed. Whatever number they say — agree with it. That's your ROI argument. Then ask: 'What would you say if I could show you exactly how to fix that today?']",
+      },
+      {
+        layout: "title", bg: "dark",
+        heading: "Thank you.",
+        sub: "The Dollhouse Brand Studio  ·  hello@shopdollhouse.co",
+        script: "Thank you so much for your time today. The system I showed you — it works. And I'd love to build it for your business. I'm here whenever you're ready. [Smile. Give them your card. End warm and confident.]",
       },
     ],
   },
@@ -8784,16 +9483,14 @@ function ProposalTab() {
             {deck.name} &nbsp;·&nbsp; {slideIdx + 1}/{deck.slides.length}
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            {/* Notes toggle — only shown in fullscreen, subtle */}
-            {isFullscreen && (
-              <button
-                onClick={() => setShowNotes(n => !n)}
-                title="Toggle script (S key)"
-                style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.15em", textTransform: "uppercase", color: showNotes ? "#c4a87a" : "rgba(255,255,255,0.2)", background: "none", border: `1px solid ${showNotes ? "rgba(196,168,122,0.3)" : "rgba(255,255,255,0.08)"}`, borderRadius: 6, padding: "3px 10px", cursor: "pointer" }}
-              >
-                S
-              </button>
-            )}
+            {/* Notes toggle — always available, subtle. Press S or click to peek at script. */}
+            <button
+              onClick={() => setShowNotes(n => !n)}
+              title="Toggle speaker notes (S key)"
+              style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.15em", textTransform: "uppercase", color: showNotes ? "#c4a87a" : "rgba(255,255,255,0.18)", background: "none", border: `1px solid ${showNotes ? "rgba(196,168,122,0.3)" : "rgba(255,255,255,0.07)"}`, borderRadius: 6, padding: "3px 10px", cursor: "pointer" }}
+            >
+              📋
+            </button>
             {/* Fullscreen toggle */}
             {!isFullscreen && (
               <button
@@ -8834,22 +9531,13 @@ function ProposalTab() {
             </div>
           </div>
 
-          {/* Script — shown below slide in normal mode, hidden in fullscreen (toggle with S) */}
-          {!isFullscreen && (
-            <div style={{ width: "100%", maxWidth: 1120, marginTop: 12, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(196,168,122,0.15)", borderRadius: 12, padding: "14px 22px", flexShrink: 0 }}>
-              <div style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(255,255,255,0.78)", lineHeight: 1.75 }}>
-                {curSlide.script}
-              </div>
-            </div>
-          )}
-
-          {/* Fullscreen notes overlay — press S to show/hide */}
-          {isFullscreen && showNotes && (
-            <div style={{ position: "absolute", bottom: 56, left: 0, right: 0, background: "rgba(8,4,4,0.9)", backdropFilter: "blur(16px)", padding: "14px 40px 10px", borderTop: "1px solid rgba(196,168,122,0.15)", zIndex: 20 }}>
+          {/* Speaker notes overlay — hidden by default. Press S or click 📋 to peek. Client never sees this. */}
+          {showNotes && (
+            <div style={{ position: "absolute", bottom: isFullscreen ? 56 : 0, left: 0, right: 0, background: "rgba(8,4,4,0.93)", backdropFilter: "blur(20px)", padding: "14px 40px 12px", borderTop: "1px solid rgba(196,168,122,0.18)", zIndex: 20 }}>
               <div style={{ fontFamily: FONT_BODY, fontSize: "0.86rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.7, maxWidth: 1000, margin: "0 auto" }}>
                 {curSlide.script}
               </div>
-              <div style={{ marginTop: 4, textAlign: "right", fontFamily: FONT_LUXE, fontSize: "8px", color: "rgba(255,255,255,0.18)", letterSpacing: "0.12em" }}>Press S to hide</div>
+              <div style={{ marginTop: 4, textAlign: "right", fontFamily: FONT_LUXE, fontSize: "8px", color: "rgba(255,255,255,0.18)", letterSpacing: "0.12em" }}>Press S or 📋 to hide</div>
             </div>
           )}
         </div>

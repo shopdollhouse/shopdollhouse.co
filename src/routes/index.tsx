@@ -402,7 +402,7 @@ function Hero() {
           className="reveal mt-5 text-[var(--ink)]/60 italic"
           style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1rem, 2vw, 1.2rem)", animationDelay: "0.85s" }}
         >
-          3 months to build momentum, then month-to-month · Fully managed, nothing to learn
+          3-month minimum to build momentum · flexible 6 or 12-month options · Fully managed, nothing to learn
         </p>
       </div>
 
@@ -1385,7 +1385,7 @@ function Pricing() {
                       <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>★</span>
                     </div>
                     <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: isFilled ? "rgba(250,243,234,0.45)" : "rgba(30,15,10,0.38)" }}>
-                      No obligations · cancel anytime
+                      3-month minimum · 30-day cancellation notice
                     </p>
                   </div>
                 </div>
@@ -1696,7 +1696,7 @@ function ComparisonTable() {
     { feature: "Lead & booking automation",            dh: true,  agency: false, diy: false },
     { feature: "AI voice agent available",             dh: true,  agency: false, diy: false },
     { feature: "Transparent pricing",                  dh: true,  agency: false, diy: false },
-    { feature: "Month-to-month after 3 months",        dh: true,  agency: false, diy: true  },
+    { feature: "Flexible after 3-month minimum",        dh: true,  agency: false, diy: true  },
   ];
 
   const Check = ({ val }: { val: boolean }) =>
@@ -1787,7 +1787,7 @@ function FAQ() {
     ["What does 'done-for-you' actually mean?", "Everything — content creation, posting, scheduling, automation, ad management, and reporting. No tools to learn, no content to make, nothing to manage. You focus on your business; we handle the rest."],
     ["What is the AI clone or brand character?", "We create either an AI version of you (your face, your voice, your energy — posting content without you filming) or a custom brand character built for your business. Either way, your content goes live every day on autopilot."],
     ["What's included in the $500 setup fee?", "A complete system buildout — landing pages, calendar integration, automated follow-up sequences, and CRM setup, all configured before your first month begins. One-time only, never charged again."],
-    ["Is there a minimum commitment?", "Yes — 3 months to build momentum and train the AI to your brand voice. After that it's fully month-to-month with no long-term contract."],
+    ["Is there a minimum commitment?", "Yes — all plans start with a 3-month minimum to build momentum and train the AI to your brand voice. After that, you can continue month-to-month, or lock in 6 months (10% off) or 12 months (20% off). Cancellation requires 30 days' written notice after your minimum term."],
     ["What kinds of businesses do you work with?", "Local service businesses, boutique brands, coaches, creatives, and entrepreneurs who want to show up online consistently without doing it themselves."],
     ["What is your refund policy?", "All sales are final. Once your system is built and your plan is active, the work has begun — but if you have concerns at any point, reach out and we'll work through it."],
   ];
