@@ -8,6 +8,86 @@ const FONT_BODY = "'DM Sans', sans-serif";
 const FONT_LUXE = "'Jost', sans-serif";
 const FONT_SCRIPT = "'Allura', cursive";
 
+/* ─── SVG Icon System ─────────────────────────────────── */
+const SVG_ICONS: Record<string, JSX.Element> = {
+  target: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>,
+  calculator: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="10" y2="18"/><line x1="14" y1="18" x2="16" y2="18"/></svg>,
+  microphone: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>,
+  "bar-chart": <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>,
+  phone: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.98-1.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>,
+  clipboard: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>,
+  pen: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>,
+  star: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>,
+  calendar: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>,
+  "trending-up": <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="23,6 13.5,15.5 8.5,10.5 1,18"/><polyline points="17,6 23,6 23,12"/></svg>,
+  users: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
+  clock: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>,
+  link: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>,
+  heart: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>,
+  video: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="23,7 16,12 23,17"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>,
+  bot: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8V5"/><circle cx="12" cy="4" r="1"/><line x1="8" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="16" y2="12"/><path d="M9 16s1 1 3 1 3-1 3-1"/></svg>,
+  globe: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>,
+  book: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>,
+  masks: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>,
+  mail: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>,
+  megaphone: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>,
+  "map-pin": <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>,
+  lock: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>,
+  settings: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>,
+  send: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22,2 15,22 11,13 2,9"/></svg>,
+  flower: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2a4 4 0 0 1 4 4c0 1.5-.5 2.5-1 3.5"/><path d="M12 2a4 4 0 0 0-4 4c0 1.5.5 2.5 1 3.5"/><path d="M12 22a4 4 0 0 0 4-4c0-1.5-.5-2.5-1-3.5"/><path d="M12 22a4 4 0 0 1-4-4c0-1.5.5-2.5 1-3.5"/><path d="M2 12a4 4 0 0 0 4 4c1.5 0 2.5-.5 3.5-1"/><path d="M2 12a4 4 0 0 1 4-4c1.5 0 2.5.5 3.5 1"/><path d="M22 12a4 4 0 0 1-4 4c-1.5 0-2.5-.5-3.5-1"/><path d="M22 12a4 4 0 0 0-4-4c-1.5 0-2.5.5-3.5 1"/></svg>,
+  smartphone: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>,
+  briefcase: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="12"/></svg>,
+  "trending-up-alt": <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="23,6 13.5,15.5 8.5,10.5 1,18"/><polyline points="17,6 23,6 23,12"/></svg>,
+  shield: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
+  handshake: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>,
+  map: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="1,6 1,22 8,18 16,22 23,18 23,2 16,6 8,2"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>,
+  "eye-off": <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>,
+  mirror: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="2" width="16" height="16" rx="2"/><path d="M12 18v4"/><path d="M8 22h8"/></svg>,
+  sparkle: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>,
+  flame: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>,
+  hourglass: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/></svg>,
+  trophy: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="8,21 12,17 16,21"/><line x1="12" y1="17" x2="12" y2="11"/><path d="M7 4H4a2 2 0 0 0-2 2v1a5 5 0 0 0 5 5h10a5 5 0 0 0 5-5V6a2 2 0 0 0-2-2h-3"/><rect x="7" y="2" width="10" height="4" rx="1"/></svg>,
+  gem: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6,3 18,3 22,9 12,22 2,9"/><line x1="2" y1="9" x2="22" y2="9"/><line x1="12" y1="3" x2="2" y2="9"/><line x1="12" y1="3" x2="22" y2="9"/></svg>,
+  "arrow-up": <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5,12 12,5 19,12"/></svg>,
+  crown: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 20h20"/><path d="M5 20V9l7-5 7 5v11"/><polyline points="2,9 5,9"/><polyline points="19,9 22,9"/></svg>,
+  "sprout": <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 20h10"/><path d="M10 20c5.5-2.5 4-6 4-6-4 0-6 3.5-4 6z"/><path d="M14 20c.5-4-4-6-4-6 0 5.5 4 6 4 6z"/><path d="M12 14v6"/></svg>,
+  rocket: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>,
+  compass: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88"/></svg>,
+  "alert-circle": <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>,
+  ban: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>,
+  "utensils": <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><line x1="9" y1="3" x2="9" y2="21"/><path d="M6 3v5a3 3 0 0 0 6 0V3"/><path d="M15 3v18"/></svg>,
+  "file-text": <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>,
+  upload: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="16,16 12,12 8,16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>,
+  dollar: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>,
+  moon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>,
+  "package": <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16.5 9.4l-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27,6.96 12,12.01 20.73,6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>,
+  "lightbulb": <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>,
+  "shirt": <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg>,
+  "building": <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22V12h6v10"/><path d="M8 7h.01"/><path d="M16 7h.01"/><path d="M8 12h.01"/><path d="M16 12h.01"/></svg>,
+  "search": <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>,
+  "inbox": <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="22,12 16,12 14,15 10,15 8,12 2,12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>,
+  "paint": <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 16s.5-3 4-3 4.5 3 7.5 3 4-3 4-3"/><path d="M2 20h20"/><path d="M9 4.8L12 2l8 8-3.5 3.5c-1.3 1.3-3.3 1.3-4.6 0L9 11a3.3 3.3 0 0 1 0-6.2z"/></svg>,
+  "zap": <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></svg>,
+  "check-circle": <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>,
+  "headphones": <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>,
+  "plus-circle": <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>,
+  brain: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2z"/></svg>,
+  "ruler": <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21.3 8.7l-8.6 8.6c-.4.4-1 .4-1.4 0l-5.6-5.6c-.4-.4-.4-1 0-1.4l8.6-8.6c.4-.4 1-.4 1.4 0l5.6 5.6c.4.4.4 1 0 1.4z"/><path d="M7.5 12.5l1.5 1.5"/><path d="M11 9l1.5 1.5"/><path d="M14.5 5.5l1.5 1.5"/></svg>,
+  "layout": <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>,
+};
+
+function SvgIcon({ id, size = 18, style }: { id: string; size?: number; style?: React.CSSProperties }) {
+  const icon = SVG_ICONS[id];
+  if (!icon) return <span style={style} />;
+  if (size === 18 && !style) return <span className="inline-flex items-center justify-center" style={{ width: 18, height: 18, flexShrink: 0 }}>{icon}</span>;
+  return (
+    <span className="inline-flex items-center justify-center" style={{ width: size, height: size, flexShrink: 0, ...style }}>
+      {icon}
+    </span>
+  );
+}
+
 /* ─── Types ───────────────────────────────────────────── */
 type Tab = "start" | "workflow" | "monthly" | "prompts" | "outreach" | "growth" | "newhire" | "deals" | "content" | "quote" | "schedule" | "discovery" | "proposal" | "links";
 
@@ -428,7 +508,7 @@ function MonthlyTab() {
       ))}
 
       <div className="rounded-2xl p-5 mb-2" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.25)" }}>
-        <p className="text-[10px] tracking-widest uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>📊 2026 Content Insight</p>
+        <p className="text-[10px] tracking-widest uppercase mb-1 flex items-center gap-1.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}><SvgIcon id="bar-chart" size={13} /> 2026 Content Insight</p>
         <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: "var(--ink)", fontStyle: "italic" }}>Carousels are getting more reach than Reels right now. Focus on carousels (3–7 slides) for education and social proof. Use Reels for reach and new followers. Both in the mix is ideal.</p>
         <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.55)" }}>Carousel structure that works: Hook slide → Value or Education → Testimonial or proof → CTA slide. Use the Carousel prompt to build these in the platform's AI.</p>
       </div>
@@ -3098,21 +3178,21 @@ This gives you a ready-to-work outreach pipeline from a single prompt.`,
   ];
 
   const GROUPS = [
-    { label: "Platform AI", icon: "🤖", tags: ["Platform AI"] },
-    { label: "4x4 Video Strategy", icon: "🧠", tags: ["4x4 Method"] },
-    { label: "Content Creation", icon: "✍️", tags: ["Captions", "Video", "Stories", "Planning"] },
-    { label: "LinkedIn", icon: "💼", tags: ["LinkedIn"] },
-    { label: "Content Sizes", icon: "📐", tags: ["Sizes"] },
-    { label: "Ads & Email", icon: "📣", tags: ["Ads", "Email"] },
-    { label: "Strategy & Reporting", icon: "📊", tags: ["Strategy", "Reporting", "Onboarding", "Business Consulting"] },
-    { label: "AI Video", icon: "🎬", tags: ["AI Video"] },
-    { label: "Graphics & Scheduling", icon: "🎨", tags: ["Graphics"] },
-    { label: "Platform Automations", icon: "⚡", tags: ["Automations"] },
-    { label: "Outreach Generators", icon: "📤", tags: ["Outreach"] },
-    { label: "Lead Generation", icon: "🎯", tags: ["Lead Gen"] },
-    { label: "Proposals & Contracts", icon: "📄", tags: ["Proposals", "Contracts"] },
-    { label: "Sales", icon: "💼", tags: ["Sales"] },
-    { label: "SEO & Blogging", icon: "🌐", tags: ["Blogging", "GEO"] },
+    { label: "Platform AI", icon: "bot", tags: ["Platform AI"] },
+    { label: "4x4 Video Strategy", icon: "brain", tags: ["4x4 Method"] },
+    { label: "Content Creation", icon: "pen", tags: ["Captions", "Video", "Stories", "Planning"] },
+    { label: "LinkedIn", icon: "briefcase", tags: ["LinkedIn"] },
+    { label: "Content Sizes", icon: "ruler", tags: ["Sizes"] },
+    { label: "Ads & Email", icon: "megaphone", tags: ["Ads", "Email"] },
+    { label: "Strategy & Reporting", icon: "bar-chart", tags: ["Strategy", "Reporting", "Onboarding", "Business Consulting"] },
+    { label: "AI Video", icon: "video", tags: ["AI Video"] },
+    { label: "Graphics & Scheduling", icon: "paint", tags: ["Graphics"] },
+    { label: "Platform Automations", icon: "zap", tags: ["Automations"] },
+    { label: "Outreach Generators", icon: "upload", tags: ["Outreach"] },
+    { label: "Lead Generation", icon: "target", tags: ["Lead Gen"] },
+    { label: "Proposals & Contracts", icon: "file-text", tags: ["Proposals", "Contracts"] },
+    { label: "Sales", icon: "dollar", tags: ["Sales"] },
+    { label: "SEO & Blogging", icon: "globe", tags: ["Blogging", "GEO"] },
   ];
 
   const q = search.toLowerCase().trim();
@@ -3154,7 +3234,7 @@ This gives you a ready-to-work outreach pipeline from a single prompt.`,
                 className="px-4 py-2 rounded-xl text-[10px] tracking-wider uppercase transition-all whitespace-nowrap flex items-center gap-1.5"
                 style={{ fontFamily: FONT_LUXE, background: active ? "var(--ink)" : "rgba(255,255,255,0.65)", color: active ? "var(--gold)" : "rgba(30,15,10,0.5)", border: active ? "1px solid var(--ink)" : "1px solid rgba(200,168,100,0.2)" }}
               >
-                <span>{g.icon}</span>
+                <SvgIcon id={g.icon} size={14} />
                 <span>{g.label}</span>
                 <span className="opacity-50">({count})</span>
               </button>
@@ -3173,7 +3253,7 @@ This gives you a ready-to-work outreach pipeline from a single prompt.`,
           className="w-full rounded-xl px-5 py-3 focus:outline-none text-sm"
           style={{ fontFamily: FONT_BODY, color: "var(--ink)", background: "rgba(255,255,255,0.88)", border: "1px solid rgba(200,168,100,0.3)", paddingLeft: "2.75rem" }}
         />
-        <span className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" style={{ fontSize: "0.95rem", opacity: 0.45 }}>🔍</span>
+        <span className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" style={{ opacity: 0.45 }}><SvgIcon id="search" size={15} /></span>
         {search && (
           <button onClick={() => setSearch("")} className="absolute right-4 top-1/2 -translate-y-1/2 hover:opacity-60 transition-opacity" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(30,15,10,0.4)" }}>Clear</button>
         )}
@@ -3201,7 +3281,7 @@ This gives you a ready-to-work outreach pipeline from a single prompt.`,
             return (
               <div key={g.label}>
                 <div className="flex items-center gap-3 mb-5 pb-3" style={{ borderBottom: "1px solid rgba(200,168,100,0.2)" }}>
-                  <span style={{ fontSize: "1.2rem" }}>{g.icon}</span>
+                  <SvgIcon id={g.icon} size={18} />
                   <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "var(--rose)", fontWeight: 400 }}>{g.label}</h3>
                   <span className="px-2 py-0.5 rounded-full" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.12em", background: "rgba(200,168,100,0.12)", color: "var(--gold)" }}>{gp.length} prompt{gp.length !== 1 ? "s" : ""}</span>
                 </div>
@@ -3553,13 +3633,13 @@ Thanks again for trusting me with [BUSINESS NAME].
   ];
 
   const sections: { id: typeof section; label: string; icon: string; sub: string }[] = [
-    { id: "blueprint",  icon: "🗺️",  label: "The Blueprint",      sub: "Strategy, mindset, the numbers game" },
-    { id: "aipitch",   icon: "🤖",  label: "AI Clone Pitch",      sub: "Our lead strategy — start here" },
-    { id: "cold",      icon: "📨",  label: "Cold Outreach",       sub: "DM, email, and call scripts" },
-    { id: "salescall", icon: "📞",  label: "The Sales Call",      sub: "CLOSER, discovery call, pitch deck" },
-    { id: "objections",icon: "🛡️",  label: "Objections & Close",  sub: "Handle pushback and close the deal" },
-    { id: "referral",  icon: "🤝",  label: "Referrals",           sub: "Turn clients into your best leads" },
-    { id: "mascot",    icon: "🎭",  label: "Mascot Strategy",     sub: "AI character hook — full workflow" },
+    { id: "blueprint",  icon: "map",        label: "The Blueprint",      sub: "Strategy, mindset, the numbers game" },
+    { id: "aipitch",   icon: "bot",         label: "AI Clone Pitch",     sub: "Our lead strategy — start here" },
+    { id: "cold",      icon: "send",        label: "Cold Outreach",      sub: "DM, email, and call scripts" },
+    { id: "salescall", icon: "phone",       label: "The Sales Call",     sub: "CLOSER, discovery call, pitch deck" },
+    { id: "objections",icon: "shield",      label: "Objections & Close", sub: "Handle pushback and close the deal" },
+    { id: "referral",  icon: "handshake",   label: "Referrals",          sub: "Turn clients into your best leads" },
+    { id: "mascot",    icon: "masks",       label: "Mascot Strategy",    sub: "AI character hook — full workflow" },
   ];
 
   return (
@@ -3579,7 +3659,7 @@ Thanks again for trusting me with [BUSINESS NAME].
                 className="flex flex-col items-start px-4 py-3 rounded-2xl transition-all text-left"
                 style={{ background: active ? "var(--ink)" : "rgba(255,255,255,0.65)", border: active ? "1px solid var(--ink)" : "1px solid rgba(200,168,100,0.2)", minWidth: "140px" }}
               >
-                <span style={{ fontSize: "1.1rem", lineHeight: 1, marginBottom: "4px" }}>{s.icon}</span>
+                <span style={{ lineHeight: 1, marginBottom: "4px" }}><SvgIcon id={s.icon} size={18} /></span>
                 <span style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase", color: active ? "var(--gold)" : "var(--ink)", fontWeight: 500 }}>{s.label}</span>
                 <span style={{ fontFamily: FONT_BODY, fontSize: "0.68rem", color: active ? "rgba(250,243,234,0.5)" : "rgba(30,15,10,0.38)", marginTop: "2px", lineHeight: 1.3 }}>{s.sub}</span>
               </button>
@@ -4798,7 +4878,7 @@ function ContentStrategyTab() {
       label: "Hook",
       timing: "First 4 seconds",
       color: "var(--rose)",
-      icon: "⚡",
+      icon: "zap",
       tagline: "Interrupt. Disrupt. Make it personal.",
       body: `The hook is not an intro — it is a disruption. In 1–3 seconds, the viewer decides: is this about me? If they're not sure, they scroll. You never get them back.
 
@@ -4852,7 +4932,7 @@ The hook grabs them. The title grounds them. The subtitle tells them this is edu
       label: "Proof",
       timing: "Right after the hook",
       color: "var(--gold)",
-      icon: "📊",
+      icon: "bar-chart",
       tagline: "Earn the right to be heard.",
       body: `Nobody cares what you say in the hook until you back it up. The hook creates curiosity. The proof creates trust. Without proof, you're just another person online making big claims. With it, you're someone worth listening to.
 
@@ -4889,7 +4969,7 @@ The second version carries proof without feeling like a resume. It positions you
       label: "Value",
       timing: "The body — longest section",
       color: "#8a6cb0",
-      icon: "🪞",
+      icon: "mirror",
       tagline: "Hold up the mirror. Tell the story. Expose the pattern.",
       body: `People don't connect to information. They connect to themselves. Your job here is to hold up a mirror so the viewer can see their own patterns and blind spots — without making them feel bad about it.
 
@@ -4950,7 +5030,7 @@ Pick one. Use it with purpose. Never layer shame on top of a trigger — expose 
       label: "Call to Action",
       timing: "Last 4 seconds",
       color: "var(--ink)",
-      icon: "🎯",
+      icon: "target",
       tagline: "One ask. Say it directly. Stop talking.",
       body: `The last 4 seconds of every video must have one clear ask. This is not optional. It feeds the algorithm and turns viewers into followers, leads, and clients.
 
@@ -4996,12 +5076,12 @@ Urgency is okay. Desperation isn't. The difference is confidence.`,
   ];
 
   const triggers = [
-    { name: "Shame Exposure", icon: "🪞", desc: "Expose the gap between what they say they want and what they actually do.", ex: '"You say you want wealth but you avoid every money conversation."', note: "Expose the pattern. Never shame the person." },
-    { name: "Hope", icon: "✨", desc: "They are closer than they think. Activates people on the edge of quitting.", ex: '"You are closer than you think. Most people quit three feet from the gold."', note: "Use this when the audience is tired and almost ready to give up." },
-    { name: "Identity Challenge", icon: "🔥", desc: "Challenge who they believe they are at a fundamental level.", ex: '"You don\'t lack a skill. You lack a belief system."', note: "Hits hardest for high-achievers in a rut." },
-    { name: "Fear of Regret", icon: "⏳", desc: "Activate the fear that they are wasting their potential or their time.", ex: '"The version of you that started five years ago would be disappointed."', note: "Use sparingly — very powerful but can feel heavy if overused." },
-    { name: "Aspiration / Exposure", icon: "🏆", desc: "Show what is possible. Let them feel the gap between now and what's available.", ex: "Showing your lifestyle, results, or client wins — and letting the contrast do the work.", note: "This is what luxury creators do. The exposure IS the trigger." },
-    { name: "Belonging / Recognition", icon: "💜", desc: "Make them feel seen in a way nobody else has. Finally, someone who gets it.", ex: `"If you've been thinking this for years and didn't know how to say it — this is for you."`, note: "Builds the deepest loyalty. Creates community." },
+    { name: "Shame Exposure", icon: "mirror", desc: "Expose the gap between what they say they want and what they actually do.", ex: '"You say you want wealth but you avoid every money conversation."', note: "Expose the pattern. Never shame the person." },
+    { name: "Hope", icon: "sparkle", desc: "They are closer than they think. Activates people on the edge of quitting.", ex: '"You are closer than you think. Most people quit three feet from the gold."', note: "Use this when the audience is tired and almost ready to give up." },
+    { name: "Identity Challenge", icon: "flame", desc: "Challenge who they believe they are at a fundamental level.", ex: '"You don\'t lack a skill. You lack a belief system."', note: "Hits hardest for high-achievers in a rut." },
+    { name: "Fear of Regret", icon: "hourglass", desc: "Activate the fear that they are wasting their potential or their time.", ex: '"The version of you that started five years ago would be disappointed."', note: "Use sparingly — very powerful but can feel heavy if overused." },
+    { name: "Aspiration / Exposure", icon: "trophy", desc: "Show what is possible. Let them feel the gap between now and what's available.", ex: "Showing your lifestyle, results, or client wins — and letting the contrast do the work.", note: "This is what luxury creators do. The exposure IS the trigger." },
+    { name: "Belonging / Recognition", icon: "heart", desc: "Make them feel seen in a way nobody else has. Finally, someone who gets it.", ex: `"If you've been thinking this for years and didn't know how to say it — this is for you."`, note: "Builds the deepest loyalty. Creates community." },
   ];
 
   return (
@@ -5166,7 +5246,7 @@ Urgency is okay. Desperation isn't. The difference is confidence.`,
           {triggers.map((t) => (
             <div key={t.name} className="rounded-xl p-5" style={{ background: "rgba(200,168,100,0.05)", border: "1px solid rgba(200,168,100,0.12)" }}>
               <div className="flex items-start gap-3">
-                <span style={{ fontSize: "1.3rem", lineHeight: 1 }}>{t.icon}</span>
+                <SvgIcon id={t.icon} size={20} />
                 <div className="flex-1 min-w-0">
                   <p style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--ink)" }}>{t.name}</p>
                   <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.65 }}>{t.desc}</p>
@@ -5916,7 +5996,7 @@ function DealTrackerTab({ prospects, persist, onBuildQuote }: {
         <div className="flex items-start gap-4 flex-wrap">
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-lg">🤖</span>
+              <SvgIcon id="bot" size={18} />
               <p className="text-[9px] tracking-[0.25em] uppercase" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Lead Strategy #1 · Featured Offer</p>
             </div>
             <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--cream)", fontWeight: 400, lineHeight: 1.1 }}>AI Clone / Character Package — <span style={{ color: "var(--gold)" }}>$1,000/mo</span> <span style={{ fontFamily: FONT_LUXE, fontSize: "0.75rem", letterSpacing: "0.1em", color: "rgba(250,243,234,0.45)", fontStyle: "normal" }}>+ $500 one-time setup</span></h3>
@@ -5955,7 +6035,7 @@ function DealTrackerTab({ prospects, persist, onBuildQuote }: {
       {/* Stale Deal Protocol */}
       <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
         <div className="px-5 py-3.5" style={{ borderBottom: "1px solid rgba(200,168,100,0.12)", background: "rgba(200,168,100,0.06)" }}>
-          <p style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)" }}>⏰ Stale Deal Protocol — What to Do When a Deal Isn't Moving</p>
+          <p style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)", display: "flex", alignItems: "center", gap: "5px" }}><SvgIcon id="clock" size={12} /> Stale Deal Protocol — What to Do When a Deal Isn't Moving</p>
         </div>
         <div className="px-5 py-4">
           <div className="grid sm:grid-cols-3 gap-3">
@@ -6428,15 +6508,15 @@ function StartHereTab() {
             <p className="text-[9px] tracking-widest uppercase mb-4" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>What's Inside the Kit</p>
             <div className="space-y-2.5">
               {[
-                { emoji: "🎨", item: "5 logo template options", sub: "Interactive — they pick a style, swap the name, change the colour, done" },
-                { emoji: "🎨", item: "Brand colour palette", sub: "5 colours that work together, with hex codes and usage guide" },
-                { emoji: "✍️", item: "Font pairing guide", sub: "3 combinations: heading + body font, with real visual examples" },
-                { emoji: "📱", item: "Social media profile kit", sub: "IG profile, highlight covers, story template, feed post template" },
-                { emoji: "📝", item: "10 fill-in-the-blank caption templates", sub: "Intro, offer, testimonial, tip, story — the 5 posts every new business needs" },
-                { emoji: "✅", item: "First Sale Checklist (the real value)", sub: "7 steps from 'I want to start something' to 'I just made my first sale'" },
+                { emoji: "paint", item: "5 logo template options", sub: "Interactive — they pick a style, swap the name, change the colour, done" },
+                { emoji: "paint", item: "Brand colour palette", sub: "5 colours that work together, with hex codes and usage guide" },
+                { emoji: "pen", item: "Font pairing guide", sub: "3 combinations: heading + body font, with real visual examples" },
+                { emoji: "smartphone", item: "Social media profile kit", sub: "IG profile, highlight covers, story template, feed post template" },
+                { emoji: "file-text", item: "10 fill-in-the-blank caption templates", sub: "Intro, offer, testimonial, tip, story — the 5 posts every new business needs" },
+                { emoji: "check-circle", item: "First Sale Checklist (the real value)", sub: "7 steps from 'I want to start something' to 'I just made my first sale'" },
               ].map(({ emoji, item, sub }, i) => (
                 <div key={i} className="flex items-start gap-3">
-                  <span style={{ fontSize: "1rem", flexShrink: 0, marginTop: "1px" }}>{emoji}</span>
+                  <span style={{ flexShrink: 0, marginTop: "1px" }}><SvgIcon id={emoji} size={16} /></span>
                   <div>
                     <p style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "var(--ink)" }}>{item}</p>
                     <p style={{ fontFamily: FONT_BODY, fontSize: "0.75rem", color: "rgba(30,15,10,0.45)", lineHeight: 1.45 }}>{sub}</p>
@@ -6620,7 +6700,7 @@ interface WeekDay {
 
 const WEEK_DAYS: WeekDay[] = [
   {
-    day: "Monday", emoji: "🗓️", theme: "Plan + Batch", color: "#c8a864",
+    day: "Monday", emoji: "calendar", theme: "Plan + Batch", color: "#c8a864",
     focus: "Start with direction, not chaos. What gets planned on Monday gets done all week.",
     blocks: [
       "Write this week's content pillars — pick 3 themes to rotate across all platforms",
@@ -6631,7 +6711,7 @@ const WEEK_DAYS: WeekDay[] = [
     ],
   },
   {
-    day: "Tuesday", emoji: "📤", theme: "Heavy Outreach Day", color: "#c97a7a",
+    day: "Tuesday", emoji: "send", theme: "Heavy Outreach Day", color: "#c97a7a",
     focus: "Maximum new lead generation. This is your full cold-outreach day. Nothing else competes.",
     blocks: [
       "Google Maps method: research and list 20 new leads in your target niches",
@@ -6642,7 +6722,7 @@ const WEEK_DAYS: WeekDay[] = [
     ],
   },
   {
-    day: "Wednesday", emoji: "📞", theme: "Sales Call Day", color: "#7b68ee",
+    day: "Wednesday", emoji: "phone", theme: "Sales Call Day", color: "#7b68ee",
     focus: "Block 2–4 hours for calls. This is your highest-value activity. Protect it fiercely.",
     blocks: [
       "Run all booked discovery calls and Zoom demos — aim for 2–3 today",
@@ -6653,7 +6733,7 @@ const WEEK_DAYS: WeekDay[] = [
     ],
   },
   {
-    day: "Thursday", emoji: "🎬", theme: "Content Production Day", color: "#4a90d9",
+    day: "Thursday", emoji: "video", theme: "Content Production Day", color: "#4a90d9",
     focus: "Your creative day. Film more than you think you need — excess content is never a problem.",
     blocks: [
       "Film your big weekly piece: educational, storytelling, or a client transformation",
@@ -6664,7 +6744,7 @@ const WEEK_DAYS: WeekDay[] = [
     ],
   },
   {
-    day: "Friday", emoji: "💰", theme: "Close + Clean Up", color: "#4a9970",
+    day: "Friday", emoji: "dollar", theme: "Close + Clean Up", color: "#4a9970",
     focus: "Turn open deals into closed deals. Follow up on everything. Collect what you're owed.",
     blocks: [
       "Send a warm follow-up on every open proposal — 'Just checking in — any questions?'",
@@ -6675,7 +6755,7 @@ const WEEK_DAYS: WeekDay[] = [
     ],
   },
   {
-    day: "Saturday", emoji: "📊", theme: "Light Review Day", color: "#9a8080",
+    day: "Saturday", emoji: "bar-chart", theme: "Light Review Day", color: "#9a8080",
     focus: "Analyse, plan, and breathe. No heavy execution — you've earned a lighter Saturday.",
     blocks: [
       "Weekly analytics review: follower growth, engagement rate, top-performing content",
@@ -6686,7 +6766,7 @@ const WEEK_DAYS: WeekDay[] = [
     ],
   },
   {
-    day: "Sunday", emoji: "🌙", theme: "Full Rest — No Exceptions", color: "#6a5a8a",
+    day: "Sunday", emoji: "moon", theme: "Full Rest — No Exceptions", color: "#6a5a8a",
     focus: "Complete rest. This is the rule, not the suggestion. You cannot build $1M while burned out.",
     blocks: [
       "No posting. No DMs. No strategy sessions. The business will survive one day off.",
@@ -6711,7 +6791,7 @@ interface Milestone {
 
 const MILESTONES: Milestone[] = [
   {
-    period: "First 30 Days", goal: "$2,000–$5,000 USD", cad: "≈ $2,700–$6,750 CAD", emoji: "🌱", color: "#c8a864", label: "First Revenue In",
+    period: "First 30 Days", goal: "$2,000–$5,000 USD", cad: "≈ $2,700–$6,750 CAD", emoji: "sprout", color: "#c8a864", label: "First Revenue In",
     targets: [
       "Sign first 1–3 clients (Starter package or brand kits)",
       "Post daily on all 4 platforms — no gap days, no excuses",
@@ -6724,7 +6804,7 @@ const MILESTONES: Milestone[] = [
     math: "2 Starter clients = $2,000 USD/mo recurring + $1,000 USD in setup fees collected day 1. Add 3 brand kits at $97 each = +$291 USD. Total month 1: ~$3,300–$5,000 USD — that's roughly $4,500–$6,750 CAD hitting your bank account. Completely achievable with 15 DMs/day from the start.",
   },
   {
-    period: "60–90 Days", goal: "$10,000–$33,000 USD/mo", cad: "≈ $13,500–$44,500 CAD/mo", emoji: "🚀", color: "#c97a7a", label: "Six-Figure Pace",
+    period: "60–90 Days", goal: "$10,000–$33,000 USD/mo", cad: "≈ $13,500–$44,500 CAD/mo", emoji: "rocket", color: "#c97a7a", label: "Six-Figure Pace",
     targets: [
       "5–10 active recurring clients (Starter and Growth mix)",
       "Upsell AI avatar add-on to at least half your clients",
@@ -6737,7 +6817,7 @@ const MILESTONES: Milestone[] = [
     math: "6 Growth clients × $2,500 USD = $15,000 USD/mo. Add 2 Elite × $5,000 USD = $25,000 USD/mo. Add-ons bring it to $30,000+ USD/mo = roughly $40,500+ CAD/mo. Setup fees + one-time services add $5k–$10k USD/month on top. At $33k USD/mo you're earning more CAD than most Canadians make in a year — every single month.",
   },
   {
-    period: "4–12 Months", goal: "$83,000–$100,000+ USD/mo", cad: "≈ $112,000–$135,000+ CAD/mo", emoji: "👑", color: "#7b68ee", label: "The Million-Dollar Year",
+    period: "4–12 Months", goal: "$83,000–$100,000+ USD/mo", cad: "≈ $112,000–$135,000+ CAD/mo", emoji: "crown", color: "#7b68ee", label: "The Million-Dollar Year",
     targets: [
       "20+ active clients across all tiers",
       "Team of 3–5: account manager, content creator, sales closer, VA",
@@ -6752,20 +6832,20 @@ const MILESTONES: Milestone[] = [
 ];
 
 const GROUND_RULES = [
-  { emoji: "🔴", rule: "Live at 8:30am. Every single day.", desc: "The algorithm and your audience reward reliability over perfection. Show up even when the room is empty. Especially then. Those are the lives that build the habit." },
-  { emoji: "🚫", rule: "8:30pm is the hard stop.", desc: "No exceptions. Close the laptop. Silence the notifications. Rest is how you sustain this for 12 months instead of burning out at 6 weeks." },
-  { emoji: "🥗", rule: "Lunch is mandatory — 45 minutes, screens away.", desc: "You cannot close clients on a depleted brain. Hunger is not hustle. You eat, you rest, you come back sharper." },
-  { emoji: "📊", rule: "Every lead goes in the Deal Tracker.", desc: "If it's not tracked, it doesn't exist. Leads fall through the cracks when they live only in your head or buried in DMs." },
-  { emoji: "💎", rule: "Do outstanding work for client number one.", desc: "One raving client is worth 50 cold DMs. Their testimonial, their referral, and their case study are your best marketing. Prioritise their experience." },
-  { emoji: "📱", rule: "Post every day. Imperfectly.", desc: "An imperfect post beats no post every single time. You are building a personal brand — disappearing for 3 days resets your momentum to zero." },
-  { emoji: "🧭", rule: "Your revenue goal is your daily filter.", desc: "Every evening ask: 'Did what I did today move me toward $X?' If the answer is no two days running, something has to change tomorrow." },
+  { emoji: "alert-circle", rule: "Live at 8:30am. Every single day.", desc: "The algorithm and your audience reward reliability over perfection. Show up even when the room is empty. Especially then. Those are the lives that build the habit." },
+  { emoji: "ban", rule: "8:30pm is the hard stop.", desc: "No exceptions. Close the laptop. Silence the notifications. Rest is how you sustain this for 12 months instead of burning out at 6 weeks." },
+  { emoji: "utensils", rule: "Lunch is mandatory — 45 minutes, screens away.", desc: "You cannot close clients on a depleted brain. Hunger is not hustle. You eat, you rest, you come back sharper." },
+  { emoji: "bar-chart", rule: "Every lead goes in the Deal Tracker.", desc: "If it's not tracked, it doesn't exist. Leads fall through the cracks when they live only in your head or buried in DMs." },
+  { emoji: "gem", rule: "Do outstanding work for client number one.", desc: "One raving client is worth 50 cold DMs. Their testimonial, their referral, and their case study are your best marketing. Prioritise their experience." },
+  { emoji: "smartphone", rule: "Post every day. Imperfectly.", desc: "An imperfect post beats no post every single time. You are building a personal brand — disappearing for 3 days resets your momentum to zero." },
+  { emoji: "compass", rule: "Your revenue goal is your daily filter.", desc: "Every evening ask: 'Did what I did today move me toward $X?' If the answer is no two days running, something has to change tomorrow." },
 ];
 
 function LinksTab() {
   const categories = [
     {
       title: "Your Website Pages",
-      icon: "🌸",
+      icon: "flower",
       links: [
         { label: "Main Website", url: "https://www.shopdollhouse.co/", desc: "Your public-facing homepage" },
         { label: "Brand Room", url: "https://www.shopdollhouse.co/brand-room", desc: "The brand room page" },
@@ -6773,7 +6853,7 @@ function LinksTab() {
     },
     {
       title: "Send to Clients",
-      icon: "📨",
+      icon: "send",
       links: [
         { label: "Client Onboarding Questionnaire", url: "https://www.shopdollhouse.co/onboarding", desc: "Send this to every client the moment they sign — gets you everything you need to build their marketing plan" },
         { label: "Get a Free Proposal", url: "https://www.shopdollhouse.co/#contact", desc: "Direct link to the proposal form for cold outreach" },
@@ -6781,7 +6861,7 @@ function LinksTab() {
     },
     {
       title: "Your Social Media",
-      icon: "📱",
+      icon: "smartphone",
       links: [
         { label: "Instagram", url: "https://instagram.com/mandyxdoll", desc: "@mandyxdoll" },
         { label: "TikTok", url: "https://www.tiktok.com/@mandyxdoll", desc: "@mandyxdoll" },
@@ -6791,7 +6871,7 @@ function LinksTab() {
     },
     {
       title: "Business Tools",
-      icon: "🛠️",
+      icon: "settings",
       links: [
         { label: "The Platform (CRM & Automations)", url: "https://app.gohighlevel.com", desc: "Your client CRM, automation builder, calendar, and pipeline — log in here to manage all client accounts" },
         { label: "OpenArt (AI Mascot / Clone)", url: "https://openart.ai", desc: "AI image and video generation for mascot content and AI clone visuals" },
@@ -6803,7 +6883,7 @@ function LinksTab() {
     },
     {
       title: "Internal Pages",
-      icon: "🔒",
+      icon: "lock",
       links: [
         { label: "This Playbook", url: "https://www.shopdollhouse.co/playbook", desc: "Your full business operating system — admin only" },
         { label: "Brand Room Page", url: "https://www.shopdollhouse.co/brand-room", desc: "Internal brand room builder" },
@@ -6824,7 +6904,7 @@ function LinksTab() {
       {categories.map(cat => (
         <div key={cat.title}>
           <div className="flex items-center gap-2 mb-4">
-            <span style={{ fontSize: "1.1rem" }}>{cat.icon}</span>
+            <SvgIcon id={cat.icon} size={16} />
             <h3 style={{ fontFamily: FONT_LUXE, fontSize: "0.7rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>{cat.title}</h3>
           </div>
           <div className="space-y-2">
@@ -6916,7 +6996,7 @@ function ScheduleTab() {
           {MILESTONES.map((m) => (
             <div key={m.period} className="rounded-2xl p-5" style={{ background: `${m.color}18`, border: `1px solid ${m.color}45` }}>
               <div className="flex items-center gap-3 mb-2">
-                <span style={{ fontSize: "1.5rem" }}>{m.emoji}</span>
+                <SvgIcon id={m.emoji} size={22} />
                 <div>
                   <p style={{ fontFamily: FONT_LUXE, fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: m.color }}>{m.period}</p>
                   <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: "var(--ink)", fontWeight: 600, lineHeight: 1.2 }}>{m.goal}</p>
@@ -6935,7 +7015,7 @@ function ScheduleTab() {
         <div className="grid md:grid-cols-2 gap-5">
           {GROUND_RULES.map((r, i) => (
             <div key={i} className="flex gap-4">
-              <span style={{ fontSize: "1.25rem", flexShrink: 0, marginTop: "1px" }}>{r.emoji}</span>
+              <SvgIcon id={r.emoji} size={18} />
               <div>
                 <p style={{ fontFamily: FONT_LUXE, fontSize: "0.85rem", color: "var(--gold)", fontWeight: 500, marginBottom: "4px" }}>{r.rule}</p>
                 <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.55 }}>{r.desc}</p>
@@ -7073,7 +7153,7 @@ function ScheduleTab() {
                   className="w-full flex items-center justify-between px-5 py-4 text-left"
                 >
                   <div className="flex items-center gap-4">
-                    <span style={{ fontSize: "1.3rem" }}>{d.emoji}</span>
+                    <SvgIcon id={d.emoji} size={20} />
                     <div>
                       <div className="flex flex-wrap items-center gap-2">
                         <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: "var(--ink)" }}>{d.day}</p>
@@ -7112,7 +7192,7 @@ function ScheduleTab() {
             <div key={m.period} className="rounded-2xl overflow-hidden" style={{ border: `1px solid ${m.color}35` }}>
               <div className="px-6 py-5" style={{ background: `${m.color}18` }}>
                 <div className="flex items-center gap-3">
-                  <span style={{ fontSize: "1.6rem" }}>{m.emoji}</span>
+                  <SvgIcon id={m.emoji} size={24} />
                   <div>
                     <p style={{ fontFamily: FONT_LUXE, fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: m.color }}>{m.period}</p>
                     <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "var(--ink)", fontWeight: 600, lineHeight: 1.15 }}>{m.goal} <span style={{ fontSize: "1rem", fontWeight: 400, color: "rgba(30,15,10,0.5)" }}>— {m.label}</span></p>
@@ -7150,7 +7230,7 @@ function ScheduleTab() {
 /* ─── Quote Builder ───────────────────────────────────── */
 const QB_PACKAGES = {
   content_starter: {
-    name: "Content Starter", monthly: 500, setup: 500, emoji: "🌱", color: "#a8b87a",
+    name: "Content Starter", monthly: 500, setup: 500, emoji: "sprout", color: "#a8b87a",
     tagline: "Entry-level done-for-you content — branded posts, scheduled and managed.",
     includes: [
       "8 branded posts/month (static & carousels)",
@@ -7161,7 +7241,7 @@ const QB_PACKAGES = {
     ],
   },
   starter: {
-    name: "Starter", monthly: 1000, setup: 500, emoji: "✨", color: "#c8a864",
+    name: "Starter", monthly: 1000, setup: 500, emoji: "sparkle", color: "#c8a864",
     tagline: "Perfect for local businesses getting started with done-for-you social.",
     includes: [
       "3–4 branded posts/week (Instagram + Facebook)",
@@ -7173,7 +7253,7 @@ const QB_PACKAGES = {
     ],
   },
   growth: {
-    name: "Growth", monthly: 2500, setup: 500, emoji: "🚀", color: "#c97a7a",
+    name: "Growth", monthly: 2500, setup: 500, emoji: "rocket", color: "#c97a7a",
     tagline: "Multi-platform management for businesses ready to scale their presence.",
     includes: [
       "Daily posts across 2–3 platforms",
@@ -7186,7 +7266,7 @@ const QB_PACKAGES = {
     ],
   },
   elite: {
-    name: "Elite", monthly: 5000, setup: 500, emoji: "👑", color: "#7b68ee",
+    name: "Elite", monthly: 5000, setup: 500, emoji: "crown", color: "#7b68ee",
     tagline: "White-glove, full-service brand presence across every major platform.",
     includes: [
       "Daily content across all major platforms",
@@ -7213,25 +7293,25 @@ interface QBAddon {
 
 const QB_ADDONS: QBAddon[] = [
   // ── Monthly Add-Ons ──────────────────────────────────────────────────────
-  { key: "ai_video_std",      type: "monthly", price: 800,  emoji: "🎬", name: "AI Avatar Video — Standard",          desc: "4 branded AI avatar videos/month" },
-  { key: "ai_video_prem",     type: "monthly", price: 1800, emoji: "🎥", name: "AI Avatar Video — Premium",           desc: "8 videos/month + custom scripts + full editing" },
-  { key: "ai_voice",          type: "monthly", price: 400,  emoji: "📞", name: "AI Voice Agent",                      desc: "Never miss a call. Your AI answers 24/7, qualifies leads, and books appointments — in your brand voice." },
-  { key: "reputation",        type: "monthly", price: 300,  emoji: "⭐", name: "Review & Reputation Management",      desc: "Automatically request reviews, respond to feedback, and build your 5-star presence on Google and beyond." },
-  { key: "email_sms",         type: "monthly", price: 500,  emoji: "📧", name: "Email & SMS Marketing",               desc: "Done-for-you campaigns, broadcasts, and nurture sequences that keep your audience warm and ready to buy." },
-  { key: "extra_content",     type: "monthly", price: 600,  emoji: "📲", name: "Additional Content Creation",         desc: "Need more posts or platforms? Extra content created and scheduled for you — same quality, more volume." },
-  { key: "linkedin",          type: "monthly", price: 500,  emoji: "💼", name: "LinkedIn Management",                 desc: "Daily posts + connection outreach + content" },
-  { key: "gbp",               type: "monthly", price: 250,  emoji: "📍", name: "Google Business Profile",             desc: "Weekly posts + review monitoring + Q&A" },
-  { key: "extra_platform",    type: "monthly", price: 400,  emoji: "➕", name: "Extra Platform Add-On",               desc: "Add Pinterest, YouTube, or X management" },
-  { key: "fb_ads",            type: "monthly", price: 500,  emoji: "📘", name: "Meta / Facebook Ads Management",      desc: "Ad campaign setup, audience targeting, creative, and monthly optimisation. Recommended: $150/mo client boost budget paid direct to Meta." },
-  { key: "google_ads",        type: "monthly", price: 700,  emoji: "🎯", name: "Google Ads Management",               desc: "Campaign setup, copy, optimisation (ad spend separate)" },
-  { key: "mascot_content",    type: "monthly", price: 600,  emoji: "🎭", name: "Mascot / AI Character Content",        desc: "3–4 pillar mascot videos/mo + daily branded posts featuring your AI character. Pinned content + feed filler." },
-  { key: "website_hosting",   type: "monthly", price: 97,   emoji: "🌐", name: "Website Hosting & Maintenance",       desc: "Hosting, updates, uptime monitoring" },
+  { key: "ai_video_std",      type: "monthly", price: 800,  emoji: "video",       name: "AI Avatar Video — Standard",          desc: "4 branded AI avatar videos/month" },
+  { key: "ai_video_prem",     type: "monthly", price: 1800, emoji: "video",       name: "AI Avatar Video — Premium",           desc: "8 videos/month + custom scripts + full editing" },
+  { key: "ai_voice",          type: "monthly", price: 400,  emoji: "phone",       name: "AI Voice Agent",                      desc: "Never miss a call. Your AI answers 24/7, qualifies leads, and books appointments — in your brand voice." },
+  { key: "reputation",        type: "monthly", price: 300,  emoji: "star",        name: "Review & Reputation Management",      desc: "Automatically request reviews, respond to feedback, and build your 5-star presence on Google and beyond." },
+  { key: "email_sms",         type: "monthly", price: 500,  emoji: "mail",        name: "Email & SMS Marketing",               desc: "Done-for-you campaigns, broadcasts, and nurture sequences that keep your audience warm and ready to buy." },
+  { key: "extra_content",     type: "monthly", price: 600,  emoji: "smartphone",  name: "Additional Content Creation",         desc: "Need more posts or platforms? Extra content created and scheduled for you — same quality, more volume." },
+  { key: "linkedin",          type: "monthly", price: 500,  emoji: "briefcase",   name: "LinkedIn Management",                 desc: "Daily posts + connection outreach + content" },
+  { key: "gbp",               type: "monthly", price: 250,  emoji: "map-pin",     name: "Google Business Profile",             desc: "Weekly posts + review monitoring + Q&A" },
+  { key: "extra_platform",    type: "monthly", price: 400,  emoji: "plus-circle", name: "Extra Platform Add-On",               desc: "Add Pinterest, YouTube, or X management" },
+  { key: "fb_ads",            type: "monthly", price: 500,  emoji: "megaphone",   name: "Meta / Facebook Ads Management",      desc: "Ad campaign setup, audience targeting, creative, and monthly optimisation. Recommended: $150/mo client boost budget paid direct to Meta." },
+  { key: "google_ads",        type: "monthly", price: 700,  emoji: "target",      name: "Google Ads Management",               desc: "Campaign setup, copy, optimisation (ad spend separate)" },
+  { key: "mascot_content",    type: "monthly", price: 600,  emoji: "masks",       name: "Mascot / AI Character Content",        desc: "3–4 pillar mascot videos/mo + daily branded posts featuring your AI character. Pinned content + feed filler." },
+  { key: "website_hosting",   type: "monthly", price: 97,   emoji: "globe",       name: "Website Hosting & Maintenance",       desc: "Hosting, updates, uptime monitoring" },
   // ── One-Time Services ────────────────────────────────────────────────────
-  { key: "website_build",     type: "onetime", price: 2000, emoji: "🏗️", name: "Website & Landing Page Design",       desc: "A conversion-ready website or landing page — designed for your brand and built to turn visitors into clients." },
-  { key: "revenue_audit",     type: "onetime", price: 1500, emoji: "🔍", name: "AI Revenue Audit",                    desc: "Full pipeline + social + workflow audit with growth plan" },
-  { key: "digital_product",   type: "onetime", price: 500,  emoji: "📦", name: "AI Digital Product / Lead Gen Tool",  desc: "Quiz, calculator, or checklist built in your branding" },
-  { key: "digital_product_build", type: "onetime", price: 2500, emoji: "💡", name: "Digital Product Build",           desc: "Fully interactive web app — not a PDF. The next level of digital products." },
-  { key: "merch_design",      type: "onetime", price: 500,  emoji: "👕", name: "Merch & Brand Design",                desc: "On-brand merch, apparel, and print-ready assets designed to match your business identity." },
+  { key: "website_build",     type: "onetime", price: 2000, emoji: "building",    name: "Website & Landing Page Design",       desc: "A conversion-ready website or landing page — designed for your brand and built to turn visitors into clients." },
+  { key: "revenue_audit",     type: "onetime", price: 1500, emoji: "search",      name: "AI Revenue Audit",                    desc: "Full pipeline + social + workflow audit with growth plan" },
+  { key: "digital_product",   type: "onetime", price: 500,  emoji: "package",     name: "AI Digital Product / Lead Gen Tool",  desc: "Quiz, calculator, or checklist built in your branding" },
+  { key: "digital_product_build", type: "onetime", price: 2500, emoji: "lightbulb", name: "Digital Product Build",           desc: "Fully interactive web app — not a PDF. The next level of digital products." },
+  { key: "merch_design",      type: "onetime", price: 500,  emoji: "shirt",       name: "Merch & Brand Design",                desc: "On-brand merch, apparel, and print-ready assets designed to match your business identity." },
 ];
 
 function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearProspect }: {
@@ -7342,7 +7422,7 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
     lines.push("");
 
     // --- The Plan ---
-    lines.push(`  ${p.emoji}  YOUR PLAN: ${p.name.toUpperCase()}`);
+    lines.push(`  ✦  YOUR PLAN: ${p.name.toUpperCase()}`);
     lines.push("─".repeat(54));
     lines.push("");
     lines.push(`  ${p.tagline}`);
@@ -7565,7 +7645,7 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
         <div className="w-5 h-5 rounded-md flex items-center justify-center shrink-0 transition-all" style={{ background: checked ? accentColor : "rgba(255,255,255,0.7)", border: checked ? "none" : "1px solid rgba(200,168,100,0.4)" }}>
           {checked && <svg viewBox="0 0 16 16" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3"><path d="M2.5 8.5L6 12L13.5 4.5" /></svg>}
         </div>
-        <span style={{ fontSize: "1.05rem" }}>{a.emoji}</span>
+        <SvgIcon id={a.emoji} size={16} />
         <div className="flex-1 min-w-0">
           <p style={{ fontFamily: FONT_BODY, fontSize: "0.875rem", color: "var(--ink)" }}>{a.name}</p>
           <p style={{ fontFamily: FONT_BODY, fontSize: "0.75rem", color: "rgba(30,15,10,0.5)" }}>{a.desc}</p>
@@ -7655,7 +7735,7 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
                   >
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex items-center gap-3">
-                        <span style={{ fontSize: "1.3rem" }}>{p.emoji}</span>
+                        <SvgIcon id={p.emoji} size={20} />
                         <div>
                           <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.15rem", color: p.color, fontWeight: 600 }}>{p.name}</p>
                           <p style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "rgba(30,15,10,0.5)" }}>{p.tagline}</p>
@@ -7774,7 +7854,7 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
                 {/* Monthly breakdown */}
                 <div className="space-y-2 mb-4">
                   <div className="flex justify-between items-center">
-                    <span style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(255,255,255,0.6)" }}>{selectedPkg.emoji} {selectedPkg.name}</span>
+                    <span style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(255,255,255,0.6)", display: "flex", alignItems: "center", gap: "6px" }}><SvgIcon id={selectedPkg.emoji} size={14} />{selectedPkg.name}</span>
                     <span style={{ fontFamily: FONT_LUXE, fontSize: "0.85rem", color: "var(--cream)" }}>${selectedPkg.monthly.toLocaleString()}/mo</span>
                   </div>
                   {monthlyAddons.map(a => (
@@ -8224,7 +8304,7 @@ interface PDeck { id: string; name: string; icon: string; tagline: string; slide
 const PROPOSAL_DECKS: PDeck[] = [
   /* ── AI Clone ──────────────────────────────────────────────────────────── */
   {
-    id: "ai_clone", name: "AI Clone Proposal", icon: "🤖",
+    id: "ai_clone", name: "AI Clone Proposal", icon: "bot",
     tagline: "The done-for-you content system powered by your AI clone",
     slides: [
       {
@@ -8369,7 +8449,7 @@ const PROPOSAL_DECKS: PDeck[] = [
 
   /* ── Website Proposal ──────────────────────────────────────────────────── */
   {
-    id: "website", name: "Website Proposal", icon: "🌐",
+    id: "website", name: "Website Proposal", icon: "globe",
     tagline: "A high-converting website that works while you sleep",
     slides: [
       {
@@ -8471,7 +8551,7 @@ const PROPOSAL_DECKS: PDeck[] = [
 
   /* ── Merch Proposal ────────────────────────────────────────────────────── */
   {
-    id: "merch", name: "Merch Proposal", icon: "👕",
+    id: "merch", name: "Merch Proposal", icon: "shirt",
     tagline: "Branded merchandise that turns customers into walking billboards",
     slides: [
       {
@@ -8574,7 +8654,7 @@ const PROPOSAL_DECKS: PDeck[] = [
 
   /* ── All-in-One Brand ──────────────────────────────────────────────────── */
   {
-    id: "brand", name: "All-in-One Brand", icon: "✨",
+    id: "brand", name: "All-in-One Brand", icon: "sparkle",
     tagline: "The complete brand system — content, website, merch, and automation",
     slides: [
       {
@@ -8716,7 +8796,7 @@ const PROPOSAL_DECKS: PDeck[] = [
 
   /* ── Logo + Brand Refresh ──────────────────────────────────────────────── */
   {
-    id: "logo_refresh", name: "Logo + Brand Refresh", icon: "🎨",
+    id: "logo_refresh", name: "Logo + Brand Refresh", icon: "paint",
     tagline: "A brand identity that commands attention and builds instant trust",
     slides: [
       {
@@ -8834,7 +8914,7 @@ const PROPOSAL_DECKS: PDeck[] = [
 
   /* ── We Made This For You ──────────────────────────────────────────────── */
   {
-    id: "made_for_you", name: "We Made This For You", icon: "🎬",
+    id: "made_for_you", name: "We Made This For You", icon: "video",
     tagline: "Personalised reveal deck — show the AI clone you built, then close on the $1,000/mo Starter",
     slides: [
       {
@@ -8980,7 +9060,7 @@ const PROPOSAL_DECKS: PDeck[] = [
 
   /* ── AI Automations ────────────────────────────────────────────────────── */
   {
-    id: "automations", name: "AI Automations", icon: "⚡",
+    id: "automations", name: "AI Automations", icon: "zap",
     tagline: "Voice agent, DM responder, and full automation — your business runs 24/7",
     slides: [
       {
@@ -9120,7 +9200,7 @@ const PROPOSAL_DECKS: PDeck[] = [
 
   /* ── Client Onboarding Call ─────────────────────────────────────────────── */
   {
-    id: "onboarding", name: "Client Onboarding Call", icon: "🎀",
+    id: "onboarding", name: "Client Onboarding Call", icon: "heart",
     tagline: "Walk every new client through their first call — A to Z",
     slides: [
       {
@@ -9625,7 +9705,7 @@ function ProposalTab() {
               onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 12px 36px -10px rgba(60,30,20,0.18)"; (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)"; }}
               onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "none"; (e.currentTarget as HTMLButtonElement).style.transform = "none"; }}
             >
-              <div style={{ fontSize: 36, marginBottom: 16 }}>{d.icon}</div>
+              <div style={{ marginBottom: 16, color: "var(--gold)" }}><SvgIcon id={d.icon} size={32} /></div>
               <div style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "var(--ink)", marginBottom: 8, fontWeight: 400 }}>{d.name}</div>
               <div style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,18,16,0.55)", lineHeight: 1.55, marginBottom: 20 }}>{d.tagline}</div>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -9656,8 +9736,8 @@ function ProposalTab() {
           >
             ← All Decks
           </button>
-          <h2 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.7rem", color: "var(--ink)", fontWeight: 400, margin: 0 }}>
-            {deck.icon} {deck.name}
+          <h2 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.7rem", color: "var(--ink)", fontWeight: 400, margin: 0, display: "flex", alignItems: "center", gap: "10px" }}>
+            <SvgIcon id={deck.icon} size={24} /> {deck.name}
           </h2>
           <p style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,18,16,0.5)", marginTop: 4 }}>
             {deck.slides.length} slides · Click a thumbnail to jump to that slide · Upload images or videos below
@@ -9876,23 +9956,23 @@ function PlaybookPage() {
   if (!authed) return <LoginGate onAuth={() => setAuthed(true)} />;
 
   const primaryTabs: { id: Tab; label: string; icon: string }[] = [
-    { id: "deals",     label: "Deal Pipeline",    icon: "🎯" },
-    { id: "quote",     label: "Quote Builder",    icon: "🧮" },
-    { id: "discovery", label: "Discovery Call",   icon: "🎙️" },
-    { id: "proposal",  label: "Proposal Deck",    icon: "📊" },
-    { id: "outreach",  label: "Outreach Scripts", icon: "📞" },
-    { id: "workflow",  label: "Client Workflow",  icon: "📋" },
-    { id: "prompts",   label: "Content Prompts",  icon: "✍️" },
+    { id: "deals",     label: "Deal Pipeline",    icon: "target" },
+    { id: "quote",     label: "Quote Builder",    icon: "calculator" },
+    { id: "discovery", label: "Discovery Call",   icon: "microphone" },
+    { id: "proposal",  label: "Proposal Deck",    icon: "bar-chart" },
+    { id: "outreach",  label: "Outreach Scripts", icon: "phone" },
+    { id: "workflow",  label: "Client Workflow",  icon: "clipboard" },
+    { id: "prompts",   label: "Content Prompts",  icon: "pen" },
   ];
 
   const referenceTabs: { id: Tab; label: string; icon: string }[] = [
-    { id: "start",    label: "Start Here",       icon: "🌟" },
-    { id: "monthly",  label: "Monthly Process",  icon: "📅" },
-    { id: "content",  label: "4x4 Strategy",     icon: "🧠" },
-    { id: "growth",   label: "Inbound Growth",   icon: "📈" },
-    { id: "newhire",  label: "New Hire Guide",   icon: "👋" },
-    { id: "schedule", label: "Daily Schedule",   icon: "⏰" },
-    { id: "links",    label: "Quick Links",      icon: "🔗" },
+    { id: "start",    label: "Start Here",       icon: "star" },
+    { id: "monthly",  label: "Monthly Process",  icon: "calendar" },
+    { id: "content",  label: "4x4 Strategy",     icon: "brain" },
+    { id: "growth",   label: "Inbound Growth",   icon: "trending-up" },
+    { id: "newhire",  label: "New Hire Guide",   icon: "users" },
+    { id: "schedule", label: "Daily Schedule",   icon: "clock" },
+    { id: "links",    label: "Quick Links",      icon: "link" },
   ];
 
   const activeRefTab = referenceTabs.find(t => t.id === tab);
@@ -9911,7 +9991,7 @@ function PlaybookPage() {
             <p style={{ fontFamily: FONT_SCRIPT, fontSize: "1rem", color: "rgba(30,15,10,0.4)", marginTop: "2px" }}>brand studio</p>
           </div>
           <div className="px-4 py-2 rounded-full" style={{ background: "rgba(200,168,100,0.12)", border: "1px solid rgba(200,168,100,0.3)" }}>
-            <p className="text-[10px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>🔒 Internal Use Only</p>
+            <p className="text-[10px] tracking-widest uppercase flex items-center gap-1.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}><SvgIcon id="lock" size={13} /> Internal Use Only</p>
           </div>
         </div>
       </header>
@@ -9934,7 +10014,7 @@ function PlaybookPage() {
                   border: tab === t.id ? "1px solid var(--ink)" : "1px solid rgba(200,168,100,0.2)",
                 }}
               >
-                {t.icon} {t.label}
+                <SvgIcon id={t.icon} size={14} style={{ opacity: 0.9 }} /> {t.label}
               </button>
             ))}
           </div>
@@ -9953,7 +10033,7 @@ function PlaybookPage() {
               marginLeft: "8px",
             }}
           >
-            {activeRefTab ? `${activeRefTab.icon} ${activeRefTab.label}` : "📚 Reference"}
+            {activeRefTab ? <><SvgIcon id={activeRefTab.icon} size={14} style={{ opacity: 0.9 }} /> <span>{activeRefTab.label}</span></> : <><SvgIcon id="book" size={14} style={{ opacity: 0.9 }} /> <span>Reference</span></>}
             <span style={{ fontSize: "8px", opacity: 0.6 }}>{refOpen ? "▲" : "▼"}</span>
           </button>
 
@@ -9971,7 +10051,7 @@ function PlaybookPage() {
                     borderLeft: tab === t.id ? "2px solid var(--gold)" : "2px solid transparent",
                   }}
                 >
-                  <span>{t.icon}</span>
+                  <SvgIcon id={t.icon} size={14} />
                   <span>{t.label}</span>
                 </button>
               ))}
