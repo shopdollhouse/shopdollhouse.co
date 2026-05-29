@@ -2152,6 +2152,110 @@ SECTION 6 — Access & Logins
 Format as a clean intake form with clear section headers, short answer fields, and multiple choice where appropriate. Tone: professional, warm, easy to fill out."`,
     },
 
+    // ─── Client Content Strategy ─────────────────────────
+    {
+      title: "Client Content Strategy Document — Full Brand Bible",
+      tag: "Onboarding",
+      prompt: `Use this prompt after a client completes their onboarding questionnaire. Paste their answers + this prompt into ChatGPT or Claude. It generates a complete Client Content Strategy Document — your master reference for everything you create for this client.
+
+Paste this into AI, then paste the client's onboarding questionnaire answers below it:
+
+"You are creating a comprehensive Client Content Strategy Document for The Dollhouse Brand Studio. Using the onboarding questionnaire answers provided below, generate a complete, professional content strategy document.
+
+The document should include the following sections:
+
+─────────────────────────────────────────
+1. CLIENT OVERVIEW
+─────────────────────────────────────────
+- Business name, industry, city
+- Website and social media URLs (Facebook, Instagram, TikTok)
+- Plan enrolled in
+- Account manager: Mandy Fortune — The Dollhouse Brand Studio
+
+─────────────────────────────────────────
+2. BRAND GUIDE
+─────────────────────────────────────────
+Create a brand guide table with:
+- Font Heading (Large): [suggest a premium Google Font based on their aesthetic]
+- Subhead (Medium): [suggest a complementary Google Font]
+- Body Text: [suggest a clean readable Google Font]
+- Primary Color: [extract or suggest hex code based on their stated colours]
+- Secondary Color: [extract or suggest]
+- Accent Color: [extract or suggest]
+- Tone of Voice: [2–3 sentences describing how the brand should speak — based on their vibe, audience, and business]
+- Content Topics: [list 4–6 content pillars based on their business and goals]
+
+─────────────────────────────────────────
+3. TARGET AUDIENCE
+─────────────────────────────────────────
+- Ideal client profile (age, gender, income, lifestyle)
+- What problem they have
+- What makes them choose this business
+- Where they spend time online
+
+─────────────────────────────────────────
+4. COMPETITOR ANALYSIS
+─────────────────────────────────────────
+For each competitor listed, provide:
+- What they do well on social media
+- What they do poorly or are missing
+- Opportunity for differentiation
+
+─────────────────────────────────────────
+5. CONTENT CALENDAR FRAMEWORK
+─────────────────────────────────────────
+Create a weekly content framework with 5 post types:
+- Monday: [content pillar]
+- Tuesday: [content pillar]
+- Wednesday: [content pillar]
+- Thursday: [content pillar]
+- Friday: [content pillar]
+- Best time to post: [suggest based on industry and audience]
+- Caption tone: [describe the ideal tone for captions]
+
+─────────────────────────────────────────
+6. HASHTAG STRATEGY
+─────────────────────────────────────────
+Generate 30 hashtags in 3 tiers:
+- Broad (10): large general hashtags in the niche (1M+ posts)
+- Mid (10): niche-specific hashtags (100K–1M posts)
+- Local/targeted (10): city-specific or hyper-targeted hashtags
+
+─────────────────────────────────────────
+7. 20 CONTENT QUESTIONS & ANSWERS
+─────────────────────────────────────────
+Generate 20 FAQ-style questions that real clients/customers ask this business — with detailed, accurate answers for each. These become ready-made educational content posts.
+
+Format: Question on one line, Answer on the next line.
+
+─────────────────────────────────────────
+8. POST IDEAS (10 STARTER IDEAS)
+─────────────────────────────────────────
+Generate 10 specific post ideas for the first month — include:
+- Post type (Reel / Carousel / Static)
+- Hook / headline
+- Caption direction (2 sentences)
+- CTA
+
+─────────────────────────────────────────
+9. INSPIRATION DIRECTION
+─────────────────────────────────────────
+Based on the Instagram accounts and websites the client loves, describe:
+- The visual aesthetic to aim for (colours, photography style, layout)
+- 3 specific content styles to replicate for this brand
+- What to avoid
+
+─────────────────────────────────────────
+10. FIRST 30 DAYS STRATEGY
+─────────────────────────────────────────
+Write a brief paragraph (3–5 sentences) describing the strategic goal for the first 30 days, what content should focus on, and what success looks like.
+
+Format the entire document cleanly with clear section headers, easy to read and use as a working reference. Tone: professional and strategic.
+
+[PASTE CLIENT'S ONBOARDING QUESTIONNAIRE ANSWERS BELOW THIS LINE]
+"`,
+    },
+
     // ─── Additional Services ─────────────────────────────
     {
       title: "AI Website Builder — Full Site in One Prompt",
@@ -9388,6 +9492,31 @@ const PROPOSAL_DECKS: PDeck[] = [
           "Email & SMS Marketing — nurture sequences that convert leads while you sleep",
         ],
         script: "Here's the full picture of what we offer. You don't have to take every service — most clients start with one or two and grow from there. But the most powerful results come when everything works together. Content brings them in. Ads amplify it. Automation converts them. Email and SMS keeps them coming back. Today I'll walk you through each one.",
+      },
+      {
+        layout: "steps", bg: "dark",
+        heading: "Which service is right for you?",
+        steps: [
+          { n: "01", title: "Social Media Management", desc: "Do you want to build a consistent brand presence and show up every day without doing the work yourself?" },
+          { n: "02", title: "Meta Ads", desc: "Do you want to drive traffic directly from social media to your booking page or website?" },
+          { n: "03", title: "Automation & CRM", desc: "Do you want every lead followed up automatically — so no inquiry ever falls through the cracks?" },
+          { n: "04", title: "Email & SMS Marketing", desc: "Do you want to email and text people who have already contacted you — and turn them into booked clients?" },
+        ],
+        script: "Before I go into detail on each service, let me ask you a few quick questions — because the right combination depends on where you are right now. [Read each question to the client and let them answer. Their answers tell you exactly which services to pitch.] Most of our clients start with social media management — and then add ads once their content is proven.",
+      },
+      {
+        layout: "bullets", bg: "blush",
+        heading: "Why The Dollhouse Brand Studio?",
+        bullets: [
+          "100% done-for-you — you never have to create, post, or schedule anything",
+          "AI Clone technology — no other local agency offers this",
+          "Full automation system built into every plan — leads followed up while you sleep",
+          "Dedicated account manager — you speak directly to the person doing the work",
+          "Content approval before anything goes live — you stay in control",
+          "Transparent monthly reporting — clear results in plain English, no confusing dashboards",
+          "14-day free trial available — see it working before your first full month",
+        ],
+        script: "Here's why our clients choose us over every other option. We are 100% done-for-you — that's not a marketing line, it's literally what we do. You don't touch anything. You don't film. You don't write. You don't post. We also build your AI clone — which no other agency in this city is doing right now. And the automation system means your business is following up with leads even when you're sleeping, on vacation, or in the middle of a treatment. The 14-day free trial means you can see all of this working before you commit to a full month. That's how confident we are in what we build.",
       },
       {
         layout: "headline", bg: "rose",
