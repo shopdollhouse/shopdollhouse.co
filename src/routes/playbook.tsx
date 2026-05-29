@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, Fragment } from "react";
 
 export const Route = createFileRoute("/playbook")({ component: PlaybookPage });
 
@@ -9976,7 +9976,7 @@ function renderSlideVisual(
       </div>
       <div style={{ display: "flex", gap: 0, alignItems: "flex-start" }}>
         {(slide.steps || []).map((step, i, arr) => (
-          <React.Fragment key={i}>
+          <Fragment key={i}>
             <div style={{ flex: 1, borderTop: `2px solid ${C.acc}`, paddingTop: 20 }}>
               <div style={{ fontFamily: SERIF, fontSize: 48, color: C.acc, lineHeight: 1, marginBottom: 14 }}>
                 {step.n}
@@ -9995,7 +9995,7 @@ function renderSlideVisual(
                 </svg>
               </div>
             )}
-          </React.Fragment>
+          </Fragment>
         ))}
       </div>
       {scriptPanel}
