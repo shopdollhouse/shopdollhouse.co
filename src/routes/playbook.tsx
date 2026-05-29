@@ -4545,37 +4545,58 @@ Thanks again for trusting me with [BUSINESS NAME].
         <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
           <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Internal — Downsell Script</p>
           <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>The Platform Downsell — 3 Tiers</h3>
-          <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.5)" }}>Never mention the platform by name. Always say "our platform" or "the platform."</p>
+          <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.5)" }}>Never mention the platform by name. Always say "our system" or "the backend."</p>
         </div>
         <div className="px-6 py-5 space-y-5">
           <div className="rounded-xl p-4" style={{ background: "rgba(200,168,100,0.07)", border: "1px solid rgba(200,168,100,0.18)" }}>
             <p className="text-[9px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>When to use this</p>
             <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.7)", lineHeight: 1.65 }}>
-              A client says they want to cancel or pause their DFY service. Before you let them walk, offer the platform as a self-serve option. This keeps them in your ecosystem, keeps monthly recurring revenue flowing, and leaves the door wide open to upsell them back to full service when they're ready.
+              A client says they want to cancel their DFY service. Before you let them walk, offer the $300/mo Backend Infrastructure Only plan. They keep all the automation tools (voice AI, comment-to-DM, text follow-up bot) but lose all content creation. This keeps recurring revenue flowing and leaves the door open to upsell back to full service.
             </p>
           </div>
 
-          {/* Tier Cards */}
-          <div className="grid gap-4 sm:grid-cols-3">
-            {([
-              { name: "Basic", price: "$97/mo", color: "#b8a070", items: ["CRM & contact management", "Automated follow-up sequences", "Calendar + booking system", "2-way SMS & email", "Pipeline tracking", "Mobile app access"] },
-              { name: "Growth", price: "$297/mo", color: "var(--rose)", items: ["Everything in Basic", "Social media scheduler", "AI content tools", "Review request automation", "Email & SMS broadcast", "Funnel & landing pages", "Missed call text-back"] },
-              { name: "Elite", price: "$497/mo", color: "var(--ink)", items: ["Everything in Growth", "AI voice agent (phone)", "DM auto-responder (IG/FB)", "Advanced reporting dashboard", "Workflow automation builder", "Priority support", "White-glove onboarding call"] },
-            ] as const).map(tier => (
-              <div key={tier.name} className="rounded-xl p-4" style={{ background: tier.name === "Elite" ? "var(--ink)" : "rgba(255,255,255,0.7)", border: `1.5px solid ${tier.color}40` }}>
-                <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: tier.name === "Elite" ? "var(--gold)" : tier.color, fontWeight: 500 }}>{tier.name}</p>
-                <p style={{ fontFamily: FONT_LUXE, fontSize: "1.3rem", color: tier.name === "Elite" ? "var(--cream)" : "var(--ink)", fontWeight: 700, marginTop: "2px" }}>{tier.price}</p>
-                <p style={{ fontFamily: FONT_BODY, fontSize: "0.7rem", color: tier.name === "Elite" ? "rgba(255,255,255,0.4)" : "rgba(30,15,10,0.4)", marginTop: "2px", marginBottom: "10px" }}>per month</p>
-                <div className="space-y-1.5">
-                  {tier.items.map((item, i) => (
-                    <p key={i} style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: tier.name === "Elite" ? "rgba(255,255,255,0.7)" : "rgba(30,15,10,0.65)", display: "flex", gap: "6px" }}>
-                      <span style={{ color: tier.name === "Elite" ? "var(--gold)" : tier.color, flexShrink: 0 }}>✓</span>
-                      {item}
-                    </p>
-                  ))}
-                </div>
+          {/* Downsell Cards */}
+          <div className="grid gap-4 sm:grid-cols-2">
+            {/* What they keep */}
+            <div className="rounded-xl p-5" style={{ background: "rgba(255,255,255,0.7)", border: "1.5px solid rgba(100,180,120,0.4)" }}>
+              <p className="text-[9px] tracking-widest uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "#4a9970" }}>What They Keep — $300/mo</p>
+              <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.2rem", color: "var(--ink)", fontStyle: "italic", marginBottom: "12px" }}>Backend Infrastructure Only</p>
+              <div className="space-y-2">
+                {[
+                  ["Voice AI Receptionist", "Answers missed calls, handles inquiries & books appointments 24/7"],
+                  ["Comment-to-DM Automation", "Automatically turns post comments into text/DM leads"],
+                  ["Text Follow-Up AI Bot", "Automated SMS sequences that nurture inbound leads into bookings"],
+                ].map(([title, desc]) => (
+                  <div key={title} className="flex gap-2 items-start">
+                    <span style={{ color: "#4a9970", flexShrink: 0, marginTop: 2 }}>✓</span>
+                    <div>
+                      <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "var(--ink)", fontWeight: 600 }}>{title}</p>
+                      <p style={{ fontFamily: FONT_BODY, fontSize: "0.75rem", color: "rgba(30,15,10,0.5)", lineHeight: 1.4 }}>{desc}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+            {/* What they lose */}
+            <div className="rounded-xl p-5" style={{ background: "rgba(255,255,255,0.5)", border: "1.5px solid rgba(180,80,80,0.3)" }}>
+              <p className="text-[9px] tracking-widest uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "#d46060" }}>What They Lose</p>
+              <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.2rem", color: "var(--ink)", fontStyle: "italic", marginBottom: "12px" }}>All Content Creation Stops</p>
+              <div className="space-y-2">
+                {[
+                  ["AI Clone Videos", "No more weekly AI-generated videos"],
+                  ["Social Media Graphics", "No more on-brand graphics or content"],
+                  ["Profile Management", "No more scheduling, posting, or strategy"],
+                ].map(([title, desc]) => (
+                  <div key={title} className="flex gap-2 items-start">
+                    <span style={{ color: "#d46060", flexShrink: 0, marginTop: 2 }}>✕</span>
+                    <div>
+                      <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "var(--ink)", fontWeight: 600 }}>{title}</p>
+                      <p style={{ fontFamily: FONT_BODY, fontSize: "0.75rem", color: "rgba(30,15,10,0.5)", lineHeight: 1.4 }}>{desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Downsell scripts */}
@@ -4583,37 +4604,39 @@ Thanks again for trusting me with [BUSINESS NAME].
             <p className="text-[9px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Word-for-Word Scripts</p>
 
             <div className="rounded-xl p-4 space-y-3" style={{ background: "rgba(255,255,255,0.5)", border: "1px solid rgba(200,168,100,0.15)" }}>
-              <p className="text-[9px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, color: "rgba(30,15,10,0.4)" }}>When they say: "I need to cancel / pause / can't afford it right now"</p>
+              <p className="text-[9px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, color: "rgba(30,15,10,0.4)" }}>When they say: "I need to cancel / can't afford it right now"</p>
               <div className="rounded-lg p-3" style={{ background: "var(--ink)" }}>
                 <p className="text-[9px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>You say</p>
-                <p style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.7, whiteSpace: "pre-line" }}>{`"I completely understand — and I appreciate you being upfront with me.
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.7, whiteSpace: "pre-line" }}>{`"I completely understand — and I appreciate you telling me.
 
-Before we close everything out, I want to make sure you know this doesn't have to be all-or-nothing.
+Before we close everything out, I want to make sure this doesn't have to be all-or-nothing.
 
-We have a self-serve option where you keep access to our platform — the same system your automations have been running on. You keep your CRM, your contacts, your booking system, your follow-up sequences — everything your business depends on — for just $97 a month.
+Right now your business has a voice AI answering missed calls, automated DM replies turning your comments into leads, and a text bot following up with every inquiry. That backend is what's keeping leads from falling through the cracks.
 
-If you want more — the social scheduler, the AI tools, the review automation — that's $297. And if you ever want the voice agent and DM responder back, that's $497.
+I can keep all of that running for you for just $300 a month — no content creation, no posting, just the automation engine that's been working behind the scenes.
 
-It's not the full done-for-you service, but it keeps everything running and keeps the door open. A lot of clients who step back end up coming back to the full service once things settle.
+You lose the videos and the graphics, but every lead that comes in still gets followed up automatically. And when you're ready to come back to full service, we just turn everything back on.
 
-Would that work as a middle ground for right now?"`}
+Does $300 a month work as a middle ground for right now?"`}
                 </p>
               </div>
             </div>
 
             <div className="rounded-xl p-4 space-y-3" style={{ background: "rgba(255,255,255,0.5)", border: "1px solid rgba(200,168,100,0.15)" }}>
-              <p className="text-[9px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, color: "rgba(30,15,10,0.4)" }}>If they want to know more before deciding</p>
+              <p className="text-[9px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, color: "rgba(30,15,10,0.4)" }}>If they ask what exactly they're keeping at $300</p>
               <div className="rounded-lg p-3" style={{ background: "var(--ink)" }}>
                 <p className="text-[9px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>You say</p>
-                <p style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.7, whiteSpace: "pre-line" }}>{`"So there are three tiers.
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.7, whiteSpace: "pre-line" }}>{`"So at $300, here's exactly what stays on:
 
-The Basic at $97 keeps your CRM, automations, calendar, and 2-way messaging live. That's the core of everything.
+The voice AI — anyone who calls your business and you don't pick up gets handled by an AI receptionist that can answer questions and book them into your calendar.
 
-The Growth at $297 adds the content scheduling tools, email and SMS broadcasting, your review automation, and funnel pages — so you can still do some of your own marketing through the platform.
+The comment automation — any time someone comments on one of your posts, they automatically get a DM from you turning them into a lead.
 
-The Elite at $497 puts the AI voice agent and DM responder back on — so leads never fall through the cracks even if you're managing the rest yourself.
+The text follow-up bot — any new lead that comes in gets an instant text reply and a follow-up sequence until they book.
 
-I'd start at whichever level makes sense for where you are right now. You can upgrade anytime."`}
+What stops is everything content-related. No more videos, no more graphics, no more posting. The backend stays, the front-end goes.
+
+That backend alone is worth keeping — it's what makes sure no lead falls through the cracks even when you're busy."`}
                 </p>
               </div>
             </div>

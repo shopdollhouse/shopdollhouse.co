@@ -1125,24 +1125,23 @@ function Pricing() {
     {
       name: "Starter",
       price: "$1,000",
-      software: "$97/mo",
-      tagline: "Everything you need to get online, get consistent, and start converting.",
+      software: "$300/mo",
+      tagline: "AI-powered social media management + a full back-end conversion system — done for you, every day.",
       cta: "Get Started →",
       features: [
-        "1 platform fully managed for you — nothing to post, nothing to schedule",
-        "Online booking system — clients can book appointments directly from your page",
-        "Lead funnels & automations that turn your followers into booked appointments",
-        "Comment word triggers — someone drops a keyword on your post, they're instantly sent to your landing page",
-        "DM automation — every inquiry gets an instant reply that guides them straight to book or buy",
-        "AI clone or custom brand character — content that sounds and feels like you, without you filming",
-        "Custom content creation matched to your brand voice & identity",
-        "Reels, carousels & static posts — 3x per week (12/mo)",
+        "3 AI-generated videos per week — your face, your voice, without you filming a thing",
+        "On-brand social media graphics to fill your content calendar between videos",
+        "Automated publishing across Facebook, Instagram & TikTok — fully managed",
+        "Comment-to-DM automation — anyone who comments gets an instant private message turning them into a lead",
+        "Text follow-up AI bot — automated SMS sequences that nurture new leads into booked appointments",
+        "Voice AI receptionist — answers missed calls, handles inquiries & books appointments onto your calendar 24/7",
+        "Organic social media management — content strategy, scheduling & profile management included",
       ],
     },
     {
       name: "Elite",
       price: "$5,000+",
-      software: "$497/mo",
+      software: "$300/mo",
       tagline: "Your entire online business — run, managed, and scaled completely for you.",
       featured: true,
       topBadge: { label: "Featured", tone: "gold" as "gold" | "pink" },
@@ -1163,7 +1162,7 @@ function Pricing() {
     {
       name: "Growth",
       price: "$2,500",
-      software: "$297/mo",
+      software: "$300/mo",
       tagline: "Your AI clone content, amplified — more platforms, paid ads behind it, and automation closing the loop.",
       cta: "Get a Free Proposal →",
       features: [
@@ -1300,7 +1299,7 @@ function Pricing() {
                       marginTop: "4px",
                     }}
                   >
-                    USD/MO
+                    /MO
                   </span>
                 </div>
 
@@ -1340,7 +1339,7 @@ function Pricing() {
                 >
                   <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "13px", height: "13px", color: "var(--gold)", flexShrink: 0 }}><path d="M2.5 8.5L6 12L13.5 4.5" /></svg>
                   <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.72rem", color: "var(--gold)", letterSpacing: "0.16em", textTransform: "uppercase" }}>
-                    Includes platform access — {t.software} value
+                    Includes platform access — {t.software}
                   </span>
                 </div>
 
