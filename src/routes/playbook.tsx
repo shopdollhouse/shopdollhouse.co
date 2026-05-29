@@ -9,7 +9,7 @@ const FONT_LUXE = "'Jost', sans-serif";
 const FONT_SCRIPT = "'Allura', cursive";
 
 /* ─── Types ───────────────────────────────────────────── */
-type Tab = "start" | "workflow" | "monthly" | "prompts" | "outreach" | "growth" | "newhire" | "deals" | "content" | "quote" | "schedule" | "discovery" | "proposal";
+type Tab = "start" | "workflow" | "monthly" | "prompts" | "outreach" | "growth" | "newhire" | "deals" | "content" | "quote" | "schedule" | "discovery" | "proposal" | "links";
 
 /* ─── Prompt Card ─────────────────────────────────────── */
 function PromptCard({ title, tag, prompt }: { title: string; tag: string; prompt: string }) {
@@ -6761,6 +6761,111 @@ const GROUND_RULES = [
   { emoji: "🧭", rule: "Your revenue goal is your daily filter.", desc: "Every evening ask: 'Did what I did today move me toward $X?' If the answer is no two days running, something has to change tomorrow." },
 ];
 
+function LinksTab() {
+  const categories = [
+    {
+      title: "Your Website Pages",
+      icon: "🌸",
+      links: [
+        { label: "Main Website", url: "https://shopdollhouse.co", desc: "Your public-facing homepage" },
+        { label: "Pricing & Services", url: "https://shopdollhouse.co/#pricing", desc: "Pricing section — share with warm leads" },
+        { label: "Contact / Get a Proposal", url: "https://shopdollhouse.co/#contact", desc: "Proposal request form" },
+        { label: "About", url: "https://shopdollhouse.co/#about", desc: "Your about section" },
+        { label: "Brand Room", url: "https://shopdollhouse.co/brand-room", desc: "The brand room page" },
+      ],
+    },
+    {
+      title: "Send to Clients",
+      icon: "📨",
+      links: [
+        { label: "Client Onboarding Questionnaire", url: "https://shopdollhouse.co/onboarding", desc: "Send this to every client the moment they sign — gets you everything you need to build their marketing plan" },
+        { label: "Get a Free Proposal", url: "https://shopdollhouse.co/#contact", desc: "Direct link to the proposal form for cold outreach" },
+      ],
+    },
+    {
+      title: "Your Social Media",
+      icon: "📱",
+      links: [
+        { label: "Instagram", url: "https://instagram.com/shopdollhouse", desc: "@shopdollhouse" },
+        { label: "TikTok", url: "https://tiktok.com/@shopdollhouse", desc: "@shopdollhouse" },
+        { label: "Threads", url: "https://threads.net/@shopdollhouse", desc: "@shopdollhouse" },
+        { label: "Facebook", url: "https://facebook.com/shopdollhouse", desc: "Dollhouse Brand Studio page" },
+      ],
+    },
+    {
+      title: "Business Tools",
+      icon: "🛠️",
+      links: [
+        { label: "The Platform (CRM & Automations)", url: "https://app.gohighlevel.com", desc: "Your client CRM, automation builder, calendar, and pipeline — log in here to manage all client accounts" },
+        { label: "Canva", url: "https://canva.com", desc: "Design tool for graphics, carousels, and branded content" },
+        { label: "OpenArt (AI Mascot / Clone)", url: "https://openart.ai", desc: "AI image and video generation for mascot content and AI clone visuals" },
+        { label: "Formspree (Contact Form)", url: "https://formspree.io", desc: "Where proposal form and onboarding form submissions are managed" },
+        { label: "Google Drive", url: "https://drive.google.com", desc: "Client file storage — one folder per client" },
+        { label: "Vercel (Site Hosting)", url: "https://vercel.com", desc: "Your website is auto-deployed here from GitHub" },
+        { label: "GitHub (Site Code)", url: "https://github.com/shopdollhouse/shopdollhouse.co", desc: "Source code for your website" },
+      ],
+    },
+    {
+      title: "Internal Pages",
+      icon: "🔒",
+      links: [
+        { label: "This Playbook", url: "https://shopdollhouse.co/playbook", desc: "Your full business operating system — admin only" },
+        { label: "Brand Room Page", url: "https://shopdollhouse.co/brand-room", desc: "Internal brand room builder" },
+      ],
+    },
+  ];
+
+  const copy = (url: string) => { navigator.clipboard.writeText(url); };
+
+  return (
+    <div className="max-w-4xl mx-auto px-6 md:px-12 py-10 space-y-10">
+      <div>
+        <p style={{ fontFamily: FONT_LUXE, fontSize: "0.65rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 6 }}>✦ Quick Links</p>
+        <h2 style={{ fontFamily: FONT_DISPLAY, fontSize: "2rem", color: "var(--ink)", fontStyle: "italic", marginBottom: 6 }}>All Your Important Links</h2>
+        <p style={{ fontFamily: FONT_BODY, fontSize: "0.9rem", color: "rgba(30,15,10,0.5)", lineHeight: 1.6 }}>Every link you need — organized in one place. Click to open or copy to share.</p>
+      </div>
+
+      {categories.map(cat => (
+        <div key={cat.title}>
+          <div className="flex items-center gap-2 mb-4">
+            <span style={{ fontSize: "1.1rem" }}>{cat.icon}</span>
+            <h3 style={{ fontFamily: FONT_LUXE, fontSize: "0.7rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>{cat.title}</h3>
+          </div>
+          <div className="space-y-2">
+            {cat.links.map(link => (
+              <div key={link.url} className="flex items-center justify-between gap-4 rounded-2xl px-5 py-4" style={{ background: "rgba(255,255,255,0.6)", border: "1px solid rgba(200,168,100,0.15)" }}>
+                <div className="flex-1 min-w-0">
+                  <p style={{ fontFamily: FONT_LUXE, fontSize: "0.82rem", color: "var(--ink)", fontWeight: 600, marginBottom: 2 }}>{link.label}</p>
+                  <p style={{ fontFamily: FONT_BODY, fontSize: "0.75rem", color: "rgba(30,15,10,0.45)", lineHeight: 1.4 }}>{link.desc}</p>
+                </div>
+                <div className="flex items-center gap-2 shrink-0">
+                  <button
+                    onClick={() => copy(link.url)}
+                    className="px-3 py-1.5 rounded-lg text-[10px] tracking-wider uppercase transition-all hover:opacity-80"
+                    style={{ fontFamily: FONT_LUXE, background: "rgba(200,168,100,0.12)", color: "var(--gold)", border: "1px solid rgba(200,168,100,0.25)" }}
+                    title="Copy link"
+                  >
+                    Copy
+                  </button>
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1.5 rounded-lg text-[10px] tracking-wider uppercase transition-all hover:opacity-80"
+                    style={{ fontFamily: FONT_LUXE, background: "var(--ink)", color: "var(--gold)", textDecoration: "none" }}
+                  >
+                    Open →
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function ScheduleTab() {
   const [expandedDay, setExpandedDay] = useState<string | null>("Monday");
 
@@ -9781,6 +9886,7 @@ function PlaybookPage() {
     { id: "growth",   label: "Inbound Growth",   icon: "📈" },
     { id: "newhire",  label: "New Hire Guide",   icon: "👋" },
     { id: "schedule", label: "Daily Schedule",   icon: "⏰" },
+    { id: "links",    label: "Quick Links",      icon: "🔗" },
   ];
 
   const activeRefTab = referenceTabs.find(t => t.id === tab);
@@ -9884,6 +9990,7 @@ function PlaybookPage() {
         {tab === "newhire" && <NewHireTab />}
         {tab === "quote" && <QuoteBuilderTab prospects={prospects} persist={persist} prospectId={quoteProspectId} onGoToDeals={() => { setQuoteProspectId(null); setTab("deals"); }} onClearProspect={() => setQuoteProspectId(null)} />}
         {tab === "schedule" && <ScheduleTab />}
+        {tab === "links" && <LinksTab />}
       </div>
 
       <footer className="px-6 py-8 text-center border-t border-[var(--gold)]/10">
