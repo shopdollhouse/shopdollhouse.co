@@ -8287,7 +8287,7 @@ async function idbDelete(key: string): Promise<void> {
 interface PStep { n: string; title: string; desc: string; }
 interface PPrice { name: string; price: string; tag?: string; }
 interface PSlide {
-  layout: "title" | "headline" | "bullets" | "steps" | "image" | "pricing" | "cta";
+  layout: "title" | "headline" | "bullets" | "steps" | "image" | "pricing" | "cta" | "live_quote";
   bg: "dark" | "light" | "blush" | "rose";
   heading: string;
   sub?: string;
@@ -9482,16 +9482,9 @@ const PROPOSAL_DECKS: PDeck[] = [
         script: "Email and SMS marketing is the long game. While ads bring in new clients, email and SMS keeps your existing leads warm and brings back past clients. We build automated sequences that go out at exactly the right time — a follow-up after their first booking, a re-engagement email for clients who haven't been back in 60 days, a promotion when you have something to offer. Set it up once, it runs forever.",
       },
       {
-        layout: "pricing", bg: "light",
+        layout: "live_quote", bg: "dark",
         heading: "Your Custom Investment",
-        sub: "Every plan is built around your specific goals — no one-size-fits-all packages.",
-        prices: [
-          { name: "Social Media Management", price: "from $1,000/mo", tag: "Starter" },
-          { name: "Meta Ads Management", price: "from $500/mo", tag: "+ ad spend paid to Meta" },
-          { name: "Automation & CRM", price: "included in all plans", tag: "Full system buildout" },
-          { name: "Setup Fee", price: "$500 one-time", tag: "Paid before work begins" },
-        ],
-        script: "Here's what the investment looks like. Every client gets a custom quote based on exactly what they need — but these are the starting points. Social media management from $1,000 a month. Meta ads management from $500 a month — plus your ad spend paid directly to Meta. The automation system is built into every plan. And there's a one-time $500 setup fee that covers building your entire system before month one begins. Shall I put together a custom proposal for you?",
+        script: "Now let's build your plan together right now. [Use the selectors on screen to choose their plan, add services, and pick contract length — the total updates in real time as you go.] This is exactly what you'll pay — no hidden fees, no surprises. The only thing separate is your ad spend if we're running ads, and that goes directly to Meta. Any questions as we build this out?",
       },
       {
         layout: "title", bg: "dark",
@@ -9504,6 +9497,157 @@ const PROPOSAL_DECKS: PDeck[] = [
 ];
 
 /* ── Slide visual renderer (1280 × 720 internal canvas) ─────────────────── */
+/* ── Live Quote Slide ────────────────────────────────────────────────────── */
+function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
+  const PLANS = [
+    { id: "starter",  name: "Starter",  price: 1000 },
+    { id: "growth",   name: "Growth",   price: 2500 },
+    { id: "elite",    name: "Elite",    price: 5000 },
+  ];
+  const ADDONS = [
+    { id: "meta_ads",  name: "Meta Ads Management",  price: 500,  note: "+ ad spend paid to Meta" },
+    { id: "google",    name: "Google Ads Management", price: 750,  note: "+ ad spend paid to Google" },
+    { id: "email_sms", name: "Email & SMS Sequences", price: 400,  note: "Automated nurture flows" },
+    { id: "ai_video",  name: "AI Avatar Videos",      price: 800,  note: "4–8 branded videos/mo" },
+  ];
+
+  const [plan, setPlan] = useState("starter");
+  const [addons, setAddons] = useState<Set<string>>(new Set());
+  const [contract, setContract] = useState<"6mo" | "12mo">("6mo");
+
+  const sel = PLANS.find(p => p.id === plan)!;
+  const addonTotal = ADDONS.filter(a => addons.has(a.id)).reduce((s, a) => s + a.price, 0);
+  const subtotal = sel.price + addonTotal;
+  const discount = contract === "12mo" ? Math.round(subtotal * 0.10) : 0;
+  const monthly = subtotal - discount;
+
+  const dark = bg === "dark" || bg === "rose";
+  const C = dark
+    ? { bg: "#1e1210", fg: "#f5e8e0", fg2: "rgba(245,232,224,0.6)", acc: "#c4a87a", card: "rgba(255,255,255,0.07)", border: "rgba(196,168,122,0.25)", active: "rgba(196,168,122,0.18)", activeBorder: "#c4a87a", sum: "rgba(255,255,255,0.06)" }
+    : { bg: "#f5e8e0", fg: "#1e1210", fg2: "rgba(30,18,16,0.5)", acc: "#b8956a", card: "rgba(255,255,255,0.7)", border: "rgba(184,149,106,0.25)", active: "rgba(184,149,106,0.15)", activeBorder: "#b8956a", sum: "rgba(0,0,0,0.04)" };
+
+  const SERIF = "'Cormorant Garamond', serif";
+  const SANS  = "'DM Sans', sans-serif";
+  const LUXE  = "'Jost', sans-serif";
+
+  const toggle = (id: string) => setAddons(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
+
+  return (
+    <div style={{ width: "100%", height: "100%", background: C.bg, display: "flex", gap: 0, boxSizing: "border-box", overflow: "hidden" }}>
+      {/* LEFT — selectors */}
+      <div style={{ flex: 1, padding: "42px 36px 42px 56px", display: "flex", flexDirection: "column", gap: 20, overflowY: "auto" }}>
+        <div>
+          <div style={{ fontFamily: LUXE, fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", color: C.acc, marginBottom: 6 }}>The Dollhouse Brand Studio</div>
+          <div style={{ fontFamily: SERIF, fontSize: 36, color: C.fg, lineHeight: 1.1, marginBottom: 4 }}>Build Your Plan</div>
+          <div style={{ width: 36, height: 1.5, background: C.acc }} />
+        </div>
+
+        {/* Plan selector */}
+        <div>
+          <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: C.fg2, marginBottom: 8 }}>Choose Your Plan</div>
+          <div style={{ display: "flex", gap: 8 }}>
+            {PLANS.map(p => (
+              <button key={p.id} onClick={() => setPlan(p.id)}
+                style={{ flex: 1, padding: "12px 10px", borderRadius: 12, border: `1.5px solid ${plan === p.id ? C.activeBorder : C.border}`, background: plan === p.id ? C.active : C.card, cursor: "pointer", textAlign: "left" }}>
+                <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.12em", textTransform: "uppercase", color: plan === p.id ? C.acc : C.fg2, marginBottom: 3 }}>{p.name}</div>
+                <div style={{ fontFamily: SERIF, fontSize: 22, color: plan === p.id ? C.acc : C.fg, fontWeight: 500 }}>${p.price.toLocaleString()}<span style={{ fontSize: 12, fontWeight: 400 }}>/mo</span></div>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Addons */}
+        <div>
+          <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: C.fg2, marginBottom: 8 }}>Add-On Services</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            {ADDONS.map(a => {
+              const on = addons.has(a.id);
+              return (
+                <button key={a.id} onClick={() => toggle(a.id)}
+                  style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 14px", borderRadius: 10, border: `1px solid ${on ? C.activeBorder : C.border}`, background: on ? C.active : C.card, cursor: "pointer" }}>
+                  <div style={{ textAlign: "left" }}>
+                    <div style={{ fontFamily: SANS, fontSize: 12, color: C.fg, fontWeight: on ? 600 : 400 }}>{a.name}</div>
+                    <div style={{ fontFamily: SANS, fontSize: 10, color: C.fg2, marginTop: 1 }}>{a.note}</div>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <div style={{ fontFamily: SERIF, fontSize: 18, color: C.acc }}>+${a.price}/mo</div>
+                    <div style={{ width: 18, height: 18, borderRadius: "50%", border: `1.5px solid ${on ? C.acc : C.border}`, background: on ? C.acc : "transparent", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      {on && <div style={{ width: 8, height: 8, borderRadius: "50%", background: dark ? C.bg : "#fff" }} />}
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Contract */}
+        <div>
+          <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: C.fg2, marginBottom: 8 }}>Contract Length</div>
+          <div style={{ display: "flex", gap: 8 }}>
+            {([["6mo","6 Months","Standard"],["12mo","12 Months","Save 10%"]] as const).map(([v, label, sub]) => (
+              <button key={v} onClick={() => setContract(v)}
+                style={{ flex: 1, padding: "10px 14px", borderRadius: 10, border: `1.5px solid ${contract === v ? C.activeBorder : C.border}`, background: contract === v ? C.active : C.card, cursor: "pointer", textAlign: "left" }}>
+                <div style={{ fontFamily: LUXE, fontSize: 11, color: contract === v ? C.acc : C.fg, fontWeight: 600 }}>{label}</div>
+                <div style={{ fontFamily: SANS, fontSize: 10, color: contract === v ? C.acc : C.fg2, marginTop: 2 }}>{sub}</div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* RIGHT — live summary */}
+      <div style={{ width: 260, background: C.sum, borderLeft: `1px solid ${C.border}`, padding: "42px 28px", display: "flex", flexDirection: "column", gap: 16 }}>
+        <div style={{ fontFamily: SERIF, fontSize: 26, color: C.fg, lineHeight: 1.15 }}>Your Investment</div>
+        <div style={{ height: 1, background: C.border }} />
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 10, flex: 1 }}>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <span style={{ fontFamily: SANS, fontSize: 12, color: C.fg2 }}>{sel.name} Plan</span>
+            <span style={{ fontFamily: SANS, fontSize: 12, color: C.fg }}>${sel.price.toLocaleString()}/mo</span>
+          </div>
+          {ADDONS.filter(a => addons.has(a.id)).map(a => (
+            <div key={a.id} style={{ display: "flex", justifyContent: "space-between" }}>
+              <span style={{ fontFamily: SANS, fontSize: 12, color: C.fg2 }}>{a.name}</span>
+              <span style={{ fontFamily: SANS, fontSize: 12, color: C.fg }}>+${a.price}/mo</span>
+            </div>
+          ))}
+          {discount > 0 && (
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <span style={{ fontFamily: SANS, fontSize: 12, color: "#4a9970" }}>12-Month Discount (10%)</span>
+              <span style={{ fontFamily: SANS, fontSize: 12, color: "#4a9970" }}>−${discount}/mo</span>
+            </div>
+          )}
+          <div style={{ height: 1, background: C.border, margin: "4px 0" }} />
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <span style={{ fontFamily: LUXE, fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: C.fg2 }}>Monthly Total</span>
+            <span style={{ fontFamily: SERIF, fontSize: 28, color: C.acc, fontWeight: 500 }}>${monthly.toLocaleString()}/mo</span>
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <span style={{ fontFamily: SANS, fontSize: 11, color: C.fg2 }}>One-Time Setup</span>
+            <span style={{ fontFamily: SANS, fontSize: 11, color: C.fg }}>$500</span>
+          </div>
+          {addons.has("meta_ads") && (
+            <div style={{ padding: "8px 10px", borderRadius: 8, background: C.active, border: `1px solid ${C.border}` }}>
+              <div style={{ fontFamily: SANS, fontSize: 10, color: C.fg2, lineHeight: 1.5 }}>
+                Meta ad spend is separate — paid directly to Meta. Recommended: $1,000/mo minimum for best results.
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: 12 }}>
+          <div style={{ fontFamily: SANS, fontSize: 10, color: C.fg2, lineHeight: 1.6 }}>
+            ✦ 14-day free trial available<br />
+            ✦ $500 setup fee applies<br />
+            ✦ {contract === "12mo" ? "12-month agreement" : "6-month minimum"}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function renderSlideVisual(
   slide: PSlide,
   mediaItem: MediaItem | undefined,
@@ -9690,6 +9834,8 @@ function renderSlideVisual(
       </div>
     </div>
   );
+
+  if (slide.layout === "live_quote") return <LiveQuoteSlide bg={slide.bg} />;
 
   if (slide.layout === "pricing") return (
     <div style={{ ...base, display: "flex", flexDirection: "column", justifyContent: "center" }}>
