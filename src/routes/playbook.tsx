@@ -6767,29 +6767,26 @@ function LinksTab() {
       title: "Your Website Pages",
       icon: "🌸",
       links: [
-        { label: "Main Website", url: "https://shopdollhouse.co", desc: "Your public-facing homepage" },
-        { label: "Pricing & Services", url: "https://shopdollhouse.co/#pricing", desc: "Pricing section — share with warm leads" },
-        { label: "Contact / Get a Proposal", url: "https://shopdollhouse.co/#contact", desc: "Proposal request form" },
-        { label: "About", url: "https://shopdollhouse.co/#about", desc: "Your about section" },
-        { label: "Brand Room", url: "https://shopdollhouse.co/brand-room", desc: "The brand room page" },
+        { label: "Main Website", url: "https://www.shopdollhouse.co/", desc: "Your public-facing homepage" },
+        { label: "Brand Room", url: "https://www.shopdollhouse.co/brand-room", desc: "The brand room page" },
       ],
     },
     {
       title: "Send to Clients",
       icon: "📨",
       links: [
-        { label: "Client Onboarding Questionnaire", url: "https://shopdollhouse.co/onboarding", desc: "Send this to every client the moment they sign — gets you everything you need to build their marketing plan" },
-        { label: "Get a Free Proposal", url: "https://shopdollhouse.co/#contact", desc: "Direct link to the proposal form for cold outreach" },
+        { label: "Client Onboarding Questionnaire", url: "https://www.shopdollhouse.co/onboarding", desc: "Send this to every client the moment they sign — gets you everything you need to build their marketing plan" },
+        { label: "Get a Free Proposal", url: "https://www.shopdollhouse.co/#contact", desc: "Direct link to the proposal form for cold outreach" },
       ],
     },
     {
       title: "Your Social Media",
       icon: "📱",
       links: [
-        { label: "Instagram", url: "https://instagram.com/shopdollhouse", desc: "@shopdollhouse" },
-        { label: "TikTok", url: "https://tiktok.com/@shopdollhouse", desc: "@shopdollhouse" },
-        { label: "Threads", url: "https://threads.net/@shopdollhouse", desc: "@shopdollhouse" },
-        { label: "Facebook", url: "https://facebook.com/shopdollhouse", desc: "Dollhouse Brand Studio page" },
+        { label: "Instagram", url: "https://instagram.com/mandyxdoll", desc: "@mandyxdoll" },
+        { label: "TikTok", url: "https://www.tiktok.com/@mandyxdoll", desc: "@mandyxdoll" },
+        { label: "Threads", url: "https://www.threads.com/@mandyxdoll", desc: "@mandyxdoll" },
+        { label: "Facebook", url: "https://www.facebook.com/shopdollhouseco/", desc: "Dollhouse Brand Studio page" },
       ],
     },
     {
@@ -6797,7 +6794,6 @@ function LinksTab() {
       icon: "🛠️",
       links: [
         { label: "The Platform (CRM & Automations)", url: "https://app.gohighlevel.com", desc: "Your client CRM, automation builder, calendar, and pipeline — log in here to manage all client accounts" },
-        { label: "Canva", url: "https://canva.com", desc: "Design tool for graphics, carousels, and branded content" },
         { label: "OpenArt (AI Mascot / Clone)", url: "https://openart.ai", desc: "AI image and video generation for mascot content and AI clone visuals" },
         { label: "Formspree (Contact Form)", url: "https://formspree.io", desc: "Where proposal form and onboarding form submissions are managed" },
         { label: "Google Drive", url: "https://drive.google.com", desc: "Client file storage — one folder per client" },
@@ -6809,8 +6805,8 @@ function LinksTab() {
       title: "Internal Pages",
       icon: "🔒",
       links: [
-        { label: "This Playbook", url: "https://shopdollhouse.co/playbook", desc: "Your full business operating system — admin only" },
-        { label: "Brand Room Page", url: "https://shopdollhouse.co/brand-room", desc: "Internal brand room builder" },
+        { label: "This Playbook", url: "https://www.shopdollhouse.co/playbook", desc: "Your full business operating system — admin only" },
+        { label: "Brand Room Page", url: "https://www.shopdollhouse.co/brand-room", desc: "Internal brand room builder" },
       ],
     },
   ];
