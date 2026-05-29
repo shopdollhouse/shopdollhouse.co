@@ -1129,7 +1129,7 @@ function Pricing() {
       tagline: "Social media management + a full back-end conversion system — done for you, every day.",
       cta: "Get Started →",
       features: [
-        "1 platform fully managed — nothing to post, nothing to schedule, nothing to think about",
+        "1 platform of your choice — Facebook, Instagram or TikTok — fully managed, nothing to post",
         "AI clone or custom brand mascot/character — your face, your voice, your energy",
         "3 AI clone videos pinned at the top of your profile — your best content, always front and centre",
         "Reels, carousels & static posts filling the rest of your content calendar — all on-brand",
