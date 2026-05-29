@@ -1132,7 +1132,7 @@ function Pricing() {
         "1 platform of your choice — Facebook, Instagram or TikTok — fully managed, nothing to post",
         "AI clone or custom brand mascot/character — your face, your voice, your energy",
         "3 AI clone videos pinned at the top of your profile — your best content, always front and centre",
-        "Reels, carousels & static posts filling the rest of your content calendar — all on-brand",
+        "Reels, carousels & static posts — 3x per week (12/mo), all on-brand",
         "Comment-to-DM automation — anyone who comments gets an instant private message turning them into a lead",
         "Text follow-up AI bot — automated SMS sequences that nurture new leads into booked appointments",
         "Voice AI receptionist — answers missed calls, handles inquiries & books appointments 24/7",
