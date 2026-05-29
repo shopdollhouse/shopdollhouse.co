@@ -9365,6 +9365,142 @@ const PROPOSAL_DECKS: PDeck[] = [
       },
     ],
   },
+
+  /* ── Service Overview / Discovery Deck ─────────────────────────────────── */
+  {
+    id: "service_overview", name: "Service Overview Deck", icon: "bar-chart",
+    tagline: "Walk prospects through every service — used during discovery calls",
+    slides: [
+      {
+        layout: "title", bg: "dark",
+        heading: "Your Complete\nMarketing System.",
+        sub: "The Dollhouse Brand Studio",
+        script: "Thank you for your time today. What I'm going to walk you through is the complete marketing system we build for businesses like yours — every service, how it works, and exactly what it means for your growth. By the end of this you'll have a clear picture of what we do and what the investment looks like. Let's start.",
+      },
+      {
+        layout: "bullets", bg: "blush",
+        heading: "Everything we do — under one roof",
+        bullets: [
+          "Social Media Management — daily content, posting, and scheduling done for you",
+          "AI Clone & Brand Character — your face and voice, posting every day without you filming",
+          "Meta Ads — Facebook & Instagram ad campaigns that drive real leads and bookings",
+          "Automation & CRM — every lead followed up, every appointment booked automatically",
+          "Email & SMS Marketing — nurture sequences that convert leads while you sleep",
+        ],
+        script: "Here's the full picture of what we offer. You don't have to take every service — most clients start with one or two and grow from there. But the most powerful results come when everything works together. Content brings them in. Ads amplify it. Automation converts them. Email and SMS keeps them coming back. Today I'll walk you through each one.",
+      },
+      {
+        layout: "headline", bg: "rose",
+        heading: "Social Media Management",
+        sub: "Purpose: to keep your brand visible, consistent, and converting — every single day.",
+        body: "We create, schedule, and post your content across all platforms. You don't write a word, film a thing, or touch your phone to post.",
+        script: "Let's start with social media management. The purpose is simple — your brand needs to show up every day online. Most business owners know this but can't maintain it. We take the whole thing off your plate. Content written, designed, scheduled, and posted — all done for you.",
+      },
+      {
+        layout: "steps", bg: "light",
+        heading: "How social media management works",
+        steps: [
+          { n: "01", title: "We learn your brand", desc: "We study your business, your audience, your competitors, and your voice. Everything we create sounds like you." },
+          { n: "02", title: "Content is created", desc: "Reels, carousels, static posts — written, designed, and ready. You approve before anything goes live." },
+          { n: "03", title: "We post daily", desc: "Your content goes live on schedule, every day, across every platform. Hashtags, captions, timing — all handled." },
+          { n: "04", title: "We report monthly", desc: "You get a clear monthly report — what performed, what grew, and what we're doing next month." },
+        ],
+        script: "Here's how the process actually works. Week one, we go deep on your brand. Then we create your first batch of content — you see it before it goes anywhere. Then we schedule and post, every day, while you focus on running your business. And every month you get a report in plain English — no confusing dashboards.",
+      },
+      {
+        layout: "headline", bg: "dark",
+        heading: "AI Clone & Brand Character",
+        sub: "Your face. Your voice. Posting every day — without you filming.",
+        body: "We build an AI version of you that creates video content on your behalf. One recording session. Unlimited content.",
+        script: "This is what makes us completely different from any other agency. We build your AI clone — a digital version of you that creates video content without you having to film. You record once. We train the model on your face, your voice, your energy. From that point forward, your AI clone creates content that looks and sounds exactly like you — every day.",
+      },
+      {
+        layout: "steps", bg: "blush",
+        heading: "How the AI clone is built",
+        steps: [
+          { n: "01", title: "You record once", desc: "One 20–30 minute session. Speak naturally — talk about your services, your story, your clients. We handle everything else." },
+          { n: "02", title: "We train your model", desc: "Our team builds your AI clone — trained on your face, voice, and brand tone. Takes about a week." },
+          { n: "03", title: "Content generates daily", desc: "Scripts are written, your clone records, content is edited and posted — on autopilot, every single day." },
+        ],
+        script: "Here's how we build it. You record once — just a normal conversation with us on a video call. From that recording, we train your AI model. Within about a week, you have a digital version of yourself that can create video content without you ever picking up a camera again.",
+      },
+      {
+        layout: "headline", bg: "rose",
+        heading: "Meta Ads",
+        sub: "Purpose: to put your best content in front of exactly the right people — and turn them into clients.",
+        body: "Facebook and Instagram ads, managed by us. We create the ads, build the audiences, run the campaigns, and optimise for real bookings.",
+        script: "Now let's talk about paid advertising. The purpose of Meta ads is to amplify what's already working — take your best content and put it in front of thousands of people in your city who match your ideal client exactly. We build the ads, target the audiences, and optimise everything to turn clicks into actual booked clients.",
+      },
+      {
+        layout: "steps", bg: "light",
+        heading: "How Meta ads work",
+        steps: [
+          { n: "01", title: "We create the ads", desc: "Video and image ads built around your offer — designed to stop the scroll and drive action." },
+          { n: "02", title: "We target the right people", desc: "Hyper-targeted audiences built around your ideal client — location, age, interests, behaviours." },
+          { n: "03", title: "Campaigns go live", desc: "Ads run across Facebook and Instagram. We monitor performance daily and adjust as we go." },
+          { n: "04", title: "We optimise for results", desc: "Every week we cut what isn't working and scale what is. Your cost per lead goes down over time." },
+        ],
+        script: "Here's how the ad process works. We create the ads — videos and images built to convert. We build a custom audience based on your ideal client. We launch across Facebook and Instagram. Then we watch the data every day — cutting underperformers, scaling winners, and optimising until your cost per booking is as low as possible.",
+      },
+      {
+        layout: "bullets", bg: "dark",
+        heading: "Meta ads — what you need to know",
+        bullets: [
+          "We run ads on Facebook and Instagram — 3 platforms total with Stories included",
+          "Minimum recommended ad spend: $1,000/mo — this is what gets real results",
+          "Absolute minimum: $500/mo — possible but limited reach and volume",
+          "Our management fee is separate from your ad spend",
+          "Ad spend is paid directly by you to Meta — not included in our retainer",
+          "At $1,000–$2,000/mo we typically run 6–12 ads — quality matters more than quantity",
+          "We recommend starting with $1,000/mo for the best cost-per-lead results",
+        ],
+        script: "A few important things to understand about ad spend. Your ad budget is separate from our management fee — it goes directly to Meta. We recommend $1,000 a month as the sweet spot. At that level we run around 6 quality ads — testing different angles, creatives, and audiences. You can start at $500 but I want to be honest: results are more limited. The more budget we have to work with, the more we can test and the faster we find what converts.",
+      },
+      {
+        layout: "headline", bg: "blush",
+        heading: "Automation & CRM System",
+        sub: "Purpose: to make sure every single lead is followed up — automatically, instantly, every time.",
+        body: "Your complete lead management system. Every inquiry captured, every follow-up sent, every appointment booked — without you lifting a finger.",
+        script: "Now let's talk about automation. The purpose is this — most businesses lose leads not because the product is bad, but because no one followed up fast enough. Our automation system means the second someone reaches out, they hear from you. Not in an hour. Not tomorrow. In seconds.",
+      },
+      {
+        layout: "steps", bg: "light",
+        heading: "How the automation system works",
+        steps: [
+          { n: "01", title: "Capture every lead", desc: "Every DM, web form, call, and ad response is captured in one place. Nothing slips through." },
+          { n: "02", title: "Instant follow-up", desc: "Automated SMS and email replies sent within seconds. Booking link included. 24/7." },
+          { n: "03", title: "Nurture sequences", desc: "If they don't book right away, automated sequences follow up over 7–14 days — until they do." },
+          { n: "04", title: "Optimise & convert", desc: "Monthly review of conversion rates, open rates, and booking data. We improve what isn't converting." },
+        ],
+        script: "Here's how it all connects. A lead comes in — from anywhere — and they're instantly in your system. They get a message from you within seconds. If they don't respond, another message goes out. Then another. An automated sequence keeps following up for up to two weeks. And every month we look at the data and improve the process. It runs without you and it never takes a day off.",
+      },
+      {
+        layout: "headline", bg: "dark",
+        heading: "Email & SMS Marketing",
+        sub: "Purpose: to nurture your leads, re-engage past clients, and keep your business top of mind.",
+        body: "Automated sequences that follow up with every lead, re-book past clients, and drive repeat business — all on autopilot.",
+        script: "Email and SMS marketing is the long game. While ads bring in new clients, email and SMS keeps your existing leads warm and brings back past clients. We build automated sequences that go out at exactly the right time — a follow-up after their first booking, a re-engagement email for clients who haven't been back in 60 days, a promotion when you have something to offer. Set it up once, it runs forever.",
+      },
+      {
+        layout: "pricing", bg: "light",
+        heading: "Your Custom Investment",
+        sub: "Every plan is built around your specific goals — no one-size-fits-all packages.",
+        prices: [
+          { name: "Social Media Management", price: "from $1,000/mo", tag: "Starter" },
+          { name: "Meta Ads Management", price: "from $500/mo", tag: "+ ad spend paid to Meta" },
+          { name: "Automation & CRM", price: "included in all plans", tag: "Full system buildout" },
+          { name: "Setup Fee", price: "$500 one-time", tag: "Paid before work begins" },
+        ],
+        script: "Here's what the investment looks like. Every client gets a custom quote based on exactly what they need — but these are the starting points. Social media management from $1,000 a month. Meta ads management from $500 a month — plus your ad spend paid directly to Meta. The automation system is built into every plan. And there's a one-time $500 setup fee that covers building your entire system before month one begins. Shall I put together a custom proposal for you?",
+      },
+      {
+        layout: "title", bg: "dark",
+        heading: "Thank you.",
+        sub: "The Dollhouse Brand Studio  ·  hello@shopdollhouse.co",
+        script: "Thank you so much for your time today. I want you to walk away feeling clear — not sold to. If any of this feels like the right fit for your business, I'd love to put together a custom proposal with exact numbers for your specific plan. I'll follow up with everything in writing so you can take your time. Any questions before I let you go?",
+      },
+    ],
+  },
 ];
 
 /* ── Slide visual renderer (1280 × 720 internal canvas) ─────────────────── */
