@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useRef, useEffect } from "react";
 
 export const Route = createFileRoute("/onboarding")({ component: OnboardingForm });
 
@@ -113,6 +113,66 @@ const Select = ({ label, name, value, onChange, options, required = false }: {
     </select>
   </div>
 );
+
+const SearchableSelect = ({ label, name, value, onChange, options, required = false }: {
+  label: string; name: string; value: string; onChange: (n: string, v: string) => void;
+  options: string[]; required?: boolean;
+}) => {
+  const [query, setQuery] = useState(value);
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  const filtered = options.filter(o => o.toLowerCase().includes(query.toLowerCase()));
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => { if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false); };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const select = (o: string) => { onChange(name, o); setQuery(o); setOpen(false); };
+
+  return (
+    <div style={{ marginBottom: "20px", position: "relative" }} ref={ref}>
+      <label style={labelStyle}>{label}{required && <span style={{ color: "var(--rose)", marginLeft: 2 }}>*</span>}</label>
+      <div style={{ position: "relative" }}>
+        <input
+          value={query}
+          onChange={e => { setQuery(e.target.value); onChange(name, ""); setOpen(true); }}
+          onFocus={() => setOpen(true)}
+          placeholder="Type to search your industry…"
+          style={{ ...inputStyle, paddingRight: 36 }}
+        />
+        <span style={{ position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", color: "var(--gold)", fontSize: "0.7rem", pointerEvents: "none" }}>▾</span>
+      </div>
+      {open && filtered.length > 0 && (
+        <div style={{
+          position: "absolute", top: "calc(100% + 4px)", left: 0, right: 0, zIndex: 100,
+          background: "#fff", border: "1px solid rgba(200,168,100,0.3)", borderRadius: 12,
+          boxShadow: "0 8px 32px rgba(0,0,0,0.1)", maxHeight: 220, overflowY: "auto",
+        }}>
+          {filtered.map(o => (
+            <button
+              key={o} type="button" onClick={() => select(o)}
+              style={{
+                display: "block", width: "100%", textAlign: "left",
+                padding: "10px 16px", border: "none", background: o === value ? "rgba(200,168,100,0.1)" : "transparent",
+                fontFamily: FONT_BODY, fontSize: "0.88rem", color: o === value ? "#a06e30" : "#1e0f0a",
+                cursor: "pointer", fontWeight: o === value ? 600 : 400,
+                borderBottom: "1px solid rgba(200,168,100,0.08)",
+              }}
+              onMouseEnter={e => (e.currentTarget.style.background = "rgba(200,168,100,0.08)")}
+              onMouseLeave={e => (e.currentTarget.style.background = o === value ? "rgba(200,168,100,0.1)" : "transparent")}
+            >
+              {o}
+            </button>
+          ))}
+        </div>
+      )}
+      {required && <input type="text" value={value} required readOnly style={{ position: "absolute", opacity: 0, height: 0, pointerEvents: "none" }} />}
+    </div>
+  );
+};
 
 const MultiCheck = ({ label, name, selected, onChange, options }: {
   label: string; name: string; selected: string[]; onChange: (n: string, v: string[]) => void; options: string[];
@@ -253,7 +313,7 @@ export default function OnboardingForm() {
               <Field label="Website URL" name="website" value={form.website} onChange={set} placeholder="https://yourbusiness.com" />
               <Field label="Social Media Handles" name="socialHandles" value={form.socialHandles} onChange={set} placeholder="@yourbusiness on Instagram, TikTok, etc." />
               <Field label="City / Location" name="city" value={form.city} onChange={set} required placeholder="Toronto, ON" />
-              <Select label="Industry / Niche" name="industry" value={form.industry} onChange={set} required options={[
+              <SearchableSelect label="Industry / Niche" name="industry" value={form.industry} onChange={set} required options={[
                 "Med Spa / Aesthetic Clinic","Beauty & Skincare","Hair Salon & Barbershop","Nail Salon","Tattoo & Piercing","Wellness & Holistic Health","Massage Therapy","Chiropractic & Physiotherapy","Naturopath & Functional Medicine","Dental / Orthodontics","Optometry","Mental Health & Therapy","Personal Training & Gym","Yoga & Pilates Studio","Dance Studio","Martial Arts & Boxing",
                 "Landscaping & Lawn Care","Home Renovation & Contracting","Interior Design & Staging","Architecture","Painting & Flooring","Plumbing & HVAC","Electrical","Roofing & Windows","Cleaning Services","Moving & Storage","Pool & Spa Services","Snow Removal",
                 "Restaurant & Café","Bakery & Desserts","Bar & Nightclub","Catering & Event Food","Food Truck","Meal Prep & Delivery",
