@@ -9231,6 +9231,16 @@ const PROPOSAL_DECKS: PDeck[] = [
         script: "We move fast — because the faster we get your assets, the faster your content goes live. The 48-hour window is real and firm. After that, we start building with what we have. Either way — we don't stop.",
       },
       {
+        layout: "steps", bg: "blush",
+        heading: "Access & Permissions",
+        steps: [
+          { n: "01", title: "Instagram & Facebook", desc: "Open Meta Business Suite → Settings → People → Add People. Enter hello@shopdollhouse.co and assign Admin access. We never need your password — this is the safe, official way." },
+          { n: "02", title: "TikTok", desc: "Open TikTok Business Center → Members → Invite Member. Enter hello@shopdollhouse.co and assign Operator access. Let's do this together right now." },
+          { n: "03", title: "Google Business Profile", desc: "Open your Google Business Profile → Managers → Add. Enter hello@shopdollhouse.co as a Manager. Takes 30 seconds and keeps your account secure." },
+        ],
+        script: "Let's do this right now while we're both here — it takes about 5 minutes and means we can start work immediately. I never need your passwords for any platform. You're adding me as an official admin or manager — which you can remove at any time. Pull up Instagram first and I'll walk you through it. [Go through each platform together on the call. Don't end without at least Instagram and Facebook access confirmed.]",
+      },
+      {
         layout: "bullets", bg: "light",
         heading: "How We Work Together",
         bullets: [
