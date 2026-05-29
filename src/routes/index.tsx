@@ -1126,9 +1126,10 @@ function Pricing() {
       name: "Starter",
       price: "$1,000",
       software: "$300/mo",
-      tagline: "AI-powered social media management + a full back-end conversion system — done for you, every day.",
+      tagline: "Social media management + a full back-end conversion system — done for you, every day.",
       cta: "Get Started →",
       features: [
+        "1 platform fully managed for you — nothing to post, nothing to schedule",
         "3 AI-generated videos per week — your face, your voice, without you filming a thing",
         "On-brand social media graphics to fill your content calendar between videos",
         "Automated publishing across Facebook, Instagram & TikTok — fully managed",
