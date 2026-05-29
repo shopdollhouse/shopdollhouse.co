@@ -1148,8 +1148,8 @@ function Pricing() {
       topBadge: { label: "Featured", tone: "gold" as "gold" | "pink" },
       cta: "Apply for Elite →",
       features: [
-        "5 platforms fully managed — Instagram, TikTok, Facebook, LinkedIn & Threads",
-        "AI clone or brand mascot across all 5 platforms — your brand everywhere, every day",
+        "3 platforms fully managed — Instagram, TikTok & Facebook — daily content, nothing to manage",
+        "AI clone or brand mascot across all 3 platforms — your brand everywhere, every day",
         "12 AI clone videos/month — pinned across all platforms, always your best content",
         "Daily content — up to 28 posts/month across all 5 platforms",
         "Full ad management — Facebook, Instagram, TikTok & Google ads, all platforms",
