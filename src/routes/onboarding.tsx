@@ -21,13 +21,13 @@ type F = Record<string, string>;
 
 const INITIAL: F = {
   // Step 1
-  clientName: "", businessName: "", email: "", phone: "", website: "", socialHandles: "", city: "", industry: "",
+  businessName: "", email: "", phone: "", website: "", socialHandles: "", city: "", industry: "",
   // Step 2
   businessDescription: "", topServices: "", differentiator: "", pricePoint: "", businessAge: "",
   // Step 3
   audienceAge: "", audienceGender: "", audienceIncome: "", audiencePlatforms: "", audienceProblem: "", whyChooseYou: "", idealClientDesc: "",
   // Step 4
-  brandColors: "", hasBrandGuidelines: "", instagramInspiration: "", brandsAdmire: "", neverFeel: "",
+  brandColors: "", hasBrandGuidelines: "", instagramInspiration: "", websitesLike: "", brandsAdmire: "", neverFeel: "",
   // Step 5
   textOnImages: "", hasAssets: "", avoidImagery: "", emojiPreference: "", captionLength: "", extraContentNotes: "",
   // Step 6
@@ -246,15 +246,25 @@ export default function OnboardingForm() {
           {/* ── Step 1: Your Details ─────────────────────────────── */}
           {step === 0 && (
             <div>
-              <StepHeader title="Let's start with you." sub="Tell us about yourself and your business so we know exactly who we're building for." />
-              <Field label="Your Full Name" name="clientName" value={form.clientName} onChange={set} required placeholder="Mandy Fortune" />
-              <Field label="Business Name" name="businessName" value={form.businessName} onChange={set} required placeholder="The Dollhouse Brand Studio" />
+              <StepHeader title="Let's start with you." sub="Tell us about your business so we know exactly who we're building for." />
+              <Field label="Business Name" name="businessName" value={form.businessName} onChange={set} required placeholder="North Medical Spa" />
               <Field label="Email Address" name="email" value={form.email} onChange={set} required type="email" placeholder="hello@yourbusiness.com" />
               <Field label="Phone Number" name="phone" value={form.phone} onChange={set} placeholder="+1 (416) 000-0000" />
               <Field label="Website URL" name="website" value={form.website} onChange={set} placeholder="https://yourbusiness.com" />
               <Field label="Social Media Handles" name="socialHandles" value={form.socialHandles} onChange={set} placeholder="@yourbusiness on Instagram, TikTok, etc." />
               <Field label="City / Location" name="city" value={form.city} onChange={set} required placeholder="Toronto, ON" />
-              <Select label="Industry / Niche" name="industry" value={form.industry} onChange={set} required options={["Med Spa / Aesthetic Clinic","Beauty & Skincare","Wellness & Fitness","Hair Salon","Dental / Medical","Real Estate","Coaching & Consulting","Restaurant & Food","Boutique Retail","Photography","Law & Finance","Other"]} />
+              <Select label="Industry / Niche" name="industry" value={form.industry} onChange={set} required options={[
+                "Med Spa / Aesthetic Clinic","Beauty & Skincare","Hair Salon & Barbershop","Nail Salon","Tattoo & Piercing","Wellness & Holistic Health","Massage Therapy","Chiropractic & Physiotherapy","Naturopath & Functional Medicine","Dental / Orthodontics","Optometry","Mental Health & Therapy","Personal Training & Gym","Yoga & Pilates Studio","Dance Studio","Martial Arts & Boxing",
+                "Landscaping & Lawn Care","Home Renovation & Contracting","Interior Design & Staging","Architecture","Painting & Flooring","Plumbing & HVAC","Electrical","Roofing & Windows","Cleaning Services","Moving & Storage","Pool & Spa Services","Snow Removal",
+                "Restaurant & Café","Bakery & Desserts","Bar & Nightclub","Catering & Event Food","Food Truck","Meal Prep & Delivery",
+                "Real Estate Agent / Broker","Mortgage & Lending","Property Management","Home Inspection",
+                "Coaching & Consulting","Marketing Agency","Graphic Design & Creative","Photography & Videography","Web Design & Tech","Accounting & Tax","Financial Planning","Insurance","Legal Services","HR & Recruiting",
+                "Clothing & Fashion","Jewelry & Accessories","Florist","Gift & Lifestyle","Boutique Retail","E-commerce / Online Store",
+                "Childcare & Education","Tutoring","Pet Care & Grooming","Veterinary","Animal Training",
+                "Auto Repair & Detailing","Car Dealership","Transportation & Logistics",
+                "Event Planning & Weddings","Entertainment & Music","Podcast & Media","Travel & Tourism","Hotel & Hospitality","Nonprofit & Charity",
+                "Other"
+              ]} />
             </div>
           )}
 
@@ -292,6 +302,7 @@ export default function OnboardingForm() {
               <Field label="Your brand colours (hex codes or descriptions)" name="brandColors" value={form.brandColors} onChange={set} placeholder="#F5D5C5, #C8A864 — or 'blush pink, gold, cream'" />
               <Select label="Do you have existing brand guidelines or a logo?" name="hasBrandGuidelines" value={form.hasBrandGuidelines} onChange={set} options={["Yes — I have a full brand kit","Yes — just a logo","Partial — some colours and fonts","No — starting from scratch"]} />
               <TextArea label="List 3–5 Instagram accounts whose aesthetic you love" name="instagramInspiration" value={form.instagramInspiration} onChange={set} rows={3} placeholder="@drbarbarasturm, @tatacosmetica, @glossier — I love the clean, aspirational feel…" />
+              <TextArea label="List any websites you love the look and feel of" name="websitesLike" value={form.websitesLike} onChange={set} rows={3} placeholder="https://tatacosmetica.com, https://goop.com — I love the clean, editorial, luxury feel…" />
               <TextArea label="3 brands you admire (any industry) and why" name="brandsAdmire" value={form.brandsAdmire} onChange={set} rows={3} placeholder="Chanel — timeless elegance. Four Seasons — effortless luxury. Apple — minimal and premium…" />
               <TextArea label="What should your brand NEVER feel like?" name="neverFeel" value={form.neverFeel} onChange={set} rows={2} placeholder="Cheap, cluttered, loud, aggressive, overly casual, too corporate…" />
             </div>
