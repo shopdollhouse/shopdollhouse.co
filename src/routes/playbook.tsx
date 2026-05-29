@@ -8391,7 +8391,7 @@ async function idbDelete(key: string): Promise<void> {
 interface PStep { n: string; title: string; desc: string; }
 interface PPrice { name: string; price: string; tag?: string; }
 interface PSlide {
-  layout: "title" | "headline" | "bullets" | "steps" | "image" | "pricing" | "cta" | "live_quote";
+  layout: "title" | "headline" | "bullets" | "steps" | "image" | "pricing" | "cta" | "live_quote" | "before_after";
   bg: "dark" | "light" | "blush" | "rose";
   heading: string;
   sub?: string;
@@ -9477,149 +9477,154 @@ const PROPOSAL_DECKS: PDeck[] = [
     slides: [
       {
         layout: "title", bg: "dark",
-        heading: "Your Complete\nMarketing System.",
+        heading: "Let's grow your\nbusiness together.",
         sub: "The Dollhouse Brand Studio",
-        script: "Thank you for your time today. What I'm going to walk you through is the complete marketing system we build for businesses like yours — every service, how it works, and exactly what it means for your growth. By the end of this you'll have a clear picture of what we do and what the investment looks like. Let's start.",
+        script: "Hi! Thank you so much for your time today. My name is Mandy and I run The Dollhouse Brand Studio. What I'm going to show you today is how we help businesses like yours get more clients using social media — and the best part is, you don't have to do any of the work. By the end of this, you'll know exactly what we offer, how it works, and what it costs. Sound good? Let's start.",
+      },
+      {
+        layout: "before_after", bg: "dark",
+        heading: "What does your online presence look like right now?",
+        script: "I want to start by asking you something. When someone looks up your business online right now — what do they see? Most business owners I talk to are posting once in a while when they remember, or not at all. Their Instagram looks empty or inconsistent. And because of that, they're losing clients to competitors who just look better online. That's not about the quality of your work — it's about visibility. And that's exactly what we fix.",
       },
       {
         layout: "bullets", bg: "blush",
-        heading: "Everything we do — under one roof",
+        heading: "Here is what we do for you",
         bullets: [
-          "Social Media Management — daily content, posting, and scheduling done for you",
-          "AI Clone & Brand Character — your face and voice, posting every day without you filming",
-          "Meta Ads — Facebook & Instagram ad campaigns that drive real leads and bookings",
-          "Automation & CRM — every lead followed up, every appointment booked automatically",
-          "Email & SMS Marketing — nurture sequences that convert leads while you sleep",
+          "Post on your social media every single day — you never touch your phone to post",
+          "Create an AI version of you — videos that look and sound like you, without filming",
+          "Run Facebook and Instagram ads — bringing new clients directly to your booking page",
+          "Set up automations — when someone messages you, they get an instant reply 24/7",
+          "Send follow-up emails and texts — so leads don't fall through the cracks",
         ],
-        script: "Here's the full picture of what we offer. You don't have to take every service — most clients start with one or two and grow from there. But the most powerful results come when everything works together. Content brings them in. Ads amplify it. Automation converts them. Email and SMS keeps them coming back. Today I'll walk you through each one.",
+        script: "Here's the simple version of what we do. We handle everything online so you can focus on your actual work. Think of us like having a full social media team — but at a fraction of the cost, and everything is done specifically for your business. You don't need to know anything about social media. That's our job.",
       },
       {
         layout: "steps", bg: "dark",
-        heading: "Which service is right for you?",
+        heading: "Which of these sounds like you?",
         steps: [
-          { n: "01", title: "Social Media Management", desc: "Do you want to build a consistent brand presence and show up every day without doing the work yourself?" },
-          { n: "02", title: "Meta Ads", desc: "Do you want to drive traffic directly from social media to your booking page or website?" },
-          { n: "03", title: "Automation & CRM", desc: "Do you want every lead followed up automatically — so no inquiry ever falls through the cracks?" },
-          { n: "04", title: "Email & SMS Marketing", desc: "Do you want to email and text people who have already contacted you — and turn them into booked clients?" },
+          { n: "A", title: "I need to post more consistently", desc: "You know you should be on social media every day, but you never have time. → Social Media Management" },
+          { n: "B", title: "I want more people to find me", desc: "You want to reach people in your city who have never heard of you. → Meta Ads" },
+          { n: "C", title: "I lose leads — people reach out but never book", desc: "Inquiries come in but they don't convert. You need automatic follow-ups. → Automation" },
+          { n: "D", title: "All of the above", desc: "You want the full system — content, ads, automation, and email all working together. → Full Package" },
         ],
-        script: "Before I go into detail on each service, let me ask you a few quick questions — because the right combination depends on where you are right now. [Read each question to the client and let them answer. Their answers tell you exactly which services to pitch.] Most of our clients start with social media management — and then add ads once their content is proven.",
+        script: "I want to make sure we talk about the right things today. So let me ask you — which of these sounds most like what you're dealing with right now? [Wait for them to answer.] Perfect. That's exactly what we're going to focus on. Most of our clients say 'all of the above' — and that's okay. We have options for every budget.",
       },
       {
         layout: "bullets", bg: "blush",
-        heading: "Why The Dollhouse Brand Studio?",
+        heading: "Why businesses choose us",
         bullets: [
-          "100% done-for-you — you never have to create, post, or schedule anything",
-          "AI Clone technology — no other local agency offers this",
-          "Full automation system built into every plan — leads followed up while you sleep",
-          "Dedicated account manager — you speak directly to the person doing the work",
-          "Content approval before anything goes live — you stay in control",
-          "Transparent monthly reporting — clear results in plain English, no confusing dashboards",
-          "14-day free trial available — see it working before your first full month",
+          "We do EVERYTHING — you never have to write, film, post, or design anything",
+          "AI Clone technology — your face and voice creates content while you sleep",
+          "Your brand looks professional and consistent every single day",
+          "Every person who contacts you gets an instant reply — even at 2am",
+          "You see and approve everything before it goes live — you're always in control",
+          "We show you exactly what's working every month — in plain, simple language",
+          "Try it free for 14 days — you only pay the setup fee, first 2 weeks are on us",
         ],
-        script: "Here's why our clients choose us over every other option. We are 100% done-for-you — that's not a marketing line, it's literally what we do. You don't touch anything. You don't film. You don't write. You don't post. We also build your AI clone — which no other agency in this city is doing right now. And the automation system means your business is following up with leads even when you're sleeping, on vacation, or in the middle of a treatment. The 14-day free trial means you can see all of this working before you commit to a full month. That's how confident we are in what we build.",
+        script: "Here's why businesses like yours choose The Dollhouse. We're not just a posting service. We build your entire online system — content, automation, ads, and follow-up — all in one place. And we're the only agency that builds you an AI clone of yourself. That means even when you're busy with clients, your brand is out there every day looking amazing. And you can try it for free for two weeks. There's almost no risk.",
       },
       {
         layout: "headline", bg: "rose",
         heading: "Social Media Management",
-        sub: "Purpose: to keep your brand visible, consistent, and converting — every single day.",
-        body: "We create, schedule, and post your content across all platforms. You don't write a word, film a thing, or touch your phone to post.",
-        script: "Let's start with social media management. The purpose is simple — your brand needs to show up every day online. Most business owners know this but can't maintain it. We take the whole thing off your plate. Content written, designed, scheduled, and posted — all done for you.",
+        sub: "We post for you every single day.",
+        body: "Think about it like having a professional social media team — they write your captions, design your posts, schedule everything, and put it all online. You never have to think about it.",
+        script: "Let me start with the most popular service — social media management. Here's the simple way to think about it: right now, if you want to post something, you have to take the photo, write the caption, figure out the hashtags, and actually post it. We do all of that for you. Every single day. You focus on your business — we make it look amazing online.",
       },
       {
         layout: "steps", bg: "light",
-        heading: "How social media management works",
+        heading: "How we manage your social media",
         steps: [
-          { n: "01", title: "We learn your brand", desc: "We study your business, your audience, your competitors, and your voice. Everything we create sounds like you." },
-          { n: "02", title: "Content is created", desc: "Reels, carousels, static posts — written, designed, and ready. You approve before anything goes live." },
-          { n: "03", title: "We post daily", desc: "Your content goes live on schedule, every day, across every platform. Hashtags, captions, timing — all handled." },
-          { n: "04", title: "We report monthly", desc: "You get a clear monthly report — what performed, what grew, and what we're doing next month." },
+          { n: "01", title: "We learn everything about you", desc: "We ask you about your business, your customers, what you love, what you don't. Then we create content that sounds exactly like you." },
+          { n: "02", title: "We create your posts", desc: "Photos, videos, captions, hashtags — all made for your brand. You see everything and say yes before we post." },
+          { n: "03", title: "We post every day for you", desc: "Your posts go up automatically every day at the best times. Your page looks active and professional, always." },
+          { n: "04", title: "We tell you what worked", desc: "Every month we send you a simple report. More followers? More clicks? More bookings? You'll see it all in plain English." },
         ],
-        script: "Here's how the process actually works. Week one, we go deep on your brand. Then we create your first batch of content — you see it before it goes anywhere. Then we schedule and post, every day, while you focus on running your business. And every month you get a report in plain English — no confusing dashboards.",
+        script: "Here's exactly what happens when you sign up. First, we spend time really understanding your business. Then we create your first batch of content — you get to look at it and say yes or no before anything goes live. Then we take over — posting every single day while you do your actual job. And every month we send you a simple report showing how your page is growing.",
       },
       {
         layout: "headline", bg: "dark",
-        heading: "AI Clone & Brand Character",
-        sub: "Your face. Your voice. Posting every day — without you filming.",
-        body: "We build an AI version of you that creates video content on your behalf. One recording session. Unlimited content.",
-        script: "This is what makes us completely different from any other agency. We build your AI clone — a digital version of you that creates video content without you having to film. You record once. We train the model on your face, your voice, your energy. From that point forward, your AI clone creates content that looks and sounds exactly like you — every day.",
+        heading: "Your AI Clone",
+        sub: "A video version of you — that posts every day without you filming.",
+        body: "We record you one time for 20 minutes. We use that to build a digital version of you that can create video content on its own — your face, your voice, your personality.",
+        script: "This is the part that surprises everyone. We can create a digital version of you — an AI Clone — that looks and sounds exactly like you. All you do is record yourself one time for about 20 minutes. From that recording, we build your AI model. After that, your AI clone can create videos for your social media every single day without you ever picking up a camera. No filming. No editing. Just done.",
       },
       {
         layout: "steps", bg: "blush",
-        heading: "How the AI clone is built",
+        heading: "How your AI clone is created",
         steps: [
-          { n: "01", title: "You record once", desc: "One 20–30 minute session. Speak naturally — talk about your services, your story, your clients. We handle everything else." },
-          { n: "02", title: "We train your model", desc: "Our team builds your AI clone — trained on your face, voice, and brand tone. Takes about a week." },
-          { n: "03", title: "Content generates daily", desc: "Scripts are written, your clone records, content is edited and posted — on autopilot, every single day." },
+          { n: "01", title: "You talk to us for 20 minutes", desc: "We record a video call with you. Just talk naturally — tell us about your work, your story, what makes you different. That's it." },
+          { n: "02", title: "We build your digital twin", desc: "Our team uses that recording to train an AI model that looks and sounds like you. Takes about one week." },
+          { n: "03", title: "Your clone posts every day", desc: "We write the scripts, your AI clone records the videos, we edit and post them. Your face and voice — every day — automatically." },
         ],
-        script: "Here's how we build it. You record once — just a normal conversation with us on a video call. From that recording, we train your AI model. Within about a week, you have a digital version of yourself that can create video content without you ever picking up a camera again.",
+        script: "So here's how simple it really is. You get on a video call with us for 20 minutes and just talk. We do the rest. A week later, you have a digital version of yourself that can create video content every single day — without you doing anything. Think about how powerful that is. Your business shows up online every day, your face is on it, and you're not filming a single thing.",
       },
       {
         layout: "headline", bg: "rose",
-        heading: "Meta Ads",
-        sub: "Purpose: to put your best content in front of exactly the right people — and turn them into clients.",
-        body: "Facebook and Instagram ads, managed by us. We create the ads, build the audiences, run the campaigns, and optimise for real bookings.",
-        script: "Now let's talk about paid advertising. The purpose of Meta ads is to amplify what's already working — take your best content and put it in front of thousands of people in your city who match your ideal client exactly. We build the ads, target the audiences, and optimise everything to turn clicks into actual booked clients.",
+        heading: "Facebook & Instagram Ads",
+        sub: "We put your business in front of thousands of the right people in your city.",
+        body: "Ads are like a megaphone. We take what's already working on your social media and show it to thousands of people who are looking for exactly what you offer.",
+        script: "Let me explain ads in the simplest way possible. Right now when you post on Instagram, only your followers see it. Ads are how you get seen by thousands of people who have never heard of you. We create the ads, choose exactly who sees them based on where they live, how old they are, and what they're interested in — and we make sure every dollar you spend is working to bring you more clients.",
       },
       {
         layout: "steps", bg: "light",
-        heading: "How Meta ads work",
+        heading: "How Facebook & Instagram ads work",
         steps: [
-          { n: "01", title: "We create the ads", desc: "Video and image ads built around your offer — designed to stop the scroll and drive action." },
-          { n: "02", title: "We target the right people", desc: "Hyper-targeted audiences built around your ideal client — location, age, interests, behaviours." },
-          { n: "03", title: "Campaigns go live", desc: "Ads run across Facebook and Instagram. We monitor performance daily and adjust as we go." },
-          { n: "04", title: "We optimise for results", desc: "Every week we cut what isn't working and scale what is. Your cost per lead goes down over time." },
+          { n: "01", title: "We make the ads", desc: "We create eye-catching videos and photos designed to stop people while they're scrolling and make them want to know more about you." },
+          { n: "02", title: "We find your perfect customers", desc: "We choose exactly who sees your ads — people in your city, the right age, with the right interests. No wasted money." },
+          { n: "03", title: "People click and book with you", desc: "When someone sees your ad and clicks, they go straight to your booking page. More clicks = more bookings." },
+          { n: "04", title: "We make it better every week", desc: "We check your ads every week. What's working gets more money. What isn't gets fixed. Your results keep improving." },
         ],
-        script: "Here's how the ad process works. We create the ads — videos and images built to convert. We build a custom audience based on your ideal client. We launch across Facebook and Instagram. Then we watch the data every day — cutting underperformers, scaling winners, and optimising until your cost per booking is as low as possible.",
+        script: "Here's how it works step by step. We create beautiful ads for your business. We show those ads to exactly the right people in your area. When they click, they land on your booking page. And every single week, we look at the numbers and make improvements. Over time, your cost per booking gets lower and lower. It's not magic — it's just smart marketing.",
       },
       {
         layout: "bullets", bg: "dark",
-        heading: "Meta ads — what you need to know",
+        heading: "What you need to know about ad budget",
         bullets: [
-          "We run ads on Facebook and Instagram — 3 platforms total with Stories included",
-          "Minimum recommended ad spend: $1,000/mo — this is what gets real results",
-          "Absolute minimum: $500/mo — possible but limited reach and volume",
-          "Our management fee is separate from your ad spend",
-          "Ad spend is paid directly by you to Meta — not included in our retainer",
-          "At $1,000–$2,000/mo we typically run 6–12 ads — quality matters more than quantity",
-          "We recommend starting with $1,000/mo for the best cost-per-lead results",
+          "Our management fee and your ad budget are two separate things",
+          "Your ad budget goes directly to Facebook/Instagram — not to us",
+          "We recommend starting with $1,000/month in ad spend for real results",
+          "The minimum is $500/month — it works, but results are slower",
+          "With $1,000–$2,000 we typically run 6 high-quality ads at a time",
+          "Quality of ads matters more than how many you run",
+          "Most clients see their first results within the first 2–4 weeks",
         ],
-        script: "A few important things to understand about ad spend. Your ad budget is separate from our management fee — it goes directly to Meta. We recommend $1,000 a month as the sweet spot. At that level we run around 6 quality ads — testing different angles, creatives, and audiences. You can start at $500 but I want to be honest: results are more limited. The more budget we have to work with, the more we can test and the faster we find what converts.",
+        script: "I want to be fully transparent about how ad spending works. There are two costs — what you pay us to manage the ads, and what you pay Facebook directly for the ads to run. These are completely separate. We recommend $1,000 a month to Facebook as your starting budget. That gives us enough to run 6 good ads and really test what works. You can start with $500, but I want to be honest — the results come slower. The sweet spot is $1,000. And remember — you're not paying that to us. It goes directly to Facebook.",
       },
       {
         layout: "headline", bg: "blush",
-        heading: "Automation & CRM System",
-        sub: "Purpose: to make sure every single lead is followed up — automatically, instantly, every time.",
-        body: "Your complete lead management system. Every inquiry captured, every follow-up sent, every appointment booked — without you lifting a finger.",
-        script: "Now let's talk about automation. The purpose is this — most businesses lose leads not because the product is bad, but because no one followed up fast enough. Our automation system means the second someone reaches out, they hear from you. Not in an hour. Not tomorrow. In seconds.",
+        heading: "Automation System",
+        sub: "Every person who reaches out gets an instant reply — even at 3am.",
+        body: "When someone sends you a message, calls, or fills out a form on your website — our system sends them an instant reply, a booking link, and follows up automatically until they book.",
+        script: "Here's a question for you. Have you ever had someone reach out to your business after hours and then never heard from them again? That happens all the time. People message, don't get a quick reply, and they move on to the next option. Our automation system fixes that completely. The second someone contacts you — from any source — they get an instant, friendly reply with all the information they need to book. You're not even awake. The system does it for you.",
       },
       {
         layout: "steps", bg: "light",
-        heading: "How the automation system works",
+        heading: "How the automation works",
         steps: [
-          { n: "01", title: "Capture every lead", desc: "Every DM, web form, call, and ad response is captured in one place. Nothing slips through." },
-          { n: "02", title: "Instant follow-up", desc: "Automated SMS and email replies sent within seconds. Booking link included. 24/7." },
-          { n: "03", title: "Nurture sequences", desc: "If they don't book right away, automated sequences follow up over 7–14 days — until they do." },
-          { n: "04", title: "Optimise & convert", desc: "Monthly review of conversion rates, open rates, and booking data. We improve what isn't converting." },
+          { n: "01", title: "Someone contacts you", desc: "A person sends a DM, fills out your web form, or clicks your ad. Doesn't matter what time — day or night." },
+          { n: "02", title: "They get an instant reply", desc: "Within seconds, they receive a friendly message from your business with information and a link to book. Looks like you sent it." },
+          { n: "03", title: "Automatic follow-ups", desc: "If they don't book right away, the system sends them reminders over the next 1–2 weeks. Most people book on the 3rd or 4th follow-up." },
+          { n: "04", title: "You just get the bookings", desc: "You wake up in the morning and see new appointments in your calendar. The system did all the work while you slept." },
         ],
-        script: "Here's how it all connects. A lead comes in — from anywhere — and they're instantly in your system. They get a message from you within seconds. If they don't respond, another message goes out. Then another. An automated sequence keeps following up for up to two weeks. And every month we look at the data and improve the process. It runs without you and it never takes a day off.",
+        script: "Think of it like having a receptionist who never sleeps. The moment someone contacts your business, they hear from you. If they don't book right away, they get a follow-up. Then another one. Most people need 3 or 4 touches before they book. Without automation, those people are gone. With it, they become clients. And you did nothing. Zero work.",
       },
       {
         layout: "headline", bg: "dark",
-        heading: "Email & SMS Marketing",
-        sub: "Purpose: to nurture your leads, re-engage past clients, and keep your business top of mind.",
-        body: "Automated sequences that follow up with every lead, re-book past clients, and drive repeat business — all on autopilot.",
-        script: "Email and SMS marketing is the long game. While ads bring in new clients, email and SMS keeps your existing leads warm and brings back past clients. We build automated sequences that go out at exactly the right time — a follow-up after their first booking, a re-engagement email for clients who haven't been back in 60 days, a promotion when you have something to offer. Set it up once, it runs forever.",
+        heading: "Email & Text Marketing",
+        sub: "Stay in touch with every person who has ever shown interest in your business.",
+        body: "We set up automatic emails and text messages that go out to your leads, past clients, and people who almost booked — bringing them back to you over and over.",
+        script: "The last piece of the system is email and text marketing. Here's the simple idea: most people who contact your business don't book on the first contact. They're interested, but life gets in the way. Email and text marketing is how you stay in their mind until they're ready. We set up automatic messages that go out at the perfect time — a thank you after their first visit, a reminder after 60 days, a special offer in a slow month. Set it up once and it works forever.",
       },
       {
         layout: "live_quote", bg: "dark",
-        heading: "Your Custom Investment",
-        script: "Now let's build your plan together right now. [Use the selectors on screen to choose their plan, add services, and pick contract length — the total updates in real time as you go.] This is exactly what you'll pay — no hidden fees, no surprises. The only thing separate is your ad spend if we're running ads, and that goes directly to Meta. Any questions as we build this out?",
+        heading: "Let's build your plan right now",
+        script: "Okay — so now let's talk about your specific situation. I'm going to build your custom quote right here, live on screen. [Select their plan, toggle on the services they want, and choose contract length. The total updates as you go.] There are no hidden fees. What you see is what you pay. The only extra cost is your ad budget if we're running ads — and that goes directly to Facebook, not to us. Any questions while we do this?",
       },
       {
         layout: "title", bg: "dark",
         heading: "Thank you.",
         sub: "The Dollhouse Brand Studio  ·  hello@shopdollhouse.co",
-        script: "Thank you so much for your time today. I want you to walk away feeling clear — not sold to. If any of this feels like the right fit for your business, I'd love to put together a custom proposal with exact numbers for your specific plan. I'll follow up with everything in writing so you can take your time. Any questions before I let you go?",
+        script: "Thank you so much for your time today. I hope this made everything really clear — how it works, what's involved, and what it costs. I want you to feel 100% comfortable before making any decision. If you have any questions after this, my email is on the screen. I'd love to get you started with a free 14-day trial so you can see it working with zero risk. What would you like to do next?",
       },
     ],
   },
@@ -9782,6 +9787,7 @@ function renderSlideVisual(
   mediaItem: MediaItem | undefined,
   onUpload?: (file: File) => void,
   onRemove?: () => void,
+  showScript?: boolean,
 ) {
   const C = slide.bg === "dark"
     ? { bg: "#1e1210", fg: "#f5e8e0", fg2: "rgba(245,232,224,0.65)", acc: "#c4a87a", line: "rgba(196,168,122,0.35)", cardBg: "rgba(255,255,255,0.06)" }
@@ -9839,6 +9845,13 @@ function renderSlideVisual(
     </div>
   );
 
+  const scriptPanel = (showScript && slide.script)
+    ? <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "rgba(12,6,4,0.92)", backdropFilter: "blur(10px)", borderTop: `1px solid ${C.acc}55`, padding: "12px 72px 12px", zIndex: 20 }}>
+        <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: C.acc, marginBottom: 4 }}>✦ What to say</div>
+        <div style={{ fontFamily: SANS, fontSize: 14, color: "rgba(245,232,224,0.9)", lineHeight: 1.65, maxWidth: 1100 }}>{slide.script}</div>
+      </div>
+    : null;
+
   if (slide.layout === "title") return (
     <div style={{ ...base, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center" }}>
       <div style={{ position: "absolute", top: 44, left: 54, width: 72, height: 1, background: C.acc }} />
@@ -9852,6 +9865,7 @@ function renderSlideVisual(
       <div style={{ fontFamily: SERIF, fontSize: 84, fontWeight: 400, color: C.fg, lineHeight: 1.08, whiteSpace: "pre-line" }}>
         {slide.heading}
       </div>
+      {scriptPanel}
     </div>
   );
 
@@ -9871,6 +9885,7 @@ function renderSlideVisual(
       <div style={{ border: `1px solid ${C.acc}`, color: C.acc, fontFamily: LUXE, fontSize: 12, letterSpacing: "0.22em", textTransform: "uppercase", padding: "16px 44px", borderRadius: 9999 }}>
         The Dollhouse Brand Studio
       </div>
+      {scriptPanel}
     </div>
   );
 
@@ -9879,67 +9894,88 @@ function renderSlideVisual(
       <div style={{ fontFamily: LUXE, fontSize: 11, letterSpacing: "0.28em", textTransform: "uppercase", color: C.acc, marginBottom: 28 }}>
         The Dollhouse Brand Studio
       </div>
-      <div style={{ fontFamily: SERIF, fontSize: 58, fontWeight: 400, color: C.fg, lineHeight: 1.15, maxWidth: 880, marginBottom: 20 }}>
+      <div style={{ fontFamily: SERIF, fontSize: 58, fontWeight: 400, color: C.fg, lineHeight: 1.15, maxWidth: 780, marginBottom: 20 }}>
         {slide.heading}
       </div>
       {slide.sub && (
-        <div style={{ fontFamily: SERIF, fontSize: 34, fontStyle: "italic", color: C.acc, marginBottom: 20, maxWidth: 780 }}>
+        <div style={{ fontFamily: SERIF, fontSize: 30, fontStyle: "italic", color: C.acc, marginBottom: 20, maxWidth: 680 }}>
           {slide.sub}
         </div>
       )}
       {slide.body && (
-        <div style={{ fontFamily: SANS, fontSize: 22, color: C.fg2, lineHeight: 1.65, maxWidth: 680 }}>
+        <div style={{ fontFamily: SANS, fontSize: 20, color: C.fg2, lineHeight: 1.65, maxWidth: 620 }}>
           {slide.body}
         </div>
       )}
-      <div style={{ position: "absolute", right: 80, top: "50%", transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: 10 }}>
-        <div style={{ width: 3, height: 100, background: C.line }} />
-        <div style={{ width: 56, height: 3, background: C.line }} />
+      {/* Decorative SVG right side */}
+      <div style={{ position: "absolute", right: 60, top: "50%", transform: "translateY(-50%)" }}>
+        <svg width="180" height="180" viewBox="0 0 180 180" fill="none" opacity={0.12}>
+          <circle cx="90" cy="90" r="80" stroke={C.acc} strokeWidth="1"/>
+          <circle cx="90" cy="90" r="55" stroke={C.acc} strokeWidth="1"/>
+          <circle cx="90" cy="90" r="30" stroke={C.acc} strokeWidth="1"/>
+          <line x1="10" y1="90" x2="170" y2="90" stroke={C.acc} strokeWidth="1"/>
+          <line x1="90" y1="10" x2="90" y2="170" stroke={C.acc} strokeWidth="1"/>
+        </svg>
       </div>
+      {scriptPanel}
     </div>
   );
 
   if (slide.layout === "bullets") return (
     <div style={{ ...base, display: "flex", flexDirection: "column", justifyContent: "center" }}>
       <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 5, background: `linear-gradient(180deg, ${C.acc}, ${C.acc}44)` }} />
-      <div style={{ fontFamily: SERIF, fontSize: 46, fontWeight: 400, color: C.fg, marginBottom: 8, maxWidth: 860 }}>
+      <div style={{ fontFamily: SERIF, fontSize: 44, fontWeight: 400, color: C.fg, marginBottom: 8, maxWidth: 860 }}>
         {slide.heading}
       </div>
-      <div style={{ width: 56, height: 2, background: C.acc, marginBottom: 36 }} />
-      <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+      <div style={{ width: 56, height: 2, background: C.acc, marginBottom: 28 }} />
+      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
         {(slide.bullets || []).map((b, i) => (
-          <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 22 }}>
-            <div style={{ width: 7, height: 7, borderRadius: "50%", background: C.acc, marginTop: 10, flexShrink: 0 }} />
-            <div style={{ fontFamily: SANS, fontSize: 20, color: C.fg2, lineHeight: 1.55 }}>{b}</div>
+          <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 18 }}>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: 4 }}>
+              <circle cx="10" cy="10" r="9" stroke={C.acc} strokeWidth="1.2"/>
+              <polyline points="6,10 9,13 14,7" stroke={C.acc} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <div style={{ fontFamily: SANS, fontSize: 19, color: C.fg2, lineHeight: 1.5 }}>{b}</div>
           </div>
         ))}
       </div>
+      {scriptPanel}
     </div>
   );
 
   if (slide.layout === "steps") return (
     <div style={{ ...base, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-      <div style={{ fontFamily: LUXE, fontSize: 11, letterSpacing: "0.28em", textTransform: "uppercase", color: C.acc, marginBottom: 16 }}>
+      <div style={{ fontFamily: LUXE, fontSize: 11, letterSpacing: "0.28em", textTransform: "uppercase", color: C.acc, marginBottom: 12 }}>
         The Dollhouse Brand Studio
       </div>
-      <div style={{ fontFamily: SERIF, fontSize: 46, fontWeight: 400, color: C.fg, marginBottom: 50 }}>
+      <div style={{ fontFamily: SERIF, fontSize: 44, fontWeight: 400, color: C.fg, marginBottom: 36 }}>
         {slide.heading}
       </div>
-      <div style={{ display: "flex", gap: 36 }}>
-        {(slide.steps || []).map((step, i) => (
-          <div key={i} style={{ flex: 1, borderTop: `2px solid ${C.acc}`, paddingTop: 24 }}>
-            <div style={{ fontFamily: SERIF, fontSize: 54, color: C.acc, lineHeight: 1, marginBottom: 18 }}>
-              {step.n}
+      <div style={{ display: "flex", gap: 0, alignItems: "flex-start" }}>
+        {(slide.steps || []).map((step, i, arr) => (
+          <React.Fragment key={i}>
+            <div style={{ flex: 1, borderTop: `2px solid ${C.acc}`, paddingTop: 20 }}>
+              <div style={{ fontFamily: SERIF, fontSize: 48, color: C.acc, lineHeight: 1, marginBottom: 14 }}>
+                {step.n}
+              </div>
+              <div style={{ fontFamily: SERIF, fontSize: 24, color: C.fg, marginBottom: 10 }}>
+                {step.title}
+              </div>
+              <div style={{ fontFamily: SANS, fontSize: 16, color: C.fg2, lineHeight: 1.6 }}>
+                {step.desc}
+              </div>
             </div>
-            <div style={{ fontFamily: SERIF, fontSize: 26, color: C.fg, marginBottom: 12 }}>
-              {step.title}
-            </div>
-            <div style={{ fontFamily: SANS, fontSize: 17, color: C.fg2, lineHeight: 1.6 }}>
-              {step.desc}
-            </div>
-          </div>
+            {i < arr.length - 1 && (
+              <div style={{ display: "flex", alignItems: "flex-start", paddingTop: 36, paddingLeft: 12, paddingRight: 12, flexShrink: 0 }}>
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                  <path d="M6 14h16M16 8l6 6-6 6" stroke={C.acc} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            )}
+          </React.Fragment>
         ))}
       </div>
+      {scriptPanel}
     </div>
   );
 
@@ -9961,10 +9997,11 @@ function renderSlideVisual(
       <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "40px 56px 40px 0" }}>
         <ImgSlot w={580} h={580} />
       </div>
+      {scriptPanel}
     </div>
   );
 
-  if (slide.layout === "live_quote") return <LiveQuoteSlide bg={slide.bg} />;
+  if (slide.layout === "live_quote") return <LiveQuoteSlide bg={slide.bg} />; // live_quote manages its own script
 
   if (slide.layout === "pricing") return (
     <div style={{ ...base, display: "flex", flexDirection: "column", justifyContent: "center" }}>
@@ -9988,6 +10025,70 @@ function renderSlideVisual(
           </div>
         ))}
       </div>
+      {scriptPanel}
+    </div>
+  );
+
+  if (slide.layout === "before_after") return (
+    <div style={{ ...base, padding: 0, display: "flex", flexDirection: "column" }}>
+      <div style={{ padding: "36px 72px 20px", flexShrink: 0 }}>
+        <div style={{ fontFamily: LUXE, fontSize: 11, letterSpacing: "0.28em", textTransform: "uppercase", color: C.acc, marginBottom: 8 }}>The Dollhouse Brand Studio</div>
+        <div style={{ fontFamily: SERIF, fontSize: 44, color: C.fg, lineHeight: 1.1 }}>{slide.heading}</div>
+      </div>
+      <div style={{ flex: 1, display: "flex", gap: 0, padding: "0 60px 40px", minHeight: 0 }}>
+        {/* BEFORE */}
+        <div style={{ flex: 1, background: "rgba(0,0,0,0.18)", borderRadius: 16, padding: "24px 28px", marginRight: 20, border: `1px solid rgba(180,80,80,0.3)`, display: "flex", flexDirection: "column", gap: 12 }}>
+          <div style={{ fontFamily: LUXE, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "#d46060", marginBottom: 4 }}>✕ Before</div>
+          {/* Fake messy social grid */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 4, marginBottom: 8 }}>
+            {[...Array(6)].map((_, i) => (
+              <div key={i} style={{ aspectRatio: "1", borderRadius: 6, background: i === 2 || i === 4 ? "rgba(180,80,80,0.15)" : "rgba(255,255,255,0.06)", border: `1px dashed rgba(180,80,80,0.2)`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                {i === 2 && <div style={{ fontFamily: SANS, fontSize: 9, color: "rgba(180,80,80,0.5)", textAlign: "center", padding: 4 }}>3 weeks ago</div>}
+                {i === 4 && <div style={{ fontFamily: SANS, fontSize: 9, color: "rgba(180,80,80,0.5)", textAlign: "center", padding: 4 }}>2 months ago</div>}
+              </div>
+            ))}
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            {["Posting 1–2 times a month", "No consistent style or look", "Missing followers and bookings", "No time to create content", "Competitors look better online"].map((t, i) => (
+              <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+                <div style={{ width: 14, height: 14, borderRadius: "50%", background: "rgba(180,80,80,0.3)", border: "1px solid rgba(180,80,80,0.4)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 2 }}>
+                  <svg width="8" height="8" viewBox="0 0 12 12" fill="none"><line x1="3" y1="3" x2="9" y2="9" stroke="#d46060" strokeWidth="1.5"/><line x1="9" y1="3" x2="3" y2="9" stroke="#d46060" strokeWidth="1.5"/></svg>
+                </div>
+                <div style={{ fontFamily: SANS, fontSize: 15, color: C.fg2, lineHeight: 1.4 }}>{t}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Arrow */}
+        <div style={{ display: "flex", alignItems: "center", flexShrink: 0, padding: "0 10px" }}>
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M8 24h32M28 14l12 10-12 10" stroke={C.acc} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        </div>
+
+        {/* AFTER */}
+        <div style={{ flex: 1, background: "rgba(0,0,0,0.18)", borderRadius: 16, padding: "24px 28px", marginLeft: 20, border: `1px solid rgba(100,180,120,0.35)`, display: "flex", flexDirection: "column", gap: 12 }}>
+          <div style={{ fontFamily: LUXE, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "#5a9970", marginBottom: 4 }}>✓ After — The Dollhouse</div>
+          {/* Fake clean social grid */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 4, marginBottom: 8 }}>
+            {[...Array(6)].map((_, i) => (
+              <div key={i} style={{ aspectRatio: "1", borderRadius: 6, background: ["rgba(196,168,122,0.25)","rgba(184,112,96,0.2)","rgba(196,168,122,0.18)","rgba(184,112,96,0.25)","rgba(196,168,122,0.22)","rgba(184,112,96,0.18)"][i], border: `1px solid ${C.line}`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <div style={{ fontFamily: SANS, fontSize: 8, color: C.acc, textAlign: "center", padding: 3 }}>Today</div>
+              </div>
+            ))}
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            {["Posting every single day — automatically", "Beautiful, on-brand content every time", "DMs answered instantly, leads never lost", "You don't film, write, or post anything", "Your business looks like a top brand"].map((t, i) => (
+              <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+                <div style={{ width: 14, height: 14, borderRadius: "50%", background: "rgba(100,180,120,0.3)", border: "1px solid rgba(100,180,120,0.5)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 2 }}>
+                  <svg width="8" height="8" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#5a9970" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </div>
+                <div style={{ fontFamily: SANS, fontSize: 15, color: C.fg, lineHeight: 1.4 }}>{t}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      {ScriptPanel({ script: slide.script, showScript: showScript ?? false, C, SANS, LUXE })}
     </div>
   );
 
@@ -10002,6 +10103,7 @@ function ProposalTab() {
   const [scale, setScale] = useState(1);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showNotes, setShowNotes] = useState(false);
+  const [showScript, setShowScript] = useState(true);
   const slideWrapRef = useRef<HTMLDivElement>(null);
   const presentRef = useRef<HTMLDivElement>(null);
   const revokeUrls = useRef<string[]>([]);
@@ -10243,10 +10345,18 @@ function ProposalTab() {
             {deck.name} &nbsp;·&nbsp; {slideIdx + 1}/{deck.slides.length}
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            {/* Notes toggle — always available, subtle. Press S or click to peek at script. */}
+            {/* Script on slide toggle */}
+            <button
+              onClick={() => setShowScript(s => !s)}
+              title="Show/hide script on slide"
+              style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase", color: showScript ? "#c4a87a" : "rgba(255,255,255,0.22)", background: showScript ? "rgba(196,168,122,0.1)" : "none", border: `1px solid ${showScript ? "rgba(196,168,122,0.35)" : "rgba(255,255,255,0.08)"}`, borderRadius: 6, padding: "3px 10px", cursor: "pointer" }}
+            >
+              {showScript ? "Hide Script" : "Show Script"}
+            </button>
+            {/* Notes toggle — admin only */}
             <button
               onClick={() => setShowNotes(n => !n)}
-              title="Toggle speaker notes (S key)"
+              title="Toggle private speaker notes (S key)"
               style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.15em", textTransform: "uppercase", color: showNotes ? "#c4a87a" : "rgba(255,255,255,0.18)", background: "none", border: `1px solid ${showNotes ? "rgba(196,168,122,0.3)" : "rgba(255,255,255,0.07)"}`, borderRadius: 6, padding: "3px 10px", cursor: "pointer" }}
             >
               📋
@@ -10286,6 +10396,7 @@ function ProposalTab() {
                   mItem,
                   (file) => saveMediaFile(deck.id, slideIdx, file),
                   () => clearMediaFile(deck.id, slideIdx),
+                  showScript,
                 )}
               </div>
             </div>
