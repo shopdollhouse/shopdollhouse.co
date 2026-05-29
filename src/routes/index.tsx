@@ -402,7 +402,7 @@ function Hero() {
           className="reveal mt-5 text-[var(--ink)]/60 italic"
           style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1rem, 2vw, 1.2rem)", animationDelay: "0.85s" }}
         >
-          3-month minimum to build momentum · flexible 6 or 12-month options · Fully managed, nothing to learn
+          3-month minimum to build momentum · Fully managed, nothing to learn
         </p>
       </div>
 
@@ -1384,9 +1384,6 @@ function Pricing() {
                       </span>
                       <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>★</span>
                     </div>
-                    <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: isFilled ? "rgba(250,243,234,0.45)" : "rgba(30,15,10,0.38)" }}>
-                      3-month minimum · 30-day cancellation notice
-                    </p>
                   </div>
                 </div>
 
