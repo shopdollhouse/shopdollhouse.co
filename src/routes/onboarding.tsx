@@ -15,6 +15,7 @@ const STEPS = [
   "Content Preferences",
   "Your Goals",
   "AI Clone & Final",
+  "Brand Story & Strategy",
 ];
 
 type F = Record<string, string>;
@@ -34,6 +35,8 @@ const INITIAL: F = {
   primaryGoal: "", successIn90Days: "", currentFollowers: "", runningAds: "", adBudget: "",
   // Step 7
   onCamera: "", cloneType: "", displayName: "", alwaysUse: "", neverUse: "", upcomingPromos: "", anythingElse: "",
+  // Step 8
+  brandOrigin: "", clientTransformation: "", topFAQs: "", competitors: "", preferredCTA: "", peakMonths: "", slowMonths: "", credentials: "", existingTestimonials: "", teamMembers: "", avoidServices: "", serviceArea: "",
 };
 
 const BRAND_VIBES = ["Luxury", "Warm & Inviting", "Clinical & Professional", "Bold & Edgy", "Playful & Fun", "Minimal & Clean", "Elegant & Editorial", "Natural & Earthy", "High Fashion", "Approachable & Friendly"];
@@ -405,6 +408,25 @@ export default function OnboardingForm() {
               <TextArea label="Words, claims, or phrases to NEVER use" name="neverUse" value={form.neverUse} onChange={set} rows={2} placeholder="Never say 'cheap', never promise specific results in X days, avoid overly medical jargon…" />
               <TextArea label="Any upcoming promotions, events, or launches in the next 3 months?" name="upcomingPromos" value={form.upcomingPromos} onChange={set} rows={3} placeholder="Summer skin prep promo in June ($50 off HydraFacials), launching a new body contouring package in July…" />
               <TextArea label="Anything else you want us to know before we start?" name="anythingElse" value={form.anythingElse} onChange={set} rows={4} placeholder="I had a bad experience with another agency who never communicated. I care a lot about transparency. I also have a really loyal client base who I want to feel seen in the content…" />
+            </div>
+          )}
+
+          {/* ── Step 8: Brand Story & Strategy ──────────────────── */}
+          {step === 7 && (
+            <div>
+              <StepHeader title="Your story & strategy." sub="This is where great content comes from. The more you share, the more powerful your content will be." />
+              <TextArea label="Why did you start this business? What's your origin story?" name="brandOrigin" value={form.brandOrigin} onChange={set} required rows={4} placeholder="I started after struggling myself with [problem]. I couldn't find anyone who really understood what I needed, so I trained, built my own practice, and made it my mission to make sure no one else feels that way…" />
+              <TextArea label="Share a client transformation story you're proud of" name="clientTransformation" value={form.clientTransformation} onChange={set} rows={4} placeholder="A client came to us feeling completely invisible online. Within 60 days their DMs were full and they had to turn clients away. They called me crying — that's why I do this…" />
+              <TextArea label="What are the top 5 questions clients always ask you?" name="topFAQs" value={form.topFAQs} onChange={set} required rows={5} placeholder="1. How long does it take to see results?  2. Does it hurt?  3. How much does it cost?  4. What's the difference between X and Y?  5. How do I book?" />
+              <TextArea label="Who are your top 2–3 local competitors? (business names or Instagram handles)" name="competitors" value={form.competitors} onChange={set} rows={2} placeholder="@northmedicalspa, Glow Clinic Toronto, The Skin Bar — they post a lot of before/afters and promotions" />
+              <Select label="What do you want people to DO after seeing your content?" name="preferredCTA" value={form.preferredCTA} onChange={set} required options={["DM us to book","Click the link in bio to book online","Call us directly","Visit us in-store / in-clinic","Fill out a contact form","Follow us and stay tuned","All of the above"]} />
+              <Field label="Your busiest / peak months" name="peakMonths" value={form.peakMonths} onChange={set} placeholder="March – May (spring), September – November (fall)" />
+              <Field label="Your slowest months (we'll drive traffic here)" name="slowMonths" value={form.slowMonths} onChange={set} placeholder="January, July — we need content that drives bookings during these periods" />
+              <TextArea label="Credentials, certifications, awards, or years of experience" name="credentials" value={form.credentials} onChange={set} rows={3} placeholder="10+ years experience, certified by [Association], voted Best Med Spa in Toronto 2023, trained in [Technique]…" />
+              <TextArea label="Do you have existing client reviews or testimonials we can use in content?" name="existingTestimonials" value={form.existingTestimonials} onChange={set} rows={3} placeholder="Yes — I have Google reviews. 'Best experience I've ever had — completely transformed my skin.' — Sarah M. I also have some video testimonials on file." />
+              <TextArea label="Are there team members to feature in content? (names & roles)" name="teamMembers" value={form.teamMembers} onChange={set} rows={2} placeholder="Just me for now / Yes — Dr. Sarah (lead injector), Jess (aesthetician), Mia (front desk & client care)" />
+              <TextArea label="Any services or topics to avoid promoting?" name="avoidServices" value={form.avoidServices} onChange={set} rows={2} placeholder="We're fully booked for lip fillers right now — don't promote that. Avoid anything related to extreme weight loss." />
+              <Field label="Your service area (city, neighbourhoods, or radius)" name="serviceArea" value={form.serviceArea} onChange={set} placeholder="Toronto, Yorkville, Forest Hill, North York — serving the GTA" />
 
               {error && (
                 <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "#c0392b", marginBottom: 16, padding: "12px 16px", background: "rgba(192,57,43,0.06)", borderRadius: 10, border: "1px solid rgba(192,57,43,0.2)" }}>
