@@ -1167,7 +1167,8 @@ function Pricing() {
       tagline: "Your AI clone content, amplified — more platforms, paid ads behind it, and automation closing the loop.",
       cta: "Get a Free Proposal →",
       features: [
-        "Everything in Starter — your AI clone content now running across 3 platforms: Instagram, TikTok & Facebook",
+        "Everything in Starter — AI clone content across 3 platforms: Instagram, TikTok & Facebook",
+        "Automated DM & comment responses — instant replies 24/7, captures leads while you sleep",
         "Automated appointment reminders — reduce no-shows with text & email reminders sent before every booking",
         "Paid ads put money behind your best content — Facebook & Instagram ad management included",
         "Email & SMS automations that follow up with every lead while you sleep",
@@ -1414,47 +1415,7 @@ function Pricing() {
         Monthly Pricing &nbsp;·&nbsp; Sign Up for 6 or 12 Months &nbsp;·&nbsp; 3.7% Processing Fee
       </p>
 
-      {/* Content Starter — lite plan */}
-      <div className="mt-10 max-w-3xl mx-auto">
-        <div
-          className="flex flex-col sm:flex-row items-center justify-between gap-5 rounded-2xl px-8 py-5"
-          style={{
-            background: "linear-gradient(135deg, rgba(255,255,255,0.55), rgba(251,240,235,0.5))",
-            border: "1px dashed color-mix(in oklab, var(--gold) 45%, transparent)",
-          }}
-        >
-          <div className="text-center sm:text-left">
-            <div className="flex items-center gap-2 justify-center sm:justify-start">
-              <span style={{ color: "var(--gold)", fontSize: "0.55rem" }}>✦</span>
-              <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--gold)" }}>
-                Entry Option
-              </p>
-            </div>
-            <p className="mt-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.3rem", color: "var(--ink)", fontStyle: "italic" }}>
-              Content Starter — <span style={{ color: "var(--gold)", fontSize: "1.5rem", fontWeight: 500 }}>$500<span style={{ fontSize: "0.5em", letterSpacing: "0.15em", opacity: 0.7, fontWeight: 400 }}> USD</span><span style={{ fontSize: "0.75em", fontWeight: 400 }}>/mo</span></span>
-            </p>
-            <div className="mt-1.5 flex items-center gap-3 flex-wrap justify-center sm:justify-start">
-              {["1 Platform", "8 Posts/mo", "Static & Carousels"].map((tag) => (
-                <span key={tag} style={{ fontFamily: "'Jost', sans-serif", fontSize: "9px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)", borderBottom: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)", paddingBottom: "1px" }}>
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <p className="mt-2" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "rgba(30,15,10,0.55)", lineHeight: 1.5 }}>
-              Branded, scheduled, and done for you. Perfect for staying consistent without the full system. (No AI avatar, no automation — text &amp; image posts only.)
-            </p>
-            <p className="mt-1.5" style={{ fontFamily: "'Jost', sans-serif", fontSize: "9px", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(30,15,10,0.35)" }}>
-              + $500 one-time setup fee
-            </p>
-          </div>
-          <a
-            href="#contact"
-            className="shrink-0 btn-ghost !py-2.5 !px-6 !text-[10px] whitespace-nowrap"
-          >
-            Enquire →
-          </a>
-        </div>
-      </div>
+      {/* Content Starter — hidden */}
 
       {/* Setup fee + ad spend notes */}
       <div className="mt-12 max-w-2xl mx-auto rounded-2xl px-8 py-6 text-center space-y-4"
@@ -1923,7 +1884,6 @@ function Contact() {
         <div>
           <label className={labelClass} style={labelStyle}>Which plan interests you?</label>
           <select name="plan" className={inputClass} style={inputStyle}>
-            <option>Content Starter — $500/mo</option>
             <option>Starter — $1,000/mo</option>
             <option>Growth — $2,500/mo</option>
             <option>Elite — $5,000+/mo</option>
