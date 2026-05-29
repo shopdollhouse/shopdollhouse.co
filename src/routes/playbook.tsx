@@ -249,7 +249,7 @@ Mandy`}</p>
         { text: "Begin next month's content creation in the last week of the current month", sub: "Never let them see a gap. Always be 2 weeks ahead." },
         { text: "Invoice sent on the same day each month (set up recurring in platform)" },
         { text: "Quarterly review call — bigger picture strategy, upsell opportunities" },
-        { text: "At 3 months: pitch the annual deal", sub: `Say: "Hey, do you want to unlock some savings for the next year? I can give you 10–20% off what you're paying right now if you lock in an annual plan." This improves your cash flow and locks in retention at the same time.` },
+        { text: "At 6 months: pitch the annual deal", sub: `Say: "Hey, you've hit your 6-month mark and you're seeing results — do you want to lock in the next year and save 10%? Same service, same team, just a better rate." This improves your cash flow and locks in retention at the same time.` },
         { text: "After 3–6 months: offer a software upgrade if they're not already on it", sub: "Show the results first (saved X hours, booked X jobs). Then: 'Do you want to continue with the full system for $[PRICE]/month?' — Never pitch the upgrade before they've felt the win." },
         { text: "Ask for a referral after every major win", sub: "Your goal is not just to keep clients — it's to turn each one into a source of new clients. Happy clients who feel the value will refer people without hesitation. Unhappy or ignored clients won't. Do good work and then ask." },
       ]} />
@@ -3914,7 +3914,7 @@ Thanks again for trusting me with [BUSINESS NAME].
           { type: "note", text: "If they absolutely won't meet without knowing: 'Packages start at $1,000/mo — but I'd love to show you what that includes before you make any decisions. The meeting is what sells it, not me telling you.'" },
           { type: "subhead", text: "After They Sign — Getting Them on Monthly Retainer" },
           { type: "note", text: "The trial is 14 days. On day 10–12, send this — before the trial ends. Don't wait for them to bring it up." },
-          { type: "send", label: "Day 10–12 of the trial — send this check-in", text: "Hey [NAME] 😊\n\nWe're about halfway through your trial and I just looked at [BUSINESS NAME]'s numbers — [SHARE A SPECIFIC RESULT, e.g., 'your reel hit 2.3k views' or 'we got 4 new inquiries through the automation'].\n\nI'd love to keep this going for you. To continue after the 14 days, it's just $1,000/mo. We start with a 3-month minimum — that's the window where you really start seeing the compound effect. After that you're free to stay month-to-month or lock in a longer term for a discount.\n\nShould I send over the agreement and first invoice?" },
+          { type: "send", label: "Day 10–12 of the trial — send this check-in", text: "Hey [NAME] 😊\n\nWe're about halfway through your trial and I just looked at [BUSINESS NAME]'s numbers — [SHARE A SPECIFIC RESULT, e.g., 'your reel hit 2.3k views' or 'we got 4 new inquiries through the automation'].\n\nI'd love to keep this going for you. To continue after the 14 days, it's just $1,000/mo. We start with a 6-month minimum — you'll see real results within the first 90 days, and months 4 through 6 are where it really compounds. After your 6 months you can stay month-to-month or lock in 12 months for 10% off.\n\nShould I send over the agreement and first invoice?" },
           { type: "note", text: "They've been watching it work for 10 days. They don't want to stop. The retainer sell is easy from here — they're already sold." },
         ]}
       />
@@ -4128,7 +4128,7 @@ Thanks again for trusting me with [BUSINESS NAME].
           { type: "subhead", text: `"Just send me some info and I'll take a look"` },
           { type: "you_say", text: "Absolutely — I'll send that right over. Can I also grab 10 minutes with you later this week? Most people find a quick call way more useful than reading through a bunch of info — I can answer questions in real time and show you exactly what it would look like for [BUSINESS NAME].\n\nI can do [DAY] or [DAY] — which is better for you?" },
           { type: "subhead", text: `"What if it doesn't work?"` },
-          { type: "you_say", text: "That's exactly why we have the 14-day free trial — so you can see it working before you commit to anything.\n\nOnce you sign on, there's a 3-month minimum — and honestly, that's for your benefit. Social media takes 60–90 days to build real momentum. Clients who stick through that window see the results. After 3 months, you can cancel with 30 days' written notice.\n\nWe stay because we work, not because you're stuck. But I want you to actually give it enough time to work.\n\nHonestly, the only real risk is staying where you are while your competitors keep showing up online every single day." },
+          { type: "you_say", text: "That's exactly why we have the 14-day free trial — so you can see it working before you commit to anything.\n\nOnce you sign on, there's a 6-month minimum — and honestly, that's for your benefit. You'll start seeing real results within the first 90 days. But months 4, 5, and 6 are where things really compound — that's when the algorithm knows you, your audience trusts you, and leads start coming in consistently.\n\nAfter your 6 months, you can cancel with 30 days' written notice. We stay because we work, not because you're stuck.\n\nHonestly, the only real risk is staying where you are while your competitors keep showing up online every single day." },
         ]}
       />
 
@@ -7917,7 +7917,7 @@ function DiscoveryCallTab() {
     reaction: {
       heading: "What was their reaction?",
       script: choices.package === "content_starter"
-        ? `"So there's actually a perfect entry-point for this. It's called our Content Starter — $500 a month. We create 8 branded posts for you every month, schedule everything, and it's completely done for you. No AI avatar, no automation — just really clean, on-brand content going out consistently. There's a one-time $500 setup fee to get everything built out, and we start with a 3-month minimum so we actually have time to build momentum. After that you can stay month-to-month or lock in a longer term for a discount.\n\nWhat do you think?"`
+        ? `"So there's actually a perfect entry-point for this. It's called our Content Starter — $500 a month. We create 8 branded posts for you every month, schedule everything, and it's completely done for you. No AI avatar, no automation — just really clean, on-brand content going out consistently. There's a one-time $500 setup fee to get everything built out, and we start with a 6-month minimum — you'll see results within 90 days and months 4 through 6 are where it really compounds. After that you can stay month-to-month or lock in 12 months for 10% off.\n\nWhat do you think?"`
         : choices.package === "starter"
         ? `"So the plan I'd recommend for ${biz} is our Starter. It's $1,000 a month — and you get your full AI clone built so your face and voice is showing up in content without you filming, one platform fully managed, all your automations set up, and a monthly performance report. There's a one-time $500 setup fee to build everything out, and we start with a 3-month minimum — that's what it takes to really see it working. After that it's flexible.\n\nWant me to walk you through what that specifically looks like for ${biz}?"`
         : choices.package === "growth"
@@ -8247,8 +8247,8 @@ const PROPOSAL_DECKS: PDeck[] = [
       {
         layout: "cta", bg: "rose",
         heading: "Try it free for 14 days.",
-        sub: "$500 setup fee  ·  14-day free trial  ·  3-month minimum  ·  30-day cancellation notice",
-        script: "Here's the offer. 14-day free trial. You only pay the $500 setup fee today — that covers the buildout. Your first two full weeks of content and service are completely on us. After the trial, we start with a 3-month minimum — social media needs 60 to 90 days to build real momentum and I want you to actually see results before you make any bigger decisions. After 3 months, 30 days' notice and you're out. I'm confident enough in what we deliver that I'm willing to put my money where my mouth is.",
+        sub: "$500 setup fee  ·  14-day free trial  ·  6-month minimum  ·  30-day cancellation notice",
+        script: "Here's the offer. 14-day free trial. You only pay the $500 setup fee today — that covers the buildout. Your first two full weeks of content and service are completely on us. After the trial, we start with a 6-month minimum — you'll see real results within the first 90 days, and months 4 through 6 are where it really compounds. After your 6 months, 30 days' notice and you're out. I'm confident enough in what we deliver that I'm willing to put my money where my mouth is.",
       },
       {
         layout: "title", bg: "dark",
@@ -8594,8 +8594,8 @@ const PROPOSAL_DECKS: PDeck[] = [
       {
         layout: "cta", bg: "rose",
         heading: "Try it free for 14 days.",
-        sub: "$500 setup fee  ·  14-day free trial  ·  3-month minimum  ·  30-day cancellation notice",
-        script: "And here's the offer to make this as easy a decision as possible. 14-day free trial. You only pay the $500 setup fee today. Your first two weeks are completely on us. After the trial, there's a 3-month minimum — because that's what it takes for the system to really build momentum for your brand. After 3 months, 30 days' notice and you're free to leave. I'm confident in what we build, which is why I'm willing to put the first two weeks on us.",
+        sub: "$500 setup fee  ·  14-day free trial  ·  6-month minimum  ·  30-day cancellation notice",
+        script: "And here's the offer to make this as easy a decision as possible. 14-day free trial. You only pay the $500 setup fee today. Your first two weeks are completely on us. After the trial, there's a 6-month minimum — you'll see real results within 90 days, and months 4 through 6 are where it really compounds for your brand. After your 6 months, 30 days' notice and you're free to leave. I'm confident in what we build, which is why I'm willing to put the first two weeks on us.",
       },
       {
         layout: "title", bg: "dark",
@@ -8858,8 +8858,8 @@ const PROPOSAL_DECKS: PDeck[] = [
       {
         layout: "cta", bg: "rose",
         heading: "This is already built.\nAll you have to do\nis say yes.",
-        sub: "$500 setup fee  ·  14-day free trial  ·  3-month minimum  ·  30-day cancellation notice",
-        script: "I want to be direct with you. We built this before you walked in today because we believed in your business enough to invest in it first. Everything you saw — it exists, it's ready, it can go live this week. The only thing standing between your business and this content running is one decision. We start with a 3-month minimum — because that's what it takes to build real momentum — and after that, 30 days' notice if you ever need to stop. But I'm confident enough in what we build that I'm willing to put the first two weeks on us. So — what do you think?",
+        sub: "$500 setup fee  ·  14-day free trial  ·  6-month minimum  ·  30-day cancellation notice",
+        script: "I want to be direct with you. We built this before you walked in today because we believed in your business enough to invest in it first. Everything you saw — it exists, it's ready, it can go live this week. The only thing standing between your business and this content running is one decision. We start with a 6-month minimum — you'll see real results within 90 days, and months 4 through 6 are where the growth really compounds — and after that, 30 days' notice if you ever need to stop. But I'm confident enough in what we build that I'm willing to put the first two weeks on us. So — what do you think?",
       },
       {
         layout: "title", bg: "dark",
