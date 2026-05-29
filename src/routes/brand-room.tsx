@@ -107,7 +107,7 @@ function Hero() {
           className="reveal text-[var(--rose)] font-normal leading-[0.95] mt-1"
           style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3.5rem, 9vw, 6rem)", letterSpacing: "0.04em", animationDelay: "0.3s" }}
         >
-          THE BRAND ROOM
+          BRAND ROOM
         </h1>
         <p className="reveal mt-4 text-[var(--gold)] text-[11px] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, animationDelay: "0.4s" }}>
           brand studio
