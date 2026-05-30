@@ -1120,6 +1120,103 @@ function Services() {
 }
 
 /* ─── Pricing ─────────────────────────────────────────── */
+function AICloneSection() {
+  return (
+    <section className="py-24 md:py-32 px-6" style={{ background: "var(--ink)" }}>
+      <div className="max-w-6xl mx-auto">
+
+        {/* Header */}
+        <div className="text-center mb-16">
+          <p className="text-[11px] tracking-luxe uppercase mb-4" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>✦ Signature Offer — Starter Plan ✦</p>
+          <h2 className="reveal" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.4rem, 5vw, 3.8rem)", color: "var(--cream)", fontStyle: "italic", lineHeight: 1.15, marginBottom: 16 }}>
+            Get Your Own AI Clone<br />Built Completely Done For You
+          </h2>
+          <p className="reveal max-w-xl mx-auto" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(0.95rem, 1.8vw, 1.05rem)", color: "rgba(245,232,224,0.55)", lineHeight: 1.75 }}>
+            We build a digital version of you — your face, your voice, your energy — that creates video content and posts every single day without you ever filming again.
+          </p>
+        </div>
+
+        {/* Before / After */}
+        <div className="grid md:grid-cols-2 gap-6 mb-16 max-w-4xl mx-auto">
+          {/* Before */}
+          <div className="rounded-2xl p-7" style={{ background: "rgba(180,80,80,0.1)", border: "1px solid rgba(180,80,80,0.25)" }}>
+            <p className="text-[10px] tracking-widest uppercase mb-5" style={{ fontFamily: "'Jost', sans-serif", color: "#d46060" }}>✕ Without Your AI Clone</p>
+            {["Filming takes hours — and you still run out of ideas","You post once then go silent for weeks","Your competitors look better online every day","You hate watching yourself on camera","Your business is invisible while you're working"].map((t, i) => (
+              <div key={i} className="flex gap-3 items-start mb-3">
+                <span style={{ color: "#d46060", flexShrink: 0, fontWeight: 700 }}>✕</span>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "rgba(245,232,224,0.7)", lineHeight: 1.5, margin: 0 }}>{t}</p>
+              </div>
+            ))}
+          </div>
+          {/* After */}
+          <div className="rounded-2xl p-7" style={{ background: "rgba(100,180,120,0.08)", border: "1px solid rgba(100,180,120,0.25)" }}>
+            <p className="text-[10px] tracking-widest uppercase mb-5" style={{ fontFamily: "'Jost', sans-serif", color: "#5a9970" }}>✓ With Your Dollhouse AI Clone</p>
+            {["Content posts every day — automatically","Your face and voice, without filming a thing","Your brand looks like a top agency — always","You record once and we handle everything forever","Your business grows online while you serve clients"].map((t, i) => (
+              <div key={i} className="flex gap-3 items-start mb-3">
+                <span style={{ color: "#5a9970", flexShrink: 0, fontWeight: 700 }}>✓</span>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "rgba(245,232,224,0.7)", lineHeight: 1.5, margin: 0 }}>{t}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* What's included */}
+        <div className="max-w-4xl mx-auto mb-16">
+          <p className="text-center text-[10px] tracking-widest uppercase mb-8" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>What's Included in the $1,000/mo Starter</p>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {[
+              ["Your AI Clone Avatar", "Trained to your face, voice & energy in week 1 — one recording session, unlimited content."],
+              ["3 AI Clone Videos/Month", "Pinned at the top of your profile, always your best content front and centre."],
+              ["12 Posts/Month", "4 Reels · 4 Carousels · 4 Static posts — all on-brand, all done for you."],
+              ["Comment-to-DM Automation", "Anyone who comments gets an instant private message turning them into a lead."],
+              ["Content Approval", "You see and approve everything before it goes live — always in control."],
+              ["Monthly Performance Snapshot", "Clear results every month in plain English — no dashboards, no confusion."],
+            ].map(([title, desc]) => (
+              <div key={title as string} className="rounded-2xl p-5" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(200,168,100,0.15)" }}>
+                <div className="w-7 h-7 rounded-full flex items-center justify-center mb-3" style={{ background: "rgba(200,168,100,0.12)", border: "1px solid rgba(200,168,100,0.25)" }}>
+                  <svg width="12" height="12" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="var(--gold)" strokeWidth="1.2"/><polyline points="6,10 9,13 14,7" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </div>
+                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.05rem", color: "var(--cream)", marginBottom: 6, lineHeight: 1.3 }}>{title as string}</p>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: "rgba(245,232,224,0.45)", lineHeight: 1.55 }}>{desc as string}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bonuses */}
+        <div className="max-w-4xl mx-auto mb-16">
+          <p className="text-center text-[10px] tracking-widest uppercase mb-8" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>3 Free Bonuses — Included With Every Plan</p>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {[
+              ["Free Social Media Audit", "We review your current presence and tell you exactly what we'll fix."],
+              ["Custom Voice AI Agent", "Answers missed calls, handles inquiries & books appointments 24/7."],
+              ["Nurture Automations", "Comment-to-DM + lead follow-up sequences — all built and active on day one."],
+            ].map(([title, desc]) => (
+              <div key={title as string} className="rounded-2xl p-5 text-center" style={{ background: "rgba(200,168,100,0.06)", border: "1px solid rgba(200,168,100,0.18)" }}>
+                <div className="inline-block px-3 py-1 rounded-full mb-3 text-[9px] tracking-widest uppercase" style={{ fontFamily: "'Jost', sans-serif", background: "rgba(200,168,100,0.12)", color: "var(--gold)", border: "1px solid rgba(200,168,100,0.25)" }}>Free Bonus</div>
+                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.05rem", color: "var(--cream)", marginBottom: 6 }}>{title as string}</p>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: "rgba(245,232,224,0.45)", lineHeight: 1.55 }}>{desc as string}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="text-center">
+          <a href="/ai-clone" style={{ display: "inline-block", padding: "16px 44px", borderRadius: 999, background: "var(--gold)", color: "var(--ink)", fontFamily: "'Jost', sans-serif", fontSize: "0.75rem", letterSpacing: "0.16em", textTransform: "uppercase", textDecoration: "none", fontWeight: 700, marginRight: 12 }}>
+            See The Full AI Clone Offer →
+          </a>
+          <a href="#contact" style={{ display: "inline-block", padding: "16px 44px", borderRadius: 999, background: "transparent", color: "rgba(245,232,224,0.5)", fontFamily: "'Jost', sans-serif", fontSize: "0.75rem", letterSpacing: "0.16em", textTransform: "uppercase", textDecoration: "none", border: "1px solid rgba(245,232,224,0.15)" }}>
+            Get a Free Proposal
+          </a>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: "rgba(245,232,224,0.28)", marginTop: 16 }}>$1,000/mo · $500 one-time setup · 6-month minimum</p>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
 function Pricing() {
   const tiers = [
     {
@@ -2135,6 +2232,7 @@ function Index() {
       <Hero />
       <TrustBar />
       <Services />
+      <AICloneSection />
       <About />
       <HowItWorks />
       <Pricing />
