@@ -16,6 +16,7 @@ import bgImage from "@/assets/password-bg.jpg";
 import roseAccent from "@/assets/rose-accent.png";
 import archMark from "@/assets/arch-mark.svg";
 import mandyPhoto from "@/assets/mandy-photo.jpg";
+import mandyAIClonePreview from "@/assets/mandy-ai-clone-preview.jpg";
 
 export const Route = createFileRoute("/")({ component: Index });
 
@@ -1267,7 +1268,7 @@ function AICloneSection() {
                 <span>AI Clone Preview</span>
                 <span>Ready in week 1</span>
               </div>
-              <img src={mandyPhoto} alt="Dollhouse founder AI clone preview" className="absolute inset-0 h-full w-full object-cover" style={{ filter: "saturate(0.96) contrast(1.02)", objectPosition: "center 42%" }} />
+              <img src={mandyAIClonePreview} alt="AI clone example portrait preview" className="absolute inset-0 h-full w-full object-cover" style={{ filter: "saturate(0.98) contrast(1.02)", objectPosition: "center 44%" }} />
               <button type="button" aria-label="Play AI clone preview" className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full flex items-center justify-center transition-transform hover:scale-105" style={{ background: "var(--ink)", color: "var(--cream)", boxShadow: "0 20px 42px -16px rgba(30,15,10,0.75)" }}>
                 <Play size={25} fill="currentColor" strokeWidth={0} className="ml-1" />
               </button>
