@@ -1288,14 +1288,14 @@ function AICloneSection() {
       <img
         src={signatureBrandingBg}
         alt=""
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.42] mix-blend-multiply"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.22] mix-blend-multiply"
         style={{ objectPosition: "left top" }}
       />
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 64% 46% at 50% 24%, rgba(255,250,246,0.84), rgba(255,250,246,0.48) 58%, transparent 78%), linear-gradient(90deg, rgba(251,241,237,0.04) 0%, rgba(251,241,237,0.72) 72%, rgba(251,241,237,0.86) 100%)",
+            "radial-gradient(ellipse 68% 50% at 50% 22%, rgba(255,250,246,0.94), rgba(255,250,246,0.76) 58%, rgba(255,250,246,0.28) 82%), linear-gradient(90deg, rgba(251,241,237,0.42) 0%, rgba(251,241,237,0.84) 68%, rgba(251,241,237,0.92) 100%)",
         }}
       />
       <DoorIcon className="pointer-events-none absolute right-10 top-1/2 hidden h-32 w-20 opacity-25 md:block" />
@@ -2207,25 +2207,93 @@ function Contact() {
     }
   }
 
-  const inputClass = "w-full rounded-xl bg-white/60 border border-[var(--gold)]/30 px-5 py-3.5 text-[var(--ink)] placeholder:text-[var(--ink)]/35 focus:outline-none focus:border-[var(--rose)] transition";
+  const inputClass = "w-full rounded-xl bg-white/72 border border-[var(--gold)]/30 px-5 py-3.5 text-[var(--ink)] placeholder:text-[var(--ink)]/35 focus:outline-none focus:border-[var(--rose)] focus:bg-white/90 transition";
   const inputStyle = { fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem" };
   const labelClass = "block text-[10px] tracking-luxe uppercase text-[var(--gold)] mb-2";
   const labelStyle = { fontFamily: "'Jost', sans-serif" };
 
   return (
-    <section id="contact" className="scroll-mt-32 pt-10 md:pt-14 pb-24 md:pb-32 px-6">
-      <SectionTitle
-        eyebrow="Get Started"
-        title={<>Ready to grow<br />your business?</>}
-        italic="Tell us about your business and we'll reach out within 24 hours."
-      />
+    <section id="contact" className="scroll-mt-32 py-24 md:py-32 px-6">
+      <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.88fr_1.12fr] gap-8 lg:gap-12 items-start">
+        <div className="lg:sticky lg:top-36">
+          <Eyebrow>Private Proposal Request</Eyebrow>
+          <h2
+            className="mt-4 text-[var(--rose)] leading-[0.98]"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: "clamp(3rem, 6vw, 5.8rem)",
+              fontWeight: 400,
+            }}
+          >
+            Ready for a system that sells while you run the business?
+          </h2>
+          <p
+            className="mt-6 max-w-lg text-[var(--ink)]/62 leading-8"
+            style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem" }}
+          >
+            Share the essentials and we’ll map the strongest path for your content, ads, AI clone, and lead follow-up. This is for founders who want a managed partner, not another DIY tool.
+          </p>
+          <div className="mt-8 grid gap-3">
+            {[
+              ["1", "We review your business, offer, and current online presence."],
+              ["2", "You receive a custom recommendation for the right plan and add-ons."],
+              ["3", "If it is a fit, we book your strategy call and build timeline."],
+            ].map(([step, copy]) => (
+              <div
+                key={step}
+                className="flex gap-4 rounded-2xl px-5 py-4"
+                style={{
+                  background: "rgba(255,250,246,0.62)",
+                  border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",
+                }}
+              >
+                <span
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
+                  style={{ background: "rgba(200,168,100,0.14)", color: "var(--gold)", fontFamily: "'Jost', sans-serif", fontSize: "0.7rem", letterSpacing: "0.12em" }}
+                >
+                  {step}
+                </span>
+                <p className="m-0 text-sm leading-6 text-[var(--ink)]/64" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                  {copy}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div
+            className="mt-8 rounded-2xl p-6"
+            style={{
+              background: "linear-gradient(135deg, rgba(30,15,10,0.96), rgba(48,24,18,0.92))",
+              boxShadow: "0 28px 58px -34px rgba(30,15,10,0.75)",
+            }}
+          >
+            <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
+              Best fit for
+            </p>
+            <p className="mt-3 text-[var(--cream)]/82 leading-7" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.35rem", fontStyle: "italic" }}>
+              Service businesses, clinics, beauty brands, consultants, and founders ready to invest in consistent lead generation.
+            </p>
+          </div>
+        </div>
 
-      <form
-        onSubmit={handleSubmit}
-        className="mt-12 max-w-xl mx-auto rounded-2xl bg-white/70 backdrop-blur-md border border-white/80 shadow-[0_25px_50px_-25px_rgba(180,120,120,0.3)] p-8 md:p-10 space-y-5"
-      >
+        <form
+          onSubmit={handleSubmit}
+          className="rounded-[28px] bg-white/76 backdrop-blur-md border border-white/85 shadow-[0_30px_70px_-35px_rgba(120,70,60,0.42)] p-6 md:p-9 space-y-5"
+        >
+        <div className="flex flex-col gap-3 border-b border-[var(--gold)]/18 pb-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-[10px] tracking-luxe uppercase text-[var(--gold)]" style={{ fontFamily: "'Jost', sans-serif" }}>
+              Application Details
+            </p>
+            <h3 className="mt-2 text-[var(--ink)] italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.8rem, 3vw, 2.45rem)", lineHeight: 1.05 }}>
+              Tell us what you want built.
+            </h3>
+          </div>
+          <p className="text-[var(--ink)]/45 text-sm md:text-right" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+            Response within 24 hours.
+          </p>
+        </div>
         {/* First / Last */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid sm:grid-cols-2 gap-4">
           {([["First Name", "first_name", "Jane"], ["Last Name", "last_name", "Doe"]] as const).map(([label, name, ph]) => (
             <div key={name}>
               <label className={labelClass} style={labelStyle}>{label} *</label>
@@ -2235,7 +2303,7 @@ function Contact() {
         </div>
 
         {/* Phone / Email */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid sm:grid-cols-2 gap-4">
           <div>
             <label className={labelClass} style={labelStyle}>Phone *</label>
             <input type="tel" name="phone" placeholder="(555) 000-0000" required className={inputClass} style={inputStyle} />
@@ -2247,7 +2315,7 @@ function Contact() {
         </div>
 
         {/* Business / Industry / Website */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid sm:grid-cols-2 gap-4">
           <div>
             <label className={labelClass} style={labelStyle}>Business Name</label>
             <input type="text" name="business_name" placeholder="Bloom Med Spa" className={inputClass} style={inputStyle} />
@@ -2279,7 +2347,7 @@ function Contact() {
             Any add-ons? <span className="normal-case opacity-60">(optional)</span>
           </label>
           <p className="text-[9px] tracking-luxe uppercase text-[var(--ink)]/40 mb-2" style={{ fontFamily: "'Jost', sans-serif" }}>Monthly</p>
-          <div className="grid grid-cols-2 gap-1.5 mb-3">
+          <div className="grid sm:grid-cols-2 gap-1.5 mb-3">
             {[
               "AI Avatar Videos",
               "AI Voice Agent",
@@ -2301,7 +2369,7 @@ function Contact() {
             ))}
           </div>
           <p className="text-[9px] tracking-luxe uppercase text-[var(--ink)]/40 mb-2" style={{ fontFamily: "'Jost', sans-serif" }}>One-Time</p>
-          <div className="grid grid-cols-2 gap-1.5">
+          <div className="grid sm:grid-cols-2 gap-1.5">
             {[
               "Website Design",
               "AI Revenue Audit",
@@ -2322,11 +2390,11 @@ function Contact() {
 
         {/* Message */}
         <div>
-          <label className={labelClass} style={labelStyle}>Your Message</label>
+          <label className={labelClass} style={labelStyle}>What would make this a win?</label>
           <textarea
             name="message"
-            rows={2}
-            placeholder="Tell us about your business and what you're looking to achieve..."
+            rows={4}
+            placeholder="Tell us what you sell, where leads are getting stuck, and what you want your monthly system to handle..."
             className={`${inputClass} resize-none`}
             style={inputStyle}
           />
@@ -2354,8 +2422,8 @@ function Contact() {
         <button
           type="submit"
           disabled={status === "sending" || status === "done"}
-          className="w-full rounded-xl bg-[var(--ink)] text-[var(--cream)] py-4 text-[11px] tracking-luxe uppercase hover:opacity-90 transition disabled:opacity-60"
-          style={{ fontFamily: "'Jost', sans-serif" }}
+          className="w-full rounded-2xl bg-[var(--ink)] text-[var(--cream)] py-4 text-[11px] tracking-luxe uppercase hover:-translate-y-0.5 hover:opacity-95 transition disabled:opacity-60 disabled:hover:translate-y-0"
+          style={{ fontFamily: "'Jost', sans-serif", boxShadow: "0 18px 36px -22px rgba(30,15,10,0.7)" }}
         >
           {status === "sending" ? "Sending..." : "Send my free proposal request →"}
         </button>
@@ -2384,6 +2452,7 @@ function Contact() {
           Book a free discovery call
         </a>
       </form>
+      </div>
     </section>
   );
 }
