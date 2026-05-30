@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import {
-  ArrowRight,
   BarChart3,
   Bot,
   Check,
@@ -357,18 +356,17 @@ function Hero() {
             Get a Free Proposal <span aria-hidden>→</span>
 
           </a>
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--gold)]/40 bg-white/40 backdrop-blur-sm px-4 py-1.5 text-[var(--gold)] hover:bg-white/60 transition-colors"
+          <div
+            className="inline-flex items-center gap-2 rounded-full border border-[var(--gold)]/40 bg-white/40 backdrop-blur-sm px-4 py-1.5 text-[var(--gold)]"
           >
             <span style={{ fontSize: "0.65rem" }}>★</span>
             <span
               className="text-[10px] tracking-luxe uppercase font-medium"
               style={{ fontFamily: "'Jost', sans-serif" }}
             >
-              Try free for 14 days
+              Custom proposal in 48 hours
             </span>
-          </a>
+          </div>
           <a href="#services" className="btn-ghost">
             See how it works <span aria-hidden>↓</span>
           </a>
@@ -1208,7 +1206,7 @@ function Services() {
     },
   ];
   return (
-    <section id="services" className="py-24 md:py-32 px-6">
+    <section id="services" className="scroll-mt-32 py-24 md:py-32 px-6">
       <SectionTitle
         eyebrow="What We Do"
         title={<>Everything you need to<br />dominate social media.</>}
@@ -1468,13 +1466,13 @@ function AICloneSection() {
         </div>
 
         <div className="max-w-5xl mx-auto mb-12 md:mb-16">
-          <p className="text-center text-[10px] tracking-luxe uppercase mb-3 font-semibold" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>Start today and get 3 free bonuses</p>
+          <p className="text-center text-[10px] tracking-luxe uppercase mb-3 font-semibold" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>Included implementation assets</p>
           <h3 className="text-center mb-8 italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: "clamp(1.9rem, 3.8vw, 3.2rem)", color: "var(--rose)" }}>Everything we need to make your content system convert</h3>
           <div className="grid sm:grid-cols-3 gap-4">
             {bonuses.map(({ icon: Icon, title, desc }) => (
               <div key={title} className="rounded-2xl p-5" style={{ background: "rgba(255,250,246,0.72)", border: "1px solid color-mix(in oklab, var(--gold) 32%, transparent)" }}>
                 <div className="flex items-center justify-between gap-3 mb-5">
-                  <div className="px-3 py-1 rounded-full text-[9px] tracking-[0.16em] uppercase font-bold" style={{ fontFamily: "'Jost', sans-serif", background: "rgba(200,168,100,0.12)", color: "var(--gold)" }}>Free Bonus</div>
+                  <div className="px-3 py-1 rounded-full text-[9px] tracking-[0.16em] uppercase font-bold" style={{ fontFamily: "'Jost', sans-serif", background: "rgba(200,168,100,0.12)", color: "var(--gold)" }}>Included</div>
                   <Icon size={20} color="var(--gold)" strokeWidth={1.8} />
                 </div>
                 <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.25rem", fontStyle: "italic", color: "var(--ink)", marginBottom: 8 }}>{title}</p>
@@ -1485,13 +1483,12 @@ function AICloneSection() {
         </div>
 
         <div className="text-center">
-          <a href="/ai-clone" className="inline-flex items-center justify-center gap-2 mb-3 sm:mb-0 sm:mr-3 transition-transform hover:-translate-y-0.5" style={{ padding: "18px 34px", borderRadius: 999, background: "var(--ink)", color: "var(--cream)", fontFamily: "'Jost', sans-serif", fontSize: "0.72rem", letterSpacing: "0.18em", textTransform: "uppercase", textDecoration: "none", fontWeight: 700, boxShadow: "0 22px 44px -18px rgba(30,15,10,0.65)" }}>
-            See the full AI clone offer <ArrowRight size={15} strokeWidth={2.4} />
+          <a href="#contact" className="inline-flex items-center justify-center transition-transform hover:-translate-y-0.5" style={{ padding: "18px 38px", borderRadius: 999, background: "var(--ink)", color: "var(--cream)", fontFamily: "'Jost', sans-serif", fontSize: "0.72rem", letterSpacing: "0.18em", textTransform: "uppercase", textDecoration: "none", fontWeight: 700, boxShadow: "0 22px 44px -18px rgba(30,15,10,0.65)" }}>
+            Get my free proposal →
           </a>
-          <a href="#contact" className="inline-flex items-center justify-center" style={{ padding: "17px 34px", borderRadius: 999, background: "rgba(255,250,246,0.52)", color: "var(--ink)", fontFamily: "'Jost', sans-serif", fontSize: "0.72rem", letterSpacing: "0.18em", textTransform: "uppercase", textDecoration: "none", border: "1px solid rgba(30,15,10,0.35)", fontWeight: 700 }}>
-            Get a Free Proposal
-          </a>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: "rgba(30,15,10,0.46)", marginTop: 18 }}>$1,000/mo · $500 one-time setup · 6-month minimum</p>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: "rgba(30,15,10,0.52)", marginTop: 18 }}>
+            One proposal covers your plan, AI clone setup, automations, add-ons, and launch timeline.
+          </p>
         </div>
       </div>
     </section>
@@ -1567,7 +1564,7 @@ function Pricing() {
   return (
     <section
       id="pricing"
-      className="py-24 md:py-32 px-6"
+      className="scroll-mt-32 py-24 md:py-32 px-6"
       style={{
         background:
           "linear-gradient(135deg, #f4dcdc 0%, #f7e6dc 45%, #f1d3cf 100%)",
@@ -1754,7 +1751,7 @@ function Pricing() {
                   ))}
                 </ul>
 
-                {/* 14-Day Free Trial badge */}
+                {/* Proposal badge */}
                 <div className="mt-10 w-full text-center">
                   <div
                     className="w-full flex flex-col items-center justify-center gap-1.5 px-4 py-3 rounded-xl"
@@ -1766,7 +1763,7 @@ function Pricing() {
                     <div className="flex items-center gap-2">
                       <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>★</span>
                       <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.72rem", color: "var(--gold)", letterSpacing: "0.16em", textTransform: "uppercase" }}>
-                        Try Free for 14 Days
+                        Custom launch plan included
                       </span>
                       <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>★</span>
                     </div>
@@ -1797,7 +1794,7 @@ function Pricing() {
 
       {/* Pricing footnote */}
       <p className="text-center mt-6 mb-2" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.4)" }}>
-        Monthly Pricing &nbsp;·&nbsp; Sign Up for 6 or 12 Months &nbsp;·&nbsp; 3.7% Processing Fee
+        Monthly retainer &nbsp;·&nbsp; 6-month minimum &nbsp;·&nbsp; 12-month partner terms available
       </p>
 
       {/* Content Starter — hidden */}
@@ -1913,7 +1910,7 @@ function Pricing() {
 /* ─── About ────────────────────────────────────────────── */
 function About() {
   return (
-    <section id="about" className="py-24 md:py-32 px-6 bg-[var(--cream)]">
+    <section id="about" className="scroll-mt-32 py-24 md:py-32 px-6 bg-[var(--cream)]">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-14">
           <Eyebrow>The Person Behind the Brand</Eyebrow>
@@ -2140,7 +2137,7 @@ function FAQ() {
     ["What is your refund policy?", "All sales are final. Once your system is built and your plan is active, the work has begun — but if you have concerns at any point, reach out and we'll work through it."],
   ];
   return (
-    <section id="faq" className="pt-24 md:pt-32 pb-10 md:pb-14 px-6">
+    <section id="faq" className="scroll-mt-32 pt-24 md:pt-32 pb-10 md:pb-14 px-6">
       <SectionTitle eyebrow="Common Questions" title="FAQ" />
       <div className="mt-12 max-w-3xl mx-auto space-y-3">
         {faqs.map(([q, a]) => (
@@ -2216,7 +2213,7 @@ function Contact() {
   const labelStyle = { fontFamily: "'Jost', sans-serif" };
 
   return (
-    <section id="contact" className="pt-10 md:pt-14 pb-24 md:pb-32 px-6">
+    <section id="contact" className="scroll-mt-32 pt-10 md:pt-14 pb-24 md:pb-32 px-6">
       <SectionTitle
         eyebrow="Get Started"
         title={<>Ready to grow<br />your business?</>}
@@ -2269,9 +2266,9 @@ function Contact() {
         <div>
           <label className={labelClass} style={labelStyle}>Which plan interests you?</label>
           <select name="plan" className={inputClass} style={inputStyle}>
-            <option>Starter — $1,000/mo</option>
-            <option>Growth — $2,500/mo</option>
             <option>Elite — $5,000+/mo</option>
+            <option>Growth — $2,500/mo</option>
+            <option>Starter — $1,000/mo</option>
             <option>Not sure yet</option>
           </select>
         </div>
@@ -2391,35 +2388,35 @@ function Contact() {
   );
 }
 
-/* ─── Brand Room Banner ────────────────────────────────── */
-function StarterKitBanner() {
+/* ─── Final CTA ────────────────────────────────────────── */
+function FinalCTA() {
   return (
     <section className="py-20 px-6 text-center" style={{ background: "linear-gradient(135deg, #f4dcdc 0%, #f7e6dc 45%, #f1d3cf 100%)" }}>
       <p
         className="text-[var(--gold)] text-[11px] tracking-luxe uppercase"
         style={{ fontFamily: "'Jost', sans-serif" }}
       >
-        Not ready for a full retainer?
+        Ready for a managed growth system?
       </p>
       <h2
         className="mt-4 italic text-[var(--ink)]"
         style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 1.1 }}
       >
-        Step into The Brand Room
+        Let us map the plan for you.
       </h2>
       <p
         className="mt-4 text-[var(--ink)]/65 max-w-md mx-auto"
         style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", lineHeight: 1.6 }}
       >
-        An interactive brand-builder designed for women launching their first business. Build your brand identity in minutes — no designer needed.
+        Tell us where you want more leads, bookings, and follow-up support. We'll recommend the right content, ads, AI clone, and automation setup for your business.
       </p>
-      <Link
-        to="/brand-room"
+      <a
+        href="#contact"
         className="mt-8 inline-flex items-center gap-2 rounded-2xl px-8 py-4 hover:-translate-y-0.5 transition-all"
         style={{ backgroundColor: "var(--ink)", color: "var(--cream)", fontFamily: "'Cormorant Garamond', serif", fontSize: "1.15rem", fontStyle: "italic", fontWeight: 700 }}
       >
-        Explore The Brand Room →
-      </Link>
+        Get my free proposal →
+      </a>
     </section>
   );
 }
@@ -2438,13 +2435,6 @@ function Footer() {
         <svg viewBox="0 0 24 22" fill="currentColor" style={{ width: "10px", height: "10px", color: "var(--gold)", opacity: 0.5 }}><path d="M12 21.6C6.3 16.1 1 11.3 1 7.2 1 3.4 4.1 2 6.3 2c1.3 0 4.2.5 5.7 4.5C13.6 2.5 16.5 2 17.7 2 20.3 2 23 3.6 23 7.2c0 4.1-5.1 8.9-11 14.4z"/></svg>
         <span className="h-px w-8 bg-[var(--gold)]/30" />
       </div>
-      <Link
-        to="/brand-room"
-        className="mt-5 block text-[var(--gold)] text-[15px] tracking-[0.2em] uppercase hover:opacity-70 transition-opacity"
-        style={{ fontFamily: "'Jost', sans-serif" }}
-      >
-        Enter The Brand Room →
-      </Link>
       <a
         href="mailto:hello@shopdollhouse.co"
         className="mt-4 block text-[var(--ink)]/45 hover:text-[var(--rose)] transition-colors"
@@ -2520,7 +2510,7 @@ function Index() {
       <ComparisonTable />
       <FAQ />
       <Contact />
-      <StarterKitBanner />
+      <FinalCTA />
       <Footer />
       <BackToTop />
     </main>
