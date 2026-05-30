@@ -933,12 +933,6 @@ function CaptionCard() {
             "linear-gradient(160deg, #2a1f1d 0%, #1a1413 55%, #241a18 100%)",
         }}
       >
-        <img
-          src={signatureBrandingBg}
-          alt=""
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.12]"
-          style={{ objectPosition: "left bottom", mixBlendMode: "screen" }}
-        />
         <div
           aria-hidden
           className="absolute -top-20 -right-16 w-56 h-56 rounded-full opacity-50 blur-3xl"
@@ -1042,12 +1036,6 @@ function AIChatCard() {
         style={{ background: "radial-gradient(60% 60% at 30% 30%, rgba(200,168,100,0.4), transparent 70%), radial-gradient(50% 50% at 80% 70%, rgba(232,180,180,0.35), transparent 70%)" }} />
       <div className="relative rounded-[28px] overflow-hidden border border-white/90 shadow-[0_35px_70px_-30px_rgba(160,100,100,0.35)]"
         style={{ background: "linear-gradient(160deg, rgba(255,255,255,0.94) 0%, rgba(252,246,238,0.9) 100%)", backdropFilter: "blur(14px)" }}>
-        <img
-          src={signatureBrandingBg}
-          alt=""
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.12] mix-blend-multiply"
-          style={{ objectPosition: "left bottom" }}
-        />
         <div className="relative px-5 pt-5 pb-2 border-b border-[var(--gold)]/15 flex items-center gap-3">
           <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(135deg, var(--gold), #f0d3a8)" }}>
             <span className="text-[var(--ink)] text-[11px]">✦</span>
@@ -1093,12 +1081,6 @@ function ReminderCard() {
         style={{ background: "radial-gradient(60% 60% at 70% 30%, rgba(232,180,180,0.45), transparent 70%), radial-gradient(50% 50% at 20% 80%, rgba(200,168,100,0.35), transparent 70%)" }} />
       <div className="relative rounded-[28px] overflow-hidden border border-white/90 shadow-[0_35px_70px_-30px_rgba(160,100,100,0.35)]"
         style={{ background: "linear-gradient(160deg, rgba(255,255,255,0.94) 0%, rgba(252,240,240,0.9) 100%)", backdropFilter: "blur(14px)" }}>
-        <img
-          src={signatureBrandingBg}
-          alt=""
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.12] mix-blend-multiply"
-          style={{ objectPosition: "left bottom" }}
-        />
         <div className="relative px-6 pt-5 pb-4 border-b border-[var(--gold)]/15">
           <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>Automated Reminders</p>
           <p className="mt-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.1rem", color: "var(--ink)" }}>Appointment: Thursday 10:00am</p>
@@ -1134,12 +1116,6 @@ function ReviewCard() {
         style={{ background: "radial-gradient(55% 55% at 50% 50%, rgba(200,168,100,0.4), transparent 70%)" }} />
       <div className="relative rounded-[28px] overflow-hidden border border-white/90 shadow-[0_35px_70px_-30px_rgba(160,100,100,0.35)]"
         style={{ background: "linear-gradient(160deg, rgba(255,255,255,0.94) 0%, rgba(255,251,240,0.9) 100%)", backdropFilter: "blur(14px)" }}>
-        <img
-          src={signatureBrandingBg}
-          alt=""
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.12] mix-blend-multiply"
-          style={{ objectPosition: "left bottom" }}
-        />
         <div className="relative px-6 pt-5 pb-4 border-b border-[var(--gold)]/15 flex items-center justify-between">
           <div>
             <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>Google Reviews</p>
