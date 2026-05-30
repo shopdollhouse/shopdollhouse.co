@@ -1258,7 +1258,7 @@ function AICloneSection() {
             }}
           >
             <div
-              className="aspect-[4/5] rounded-[24px] relative overflow-hidden flex items-end justify-center"
+              className="aspect-[5/4] rounded-[24px] relative overflow-hidden flex items-end justify-center"
               style={{
                 background:
                   "linear-gradient(180deg, rgba(30,15,10,0.06) 0%, rgba(30,15,10,0.45) 100%)",
@@ -1269,14 +1269,14 @@ function AICloneSection() {
                 <span className="text-right">AI Clone</span>
               </div>
               <div className="absolute inset-0 grid grid-cols-2">
-                <div className="relative overflow-hidden">
-                  <img src={mandyPhoto} alt="Real portrait reference" className="h-full w-full object-cover" style={{ filter: "saturate(0.96) contrast(1.02)", objectPosition: "center 42%" }} />
+                <div className="relative overflow-hidden" style={{ background: "rgba(255,250,246,0.42)" }}>
+                  <img src={mandyPhoto} alt="Real portrait reference" className="h-full w-full object-contain" style={{ filter: "saturate(0.96) contrast(1.02)", objectPosition: "center center" }} />
                   <span className="absolute bottom-4 left-4 rounded-full px-3 py-1.5 text-[9px] uppercase tracking-[0.16em]" style={{ background: "rgba(255,250,246,0.9)", color: "var(--ink)", fontFamily: "'Jost', sans-serif" }}>
                     Real Photo
                   </span>
                 </div>
-                <div className="relative overflow-hidden">
-                  <img src={mandyAIClonePreview} alt="AI clone example portrait preview" className="h-full w-full object-cover" style={{ filter: "saturate(0.98) contrast(1.02)", objectPosition: "center 44%" }} />
+                <div className="relative overflow-hidden" style={{ background: "rgba(255,250,246,0.42)" }}>
+                  <img src={mandyAIClonePreview} alt="AI clone example portrait preview" className="h-full w-full object-contain" style={{ filter: "saturate(0.98) contrast(1.02)", objectPosition: "center center" }} />
                   <span className="absolute bottom-4 right-4 rounded-full px-3 py-1.5 text-[9px] uppercase tracking-[0.16em]" style={{ background: "rgba(255,250,246,0.9)", color: "var(--gold)", fontFamily: "'Jost', sans-serif" }}>
                     AI Clone
                   </span>
