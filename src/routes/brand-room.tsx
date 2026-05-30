@@ -92,8 +92,8 @@ function Hero() {
           style={{ width: "min(120%, 780px)", height: "110%", background: "radial-gradient(ellipse at center, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.65) 40%, rgba(255,255,255,0.2) 65%, rgba(255,255,255,0) 85%)", filter: "blur(32px)" }}
         />
 
-        <div className="reveal inline-flex items-center gap-2 rounded-full border border-[var(--gold)]/55 bg-white/40 backdrop-blur-md px-5 py-2 text-[var(--gold)]" style={{ animationDelay: "0.05s" }}>
-          <span className="text-[10px] tracking-luxe uppercase font-medium" style={{ fontFamily: FONT_LUXE }}>One-Time · Build Your Brand</span>
+        <div className="reveal inline-flex items-center gap-2 rounded-full border border-[var(--gold)]/55 bg-white/45 backdrop-blur-md px-5 py-2 text-[var(--gold)]" style={{ animationDelay: "0.05s" }}>
+          <span className="text-[10px] tracking-luxe uppercase font-medium" style={{ fontFamily: FONT_LUXE }}>For founders building from scratch</span>
         </div>
 
         <div className="reveal mt-8 flex justify-center text-[var(--gold)]" style={{ animationDelay: "0.15s" }}>
@@ -118,24 +118,24 @@ function Hero() {
         </div>
 
         <h2 className="reveal mt-2 text-[var(--rose)] leading-snug max-w-xl mx-auto" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.8rem, 3.8vw, 2.8rem)", fontWeight: 400, fontStyle: "italic", animationDelay: "0.52s" }}>
-          Build a Brand That Looks Like You Hired an Agency.
+          Build the business foundation before you hire the agency.
         </h2>
 
         <p className="reveal mt-4 text-[var(--ink)]/65 leading-relaxed max-w-lg mx-auto" style={{ fontFamily: FONT_BODY, fontSize: "clamp(0.95rem, 1.8vw, 1.1rem)", animationDelay: "0.58s" }}>
-          Start with the Blueprint — or grab all three and save.
+          The Brand Room is a guided web-app system for founders who need a polished offer, brand voice, content direction, and launch foundation before monthly management makes sense.
         </p>
 
         <div className="reveal mt-9 flex flex-col sm:flex-row items-center justify-center gap-4" style={{ animationDelay: "0.65s" }}>
           <a href="#blueprint" className="btn-ink">
-            Get the Blueprint <span aria-hidden>→</span>
+            Start Building <span aria-hidden>→</span>
           </a>
           <a href="#bundle" className="btn-ghost">
-            See the Full Bundle <span aria-hidden>↓</span>
+            See the System <span aria-hidden>↓</span>
           </a>
         </div>
 
         <p className="reveal mt-7 text-[var(--ink)]/55 italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1rem, 2vw, 1.2rem)", animationDelay: "0.75s" }}>
-          One-time payment · Lifetime access
+          One-time payment · Guided web apps · Lifetime access
         </p>
       </div>
     </header>
@@ -143,30 +143,36 @@ function Hero() {
 }
 
 /* ─── What's Inside ───────────────────────────────────── */
+const OUTCOMES = [
+  ["01", "Clarify the offer", "Name what you sell, who it is for, why it matters, and how it should be packaged."],
+  ["02", "Shape the brand", "Choose the look, voice, fonts, colors, and content style your audience should recognize."],
+  ["03", "Launch with direction", "Turn the foundation into prompts, captions, emails, and repeatable content ideas."],
+];
+
 const PIECES = [
   {
     num: "01",
     price: "$97",
     originalPrice: "$145",
     name: "The Dollhouse Brand Kit Blueprint",
-    tagline: "Interactive web app — build your brand from scratch",
-    detail: "No guesswork. No blank pages. Every brand decision walked through step by step — your colors, fonts, logo direction, voice, and visual identity all locked in.",
+    tagline: "Interactive web app — your visual identity system",
+    detail: "A guided build for your colors, fonts, logo direction, mood, content look, and brand presence so you stop piecing your identity together post by post.",
   },
   {
     num: "02",
     price: "$47",
     originalPrice: "$261",
     name: "Brand Workbook",
-    tagline: "Every foundational business decision, made",
-    detail: "An interactive web app that walks you through positioning, audience, offers, and brand voice. Includes a bonus PDF workbook to help you hit the ground running.",
+    tagline: "Interactive web app — your business foundation",
+    detail: "Map your audience, positioning, offer, value, brand voice, and content pillars. Includes a bonus PDF workbook for founders who like to think on paper too.",
   },
   {
     num: "03",
     price: "$17",
     originalPrice: null,
     name: "AI Prompt Kit",
-    tagline: "50+ prompts across 8 rooms — ready to use",
-    detail: "Copy, content, strategy — all pre-built. Captions, hooks, emails, ad copy and more. Customize and use instantly. No staring at a blank screen.",
+    tagline: "50+ prompts across 8 rooms — ready to customize",
+    detail: "Captions, hooks, emails, offer copy, ad ideas, launch notes, and strategy prompts built from the foundation you just clarified.",
   },
 ];
 
@@ -177,12 +183,33 @@ function WhatsInside() {
         <div className="text-center max-w-2xl mx-auto">
           <p className="text-[var(--gold)] text-[11px] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE }}>What's Inside</p>
           <h2 className="mt-4 text-[var(--rose)] leading-[1.05]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.5rem, 5vw, 4rem)", fontWeight: 400 }}>
-            Three pieces
+            Three guided rooms
           </h2>
           <p className="mt-2 italic text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem" }}>
-            One foundation.
+            One business foundation.
           </p>
           <Divider />
+          <p className="mt-5 text-[var(--ink)]/62 leading-relaxed" style={{ fontFamily: FONT_BODY, fontSize: "0.98rem" }}>
+            This is for the founder who is not ready for monthly management yet, but is ready to stop guessing. Each room turns a messy early-stage idea into decisions you can use.
+          </p>
+        </div>
+
+        <div className="mt-12 grid md:grid-cols-3 gap-4">
+          {OUTCOMES.map(([num, title, body]) => (
+            <article
+              key={title}
+              className="rounded-2xl p-6"
+              style={{
+                background: "rgba(255,255,255,0.48)",
+                border: "1px solid color-mix(in oklab, var(--gold) 30%, transparent)",
+                boxShadow: "0 18px 45px -30px rgba(120,70,60,0.35)",
+              }}
+            >
+              <p className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.7rem", lineHeight: 1 }}>{num}</p>
+              <h3 className="mt-4 text-[var(--ink)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.35rem", lineHeight: 1.1 }}>{title}</h3>
+              <p className="mt-3 text-[var(--ink)]/62 leading-relaxed text-sm" style={{ fontFamily: FONT_BODY }}>{body}</p>
+            </article>
+          ))}
         </div>
 
         {/* Featured Blueprint */}
@@ -196,6 +223,13 @@ function WhatsInside() {
               <h3 className="mt-4 text-[var(--cream)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.8rem, 3vw, 2.5rem)", lineHeight: 1.15 }}>{PIECES[0].name}</h3>
               <p className="mt-2 italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem" }}>{PIECES[0].tagline}</p>
               <p className="mt-4 leading-relaxed" style={{ fontFamily: FONT_BODY, fontSize: "0.95rem", color: "rgba(250,243,234,0.7)" }}>{PIECES[0].detail}</p>
+              <div className="mt-6 grid sm:grid-cols-3 gap-3">
+                {["Color story", "Logo direction", "Content look"].map((item) => (
+                  <span key={item} className="rounded-full px-3 py-2 text-center" style={{ fontFamily: FONT_LUXE, fontSize: "0.58rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(250,243,234,0.7)", border: "1px solid rgba(200,168,100,0.22)" }}>
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
             <div className="flex flex-col items-center md:items-end gap-4 shrink-0">
               <div className="flex items-baseline gap-3">
@@ -244,15 +278,15 @@ function WhatsInside() {
 
 /* ─── Includes Checklist ──────────────────────────────── */
 const INCLUDES = [
-  "Brand Kit Blueprint — interactive web app ($145 value)",
-  "Brand Workbook — interactive web app + bonus PDF workbook ($261 value)",
+  "Brand Kit Blueprint — interactive visual identity app ($145 value)",
+  "Brand Workbook — interactive business foundation app + bonus PDF ($261 value)",
   "AI Prompt Kit — 50+ prompts across 8 rooms ($17 value)",
-  "Copy, content & strategy prompts ready to customize",
-  "Every foundational brand decision walked through step by step",
-  "Color, font, voice & visual identity all locked in",
-  "30-day content starter calendar",
+  "Offer, audience, positioning, and brand voice prompts",
+  "Color, font, logo direction, and content style guidance",
+  "Launch copy, captions, hooks, emails, and ad ideas",
+  "30-day starter content direction",
   "Lifetime access & free updates",
-  "Private community of founders",
+  "A clear path into done-for-you growth when you are ready",
 ];
 
 function Includes() {
@@ -268,8 +302,11 @@ function Includes() {
         <img src={archMark} alt="" className="absolute -right-12 -bottom-12 w-72 opacity-8 pointer-events-none" />
         <p className="text-[var(--gold)] text-[11px] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE }}>Everything You Get</p>
         <h2 className="mt-4 italic text-[var(--cream)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.1 }}>
-          A complete brand, delivered today.
+          Your first real business foundation, built today.
         </h2>
+        <p className="mt-5 max-w-2xl text-[var(--cream)]/62 leading-relaxed" style={{ fontFamily: FONT_BODY, fontSize: "0.95rem" }}>
+          The Brand Room gives you the decisions, words, and visual direction most founders try to make after they start posting. Build it first, then grow from something clear.
+        </p>
         <div className="mt-3 flex items-center gap-3">
           <span className="h-px w-12" style={{ background: "linear-gradient(90deg, transparent, rgba(201,122,122,0.5), transparent)" }} />
           <svg viewBox="0 0 24 22" fill="currentColor" style={{ width: "13px", height: "13px", color: "#c97a7a", flexShrink: 0 }}><path d="M12 21.6C6.3 16.1 1 11.3 1 7.2 1 3.4 4.1 2 6.3 2c1.3 0 4.2.5 5.7 4.5C13.6 2.5 16.5 2 17.7 2 20.3 2 23 3.6 23 7.2c0 4.1-5.1 8.9-11 14.4z"/></svg>
@@ -295,8 +332,11 @@ function Bundle() {
       <div className="max-w-3xl mx-auto text-center">
         <p className="text-[var(--gold)] text-[11px] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE }}>Best Value</p>
         <h2 className="mt-4 text-[var(--rose)] leading-[1.05]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.25rem, 4vw, 3.5rem)", fontWeight: 400 }}>
-          Get everything together
+          Build the whole thing together
         </h2>
+        <p className="mt-4 text-[var(--ink)]/60 leading-relaxed" style={{ fontFamily: FONT_BODY, fontSize: "0.98rem" }}>
+          The bundle is the cleanest path if you are starting from zero: decide what you sell, shape how it looks and sounds, then create content with prompts that match the brand.
+        </p>
         <Divider />
 
         <div
@@ -311,7 +351,7 @@ function Bundle() {
             <span style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>Best Value</span>
           </div>
 
-          <p className="text-[var(--gold)] text-[11px] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE }}>The Full Starter Kit Bundle</p>
+          <p className="text-[var(--gold)] text-[11px] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE }}>The Brand Room Starter System</p>
 
           {/* Line items */}
           <div className="mt-8 space-y-3 text-left">
@@ -350,12 +390,12 @@ function Bundle() {
           </div>
 
           <a
-            href="mailto:hello@shopdollhouse.co?subject=Starter%20Kit%20Bundle"
+            href="mailto:hello@shopdollhouse.co?subject=Brand%20Room%20Starter%20System"
             className="mt-8 w-full block rounded-2xl px-5 py-4 text-center transition-all hover:-translate-y-0.5 hover:opacity-90"
             style={{ backgroundColor: "var(--gold)", boxShadow: "0 12px 28px -10px rgba(160,110,60,0.5)" }}
           >
             <p className="text-[var(--ink)] leading-tight" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.15rem", fontStyle: "italic", fontWeight: 700 }}>
-              Get the Full Bundle →
+              Get the Starter System →
             </p>
             <p className="text-[var(--ink)]/60 mt-0.5" style={{ fontFamily: FONT_LUXE, fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase" }}>
               All three · Delivered instantly to your inbox
@@ -372,7 +412,7 @@ function Bundle() {
         </div>
 
         <p className="mt-10 italic text-[var(--rose)]/70" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem" }}>
-          Want it all done for you instead?{" "}
+          Ready for us to manage the growth after your foundation is clear?{" "}
           <Link to="/" className="underline hover:text-[var(--rose)] transition-colors">
             See our retainers →
           </Link>
@@ -384,11 +424,12 @@ function Bundle() {
 
 /* ─── FAQ ─────────────────────────────────────────────── */
 const FAQS: [string, string][] = [
-  ["Who is The Brand Room for?", "Founders, creators, and small business owners who want a polished brand and a content engine without hiring an agency."],
-  ["Can I buy just one product?", "Yes — each piece is available individually. Start with the $97 Blueprint, grab the $47 Brand Workbook, or pick up the $17 AI Prompt Kit on its own. Or save $34 and grab all three for $127."],
+  ["Who is The Brand Room for?", "New founders, creators, and service providers who are not ready for a monthly growth retainer yet, but need a real business, brand, offer, and content foundation."],
+  ["Is this just a PDF?", "No. The core pieces are interactive web apps that guide you through decisions step by step. The workbook also includes a bonus PDF for offline planning."],
+  ["Can I buy just one product?", "Yes. Start with the $97 Brand Kit Blueprint, grab the $47 Brand Workbook, or pick up the $17 AI Prompt Kit on its own. Or save $34 and grab all three for $127."],
   ["How is this delivered?", "Instantly. After checkout you'll receive an email with access to your Brand Kit Blueprint, Brand Workbook, and AI Prompt Kit."],
-  ["Do I need design experience?", "Nope. Everything is templated and editable in Canva. The workbook walks you through every decision step by step."],
-  ["Can I upgrade to a done-for-you retainer later?", "Yes — your Brand Room investment is credited toward your first month on any monthly plan."],
+  ["Do I need design experience?", "No. The apps walk you through the decisions in plain language so you can create a polished foundation without hiring a designer first."],
+  ["Can I upgrade to a done-for-you retainer later?", "Yes. The Brand Room is the starting point, and your investment can be credited toward your first month on any monthly plan."],
 ];
 
 function FAQ() {
