@@ -13,6 +13,7 @@ import { Route as SoftwareRouteImport } from './routes/software'
 import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PlaybookRouteImport } from './routes/playbook'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as BrandRoomRouteImport } from './routes/brand-room'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -36,6 +37,11 @@ const PlaybookRoute = PlaybookRouteImport.update({
   path: '/playbook',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BrandRoomRoute = BrandRoomRouteImport.update({
   id: '/brand-room',
   path: '/brand-room',
@@ -50,6 +56,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/brand-room': typeof BrandRoomRoute
+  '/onboarding': typeof OnboardingRoute
   '/playbook': typeof PlaybookRoute
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/brand-room': typeof BrandRoomRoute
+  '/onboarding': typeof OnboardingRoute
   '/playbook': typeof PlaybookRoute
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/brand-room': typeof BrandRoomRoute
+  '/onboarding': typeof OnboardingRoute
   '/playbook': typeof PlaybookRoute
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
@@ -77,16 +86,25 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/brand-room'
+    | '/onboarding'
     | '/playbook'
     | '/privacy'
     | '/quiz'
     | '/software'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/brand-room' | '/playbook' | '/privacy' | '/quiz' | '/software'
+  to:
+    | '/'
+    | '/brand-room'
+    | '/onboarding'
+    | '/playbook'
+    | '/privacy'
+    | '/quiz'
+    | '/software'
   id:
     | '__root__'
     | '/'
     | '/brand-room'
+    | '/onboarding'
     | '/playbook'
     | '/privacy'
     | '/quiz'
@@ -96,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BrandRoomRoute: typeof BrandRoomRoute
+  OnboardingRoute: typeof OnboardingRoute
   PlaybookRoute: typeof PlaybookRoute
   PrivacyRoute: typeof PrivacyRoute
   QuizRoute: typeof QuizRoute
@@ -132,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlaybookRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/brand-room': {
       id: '/brand-room'
       path: '/brand-room'
@@ -152,6 +178,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BrandRoomRoute: BrandRoomRoute,
+  OnboardingRoute: OnboardingRoute,
   PlaybookRoute: PlaybookRoute,
   PrivacyRoute: PrivacyRoute,
   QuizRoute: QuizRoute,
