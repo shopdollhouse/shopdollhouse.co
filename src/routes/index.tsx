@@ -492,14 +492,14 @@ function PlatformSymbol({ name }: { name: string }) {
 }
 
 function TrustBar() {
-  const logos = ["Meta", "Google", "TikTok", "Instagram", "LinkedIn"];
+  const logos = ["Meta", "Instagram", "TikTok"];
   return (
     <section className="py-14 px-6 bg-[var(--cream)]/60 backdrop-blur-sm border-y border-[var(--gold)]/15">
       <p
         className="text-center text-[10px] tracking-luxe uppercase text-[var(--gold)]"
         style={{ fontFamily: "'Jost', sans-serif" }}
       >
-        Built on the world's top platforms
+        Built for the 3 platforms your clients already use
       </p>
       <div className="mt-7 flex flex-wrap justify-center items-center gap-x-12 gap-y-6 text-[var(--ink)]/60">
         {logos.map((l) => (
@@ -1533,8 +1533,8 @@ function Pricing() {
       price: "$2,500",
       software: "$300/mo",
       fit: "Best for consistent lead flow",
-      outcome: "Three platforms, paid Meta ads, voice AI, and follow-up automation.",
-      tagline: "3 platforms fully managed — more content, paid ads, and strategy built in.",
+      outcome: "All 3 social platforms, paid Meta ads, voice AI, and follow-up automation.",
+      tagline: "Facebook, Instagram, and TikTok fully managed — more content, paid ads, and strategy built in.",
       topBadge: { label: "Most Requested", tone: "pink" as "gold" | "pink" },
       cta: "Get a Free Proposal →",
       features: [
@@ -1545,7 +1545,7 @@ function Pricing() {
         "Content approval before posting — you see and approve everything before it goes live",
         "Dedicated content strategy — hashtag research, caption writing & optimal posting times",
         "Paid Meta ads management — Facebook & Instagram campaigns built, managed & optimised",
-        "Comment-to-DM automation + text follow-up AI bot across all platforms",
+        "Comment-to-DM automation + text follow-up AI bot across Facebook, Instagram & TikTok",
         "Voice AI receptionist — answers missed calls & books appointments 24/7",
         "Missed call text-back — anyone who calls gets an automatic text reply instantly",
         "Automated appointment reminders — text & email sent before every booking",
@@ -1558,8 +1558,8 @@ function Pricing() {
       price: "$5,000+",
       software: "$300/mo",
       fit: "Best for full-scale takeover",
-      outcome: "Maximum content, ads, automation, website, reporting, and priority strategy.",
-      tagline: "Your entire online business fully managed — maximum content, all ads, full AI system.",
+      outcome: "Maximum 3-platform content, ads, automation, website, reporting, and priority strategy.",
+      tagline: "Your 3-platform growth system fully managed — maximum content, ads, and AI support.",
       featured: true,
       topBadge: { label: "Premium Partner", tone: "gold" as "gold" | "pink" },
       cta: "Apply for Elite →",
@@ -1569,7 +1569,7 @@ function Pricing() {
         "12 AI clone videos/month — 4 per platform, always pinned as your signature content",
         "36 posts/month — 12 per platform (4 Reels · 4 Carousels · 4 Static), all on-brand",
         "Content approval before posting — you see and approve everything before it goes live",
-        "Full ad management — Facebook, Instagram, TikTok & Google — all platforms, fully managed",
+        "Full social ad management — Facebook, Instagram & TikTok campaigns fully managed",
         "Advanced AI voice agent — handles calls, answers FAQs & books appointments 24/7",
         "Full AI booking system — automated chat, confirmations, reminders & review collection",
         "Comment-to-DM + text follow-up bot + missed call text-back across all 3 platforms",
@@ -1903,12 +1903,11 @@ function Pricing() {
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {[
-            { emoji: "🎬", title: "AI Avatar Videos", desc: "4–8 branded AI avatar videos/month — your face, your voice, on autopilot." },
+            { emoji: "🎬", title: "Extra AI Clone Videos", desc: "4–8 additional branded AI clone videos/month — your face, your voice, more selling moments." },
             { emoji: "📞", title: "AI Voice Agent", desc: "Never miss a call. Your AI answers 24/7, qualifies leads, and books appointments." },
             { emoji: "⭐", title: "Review & Reputation Management", desc: "Automated review requests, respond to feedback, and 5-star Google presence." },
             { emoji: "📧", title: "Email & SMS Marketing", desc: "Done-for-you campaigns, broadcasts, and nurture sequences." },
-            { emoji: "📲", title: "Additional Content Creation", desc: "More posts, more platforms — same quality, more volume." },
-            { emoji: "💼", title: "LinkedIn Management", desc: "Daily posts, connection outreach, and professional content." },
+            { emoji: "📲", title: "Additional Content Volume", desc: "More posts for Facebook, Instagram, and TikTok — same quality, more reach." },
             { emoji: "📍", title: "Google Business Profile", desc: "Weekly posts, review monitoring, and Q&A management." },
             { emoji: "🎯", title: "Google Ads Management", desc: "Full campaign management — ad spend is separate." },
           ].map((addon) => (
@@ -2478,12 +2477,11 @@ function Contact() {
           <p className="text-[9px] uppercase text-[var(--ink)]/38 mb-2" style={{ fontFamily: "'Jost', sans-serif", letterSpacing: "0.16em" }}>Monthly</p>
           <div className="grid sm:grid-cols-2 gap-1.5 mb-3">
             {[
-              "AI Avatar Videos",
+              "Extra AI Clone Videos",
               "AI Voice Agent",
               "Review Management",
               "Email & SMS Marketing",
-              "Extra Content / Platforms",
-              "LinkedIn Management",
+              "Additional Content Volume",
               "Google Business Profile",
               "Google Ads Management",
             ].map((addon) => (
