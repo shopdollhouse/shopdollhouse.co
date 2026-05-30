@@ -8569,10 +8569,10 @@ const PROPOSAL_DECKS: PDeck[] = [
         layout: "pricing", bg: "light",
         heading: "Our plans",
         prices: [
-          { name: "Starter", price: "$1,000/mo", tag: "Most popular" },
-          { name: "Starter", price: "$1,000/mo", tag: "Most popular" },
-          { name: "Growth", price: "$2,500/mo", tag: "Best results" },
-          { name: "Elite", price: "$5,000+/mo", tag: "Full system" },
+          { name: "Starter", price: "$1,000/mo", tag: "1 platform · AI clone · 12 posts/mo" },
+          { name: "Growth", price: "$2,500/mo", tag: "3 platforms · ads · full automation" },
+          { name: "Elite", price: "$5,000+/mo", tag: "Maximum content · all ads · full system" },
+          { name: "Setup Fee", price: "$500", tag: "One-time · all plans" },
         ],
         script: "We have four plans depending on where you're at and where you want to go. I'll be honest — based on what you've told me today, I already have one in mind for you. But let me walk you through all of them so you can see the full picture.",
       },
@@ -9349,7 +9349,7 @@ const PROPOSAL_DECKS: PDeck[] = [
         layout: "pricing", bg: "light",
         heading: "Automation is included in Growth + Elite",
         prices: [
-          { name: "Starter", price: "$1,000/mo", tag: "Content only" },
+          { name: "Starter", price: "$1,000/mo", tag: "Content + AI clone + comment-to-DM" },
           { name: "Growth", price: "$2,500/mo", tag: "Includes automation" },
           { name: "Elite", price: "$5,000+/mo", tag: "Full system" },
           { name: "Setup fee", price: "$500", tag: "One-time, all plans" },
