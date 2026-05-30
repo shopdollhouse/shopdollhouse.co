@@ -2121,15 +2121,12 @@ function About() {
 /* ─── Comparison Table ─────────────────────────────────── */
 function ComparisonTable() {
   const rows = [
-    { feature: "Done-for-you content & posting",       dh: true,  agency: true,  diy: false },
-    { feature: "AI clone or custom brand character",   dh: true,  agency: false, diy: false },
-    { feature: "Custom content matched to brand voice",  dh: true,  agency: false, diy: false },
-    { feature: "Short-form video production",          dh: true,  agency: false, diy: false },
-    { feature: "Automation & CRM included",            dh: true,  agency: false, diy: false },
-    { feature: "Lead & booking automation",            dh: true,  agency: false, diy: false },
-    { feature: "AI voice agent available",             dh: true,  agency: false, diy: false },
-    { feature: "Transparent pricing",                  dh: true,  agency: false, diy: false },
-    { feature: "Flexible after 6-month minimum",        dh: true,  agency: false, diy: true  },
+    { feature: "Content, posting & short-form video", dh: true, agency: true, diy: false },
+    { feature: "AI clone or custom brand character", dh: true, agency: false, diy: false },
+    { feature: "Brand voice strategy", dh: true, agency: false, diy: false },
+    { feature: "CRM, booking & follow-up automation", dh: true, agency: false, diy: false },
+    { feature: "AI voice agent available", dh: true, agency: false, diy: false },
+    { feature: "Transparent pricing & flexible terms", dh: true, agency: false, diy: true },
   ];
 
   const CompareMark = ({ val }: { val: boolean }) =>
@@ -2175,24 +2172,29 @@ function ComparisonTable() {
           </div>
         </div>
 
-        <div className="overflow-x-auto rounded-[28px] p-5" style={{ background: "rgba(255,250,246,0.66)", border: "1px solid color-mix(in oklab, var(--gold) 22%, transparent)", boxShadow: "0 28px 70px -48px rgba(90,45,35,0.42)" }}>
-          <table className="w-full min-w-[640px] border-collapse">
+        <div className="overflow-hidden rounded-[28px] p-4 sm:p-5" style={{ background: "rgba(255,250,246,0.66)", border: "1px solid color-mix(in oklab, var(--gold) 22%, transparent)", boxShadow: "0 28px 70px -48px rgba(90,45,35,0.42)" }}>
+          <table className="w-full table-fixed border-collapse">
             <thead>
               <tr>
-                <th className="pb-6 text-left w-1/2" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(30,15,10,0.4)", fontWeight: 500 }}>
+                <th className="w-[42%] pb-4 text-left" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.62rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.4)", fontWeight: 500 }}>
                   Feature
                 </th>
                 {[
-                  { label: "The Dollhouse", featured: true },
-                  { label: "Other Agencies", featured: false },
+                  { label: "Dollhouse", featured: true },
+                  { label: "Agencies", featured: false },
                   { label: "DIY", featured: false },
                 ].map(({ label, featured }) => (
                   <th
                     key={label}
-                    className="pb-6 text-center"
-                    style={{ fontFamily: featured ? "'Cormorant Garamond', serif" : "'Jost', sans-serif", fontSize: featured ? "1.1rem" : "0.7rem", fontStyle: featured ? "italic" : "normal", letterSpacing: featured ? "0.02em" : "0.18em", textTransform: "uppercase", color: featured ? "var(--ink)" : "rgba(30,15,10,0.4)", fontWeight: featured ? 600 : 500 }}
+                    className={`${featured ? "w-[28%]" : "w-[15%]"} pb-4 text-center`}
+                    style={{ fontFamily: featured ? "'Cormorant Garamond', serif" : "'Jost', sans-serif", fontSize: featured ? "0.9rem" : "0.62rem", fontStyle: "normal", letterSpacing: featured ? "0.18em" : "0.14em", textTransform: "uppercase", color: featured ? "var(--ink)" : "rgba(30,15,10,0.4)", fontWeight: featured ? 500 : 500 }}
                   >
-                    {label}
+                    {featured ? (
+                      <span className="inline-flex flex-col items-center leading-none">
+                        <span style={{ fontFamily: "'Allura', cursive", fontSize: "0.86rem", letterSpacing: "0.04em", textTransform: "lowercase", color: "rgba(30,15,10,0.48)" }}>the</span>
+                        <span>{label}</span>
+                      </span>
+                    ) : label}
                   </th>
                 ))}
               </tr>
@@ -2204,13 +2206,13 @@ function ComparisonTable() {
                   style={{ borderTop: "1px solid color-mix(in oklab, var(--gold) 18%, transparent)" }}
                 >
                   <td
-                    className="py-4 pr-6"
-                    style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.85rem", color: "rgba(30,15,10,0.7)" }}
+                    className="py-2.5 pr-3 sm:py-3 sm:pr-5"
+                    style={{ fontFamily: "'Jost', sans-serif", fontSize: "clamp(0.68rem, 1.4vw, 0.82rem)", color: "rgba(30,15,10,0.7)", lineHeight: 1.35 }}
                   >
                     {row.feature}
                   </td>
                   <td
-                    className="py-4 text-center"
+                    className="py-2.5 text-center sm:py-3"
                     style={{
                       background: i === 0
                         ? "linear-gradient(180deg, rgba(200,168,100,0.08) 0%, rgba(200,168,100,0.08) 100%)"
@@ -2219,8 +2221,8 @@ function ComparisonTable() {
                   >
                     <CompareMark val={row.dh} />
                   </td>
-                  <td className="py-4 text-center"><CompareMark val={row.agency} /></td>
-                  <td className="py-4 text-center"><CompareMark val={row.diy} /></td>
+                  <td className="py-2.5 text-center sm:py-3"><CompareMark val={row.agency} /></td>
+                  <td className="py-2.5 text-center sm:py-3"><CompareMark val={row.diy} /></td>
                 </tr>
               ))}
             </tbody>
