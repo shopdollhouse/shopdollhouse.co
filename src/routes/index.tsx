@@ -2024,7 +2024,7 @@ function About() {
             className="mt-4 italic text-[var(--ink)]"
             style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.6rem, 5vw, 4.4rem)", lineHeight: 1.05 }}
           >
-            Strategy, design, and automation with a human eye.
+            Hi, I'm Mandy.
           </h2>
           <Divider />
         </div>
