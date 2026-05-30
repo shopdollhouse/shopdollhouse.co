@@ -1264,11 +1264,25 @@ function AICloneSection() {
                   "linear-gradient(180deg, rgba(30,15,10,0.06) 0%, rgba(30,15,10,0.45) 100%)",
               }}
             >
-              <div className="absolute top-4 left-4 right-4 z-10 flex items-center justify-between rounded-full px-4 py-2" style={{ background: "rgba(255,250,246,0.9)", color: "var(--gold)", fontFamily: "'Jost', sans-serif", fontSize: "0.58rem", letterSpacing: "0.16em", textTransform: "uppercase" }}>
-                <span>AI Clone Preview</span>
-                <span>Ready in week 1</span>
+              <div className="absolute top-4 left-4 right-4 z-10 grid grid-cols-2 rounded-full px-4 py-2" style={{ background: "rgba(255,250,246,0.9)", color: "var(--gold)", fontFamily: "'Jost', sans-serif", fontSize: "0.58rem", letterSpacing: "0.16em", textTransform: "uppercase" }}>
+                <span className="text-left">Real Photo</span>
+                <span className="text-right">AI Clone</span>
               </div>
-              <img src={mandyAIClonePreview} alt="AI clone example portrait preview" className="absolute inset-0 h-full w-full object-cover" style={{ filter: "saturate(0.98) contrast(1.02)", objectPosition: "center 44%" }} />
+              <div className="absolute inset-0 grid grid-cols-2">
+                <div className="relative overflow-hidden">
+                  <img src={mandyPhoto} alt="Real portrait reference" className="h-full w-full object-cover" style={{ filter: "saturate(0.96) contrast(1.02)", objectPosition: "center 42%" }} />
+                  <span className="absolute bottom-4 left-4 rounded-full px-3 py-1.5 text-[9px] uppercase tracking-[0.16em]" style={{ background: "rgba(255,250,246,0.9)", color: "var(--ink)", fontFamily: "'Jost', sans-serif" }}>
+                    Real Photo
+                  </span>
+                </div>
+                <div className="relative overflow-hidden">
+                  <img src={mandyAIClonePreview} alt="AI clone example portrait preview" className="h-full w-full object-cover" style={{ filter: "saturate(0.98) contrast(1.02)", objectPosition: "center 44%" }} />
+                  <span className="absolute bottom-4 right-4 rounded-full px-3 py-1.5 text-[9px] uppercase tracking-[0.16em]" style={{ background: "rgba(255,250,246,0.9)", color: "var(--gold)", fontFamily: "'Jost', sans-serif" }}>
+                    AI Clone
+                  </span>
+                </div>
+              </div>
+              <div className="absolute bottom-0 left-1/2 top-0 z-[1] w-px -translate-x-1/2 bg-[rgba(255,250,246,0.72)]" />
               <button type="button" aria-label="Play AI clone preview" className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full flex items-center justify-center transition-transform hover:scale-105" style={{ background: "var(--ink)", color: "var(--cream)", boxShadow: "0 20px 42px -16px rgba(30,15,10,0.75)" }}>
                 <Play size={25} fill="currentColor" strokeWidth={0} className="ml-1" />
               </button>
