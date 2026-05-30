@@ -1171,7 +1171,15 @@ function AICloneSection() {
       <img
         src={signatureBrandingBg}
         alt=""
-        className="pointer-events-none absolute left-0 top-16 h-[min(62vw,46rem)] w-[min(62vw,46rem)] max-w-none opacity-[0.24] mix-blend-multiply"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.42] mix-blend-multiply"
+        style={{ objectPosition: "left top" }}
+      />
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 64% 46% at 50% 24%, rgba(255,250,246,0.84), rgba(255,250,246,0.48) 58%, transparent 78%), linear-gradient(90deg, rgba(251,241,237,0.04) 0%, rgba(251,241,237,0.72) 72%, rgba(251,241,237,0.86) 100%)",
+        }}
       />
       <DoorIcon className="pointer-events-none absolute right-10 top-1/2 hidden h-32 w-20 opacity-25 md:block" />
 
