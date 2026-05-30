@@ -10111,7 +10111,7 @@ function renderSlideVisual(
           </div>
         </div>
       </div>
-      {ScriptPanel({ script: slide.script, showScript: showScript ?? false, C, SANS, LUXE })}
+      {scriptPanel}
     </div>
   );
 
