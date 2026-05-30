@@ -1980,7 +1980,7 @@ Includes:
 - Everything in Starter — now across 3 platforms (Instagram, TikTok, Facebook)
 - Paid ad management — Facebook & Instagram ads included
 - Email + SMS automation sequences for lead follow-up
-- 18 posts/month across platforms
+- 24 posts/month across 3 platforms
 - Full CRM pipeline setup and lead management
 - Monthly strategy call + performance report
 - 14-day free trial option ($500 setup required)
@@ -4001,7 +4001,7 @@ Thanks again for trusting me with [BUSINESS NAME].
             },
             {
               range: "$2,500/mo", label: "Growth", color: "#c97a7a",
-              items: ["Everything in Starter — expanded to 3 platforms", "Paid ad management — Facebook and Instagram ads included", "Email and SMS automation sequences for lead follow-up", "18 posts/month across platforms", "Full CRM pipeline setup and monthly strategy call"],
+              items: ["Everything in Starter — expanded to 3 platforms", "Paid ad management — Facebook and Instagram ads included", "Email and SMS automation sequences for lead follow-up", "24 posts/month across 3 platforms", "Full CRM pipeline setup and monthly strategy call"],
             },
             {
               range: "$1,000/mo", label: "Starter", color: "var(--gold)",
@@ -7402,43 +7402,57 @@ const QB_PACKAGES = {
       "8 branded posts/month (static & carousels)",
       "1 platform managed",
       "Branded, scheduled, and done for you",
-      "No AI avatar, no automation — text & image posts only",
       "Monthly performance report",
     ],
   },
   starter: {
     name: "Starter", monthly: 1000, setup: 500, emoji: "sparkle", color: "#c8a864",
-    tagline: "Perfect for local businesses getting started with done-for-you social.",
+    tagline: "AI-powered social media management + full back-end conversion system.",
     includes: [
-      "3–4 branded posts/week (Instagram + Facebook)",
-      "1 platform managed (Instagram or Facebook)",
-      "Monthly content calendar",
-      "Basic hashtag + caption strategy",
-      "Monthly performance report",
-      "Platform access for scheduling + analytics",
+      "1 platform of your choice — Facebook, Instagram or TikTok",
+      "AI clone or brand mascot — trained to your face, voice & energy in week 1",
+      "3 AI clone videos pinned at the top — your signature content",
+      "12 posts/month — 4 Reels · 4 Carousels · 4 Static, all on-brand",
+      "Content approval before posting — you see everything first",
+      "Comment-to-DM automation — comments turn into instant private messages",
+      "Monthly performance snapshot — plain English results",
     ],
   },
   growth: {
     name: "Growth", monthly: 2500, setup: 500, emoji: "rocket", color: "#c97a7a",
-    tagline: "Multi-platform management for businesses ready to scale their presence.",
+    tagline: "3 platforms fully managed — more content, paid ads, and full automation.",
     includes: [
-      "Daily posts across 2–3 platforms",
-      "Instagram, Facebook + TikTok or LinkedIn",
-      "Reels / short-form video content",
-      "Story creation + highlights",
-      "Community engagement + DM monitoring",
-      "Monthly strategy call + weekly performance reports",
-      "Full analytics dashboard access",
+      "3 platforms — Facebook, Instagram & TikTok — nothing to post",
+      "AI clone or brand mascot across all 3 platforms",
+      "6 AI clone videos/month — 2 pinned per platform",
+      "24 posts/month — 8 per platform (Reels · Carousels · Static)",
+      "Content approval before posting",
+      "Dedicated content strategy — hashtag research, captions & posting times",
+      "Paid Meta ads management — campaigns built, managed & optimised",
+      "Comment-to-DM + text follow-up AI bot across all platforms",
+      "Voice AI receptionist + missed call text-back",
+      "Automated appointment reminders",
+      "Monthly strategy call + monthly performance report",
+      "Review management — automated review requests",
     ],
   },
   elite: {
     name: "Elite", monthly: 5000, setup: 500, emoji: "crown", color: "#7b68ee",
-    tagline: "White-glove, full-service brand presence across every major platform.",
+    tagline: "Your entire online business fully managed — maximum content, all ads, full AI system.",
     includes: [
-      "Daily content across all major platforms",
-      "AI avatar video content included",
-      "Full ad campaign management",
-      "Custom brand strategy + content direction",
+      "3 platforms — Instagram, TikTok & Facebook — daily posting",
+      "AI clone or brand mascot across all 3 platforms",
+      "12 AI clone videos/month — 4 per platform, always pinned",
+      "36 posts/month — 12 per platform (4 Reels · 4 Carousels · 4 Static)",
+      "Content approval before posting",
+      "Full ad management — Facebook, Instagram, TikTok & Google",
+      "Advanced AI voice agent — calls, FAQs & bookings 24/7",
+      "Full AI booking system — chat, confirmations, reminders & reviews",
+      "Comment-to-DM + text follow-up bot + missed call text-back",
+      "Monthly email newsletter — written, designed & sent",
+      "Website design & build — conversion-ready site done for you",
+      "Monthly 60-min strategy call + weekly performance reports",
+      "Priority 48-hr revisions + quarterly brand audit",
       "Dedicated account manager",
       "Weekly strategy calls",
       "Priority support + same-day response",
@@ -8267,7 +8281,7 @@ function DiscoveryCallTab() {
       script: choices.package === "content_starter"
         ? `"So there's actually a perfect entry-point for this. It's called our Content Starter — $500 a month. We create 8 branded posts for you every month, schedule everything, and it's completely done for you. No AI avatar, no automation — just really clean, on-brand content going out consistently. There's a one-time $500 setup fee to get everything built out, and we start with a 6-month minimum — you'll see results within 90 days and months 4 through 6 are where it really compounds. After that you can stay month-to-month or lock in 12 months for 10% off.\n\nWhat do you think?"`
         : choices.package === "starter"
-        ? `"So the plan I'd recommend for ${biz} is our Starter. It's $1,000 a month — and you get your full AI clone built so your face and voice is showing up in content without you filming, one platform fully managed, all your automations set up, and a monthly performance report. There's a one-time $500 setup fee to build everything out, and we start with a 3-month minimum — that's what it takes to really see it working. After that it's flexible.\n\nWant me to walk you through what that specifically looks like for ${biz}?"`
+        ? `"So the plan I'd recommend for ${biz} is our Starter. It's $1,000 a month — and you get your full AI clone built so your face and voice is showing up in content without you filming, one platform fully managed, comment-to-DM automation, and a monthly performance report. There's a one-time $500 setup fee to build everything out, and we start with a 6-month minimum — you'll see real results within 90 days and months 4 through 6 are where it really compounds.\n\nWant me to walk you through what that specifically looks like for ${biz}?"`
         : choices.package === "growth"
         ? `"For ${biz}, I'd actually go with our Growth plan. It's $2,500 a month — and this gets you across three platforms fully managed, Instagram, TikTok, and Facebook. Your AI clone running, paid ad management, email and SMS automation so leads get followed up automatically. One-time $500 setup fee to kick things off. Based on what you told me about [pain], this is the one that's really going to move the needle.\n\nDoes that feel like the right level for where you want to take ${biz}?"`
         : `"Honestly, based on everything you've told me, I think Elite is the right move for ${biz}. It's $5,000 a month — and it's the full system. Five platforms, AI clone, AI voice agent so your phone is never unmanned, full ad management, everything. Your business completely dominating online, nothing left to chance. One-time $500 setup fee.\n\nThis is what we build for businesses that are serious about growth. What's your reaction to that?"`,
@@ -8555,7 +8569,7 @@ const PROPOSAL_DECKS: PDeck[] = [
         layout: "pricing", bg: "light",
         heading: "Our plans",
         prices: [
-          { name: "Content Starter", price: "$500/mo", tag: "Entry level" },
+          { name: "Starter", price: "$1,000/mo", tag: "Most popular" },
           { name: "Starter", price: "$1,000/mo", tag: "Most popular" },
           { name: "Growth", price: "$2,500/mo", tag: "Best results" },
           { name: "Elite", price: "$5,000+/mo", tag: "Full system" },
