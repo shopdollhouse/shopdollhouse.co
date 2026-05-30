@@ -1501,6 +1501,8 @@ function Pricing() {
       name: "Starter",
       price: "$1,000",
       software: "$300/mo",
+      fit: "Best for focused launches",
+      outcome: "One platform, one clear offer, one polished content system.",
       tagline: "Social media management + a full back-end conversion system — done for you, every day.",
       cta: "Get Started →",
       features: [
@@ -1514,34 +1516,13 @@ function Pricing() {
       ],
     },
     {
-      name: "Elite",
-      price: "$5,000+",
-      software: "$300/mo",
-      tagline: "Your entire online business fully managed — maximum content, all ads, full AI system.",
-      featured: true,
-      topBadge: { label: "Featured", tone: "gold" as "gold" | "pink" },
-      cta: "Apply for Elite →",
-      features: [
-        "3 platforms fully managed — Instagram, TikTok & Facebook — nothing to post, nothing to manage",
-        "AI clone or brand mascot across all 3 platforms — your face and voice, every single day",
-        "12 AI clone videos/month — 4 per platform, always pinned as your signature content",
-        "36 posts/month — 12 per platform (4 Reels · 4 Carousels · 4 Static), all on-brand",
-        "Content approval before posting — you see and approve everything before it goes live",
-        "Full ad management — Facebook, Instagram, TikTok & Google — all platforms, fully managed",
-        "Advanced AI voice agent — handles calls, answers FAQs & books appointments 24/7",
-        "Full AI booking system — automated chat, confirmations, reminders & review collection",
-        "Comment-to-DM + text follow-up bot + missed call text-back across all 3 platforms",
-        "Monthly email newsletter — written, designed & sent for you",
-        "Website design & build — a complete, conversion-ready site done for you",
-        "Monthly 60-min strategy call + weekly performance reports",
-        "Priority 48-hour content revisions + quarterly brand audit",
-      ],
-    },
-    {
       name: "Growth",
       price: "$2,500",
       software: "$300/mo",
+      fit: "Best for consistent lead flow",
+      outcome: "Three platforms, paid Meta ads, voice AI, and follow-up automation.",
       tagline: "3 platforms fully managed — more content, paid ads, and strategy built in.",
+      topBadge: { label: "Most Requested", tone: "pink" as "gold" | "pink" },
       cta: "Get a Free Proposal →",
       features: [
         "3 platforms fully managed — Facebook, Instagram & TikTok — nothing to post, nothing to think about",
@@ -1559,6 +1540,32 @@ function Pricing() {
         "Review management — automated review requests after every appointment",
       ],
     },
+    {
+      name: "Elite",
+      price: "$5,000+",
+      software: "$300/mo",
+      fit: "Best for full-scale takeover",
+      outcome: "Maximum content, ads, automation, website, reporting, and priority strategy.",
+      tagline: "Your entire online business fully managed — maximum content, all ads, full AI system.",
+      featured: true,
+      topBadge: { label: "Premium Partner", tone: "gold" as "gold" | "pink" },
+      cta: "Apply for Elite →",
+      features: [
+        "3 platforms fully managed — Instagram, TikTok & Facebook — nothing to post, nothing to manage",
+        "AI clone or brand mascot across all 3 platforms — your face and voice, every single day",
+        "12 AI clone videos/month — 4 per platform, always pinned as your signature content",
+        "36 posts/month — 12 per platform (4 Reels · 4 Carousels · 4 Static), all on-brand",
+        "Content approval before posting — you see and approve everything before it goes live",
+        "Full ad management — Facebook, Instagram, TikTok & Google — all platforms, fully managed",
+        "Advanced AI voice agent — handles calls, answers FAQs & books appointments 24/7",
+        "Full AI booking system — automated chat, confirmations, reminders & review collection",
+        "Comment-to-DM + text follow-up bot + missed call text-back across all 3 platforms",
+        "Monthly email newsletter — written, designed & sent for you",
+        "Website design & build — a complete, conversion-ready site done for you",
+        "Monthly 60-min strategy call + weekly performance reports",
+        "Priority 48-hour content revisions + quarterly brand audit",
+      ],
+    },
   ];
 
   return (
@@ -1573,9 +1580,28 @@ function Pricing() {
       <SectionTitle
         eyebrow="Monthly Plans"
         title="Choose your plan"
-        italic="Done-for-you monthly retainer — includes your AI clone or brand character."
+        italic="Pick the level of visibility, automation, and support you want us to own."
       />
-      <div className="mt-20 max-w-7xl mx-auto grid md:grid-cols-3 gap-8 lg:gap-10">
+      <div
+        className="mt-12 max-w-5xl mx-auto grid gap-3 md:grid-cols-3 rounded-[28px] p-3"
+        style={{
+          background: "rgba(255,250,246,0.5)",
+          border: "1px solid color-mix(in oklab, var(--gold) 22%, transparent)",
+        }}
+      >
+        {[
+          ["Proposal First", "We recommend the plan after reviewing your business."],
+          ["Built For Momentum", "Every plan is structured around a 6-month growth window."],
+          ["No DIY Required", "Content, automations, reporting, and setup are handled for you."],
+        ].map(([title, copy]) => (
+          <div key={title} className="rounded-2xl px-5 py-4 text-center" style={{ background: "rgba(255,255,255,0.5)" }}>
+            <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>{title}</p>
+            <p className="mt-2 text-[var(--ink)]/58 leading-6" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.84rem" }}>{copy}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-14 max-w-7xl mx-auto grid md:grid-cols-3 gap-8 lg:gap-10">
         {tiers.map((t) => {
           const isFilled = !!t.featured;
           return (
@@ -1622,7 +1648,6 @@ function Pricing() {
                   The {t.name}
                 </p>
 
-                {/* Title */}
                 <h3
                   className="mt-3 italic"
                   style={{
@@ -1634,6 +1659,12 @@ function Pricing() {
                 >
                   {t.name}
                 </h3>
+                <p
+                  className="mt-3 text-[10px] tracking-[0.18em] uppercase"
+                  style={{ fontFamily: "'Jost', sans-serif", color: isFilled ? "rgba(200,168,100,0.86)" : "var(--gold)" }}
+                >
+                  {t.fit}
+                </p>
 
                 {/* Pill */}
                 <div
@@ -1711,6 +1742,28 @@ function Pricing() {
                 >
                   {t.tagline}
                 </p>
+
+                <div
+                  className="mt-5 w-full rounded-2xl px-5 py-4"
+                  style={{
+                    background: isFilled ? "rgba(255,255,255,0.06)" : "rgba(255,255,255,0.48)",
+                    border: isFilled ? "1px solid rgba(255,255,255,0.1)" : "1px solid rgba(200,168,100,0.22)",
+                  }}
+                >
+                  <p className="text-[9px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>
+                    Designed to create
+                  </p>
+                  <p
+                    className="mt-2 leading-6"
+                    style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: "0.86rem",
+                      color: isFilled ? "rgba(250,243,234,0.72)" : "rgba(30,15,10,0.62)",
+                    }}
+                  >
+                    {t.outcome}
+                  </p>
+                </div>
 
                 {/* Platform access highlight */}
                 <div
