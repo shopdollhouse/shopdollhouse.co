@@ -13,7 +13,7 @@ import {
   Video,
 } from "lucide-react";
 import bgImage from "@/assets/password-bg.jpg";
-import roseAccent from "@/assets/rose-accent.png";
+import signatureBrandingBg from "@/assets/signature-branding-bg.jpg";
 import archMark from "@/assets/arch-mark.svg";
 import mandyPhoto from "@/assets/mandy-photo.jpg";
 import mandyAIClonePreview from "@/assets/mandy-ai-clone-preview.jpg";
@@ -1169,14 +1169,9 @@ function AICloneSection() {
       }}
     >
       <img
-        src={roseAccent}
+        src={signatureBrandingBg}
         alt=""
-        className="pointer-events-none absolute -left-24 top-20 w-[34rem] max-w-none opacity-[0.13] mix-blend-multiply"
-      />
-      <img
-        src={roseAccent}
-        alt=""
-        className="pointer-events-none absolute -right-28 bottom-16 w-[30rem] max-w-none opacity-[0.09] mix-blend-multiply rotate-180"
+        className="pointer-events-none absolute left-0 top-16 h-[min(62vw,46rem)] w-[min(62vw,46rem)] max-w-none opacity-[0.24] mix-blend-multiply"
       />
       <DoorIcon className="pointer-events-none absolute right-10 top-1/2 hidden h-32 w-20 opacity-25 md:block" />
 
