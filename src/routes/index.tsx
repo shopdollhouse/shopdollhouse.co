@@ -2475,7 +2475,7 @@ function Contact() {
           <label className={labelClass} style={labelStyle}>
             Any add-ons? <span className="normal-case opacity-60">(optional)</span>
           </label>
-          <p className="text-[9px] tracking-luxe uppercase text-[var(--ink)]/40 mb-2" style={{ fontFamily: "'Jost', sans-serif" }}>Monthly</p>
+          <p className="text-[9px] uppercase text-[var(--ink)]/38 mb-2" style={{ fontFamily: "'Jost', sans-serif", letterSpacing: "0.16em" }}>Monthly</p>
           <div className="grid sm:grid-cols-2 gap-1.5 mb-3">
             {[
               "AI Avatar Videos",
@@ -2489,15 +2489,15 @@ function Contact() {
             ].map((addon) => (
               <label
                 key={addon}
-                className="flex items-center gap-2 px-3 py-2.5 rounded-xl cursor-pointer transition-all"
-                style={{ background: "rgba(255,255,255,0.5)", border: "1px solid color-mix(in oklab, var(--gold) 25%, transparent)" }}
+                className="flex items-center gap-3 px-3.5 py-3 rounded-xl cursor-pointer transition-all hover:bg-white/70"
+                style={{ background: "rgba(255,255,255,0.54)", border: "1px solid color-mix(in oklab, var(--gold) 25%, transparent)" }}
               >
                 <input type="checkbox" name="addons" value={addon} className="accent-[var(--gold)] w-3.5 h-3.5 shrink-0" />
-                <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.72rem", letterSpacing: "0.03em", color: "var(--ink)", lineHeight: 1.3 }}>{addon}</span>
+                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.86rem", fontWeight: 500, letterSpacing: "0", color: "rgba(30,15,10,0.78)", lineHeight: 1.35 }}>{addon}</span>
               </label>
             ))}
           </div>
-          <p className="text-[9px] tracking-luxe uppercase text-[var(--ink)]/40 mb-2" style={{ fontFamily: "'Jost', sans-serif" }}>One-Time</p>
+          <p className="text-[9px] uppercase text-[var(--ink)]/38 mb-2" style={{ fontFamily: "'Jost', sans-serif", letterSpacing: "0.16em" }}>One-Time</p>
           <div className="grid sm:grid-cols-2 gap-1.5">
             {[
               "Website Design",
@@ -2507,11 +2507,11 @@ function Contact() {
             ].map((addon) => (
               <label
                 key={addon}
-                className="flex items-center gap-2 px-3 py-2.5 rounded-xl cursor-pointer transition-all"
-                style={{ background: "rgba(255,255,255,0.5)", border: "1px solid color-mix(in oklab, var(--gold) 25%, transparent)" }}
+                className="flex items-center gap-3 px-3.5 py-3 rounded-xl cursor-pointer transition-all hover:bg-white/70"
+                style={{ background: "rgba(255,255,255,0.54)", border: "1px solid color-mix(in oklab, var(--gold) 25%, transparent)" }}
               >
                 <input type="checkbox" name="addons" value={addon} className="accent-[var(--gold)] w-3.5 h-3.5 shrink-0" />
-                <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.72rem", letterSpacing: "0.03em", color: "var(--ink)", lineHeight: 1.3 }}>{addon}</span>
+                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.86rem", fontWeight: 500, letterSpacing: "0", color: "rgba(30,15,10,0.78)", lineHeight: 1.35 }}>{addon}</span>
               </label>
             ))}
           </div>
