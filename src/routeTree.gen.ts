@@ -15,6 +15,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PlaybookRouteImport } from './routes/playbook'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as BrandRoomRouteImport } from './routes/brand-room'
+import { Route as AiCloneRouteImport } from './routes/ai-clone'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SoftwareRoute = SoftwareRouteImport.update({
@@ -47,6 +48,11 @@ const BrandRoomRoute = BrandRoomRouteImport.update({
   path: '/brand-room',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AiCloneRoute = AiCloneRouteImport.update({
+  id: '/ai-clone',
+  path: '/ai-clone',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -55,6 +61,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai-clone': typeof AiCloneRoute
   '/brand-room': typeof BrandRoomRoute
   '/onboarding': typeof OnboardingRoute
   '/playbook': typeof PlaybookRoute
@@ -64,6 +71,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-clone': typeof AiCloneRoute
   '/brand-room': typeof BrandRoomRoute
   '/onboarding': typeof OnboardingRoute
   '/playbook': typeof PlaybookRoute
@@ -74,6 +82,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ai-clone': typeof AiCloneRoute
   '/brand-room': typeof BrandRoomRoute
   '/onboarding': typeof OnboardingRoute
   '/playbook': typeof PlaybookRoute
@@ -85,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/ai-clone'
     | '/brand-room'
     | '/onboarding'
     | '/playbook'
@@ -94,6 +104,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/ai-clone'
     | '/brand-room'
     | '/onboarding'
     | '/playbook'
@@ -103,6 +114,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/ai-clone'
     | '/brand-room'
     | '/onboarding'
     | '/playbook'
@@ -113,6 +125,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AiCloneRoute: typeof AiCloneRoute
   BrandRoomRoute: typeof BrandRoomRoute
   OnboardingRoute: typeof OnboardingRoute
   PlaybookRoute: typeof PlaybookRoute
@@ -165,6 +178,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BrandRoomRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ai-clone': {
+      id: '/ai-clone'
+      path: '/ai-clone'
+      fullPath: '/ai-clone'
+      preLoaderRoute: typeof AiCloneRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -177,6 +197,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AiCloneRoute: AiCloneRoute,
   BrandRoomRoute: BrandRoomRoute,
   OnboardingRoute: OnboardingRoute,
   PlaybookRoute: PlaybookRoute,
