@@ -141,7 +141,7 @@ function Nav() {
           className="text-[var(--cream)] text-[10px] tracking-[0.2em] uppercase"
           style={{ fontFamily: "'Jost', sans-serif" }}
         >
-          Limited spots available — now booking new clients
+          Founding client offer — try us free for 14 days
         </span>
         <span style={{ color: "var(--gold)", fontSize: "0.55rem" }}>✦</span>
       </a>
@@ -437,7 +437,7 @@ function Hero() {
           className="reveal mt-5 text-[var(--ink)]/60 italic"
           style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1rem, 2vw, 1.2rem)", animationDelay: "0.85s" }}
         >
-          6-month minimum to build momentum · Fully managed, nothing to learn
+          14-day free trial for founding clients · Then continue only if it feels like a fit
         </p>
       </div>
 
@@ -1615,7 +1615,7 @@ function Pricing() {
       <SectionTitle
         eyebrow="Monthly Plans"
         title="Choose your plan"
-        italic="Pick the level of visibility, automation, and support you want us to own."
+        italic="Start with a 14-day founding client trial, then choose the level of support you want us to own."
       />
       <div
         className="mt-12 max-w-5xl mx-auto grid gap-3 md:grid-cols-3 rounded-[28px] p-3"
@@ -1625,9 +1625,9 @@ function Pricing() {
         }}
       >
         {[
-          ["Proposal First", "We recommend the plan after reviewing your business."],
-          ["Built For Momentum", "Every plan is structured around a 6-month growth window."],
-          ["No DIY Required", "Content, automations, reporting, and setup are handled for you."],
+          ["14-Day Trial", "Founding clients can test the strategy, content direction, and workflow before signing on."],
+          ["Then We Recommend", "After the trial, we recommend the plan that actually fits your business."],
+          ["No DIY Required", "If you continue, content, automations, reporting, and setup are handled for you."],
         ].map(([title, copy]) => (
           <div key={title} className="rounded-2xl px-5 py-4 text-center" style={{ background: "rgba(255,255,255,0.5)" }}>
             <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>{title}</p>
@@ -1719,11 +1719,26 @@ function Pricing() {
                     <path d="M12 21.6C6.3 16.1 1 11.3 1 7.2 1 3.4 4.1 2 6.3 2c1.3 0 4.2.5 5.7 4.5C13.6 2.5 16.5 2 17.7 2 20.3 2 23 3.6 23 7.2c0 4.1-5.1 8.9-11 14.4z"/>
                   </svg> Monthly Retainer
                 </div>
+                <div
+                  className="mt-3 inline-flex items-center justify-center gap-2 rounded-full px-4 py-2"
+                  style={{
+                    background: isFilled ? "rgba(201,122,122,0.16)" : "rgba(201,122,122,0.1)",
+                    border: "1px solid rgba(201,122,122,0.28)",
+                    color: isFilled ? "rgba(250,243,234,0.9)" : "var(--rose)",
+                    fontFamily: "'Jost', sans-serif",
+                    fontSize: "0.62rem",
+                    letterSpacing: "0.16em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  <Sparkles size={12} strokeWidth={1.8} />
+                  14-day free trial available
+                </div>
                 <p
                   className="mt-1.5 text-center"
                   style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: isFilled ? "rgba(250,243,234,0.4)" : "rgba(30,15,10,0.35)" }}
                 >
-                  6-month minimum if you sign on
+                  6-month minimum only if you sign on
                 </p>
 
                 {/* Price */}
@@ -1875,7 +1890,7 @@ function Pricing() {
 
       {/* Pricing footnote */}
       <p className="text-center mt-6 mb-2" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.4)" }}>
-        Monthly retainer &nbsp;·&nbsp; 6-month minimum &nbsp;·&nbsp; 12-month partner terms available
+        14-day founding client trial &nbsp;·&nbsp; 6-month minimum after trial &nbsp;·&nbsp; 12-month partner terms available
       </p>
 
       {/* Content Starter — hidden */}
@@ -1884,7 +1899,7 @@ function Pricing() {
       <div className="mt-12 max-w-2xl mx-auto rounded-2xl px-8 py-6 text-center space-y-4"
         style={{ background: "rgba(200,168,100,0.07)", border: "1px solid rgba(200,168,100,0.22)" }}>
         <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "var(--ink)", opacity: 0.75, fontStyle: "italic", lineHeight: 1.6 }}>
-          <span style={{ color: "var(--gold)", fontStyle: "normal", fontWeight: 600 }}>$500 one-time setup fee</span> — includes complete system buildout, landing pages, calendar integration, automation sequences & CRM setup.
+          <span style={{ color: "var(--gold)", fontStyle: "normal", fontWeight: 600 }}>$500 one-time setup fee</span> — due only if you continue after the trial. It includes complete system buildout, landing pages, calendar integration, automation sequences & CRM setup.
         </p>
         <div style={{ height: "1px", background: "rgba(200,168,100,0.2)" }} />
         <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "var(--ink)", opacity: 0.7, fontStyle: "italic", lineHeight: 1.6 }}>
@@ -2260,8 +2275,9 @@ function FAQ() {
   const faqs: [string, string][] = [
     ["What does 'done-for-you' actually mean?", "Everything — content creation, posting, scheduling, automation, ad management, and reporting. No tools to learn, no content to make, nothing to manage. You focus on your business; we handle the rest."],
     ["What is the AI clone or brand character?", "We create either an AI version of you (your face, your voice, your energy — posting content without you filming) or a custom brand character built for your business. Either way, your content goes live every day on autopilot."],
+    ["How does the 14-day free trial work?", "Founding clients can start with a 14-day trial so we can audit the brand, map the content direction, create the first sample assets, and show how the system would work before you commit to the monthly retainer."],
     ["What's included in the $500 setup fee?", "A complete system buildout — landing pages, calendar integration, automated follow-up sequences, and CRM setup, all configured before your first month begins. One-time only, never charged again."],
-    ["Is there a minimum commitment?", "Yes — all plans start with a 6-month minimum to build momentum and train the AI to your brand voice. After that, you can continue month-to-month or lock in 12 months for 10% off. Cancellation requires 30 days' written notice after your minimum term."],
+    ["Is there a minimum commitment?", "Not during the 14-day founding client trial. If you decide to continue after the trial, all plans start with a 6-month minimum to build momentum and train the AI to your brand voice. After that, you can continue month-to-month or lock in 12 months for 10% off."],
     ["What kinds of businesses do you work with?", "Local service businesses, boutique brands, coaches, creatives, and entrepreneurs who want to show up online consistently without doing it themselves."],
     ["What is your refund policy?", "All sales are final. Once your system is built and your plan is active, the work has begun — but if you have concerns at any point, reach out and we'll work through it."],
   ];
