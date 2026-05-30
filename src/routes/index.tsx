@@ -566,8 +566,14 @@ function ContentCalendarCard() {
           backdropFilter: "blur(14px)",
         }}
       >
+        <img
+          src={signatureBrandingBg}
+          alt=""
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.16] mix-blend-multiply"
+          style={{ objectPosition: "left bottom" }}
+        />
         <div
-          className="px-7 pt-6 pb-5"
+          className="relative px-7 pt-6 pb-5"
           style={{
             background:
               "linear-gradient(120deg, rgba(232,180,180,0.35), rgba(214,176,140,0.25) 60%, transparent)",
@@ -597,7 +603,7 @@ function ContentCalendarCard() {
           </div>
         </div>
 
-        <div className="px-7 pb-7">
+        <div className="relative px-7 pb-7">
           <div className="grid grid-cols-7 gap-2 mt-2">
             {days.map((d, i) => {
               const isToday = i === 4;
@@ -641,15 +647,28 @@ function ContentCalendarCard() {
 
           <div className="mt-5 grid grid-cols-3 gap-2">
             {[
-              { bg: "linear-gradient(135deg,#f6c6c0,#e8a6a0)", label: "Reel" },
-              { bg: "linear-gradient(135deg,#efd9c2,#d6a07a)", label: "Story" },
-              { bg: "linear-gradient(135deg,#f3d4d4,#c97a7a)", label: "Post" },
+              { image: mandyAIClonePreview, label: "Reel" },
+              { image: signatureBrandingBg, label: "Story" },
+              { image: mandyPhoto, label: "Post" },
             ].map((p, i) => (
               <div
                 key={i}
                 className="aspect-[4/3] rounded-lg relative overflow-hidden"
-                style={{ background: p.bg }}
+                style={{ background: "rgba(255,250,246,0.8)" }}
               >
+                <img
+                  src={p.image}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover"
+                  style={{ filter: "saturate(0.9) contrast(0.98)", opacity: 0.82 }}
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, rgba(30,15,10,0.04), rgba(30,15,10,0.42))",
+                  }}
+                />
                 <span className="absolute bottom-1.5 left-2 text-[8px] tracking-luxe uppercase text-white/95"
                   style={{ fontFamily: "'Jost', sans-serif" }}>
                   {p.label}
@@ -711,8 +730,14 @@ function AnalyticsCard() {
           backdropFilter: "blur(14px)",
         }}
       >
+        <img
+          src={signatureBrandingBg}
+          alt=""
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.12] mix-blend-multiply"
+          style={{ objectPosition: "left bottom" }}
+        />
         <div
-          className="px-7 pt-6 pb-6"
+          className="relative px-7 pt-6 pb-6"
           style={{
             background:
               "linear-gradient(135deg, rgba(201,122,122,0.18), rgba(214,176,140,0.18) 60%, transparent)",
@@ -756,7 +781,7 @@ function AnalyticsCard() {
           </div>
         </div>
 
-        <div className="px-7 pb-7">
+        <div className="relative px-7 pb-7">
           <div className="grid grid-cols-2 gap-3 mt-4">
             {stats.map(([l, v, c]) => (
               <div key={l} className="rounded-xl p-4 relative overflow-hidden"
@@ -827,6 +852,12 @@ function CaptionCard() {
             "linear-gradient(160deg, #2a1f1d 0%, #1a1413 55%, #241a18 100%)",
         }}
       >
+        <img
+          src={signatureBrandingBg}
+          alt=""
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.12]"
+          style={{ objectPosition: "left bottom", mixBlendMode: "screen" }}
+        />
         <div
           aria-hidden
           className="absolute -top-20 -right-16 w-56 h-56 rounded-full opacity-50 blur-3xl"
@@ -930,7 +961,13 @@ function AIChatCard() {
         style={{ background: "radial-gradient(60% 60% at 30% 30%, rgba(200,168,100,0.4), transparent 70%), radial-gradient(50% 50% at 80% 70%, rgba(232,180,180,0.35), transparent 70%)" }} />
       <div className="relative rounded-[28px] overflow-hidden border border-white/90 shadow-[0_35px_70px_-30px_rgba(160,100,100,0.35)]"
         style={{ background: "linear-gradient(160deg, rgba(255,255,255,0.94) 0%, rgba(252,246,238,0.9) 100%)", backdropFilter: "blur(14px)" }}>
-        <div className="px-5 pt-5 pb-2 border-b border-[var(--gold)]/15 flex items-center gap-3">
+        <img
+          src={signatureBrandingBg}
+          alt=""
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.12] mix-blend-multiply"
+          style={{ objectPosition: "left bottom" }}
+        />
+        <div className="relative px-5 pt-5 pb-2 border-b border-[var(--gold)]/15 flex items-center gap-3">
           <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(135deg, var(--gold), #f0d3a8)" }}>
             <span className="text-[var(--ink)] text-[11px]">✦</span>
           </div>
@@ -942,7 +979,7 @@ function AIChatCard() {
             <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" /> Online
           </span>
         </div>
-        <div className="p-5 space-y-3">
+        <div className="relative p-5 space-y-3">
           {msgs.map((m, i) => (
             <div key={i} className={`flex ${m.from === "ai" ? "justify-start" : "justify-end"}`}>
               <div className="max-w-[80%] rounded-2xl px-4 py-2.5"
@@ -975,11 +1012,17 @@ function ReminderCard() {
         style={{ background: "radial-gradient(60% 60% at 70% 30%, rgba(232,180,180,0.45), transparent 70%), radial-gradient(50% 50% at 20% 80%, rgba(200,168,100,0.35), transparent 70%)" }} />
       <div className="relative rounded-[28px] overflow-hidden border border-white/90 shadow-[0_35px_70px_-30px_rgba(160,100,100,0.35)]"
         style={{ background: "linear-gradient(160deg, rgba(255,255,255,0.94) 0%, rgba(252,240,240,0.9) 100%)", backdropFilter: "blur(14px)" }}>
-        <div className="px-6 pt-5 pb-4 border-b border-[var(--gold)]/15">
+        <img
+          src={signatureBrandingBg}
+          alt=""
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.12] mix-blend-multiply"
+          style={{ objectPosition: "left bottom" }}
+        />
+        <div className="relative px-6 pt-5 pb-4 border-b border-[var(--gold)]/15">
           <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>Automated Reminders</p>
           <p className="mt-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.1rem", color: "var(--ink)" }}>Appointment: Thursday 10:00am</p>
         </div>
-        <div className="p-5 space-y-4">
+        <div className="relative p-5 space-y-4">
           {reminders.map((r, i) => (
             <div key={i} className="flex gap-3 items-start">
               <div className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5"
@@ -1010,7 +1053,13 @@ function ReviewCard() {
         style={{ background: "radial-gradient(55% 55% at 50% 50%, rgba(200,168,100,0.4), transparent 70%)" }} />
       <div className="relative rounded-[28px] overflow-hidden border border-white/90 shadow-[0_35px_70px_-30px_rgba(160,100,100,0.35)]"
         style={{ background: "linear-gradient(160deg, rgba(255,255,255,0.94) 0%, rgba(255,251,240,0.9) 100%)", backdropFilter: "blur(14px)" }}>
-        <div className="px-6 pt-5 pb-4 border-b border-[var(--gold)]/15 flex items-center justify-between">
+        <img
+          src={signatureBrandingBg}
+          alt=""
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.12] mix-blend-multiply"
+          style={{ objectPosition: "left bottom" }}
+        />
+        <div className="relative px-6 pt-5 pb-4 border-b border-[var(--gold)]/15 flex items-center justify-between">
           <div>
             <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>Google Reviews</p>
             <div className="flex items-center gap-2 mt-1">
@@ -1026,7 +1075,7 @@ function ReviewCard() {
             <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.4rem", fontWeight: 600, color: "var(--gold)" }}>+12</p>
           </div>
         </div>
-        <div className="p-5 space-y-3.5">
+        <div className="relative p-5 space-y-3.5">
           {reviews.map((r, i) => (
             <div key={i} className="pb-3.5 border-b border-[var(--gold)]/10 last:border-0 last:pb-0">
               <div className="flex items-center justify-between">
