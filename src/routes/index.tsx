@@ -2592,26 +2592,26 @@ function FinalCTA() {
         className="text-[var(--gold)] text-[11px] tracking-luxe uppercase"
         style={{ fontFamily: "'Jost', sans-serif" }}
       >
-        Want the web app experience?
+        Not ready for monthly management yet?
       </p>
       <h2
         className="mt-4 italic text-[var(--ink)]"
         style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 1.1 }}
       >
-        Step into The Brand Room.
+        Build your business from the ground up.
       </h2>
       <p
         className="mt-4 text-[var(--ink)]/65 max-w-md mx-auto"
         style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", lineHeight: 1.6 }}
       >
-        Build a polished brand foundation, digital product, or interactive web app experience before you move into a full monthly growth system.
+        The Brand Room helps new founders shape their offer, brand, content direction, and web app foundation before they move into a full growth retainer.
       </p>
       <Link
         to="/brand-room"
         className="mt-8 inline-flex items-center gap-2 rounded-2xl px-8 py-4 hover:-translate-y-0.5 transition-all"
         style={{ backgroundColor: "var(--ink)", color: "var(--cream)", fontFamily: "'Cormorant Garamond', serif", fontSize: "1.15rem", fontStyle: "italic", fontWeight: 700 }}
       >
-        Explore The Brand Room →
+        Start in The Brand Room →
       </Link>
     </section>
   );
