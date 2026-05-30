@@ -1373,9 +1373,35 @@ function AICloneSection() {
                   "linear-gradient(180deg, rgba(30,15,10,0.06) 0%, rgba(30,15,10,0.45) 100%)",
               }}
             >
-              <div className="absolute top-4 left-4 right-4 z-10 grid grid-cols-2 rounded-full px-4 py-2" style={{ background: "rgba(255,250,246,0.9)", color: "var(--gold)", fontFamily: "'Jost', sans-serif", fontSize: "0.58rem", letterSpacing: "0.16em", textTransform: "uppercase" }}>
-                <span className="text-left">Real Photo</span>
-                <span className="text-right">AI Clone</span>
+              <div className="absolute top-4 left-4 right-4 z-10 grid grid-cols-2 gap-3">
+                <span
+                  className="rounded-full px-3 py-2 text-center font-semibold"
+                  style={{
+                    background: "rgba(255,250,246,0.96)",
+                    color: "var(--ink)",
+                    fontFamily: "'Jost', sans-serif",
+                    fontSize: "0.64rem",
+                    letterSpacing: "0.16em",
+                    textTransform: "uppercase",
+                    boxShadow: "0 10px 22px -14px rgba(30,15,10,0.55)",
+                  }}
+                >
+                  Real Photo
+                </span>
+                <span
+                  className="rounded-full px-3 py-2 text-center font-semibold"
+                  style={{
+                    background: "rgba(255,250,246,0.96)",
+                    color: "var(--gold)",
+                    fontFamily: "'Jost', sans-serif",
+                    fontSize: "0.64rem",
+                    letterSpacing: "0.16em",
+                    textTransform: "uppercase",
+                    boxShadow: "0 10px 22px -14px rgba(30,15,10,0.55)",
+                  }}
+                >
+                  AI Clone
+                </span>
               </div>
               <div className="absolute inset-0 grid grid-cols-2">
                 <div className="relative overflow-hidden" style={{ background: "rgba(255,250,246,0.68)" }}>
