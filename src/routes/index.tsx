@@ -1903,7 +1903,7 @@ function Pricing() {
         </p>
         <div style={{ height: "1px", background: "rgba(200,168,100,0.2)" }} />
         <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "var(--ink)", opacity: 0.7, fontStyle: "italic", lineHeight: 1.6 }}>
-          <span style={{ color: "var(--rose)", fontStyle: "normal", fontWeight: 600 }}>* Ad spend is not included in any package</span> — paid directly by you to Meta. Minimum $1,000/mo · Maximum $2,000/mo · Never included in your package.
+          <span style={{ color: "var(--rose)", fontStyle: "normal", fontWeight: 600 }}>* Ad spend is not included in any package</span> — paid directly by you to Meta. Minimum $1,000/mo · We recommend starting at $1,000–$2,000/mo for best results · Never included in your package.
         </p>
       </div>
 

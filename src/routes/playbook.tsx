@@ -4467,7 +4467,7 @@ Thanks again for trusting me with [BUSINESS NAME].
         <div className="grid sm:grid-cols-2 gap-3">
           {([
             { label: "Social Media Posts (with mascot)", price: "$500–$750/mo", note: "Daily branded posts + 3–4 mascot videos/mo" },
-            { label: "Meta / Facebook Ads Management", price: "$500/mo", note: "Ad spend $1k–$2k/mo paid by client directly to Meta" },
+            { label: "Meta / Facebook Ads Management", price: "$500/mo", note: "Ad spend min $1k/mo · recommend starting $1k–$2k (no max) · paid directly by client to Meta" },
             { label: "Google Business Profile Setup", price: "$500", note: "One-time setup + weekly posts" },
             { label: "Email Marketing", price: "$500/mo", note: "Done-for-you campaigns + nurture sequences" },
           ] as const).map(({ label, price, note }) => (
@@ -9659,7 +9659,7 @@ const PROPOSAL_DECKS: PDeck[] = [
           "Our management fee and your ad budget are two separate things",
           "Your ad budget goes directly to Facebook/Instagram — not to us",
           "Ad spend minimum is $1,000/month — this is what gets real, measurable results",
-          "Ad spend range is $1,000–$2,000/month — we work within this range for best results",
+          "Ad spend minimum $1,000/mo — recommend starting at $1,000–$2,000/mo · no maximum, client decides",
           "With $1,000–$2,000 we typically run 6 high-quality ads at a time",
           "Quality of ads matters more than how many you run",
           "Most clients see their first results within the first 2–4 weeks",
@@ -9715,7 +9715,7 @@ function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
     { id: "elite",    name: "Elite",    price: 5000 },
   ];
   const ADDONS = [
-    { id: "meta_ads",  name: "Meta Ads Management",  price: 500,  note: "+ $1k–$2k/mo ad spend paid directly by client to Meta" },
+    { id: "meta_ads",  name: "Meta Ads Management",  price: 500,  note: "+ min $1k/mo ad spend paid directly by client to Meta (recommend $1k–$2k to start)" },
     { id: "google",    name: "Google Ads Management", price: 750,  note: "$750 (≤$3.5k spend) · $850 ($3.5k–$7k spend) · paid direct to Google" },
     { id: "email_sms", name: "Email & SMS Sequences", price: 400,  note: "Automated nurture flows" },
     { id: "ai_video",  name: "AI Avatar Videos",      price: 800,  note: "4–8 branded videos/mo" },
@@ -9840,7 +9840,7 @@ function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
           {addons.has("meta_ads") && (
             <div style={{ padding: "8px 10px", borderRadius: 8, background: C.active, border: `1px solid ${C.border}` }}>
               <div style={{ fontFamily: SANS, fontSize: 10, color: C.fg2, lineHeight: 1.5 }}>
-                Meta ad spend is separate — paid directly by you to Meta. $1,000–$2,000/mo · never included in your package.
+                Meta ad spend is separate — paid directly by you to Meta. min $1,000/mo · recommend starting at $1,000–$2,000/mo (no cap) · never included in your package.
               </div>
             </div>
           )}
