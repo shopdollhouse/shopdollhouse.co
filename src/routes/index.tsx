@@ -647,12 +647,6 @@ function ContentCalendarCard() {
           backdropFilter: "blur(14px)",
         }}
       >
-        <img
-          src={signatureBrandingBg}
-          alt=""
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.16] mix-blend-multiply"
-          style={{ objectPosition: "left bottom" }}
-        />
         <div
           className="relative px-7 pt-6 pb-5"
           style={{
@@ -728,55 +722,45 @@ function ContentCalendarCard() {
 
           <div className="mt-5 grid grid-cols-3 gap-2">
             {[
-              { image: mandyAIClonePreview, label: "Reel" },
-              { image: signatureBrandingBg, label: "Story" },
-              { image: mandyPhoto, label: "Post" },
+              { image: mandyAIClonePreview, position: "center 18%" },
+              { image: signatureBrandingBg, position: "left 60%" },
+              { image: mandyPhoto, position: "center 16%" },
             ].map((p, i) => (
               <div
                 key={i}
-                className="aspect-[4/3] rounded-lg relative overflow-hidden"
-                style={{ background: "rgba(255,250,246,0.8)" }}
+                className="h-[94px] rounded-lg relative overflow-hidden sm:h-[104px]"
+                style={{ background: "rgba(247,228,223,0.58)" }}
               >
                 <img
                   src={p.image}
                   alt=""
                   className="absolute inset-0 h-full w-full object-cover"
-                  style={{ filter: "saturate(0.9) contrast(0.98)", opacity: 0.82 }}
+                  style={{ filter: "saturate(0.95) contrast(1.02)", opacity: 1, objectPosition: p.position }}
                 />
                 <div
                   className="absolute inset-0"
                   style={{
                     background:
-                      "linear-gradient(180deg, rgba(30,15,10,0.04), rgba(30,15,10,0.42))",
+                      "linear-gradient(180deg, rgba(30,15,10,0.02), rgba(30,15,10,0.18))",
                   }}
                 />
-                <span className="absolute bottom-1.5 left-2 text-[8px] tracking-luxe uppercase text-white/95"
-                  style={{ fontFamily: "'Jost', sans-serif" }}>
-                  {p.label}
-                </span>
-                <span className="absolute top-1.5 right-2 text-[10px] text-white/90">✦</span>
               </div>
             ))}
           </div>
 
-          <div className="mt-5 space-y-2.5">
-            {[
-              ["Instagram", "5 posts", "#E1306C"],
-              ["TikTok", "4 posts", "#111111"],
-              ["Facebook", "2 posts", "#1877F2"],
-              ["Google", "1 post", "#EA4335"],
-            ].map(([p, c, dot]) => (
+          <div className="mt-4 grid grid-cols-3 gap-2">
+            {["3 platforms", "12 queued", "AI + photo"].map((item) => (
               <div
-                key={p}
-                className="flex justify-between items-center text-sm border-b border-[var(--gold)]/15 pb-2 last:border-0"
+                key={item}
+                className="rounded-full px-3 py-2 text-center text-[9px] tracking-luxe uppercase"
+                style={{
+                  fontFamily: "'Jost', sans-serif",
+                  color: "rgba(30,15,10,0.55)",
+                  background: "rgba(255,250,246,0.68)",
+                  border: "1px solid rgba(214,176,140,0.2)",
+                }}
               >
-                <span className="flex items-center gap-2 text-[var(--ink)]"
-                  style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                  <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: dot }} />
-                  {p}
-                </span>
-                <span className="text-[var(--ink)]/55 text-xs"
-                  style={{ fontFamily: "'DM Sans', sans-serif" }}>{c}</span>
+                {item}
               </div>
             ))}
           </div>
