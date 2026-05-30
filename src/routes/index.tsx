@@ -2592,27 +2592,27 @@ function FinalCTA() {
         className="text-[var(--gold)] text-[11px] tracking-luxe uppercase"
         style={{ fontFamily: "'Jost', sans-serif" }}
       >
-        Ready for a managed growth system?
+        Want the web app experience?
       </p>
       <h2
         className="mt-4 italic text-[var(--ink)]"
         style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 1.1 }}
       >
-        Let us map the plan for you.
+        Step into The Brand Room.
       </h2>
       <p
         className="mt-4 text-[var(--ink)]/65 max-w-md mx-auto"
         style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", lineHeight: 1.6 }}
       >
-        Tell us where you want more leads, bookings, and follow-up support. We'll recommend the right content, ads, AI clone, and automation setup for your business.
+        Build a polished brand foundation, digital product, or interactive web app experience before you move into a full monthly growth system.
       </p>
-      <a
-        href="#contact"
+      <Link
+        to="/brand-room"
         className="mt-8 inline-flex items-center gap-2 rounded-2xl px-8 py-4 hover:-translate-y-0.5 transition-all"
         style={{ backgroundColor: "var(--ink)", color: "var(--cream)", fontFamily: "'Cormorant Garamond', serif", fontSize: "1.15rem", fontStyle: "italic", fontWeight: 700 }}
       >
-        Get my free proposal →
-      </a>
+        Explore The Brand Room →
+      </Link>
     </section>
   );
 }
@@ -2668,7 +2668,7 @@ function Footer() {
           <Link to="/privacy" className="text-[var(--ink)]/35 hover:text-[var(--ink)]/58 transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase" }}>
             Privacy Policy
           </Link>
-          <Link to="/playbook" className="text-[var(--ink)]/25 hover:text-[var(--ink)]/50 transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase" }}>
+          <Link to="/playbook" className="text-[var(--ink)]/45 hover:text-[var(--ink)]/70 transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase" }}>
             Admin
           </Link>
         </div>
