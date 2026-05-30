@@ -1135,7 +1135,6 @@ function Pricing() {
         "12 posts/month — 4 Reels · 4 Carousels · 4 Static posts, all on-brand",
         "Content approval before posting — you see and approve everything before it goes live",
         "Comment-to-DM automation — anyone who comments gets an instant private message turning them into a lead",
-        "Missed call text-back — anyone who calls and you miss gets an automatic text reply instantly",
         "Monthly performance snapshot — follower growth, reach & top posts in plain English",
       ],
     },
