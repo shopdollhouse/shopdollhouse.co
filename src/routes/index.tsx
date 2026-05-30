@@ -536,37 +536,45 @@ function HowItWorks() {
   const steps = [
     {
       num: "01",
-      title: "Apply in 2 minutes",
-      body: "Fill out the free proposal form. Tell us about your business, your goals, and the plan you're interested in. We'll reach out within 24 hours.",
+      title: "Apply for a private proposal",
+      body: "Tell us what you sell, where leads are getting stuck, and which level of support feels right. We review the business before recommending a plan.",
     },
     {
       num: "02",
-      title: "We build everything for you",
-      body: "Your AI clone, branded content, automation sequences, and full platform setup — all done within your first week. Nothing to learn, nothing to do.",
+      title: "We map the growth system",
+      body: "We turn your offer into a content, ads, AI clone, and follow-up plan with clear deliverables, setup timeline, and add-ons where they make sense.",
     },
     {
       num: "03",
-      title: "Content goes live. Leads come in.",
-      body: "Branded posts start flowing, your AI handles every inquiry, and the whole system runs in the background — every single day — while you run your business.",
+      title: "We launch, manage, and improve",
+      body: "Your content goes live, automations respond, reports show what is working, and each month is adjusted around the strongest path to more bookings.",
     },
   ];
 
   return (
-    <section className="py-24 md:py-32 px-6" style={{ background: "var(--cream)" }}>
+    <section className="py-24 md:py-32 px-6" style={{ background: "linear-gradient(180deg, var(--cream) 0%, #f8e9e5 100%)" }}>
       <SectionTitle
         eyebrow="The Process"
-        title="How it works"
-        italic="Three steps from invisible to everywhere."
+        title="How we take it off your plate"
+        italic="A simple handoff, then a managed system."
       />
-      <div className="mt-20 max-w-5xl mx-auto grid md:grid-cols-3 gap-12 md:gap-8 relative">
+      <div className="mt-16 max-w-5xl mx-auto grid md:grid-cols-3 gap-5 relative">
         {/* Connector line between steps */}
         <div
           aria-hidden
-          className="hidden md:block absolute top-8 left-[calc(16.67%+1.5rem)] right-[calc(16.67%+1.5rem)] h-px"
+          className="hidden md:block absolute top-12 left-[calc(16.67%+1.5rem)] right-[calc(16.67%+1.5rem)] h-px"
           style={{ background: "linear-gradient(90deg, transparent, rgba(200,168,100,0.4) 20%, rgba(200,168,100,0.4) 80%, transparent)" }}
         />
         {steps.map((step) => (
-          <div key={step.num} className="flex flex-col items-center text-center">
+          <div
+            key={step.num}
+            className="flex flex-col items-center text-center rounded-[28px] px-6 py-8 relative z-10"
+            style={{
+              background: "rgba(255,250,246,0.72)",
+              border: "1px solid color-mix(in oklab, var(--gold) 24%, transparent)",
+              boxShadow: "0 24px 58px -42px rgba(90,45,35,0.38)",
+            }}
+          >
             <div
               className="w-16 h-16 rounded-full flex items-center justify-center relative z-10"
               style={{
@@ -596,7 +604,12 @@ function HowItWorks() {
           </div>
         ))}
       </div>
-      <div className="mt-14 text-center">
+      <div className="mt-12 max-w-3xl mx-auto rounded-2xl px-6 py-5 text-center" style={{ background: "rgba(255,250,246,0.58)", border: "1px solid color-mix(in oklab, var(--gold) 22%, transparent)" }}>
+        <p className="text-[var(--ink)]/58 leading-7" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem" }}>
+          You are not buying another dashboard to manage. You are handing us the system so your brand can show up, respond, follow up, and convert consistently.
+        </p>
+      </div>
+      <div className="mt-10 text-center">
         <a href="#contact" className="btn-ink">
           Get my free proposal <span aria-hidden>→</span>
         </a>
@@ -1866,25 +1879,28 @@ function Pricing() {
 
       {/* Add-on Services */}
       <div className="mt-20 max-w-5xl mx-auto">
-        <div className="text-center mb-10">
+        <div className="text-center mb-10 max-w-3xl mx-auto">
           <p className="text-[var(--gold)] text-[11px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
             Available on any plan
           </p>
           <h3
             className="mt-3 italic text-[var(--ink)]"
-            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.75rem, 3vw, 2.25rem)" }}
+            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.2rem, 4vw, 3.4rem)", lineHeight: 1.05 }}
           >
-            Power up your plan
+            Add only what moves the needle.
           </h3>
-          <p className="mt-3 text-[var(--ink)]/55 italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.05rem" }}>
-            Add exactly what your business needs — priced into your custom quote.
+          <p className="mt-4 text-[var(--ink)]/58 leading-7" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.98rem" }}>
+            These are not random extras. We recommend add-ons when they make the system stronger: faster lead response, stronger proof, more content volume, or a cleaner path to booking.
           </p>
         </div>
 
         {/* Monthly add-ons */}
-        <p className="text-[9px] tracking-luxe uppercase text-[var(--ink)]/45 mb-4" style={{ fontFamily: "'Jost', sans-serif" }}>
-          Monthly Add-Ons
-        </p>
+        <div className="mb-4 flex items-center justify-between gap-4">
+          <p className="text-[9px] tracking-luxe uppercase text-[var(--ink)]/45" style={{ fontFamily: "'Jost', sans-serif" }}>
+            Monthly Add-Ons
+          </p>
+          <span className="hidden sm:block h-px flex-1 bg-[var(--gold)]/18" />
+        </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {[
             { emoji: "🎬", title: "AI Avatar Videos", desc: "4–8 branded AI avatar videos/month — your face, your voice, on autopilot." },
@@ -1919,9 +1935,12 @@ function Pricing() {
         </div>
 
         {/* One-time services */}
-        <p className="text-[9px] tracking-luxe uppercase text-[var(--ink)]/45 mb-4 mt-8" style={{ fontFamily: "'Jost', sans-serif" }}>
-          One-Time Services
-        </p>
+        <div className="mt-8 mb-4 flex items-center justify-between gap-4">
+          <p className="text-[9px] tracking-luxe uppercase text-[var(--ink)]/45" style={{ fontFamily: "'Jost', sans-serif" }}>
+            One-Time Services
+          </p>
+          <span className="hidden sm:block h-px flex-1 bg-[var(--gold)]/18" />
+        </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {[
             { emoji: "🏗️", title: "Website & Landing Page Design", desc: "Conversion-ready site built for your brand." },
@@ -1951,9 +1970,14 @@ function Pricing() {
           ))}
         </div>
 
-        <p className="text-center mt-8 text-[var(--ink)]/45 text-[11px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
-          Add-on pricing included in your custom quote · mention it when you apply
-        </p>
+        <div className="mt-8 rounded-2xl px-6 py-5 text-center" style={{ background: "rgba(255,250,246,0.55)", border: "1px solid color-mix(in oklab, var(--gold) 22%, transparent)" }}>
+          <p className="text-[var(--ink)]/55 text-[11px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
+            Add-on pricing is included in your custom quote
+          </p>
+          <p className="mt-2 text-[var(--ink)]/58" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem" }}>
+            Tell us what you are considering in the proposal form and we will show you what is worth adding now, later, or not at all.
+          </p>
+        </div>
       </div>
     </section>
   );
@@ -1964,25 +1988,25 @@ function Pricing() {
 function About() {
   return (
     <section id="about" className="scroll-mt-32 py-24 md:py-32 px-6 bg-[var(--cream)]">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-14">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-12">
           <Eyebrow>The Person Behind the Brand</Eyebrow>
           <h2
             className="mt-4 italic text-[var(--ink)]"
-            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.2rem, 4vw, 3rem)", lineHeight: 1.1 }}
+            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.6rem, 5vw, 4.4rem)", lineHeight: 1.05 }}
           >
-            Hi, I'm Mandy
+            Strategy, design, and automation with a human eye.
           </h2>
           <Divider />
         </div>
 
-        <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+        <div className="grid lg:grid-cols-[0.8fr_1.2fr] items-center gap-10 lg:gap-16">
           {/* Photo */}
-          <div className="shrink-0 mx-auto">
+          <div className="mx-auto w-full max-w-sm">
             <div
-              className="w-56 md:w-72 overflow-hidden"
+              className="relative overflow-hidden"
               style={{
-                borderRadius: "28px",
+                borderRadius: "30px",
                 border: "2px solid color-mix(in oklab, var(--gold) 40%, transparent)",
                 boxShadow: "0 20px 50px -15px rgba(160,110,95,0.35)",
                 aspectRatio: "3/4",
@@ -1995,38 +2019,49 @@ function About() {
                 style={{ objectPosition: "center top" }}
               />
             </div>
+            <div className="mt-4 rounded-2xl px-5 py-4 text-center" style={{ background: "rgba(255,250,246,0.68)", border: "1px solid color-mix(in oklab, var(--gold) 24%, transparent)" }}>
+              <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
+                Founder-Led Systems
+              </p>
+              <p className="mt-2 text-[var(--ink)]/62 leading-6" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem" }}>
+                Every client system is shaped by brand strategy, not templates.
+              </p>
+            </div>
           </div>
 
           {/* Copy */}
-          <div className="flex-1 text-center md:text-left">
+          <div className="text-center lg:text-left">
+            <p className="text-[var(--gold)] text-[11px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
+              Hi, I'm Mandy
+            </p>
             <p
-              className="text-[var(--ink)]/75 leading-relaxed"
+              className="mt-4 text-[var(--ink)]/75 leading-8"
               style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem" }}
             >
               I'm a social media strategist and brand designer from the Greater Toronto Area — with 11+ years in graphic and product design, building brands for companies, creators, and entrepreneurs. My work has been recognized by <strong>BuzzFeed</strong> and <strong>HuffPost</strong>.
             </p>
             <p
-              className="mt-4 text-[var(--ink)]/75 leading-relaxed"
+              className="mt-4 text-[var(--ink)]/75 leading-8"
               style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem" }}
             >
               I built The Dollhouse because I kept seeing the same problem — talented business owners with incredible products, invisible online. Not because they weren't good enough, but because they were too busy running their business to show up consistently.
             </p>
             <p
-              className="mt-4 text-[var(--ink)]/75 leading-relaxed"
+              className="mt-4 text-[var(--ink)]/75 leading-8"
               style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem" }}
             >
-              So I built a system that does it for them. AI-powered, done-for-you, and built to convert.
+              So I built the studio around a simple promise: your online presence should look beautiful, sound like you, follow up fast, and help the right people book.
             </p>
 
             {/* Divider */}
-            <div className="mt-7 flex items-center gap-3 justify-center md:justify-start">
+            <div className="mt-7 flex items-center gap-3 justify-center lg:justify-start">
               <span className="h-px w-10 bg-[var(--gold)] opacity-40" />
               <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>♥</span>
               <span className="h-px w-10 bg-[var(--gold)] opacity-40" />
             </div>
 
             {/* As seen in */}
-            <div className="mt-5 flex flex-wrap items-center gap-4 justify-center md:justify-start">
+            <div className="mt-5 flex flex-wrap items-center gap-4 justify-center lg:justify-start">
               <span
                 className="text-[var(--ink)]/40 text-[9px] tracking-[0.2em] uppercase"
                 style={{ fontFamily: "'Jost', sans-serif" }}
@@ -2054,13 +2089,13 @@ function About() {
             </div>
 
             {/* Stats */}
-            <div className="mt-7 flex gap-8 justify-center md:justify-start flex-wrap">
+            <div className="mt-7 grid sm:grid-cols-3 gap-3">
               {[
                 ["11 Years", "Brand & Design"],
                 ["15+", "Web Apps Built"],
                 ["100%", "Done For You"],
               ].map(([value, label]) => (
-                <div key={value}>
+                <div key={value} className="rounded-2xl px-5 py-4" style={{ background: "rgba(255,250,246,0.62)", border: "1px solid color-mix(in oklab, var(--gold) 22%, transparent)" }}>
                   <p
                     className="italic text-[var(--rose)]"
                     style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.6rem", lineHeight: 1 }}
@@ -2097,7 +2132,7 @@ function ComparisonTable() {
     { feature: "Flexible after 6-month minimum",        dh: true,  agency: false, diy: true  },
   ];
 
-  const Check = ({ val }: { val: boolean }) =>
+  const CompareMark = ({ val }: { val: boolean }) =>
     val ? (
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "15px", height: "15px", color: "var(--gold)", display: "inline-block" }}>
         <path d="M2.5 8.5L6 12L13.5 4.5" />
@@ -2109,65 +2144,90 @@ function ComparisonTable() {
     );
 
   return (
-    <section className="py-24 px-6" style={{ background: "linear-gradient(180deg, var(--blush) 0%, var(--cream) 100%)" }}>
+    <section className="py-24 md:py-32 px-6" style={{ background: "linear-gradient(180deg, var(--blush) 0%, var(--cream) 100%)" }}>
       <SectionTitle
         eyebrow="Why The Dollhouse"
-        title="How we compare"
-        italic="Not all agencies are built the same."
+        title="Not just content. A whole client-getting system."
+        italic="Most agencies stop at posting. We build the follow-through."
       />
 
-      <div className="mt-16 max-w-4xl mx-auto overflow-x-auto">
-        <table className="w-full border-collapse">
-          <thead>
-            <tr>
-              <th className="pb-6 text-left w-1/2" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(30,15,10,0.4)", fontWeight: 500 }}>
-                Feature
-              </th>
-              {[
-                { label: "The Dollhouse", featured: true },
-                { label: "Other Agencies", featured: false },
-                { label: "DIY", featured: false },
-              ].map(({ label, featured }) => (
-                <th
-                  key={label}
-                  className="pb-6 text-center"
-                  style={{ fontFamily: featured ? "'Cormorant Garamond', serif" : "'Jost', sans-serif", fontSize: featured ? "1.1rem" : "0.7rem", fontStyle: featured ? "italic" : "normal", letterSpacing: featured ? "0.02em" : "0.18em", textTransform: "uppercase", color: featured ? "var(--ink)" : "rgba(30,15,10,0.4)", fontWeight: featured ? 600 : 500 }}
-                >
-                  {label}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((row, i) => (
-              <tr
-                key={row.feature}
-                style={{ borderTop: "1px solid color-mix(in oklab, var(--gold) 18%, transparent)" }}
-              >
-                <td
-                  className="py-4 pr-6"
-                  style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.85rem", color: "rgba(30,15,10,0.7)" }}
-                >
-                  {row.feature}
-                </td>
-                <td
-                  className="py-4 text-center"
-                  style={{
-                    background: i === 0
-                      ? "linear-gradient(180deg, rgba(200,168,100,0.07) 0%, rgba(200,168,100,0.07) 100%)"
-                      : "rgba(200,168,100,0.07)",
-                  }}
-                >
-                  <Check val={row.dh} />
-                </td>
-                <td className="py-4 text-center"><Check val={row.agency} /></td>
-                <td className="py-4 text-center"><Check val={row.diy} /></td>
-              </tr>
+      <div className="mt-14 max-w-6xl mx-auto grid lg:grid-cols-[0.78fr_1.22fr] gap-8 items-start">
+        <div className="rounded-[28px] p-7" style={{ background: "rgba(255,250,246,0.62)", border: "1px solid color-mix(in oklab, var(--gold) 22%, transparent)" }}>
+          <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
+            What makes it different
+          </p>
+          <h3 className="mt-3 text-[var(--ink)] italic leading-tight" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.9rem, 3vw, 2.6rem)" }}>
+            Designed for owners who cannot afford slow follow-up.
+          </h3>
+          <div className="mt-6 space-y-4">
+            {[
+              "Your brand looks consistent before the ads ever run.",
+              "Your content leads somewhere: DMs, bookings, reviews, and follow-up.",
+              "Your AI systems are built around your offer instead of a generic template.",
+            ].map((item) => (
+              <div key={item} className="flex gap-3">
+                <span className="mt-1 h-5 w-5 shrink-0 rounded-full flex items-center justify-center" style={{ background: "rgba(200,168,100,0.14)", color: "var(--gold)" }}>
+                  <Check size={12} strokeWidth={3} />
+                </span>
+                <p className="m-0 text-[var(--ink)]/62 leading-7" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem" }}>{item}</p>
+              </div>
             ))}
-          </tbody>
-        </table>
+          </div>
+        </div>
 
-        <div className="mt-10 text-center">
+        <div className="overflow-x-auto rounded-[28px] p-5" style={{ background: "rgba(255,250,246,0.66)", border: "1px solid color-mix(in oklab, var(--gold) 22%, transparent)", boxShadow: "0 28px 70px -48px rgba(90,45,35,0.42)" }}>
+          <table className="w-full min-w-[640px] border-collapse">
+            <thead>
+              <tr>
+                <th className="pb-6 text-left w-1/2" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(30,15,10,0.4)", fontWeight: 500 }}>
+                  Feature
+                </th>
+                {[
+                  { label: "The Dollhouse", featured: true },
+                  { label: "Other Agencies", featured: false },
+                  { label: "DIY", featured: false },
+                ].map(({ label, featured }) => (
+                  <th
+                    key={label}
+                    className="pb-6 text-center"
+                    style={{ fontFamily: featured ? "'Cormorant Garamond', serif" : "'Jost', sans-serif", fontSize: featured ? "1.1rem" : "0.7rem", fontStyle: featured ? "italic" : "normal", letterSpacing: featured ? "0.02em" : "0.18em", textTransform: "uppercase", color: featured ? "var(--ink)" : "rgba(30,15,10,0.4)", fontWeight: featured ? 600 : 500 }}
+                  >
+                    {label}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row, i) => (
+                <tr
+                  key={row.feature}
+                  style={{ borderTop: "1px solid color-mix(in oklab, var(--gold) 18%, transparent)" }}
+                >
+                  <td
+                    className="py-4 pr-6"
+                    style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.85rem", color: "rgba(30,15,10,0.7)" }}
+                  >
+                    {row.feature}
+                  </td>
+                  <td
+                    className="py-4 text-center"
+                    style={{
+                      background: i === 0
+                        ? "linear-gradient(180deg, rgba(200,168,100,0.08) 0%, rgba(200,168,100,0.08) 100%)"
+                        : "rgba(200,168,100,0.08)",
+                    }}
+                  >
+                    <CompareMark val={row.dh} />
+                  </td>
+                  <td className="py-4 text-center"><CompareMark val={row.agency} /></td>
+                  <td className="py-4 text-center"><CompareMark val={row.diy} /></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="lg:col-span-2 text-center">
           <a
             href="#contact"
             className="btn-ink"
@@ -2190,31 +2250,45 @@ function FAQ() {
     ["What is your refund policy?", "All sales are final. Once your system is built and your plan is active, the work has begun — but if you have concerns at any point, reach out and we'll work through it."],
   ];
   return (
-    <section id="faq" className="scroll-mt-32 pt-24 md:pt-32 pb-10 md:pb-14 px-6">
-      <SectionTitle eyebrow="Common Questions" title="FAQ" />
-      <div className="mt-12 max-w-3xl mx-auto space-y-3">
-        {faqs.map(([q, a]) => (
-          <details
-            key={q}
-            className="group rounded-xl bg-white/65 backdrop-blur-sm border border-white/80 overflow-hidden"
-          >
-            <summary className="cursor-pointer list-none px-6 py-5 flex justify-between items-center">
-              <span
-                className="text-[var(--ink)]"
-                style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.15rem" }}
-              >
-                {q}
-              </span>
-              <span className="text-[var(--rose)] text-2xl transition-transform group-open:rotate-45">+</span>
-            </summary>
-            <p
-              className="px-6 pb-6 text-[var(--ink)]/70 leading-relaxed"
-              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem" }}
+    <section id="faq" className="scroll-mt-32 py-24 md:py-32 px-6" style={{ background: "linear-gradient(180deg, var(--cream) 0%, var(--blush) 100%)" }}>
+      <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.75fr_1.25fr] gap-10 items-start">
+        <div className="lg:sticky lg:top-36">
+          <Eyebrow>Common Questions</Eyebrow>
+          <h2 className="mt-4 text-[var(--rose)] leading-[1.02]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(3rem, 6vw, 5rem)", fontWeight: 400 }}>
+            Clear answers before you apply.
+          </h2>
+          <p className="mt-5 text-[var(--ink)]/60 leading-8" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.98rem" }}>
+            The proposal will map the exact recommendation for your business, but these are the details most founders ask before taking the next step.
+          </p>
+          <a href="#contact" className="btn-ink mt-8 inline-flex">
+            Ask for a proposal <span aria-hidden>→</span>
+          </a>
+        </div>
+
+        <div className="space-y-3">
+          {faqs.map(([q, a]) => (
+            <details
+              key={q}
+              className="group rounded-2xl bg-white/68 backdrop-blur-sm border border-white/85 overflow-hidden shadow-[0_18px_42px_-34px_rgba(90,45,35,0.42)]"
             >
-              {a}
-            </p>
-          </details>
-        ))}
+              <summary className="cursor-pointer list-none px-6 py-5 flex justify-between items-center gap-6">
+                <span
+                  className="text-[var(--ink)]"
+                  style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.18rem", lineHeight: 1.25 }}
+                >
+                  {q}
+                </span>
+                <span className="shrink-0 text-[var(--rose)] text-2xl transition-transform group-open:rotate-45">+</span>
+              </summary>
+              <p
+                className="px-6 pb-6 text-[var(--ink)]/70 leading-relaxed"
+                style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem" }}
+              >
+                {a}
+              </p>
+            </details>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -2546,44 +2620,59 @@ function FinalCTA() {
 /* ─── Footer ──────────────────────────────────────────── */
 function Footer() {
   return (
-    <footer className="border-t border-[var(--gold)]/15 py-12 px-6 text-center">
-      <div className="inline-flex flex-col items-center" style={{ gap: "1px" }}>
-        <span className="text-[var(--ink)]/50 font-normal" style={{ fontFamily: "'Allura', cursive", fontSize: "18px", letterSpacing: "1px", textTransform: "lowercase", lineHeight: 1 }}>the</span>
-        <span className="text-[var(--ink)] italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "15px", letterSpacing: "4px", textTransform: "uppercase", lineHeight: 1 }}>Dollhouse</span>
-        <p className="text-[var(--gold)] font-semibold" style={{ fontFamily: "'Jost', sans-serif", fontSize: "6.5px", letterSpacing: "3px", textTransform: "uppercase", marginTop: "2px" }}>Brand Studio</p>
+    <footer className="border-t border-[var(--gold)]/15 px-6 py-14" style={{ background: "linear-gradient(180deg, #f4dcdc 0%, #f8ebe7 100%)" }}>
+      <div className="max-w-6xl mx-auto grid gap-10 md:grid-cols-[1.1fr_0.9fr_0.9fr] items-start">
+        <div>
+          <div className="inline-flex flex-col items-start" style={{ gap: "1px" }}>
+            <span className="text-[var(--ink)]/50 font-normal" style={{ fontFamily: "'Allura', cursive", fontSize: "22px", letterSpacing: "1px", textTransform: "lowercase", lineHeight: 1 }}>the</span>
+            <span className="text-[var(--ink)] italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px", letterSpacing: "5px", textTransform: "uppercase", lineHeight: 1 }}>Dollhouse</span>
+            <p className="text-[var(--gold)] font-semibold" style={{ fontFamily: "'Jost', sans-serif", fontSize: "8px", letterSpacing: "3px", textTransform: "uppercase", marginTop: "4px" }}>Brand Studio</p>
+          </div>
+          <p className="mt-5 max-w-sm text-[var(--ink)]/58 leading-7" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem" }}>
+            Done-for-you content, ads, AI clone, and follow-up systems for founders who want the work handled beautifully.
+          </p>
+        </div>
+
+        <div>
+          <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>Explore</p>
+          <div className="mt-4 grid gap-2">
+            {[
+              ["Services", "#services"],
+              ["Pricing", "#pricing"],
+              ["FAQ", "#faq"],
+              ["Proposal", "#contact"],
+            ].map(([label, href]) => (
+              <a key={href} href={href} className="text-[var(--ink)]/58 hover:text-[var(--rose)] transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.78rem", letterSpacing: "0.12em", textTransform: "uppercase" }}>
+                {label}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>Contact</p>
+          <a href="mailto:hello@shopdollhouse.co" className="mt-4 block text-[var(--ink)]/68 hover:text-[var(--rose)] transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.78rem", letterSpacing: "0.12em" }}>
+            hello@shopdollhouse.co
+          </a>
+          <a href="#contact" className="mt-5 inline-flex rounded-full px-5 py-3 text-[var(--cream)] bg-[var(--ink)] hover:opacity-90 transition-opacity" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.68rem", letterSpacing: "0.18em", textTransform: "uppercase" }}>
+            Get a proposal →
+          </a>
+        </div>
       </div>
-      <div className="mt-6 flex items-center justify-center gap-2">
-        <span className="h-px w-8 bg-[var(--gold)]/30" />
-        <svg viewBox="0 0 24 22" fill="currentColor" style={{ width: "10px", height: "10px", color: "var(--gold)", opacity: 0.5 }}><path d="M12 21.6C6.3 16.1 1 11.3 1 7.2 1 3.4 4.1 2 6.3 2c1.3 0 4.2.5 5.7 4.5C13.6 2.5 16.5 2 17.7 2 20.3 2 23 3.6 23 7.2c0 4.1-5.1 8.9-11 14.4z"/></svg>
-        <span className="h-px w-8 bg-[var(--gold)]/30" />
+
+      <div className="mt-12 max-w-6xl mx-auto flex flex-col gap-4 border-t border-[var(--gold)]/18 pt-6 text-center md:flex-row md:items-center md:justify-between md:text-left">
+        <p className="text-xs text-[var(--ink)]/35" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+          © {new Date().getFullYear()} The Dollhouse Brand Studio. All rights reserved.
+        </p>
+        <div className="flex items-center justify-center gap-5">
+          <Link to="/privacy" className="text-[var(--ink)]/35 hover:text-[var(--ink)]/58 transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase" }}>
+            Privacy Policy
+          </Link>
+          <Link to="/playbook" className="text-[var(--ink)]/25 hover:text-[var(--ink)]/50 transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase" }}>
+            Admin
+          </Link>
+        </div>
       </div>
-      <a
-        href="mailto:hello@shopdollhouse.co"
-        className="mt-4 block text-[var(--ink)]/45 hover:text-[var(--rose)] transition-colors"
-        style={{ fontFamily: "'Jost', sans-serif", fontSize: "11px", letterSpacing: "0.16em" }}
-      >
-        hello@shopdollhouse.co
-      </a>
-      <Link
-        to="/privacy"
-        className="mt-3 block text-[var(--ink)]/30 hover:text-[var(--ink)]/55 transition-colors"
-        style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase" }}
-      >
-        Privacy Policy
-      </Link>
-      <p
-        className="text-xs text-[var(--ink)]/28 mt-5"
-        style={{ fontFamily: "'DM Sans', sans-serif" }}
-      >
-        © {new Date().getFullYear()} The Dollhouse Brand Studio. All rights reserved.
-      </p>
-      <Link
-        to="/playbook"
-        className="mt-3 inline-block text-[var(--ink)]/25 hover:text-[var(--ink)]/50 transition-colors"
-        style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase" }}
-      >
-        Admin
-      </Link>
     </footer>
   );
 }
