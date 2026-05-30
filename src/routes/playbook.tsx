@@ -187,7 +187,7 @@ function WorkflowTab() {
 
       <Phase day="Lead Stage" title="Before They Sign" items={[
         { text: "Discovery call booked via contact form or DM", sub: "Use the call to learn about their goals, platforms, budget, and how they're doing content now." },
-        { text: "Send proposal same day or within 24 hours of the call", sub: "Include the plan tier, what's covered, ad spend note ($500 min / $1k recommended — paid directly to Meta), and contract link." },
+        { text: "Send proposal same day or within 24 hours of the call", sub: "Include the plan tier, what's covered, ad spend note ($1,000–$2,000/mo paid directly to Meta — never included in package), and contract link." },
         { text: "Follow up if no response in 48 hours", sub: "One follow-up email or DM. Keep it warm, not pushy." },
         { text: "Contract signed + setup invoice paid before any work begins" },
         { text: "Confirm their start date — always the next Monday after their cutoff", sub: "If they sign Monday–Thursday → they start the following Monday. If they sign Friday or weekend → start is the Monday after that. Tell them the exact date." },
@@ -7983,7 +7983,7 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
                 <input
                   value={adSpend}
                   onChange={e => setAdSpend(e.target.value)}
-                  placeholder="e.g. $150/mo Meta boost (recommended minimum) · $500/mo Google (paid directly by client)"
+                  placeholder="e.g. $1,000/mo Meta (min) · $2,000/mo Meta (max) · $1,000+/mo Google — paid directly by client"
                   className="w-full px-4 py-2.5 rounded-xl outline-none"
                   style={inputStyle}
                 />
@@ -9644,8 +9644,8 @@ const PROPOSAL_DECKS: PDeck[] = [
         bullets: [
           "Our management fee and your ad budget are two separate things",
           "Your ad budget goes directly to Facebook/Instagram — not to us",
-          "We recommend starting with $1,000/month in ad spend for real results",
-          "The minimum is $500/month — it works, but results are slower",
+          "Ad spend minimum is $1,000/month — this is what gets real, measurable results",
+          "Ad spend range is $1,000–$2,000/month — we work within this range for best results",
           "With $1,000–$2,000 we typically run 6 high-quality ads at a time",
           "Quality of ads matters more than how many you run",
           "Most clients see their first results within the first 2–4 weeks",
@@ -9826,7 +9826,7 @@ function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
           {addons.has("meta_ads") && (
             <div style={{ padding: "8px 10px", borderRadius: 8, background: C.active, border: `1px solid ${C.border}` }}>
               <div style={{ fontFamily: SANS, fontSize: 10, color: C.fg2, lineHeight: 1.5 }}>
-                Meta ad spend is separate — paid directly to Meta. Recommended: $1,000/mo minimum for best results.
+                Meta ad spend is separate — paid directly by you to Meta. $1,000–$2,000/mo · never included in your package.
               </div>
             </div>
           )}
