@@ -3129,7 +3129,7 @@ On top of that, we boost your best-performing mascot video with a small Meta ad 
 MASCOT CLIENT PRICING
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Social media posts (with mascot content): $500–$750/mo
-Meta / Facebook Ads Management:          $500/mo
+Meta / Facebook Ads Management:          $500/mo management fee (ad spend $1,000–$2,000/mo paid by client to Meta)
 Google Business Profile:                 $500 (one-time setup)
 Email Marketing:                         $500/mo
                                         ─────────────
@@ -4467,7 +4467,7 @@ Thanks again for trusting me with [BUSINESS NAME].
         <div className="grid sm:grid-cols-2 gap-3">
           {([
             { label: "Social Media Posts (with mascot)", price: "$500–$750/mo", note: "Daily branded posts + 3–4 mascot videos/mo" },
-            { label: "Meta / Facebook Ads Management", price: "$500/mo", note: "$150 client ad spend to Meta (separate)" },
+            { label: "Meta / Facebook Ads Management", price: "$500/mo", note: "Ad spend $1k–$2k/mo paid by client directly to Meta" },
             { label: "Google Business Profile Setup", price: "$500", note: "One-time setup + weekly posts" },
             { label: "Email Marketing", price: "$500/mo", note: "Done-for-you campaigns + nurture sequences" },
           ] as const).map(({ label, price, note }) => (
@@ -9701,7 +9701,7 @@ function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
     { id: "elite",    name: "Elite",    price: 5000 },
   ];
   const ADDONS = [
-    { id: "meta_ads",  name: "Meta Ads Management",  price: 500,  note: "+ ad spend paid to Meta" },
+    { id: "meta_ads",  name: "Meta Ads Management",  price: 500,  note: "+ $1k–$2k/mo ad spend paid directly by client to Meta" },
     { id: "google",    name: "Google Ads Management", price: 750,  note: "$750 (≤$3.5k spend) · $850 ($3.5k–$7k spend) · paid direct to Google" },
     { id: "email_sms", name: "Email & SMS Sequences", price: 400,  note: "Automated nurture flows" },
     { id: "ai_video",  name: "AI Avatar Videos",      price: 800,  note: "4–8 branded videos/mo" },
