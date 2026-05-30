@@ -1172,7 +1172,7 @@ function Pricing() {
         "3 platforms fully managed — Facebook, Instagram & TikTok — nothing to post, nothing to think about",
         "AI clone or custom brand mascot/character across all 3 platforms",
         "6 AI clone videos/month — 2 pinned per platform, always your best content front and centre",
-        "24 posts/month — 8 per platform (Reels · Carousels · Static), all on-brand",
+        "24 posts/month — 8 per platform across all 3 (Reels · Carousels · Static), all on-brand",
         "Content approval before posting — you see and approve everything before it goes live",
         "Paid Meta ads management — Facebook & Instagram campaigns built, managed & optimised",
         "Comment-to-DM automation + text follow-up AI bot across all platforms",
