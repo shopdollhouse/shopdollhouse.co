@@ -1,5 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
+import {
+  ArrowRight,
+  BarChart3,
+  Bot,
+  Check,
+  MessageSquare,
+  PhoneCall,
+  Play,
+  ShieldCheck,
+  Sparkles,
+  Video,
+} from "lucide-react";
 import bgImage from "@/assets/password-bg.jpg";
 import roseAccent from "@/assets/rose-accent.png";
 import archMark from "@/assets/arch-mark.svg";
@@ -1121,97 +1133,229 @@ function Services() {
 
 /* ─── Pricing ─────────────────────────────────────────── */
 function AICloneSection() {
-  return (
-    <section className="py-24 md:py-32 px-6" style={{ background: "var(--ink)" }}>
-      <div className="max-w-6xl mx-auto">
+  const before = [
+    "Filming takes hours and you still run out of ideas",
+    "You post once, disappear, then feel behind again",
+    "Your best offers never get enough visibility",
+    "Being on camera slows your whole content system down",
+  ];
+  const after = [
+    "Your face and voice show up without filming every week",
+    "Your signature offer gets packaged into repeatable content",
+    "Your profile looks consistent, polished, and conversion-ready",
+    "We build the strategy, clone assets, posts, and automation for you",
+  ];
+  const included = [
+    { icon: Video, title: "AI Clone Video Setup", desc: "We create your avatar direction, clone workflow, hooks, scripts, and launch-ready video system." },
+    { icon: Sparkles, title: "3 Signature Videos", desc: "Three high-impact AI clone videos designed to introduce, educate, and sell your offer." },
+    { icon: BarChart3, title: "12 Monthly Posts", desc: "Reels, carousels, and static posts planned around authority, proof, education, and conversion." },
+    { icon: MessageSquare, title: "Comment-to-DM Flow", desc: "People who engage can get an instant private message that moves them toward the next step." },
+    { icon: ShieldCheck, title: "Approval Before Posting", desc: "You review the content before anything goes live, so the brand still feels like you." },
+    { icon: Bot, title: "Monthly Performance Snapshot", desc: "Clear reporting on reach, content, engagement, and what we are improving next." },
+  ];
+  const bonuses = [
+    { icon: BarChart3, title: "Free Social Media Audit", desc: "A practical review of what's working, what's missing, and what we will clean up first." },
+    { icon: PhoneCall, title: "Custom Voice AI Agent", desc: "A simple lead-response agent for missed calls, common questions, and booking support." },
+    { icon: MessageSquare, title: "Nurture Automations", desc: "Follow-up flows that keep warm leads moving after they comment, message, or inquire." },
+  ];
 
-        {/* Header */}
-        <div className="text-center mb-16">
-          <p className="text-[11px] tracking-luxe uppercase mb-4" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>✦ Signature Offer — Starter Plan ✦</p>
-          <h2 className="reveal" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.4rem, 5vw, 3.8rem)", color: "var(--cream)", fontStyle: "italic", lineHeight: 1.15, marginBottom: 16 }}>
-            Get Your Own AI Clone<br />Built Completely Done For You
+  return (
+    <section
+      className="relative py-24 md:py-32 px-5 overflow-hidden"
+      style={{
+        background:
+          "radial-gradient(ellipse 70% 48% at 50% 18%, rgba(255,255,255,0.88), transparent 64%), radial-gradient(ellipse 54% 42% at 86% 8%, rgba(210,150,140,0.2), transparent 70%), linear-gradient(135deg, #f3d6d0 0%, #fbf1ed 48%, #ead0c9 100%)",
+      }}
+    >
+      <img
+        src={roseAccent}
+        alt=""
+        className="pointer-events-none absolute -left-24 top-20 w-[34rem] max-w-none opacity-[0.13] mix-blend-multiply"
+      />
+      <img
+        src={roseAccent}
+        alt=""
+        className="pointer-events-none absolute -right-28 bottom-16 w-[30rem] max-w-none opacity-[0.09] mix-blend-multiply rotate-180"
+      />
+      <DoorIcon className="pointer-events-none absolute right-10 top-1/2 hidden h-32 w-20 opacity-25 md:block" />
+
+      <div className="relative max-w-6xl mx-auto">
+        <div className="text-center mb-12 md:mb-16">
+          <div
+            className="inline-flex items-center gap-3 rounded-full px-7 py-3 mb-9 text-[10px] tracking-luxe uppercase font-semibold"
+            style={{
+              fontFamily: "'Jost', sans-serif",
+              color: "var(--gold)",
+              background: "rgba(255,250,246,0.58)",
+              border: "1px solid color-mix(in oklab, var(--gold) 45%, transparent)",
+              boxShadow: "0 18px 50px -32px rgba(90,45,35,0.45)",
+            }}
+          >
+            <span>✦</span>
+            Signature Offer - Starter Plan
+            <span>✦</span>
+          </div>
+          <DoorIcon className="mx-auto mb-7 h-14 w-10 opacity-50" />
+          <p
+            className="mb-1 italic"
+            style={{
+              fontFamily: "'Allura', cursive",
+              color: "var(--gold)",
+              fontSize: "clamp(2.6rem, 5vw, 4rem)",
+              lineHeight: 0.9,
+            }}
+          >
+            your own
+          </p>
+          <h2
+            className="reveal mx-auto max-w-4xl"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: "clamp(3.7rem, 8.2vw, 7.6rem)",
+              fontWeight: 400,
+              color: "var(--rose)",
+              lineHeight: 0.9,
+              letterSpacing: "0.03em",
+              textTransform: "uppercase",
+              marginBottom: 26,
+            }}
+          >
+            AI Clone
           </h2>
-          <p className="reveal max-w-xl mx-auto" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(0.95rem, 1.8vw, 1.05rem)", color: "rgba(245,232,224,0.55)", lineHeight: 1.75 }}>
-            We build a digital version of you — your face, your voice, your energy — that creates video content and posts every single day without you ever filming again.
+          <Divider />
+          <h3
+            className="mx-auto mt-8 max-w-4xl italic"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: "clamp(2rem, 4.2vw, 4rem)",
+              color: "var(--rose)",
+              lineHeight: 1.1,
+            }}
+          >
+            Built Completely Done For You.
+          </h3>
+          <p
+            className="reveal max-w-2xl mx-auto mt-8"
+            style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: "clamp(1rem, 1.8vw, 1.18rem)",
+              color: "rgba(30,15,10,0.62)",
+              lineHeight: 1.8,
+            }}
+          >
+            We turn your face, voice, expertise, and offer into a polished content system that keeps showing up online while you run the business.
           </p>
         </div>
 
-        {/* Before / After */}
-        <div className="grid md:grid-cols-2 gap-6 mb-16 max-w-4xl mx-auto">
-          {/* Before */}
-          <div className="rounded-2xl p-7" style={{ background: "rgba(180,80,80,0.1)", border: "1px solid rgba(180,80,80,0.25)" }}>
-            <p className="text-[10px] tracking-widest uppercase mb-5" style={{ fontFamily: "'Jost', sans-serif", color: "#d46060" }}>✕ Without Your AI Clone</p>
-            {["Filming takes hours — and you still run out of ideas","You post once then go silent for weeks","Your competitors look better online every day","You hate watching yourself on camera","Your business is invisible while you're working"].map((t, i) => (
-              <div key={i} className="flex gap-3 items-start mb-3">
-                <span style={{ color: "#d46060", flexShrink: 0, fontWeight: 700 }}>✕</span>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "rgba(245,232,224,0.7)", lineHeight: 1.5, margin: 0 }}>{t}</p>
+        <div className="grid lg:grid-cols-[0.92fr_1.08fr] gap-8 lg:gap-10 items-center mb-16 md:mb-20">
+          <div
+            className="relative rounded-[30px] p-4 sm:p-5"
+            style={{
+              background: "rgba(255,250,246,0.75)",
+              border: "1px solid color-mix(in oklab, var(--gold) 38%, transparent)",
+              boxShadow: "0 34px 90px -48px rgba(90,45,35,0.55), inset 0 1px 0 rgba(255,255,255,0.72)",
+            }}
+          >
+            <div
+              className="aspect-[4/5] rounded-[24px] relative overflow-hidden flex items-end justify-center"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(30,15,10,0.06) 0%, rgba(30,15,10,0.45) 100%)",
+              }}
+            >
+              <div className="absolute top-4 left-4 right-4 z-10 flex items-center justify-between rounded-full px-4 py-2" style={{ background: "rgba(255,250,246,0.9)", color: "var(--gold)", fontFamily: "'Jost', sans-serif", fontSize: "0.58rem", letterSpacing: "0.16em", textTransform: "uppercase" }}>
+                <span>AI Clone Preview</span>
+                <span>Ready in week 1</span>
               </div>
-            ))}
+              <img src={mandyPhoto} alt="Dollhouse founder AI clone preview" className="absolute inset-0 h-full w-full object-cover" style={{ filter: "saturate(0.96) contrast(1.02)", objectPosition: "center 42%" }} />
+              <button type="button" aria-label="Play AI clone preview" className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full flex items-center justify-center transition-transform hover:scale-105" style={{ background: "var(--ink)", color: "var(--cream)", boxShadow: "0 20px 42px -16px rgba(30,15,10,0.75)" }}>
+                <Play size={25} fill="currentColor" strokeWidth={0} className="ml-1" />
+              </button>
+            </div>
           </div>
-          {/* After */}
-          <div className="rounded-2xl p-7" style={{ background: "rgba(100,180,120,0.08)", border: "1px solid rgba(100,180,120,0.25)" }}>
-            <p className="text-[10px] tracking-widest uppercase mb-5" style={{ fontFamily: "'Jost', sans-serif", color: "#5a9970" }}>✓ With Your Dollhouse AI Clone</p>
-            {["Content posts every day — automatically","Your face and voice, without filming a thing","Your brand looks like a top agency — always","You record once and we handle everything forever","Your business grows online while you serve clients"].map((t, i) => (
-              <div key={i} className="flex gap-3 items-start mb-3">
-                <span style={{ color: "#5a9970", flexShrink: 0, fontWeight: 700 }}>✓</span>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "rgba(245,232,224,0.7)", lineHeight: 1.5, margin: 0 }}>{t}</p>
-              </div>
-            ))}
-          </div>
-        </div>
 
-        {/* What's included */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <p className="text-center text-[10px] tracking-widest uppercase mb-8" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>What's Included in the $1,000/mo Starter</p>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {[
-              ["Your AI Clone Avatar", "Trained to your face, voice & energy in week 1 — one recording session, unlimited content."],
-              ["3 AI Clone Videos/Month", "Pinned at the top of your profile, always your best content front and centre."],
-              ["12 Posts/Month", "4 Reels · 4 Carousels · 4 Static posts — all on-brand, all done for you."],
-              ["Comment-to-DM Automation", "Anyone who comments gets an instant private message turning them into a lead."],
-              ["Content Approval", "You see and approve everything before it goes live — always in control."],
-              ["Monthly Performance Snapshot", "Clear results every month in plain English — no dashboards, no confusion."],
-            ].map(([title, desc]) => (
-              <div key={title as string} className="rounded-2xl p-5" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(200,168,100,0.15)" }}>
-                <div className="w-7 h-7 rounded-full flex items-center justify-center mb-3" style={{ background: "rgba(200,168,100,0.12)", border: "1px solid rgba(200,168,100,0.25)" }}>
-                  <svg width="12" height="12" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="var(--gold)" strokeWidth="1.2"/><polyline points="6,10 9,13 14,7" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <div className="space-y-4">
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="rounded-2xl p-5" style={{ background: "rgba(255,250,246,0.72)", border: "1px solid rgba(201,122,122,0.25)" }}>
+                <p className="text-[10px] tracking-[0.16em] uppercase mb-4 font-bold" style={{ fontFamily: "'Jost', sans-serif", color: "var(--rose)" }}>Without an AI clone</p>
+                <div className="space-y-3">
+                  {before.map((t) => (
+                    <div key={t} className="flex gap-3 items-start">
+                      <span className="mt-1 h-4 w-4 rounded-full flex items-center justify-center text-[10px] font-black shrink-0" style={{ background: "rgba(201,122,122,0.12)", color: "var(--rose)" }}>x</span>
+                      <p className="m-0 text-sm leading-6" style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(30,15,10,0.68)" }}>{t}</p>
+                    </div>
+                  ))}
                 </div>
-                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.05rem", color: "var(--cream)", marginBottom: 6, lineHeight: 1.3 }}>{title as string}</p>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: "rgba(245,232,224,0.45)", lineHeight: 1.55 }}>{desc as string}</p>
+              </div>
+              <div className="rounded-2xl p-5" style={{ background: "rgba(255,250,246,0.72)", border: "1px solid color-mix(in oklab, var(--gold) 42%, transparent)" }}>
+                <p className="text-[10px] tracking-[0.16em] uppercase mb-4 font-bold" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>With your Dollhouse clone</p>
+                <div className="space-y-3">
+                  {after.map((t) => (
+                    <div key={t} className="flex gap-3 items-start">
+                      <span className="mt-1 h-4 w-4 rounded-full flex items-center justify-center shrink-0" style={{ background: "rgba(200,168,100,0.14)", color: "var(--gold)" }}><Check size={11} strokeWidth={3} /></span>
+                      <p className="m-0 text-sm leading-6" style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(30,15,10,0.68)" }}>{t}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-2xl p-5 sm:p-6" style={{ background: "rgba(255,250,246,0.78)", border: "1px solid color-mix(in oklab, var(--gold) 38%, transparent)", boxShadow: "0 22px 60px -42px rgba(90,45,35,0.55)" }}>
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                  <p className="text-[10px] tracking-[0.16em] uppercase mb-2 font-bold" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>Starter Plan</p>
+                  <p className="m-0 italic text-4xl" style={{ fontFamily: "'Cormorant Garamond', serif", color: "var(--rose)" }}>$1,000/mo</p>
+                  <p className="m-0 mt-1 text-sm" style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(30,15,10,0.52)" }}>plus $500 one-time setup</p>
+                </div>
+                <div className="rounded-2xl px-5 py-4 text-left sm:text-right" style={{ background: "rgba(255,255,255,0.5)", color: "var(--ink)", border: "1px solid rgba(200,168,100,0.24)" }}>
+                  <p className="m-0 text-[10px] tracking-[0.16em] uppercase font-bold" style={{ fontFamily: "'Jost', sans-serif" }}>Launch Timeline</p>
+                  <p className="m-0 mt-1 text-xl italic" style={{ fontFamily: "'Cormorant Garamond', serif", color: "var(--rose)" }}>Built in week 1</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-5xl mx-auto mb-16">
+          <p className="text-center text-[10px] tracking-luxe uppercase mb-3 font-semibold" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>Here's a breakdown of what you get</p>
+          <h3 className="text-center mb-8 italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: "clamp(2rem, 4vw, 3.4rem)", color: "var(--rose)" }}>A content engine with your clone at the center</h3>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {included.map(({ icon: Icon, title, desc }) => (
+              <div key={title} className="rounded-2xl p-5" style={{ background: "rgba(255,250,246,0.75)", border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)", boxShadow: "0 18px 48px -38px rgba(90,45,35,0.55)" }}>
+                <div className="w-9 h-9 rounded-full flex items-center justify-center mb-4" style={{ background: "rgba(200,168,100,0.12)", color: "var(--gold)" }}><Icon size={18} strokeWidth={1.8} /></div>
+                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.25rem", fontStyle: "italic", color: "var(--ink)", marginBottom: 8, lineHeight: 1.25 }}>{title}</p>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.86rem", color: "rgba(30,15,10,0.56)", lineHeight: 1.65 }}>{desc}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Bonuses */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <p className="text-center text-[10px] tracking-widest uppercase mb-8" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>3 Free Bonuses — Included With Every Plan</p>
+        <div className="max-w-5xl mx-auto mb-12 md:mb-16">
+          <p className="text-center text-[10px] tracking-luxe uppercase mb-3 font-semibold" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>Start today and get 3 free bonuses</p>
+          <h3 className="text-center mb-8 italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: "clamp(1.9rem, 3.8vw, 3.2rem)", color: "var(--rose)" }}>Everything we need to make your content system convert</h3>
           <div className="grid sm:grid-cols-3 gap-4">
-            {[
-              ["Free Social Media Audit", "We review your current presence and tell you exactly what we'll fix."],
-              ["Custom Voice AI Agent", "Answers missed calls, handles inquiries & books appointments 24/7."],
-              ["Nurture Automations", "Comment-to-DM + lead follow-up sequences — all built and active on day one."],
-            ].map(([title, desc]) => (
-              <div key={title as string} className="rounded-2xl p-5 text-center" style={{ background: "rgba(200,168,100,0.06)", border: "1px solid rgba(200,168,100,0.18)" }}>
-                <div className="inline-block px-3 py-1 rounded-full mb-3 text-[9px] tracking-widest uppercase" style={{ fontFamily: "'Jost', sans-serif", background: "rgba(200,168,100,0.12)", color: "var(--gold)", border: "1px solid rgba(200,168,100,0.25)" }}>Free Bonus</div>
-                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.05rem", color: "var(--cream)", marginBottom: 6 }}>{title as string}</p>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: "rgba(245,232,224,0.45)", lineHeight: 1.55 }}>{desc as string}</p>
+            {bonuses.map(({ icon: Icon, title, desc }) => (
+              <div key={title} className="rounded-2xl p-5" style={{ background: "rgba(255,250,246,0.72)", border: "1px solid color-mix(in oklab, var(--gold) 32%, transparent)" }}>
+                <div className="flex items-center justify-between gap-3 mb-5">
+                  <div className="px-3 py-1 rounded-full text-[9px] tracking-[0.16em] uppercase font-bold" style={{ fontFamily: "'Jost', sans-serif", background: "rgba(200,168,100,0.12)", color: "var(--gold)" }}>Free Bonus</div>
+                  <Icon size={20} color="var(--gold)" strokeWidth={1.8} />
+                </div>
+                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.25rem", fontStyle: "italic", color: "var(--ink)", marginBottom: 8 }}>{title}</p>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.86rem", color: "rgba(30,15,10,0.56)", lineHeight: 1.65 }}>{desc}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* CTA */}
         <div className="text-center">
-          <a href="/ai-clone" style={{ display: "inline-block", padding: "16px 44px", borderRadius: 999, background: "var(--gold)", color: "var(--ink)", fontFamily: "'Jost', sans-serif", fontSize: "0.75rem", letterSpacing: "0.16em", textTransform: "uppercase", textDecoration: "none", fontWeight: 700, marginRight: 12 }}>
-            See The Full AI Clone Offer →
+          <a href="/ai-clone" className="inline-flex items-center justify-center gap-2 mb-3 sm:mb-0 sm:mr-3 transition-transform hover:-translate-y-0.5" style={{ padding: "18px 34px", borderRadius: 999, background: "var(--ink)", color: "var(--cream)", fontFamily: "'Jost', sans-serif", fontSize: "0.72rem", letterSpacing: "0.18em", textTransform: "uppercase", textDecoration: "none", fontWeight: 700, boxShadow: "0 22px 44px -18px rgba(30,15,10,0.65)" }}>
+            See the full AI clone offer <ArrowRight size={15} strokeWidth={2.4} />
           </a>
-          <a href="#contact" style={{ display: "inline-block", padding: "16px 44px", borderRadius: 999, background: "transparent", color: "rgba(245,232,224,0.5)", fontFamily: "'Jost', sans-serif", fontSize: "0.75rem", letterSpacing: "0.16em", textTransform: "uppercase", textDecoration: "none", border: "1px solid rgba(245,232,224,0.15)" }}>
+          <a href="#contact" className="inline-flex items-center justify-center" style={{ padding: "17px 34px", borderRadius: 999, background: "rgba(255,250,246,0.52)", color: "var(--ink)", fontFamily: "'Jost', sans-serif", fontSize: "0.72rem", letterSpacing: "0.18em", textTransform: "uppercase", textDecoration: "none", border: "1px solid rgba(30,15,10,0.35)", fontWeight: 700 }}>
             Get a Free Proposal
           </a>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: "rgba(245,232,224,0.28)", marginTop: 16 }}>$1,000/mo · $500 one-time setup · 6-month minimum</p>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: "rgba(30,15,10,0.46)", marginTop: 18 }}>$1,000/mo · $500 one-time setup · 6-month minimum</p>
         </div>
-
       </div>
     </section>
   );
