@@ -1147,10 +1147,10 @@ function Pricing() {
       topBadge: { label: "Featured", tone: "gold" as "gold" | "pink" },
       cta: "Apply for Elite →",
       features: [
-        "3 platforms fully managed — Instagram, TikTok & Facebook — daily posting, nothing to think about",
+        "3 platforms fully managed — Instagram, TikTok & Facebook — nothing to post, nothing to manage",
         "AI clone or brand mascot across all 3 platforms — your face and voice, every single day",
         "12 AI clone videos/month — 4 per platform, always pinned as your signature content",
-        "36 posts/month — 4 Reels · 4 Carousels · 4 Static per platform, all on-brand",
+        "36 posts/month — 12 per platform (4 Reels · 4 Carousels · 4 Static), all on-brand",
         "Content approval before posting — you see and approve everything before it goes live",
         "Full ad management — Facebook, Instagram, TikTok & Google — all platforms, fully managed",
         "Advanced AI voice agent — handles calls, answers FAQs & books appointments 24/7",
