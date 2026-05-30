@@ -167,30 +167,69 @@ function WorkflowTab() {
     <div className="space-y-6">
       <SectionHeader label="Client Lifecycle" title="From lead to live — step by step." sub="Every step you need to do when a new client signs on. Check items off as you go." />
 
+      {/* ── How Our Process Works ───────────────────────────── */}
+      <div className="rounded-2xl p-5 mb-2" style={{ background: "rgba(200,168,100,0.07)", border: "1px solid rgba(200,168,100,0.2)" }}>
+        <p className="text-[9px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Our Standard Process — Every Client</p>
+        <div className="grid sm:grid-cols-2 gap-3">
+          {[
+            ["📅 Start Dates", "All clients start on a Monday — no exceptions. This keeps onboarding clean and predictable."],
+            ["⏰ Sign-up Cutoff", "Thursday is the cutoff. Sign on Thursday or before → start the following Monday. Sign on Friday or weekend → start the Monday after that."],
+            ["📋 Calls", "Client chooses weekly or bi-weekly strategy calls. Each call is 45 min – 1 hour. Flat rate — no call length surprises."],
+            ["💰 Ad Spend", "Flat rate management fees only. We never take a percentage of ad spend. Ad spend is paid directly by the client to the platform — never through us."],
+          ].map(([title, desc]) => (
+            <div key={title as string} className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.6)", border: "1px solid rgba(200,168,100,0.15)" }}>
+              <p style={{ fontFamily: FONT_LUXE, fontSize: "0.75rem", color: "var(--ink)", fontWeight: 600, marginBottom: 4 }}>{title}</p>
+              <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.6)", lineHeight: 1.55 }}>{desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <Phase day="Lead Stage" title="Before They Sign" items={[
         { text: "Discovery call booked via contact form or DM", sub: "Use the call to learn about their goals, platforms, budget, and how they're doing content now." },
-        { text: "Send proposal within 24 hours of the call", sub: "Include the plan tier, what's covered, ad spend note (minimum $500/mo paid directly to Meta), and contract link." },
+        { text: "Send proposal same day or within 24 hours of the call", sub: "Include the plan tier, what's covered, ad spend note ($500 min / $1k recommended — paid directly to Meta), and contract link." },
         { text: "Follow up if no response in 48 hours", sub: "One follow-up email or DM. Keep it warm, not pushy." },
-        { text: "Contract signed + first invoice paid before any work begins" },
+        { text: "Contract signed + setup invoice paid before any work begins" },
+        { text: "Confirm their start date — always the next Monday after their cutoff", sub: "If they sign Monday–Thursday → they start the following Monday. If they sign Friday or weekend → start is the Monday after that. Tell them the exact date." },
       ]} />
 
-      <Phase day="Day 1" title="1-on-1 Kickoff Call" items={[
+      <Phase day="Friday" title="Onboarding Day — Internal" items={[
+        { text: "Send welcome email with proposal summary + onboarding questionnaire link", sub: "Direct them to shopdollhouse.co/onboarding — this collects everything we need to build their brand room and marketing plan." },
+        { text: "Review questionnaire once submitted — same day if possible", sub: "This is your research foundation. Read every answer carefully before assigning." },
+        { text: "Assign account manager based on best fit for the project", sub: "Match the client's industry, personality, and goals to the right team member. Do this on Friday so they're briefed before Monday." },
+        { text: "Brief the assigned account manager", sub: "Share the questionnaire answers, the plan tier, the start date, and any notes from the discovery call." },
+        { text: "Set up client in CRM", sub: "Create contact, pipeline stage, add tags, assign to the correct workflow/automation. Must be done Friday." },
+        { text: "Send calendar invite for Monday kickoff call", sub: "45–60 minutes. Include the client's questionnaire summary in the invite notes so they know you've done your homework." },
+      ]} />
+
+      <Phase day="Monday" title="Kickoff Call — Meeting of the Minds" items={[
         { text: "Welcome them and set the tone — make them feel like they made the right decision" },
-        { text: "Clarify what problems they want to solve", sub: "Ask: 'What's your biggest problem right now? Missed calls? Not enough leads? No time for content?' Get them talking — the more they say, the better you can tailor the work." },
-        { text: "Walk them through the key features of their system", sub: "Show them what's running: content scheduling, automations, missed call text back, comment-to-DM. Make it feel like their business just got a team." },
-        { text: "Set expectations for next steps — when content goes live, what they'll see in the app" },
-        { text: "Make sure the account is set up A–Z before you hang up:", sub: "✓ Log in together (confirm access works) ✓ Connect their business email/domain ✓ Add their business phone number ✓ Load their calendar or booking link ✓ Import their contact list ✓ Trigger a test workflow (send test SMS so they see it work) ✓ Customize their first message template to sound like their brand ✓ Walk them through the conversations tab" },
+        { text: "Walk through the onboarding deck together", sub: "Use the Client Onboarding Call deck in the Proposal Deck tab. Walk through every section together on the call." },
+        { text: "Confirm their platform access and get admin permissions live on the call", sub: "Facebook Business Manager → Add as Admin. TikTok Business Center → Invite as Operator. Google Business → Add as Manager. Do this together so nothing is delayed." },
+        { text: "Clarify their goals, their audience, and what success looks like in 90 days" },
+        { text: "Confirm call preference — weekly or bi-weekly (45 min – 1 hr)", sub: "Book the first recurring call before you hang up. Put it in the calendar right now." },
+        { text: "Set up account A–Z before you hang up:", sub: "✓ Automation workflows live ✓ Comment-to-DM active ✓ Missed call text-back on ✓ Booking link connected ✓ Calendar synced ✓ CRM pipeline updated" },
       ]} />
 
-      <Phase day="Day 1–2" title="Onboarding" items={[
-        { text: "Send welcome email with onboarding questionnaire", sub: "Brand voice, target audience, competitors they love, content pillars, posting goals." },
-        { text: "Send the client their launch timeline right away", sub: "They need to know exactly what happens next or they'll feel anxious. See the timeline template below — fill in the real dates and send it with the welcome email." },
-        { text: "Request all brand assets", sub: "Logo files (PNG + SVG), brand colours (hex codes), fonts, any existing photos or video. Don't start creating anything until you have these." },
-        { text: "Ask for 2–3 competitor accounts they love", sub: "Ask: 'Are there any businesses — local or anywhere — whose social media you really like? I want to understand the vibe you're going for.' This saves you from creating content in the wrong direction." },
-        { text: "Get social media logins or request admin access", sub: "Facebook Business Manager, Instagram, TikTok, Google Business if applicable." },
-        { text: "Set up client in CRM", sub: "Create contact, pipeline stage, add tags, assign to the correct workflow/automation. Every client must be in the CRM before any work starts." },
-        { text: "Verify Meta ad account access + pixel is installed", sub: "If no pixel — walk them through installing it or do it via GTM." },
-        { text: "Ask the 4 client interview questions — document the answers:", sub: "1) How did you find out about us?  2) What tools were you using before?  3) What results do you most want to see?  4) How will you know this is working for your business? — These answers shape your strategy and become your case study later." },
+      <Phase day="Week 1–1.5" title="Market Research & Content Creation" items={[
+        { text: "Deep dive into their industry, competitors, and audience", sub: "Research their top 3 local competitors. What are they posting? What's working? What's the gap your client can own?" },
+        { text: "Build the complete content strategy", sub: "Content pillars, hashtag banks, caption tone, posting schedule, best times per platform. Use the Client Content Strategy prompt in the Prompts tab." },
+        { text: "Create all ads and posts for the first content cycle", sub: "Build every piece of content — AI clone videos, reels, carousels, static posts, and ad creatives — all in one batch. Never create one post at a time." },
+        { text: "Prepare the content approval package to send to client", sub: "Send everything together in one Google Drive folder or shared document. Label every piece clearly. Include a short note explaining the strategy behind it." },
+      ]} />
+
+      <Phase day="Approval" title="Client Approval" items={[
+        { text: "Send the full content batch for client review", sub: "Email or share via Google Drive. Give them 48 hours to review and respond. If they don't respond in 48 hours — send one follow-up." },
+        { text: "Collect all feedback in one round", sub: "Ask clients to compile ALL feedback at once — not one piece at a time. This saves hours of back-and-forth." },
+        { text: "Make revisions and resubmit if needed", sub: "One revision round is included. Major concept changes count as a new round — flag this clearly if it comes up." },
+        { text: "Get written green light before anything goes live", sub: "A reply that says 'looks good' or 'approved' counts. Screenshot it and save it in their folder." },
+      ]} />
+
+      <Phase day="Go Live" title="Launch Everything" items={[
+        { text: "Schedule all approved content in the social media planner", sub: "Set it and forget it — the system posts everything automatically from here." },
+        { text: "Activate all ad campaigns", sub: "Launch Meta ads first. Monitor daily for the first 3 days to catch any issues early." },
+        { text: "Confirm all automations are firing correctly", sub: "Test comment-to-DM, missed call text-back, and lead follow-up sequences. Send yourself a test as the client would experience it." },
+        { text: "Send launch confirmation to client", sub: "Let them know everything is live. Tell them what to expect in the first 7–14 days. Manage expectations — results build over time." },
       ]} />
 
       {/* Onboarding Questionnaire Card */}
@@ -7430,7 +7469,7 @@ const QB_ADDONS: QBAddon[] = [
   { key: "gbp",               type: "monthly", price: 250,  emoji: "map-pin",     name: "Google Business Profile",             desc: "Weekly posts + review monitoring + Q&A" },
   { key: "extra_platform",    type: "monthly", price: 400,  emoji: "plus-circle", name: "Extra Platform Add-On",               desc: "Add Pinterest, YouTube, or X management" },
   { key: "fb_ads",            type: "monthly", price: 500,  emoji: "megaphone",   name: "Meta / Facebook Ads Management",      desc: "Ad campaign setup, audience targeting, creative, and monthly optimisation. Recommended: $150/mo client boost budget paid direct to Meta." },
-  { key: "google_ads",        type: "monthly", price: 700,  emoji: "target",      name: "Google Ads Management",               desc: "Campaign setup, copy, optimisation (ad spend separate)" },
+  { key: "google_ads",        type: "monthly", price: 750,  emoji: "target",      name: "Google Ads Management",               desc: "Flat rate $750/mo (up to $3,499 ad spend) · $850/mo ($3,500–$7,000 ad spend) · Ad spend paid directly by client to Google — we never take a %" },
   { key: "mascot_content",    type: "monthly", price: 600,  emoji: "masks",       name: "Mascot / AI Character Content",        desc: "3–4 pillar mascot videos/mo + daily branded posts featuring your AI character. Pinned content + feed filler." },
   { key: "website_hosting",   type: "monthly", price: 97,   emoji: "globe",       name: "Website Hosting & Maintenance",       desc: "Hosting, updates, uptime monitoring" },
   // ── One-Time Services ────────────────────────────────────────────────────
@@ -9477,12 +9516,12 @@ const PROPOSAL_DECKS: PDeck[] = [
         layout: "steps", bg: "dark",
         heading: "What Happens Next",
         steps: [
-          { n: "48h", title: "Send your assets", desc: "Upload everything to your media folder. Photos, logo, recording, brand colours. The faster we get it, the faster you launch." },
-          { n: "Wk 1", title: "Brand Room & AI Clone", desc: "We build your brand room — your aesthetic, your content calendar, your AI clone or brand character. Everything built to match your vision." },
-          { n: "Wk 2", title: "Content draft & approval", desc: "You receive your first batch of content for review. You approve or request revisions within 48 hours. Then we finalise." },
-          { n: "Wk 2–3", title: "Launch", desc: "Your content goes live. Your automations are running. Your brand is active online every single day — without you lifting a finger." },
+          { n: "Friday", title: "You get assigned your account manager", desc: "After you sign, we review your questionnaire and match you with the best account manager for your project. You'll hear from them before Monday." },
+          { n: "Monday", title: "Kickoff call — meeting of the minds", desc: "Your start date is always a Monday. We meet, get your access set up live on the call, confirm your strategy, and book your recurring check-in calls." },
+          { n: "Wk 1–1.5", title: "Market research & content creation", desc: "We research your market, build your content strategy, create all your posts and ads, and prepare your full first content batch for approval." },
+          { n: "Approval", title: "You review & approve", desc: "You see everything before it goes live. Give us the green light and we launch — everything goes live immediately after approval." },
         ],
-        script: "Here's the exact timeline from this moment forward. We move fast — I want you fully launched in 2 to 3 weeks. Your only job right now is to send us your assets within 48 hours. After that, we take it completely from here.",
+        script: "Here's exactly what happens after today. All our clients start on a Monday — so your start date is already set. By Friday you'll know who your account manager is. By Monday we're on a call together and your system is being set up live. By week 1.5 we're presenting your content for approval. And once you say go — everything launches. The whole system goes live at once.",
       },
       {
         layout: "title", bg: "dark",
@@ -9663,7 +9702,7 @@ function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
   ];
   const ADDONS = [
     { id: "meta_ads",  name: "Meta Ads Management",  price: 500,  note: "+ ad spend paid to Meta" },
-    { id: "google",    name: "Google Ads Management", price: 750,  note: "+ ad spend paid to Google" },
+    { id: "google",    name: "Google Ads Management", price: 750,  note: "$750 (≤$3.5k spend) · $850 ($3.5k–$7k spend) · paid direct to Google" },
     { id: "email_sms", name: "Email & SMS Sequences", price: 400,  note: "Automated nurture flows" },
     { id: "ai_video",  name: "AI Avatar Videos",      price: 800,  note: "4–8 branded videos/mo" },
   ];
