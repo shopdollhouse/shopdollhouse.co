@@ -1899,7 +1899,7 @@ function Pricing() {
       <div className="mt-12 max-w-2xl mx-auto rounded-2xl px-8 py-6 text-center space-y-4"
         style={{ background: "rgba(200,168,100,0.07)", border: "1px solid rgba(200,168,100,0.22)" }}>
         <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "var(--ink)", opacity: 0.75, fontStyle: "italic", lineHeight: 1.6 }}>
-          <span style={{ color: "var(--gold)", fontStyle: "normal", fontWeight: 600 }}>$500 one-time setup fee</span> — due only if you continue after the trial. It includes complete system buildout, landing pages, calendar integration, automation sequences & CRM setup.
+          <span style={{ color: "var(--gold)", fontStyle: "normal", fontWeight: 600 }}>$500 one-time setup fee</span> — required upfront to start your trial. Covers complete system buildout, landing pages, calendar integration, automation sequences & CRM setup. After your trial, choose a 6 or 12-month retainer.
         </p>
         <div style={{ height: "1px", background: "rgba(200,168,100,0.2)" }} />
         <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "var(--ink)", opacity: 0.7, fontStyle: "italic", lineHeight: 1.6 }}>
@@ -2277,7 +2277,7 @@ function FAQ() {
     ["What is the AI clone or brand character?", "We create either an AI version of you (your face, your voice, your energy — posting content without you filming) or a custom brand character built for your business. Either way, your content goes live every day on autopilot."],
     ["How does the 14-day free trial work?", "Founding clients can start with a 14-day trial so we can audit the brand, map the content direction, create the first sample assets, and show how the system would work before you commit to the monthly retainer."],
     ["What's included in the $500 setup fee?", "A complete system buildout — landing pages, calendar integration, automated follow-up sequences, and CRM setup, all configured before your first month begins. One-time only, never charged again."],
-    ["Is there a minimum commitment?", "Not during the 14-day founding client trial. If you decide to continue after the trial, all plans start with a 6-month minimum to build momentum and train the AI to your brand voice. After that, you can continue month-to-month or lock in 12 months for 10% off."],
+    ["Is there a minimum commitment?", "To start your 14-day free trial, you pay the $500 setup fee upfront — this is never waived. After your trial, all plans start with a 6-month minimum. You can then continue month-to-month or lock in 12 months for 10% off."],
     ["What kinds of businesses do you work with?", "Local service businesses, boutique brands, coaches, creatives, and entrepreneurs who want to show up online consistently without doing it themselves."],
     ["What is your refund policy?", "All sales are final. Once your system is built and your plan is active, the work has begun — but if you have concerns at any point, reach out and we'll work through it."],
   ];
