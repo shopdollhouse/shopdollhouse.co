@@ -439,6 +439,60 @@ function Hero() {
 }
 
 /* ─── Trust bar ───────────────────────────────────────── */
+function PlatformSymbol({ name }: { name: string }) {
+  const common = {
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.35,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+  };
+
+  if (name === "Meta") {
+    return (
+      <svg viewBox="0 0 48 32" aria-hidden className="h-8 w-12">
+        <path {...common} d="M6 23c4.2-12.4 8.4-18 13-18 3.3 0 6.4 4.5 9.8 9.6C32.8 20.6 36.5 26 41 26c3.6 0 5.8-3 5.8-7.1 0-6-4.6-13.9-10.4-13.9-4.5 0-8.9 5.9-12.4 12.1C20.4 23.5 17.4 26 13.6 26 9 26 5.2 22 5.2 17.8c0-3.6 2.4-6.5 5.6-6.5 2.8 0 5.5 2.1 8.5 6.4" />
+      </svg>
+    );
+  }
+
+  if (name === "Google") {
+    return (
+      <svg viewBox="0 0 40 40" aria-hidden className="h-8 w-8">
+        <circle {...common} cx="18" cy="18" r="10" />
+        <path {...common} d="M25 25l7 7M18 13v10M13 18h10" />
+      </svg>
+    );
+  }
+
+  if (name === "TikTok") {
+    return (
+      <svg viewBox="0 0 36 40" aria-hidden className="h-8 w-8">
+        <path {...common} d="M20 6v22.5a7 7 0 1 1-7-7" />
+        <path {...common} d="M20 8c2 5.4 5.4 8.2 10 8.6" />
+      </svg>
+    );
+  }
+
+  if (name === "Instagram") {
+    return (
+      <svg viewBox="0 0 40 40" aria-hidden className="h-8 w-8">
+        <rect {...common} x="8" y="8" width="24" height="24" rx="8" />
+        <circle {...common} cx="20" cy="20" r="6" />
+        <circle cx="27" cy="13" r="1.6" fill="currentColor" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 40 40" aria-hidden className="h-8 w-8">
+      <rect {...common} x="9" y="12" width="22" height="20" rx="3" />
+      <path {...common} d="M15 12V9.5A2.5 2.5 0 0 1 17.5 7h5A2.5 2.5 0 0 1 25 9.5V12M15 18v8M20 18v8M25 18v8" />
+      <circle cx="15" cy="15" r="1.3" fill="currentColor" />
+    </svg>
+  );
+}
+
 function TrustBar() {
   const logos = ["Meta", "Google", "TikTok", "Instagram", "LinkedIn"];
   return (
@@ -449,14 +503,30 @@ function TrustBar() {
       >
         Built on the world's top platforms
       </p>
-      <div className="mt-7 flex flex-wrap justify-center items-center gap-x-14 gap-y-4 text-[var(--ink)]/60">
+      <div className="mt-7 flex flex-wrap justify-center items-center gap-x-12 gap-y-6 text-[var(--ink)]/60">
         {logos.map((l) => (
-          <span
+          <div
             key={l}
-            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.6rem", fontStyle: l === "BuzzFeed" || l === "HuffPost" ? "italic" : "normal", fontWeight: l === "HuffPost" ? 700 : 400 }}
+            className="group flex min-w-24 flex-col items-center gap-3 transition-colors hover:text-[var(--rose)]"
           >
-            {l}
-          </span>
+            <span
+              className="flex h-14 w-14 items-center justify-center rounded-full border bg-white/45 text-[var(--gold)] transition-transform group-hover:-translate-y-0.5"
+              style={{
+                borderColor: "color-mix(in oklab, var(--gold) 34%, transparent)",
+                boxShadow: "0 16px 34px -28px rgba(90,45,35,0.55)",
+              }}
+            >
+              <PlatformSymbol name={l} />
+            </span>
+            <span
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: "1.35rem",
+              }}
+            >
+              {l}
+            </span>
+          </div>
         ))}
       </div>
     </section>
