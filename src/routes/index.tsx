@@ -30,6 +30,30 @@ const DoorIcon = ({ className = "" }: { className?: string }) => (
   <img src={archMark} alt="" className={className} />
 );
 
+const PlanFeatureIcon = ({ index, filled }: { index: number; filled: boolean }) => {
+  const color = filled ? "#c97a7a" : "var(--gold)";
+  const bg = filled ? "rgba(201,122,122,0.13)" : "rgba(200,168,100,0.13)";
+  const icons = [
+    <path key="spark" d="M8 1.8l1.45 4.25L13.7 7.5 9.45 8.95 8 13.2 6.55 8.95 2.3 7.5l4.25-1.45L8 1.8Z" />,
+    <path key="play" d="M5.2 3.4v9.2l7.4-4.6-7.4-4.6Z" />,
+    <path key="chat" d="M3 4.2h10v6.3H8.2L5 13.1v-2.6H3V4.2Z" />,
+    <path key="calendar" d="M3 4.4h10v8.2H3V4.4Zm0 2.4h10M5.4 2.9v2.4M10.6 2.9v2.4" />,
+    <path key="chart" d="M3 12.3h10M4.5 10.6V8.2M8 10.6V5.4M11.5 10.6V3.7" />,
+    <path key="phone" d="M5.1 2.9l1.2 2.5-1.1 1.1c.9 1.8 2.4 3.2 4.2 4.2l1.1-1.1 2.5 1.2-.7 2.2c-.2.5-.7.8-1.2.7C6 13 2.9 9.9 2.3 4.9c-.1-.5.2-1 .7-1.2l2.1-.8Z" />,
+  ];
+
+  return (
+    <span
+      className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
+      style={{ background: bg, color }}
+    >
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.55" strokeLinecap="round" strokeLinejoin="round" style={{ width: "14px", height: "14px" }}>
+        {icons[index % icons.length]}
+      </svg>
+    </span>
+  );
+};
+
 /* ─── Shared ──────────────────────────────────────────── */
 const Eyebrow = ({ children }: { children: React.ReactNode }) => (
   <p
@@ -1520,8 +1544,10 @@ function Pricing() {
         "3 AI clone videos pinned at the top — your signature content, always front and centre",
         "12 posts/month — 4 Reels · 4 Carousels · 4 Static posts, all on-brand",
         "Content approval before posting — you see and approve everything before it goes live",
+        "Starter content strategy — offer angle, content pillars, caption direction & posting rhythm",
         "Comment-to-DM automation — anyone who comments gets an instant private message turning them into a lead",
-        "Monthly performance snapshot — follower growth, reach & top posts in plain English",
+        "Basic lead follow-up setup — CRM pipeline, booking link, and nurture flow connected during setup",
+        "Monthly performance snapshot — follower growth, reach, top posts & next steps in plain English",
       ],
     },
     {
@@ -1790,7 +1816,7 @@ function Pricing() {
 
                 {/* Features */}
                 <ul className="mt-7 space-y-3.5 flex-1 w-full text-left">
-                  {t.features.map((f) => (
+                  {t.features.map((f, idx) => (
                     <li
                       key={f}
                       className="flex items-start gap-3"
@@ -1800,14 +1826,7 @@ function Pricing() {
                         color: isFilled ? "rgba(250,243,234,0.85)" : "rgba(30,15,10,0.85)",
                       }}
                     >
-                      <span
-                        className="mt-0.5 shrink-0"
-                        style={{ color: isFilled ? "#c97a7a" : "var(--gold)" }}
-                      >
-                        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "13px", height: "13px" }}>
-                          <path d="M2.5 8.5L6 12L13.5 4.5" />
-                        </svg>
-                      </span>
+                      <PlanFeatureIcon index={idx} filled={isFilled} />
                       <span>{f}</span>
                     </li>
                   ))}
