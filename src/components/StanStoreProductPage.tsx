@@ -1,6 +1,15 @@
 import type { BrandProduct } from "@/components/BrandProductSalesPage";
 import archMark from "@/assets/arch-mark.svg";
 
+type StanStoreSalesDetails = {
+  hook: string;
+  subhook: string;
+  valueStack: string[];
+  shift: { before: string; after: string }[];
+  objection: string;
+  close: string;
+};
+
 const FONT_DISPLAY = "'Cormorant Garamond', serif";
 const FONT_SCRIPT = "'Allura', cursive";
 const FONT_BODY = "'DM Sans', sans-serif";
@@ -108,8 +117,48 @@ function SectionHeader({ eyebrow, title }: { eyebrow: string; title: string }) {
   );
 }
 
+const salesDetails: Record<BrandProduct["accent"], StanStoreSalesDetails> = {
+  brand: {
+    hook: "Build the brand people understand, trust, and buy from.",
+    subhook: "For the founder who is ready to stop changing direction and finally create a real plan for the brand she keeps imagining.",
+    valueStack: ["17 guided rooms", "Offer + pricing clarity", "Launch roadmap", "Content direction", "Save + export", "Private access"],
+    shift: [
+      { before: "Ideas scattered across notes", after: "One organized brand strategy" },
+      { before: "Posting without a plan", after: "Content tied to your offer" },
+      { before: "Unsure what to sell", after: "Clear products and positioning" },
+    ],
+    objection: "You do not need to be experienced. You just need a guided place to make the right decisions in the right order.",
+    close: "If you are serious about building a brand, this is the foundation you finish before you spend more money on logos, templates, content, or ads.",
+  },
+  workbook: {
+    hook: "Turn your brand idea into a clear foundation you can actually use.",
+    subhook: "For the founder who has the vision, but needs guided prompts to organize the audience, offer, message, and next steps.",
+    valueStack: ["Interactive workbook", "Bonus PDF", "Audience clarity", "Offer direction", "Content pillars", "Launch checklist"],
+    shift: [
+      { before: "Overthinking where to start", after: "A simple guided path" },
+      { before: "Your offer feels vague", after: "Clear value and direction" },
+      { before: "Content feels random", after: "Pillars you can post from" },
+    ],
+    objection: "You do not need a polished brand yet. This is the first step for getting clear before you design, promote, or hire help.",
+    close: "If your ideas are everywhere, start here. This workbook helps you leave with answers you can use on your website, socials, offer, and launch plan.",
+  },
+  ai: {
+    hook: "Never stare at a blank caption, email, or launch post again.",
+    subhook: "50+ brand-building prompts that help you turn ideas into captions, hooks, emails, offer copy, launch posts, and sales messaging faster.",
+    valueStack: ["50+ prompts", "8 prompt rooms", "Captions + hooks", "Email prompts", "Offer copy", "Launch content"],
+    shift: [
+      { before: "Blank page stress", after: "Ready-to-customize prompts" },
+      { before: "Generic AI output", after: "Brand-specific direction" },
+      { before: "Slow content creation", after: "Faster captions, emails, and copy" },
+    ],
+    objection: "You do not need paid ChatGPT. You just copy a prompt, add your brand details, and use it with your preferred AI writing tool.",
+    close: "At $17, this is the fastest way to stop overthinking your content and start getting usable words on the page today.",
+  },
+};
+
 export function StanStoreProductPage({ product }: { product: BrandProduct }) {
   const allSalesFinal = product.faqs.find((faq) => faq.q.toLowerCase().includes("refund"))?.a ?? "Because this is a digital product with instant access, all sales are final.";
+  const details = salesDetails[product.accent];
 
   return (
     <main className="min-h-screen bg-[var(--blush)] text-[var(--ink)]">
@@ -124,12 +173,28 @@ export function StanStoreProductPage({ product }: { product: BrandProduct }) {
           </h1>
           <p className="mt-6 text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", letterSpacing: "0.35em", textTransform: "uppercase", fontWeight: 700 }}>The Dollhouse</p>
           <p className="mx-auto mt-8 max-w-3xl text-[var(--ink)]/76" style={{ fontFamily: FONT_BODY, fontSize: "clamp(1.05rem, 2.5vw, 1.35rem)", lineHeight: 1.65 }}>
-            {product.tagline}
+            {details.hook}
+          </p>
+          <p className="mx-auto mt-4 max-w-2xl text-[var(--ink)]/58" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.7 }}>
+            {details.subhook}
           </p>
           <div className="mx-auto mt-8 inline-flex flex-wrap items-center justify-center gap-3 rounded-full border border-[var(--gold)]/30 bg-white/36 px-5 py-3 text-[var(--ink)]/62" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>
             <span>{product.price}</span>
             {product.regular && <span className="text-[var(--ink)]/28 line-through">{product.regular}</span>}
             <span>{product.value ?? "Instant access"}</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[var(--cream)] px-5 py-10 md:px-8 md:py-14">
+        <div className="mx-auto max-w-6xl rounded-[28px] bg-white/62 p-5 md:p-7" style={{ border: "1px solid color-mix(in oklab, var(--gold) 24%, transparent)" }}>
+          <p className="text-center text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase" }}>What You Receive</p>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {details.valueStack.map((item) => (
+              <div key={item} className="rounded-2xl bg-[var(--blush)]/50 px-4 py-4 text-center text-[var(--ink)]/72" style={{ border: "1px solid color-mix(in oklab, var(--gold) 22%, transparent)", fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.13em", textTransform: "uppercase" }}>
+                {item}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -180,6 +245,24 @@ export function StanStoreProductPage({ product }: { product: BrandProduct }) {
 
       <section className="bg-[var(--cream)] px-5 py-16 md:px-8 md:py-24">
         <div className="mx-auto max-w-6xl">
+          <SectionHeader eyebrow="The Transformation" title="Before vs. After" />
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {details.shift.map((item) => (
+              <article key={item.before} className="overflow-hidden rounded-[26px] bg-white/68" style={{ border: "1px solid color-mix(in oklab, var(--gold) 26%, transparent)" }}>
+                <div className="bg-[var(--ink)] px-5 py-4 text-[var(--cream)]/74" style={{ fontFamily: FONT_BODY, fontSize: "0.92rem" }}>
+                  Before: {item.before}
+                </div>
+                <div className="px-5 py-5">
+                  <p className="text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.55rem", lineHeight: 1.1 }}>After: {item.after}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-5 py-16 md:px-8 md:py-24" style={{ background: "linear-gradient(180deg, #fff8f3 0%, #f8e5df 100%)" }}>
+        <div className="mx-auto max-w-6xl">
           <SectionHeader eyebrow="What's Inside" title={product.insideTitle} />
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {product.inside.map((item) => (
@@ -190,6 +273,15 @@ export function StanStoreProductPage({ product }: { product: BrandProduct }) {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="bg-[var(--cream)] px-5 py-14 md:px-8 md:py-18">
+        <div className="mx-auto max-w-4xl rounded-[30px] bg-[var(--ink)] p-7 text-center text-[var(--cream)] md:p-10">
+          <p className="text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase" }}>Read This First</p>
+          <p className="mx-auto mt-4 max-w-2xl text-[var(--cream)]/78" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.7rem, 4vw, 2.6rem)", lineHeight: 1.18 }}>
+            {details.objection}
+          </p>
         </div>
       </section>
 
@@ -241,6 +333,9 @@ export function StanStoreProductPage({ product }: { product: BrandProduct }) {
           <h2 className="mt-4 text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 6vw, 4.2rem)", lineHeight: 1, fontWeight: 400 }}>Ready for done-for-you growth?</h2>
           <p className="mx-auto mt-5 max-w-2xl text-[var(--ink)]/64" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.75 }}>
             Once your offer and direction are clear, The Dollhouse can help with managed marketing: content, AI clone videos, automation, and lead follow-up handled for you.
+          </p>
+          <p className="mx-auto mt-6 max-w-2xl text-[var(--ink)]/72" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.5rem, 4vw, 2.25rem)", lineHeight: 1.18 }}>
+            {details.close}
           </p>
           <div className="mx-auto mt-8 grid max-w-2xl gap-3 rounded-[26px] bg-white/42 p-5 text-[var(--ink)]/64 sm:grid-cols-2" style={{ border: "1px solid color-mix(in oklab, var(--gold) 24%, transparent)" }}>
             <p style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.14em", textTransform: "uppercase" }}>Product: {product.price}</p>
