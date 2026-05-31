@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
+import archMark from "@/assets/arch-mark.svg";
 
 export const Route = createFileRoute("/quiz")({ component: QuizPage });
 
@@ -7,109 +8,176 @@ const FONT_DISPLAY = "'Cormorant Garamond', serif";
 const FONT_BODY = "'DM Sans', sans-serif";
 const FONT_LUXE = "'Jost', sans-serif";
 const FONT_SCRIPT = "'Allura', cursive";
+const BRAND_KIT_URL = "/brand-room/brand-kit";
+const WORKBOOK_URL = "/brand-room/workbook";
+const AI_KIT_URL = "/brand-room/ai-prompt-kit";
 
-/* ─── Quiz data ───────────────────────────────────────── */
-const QUESTIONS = [
+type ResultKey = "foundation" | "offer" | "content" | "launch";
+
+const QUESTIONS: {
+  q: string;
+  helper: string;
+  options: { label: string; type: ResultKey }[];
+}[] = [
   {
-    q: "Where are you in your brand journey?",
+    q: "Where are you getting stuck with your brand?",
+    helper: "Choose the answer that sounds most like what happens when you sit down to build.",
     options: [
-      { label: "Starting from scratch — I have a vision but no brand yet", type: "A" },
-      { label: "I have something, but it feels scattered and inconsistent", type: "B" },
-      { label: "My brand looks okay — I just can't nail the content side", type: "C" },
-      { label: "I want it all handled for me — content, ads, automation", type: "D" },
+      { label: "I have ideas everywhere, but no clear foundation or direction.", type: "foundation" },
+      { label: "I am not sure what to sell, how to price it, or how to package it.", type: "offer" },
+      { label: "I want to post, but I never know what to say or what content matters.", type: "content" },
+      { label: "I am ready to launch, but I need a clear plan before I move.", type: "launch" },
     ],
   },
   {
-    q: "What's your biggest challenge right now?",
+    q: "What would make you feel more confident this month?",
+    helper: "This helps us match you to the room inside The Dollhouse you need first.",
     options: [
-      { label: "Colors, fonts, logo, voice — I don't even know where to begin", type: "A" },
-      { label: "My brand doesn't feel like me and I'm not attracting the right clients", type: "B" },
-      { label: "I spend hours writing captions and still hate what comes out", type: "C" },
-      { label: "I'm too busy running my business to think about any of this", type: "D" },
+      { label: "A guided roadmap that tells me what to decide first, second, and third.", type: "foundation" },
+      { label: "A stronger offer, audience, and pricing plan before I start promoting.", type: "offer" },
+      { label: "Content pillars, prompts, and visibility ideas I can actually follow.", type: "content" },
+      { label: "A launch checklist so I can stop preparing forever and finally sell.", type: "launch" },
     ],
   },
   {
-    q: "How do you want to fix it?",
+    q: "What have you already tried?",
+    helper: "Be honest. The quiz works best when you do not answer like the polished version of yourself.",
     options: [
-      { label: "A step-by-step system that walks me through every decision", type: "A" },
-      { label: "A guided workbook to get clear on my positioning and direction", type: "B" },
-      { label: "Ready-to-use prompts I can customize and post instantly", type: "C" },
-      { label: "A team that handles everything while I focus on my clients", type: "D" },
+      { label: "Saved random advice, templates, and TikToks, but never turned it into a system.", type: "foundation" },
+      { label: "Changed my offer more than once because I was not sure what people would buy.", type: "offer" },
+      { label: "Posted inconsistently, then felt discouraged when it did not lead to sales.", type: "content" },
+      { label: "Planned a launch in my head, but did not have the steps organized.", type: "launch" },
+    ],
+  },
+  {
+    q: "If you had one private strategy suite, what would you want it to do?",
+    helper: "Pick the outcome that would create the most relief.",
+    options: [
+      { label: "Organize my vision, brand identity, audience, and business direction in one place.", type: "foundation" },
+      { label: "Help me create offers, products, pricing, and a brand people understand.", type: "offer" },
+      { label: "Give me prompts, content planning, and visibility strategy without overwhelm.", type: "content" },
+      { label: "Turn my brand, content, and product plan into a real launch roadmap.", type: "launch" },
     ],
   },
 ];
 
-const RESULTS = {
-  A: {
-    type: "The Architect",
-    tagline: "You need a brand foundation — built right from the start.",
-    body: "You're ready to build something real, but you need a clear system to guide every decision. The Brand Kit Blueprint walks you through every brand decision step by step — colors, fonts, voice, visual identity. Nothing left to guesswork.",
-    product: "The Dollhouse Brand Kit Blueprint",
-    price: "$97",
-    originalPrice: "$145",
-    cta: "Get the Blueprint →",
-    mailto: "mailto:hello@shopdollhouse.co?subject=Brand%20Kit%20Blueprint",
-    alt: "Or grab everything in The Brand Room for $127 →",
-    altHref: "/brand-room#bundle",
+const RESULTS: Record<ResultKey, {
+  type: string;
+  tagline: string;
+  body: string;
+  rooms: string[];
+}> = {
+  foundation: {
+    type: "The Brand Foundation Builder",
+    tagline: "You do not need more random advice. You need one clear place to build from.",
+    body: "Your next move is to organize the vision, voice, audience, and identity before you keep posting. The Private Strategy Suite gives you 17 guided rooms so your brand stops living in notes, screenshots, and half-finished ideas.",
+    rooms: ["Brand Foundation", "Audience Clarity", "Brand Messaging", "Website & Brand Checklist"],
   },
-  B: {
-    type: "The Strategist",
-    tagline: "You need clarity — on your brand, your audience, and your offer.",
-    body: "You have something to work with, but the foundation isn't solid yet. The Brand Workbook gets you crystal clear on your positioning, audience, offers, and voice — so your brand actually starts attracting the right people.",
-    product: "Brand Workbook",
-    price: "$47",
-    originalPrice: "$261",
-    cta: "Get the Workbook →",
-    mailto: "mailto:hello@shopdollhouse.co?subject=Brand%20Workbook",
-    alt: "Or grab everything in The Brand Room for $127 →",
-    altHref: "/brand-room#bundle",
+  offer: {
+    type: "The Offer Architect",
+    tagline: "Your brand can look beautiful, but it still needs something clear to sell.",
+    body: "You are close, but your offer, product plan, and pricing need structure. The Dollhouse walks you through the decisions that make your brand easier to understand, trust, and buy from.",
+    rooms: ["Offer & Product Planning", "Pricing Guidance", "Audience Clarity", "Goal Tracking"],
   },
-  C: {
-    type: "The Creator",
-    tagline: "You need content that sounds like you — ready to go.",
-    body: "Your brand is in decent shape — you just need the words. The AI Prompt Kit gives you 50+ prompts across 8 categories: captions, hooks, emails, ad copy, and more. Customize and post instantly. No more blank screens.",
-    product: "AI Prompt Kit",
-    price: "$17",
-    originalPrice: null,
-    cta: "Get the Prompt Kit →",
-    mailto: "mailto:hello@shopdollhouse.co?subject=AI%20Prompt%20Kit",
-    alt: "Or grab everything in The Brand Room for $127 →",
-    altHref: "/brand-room#bundle",
+  content: {
+    type: "The Visibility Planner",
+    tagline: "You need content that follows a strategy, not content that depends on your mood.",
+    body: "Your brand needs a repeatable content direction. The Private Strategy Suite helps you plan what to say, what to promote, and how to show up with more confidence before you burn out from guessing.",
+    rooms: ["Content Planning", "Marketing Strategy", "Social & Visibility Planning", "Guided Prompts"],
   },
-  D: {
-    type: "The Visionary",
-    tagline: "You're ready for the full system — and someone to run it.",
-    body: "You know exactly what you want. You just need someone to build it and run it. Start with The Brand Room full bundle, or book a discovery call to talk about handing everything over to us completely.",
-    product: "The Full Bundle",
-    price: "$127",
-    originalPrice: "$161",
-    cta: "Get the Full Bundle →",
-    mailto: "mailto:hello@shopdollhouse.co?subject=Full%20Bundle",
-    alt: "Or apply for a full retainer →",
-    altHref: "/#contact",
+  launch: {
+    type: "The Launch Builder",
+    tagline: "You are ready to move, but your launch needs a clean roadmap.",
+    body: "You need the steps in order: offer, content, messaging, launch plan, and goals. The Dollhouse gives you the private web app structure to build, save, export, and keep moving.",
+    rooms: ["Launch Roadmap", "Goal Tracking", "Export & Save Features", "Future Updates"],
   },
 };
 
-function getResultType(answers: string[]): keyof typeof RESULTS {
-  const counts: Record<string, number> = { A: 0, B: 0, C: 0, D: 0 };
-  answers.forEach((a) => { counts[a]++; });
-  if (counts.D >= 2) return "D";
-  const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
-  return sorted[0][0] as keyof typeof RESULTS;
+function getResultType(answers: ResultKey[]): ResultKey {
+  const counts: Record<ResultKey, number> = { foundation: 0, offer: 0, content: 0, launch: 0 };
+  answers.forEach((answer) => {
+    counts[answer]++;
+  });
+  return (Object.entries(counts).sort((a, b) => b[1] - a[1])[0][0] as ResultKey) || "foundation";
 }
 
-/* ─── Page ─────────────────────────────────────────────── */
+function BrandMark() {
+  return (
+    <Link to="/" className="flex flex-col items-start leading-tight no-underline">
+      <span style={{ fontFamily: FONT_SCRIPT, fontSize: "18px", letterSpacing: "1px", textTransform: "lowercase", lineHeight: 1, color: "color-mix(in oklab, var(--ink) 55%, transparent)" }}>the</span>
+      <span style={{ fontFamily: FONT_DISPLAY, fontSize: "15px", letterSpacing: "4px", textTransform: "uppercase", marginTop: "-4px", color: "var(--ink)", fontStyle: "italic" }}>Dollhouse</span>
+      <span style={{ fontFamily: FONT_LUXE, fontSize: "6.5px", letterSpacing: "3px", textTransform: "uppercase", marginTop: "1px", color: "var(--gold)", fontWeight: 600 }}>Brand Studio</span>
+    </Link>
+  );
+}
+
+function SuiteMockup({ compact = false }: { compact?: boolean }) {
+  return (
+    <div className="relative overflow-hidden rounded-[32px] border border-white/80 bg-[rgba(255,250,246,0.72)] p-6 shadow-[0_35px_80px_-42px_rgba(90,45,35,0.55)]">
+      <div aria-hidden className="absolute -left-24 -top-24 h-56 w-56 rounded-full bg-[rgba(201,122,122,0.16)] blur-3xl" />
+      <div aria-hidden className="absolute -right-16 bottom-8 h-44 w-44 rounded-full bg-[rgba(200,168,100,0.13)] blur-3xl" />
+      <div className="relative text-center">
+        <img src={archMark} alt="" className="mx-auto h-14 w-10 opacity-60" />
+        <p className="mt-5 text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Private Strategy Suite</p>
+        <p className="mt-2 italic text-[var(--gold)] leading-none" style={{ fontFamily: FONT_SCRIPT, fontSize: compact ? "2rem" : "2.6rem" }}>the</p>
+        <h2 className="mt-1 text-[var(--rose)] leading-[0.92]" style={{ fontFamily: FONT_DISPLAY, fontSize: compact ? "3rem" : "clamp(3.6rem, 7vw, 6rem)", fontWeight: 400, letterSpacing: "0.04em", textTransform: "uppercase" }}>
+          Dollhouse
+        </h2>
+        <p className="mx-auto mt-5 max-w-md text-[var(--ink)]/68 leading-7" style={{ fontFamily: FONT_BODY, fontSize: compact ? "0.9rem" : "1rem" }}>
+          Your complete brand strategy, product plan, and launch roadmap built inside a private web app.
+        </p>
+      </div>
+
+      <div className="relative mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {["17 guided rooms", "Custom strategy", "Save & export", "Private access"].map((item) => (
+          <div key={item} className="rounded-2xl px-3 py-4 text-center" style={{ background: "rgba(255,255,255,0.58)", border: "1px solid rgba(200,168,100,0.22)" }}>
+            <img src={archMark} alt="" className="mx-auto mb-2 h-7 w-5 opacity-45" />
+            <p className="text-[8px] tracking-[0.14em] uppercase text-[var(--ink)]/58" style={{ fontFamily: FONT_LUXE }}>{item}</p>
+          </div>
+        ))}
+      </div>
+
+      {!compact && (
+        <>
+          <div className="relative mt-8 rounded-[24px] bg-[rgba(255,255,255,0.62)] p-4" style={{ border: "1px solid rgba(200,168,100,0.2)" }}>
+            <div className="rounded-[18px] bg-[var(--ink)] p-3 shadow-[0_18px_38px_-24px_rgba(30,15,10,0.65)]">
+              <div className="rounded-xl bg-[#f8e9e3] p-4">
+                <div className="grid grid-cols-[0.34fr_1fr] gap-4">
+                  <div className="space-y-2">
+                    {["Brand", "Audience", "Offer", "Content", "Launch"].map((item) => (
+                      <div key={item} className="rounded-full bg-white/70 px-3 py-2 text-[7px] tracking-[0.12em] uppercase text-[var(--ink)]/45" style={{ fontFamily: FONT_LUXE }}>{item}</div>
+                    ))}
+                  </div>
+                  <div className="rounded-2xl bg-[rgba(255,250,246,0.86)] p-5 text-center">
+                    <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "8px" }}>Your Brand Blueprint</p>
+                    <p className="mt-3 italic text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "2rem", lineHeight: 1 }}>Your Brand Here</p>
+                    <p className="mx-auto mt-3 max-w-xs text-[var(--ink)]/48" style={{ fontFamily: FONT_BODY, fontSize: "0.72rem", lineHeight: 1.5 }}>A guided suite for building your foundation, offer, content, and launch plan.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p className="relative mt-6 text-center tracking-[0.16em] uppercase text-[var(--ink)]/55" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>
+            Stop guessing. Start building.
+          </p>
+        </>
+      )}
+    </div>
+  );
+}
+
 function QuizPage() {
   const [phase, setPhase] = useState<"intro" | "q" | "email" | "result">("intro");
   const [qIndex, setQIndex] = useState(0);
-  const [answers, setAnswers] = useState<string[]>([]);
+  const [answers, setAnswers] = useState<ResultKey[]>([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [business, setBusiness] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  const [result, setResult] = useState<keyof typeof RESULTS>("A");
+  const [result, setResult] = useState<ResultKey>("foundation");
 
-  function pickAnswer(type: string) {
+  function pickAnswer(type: ResultKey) {
     const next = [...answers, type];
     setAnswers(next);
     if (qIndex < QUESTIONS.length - 1) {
@@ -122,8 +190,8 @@ function QuizPage() {
   async function submitEmail(e: React.FormEvent) {
     e.preventDefault();
     setSubmitting(true);
-    const r = getResultType(answers);
-    setResult(r);
+    const nextResult = getResultType(answers);
+    setResult(nextResult);
     try {
       await fetch("https://formspree.io/f/mwvrvrzj", {
         method: "POST",
@@ -131,11 +199,16 @@ function QuizPage() {
           name,
           email,
           phone,
-          source: "Brand Room Quiz",
-          quiz_result: RESULTS[r].type,
-          quiz_recommendation: RESULTS[r].product,
+          business,
+          source: "Private Strategy Suite Quiz",
+          quiz_result: RESULTS[nextResult].type,
+          quiz_recommendation: "The Dollhouse Private Strategy Suite",
+          offer: "$97 Brand Kit",
+          product_url: BRAND_KIT_URL,
+          workbook_url: WORKBOOK_URL,
+          ai_kit_url: AI_KIT_URL,
         }),
-        headers: { "Accept": "application/json", "Content-Type": "application/json" },
+        headers: { Accept: "application/json", "Content-Type": "application/json" },
       });
     } catch (_) {}
     setSubmitting(false);
@@ -149,238 +222,194 @@ function QuizPage() {
     setName("");
     setEmail("");
     setPhone("");
+    setBusiness("");
+    setResult("foundation");
   }
 
-  const progressPct =
-    phase === "q" ? (qIndex / QUESTIONS.length) * 100 :
-    phase === "email" ? 90 : 100;
-
+  const progressPct = phase === "q" ? ((qIndex + 1) / QUESTIONS.length) * 76 : phase === "email" ? 92 : 100;
+  const current = QUESTIONS[qIndex];
   const res = RESULTS[result];
 
   return (
     <main className="min-h-screen bg-[var(--blush)] text-[var(--ink)] flex flex-col">
-
-      {/* Nav */}
-      <nav className="py-5 px-6 md:px-12 flex items-center justify-between border-b border-[var(--gold)]/12">
-        <Link to="/" className="flex flex-col items-start leading-tight no-underline">
-          <span style={{ fontFamily: FONT_SCRIPT, fontSize: "18px", letterSpacing: "1px", textTransform: "lowercase", lineHeight: 1, color: "color-mix(in oklab, var(--ink) 55%, transparent)" }}>the</span>
-          <span style={{ fontFamily: FONT_DISPLAY, fontSize: "15px", letterSpacing: "4px", textTransform: "uppercase", marginTop: "-4px", color: "var(--ink)", fontStyle: "italic" }}>Dollhouse</span>
-          <span style={{ fontFamily: FONT_LUXE, fontSize: "6.5px", letterSpacing: "3px", textTransform: "uppercase", marginTop: "1px", color: "var(--gold)", fontWeight: 600 }}>Brand Studio</span>
-        </Link>
-        <Link to="/brand-room" className="hover:opacity-60 transition-opacity shrink-0" style={{ fontFamily: FONT_LUXE, fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--gold)" }}>
-          ← Brand Room
-        </Link>
+      <nav className="py-5 px-6 md:px-12 flex items-center justify-between border-b border-[var(--gold)]/12 bg-[rgba(255,250,246,0.58)] backdrop-blur-md">
+        <BrandMark />
+        <div className="hidden md:flex items-center gap-8" style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.52)" }}>
+          <Link to="/brand-room" className="hover:text-[var(--rose)] transition-colors">Brand Room</Link>
+          <a href={BRAND_KIT_URL} className="hover:text-[var(--rose)] transition-colors">Brand Kit</a>
+        </div>
+        <a href={BRAND_KIT_URL} className="rounded-full px-4 py-2.5 bg-[var(--ink)] text-[var(--cream)] text-[10px] tracking-[0.16em] uppercase" style={{ fontFamily: FONT_LUXE }}>
+          Get Access
+        </a>
       </nav>
 
-      {/* Progress bar */}
       {(phase === "q" || phase === "email") && (
-        <div className="h-0.5" style={{ background: "rgba(200,168,100,0.15)" }}>
-          <div className="h-full transition-all duration-500" style={{ width: `${progressPct}%`, background: "var(--gold)" }} />
+        <div className="h-1 bg-[rgba(200,168,100,0.12)]">
+          <div className="h-full transition-all duration-500" style={{ width: `${progressPct}%`, background: "linear-gradient(90deg, var(--rose), var(--gold))" }} />
         </div>
       )}
 
-      {/* Content */}
-      <div className="flex-1 flex items-start md:items-center justify-center px-6 py-10 md:py-16">
-        <div className="w-full max-w-2xl">
+      <div className="relative flex-1 px-5 py-10 md:py-14 overflow-hidden">
+        <div aria-hidden className="pointer-events-none absolute inset-0 opacity-45" style={{ background: "radial-gradient(ellipse at 50% 10%, rgba(255,255,255,0.92), transparent 58%), linear-gradient(135deg, #f4dcdc 0%, #fbf1ed 48%, #ead0c9 100%)" }} />
 
-          {/* ── INTRO ── */}
-          {phase === "intro" && (
-            <div className="text-center">
-              <div className="inline-flex items-center gap-2 rounded-full border border-[var(--gold)]/45 px-5 py-2 mb-8" style={{ background: "rgba(200,168,100,0.08)" }}>
-                <span style={{ color: "var(--gold)", fontSize: "0.55rem" }}>✦</span>
-                <span style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)" }}>Free Brand Quiz</span>
-                <span style={{ color: "var(--gold)", fontSize: "0.55rem" }}>✦</span>
+        {phase === "intro" && (
+          <section className="relative mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 rounded-full border border-[var(--gold)]/45 bg-white/45 px-5 py-2 text-[var(--gold)]">
+                <span style={{ fontSize: "0.55rem" }}>✦</span>
+                <span className="text-[10px] tracking-luxe uppercase font-semibold" style={{ fontFamily: FONT_LUXE }}>Free Brand Readiness Quiz</span>
+                <span style={{ fontSize: "0.55rem" }}>✦</span>
               </div>
-
-              <h1 className="text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.5rem, 6vw, 4rem)", fontWeight: 400, lineHeight: 1.05 }}>
-                What does your brand actually need?
+              <p className="mt-7 text-[var(--gold)] italic leading-none" style={{ fontFamily: FONT_SCRIPT, fontSize: "clamp(2.5rem, 5vw, 3.6rem)" }}>the</p>
+              <h1 className="mt-1 text-[var(--rose)] leading-[0.92]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3.2rem, 8vw, 6.8rem)", fontWeight: 400, letterSpacing: "0.04em", textTransform: "uppercase" }}>
+                Dollhouse
               </h1>
-              <p className="mt-5 max-w-lg mx-auto leading-relaxed" style={{ fontFamily: FONT_BODY, fontSize: "1rem", color: "rgba(30,15,10,0.6)" }}>
-                3 quick questions. We'll tell you exactly where to start — and what will move the needle fastest for your business.
+              <p className="mt-5 max-w-xl mx-auto lg:mx-0 text-[var(--ink)]/72 leading-8" style={{ fontFamily: FONT_BODY, fontSize: "clamp(1rem, 1.7vw, 1.16rem)" }}>
+                Find out what your brand needs first: foundation, offer clarity, content direction, or a launch roadmap. Then get matched to the private strategy suite built to help you stop guessing and start building.
               </p>
-
-              <button
-                onClick={() => setPhase("q")}
-                className="mt-10 rounded-2xl px-10 py-4 hover:-translate-y-0.5 transition-all"
-                style={{ backgroundColor: "var(--ink)", color: "var(--cream)", fontFamily: FONT_DISPLAY, fontSize: "1.15rem", fontStyle: "italic", fontWeight: 700, boxShadow: "0 12px 28px -10px rgba(30,15,10,0.4)" }}
-              >
-                Take the Quiz →
+              <div className="mt-8 grid max-w-xl mx-auto lg:mx-0 grid-cols-2 sm:grid-cols-4 gap-3">
+                {["17 guided rooms", "Custom strategy", "Save & export", "Instant access"].map((item) => (
+                  <div key={item} className="rounded-2xl px-3 py-4 text-center" style={{ background: "rgba(255,250,246,0.62)", border: "1px solid rgba(200,168,100,0.24)" }}>
+                    <img src={archMark} alt="" className="mx-auto mb-2 h-7 w-5 opacity-55" />
+                    <p className="text-[9px] tracking-[0.14em] uppercase text-[var(--ink)]/58" style={{ fontFamily: FONT_LUXE }}>{item}</p>
+                  </div>
+                ))}
+              </div>
+              <button onClick={() => setPhase("q")} className="mt-9 rounded-full px-10 py-4 transition-all hover:-translate-y-0.5" style={{ backgroundColor: "var(--ink)", color: "var(--cream)", fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.18em", textTransform: "uppercase", boxShadow: "0 18px 38px -16px rgba(30,15,10,0.55)" }}>
+                Take the quiz →
               </button>
-              <p className="mt-4" style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(30,15,10,0.3)" }}>
-                Takes less than 60 seconds
+              <p className="mt-4 text-[var(--ink)]/38 tracking-[0.14em] uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>
+                Less than 60 seconds · Results + recommendation sent to your inbox
               </p>
             </div>
-          )}
 
-          {/* ── QUESTION ── */}
-          {phase === "q" && (
-            <div>
-              <p style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)" }}>
-                Question {qIndex + 1} of {QUESTIONS.length}
-              </p>
-              <h2 className="mt-5" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", lineHeight: 1.15, color: "var(--ink)" }}>
-                {QUESTIONS[qIndex].q}
+            <SuiteMockup />
+          </section>
+        )}
+
+        {phase === "q" && (
+          <section className="relative mx-auto max-w-3xl">
+            <div className="rounded-[32px] border border-[var(--gold)]/24 bg-[rgba(255,250,246,0.72)] p-7 shadow-[0_30px_70px_-48px_rgba(90,45,35,0.5)] md:p-10">
+              <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Question {qIndex + 1} of {QUESTIONS.length}</p>
+              <h2 className="mt-4 text-[var(--rose)] leading-tight" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.1rem, 5vw, 3.5rem)", fontWeight: 400 }}>
+                {current.q}
               </h2>
-              <div className="mt-8 space-y-3">
-                {QUESTIONS[qIndex].options.map((opt) => (
-                  <button
-                    key={opt.type}
-                    onClick={() => pickAnswer(opt.type)}
-                    className="w-full text-left rounded-2xl px-6 py-5 transition-all hover:-translate-y-0.5 hover:shadow-lg"
-                    style={{
-                      background: "linear-gradient(160deg, rgba(255,255,255,0.85) 0%, rgba(251,240,235,0.75) 100%)",
-                      border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",
-                      boxShadow: "0 4px 16px -8px rgba(160,110,95,0.15)",
-                    }}
-                  >
-                    <span style={{ fontFamily: FONT_DISPLAY, fontSize: "1.15rem", color: "var(--ink)", lineHeight: 1.4 }}>
-                      {opt.label}
+              <p className="mt-3 text-[var(--ink)]/55 leading-7" style={{ fontFamily: FONT_BODY }}>{current.helper}</p>
+              <div className="mt-8 grid gap-3">
+                {current.options.map((opt, idx) => (
+                  <button key={opt.label} onClick={() => pickAnswer(opt.type)} className="group w-full rounded-2xl px-5 py-5 text-left transition-all hover:-translate-y-0.5" style={{ background: "linear-gradient(160deg, rgba(255,255,255,0.86), rgba(251,240,235,0.72))", border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)", boxShadow: "0 4px 16px -10px rgba(160,110,95,0.22)" }}>
+                    <span className="flex items-start gap-4">
+                      <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[rgba(200,168,100,0.12)] text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.05rem", fontStyle: "italic" }}>{idx + 1}</span>
+                      <span style={{ fontFamily: FONT_DISPLAY, fontSize: "1.22rem", color: "var(--ink)", lineHeight: 1.35 }}>{opt.label}</span>
                     </span>
                   </button>
                 ))}
               </div>
             </div>
-          )}
+          </section>
+        )}
 
-          {/* ── EMAIL ── */}
-          {phase === "email" && (
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-3 mb-7 text-[var(--gold)]">
-                <span className="h-px w-10" style={{ background: "rgba(200,168,100,0.4)" }} />
-                <svg viewBox="0 0 24 22" fill="currentColor" style={{ width: "12px", height: "12px" }}>
-                  <path d="M12 21.6C6.3 16.1 1 11.3 1 7.2 1 3.4 4.1 2 6.3 2c1.3 0 4.2.5 5.7 4.5C13.6 2.5 16.5 2 17.7 2 20.3 2 23 3.6 23 7.2c0 4.1-5.1 8.9-11 14.4z" />
-                </svg>
-                <span className="h-px w-10" style={{ background: "rgba(200,168,100,0.4)" }} />
-              </div>
-
-              <h2 className="text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 400, lineHeight: 1.1 }}>
-                Almost there — where should we send your results?
+        {phase === "email" && (
+          <section className="relative mx-auto grid max-w-5xl items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="hidden lg:block">
+              <SuiteMockup compact />
+            </div>
+            <div className="rounded-[32px] border border-[var(--gold)]/24 bg-[rgba(255,250,246,0.78)] p-7 md:p-10">
+              <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Your result is ready</p>
+              <h2 className="mt-4 text-[var(--rose)] leading-tight" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 5vw, 3.4rem)", fontWeight: 400 }}>
+                Where should we send your brand plan?
               </h2>
-              <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "0.95rem", color: "rgba(30,15,10,0.55)" }}>
-                We'll send your brand type + a personalized recommendation straight to your inbox.
+              <p className="mt-3 text-[var(--ink)]/56 leading-7" style={{ fontFamily: FONT_BODY }}>
+                Get your brand type, your recommended starting room, and the links to the Brand Kit, Workbook, AI Kit, and managed marketing path.
               </p>
-
-              <form onSubmit={submitEmail} className="mt-8 space-y-3 max-w-sm mx-auto text-left">
-                <input
-                  type="text"
-                  placeholder="Your first name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                  className="w-full rounded-xl px-5 py-3.5 placeholder:text-[var(--ink)]/35 focus:outline-none transition"
-                  style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: "var(--ink)", background: "rgba(255,255,255,0.8)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }}
-                />
-                <input
-                  type="email"
-                  placeholder="Your email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="w-full rounded-xl px-5 py-3.5 placeholder:text-[var(--ink)]/35 focus:outline-none transition"
-                  style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: "var(--ink)", background: "rgba(255,255,255,0.8)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }}
-                />
-                <input
-                  type="tel"
-                  placeholder="Phone number (optional)"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="w-full rounded-xl px-5 py-3.5 placeholder:text-[var(--ink)]/35 focus:outline-none transition"
-                  style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: "var(--ink)", background: "rgba(255,255,255,0.8)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }}
-                />
-                <p style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(30,15,10,0.3)" }}>
-                  📱 Add your number to receive your results by text too
-                </p>
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="w-full rounded-2xl py-4 transition-all hover:-translate-y-0.5 disabled:opacity-60"
-                  style={{ backgroundColor: "var(--gold)", fontFamily: FONT_DISPLAY, fontSize: "1.1rem", fontStyle: "italic", fontWeight: 700, color: "var(--ink)", boxShadow: "0 12px 28px -10px rgba(160,110,60,0.45)" }}
-                >
-                  {submitting ? "Getting your results..." : "Show me my results →"}
+              <form onSubmit={submitEmail} className="mt-7 grid gap-3">
+                <input required placeholder="Your first name" value={name} onChange={(e) => setName(e.target.value)} className="rounded-xl px-5 py-3.5 focus:outline-none" style={{ fontFamily: FONT_BODY, background: "rgba(255,255,255,0.86)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }} />
+                <input required type="email" placeholder="Your email address" value={email} onChange={(e) => setEmail(e.target.value)} className="rounded-xl px-5 py-3.5 focus:outline-none" style={{ fontFamily: FONT_BODY, background: "rgba(255,255,255,0.86)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }} />
+                <input placeholder="What kind of brand are you building?" value={business} onChange={(e) => setBusiness(e.target.value)} className="rounded-xl px-5 py-3.5 focus:outline-none" style={{ fontFamily: FONT_BODY, background: "rgba(255,255,255,0.86)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }} />
+                <input type="tel" placeholder="Phone number (optional)" value={phone} onChange={(e) => setPhone(e.target.value)} className="rounded-xl px-5 py-3.5 focus:outline-none" style={{ fontFamily: FONT_BODY, background: "rgba(255,255,255,0.86)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }} />
+                <button disabled={submitting} className="mt-2 rounded-full px-6 py-4 transition-all hover:-translate-y-0.5 disabled:opacity-60" style={{ background: "var(--gold)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
+                  {submitting ? "Preparing your result..." : "Show my brand plan →"}
                 </button>
-                <p className="text-center pt-1" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(30,15,10,0.3)" }}>
-                  No spam · Unsubscribe anytime
-                </p>
+                <p className="text-center text-[rgba(30,15,10,0.36)] tracking-[0.12em] uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "9px" }}>No spam · Results plus suite access link</p>
               </form>
             </div>
-          )}
+          </section>
+        )}
 
-          {/* ── RESULT ── */}
-          {phase === "result" && (
-            <div>
-              <div className="text-center mb-10">
-                <p style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)" }}>
-                  Your Brand Type
-                </p>
-                <h2 className="mt-3 text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.5rem, 5vw, 3.5rem)", fontWeight: 400, lineHeight: 1 }}>
-                  {res.type}
-                </h2>
-                <p className="mt-4 italic max-w-lg mx-auto" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.25rem", lineHeight: 1.5, color: "var(--ink)" }}>
-                  {res.tagline}
-                </p>
+        {phase === "result" && (
+          <section className="relative mx-auto grid max-w-6xl items-start gap-8 lg:grid-cols-[0.92fr_1.08fr]">
+            <SuiteMockup compact />
+            <div className="rounded-[32px] bg-[var(--ink)] p-7 text-[var(--cream)] shadow-[0_40px_80px_-28px_rgba(30,15,10,0.58)] md:p-10">
+              <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Your Brand Type</p>
+              <h2 className="mt-3 text-[var(--cream)] leading-tight" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 4.5vw, 3.8rem)", fontWeight: 400 }}>
+                {res.type}
+              </h2>
+              <p className="mt-3 italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.28rem", lineHeight: 1.45 }}>{res.tagline}</p>
+              <p className="mt-5 text-[rgba(250,243,234,0.72)] leading-7" style={{ fontFamily: FONT_BODY }}>{res.body}</p>
+
+              <div className="mt-7 rounded-2xl border border-[rgba(200,168,100,0.24)] bg-[rgba(255,255,255,0.06)] p-5">
+                <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Recommended starting rooms</p>
+                <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                  {res.rooms.map((room) => (
+                    <div key={room} className="rounded-xl px-4 py-3 text-[rgba(250,243,234,0.82)]" style={{ fontFamily: FONT_BODY, background: "rgba(255,255,255,0.055)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                      {room}
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              <div className="rounded-[28px] p-8 md:p-12" style={{ background: "var(--ink)", boxShadow: "0 40px 80px -20px rgba(30,15,10,0.5), 0 0 0 1px rgba(200,168,100,0.2)" }}>
-                <div className="inline-flex mb-4 px-3 py-1 rounded-full" style={{ background: "rgba(200,168,100,0.18)", border: "1px solid rgba(200,168,100,0.4)" }}>
-                  <span style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>Recommended for you</span>
+              <div className="mt-7 flex flex-col gap-4 rounded-2xl bg-[rgba(200,168,100,0.12)] p-5 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Private Strategy Suite</p>
+                  <p className="mt-1" style={{ fontFamily: FONT_DISPLAY, fontSize: "2.2rem", fontStyle: "italic", color: "var(--gold)", lineHeight: 1 }}>$97 <span className="text-[rgba(250,243,234,0.34)] line-through" style={{ fontFamily: FONT_BODY, fontSize: "1rem", fontStyle: "normal" }}>$145</span></p>
                 </div>
-
-                <h3 className="text-[var(--cream)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.6rem, 3vw, 2.25rem)", lineHeight: 1.2 }}>
-                  {res.product}
-                </h3>
-
-                <div className="flex items-baseline gap-3 mt-3">
-                  <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "2.5rem", lineHeight: 1 }}>{res.price}</span>
-                  {res.originalPrice && (
-                    <span className="line-through" style={{ fontFamily: FONT_BODY, fontSize: "1rem", color: "rgba(250,243,234,0.28)" }}>{res.originalPrice}</span>
-                  )}
-                </div>
-
-                <p className="mt-5 leading-relaxed" style={{ fontFamily: FONT_BODY, fontSize: "0.95rem", color: "rgba(250,243,234,0.72)" }}>
-                  {res.body}
-                </p>
-
-                <a
-                  href={res.mailto}
-                  className="mt-8 w-full block rounded-2xl px-5 py-4 text-center transition-all hover:-translate-y-0.5 hover:opacity-90"
-                  style={{ backgroundColor: "var(--gold)", boxShadow: "0 12px 28px -10px rgba(160,110,60,0.5)" }}
-                >
-                  <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", fontStyle: "italic", fontWeight: 700, color: "var(--ink)" }}>
-                    {res.cta}
-                  </p>
-                </a>
-
-                <a
-                  href={res.altHref}
-                  className="mt-4 block text-center hover:opacity-70 transition-opacity"
-                  style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(250,243,234,0.38)" }}
-                >
-                  {res.alt}
+                <a href={BRAND_KIT_URL} className="rounded-full px-7 py-4 text-center transition-all hover:-translate-y-0.5" style={{ background: "var(--gold)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
+                  Get instant access →
                 </a>
               </div>
 
-              <div className="mt-8 text-center">
-                <button
-                  onClick={restart}
-                  className="hover:opacity-60 transition-opacity"
-                  style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.32)" }}
-                >
-                  Retake the quiz
-                </button>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                <a href={WORKBOOK_URL} className="rounded-2xl px-5 py-4 transition-all hover:-translate-y-0.5" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(200,168,100,0.2)", color: "rgba(250,243,234,0.82)" }}>
+                  <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "9px" }}>Need the workbook?</p>
+                  <p className="mt-1 italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.15rem" }}>Open Brand Workbook →</p>
+                </a>
+                <a href={AI_KIT_URL} className="rounded-2xl px-5 py-4 transition-all hover:-translate-y-0.5" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(200,168,100,0.2)", color: "rgba(250,243,234,0.82)" }}>
+                  <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "9px" }}>Need content prompts?</p>
+                  <p className="mt-1 italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.15rem" }}>Open AI Prompt Kit →</p>
+                </a>
               </div>
+
+              <div className="mt-4 rounded-2xl p-5" style={{ background: "rgba(201,122,122,0.12)", border: "1px solid rgba(201,122,122,0.26)" }}>
+                <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Already have a business?</p>
+                <p className="mt-2 text-[rgba(250,243,234,0.72)] leading-7" style={{ fontFamily: FONT_BODY }}>
+                  If your offer is live, or once you finish the Brand Kit, the next step is our managed marketing service: content, AI clone videos, automations, and lead follow-up handled for you.
+                </p>
+                <Link to="/#contact" className="mt-4 inline-flex rounded-full px-6 py-3 transition-all hover:-translate-y-0.5" style={{ background: "var(--cream)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.14em", textTransform: "uppercase" }}>
+                  Apply for marketing support →
+                </Link>
+              </div>
+
+              <div className="mt-5 flex flex-wrap gap-2 text-[rgba(250,243,234,0.48)]" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase" }}>
+                <span>17 guided rooms</span>
+                <span>·</span>
+                <span>Save & export</span>
+                <span>·</span>
+                <span>All sales final</span>
+              </div>
+
+              <button onClick={restart} className="mt-8 text-[rgba(250,243,234,0.36)] hover:text-[var(--gold)] transition-colors" style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase" }}>
+                Retake the quiz
+              </button>
             </div>
-          )}
-
-        </div>
+          </section>
+        )}
       </div>
 
-      {/* Footer */}
-      <footer className="py-8 px-6 text-center border-t border-[var(--gold)]/10">
-        <p style={{ fontFamily: FONT_BODY, fontSize: "0.75rem", color: "rgba(30,15,10,0.3)" }}>
-          © {new Date().getFullYear()} The Dollhouse Brand Studio
+      <footer className="border-t border-[var(--gold)]/10 px-6 py-8 text-center bg-[rgba(255,250,246,0.42)]">
+        <p style={{ fontFamily: FONT_BODY, fontSize: "0.75rem", color: "rgba(30,15,10,0.34)" }}>
+          © {new Date().getFullYear()} The Dollhouse Brand Studio · Private Strategy Suite
         </p>
       </footer>
-
     </main>
   );
 }

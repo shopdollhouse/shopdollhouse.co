@@ -2,6 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import bgImage from "@/assets/password-bg.jpg";
 import archMark from "@/assets/arch-mark.svg";
+import brandKitImage from "@/assets/product-brand-kit.jpg";
+import workbookImage from "@/assets/product-workbook.jpg";
+import aiPromptKitImage from "@/assets/product-ai-prompt-kit.jpg";
 
 export const Route = createFileRoute("/brand-room")({ component: BrandRoomPage });
 
@@ -9,6 +12,9 @@ const FONT_DISPLAY = "'Cormorant Garamond', serif";
 const FONT_SCRIPT = "'Allura', cursive";
 const FONT_BODY = "'DM Sans', sans-serif";
 const FONT_LUXE = "'Jost', sans-serif";
+const BRAND_KIT_URL = "/brand-room/brand-kit";
+const WORKBOOK_URL = "/brand-room/workbook";
+const AI_KIT_URL = "/brand-room/ai-prompt-kit";
 
 /* ─── Shared ──────────────────────────────────────────── */
 const Divider = () => (
@@ -81,15 +87,15 @@ function Hero() {
       style={{ backgroundImage: `url(${bgImage})`, backgroundSize: "cover", backgroundPosition: "center" }}
     >
       {/* Overlays */}
-      <div aria-hidden className="absolute inset-0 pointer-events-none" style={{ background: "rgba(247,228,223,0.32)" }} />
-      <div aria-hidden className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, transparent 0%, rgba(230,200,195,0.45) 70%, rgba(210,175,168,0.7) 100%)" }} />
+      <div aria-hidden className="absolute inset-0 pointer-events-none" style={{ background: "rgba(255,247,243,0.58)" }} />
+      <div aria-hidden className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, rgba(255,255,255,0.58) 0%, rgba(255,255,255,0.32) 48%, rgba(230,200,195,0.52) 76%, rgba(210,175,168,0.72) 100%)" }} />
 
       <div className="relative z-10 w-full max-w-[680px] text-center">
         {/* White halo */}
         <div
           aria-hidden
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
-          style={{ width: "min(120%, 780px)", height: "110%", background: "radial-gradient(ellipse at center, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.65) 40%, rgba(255,255,255,0.2) 65%, rgba(255,255,255,0) 85%)", filter: "blur(32px)" }}
+          style={{ width: "min(128%, 840px)", height: "116%", background: "radial-gradient(ellipse at center, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.78) 42%, rgba(255,255,255,0.34) 68%, rgba(255,255,255,0) 88%)", filter: "blur(24px)" }}
         />
 
         <div className="reveal inline-flex items-center gap-2 rounded-full border border-[var(--gold)]/55 bg-white/45 backdrop-blur-md px-5 py-2 text-[var(--gold)]" style={{ animationDelay: "0.05s" }}>
@@ -117,11 +123,11 @@ function Hero() {
           <Divider />
         </div>
 
-        <h2 className="reveal mt-2 text-[var(--rose)] leading-snug max-w-xl mx-auto" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.8rem, 3.8vw, 2.8rem)", fontWeight: 400, fontStyle: "italic", animationDelay: "0.52s" }}>
+        <h2 className="reveal mt-2 text-[var(--rose)] leading-snug max-w-xl mx-auto" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.8rem, 3.8vw, 2.8rem)", fontWeight: 500, fontStyle: "italic", animationDelay: "0.52s", textShadow: "0 1px 18px rgba(255,255,255,0.8)" }}>
           Build the business foundation before you hire the agency.
         </h2>
 
-        <p className="reveal mt-4 text-[var(--ink)]/65 leading-relaxed max-w-lg mx-auto" style={{ fontFamily: FONT_BODY, fontSize: "clamp(0.95rem, 1.8vw, 1.1rem)", animationDelay: "0.58s" }}>
+        <p className="reveal mt-4 text-[var(--ink)]/76 leading-relaxed max-w-lg mx-auto" style={{ fontFamily: FONT_BODY, fontSize: "clamp(0.95rem, 1.8vw, 1.1rem)", animationDelay: "0.58s", textShadow: "0 1px 16px rgba(255,255,255,0.72)" }}>
           The Brand Room is a guided web-app system for founders who need a polished offer, brand voice, content direction, and launch foundation before monthly management makes sense.
         </p>
 
@@ -157,6 +163,10 @@ const PIECES = [
     name: "The Dollhouse Brand Kit Blueprint",
     tagline: "Interactive web app — your visual identity system",
     detail: "A guided build for your colors, fonts, logo direction, mood, content look, and brand presence so you stop piecing your identity together post by post.",
+    href: BRAND_KIT_URL,
+    cta: "View the Brand Kit",
+    image: brandKitImage,
+    imageAlt: "The Dollhouse Brand Kit product preview",
   },
   {
     num: "02",
@@ -165,6 +175,10 @@ const PIECES = [
     name: "Brand Workbook",
     tagline: "Interactive web app — your business foundation",
     detail: "Map your audience, positioning, offer, value, brand voice, and content pillars. Includes a bonus PDF workbook for founders who like to think on paper too.",
+    href: WORKBOOK_URL,
+    cta: "View the Workbook",
+    image: workbookImage,
+    imageAlt: "The Dollhouse Workbook product preview",
   },
   {
     num: "03",
@@ -173,6 +187,10 @@ const PIECES = [
     name: "AI Prompt Kit",
     tagline: "50+ prompts across 8 rooms — ready to customize",
     detail: "Captions, hooks, emails, offer copy, ad ideas, launch notes, and strategy prompts built from the foundation you just clarified.",
+    href: AI_KIT_URL,
+    cta: "View the Prompt Kit",
+    image: aiPromptKitImage,
+    imageAlt: "The Dollhouse AI Prompt Kit product preview",
   },
 ];
 
@@ -217,7 +235,7 @@ function WhatsInside() {
           <div className="absolute top-5 right-6 px-3 py-1 rounded-full" style={{ background: "rgba(200,168,100,0.2)", border: "1px solid rgba(200,168,100,0.4)" }}>
             <span style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>Featured Product</span>
           </div>
-          <div className="flex flex-col md:flex-row md:items-center gap-8">
+          <div className="grid gap-8 lg:grid-cols-[1fr_0.62fr] lg:items-center">
             <div className="flex-1">
               <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "2.5rem", lineHeight: 1 }}>01</span>
               <h3 className="mt-4 text-[var(--cream)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.8rem, 3vw, 2.5rem)", lineHeight: 1.15 }}>{PIECES[0].name}</h3>
@@ -230,16 +248,19 @@ function WhatsInside() {
                   </span>
                 ))}
               </div>
-            </div>
-            <div className="flex flex-col items-center md:items-end gap-4 shrink-0">
-              <div className="flex items-baseline gap-3">
-                <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3rem, 5vw, 4rem)", lineHeight: 1 }}>{PIECES[0].price}</span>
-                <span className="line-through" style={{ fontFamily: FONT_BODY, fontSize: "1.1rem", color: "rgba(250,243,234,0.3)" }}>{PIECES[0].originalPrice}</span>
-              </div>
-              <a href="#" onClick={e => e.preventDefault()} className="w-full md:w-auto rounded-2xl px-8 py-4 text-center transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ backgroundColor: "var(--gold)", boxShadow: "0 12px 28px -10px rgba(160,110,60,0.5)", cursor: "pointer" }}>
-                <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", fontStyle: "italic", fontWeight: 700, color: "var(--ink)" }}>Get the Blueprint →</p>
+              <a href={PIECES[0].href} className="mt-7 inline-flex rounded-2xl px-7 py-3.5 text-center transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ backgroundColor: "var(--gold)", boxShadow: "0 12px 28px -10px rgba(160,110,60,0.5)" }}>
+                <span style={{ fontFamily: FONT_DISPLAY, fontSize: "1.05rem", fontStyle: "italic", fontWeight: 700, color: "var(--ink)" }}>{PIECES[0].cta} →</span>
               </a>
-              <p style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(250,243,234,0.4)" }}>One-time · Instant access</p>
+            </div>
+            <div className="relative">
+              <img src={PIECES[0].image} alt={PIECES[0].imageAlt} className="aspect-[3/2] w-full rounded-[24px] object-cover shadow-[0_28px_70px_-38px_rgba(0,0,0,0.75)]" />
+              <div className="mt-5 flex items-end justify-between gap-4">
+                <p style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(250,243,234,0.4)" }}>One-time · Instant access</p>
+                <div className="flex items-baseline gap-3">
+                  <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.4rem, 4vw, 3.4rem)", lineHeight: 1 }}>{PIECES[0].price}</span>
+                  <span className="line-through" style={{ fontFamily: FONT_BODY, fontSize: "1rem", color: "rgba(250,243,234,0.3)" }}>{PIECES[0].originalPrice}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -248,6 +269,7 @@ function WhatsInside() {
         <div className="mt-8 grid md:grid-cols-2 gap-8">
           {PIECES.slice(1).map((p) => (
             <article key={p.name} className="rounded-[28px] p-10 flex flex-col" style={{ background: "linear-gradient(180deg, #fbf3ee 0%, #f6e8e1 100%)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)", boxShadow: "0 30px 60px -30px rgba(160,110,95,0.35), inset 0 1px 0 rgba(255,255,255,0.6)" }}>
+              <img src={p.image} alt={p.imageAlt} className="mb-7 aspect-[3/2] w-full rounded-[20px] object-cover shadow-[0_22px_48px_-34px_rgba(120,70,60,0.65)]" />
               <div className="flex items-center justify-between">
                 <span className="text-[var(--gold)] italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "2.5rem", lineHeight: 1 }}>{p.num}</span>
                 <div className="flex items-baseline gap-2">
@@ -265,8 +287,8 @@ function WhatsInside() {
                 <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 50%, transparent), transparent)" }} />
               </div>
               <p className="mt-4 text-[var(--ink)]/70 leading-relaxed text-sm flex-1" style={{ fontFamily: FONT_BODY }}>{p.detail}</p>
-              <a href="#" onClick={e => e.preventDefault()} className="mt-6 w-full block rounded-xl px-5 py-3 text-center transition-all hover:opacity-80" style={{ border: "1px solid color-mix(in oklab, var(--gold) 50%, transparent)", color: "var(--gold)", cursor: "pointer" }}>
-                <span style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", fontStyle: "italic", fontWeight: 600 }}>Get it →</span>
+              <a href={p.href} className="mt-7 w-full block rounded-xl px-5 py-3 text-center transition-all hover:opacity-80" style={{ border: "1px solid color-mix(in oklab, var(--gold) 50%, transparent)", color: "var(--gold)" }}>
+                <span style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", fontStyle: "italic", fontWeight: 600 }}>{p.cta} →</span>
               </a>
             </article>
           ))}
@@ -380,7 +402,7 @@ function Bundle() {
             </div>
           </div>
           <p className="mt-3" style={{ fontFamily: FONT_LUXE, fontSize: "0.7rem", letterSpacing: "0.2em", color: "rgba(255,255,255,0.4)", textTransform: "uppercase" }}>
-            One-time · Lifetime access · 14-day guarantee
+            One-time · Lifetime access · All sales final
           </p>
 
           <div className="mt-6 flex items-center gap-3 justify-center">
@@ -422,6 +444,67 @@ function Bundle() {
   );
 }
 
+/* ─── Managed Growth Bridge ───────────────────────────── */
+function ManagedGrowth() {
+  return (
+    <section className="py-24 px-6 bg-[var(--cream)]">
+      <div
+        className="max-w-5xl mx-auto rounded-[32px] p-10 md:p-14 overflow-hidden relative"
+        style={{
+          background: "linear-gradient(135deg, rgba(255,250,246,0.92), rgba(246,225,218,0.88))",
+          border: "1px solid color-mix(in oklab, var(--gold) 30%, transparent)",
+          boxShadow: "0 32px 70px -42px rgba(90,45,35,0.48)",
+        }}
+      >
+        <img src={archMark} alt="" className="absolute -right-10 -bottom-12 w-56 opacity-[0.045] pointer-events-none" />
+        <div className="grid gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-center relative z-10">
+          <div>
+            <p className="text-[var(--gold)] text-[11px] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE }}>After the Brand Room</p>
+            <h2 className="mt-4 text-[var(--rose)] leading-[1.05]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 4vw, 3.5rem)", fontWeight: 400 }}>
+              When the foundation is clear, we can build the growth system for you.
+            </h2>
+            <p className="mt-5 text-[var(--ink)]/64 leading-relaxed" style={{ fontFamily: FONT_BODY, fontSize: "0.98rem" }}>
+              The Brand Room is for getting unstuck. The managed marketing service is for business owners who are ready for content, AI clone videos, automations, lead follow-up, and campaign direction handled month after month.
+            </p>
+          </div>
+
+          <div className="grid gap-3">
+            {[
+              "Use the Brand Kit to clarify the offer, audience, voice, and visual direction.",
+              "Bring that foundation into your content, automations, website, and sales follow-up.",
+              "Apply for monthly marketing support when you want The Dollhouse to manage the system.",
+            ].map((item, index) => (
+              <div
+                key={item}
+                className="rounded-2xl p-5 flex gap-4"
+                style={{
+                  background: "rgba(255,255,255,0.58)",
+                  border: "1px solid color-mix(in oklab, var(--gold) 26%, transparent)",
+                }}
+              >
+                <span className="shrink-0 italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.6rem", lineHeight: 1 }}>
+                  0{index + 1}
+                </span>
+                <p className="text-[var(--ink)]/68 leading-relaxed" style={{ fontFamily: FONT_BODY, fontSize: "0.92rem" }}>
+                  {item}
+                </p>
+              </div>
+            ))}
+            <div className="mt-2 flex flex-col sm:flex-row gap-3">
+              <Link to="/#contact" className="btn-ink text-center">
+                Apply for Marketing <span aria-hidden>→</span>
+              </Link>
+              <a href={BRAND_KIT_URL} className="btn-ghost text-center">
+                Start with the Kit <span aria-hidden>↓</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ─── FAQ ─────────────────────────────────────────────── */
 const FAQS: [string, string][] = [
   ["Who is The Brand Room for?", "New founders, creators, and service providers who are not ready for a monthly growth retainer yet, but need a real business, brand, offer, and content foundation."],
@@ -430,6 +513,7 @@ const FAQS: [string, string][] = [
   ["How is this delivered?", "Instantly. After checkout you'll receive an email with access to your Brand Kit Blueprint, Brand Workbook, and AI Prompt Kit."],
   ["Do I need design experience?", "No. The apps walk you through the decisions in plain language so you can create a polished foundation without hiring a designer first."],
   ["Can I upgrade to a done-for-you retainer later?", "Yes. The Brand Room is the starting point, and your investment can be credited toward your first month on any monthly plan."],
+  ["Are there refunds?", "Because these are digital products with instant access, all sales are final."],
 ];
 
 function FAQ() {
@@ -532,6 +616,7 @@ function BrandRoomPage() {
       <WhatsInside />
       <Includes />
       <Bundle />
+      <ManagedGrowth />
       <FAQ />
       <Footer />
       <BackToTop />
