@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import suitePreview from "@/assets/private-strategy-suite.jpg";
 import archMark from "@/assets/arch-mark.svg";
 
 export const Route = createFileRoute("/quiz")({ component: QuizPage });
@@ -10,6 +9,8 @@ const FONT_BODY = "'DM Sans', sans-serif";
 const FONT_LUXE = "'Jost', sans-serif";
 const FONT_SCRIPT = "'Allura', cursive";
 const BRAND_KIT_URL = "https://thedollhouse-brand-kit.vercel.app";
+const WORKBOOK_URL = "https://thedollhouse-workbook.vercel.app";
+const AI_KIT_URL = "https://ai-prompt-kit.vercel.app";
 
 type ResultKey = "foundation" | "offer" | "content" | "launch";
 
@@ -110,6 +111,61 @@ function BrandMark() {
   );
 }
 
+function SuiteMockup({ compact = false }: { compact?: boolean }) {
+  return (
+    <div className="relative overflow-hidden rounded-[32px] border border-white/80 bg-[rgba(255,250,246,0.72)] p-6 shadow-[0_35px_80px_-42px_rgba(90,45,35,0.55)]">
+      <div aria-hidden className="absolute -left-24 -top-24 h-56 w-56 rounded-full bg-[rgba(201,122,122,0.16)] blur-3xl" />
+      <div aria-hidden className="absolute -right-16 bottom-8 h-44 w-44 rounded-full bg-[rgba(200,168,100,0.13)] blur-3xl" />
+      <div className="relative text-center">
+        <img src={archMark} alt="" className="mx-auto h-14 w-10 opacity-60" />
+        <p className="mt-5 text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Private Strategy Suite</p>
+        <p className="mt-2 italic text-[var(--gold)] leading-none" style={{ fontFamily: FONT_SCRIPT, fontSize: compact ? "2rem" : "2.6rem" }}>the</p>
+        <h2 className="mt-1 text-[var(--rose)] leading-[0.92]" style={{ fontFamily: FONT_DISPLAY, fontSize: compact ? "3rem" : "clamp(3.6rem, 7vw, 6rem)", fontWeight: 400, letterSpacing: "0.04em", textTransform: "uppercase" }}>
+          Dollhouse
+        </h2>
+        <p className="mx-auto mt-5 max-w-md text-[var(--ink)]/68 leading-7" style={{ fontFamily: FONT_BODY, fontSize: compact ? "0.9rem" : "1rem" }}>
+          Your complete brand strategy, product plan, and launch roadmap built inside a private web app.
+        </p>
+      </div>
+
+      <div className="relative mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {["17 guided rooms", "Custom strategy", "Save & export", "Private access"].map((item) => (
+          <div key={item} className="rounded-2xl px-3 py-4 text-center" style={{ background: "rgba(255,255,255,0.58)", border: "1px solid rgba(200,168,100,0.22)" }}>
+            <img src={archMark} alt="" className="mx-auto mb-2 h-7 w-5 opacity-45" />
+            <p className="text-[8px] tracking-[0.14em] uppercase text-[var(--ink)]/58" style={{ fontFamily: FONT_LUXE }}>{item}</p>
+          </div>
+        ))}
+      </div>
+
+      {!compact && (
+        <>
+          <div className="relative mt-8 rounded-[24px] bg-[rgba(255,255,255,0.62)] p-4" style={{ border: "1px solid rgba(200,168,100,0.2)" }}>
+            <div className="rounded-[18px] bg-[var(--ink)] p-3 shadow-[0_18px_38px_-24px_rgba(30,15,10,0.65)]">
+              <div className="rounded-xl bg-[#f8e9e3] p-4">
+                <div className="grid grid-cols-[0.34fr_1fr] gap-4">
+                  <div className="space-y-2">
+                    {["Brand", "Audience", "Offer", "Content", "Launch"].map((item) => (
+                      <div key={item} className="rounded-full bg-white/70 px-3 py-2 text-[7px] tracking-[0.12em] uppercase text-[var(--ink)]/45" style={{ fontFamily: FONT_LUXE }}>{item}</div>
+                    ))}
+                  </div>
+                  <div className="rounded-2xl bg-[rgba(255,250,246,0.86)] p-5 text-center">
+                    <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "8px" }}>Your Brand Blueprint</p>
+                    <p className="mt-3 italic text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "2rem", lineHeight: 1 }}>Your Brand Here</p>
+                    <p className="mx-auto mt-3 max-w-xs text-[var(--ink)]/48" style={{ fontFamily: FONT_BODY, fontSize: "0.72rem", lineHeight: 1.5 }}>A guided suite for building your foundation, offer, content, and launch plan.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p className="relative mt-6 text-center tracking-[0.16em] uppercase text-[var(--ink)]/55" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>
+            Stop guessing. Start building.
+          </p>
+        </>
+      )}
+    </div>
+  );
+}
+
 function QuizPage() {
   const [phase, setPhase] = useState<"intro" | "q" | "email" | "result">("intro");
   const [qIndex, setQIndex] = useState(0);
@@ -149,6 +205,8 @@ function QuizPage() {
           quiz_recommendation: "The Dollhouse Private Strategy Suite",
           offer: "$97 Brand Kit",
           product_url: BRAND_KIT_URL,
+          workbook_url: WORKBOOK_URL,
+          ai_kit_url: AI_KIT_URL,
         }),
         headers: { Accept: "application/json", "Content-Type": "application/json" },
       });
@@ -178,7 +236,7 @@ function QuizPage() {
         <BrandMark />
         <div className="hidden md:flex items-center gap-8" style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.52)" }}>
           <Link to="/brand-room" className="hover:text-[var(--rose)] transition-colors">Brand Room</Link>
-          <a href={BRAND_KIT_URL} className="hover:text-[var(--rose)] transition-colors">Private Suite</a>
+          <a href={BRAND_KIT_URL} className="hover:text-[var(--rose)] transition-colors">Brand Kit</a>
         </div>
         <a href={BRAND_KIT_URL} className="rounded-full px-4 py-2.5 bg-[var(--ink)] text-[var(--cream)] text-[10px] tracking-[0.16em] uppercase" style={{ fontFamily: FONT_LUXE }}>
           Get Access
@@ -225,12 +283,7 @@ function QuizPage() {
               </p>
             </div>
 
-            <div className="relative">
-              <div className="absolute -inset-8 -z-10 rounded-[36px] opacity-55 blur-3xl" style={{ background: "radial-gradient(circle, rgba(201,122,122,0.35), transparent 70%)" }} />
-              <div className="overflow-hidden rounded-[32px] border border-white/80 bg-white/45 shadow-[0_35px_80px_-42px_rgba(90,45,35,0.55)]">
-                <img src={suitePreview} alt="The Dollhouse Private Strategy Suite preview" className="h-full w-full object-cover" />
-              </div>
-            </div>
+            <SuiteMockup />
           </section>
         )}
 
@@ -258,8 +311,8 @@ function QuizPage() {
 
         {phase === "email" && (
           <section className="relative mx-auto grid max-w-5xl items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="rounded-[30px] overflow-hidden border border-white/80 bg-white/45 hidden lg:block">
-              <img src={suitePreview} alt="" className="h-full w-full object-cover" />
+            <div className="hidden lg:block">
+              <SuiteMockup compact />
             </div>
             <div className="rounded-[32px] border border-[var(--gold)]/24 bg-[rgba(255,250,246,0.78)] p-7 md:p-10">
               <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Your result is ready</p>
@@ -267,7 +320,7 @@ function QuizPage() {
                 Where should we send your brand plan?
               </h2>
               <p className="mt-3 text-[var(--ink)]/56 leading-7" style={{ fontFamily: FONT_BODY }}>
-                Get your brand type, your recommended starting room, and the link to the $97 Private Strategy Suite.
+                Get your brand type, your recommended starting room, and the links to the Brand Kit, Workbook, AI Kit, and managed marketing path.
               </p>
               <form onSubmit={submitEmail} className="mt-7 grid gap-3">
                 <input required placeholder="Your first name" value={name} onChange={(e) => setName(e.target.value)} className="rounded-xl px-5 py-3.5 focus:outline-none" style={{ fontFamily: FONT_BODY, background: "rgba(255,255,255,0.86)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }} />
@@ -285,9 +338,7 @@ function QuizPage() {
 
         {phase === "result" && (
           <section className="relative mx-auto grid max-w-6xl items-start gap-8 lg:grid-cols-[0.92fr_1.08fr]">
-            <div className="rounded-[32px] overflow-hidden border border-white/80 bg-white/45 shadow-[0_30px_70px_-48px_rgba(90,45,35,0.5)]">
-              <img src={suitePreview} alt="The Dollhouse Private Strategy Suite preview" className="h-full w-full object-cover" />
-            </div>
+            <SuiteMockup compact />
             <div className="rounded-[32px] bg-[var(--ink)] p-7 text-[var(--cream)] shadow-[0_40px_80px_-28px_rgba(30,15,10,0.58)] md:p-10">
               <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Your Brand Type</p>
               <h2 className="mt-3 text-[var(--cream)] leading-tight" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 4.5vw, 3.8rem)", fontWeight: 400 }}>
@@ -315,6 +366,27 @@ function QuizPage() {
                 <a href={BRAND_KIT_URL} className="rounded-full px-7 py-4 text-center transition-all hover:-translate-y-0.5" style={{ background: "var(--gold)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
                   Get instant access →
                 </a>
+              </div>
+
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                <a href={WORKBOOK_URL} className="rounded-2xl px-5 py-4 transition-all hover:-translate-y-0.5" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(200,168,100,0.2)", color: "rgba(250,243,234,0.82)" }}>
+                  <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "9px" }}>Need the workbook?</p>
+                  <p className="mt-1 italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.15rem" }}>Open Brand Workbook →</p>
+                </a>
+                <a href={AI_KIT_URL} className="rounded-2xl px-5 py-4 transition-all hover:-translate-y-0.5" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(200,168,100,0.2)", color: "rgba(250,243,234,0.82)" }}>
+                  <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "9px" }}>Need content prompts?</p>
+                  <p className="mt-1 italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.15rem" }}>Open AI Prompt Kit →</p>
+                </a>
+              </div>
+
+              <div className="mt-4 rounded-2xl p-5" style={{ background: "rgba(201,122,122,0.12)", border: "1px solid rgba(201,122,122,0.26)" }}>
+                <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Already have a business?</p>
+                <p className="mt-2 text-[rgba(250,243,234,0.72)] leading-7" style={{ fontFamily: FONT_BODY }}>
+                  If your offer is live, or once you finish the Brand Kit, the next step is our managed marketing service: content, AI clone videos, automations, and lead follow-up handled for you.
+                </p>
+                <Link to="/#contact" className="mt-4 inline-flex rounded-full px-6 py-3 transition-all hover:-translate-y-0.5" style={{ background: "var(--cream)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.14em", textTransform: "uppercase" }}>
+                  Apply for marketing support →
+                </Link>
               </div>
 
               <div className="mt-5 flex flex-wrap gap-2 text-[rgba(250,243,234,0.48)]" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase" }}>
