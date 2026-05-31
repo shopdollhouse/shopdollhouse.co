@@ -2,6 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import bgImage from "@/assets/password-bg.jpg";
 import archMark from "@/assets/arch-mark.svg";
+import brandKitImage from "@/assets/product-brand-kit.jpg";
+import workbookImage from "@/assets/product-workbook.jpg";
+import aiPromptKitImage from "@/assets/product-ai-prompt-kit.jpg";
 
 export const Route = createFileRoute("/brand-room")({ component: BrandRoomPage });
 
@@ -10,8 +13,6 @@ const FONT_SCRIPT = "'Allura', cursive";
 const FONT_BODY = "'DM Sans', sans-serif";
 const FONT_LUXE = "'Jost', sans-serif";
 const BRAND_KIT_URL = "/brand-room/brand-kit";
-const WORKBOOK_URL = "/brand-room/workbook";
-const AI_KIT_URL = "/brand-room/ai-prompt-kit";
 
 /* ─── Shared ──────────────────────────────────────────── */
 const Divider = () => (
@@ -160,8 +161,8 @@ const PIECES = [
     name: "The Dollhouse Brand Kit Blueprint",
     tagline: "Interactive web app — your visual identity system",
     detail: "A guided build for your colors, fonts, logo direction, mood, content look, and brand presence so you stop piecing your identity together post by post.",
-    href: BRAND_KIT_URL,
-    cta: "Open the Brand Kit",
+    image: brandKitImage,
+    imageAlt: "The Dollhouse Brand Kit product preview",
   },
   {
     num: "02",
@@ -170,8 +171,8 @@ const PIECES = [
     name: "Brand Workbook",
     tagline: "Interactive web app — your business foundation",
     detail: "Map your audience, positioning, offer, value, brand voice, and content pillars. Includes a bonus PDF workbook for founders who like to think on paper too.",
-    href: WORKBOOK_URL,
-    cta: "Open the Workbook",
+    image: workbookImage,
+    imageAlt: "The Dollhouse Workbook product preview",
   },
   {
     num: "03",
@@ -180,8 +181,8 @@ const PIECES = [
     name: "AI Prompt Kit",
     tagline: "50+ prompts across 8 rooms — ready to customize",
     detail: "Captions, hooks, emails, offer copy, ad ideas, launch notes, and strategy prompts built from the foundation you just clarified.",
-    href: AI_KIT_URL,
-    cta: "Open the Prompt Kit",
+    image: aiPromptKitImage,
+    imageAlt: "The Dollhouse AI Prompt Kit product preview",
   },
 ];
 
@@ -226,7 +227,7 @@ function WhatsInside() {
           <div className="absolute top-5 right-6 px-3 py-1 rounded-full" style={{ background: "rgba(200,168,100,0.2)", border: "1px solid rgba(200,168,100,0.4)" }}>
             <span style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>Featured Product</span>
           </div>
-          <div className="flex flex-col md:flex-row md:items-center gap-8">
+          <div className="grid gap-8 lg:grid-cols-[1fr_0.62fr] lg:items-center">
             <div className="flex-1">
               <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "2.5rem", lineHeight: 1 }}>01</span>
               <h3 className="mt-4 text-[var(--cream)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.8rem, 3vw, 2.5rem)", lineHeight: 1.15 }}>{PIECES[0].name}</h3>
@@ -240,15 +241,15 @@ function WhatsInside() {
                 ))}
               </div>
             </div>
-            <div className="flex flex-col items-center md:items-end gap-4 shrink-0">
-              <div className="flex items-baseline gap-3">
-                <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3rem, 5vw, 4rem)", lineHeight: 1 }}>{PIECES[0].price}</span>
-                <span className="line-through" style={{ fontFamily: FONT_BODY, fontSize: "1.1rem", color: "rgba(250,243,234,0.3)" }}>{PIECES[0].originalPrice}</span>
+            <div className="relative">
+              <img src={PIECES[0].image} alt={PIECES[0].imageAlt} className="aspect-[3/2] w-full rounded-[24px] object-cover shadow-[0_28px_70px_-38px_rgba(0,0,0,0.75)]" />
+              <div className="mt-5 flex items-end justify-between gap-4">
+                <p style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(250,243,234,0.4)" }}>One-time · Instant access</p>
+                <div className="flex items-baseline gap-3">
+                  <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.4rem, 4vw, 3.4rem)", lineHeight: 1 }}>{PIECES[0].price}</span>
+                  <span className="line-through" style={{ fontFamily: FONT_BODY, fontSize: "1rem", color: "rgba(250,243,234,0.3)" }}>{PIECES[0].originalPrice}</span>
+                </div>
               </div>
-              <a href={PIECES[0].href} className="w-full md:w-auto rounded-2xl px-8 py-4 text-center transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ backgroundColor: "var(--gold)", boxShadow: "0 12px 28px -10px rgba(160,110,60,0.5)" }}>
-                <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", fontStyle: "italic", fontWeight: 700, color: "var(--ink)" }}>{PIECES[0].cta} →</p>
-              </a>
-              <p style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(250,243,234,0.4)" }}>One-time · Instant access</p>
             </div>
           </div>
         </div>
@@ -257,6 +258,7 @@ function WhatsInside() {
         <div className="mt-8 grid md:grid-cols-2 gap-8">
           {PIECES.slice(1).map((p) => (
             <article key={p.name} className="rounded-[28px] p-10 flex flex-col" style={{ background: "linear-gradient(180deg, #fbf3ee 0%, #f6e8e1 100%)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)", boxShadow: "0 30px 60px -30px rgba(160,110,95,0.35), inset 0 1px 0 rgba(255,255,255,0.6)" }}>
+              <img src={p.image} alt={p.imageAlt} className="mb-7 aspect-[3/2] w-full rounded-[20px] object-cover shadow-[0_22px_48px_-34px_rgba(120,70,60,0.65)]" />
               <div className="flex items-center justify-between">
                 <span className="text-[var(--gold)] italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "2.5rem", lineHeight: 1 }}>{p.num}</span>
                 <div className="flex items-baseline gap-2">
@@ -274,9 +276,6 @@ function WhatsInside() {
                 <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 50%, transparent), transparent)" }} />
               </div>
               <p className="mt-4 text-[var(--ink)]/70 leading-relaxed text-sm flex-1" style={{ fontFamily: FONT_BODY }}>{p.detail}</p>
-              <a href={p.href} className="mt-6 w-full block rounded-xl px-5 py-3 text-center transition-all hover:opacity-80" style={{ border: "1px solid color-mix(in oklab, var(--gold) 50%, transparent)", color: "var(--gold)" }}>
-                <span style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", fontStyle: "italic", fontWeight: 600 }}>{p.cta} →</span>
-              </a>
             </article>
           ))}
         </div>
