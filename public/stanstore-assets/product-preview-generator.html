@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Dollhouse Product Preview Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,500&family=DM+Sans:wght@400;500;600;700&family=Jost:wght@500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --ink: #1d0f0b;
+        --cream: #fff8f3;
+        --blush: #f5ded8;
+        --rose: #bd7476;
+        --rose-deep: #9f4f57;
+        --gold: #c8a464;
+        --muted: #6f5d57;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background: var(--blush);
+      }
+
+      body {
+        display: grid;
+        place-items: start;
+        font-family: "DM Sans", sans-serif;
+      }
+
+      .asset {
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+        background:
+          radial-gradient(circle at 15% 8%, rgba(255, 255, 255, 0.9), transparent 30%),
+          radial-gradient(circle at 85% 12%, rgba(200, 164, 100, 0.18), transparent 28%),
+          linear-gradient(135deg, #fff8f3 0%, #f7e2dc 46%, #eec7c2 100%);
+        color: var(--ink);
+      }
+
+      .asset::before,
+      .asset::after {
+        content: "";
+        position: absolute;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .asset::before {
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(189, 116, 118, 0.08) 1px, transparent 1px),
+          linear-gradient(180deg, rgba(200, 164, 100, 0.08) 1px, transparent 1px);
+        background-size: 46px 46px;
+        mask-image: linear-gradient(135deg, rgba(0, 0, 0, 0.8), transparent 55%);
+      }
+
+      .asset::after {
+        right: -12%;
+        bottom: -16%;
+        width: 42%;
+        aspect-ratio: 1;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.42);
+        border: 1px solid rgba(200, 164, 100, 0.22);
+        box-shadow: 0 0 0 32px rgba(255, 255, 255, 0.16);
+      }
+
+      .arch {
+        opacity: 0.68;
+        object-fit: contain;
+      }
+
+      .script {
+        font-family: "Allura", cursive;
+        line-height: 0.8;
+        color: var(--rose);
+      }
+
+      .serif {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 400;
+      }
+
+      .luxe {
+        font-family: "Jost", sans-serif;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .product {
+        object-fit: cover;
+        border: 1px solid rgba(255, 255, 255, 0.82);
+        box-shadow: 0 34px 74px -42px rgba(80, 35, 28, 0.76);
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.52);
+        border: 1px solid rgba(200, 164, 100, 0.34);
+        color: rgba(29, 15, 11, 0.68);
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        background: var(--ink);
+        color: var(--cream);
+        box-shadow: 0 24px 44px -26px rgba(29, 15, 11, 0.82);
+      }
+
+      .thumb {
+        width: 400px;
+        height: 400px;
+        padding: 24px;
+        text-align: center;
+      }
+
+      .thumb .arch {
+        width: 28px;
+        height: 40px;
+        margin: 0 auto 8px;
+      }
+
+      .thumb .eyebrow {
+        margin: 0;
+        font-size: 8px;
+        color: var(--gold);
+      }
+
+      .thumb .script {
+        margin-top: 10px;
+        font-size: 40px;
+      }
+
+      .thumb h1 {
+        margin: 0 auto;
+        max-width: 320px;
+        color: var(--rose);
+        font-size: 48px;
+        line-height: 0.88;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+      }
+
+      .thumb .product-wrap {
+        position: absolute;
+        left: 42px;
+        right: 42px;
+        bottom: 72px;
+        height: 122px;
+        border-radius: 22px;
+        overflow: hidden;
+      }
+
+      .thumb .product {
+        width: 100%;
+        height: 100%;
+      }
+
+      .thumb .price {
+        position: absolute;
+        left: 50%;
+        bottom: 26px;
+        transform: translateX(-50%);
+        min-width: 214px;
+        padding: 13px 18px;
+        font-size: 9px;
+      }
+
+      .thumb .corner-note {
+        position: absolute;
+        left: 22px;
+        top: 22px;
+        width: 58px;
+        height: 58px;
+        display: grid;
+        place-items: center;
+        border-radius: 18px;
+        background: rgba(29, 15, 11, 0.92);
+        color: var(--gold);
+        font-family: "Cormorant Garamond", serif;
+        font-size: 28px;
+        font-style: italic;
+      }
+
+      .social {
+        width: 1092px;
+        height: 1080px;
+        padding: 64px 72px;
+      }
+
+      .social .topline {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .social .brand-lockup {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .social .arch {
+        width: 42px;
+        height: 62px;
+      }
+
+      .social .brand-text {
+        color: var(--gold);
+        font-size: 13px;
+      }
+
+      .social .price-badge {
+        min-width: 172px;
+        padding: 16px 24px;
+        color: var(--ink);
+        font-size: 12px;
+      }
+
+      .social .main {
+        display: grid;
+        grid-template-columns: 0.82fr 1.18fr;
+        gap: 42px;
+        align-items: center;
+        height: calc(100% - 82px);
+      }
+
+      .social .copy {
+        padding-top: 28px;
+      }
+
+      .social .script {
+        font-size: 82px;
+        margin-bottom: -10px;
+      }
+
+      .social h1 {
+        margin: 0;
+        color: var(--rose);
+        font-size: 64px;
+        line-height: 0.94;
+        letter-spacing: 0.035em;
+        text-transform: uppercase;
+      }
+
+      .social .subhead {
+        margin: 28px 0 0;
+        max-width: 370px;
+        color: rgba(29, 15, 11, 0.76);
+        font-size: 27px;
+        line-height: 1.28;
+      }
+
+      .social .support {
+        margin: 20px 0 0;
+        max-width: 350px;
+        color: rgba(29, 15, 11, 0.56);
+        font-size: 18px;
+        line-height: 1.6;
+      }
+
+      .social .button {
+        margin-top: 36px;
+        padding: 22px 34px;
+        font-size: 13px;
+      }
+
+      .social .features {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 34px;
+        max-width: 390px;
+      }
+
+      .social .feature {
+        min-height: 76px;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.52);
+        border: 1px solid rgba(200, 164, 100, 0.24);
+        padding: 18px;
+        font-size: 11px;
+        color: rgba(29, 15, 11, 0.62);
+      }
+
+      .social .visual {
+        position: relative;
+        min-height: 700px;
+      }
+
+      .social .product-card {
+        position: absolute;
+        inset: 42px 0 auto auto;
+        width: 538px;
+        border-radius: 38px;
+        padding: 16px;
+        background: rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.78);
+        box-shadow: 0 40px 90px -48px rgba(80, 35, 28, 0.8);
+      }
+
+      .social .product {
+        width: 100%;
+        aspect-ratio: 3 / 2;
+        border-radius: 28px;
+      }
+
+      .social .floating-card {
+        position: absolute;
+        left: 0;
+        bottom: 88px;
+        width: 270px;
+        min-height: 210px;
+        border-radius: 30px;
+        background: rgba(29, 15, 11, 0.93);
+        color: var(--cream);
+        padding: 30px;
+        box-shadow: 0 34px 70px -40px rgba(29, 15, 11, 0.86);
+      }
+
+      .social .floating-card strong {
+        display: block;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", serif;
+        font-size: 54px;
+        font-weight: 400;
+        font-style: italic;
+        line-height: 0.9;
+      }
+
+      .social .floating-card span {
+        display: block;
+        margin-top: 18px;
+        font-size: 12px;
+        color: rgba(255, 248, 243, 0.66);
+      }
+
+      .social .mini {
+        position: absolute;
+        right: 24px;
+        bottom: 22px;
+        width: 300px;
+        border-radius: 28px;
+        background: rgba(255, 248, 243, 0.82);
+        border: 1px solid rgba(200, 164, 100, 0.28);
+        padding: 24px;
+        box-shadow: 0 28px 60px -42px rgba(80, 35, 28, 0.72);
+      }
+
+      .social .mini-line {
+        height: 9px;
+        border-radius: 999px;
+        background: rgba(189, 116, 118, 0.18);
+        margin-top: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="asset" class="asset"></div>
+    <script>
+      const params = new URLSearchParams(location.search);
+      const productKey = params.get("product") || "brand-kit";
+      const format = params.get("format") || "thumb";
+
+      const products = {
+        "brand-kit": {
+          eyebrow: "Private Strategy Suite",
+          title: "Brand Kit",
+          price: "$97",
+          value: "$497 value",
+          image: "/src/assets/product-brand-kit.jpg",
+          stat: "17",
+          statLabel: "Guided strategy rooms",
+          subhead: "Build your business foundation before you hire the agency.",
+          support: "A private interactive web app for beginners who need brand clarity, offers, content direction, and a launch roadmap.",
+          features: ["17 guided rooms", "Offer clarity", "Launch roadmap", "Save + export"],
+          cta: "Start building today",
+        },
+        workbook: {
+          eyebrow: "Interactive Brand Workbook",
+          title: "Workbook",
+          price: "$47",
+          value: "$261 value",
+          image: "/src/assets/product-workbook.jpg",
+          stat: "01",
+          statLabel: "Clear foundation",
+          subhead: "Turn your business idea into a plan you can actually use.",
+          support: "Guided prompts for your audience, offer, message, content pillars, and next steps when you are starting from scratch.",
+          features: ["Guided prompts", "Bonus PDF", "Audience clarity", "Offer direction"],
+          cta: "Get clear first",
+        },
+        "ai-prompt-kit": {
+          eyebrow: "AI Prompt Kit",
+          title: "AI Prompt Kit",
+          price: "$17",
+          value: "50+ prompts",
+          image: "/src/assets/product-ai-prompt-kit.jpg",
+          stat: "50+",
+          statLabel: "Ready-to-use prompts",
+          subhead: "Stop staring at a blank caption, email, or launch post.",
+          support: "Prompts for captions, hooks, emails, offers, launch copy, and brand messaging so AI gives you better words faster.",
+          features: ["50+ prompts", "8 prompt rooms", "Captions + hooks", "Launch copy"],
+          cta: "Get the words instantly",
+        },
+      };
+
+      const product = products[productKey] || products["brand-kit"];
+      const asset = document.getElementById("asset");
+      asset.className = `asset ${format === "social" ? "social" : "thumb"}`;
+
+      if (format === "social") {
+        asset.innerHTML = `
+          <div class="topline">
+            <div class="brand-lockup">
+              <img class="arch" src="/src/assets/arch-mark.svg" alt="" />
+              <div class="brand-text luxe">The Dollhouse Brand Studio</div>
+            </div>
+            <div class="price-badge pill luxe">${product.price} · ${product.value}</div>
+          </div>
+          <div class="main">
+            <div class="copy">
+              <div class="script">the</div>
+              <h1 class="serif">${product.title}</h1>
+              <p class="subhead">${product.subhead}</p>
+              <p class="support">${product.support}</p>
+              <div class="button luxe">${product.cta} →</div>
+              <div class="features">
+                ${product.features.map((item) => `<div class="feature luxe">${item}</div>`).join("")}
+              </div>
+            </div>
+            <div class="visual">
+              <div class="product-card"><img class="product" src="${product.image}" alt="" /></div>
+              <div class="floating-card"><strong>${product.stat}</strong><span class="luxe">${product.statLabel}</span></div>
+              <div class="mini">
+                <div class="luxe" style="color: var(--gold); font-size: 10px;">For beginners starting a business</div>
+                <div class="mini-line" style="width: 92%;"></div>
+                <div class="mini-line" style="width: 72%;"></div>
+                <div class="mini-line" style="width: 84%;"></div>
+              </div>
+            </div>
+          </div>
+        `;
+      } else {
+        asset.innerHTML = `
+          <div class="corner-note">${product.price}</div>
+          <img class="arch" src="/src/assets/arch-mark.svg" alt="" />
+          <p class="eyebrow luxe">${product.eyebrow}</p>
+          <div class="script">the</div>
+          <h1 class="serif">${product.title}</h1>
+          <div class="product-wrap"><img class="product" src="${product.image}" alt="" /></div>
+          <div class="price pill luxe">${product.value} · instant access</div>
+        `;
+      }
+    </script>
+  </body>
+</html>
