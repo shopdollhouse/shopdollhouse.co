@@ -17,6 +17,9 @@ import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as BrandRoomRouteImport } from './routes/brand-room'
 import { Route as AiCloneRouteImport } from './routes/ai-clone'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as StanstoreWorkbookRouteImport } from './routes/stanstore_.workbook'
+import { Route as StanstoreBrandKitRouteImport } from './routes/stanstore_.brand-kit'
+import { Route as StanstoreAiPromptKitRouteImport } from './routes/stanstore_.ai-prompt-kit'
 import { Route as BrandRoomWorkbookRouteImport } from './routes/brand-room_.workbook'
 import { Route as BrandRoomBrandKitRouteImport } from './routes/brand-room_.brand-kit'
 import { Route as BrandRoomAiPromptKitRouteImport } from './routes/brand-room_.ai-prompt-kit'
@@ -61,6 +64,21 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StanstoreWorkbookRoute = StanstoreWorkbookRouteImport.update({
+  id: '/stanstore_/workbook',
+  path: '/stanstore/workbook',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StanstoreBrandKitRoute = StanstoreBrandKitRouteImport.update({
+  id: '/stanstore_/brand-kit',
+  path: '/stanstore/brand-kit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StanstoreAiPromptKitRoute = StanstoreAiPromptKitRouteImport.update({
+  id: '/stanstore_/ai-prompt-kit',
+  path: '/stanstore/ai-prompt-kit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BrandRoomWorkbookRoute = BrandRoomWorkbookRouteImport.update({
   id: '/brand-room_/workbook',
   path: '/brand-room/workbook',
@@ -89,6 +107,9 @@ export interface FileRoutesByFullPath {
   '/brand-room/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room/brand-kit': typeof BrandRoomBrandKitRoute
   '/brand-room/workbook': typeof BrandRoomWorkbookRoute
+  '/stanstore/ai-prompt-kit': typeof StanstoreAiPromptKitRoute
+  '/stanstore/brand-kit': typeof StanstoreBrandKitRoute
+  '/stanstore/workbook': typeof StanstoreWorkbookRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -102,6 +123,9 @@ export interface FileRoutesByTo {
   '/brand-room/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room/brand-kit': typeof BrandRoomBrandKitRoute
   '/brand-room/workbook': typeof BrandRoomWorkbookRoute
+  '/stanstore/ai-prompt-kit': typeof StanstoreAiPromptKitRoute
+  '/stanstore/brand-kit': typeof StanstoreBrandKitRoute
+  '/stanstore/workbook': typeof StanstoreWorkbookRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -116,6 +140,9 @@ export interface FileRoutesById {
   '/brand-room_/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room_/brand-kit': typeof BrandRoomBrandKitRoute
   '/brand-room_/workbook': typeof BrandRoomWorkbookRoute
+  '/stanstore_/ai-prompt-kit': typeof StanstoreAiPromptKitRoute
+  '/stanstore_/brand-kit': typeof StanstoreBrandKitRoute
+  '/stanstore_/workbook': typeof StanstoreWorkbookRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,6 +158,9 @@ export interface FileRouteTypes {
     | '/brand-room/ai-prompt-kit'
     | '/brand-room/brand-kit'
     | '/brand-room/workbook'
+    | '/stanstore/ai-prompt-kit'
+    | '/stanstore/brand-kit'
+    | '/stanstore/workbook'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -144,6 +174,9 @@ export interface FileRouteTypes {
     | '/brand-room/ai-prompt-kit'
     | '/brand-room/brand-kit'
     | '/brand-room/workbook'
+    | '/stanstore/ai-prompt-kit'
+    | '/stanstore/brand-kit'
+    | '/stanstore/workbook'
   id:
     | '__root__'
     | '/'
@@ -157,6 +190,9 @@ export interface FileRouteTypes {
     | '/brand-room_/ai-prompt-kit'
     | '/brand-room_/brand-kit'
     | '/brand-room_/workbook'
+    | '/stanstore_/ai-prompt-kit'
+    | '/stanstore_/brand-kit'
+    | '/stanstore_/workbook'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -171,6 +207,9 @@ export interface RootRouteChildren {
   BrandRoomAiPromptKitRoute: typeof BrandRoomAiPromptKitRoute
   BrandRoomBrandKitRoute: typeof BrandRoomBrandKitRoute
   BrandRoomWorkbookRoute: typeof BrandRoomWorkbookRoute
+  StanstoreAiPromptKitRoute: typeof StanstoreAiPromptKitRoute
+  StanstoreBrandKitRoute: typeof StanstoreBrandKitRoute
+  StanstoreWorkbookRoute: typeof StanstoreWorkbookRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -231,6 +270,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/stanstore_/workbook': {
+      id: '/stanstore_/workbook'
+      path: '/stanstore/workbook'
+      fullPath: '/stanstore/workbook'
+      preLoaderRoute: typeof StanstoreWorkbookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stanstore_/brand-kit': {
+      id: '/stanstore_/brand-kit'
+      path: '/stanstore/brand-kit'
+      fullPath: '/stanstore/brand-kit'
+      preLoaderRoute: typeof StanstoreBrandKitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stanstore_/ai-prompt-kit': {
+      id: '/stanstore_/ai-prompt-kit'
+      path: '/stanstore/ai-prompt-kit'
+      fullPath: '/stanstore/ai-prompt-kit'
+      preLoaderRoute: typeof StanstoreAiPromptKitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/brand-room_/workbook': {
       id: '/brand-room_/workbook'
       path: '/brand-room/workbook'
@@ -267,6 +327,9 @@ const rootRouteChildren: RootRouteChildren = {
   BrandRoomAiPromptKitRoute: BrandRoomAiPromptKitRoute,
   BrandRoomBrandKitRoute: BrandRoomBrandKitRoute,
   BrandRoomWorkbookRoute: BrandRoomWorkbookRoute,
+  StanstoreAiPromptKitRoute: StanstoreAiPromptKitRoute,
+  StanstoreBrandKitRoute: StanstoreBrandKitRoute,
+  StanstoreWorkbookRoute: StanstoreWorkbookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
