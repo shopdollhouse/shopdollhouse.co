@@ -5,7 +5,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "public" / "stanstore-assets"
 OUT.mkdir(parents=True, exist_ok=True)
 
-W, H = 1080, 4200
+W, H = 1080, 6200
 CREAM = "#fff8f3"
 SOFT = "#fbefe9"
 BLUSH = "#f4d6cf"
@@ -127,6 +127,17 @@ def pill(draw, text, box, fill=WHITE, outline=GOLD2, color=INK):
     draw.text((x1 + (x2 - x1 - tw) / 2, y1 + 16), text.upper(), font=fnt, fill=color)
 
 
+def bullet(draw, text, x, y, width, fnt, fill=COCOA):
+    check_icon(draw, x, y + 2)
+    return text_box(draw, text, x + 62, y, width - 62, fnt, fill)
+
+
+def info_card(draw, title, body, x, y, w, h):
+    draw.rounded_rectangle((x, y, x + w, y + h), radius=26, fill=WHITE, outline=GOLD2, width=2)
+    draw.text((x + 30, y + 28), title, font=font(SERIF, 24), fill=INK)
+    text_box(draw, body, x + 30, y + 70, w - 60, font(SANS, 18), COCOA)
+
+
 PRODUCTS = [
     {
         "slug": "brand-kit",
@@ -146,6 +157,19 @@ PRODUCTS = [
             ("Offer Planning", "Products, pricing, positioning, and buyer value."),
             ("Content Direction", "Messaging, visibility, social content, and launch notes."),
             ("Save + Export", "Keep your strategy organized and ready to use."),
+        ],
+        "outcomes": [
+            "Go from scattered ideas to a clear brand foundation.",
+            "Create offers, content direction, and launch steps with less second guessing.",
+            "Organize your brand plan in one private web app instead of random notes.",
+        ],
+        "bonuses": ["Content planning support", "Guided prompts", "Launch planning sections", "Goal tracking areas", "Future updates"],
+        "delivery": "Instant private access after purchase. Best used on laptop or tablet through your browser.",
+        "faqs": [
+            ("Is this beginner friendly?", "Yes. It was made for founders who are starting from scratch and need structure."),
+            ("Is this a mobile app?", "No. It is a private interactive web app for your browser."),
+            ("Do I need experience?", "No. The rooms guide you step by step."),
+            ("Are there refunds?", "All sales are final because access is delivered instantly."),
         ],
         "perfect": ["new business owners", "beauty brands", "boutiques", "coaches", "creators", "digital product sellers"],
         "next": "Once your foundation is clear, The Dollhouse can help you move into managed marketing: content, AI clone videos, automation, and lead follow-up handled for you.",
@@ -170,6 +194,19 @@ PRODUCTS = [
             ("Content Pillars", "Create themes you can actually post from."),
             ("Launch Readiness", "See what needs to be built before you promote."),
         ],
+        "outcomes": [
+            "Turn scattered ideas into a usable brand foundation.",
+            "Clarify your audience, offer, value, voice, and content direction.",
+            "Walk away knowing what to build, say, and prepare before you promote.",
+        ],
+        "bonuses": ["Bonus PDF workbook", "Guided brand prompts", "Audience clarity questions", "Content pillar planner", "Launch readiness checklist"],
+        "delivery": "Instant access after purchase. Use the web workbook online, then use the bonus PDF if you like to think on paper.",
+        "faqs": [
+            ("Is this different from the Brand Kit?", "Yes. The workbook is the simpler foundation step. The Brand Kit is the fuller private strategy suite."),
+            ("Do I need to print it?", "No. You can use the web app, with the PDF included as a bonus."),
+            ("Is this good if I am brand new?", "Yes. This is the best starting point if you need clarity before visuals or marketing."),
+            ("Are there refunds?", "All sales are final because access is delivered instantly."),
+        ],
         "perfect": ["brand new founders", "creators", "service providers", "boutiques", "coaches", "side hustlers"],
         "next": "Use this as your first step. When your answers are clear, move into the Brand Kit or apply for managed marketing if your business is ready to sell consistently.",
         "cta": "GET THE WORKBOOK",
@@ -192,6 +229,19 @@ PRODUCTS = [
             ("Email + SMS", "Launch notes, nurture messages, and reminders."),
             ("Brand Voice", "Tone prompts so AI sounds more like your brand."),
             ("Launch Content", "Promo moments, urgency, and selling posts."),
+        ],
+        "outcomes": [
+            "Write captions, hooks, emails, and offer copy faster.",
+            "Give AI better direction so the output sounds more specific to your brand.",
+            "Stop opening a blank page when you need content or launch ideas.",
+        ],
+        "bonuses": ["Caption prompts", "Hook prompts", "Email prompts", "Offer copy prompts", "Launch prompts", "Brand voice prompts"],
+        "delivery": "Instant access after purchase. Use the prompts with ChatGPT or your preferred AI writing tool.",
+        "faqs": [
+            ("Do I need paid ChatGPT?", "No. You can use these with free ChatGPT or your preferred AI tool."),
+            ("Is this generic AI content?", "No. The prompts help you add your audience, offer, tone, and brand details."),
+            ("Does this replace the Brand Kit?", "No. It works best after your foundation is clear."),
+            ("Are there refunds?", "All sales are final because access is delivered instantly."),
         ],
         "perfect": ["content creators", "online brands", "coaches", "product sellers", "service providers", "busy founders"],
         "next": "Pair it with the Workbook or Brand Kit for stronger outputs. If your offer is already live, The Dollhouse can take over the marketing system for you.",
@@ -267,28 +317,49 @@ def create(product):
         draw.text((x + 88, y + 32), title, font=font(SERIF, 24), fill=INK)
         text_box(draw, body, x + 88, y + 76, 310, font(SANS, 17), COCOA)
 
-    draw.rounded_rectangle((80, 2720, 1000, 3120), radius=42, fill=WHITE, outline=GOLD2, width=2)
-    section_label(draw, 2780, "Perfect For")
+    section_label(draw, 2735, "What Changes")
+    y = 2845
+    for outcome in product["outcomes"]:
+        y = bullet(draw, outcome, 120, y, 840, font(SANS_B, 25), COCOA) + 26
+
+    draw.rounded_rectangle((80, 3220, 1000, 3550), radius=42, fill=WHITE, outline=GOLD2, width=2)
+    section_label(draw, 3280, "Perfect For")
     for i, item in enumerate(product["perfect"]):
         x = 132 + (i % 3) * 272
-        y = 2870 + (i // 3) * 76
+        y = 3370 + (i // 3) * 76
         pill(draw, item, (x, y, x + 238, y + 54))
 
-    draw.rounded_rectangle((80, 3200, 1000, 3495), radius=38, fill=SOFT, outline=GOLD2, width=2)
-    center(draw, "After You Finish", 3260, font(SERIF, 38), INK)
-    text_box(draw, product["next"], 150, 3330, 780, font(SANS_B, 23), COCOA, align="center")
+    section_label(draw, 3685, "Bonuses Included")
+    for i, item in enumerate(product["bonuses"]):
+        x = 80 + (i % 2) * 470
+        y = 3790 + (i // 2) * 118
+        info_card(draw, item, "Included with instant access.", x, y, 445, 92)
 
-    draw.rounded_rectangle((80, 3575, 1000, 4070), radius=44, fill=ROSE)
-    draw.text((140, 3650), "Instant access after purchase", font=font(SANS_B, 30), fill=WHITE)
-    draw.text((140, 3715), product["price"], font=font(SERIF, 96), fill=WHITE)
+    draw.rounded_rectangle((80, 4180, 1000, 4475), radius=38, fill=SOFT, outline=GOLD2, width=2)
+    center(draw, "How You Get Access", 4240, font(SERIF, 38), INK)
+    text_box(draw, product["delivery"], 150, 4315, 780, font(SANS_B, 24), COCOA, align="center")
+
+    draw.rounded_rectangle((80, 4560, 1000, 4885), radius=38, fill=WHITE, outline=GOLD2, width=2)
+    center(draw, "After You Finish", 4620, font(SERIF, 38), INK)
+    text_box(draw, product["next"], 150, 4690, 780, font(SANS_B, 23), COCOA, align="center")
+
+    section_label(draw, 5010, "Common Questions")
+    for i, (q, a) in enumerate(product["faqs"]):
+        x = 80 + (i % 2) * 470
+        y = 5115 + (i // 2) * 174
+        info_card(draw, q, a, x, y, 445, 145)
+
+    draw.rounded_rectangle((80, 5555, 1000, 6070), radius=44, fill=ROSE)
+    draw.text((140, 5630), "Instant access after purchase", font=font(SANS_B, 30), fill=WHITE)
+    draw.text((140, 5700), product["price"], font=font(SERIF, 106), fill=WHITE)
     if product["regular"]:
-        draw.text((350, 3742), product["regular"], font=font(SANS, 34), fill="#eadbd5")
-        draw.line((347, 3762, 445, 3762), fill="#eadbd5", width=3)
-    draw.text((145, 3830), product["value"].upper(), font=font(SANS_B, 18), fill="#f8e5dd")
-    draw.rounded_rectangle((560, 3714, 930, 3792), radius=39, fill=INK)
-    center_in_box(draw, product["cta"], (560, 3714, 930, 3792), font(SANS_B, 17), WHITE, 2)
-    center(draw, "ALL SALES FINAL DUE TO DIGITAL ACCESS", 3955, font(SANS, 18), "#f8e8e1", 3)
-    center(draw, "Your brand. Built by you. Finished by The Dollhouse.", 4118, font(SERIF, 29), INK)
+        draw.text((370, 5732), product["regular"], font=font(SANS, 36), fill="#eadbd5")
+        draw.line((367, 5753, 470, 5753), fill="#eadbd5", width=3)
+    draw.text((145, 5838), product["value"].upper(), font=font(SANS_B, 18), fill="#f8e5dd")
+    draw.rounded_rectangle((540, 5720, 930, 5800), radius=40, fill=INK)
+    center_in_box(draw, product["cta"], (540, 5720, 930, 5800), font(SANS_B, 17), WHITE, 2)
+    center(draw, "ALL SALES FINAL DUE TO DIGITAL ACCESS", 5945, font(SANS, 18), "#f8e8e1", 3)
+    center(draw, "Your brand. Built by you. Finished by The Dollhouse.", 6118, font(SERIF, 29), INK)
 
     out = OUT / f"{product['slug']}-stanstore-sales-page.jpg"
     page.convert("RGB").save(out, "JPEG", quality=95, optimize=True)
