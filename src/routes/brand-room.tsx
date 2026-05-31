@@ -9,9 +9,9 @@ const FONT_DISPLAY = "'Cormorant Garamond', serif";
 const FONT_SCRIPT = "'Allura', cursive";
 const FONT_BODY = "'DM Sans', sans-serif";
 const FONT_LUXE = "'Jost', sans-serif";
-const BRAND_KIT_URL = "https://thedollhouse-brand-kit.vercel.app";
-const WORKBOOK_URL = "https://thedollhouse-workbook.vercel.app";
-const AI_KIT_URL = "https://ai-prompt-kit.vercel.app";
+const BRAND_KIT_URL = "/brand-room/brand-kit";
+const WORKBOOK_URL = "/brand-room/workbook";
+const AI_KIT_URL = "/brand-room/ai-prompt-kit";
 
 /* ─── Shared ──────────────────────────────────────────── */
 const Divider = () => (

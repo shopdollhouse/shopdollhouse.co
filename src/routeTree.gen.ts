@@ -17,6 +17,9 @@ import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as BrandRoomRouteImport } from './routes/brand-room'
 import { Route as AiCloneRouteImport } from './routes/ai-clone'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BrandRoomWorkbookRouteImport } from './routes/brand-room_.workbook'
+import { Route as BrandRoomBrandKitRouteImport } from './routes/brand-room_.brand-kit'
+import { Route as BrandRoomAiPromptKitRouteImport } from './routes/brand-room_.ai-prompt-kit'
 
 const SoftwareRoute = SoftwareRouteImport.update({
   id: '/software',
@@ -58,6 +61,21 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BrandRoomWorkbookRoute = BrandRoomWorkbookRouteImport.update({
+  id: '/brand-room_/workbook',
+  path: '/brand-room/workbook',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrandRoomBrandKitRoute = BrandRoomBrandKitRouteImport.update({
+  id: '/brand-room_/brand-kit',
+  path: '/brand-room/brand-kit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrandRoomAiPromptKitRoute = BrandRoomAiPromptKitRouteImport.update({
+  id: '/brand-room_/ai-prompt-kit',
+  path: '/brand-room/ai-prompt-kit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -68,6 +86,9 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
   '/software': typeof SoftwareRoute
+  '/brand-room/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
+  '/brand-room/brand-kit': typeof BrandRoomBrandKitRoute
+  '/brand-room/workbook': typeof BrandRoomWorkbookRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,6 +99,9 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
   '/software': typeof SoftwareRoute
+  '/brand-room/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
+  '/brand-room/brand-kit': typeof BrandRoomBrandKitRoute
+  '/brand-room/workbook': typeof BrandRoomWorkbookRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -89,6 +113,9 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
   '/software': typeof SoftwareRoute
+  '/brand-room_/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
+  '/brand-room_/brand-kit': typeof BrandRoomBrandKitRoute
+  '/brand-room_/workbook': typeof BrandRoomWorkbookRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +128,9 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/quiz'
     | '/software'
+    | '/brand-room/ai-prompt-kit'
+    | '/brand-room/brand-kit'
+    | '/brand-room/workbook'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +141,9 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/quiz'
     | '/software'
+    | '/brand-room/ai-prompt-kit'
+    | '/brand-room/brand-kit'
+    | '/brand-room/workbook'
   id:
     | '__root__'
     | '/'
@@ -121,6 +154,9 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/quiz'
     | '/software'
+    | '/brand-room_/ai-prompt-kit'
+    | '/brand-room_/brand-kit'
+    | '/brand-room_/workbook'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,6 +168,9 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   QuizRoute: typeof QuizRoute
   SoftwareRoute: typeof SoftwareRoute
+  BrandRoomAiPromptKitRoute: typeof BrandRoomAiPromptKitRoute
+  BrandRoomBrandKitRoute: typeof BrandRoomBrandKitRoute
+  BrandRoomWorkbookRoute: typeof BrandRoomWorkbookRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -192,6 +231,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/brand-room_/workbook': {
+      id: '/brand-room_/workbook'
+      path: '/brand-room/workbook'
+      fullPath: '/brand-room/workbook'
+      preLoaderRoute: typeof BrandRoomWorkbookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brand-room_/brand-kit': {
+      id: '/brand-room_/brand-kit'
+      path: '/brand-room/brand-kit'
+      fullPath: '/brand-room/brand-kit'
+      preLoaderRoute: typeof BrandRoomBrandKitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brand-room_/ai-prompt-kit': {
+      id: '/brand-room_/ai-prompt-kit'
+      path: '/brand-room/ai-prompt-kit'
+      fullPath: '/brand-room/ai-prompt-kit'
+      preLoaderRoute: typeof BrandRoomAiPromptKitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -204,6 +264,9 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   QuizRoute: QuizRoute,
   SoftwareRoute: SoftwareRoute,
+  BrandRoomAiPromptKitRoute: BrandRoomAiPromptKitRoute,
+  BrandRoomBrandKitRoute: BrandRoomBrandKitRoute,
+  BrandRoomWorkbookRoute: BrandRoomWorkbookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
