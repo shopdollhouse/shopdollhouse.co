@@ -37,7 +37,7 @@ export const brandKitProduct: BrandProduct = {
     "New business owners who need direction before they invest in monthly marketing.",
     "Beauty brands, boutiques, coaches, creators, influencers, and digital product sellers.",
     "Women building online brands who want a beautiful strategy system that feels simple.",
-    "Founders who want to finish the foundation before hiring The Dollhouse for done-for-you growth.",
+    "Beginners who want to finish the foundation before hiring The Dollhouse for done-for-you growth.",
   ],
   bonuses: [
     "Content planning support",
@@ -49,7 +49,7 @@ export const brandKitProduct: BrandProduct = {
   ],
   faqs: [
     { q: "Is this a mobile app?", a: "No. The Dollhouse is a private interactive web app designed to work beautifully through your browser, especially on laptop and tablet." },
-    { q: "Is this beginner friendly?", a: "Yes. Everything is guided, simple, aesthetic, and made for founders who are starting from scratch." },
+    { q: "Is this beginner friendly?", a: "Yes. Everything is guided, simple, aesthetic, and made for beginners who are starting from scratch." },
     { q: "How do I access it?", a: "You receive instant private access after purchase through the product link." },
     { q: "Can I hire The Dollhouse after I finish it?", a: "Yes. Once your foundation is clear, you can apply for managed marketing support for content, automations, AI clone videos, and lead follow-up." },
     { q: "Are there refunds?", a: "Due to the digital nature of this product and instant access delivery, all sales are final." },
@@ -68,7 +68,7 @@ export const workbookProduct: BrandProduct = {
   value: "Interactive workbook · bonus PDF included",
   checkoutUrl: "https://thedollhouse-workbook.vercel.app",
   tagline: "Build your brand from the ground up with a guided workbook that turns scattered ideas into a clear foundation, offer, audience, and content direction.",
-  intro: "This is for the founder who already knows what she wants to build, but does not know where to start. Walk through the prompts, organize your answers, and leave with a brand foundation you can actually use.",
+  intro: "This is for the beginner who already knows what she wants to build, but does not know where to start. Walk through the prompts, organize your answers, and leave with a brand foundation you can actually use.",
   painHeadline: "You know what you want to build. You just do not know where to start.",
   painBody: "The workbook helps you stop trying to hold the whole business in your head. It gives you a calm, structured place to define your audience, offer, value, positioning, brand voice, content pillars, and launch direction.",
   imageTitle: "Workbook",
@@ -90,7 +90,7 @@ export const workbookProduct: BrandProduct = {
     "Create the foundation before moving into the Brand Kit or managed marketing.",
   ],
   perfectFor: [
-    "Founders who want a lower-priced entry point before the full Brand Kit.",
+    "Beginners who want a lower-priced entry point before the full Brand Kit.",
     "New business owners with ideas everywhere and no organized plan yet.",
     "Creators, service providers, boutiques, and digital product sellers building their first serious brand.",
     "Anyone who likes guided prompts, worksheets, and a slower strategy-building process.",
@@ -123,7 +123,7 @@ export const aiPromptKitProduct: BrandProduct = {
   value: "50+ ready-to-use prompts · instant access",
   checkoutUrl: "https://ai-prompt-kit.vercel.app",
   tagline: "Get the words instantly with 50+ zero-blank-page prompts for captions, hooks, emails, offers, ads, launch content, and brand messaging.",
-  intro: "This is the quick-start kit for founders who already have an idea or brand direction and need help turning it into polished content, faster. Copy the prompt, customize the details, and let AI help you get unstuck.",
+  intro: "This is the quick-start kit for beginners who already have an idea or brand direction and need help turning it into polished content, faster. Copy the prompt, customize the details, and let AI help you get unstuck.",
   painHeadline: "Stop staring at the blank page.",
   painBody: "You do not need more generic AI prompts. You need prompts that help you think through your brand, offers, content, launch, and marketing in a way that actually sounds like you.",
   imageTitle: "Prompt Kit",
@@ -145,7 +145,7 @@ export const aiPromptKitProduct: BrandProduct = {
     "Pair it with the Workbook or Brand Kit so your prompts are based on a real foundation.",
   ],
   perfectFor: [
-    "Creators and founders who know what they want to say but freeze when it is time to write.",
+    "Creators and beginners who know what they want to say but freeze when it is time to write.",
     "Business owners who need captions, hooks, emails, and offer copy without hiring a copywriter yet.",
     "Anyone using ChatGPT who wants better outputs from clearer prompt structure.",
     "Brand Room buyers who want faster content after finishing their foundation.",

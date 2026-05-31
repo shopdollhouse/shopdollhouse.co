@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BrandProductSalesPage } from "@/components/BrandProductSalesPage";
+import { StanStoreProductPage } from "@/components/StanStoreProductPage";
 import { brandKitProduct } from "@/lib/brand-products";
 
 export const Route = createFileRoute("/brand-room_/brand-kit")({ component: BrandKitPage });
 
 function BrandKitPage() {
-  return <BrandProductSalesPage product={brandKitProduct} />;
+  return <StanStoreProductPage product={brandKitProduct} showCheckout />;
 }

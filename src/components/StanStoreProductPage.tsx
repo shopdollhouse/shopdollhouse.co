@@ -105,6 +105,100 @@ function FeatureIllustration({ label }: { label: string }) {
   );
 }
 
+function InsideIllustration({ label }: { label: string }) {
+  const normalized = label.toLowerCase();
+  const commonProps = {
+    className: "h-14 w-14 text-[var(--rose)]",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.55",
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    viewBox: "0 0 72 72",
+  };
+
+  if (normalized.includes("audience") || normalized.includes("position")) {
+    return (
+      <svg {...commonProps}>
+        <circle cx="25" cy="25" r="8" />
+        <circle cx="48" cy="25" r="8" />
+        <path d="M13 56c2-11 10-17 22-17s20 6 24 17" />
+        <path d="M36 14v9M31 18h10" />
+      </svg>
+    );
+  }
+
+  if (normalized.includes("offer") || normalized.includes("product") || normalized.includes("pricing")) {
+    return (
+      <svg {...commonProps}>
+        <path d="M18 24h36v34H18z" />
+        <path d="M26 24c0-7 4-11 10-11s10 4 10 11" />
+        <path d="M26 38h20M26 47h14" />
+        <path d="M50 38l5 5-5 5" />
+      </svg>
+    );
+  }
+
+  if (normalized.includes("launch")) {
+    return (
+      <svg {...commonProps}>
+        <path d="M41 10c10 5 16 16 14 29L34 60 13 39c13 2 24-5 28-29Z" />
+        <circle cx="42" cy="29" r="5" />
+        <path d="M24 52l-9 9M34 62l-5 5M14 42l-6 6" />
+      </svg>
+    );
+  }
+
+  if (normalized.includes("content") || normalized.includes("caption") || normalized.includes("marketing")) {
+    return (
+      <svg {...commonProps}>
+        <rect x="13" y="14" width="46" height="42" rx="7" />
+        <path d="M22 27h28M22 37h20M22 47h12" />
+        <path d="M48 47l8 8M56 47l-8 8" />
+      </svg>
+    );
+  }
+
+  if (normalized.includes("save") || normalized.includes("export") || normalized.includes("worksheet")) {
+    return (
+      <svg {...commonProps}>
+        <path d="M20 12h27l9 9v39H20z" />
+        <path d="M47 12v10h9" />
+        <path d="M29 41l7 7 12-16" />
+      </svg>
+    );
+  }
+
+  if (normalized.includes("voice") || normalized.includes("email") || normalized.includes("sms")) {
+    return (
+      <svg {...commonProps}>
+        <path d="M14 21h44v30H14z" />
+        <path d="m14 23 22 17 22-17" />
+        <path d="M24 56h24" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg {...commonProps}>
+      <path d="M36 10l7 20 20 6-20 7-7 19-7-19-20-7 20-6z" />
+      <path d="M29 36h14" />
+    </svg>
+  );
+}
+
+function VisualLearningPanel({ label, description }: { label: string; description: string }) {
+  return (
+    <article className="rounded-[26px] bg-white/62 p-5 text-center" style={{ border: "1px solid color-mix(in oklab, var(--gold) 24%, transparent)" }}>
+      <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[var(--blush)]/60">
+        <FeatureIllustration label={label} />
+      </div>
+      <h3 className="mt-4 text-[var(--ink)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.55rem", lineHeight: 1.05 }}>{label}</h3>
+      <p className="mt-3 text-[var(--ink)]/60" style={{ fontFamily: FONT_BODY, fontSize: "0.92rem", lineHeight: 1.6 }}>{description}</p>
+    </article>
+  );
+}
+
 function SectionHeader({ eyebrow, title }: { eyebrow: string; title: string }) {
   return (
     <div className="mx-auto max-w-2xl text-center">
@@ -120,7 +214,7 @@ function SectionHeader({ eyebrow, title }: { eyebrow: string; title: string }) {
 const salesDetails: Record<BrandProduct["accent"], StanStoreSalesDetails> = {
   brand: {
     hook: "Build the brand people understand, trust, and buy from.",
-    subhook: "For the founder who is ready to stop changing direction and finally create a real plan for the brand she keeps imagining.",
+    subhook: "For the beginner who is ready to stop changing direction and finally create a real plan for the business she keeps imagining.",
     valueStack: ["17 guided rooms", "Offer + pricing clarity", "Launch roadmap", "Content direction", "Save + export", "Private access"],
     shift: [
       { before: "Ideas scattered across notes", after: "One organized brand strategy" },
@@ -132,7 +226,7 @@ const salesDetails: Record<BrandProduct["accent"], StanStoreSalesDetails> = {
   },
   workbook: {
     hook: "Turn your brand idea into a clear foundation you can actually use.",
-    subhook: "For the founder who has the vision, but needs guided prompts to organize the audience, offer, message, and next steps.",
+    subhook: "For the beginner who has the vision, but needs guided prompts to organize the audience, offer, message, and next steps.",
     valueStack: ["Interactive workbook", "Bonus PDF", "Audience clarity", "Offer direction", "Content pillars", "Launch checklist"],
     shift: [
       { before: "Overthinking where to start", after: "A simple guided path" },
@@ -156,7 +250,7 @@ const salesDetails: Record<BrandProduct["accent"], StanStoreSalesDetails> = {
   },
 };
 
-export function StanStoreProductPage({ product }: { product: BrandProduct }) {
+export function StanStoreProductPage({ product, showCheckout = false }: { product: BrandProduct; showCheckout?: boolean }) {
   const allSalesFinal = product.faqs.find((faq) => faq.q.toLowerCase().includes("refund"))?.a ?? "Because this is a digital product with instant access, all sales are final.";
   const details = salesDetails[product.accent];
 
@@ -183,6 +277,16 @@ export function StanStoreProductPage({ product }: { product: BrandProduct }) {
             {product.regular && <span className="text-[var(--ink)]/28 line-through">{product.regular}</span>}
             <span>{product.value ?? "Instant access"}</span>
           </div>
+          {showCheckout && (
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <a href={product.checkoutUrl} className="rounded-full bg-[var(--ink)] px-7 py-4 text-[var(--cream)] transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
+                {product.finalCta} <span aria-hidden>→</span>
+              </a>
+              <a href="/brand-room" className="rounded-full border border-[var(--gold)]/40 bg-white/26 px-7 py-4 text-[var(--ink)]/62 transition-all hover:-translate-y-0.5" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
+                Back to Brand Room
+              </a>
+            </div>
+          )}
         </div>
       </section>
 
@@ -216,6 +320,11 @@ export function StanStoreProductPage({ product }: { product: BrandProduct }) {
               </div>
             ))}
           </div>
+          <div className="mt-5 grid gap-4 md:grid-cols-3">
+            <VisualLearningPanel label="See The Steps" description="Each product is laid out visually so you can understand what to do next without feeling buried in text." />
+            <VisualLearningPanel label="Fill In The Blanks" description="Use prompts, rooms, and guided sections to make decisions one piece at a time." />
+            <VisualLearningPanel label="Build With Clarity" description="Leave with organized answers you can use for your brand, content, launch, or next offer." />
+          </div>
         </div>
       </section>
 
@@ -238,7 +347,14 @@ export function StanStoreProductPage({ product }: { product: BrandProduct }) {
               {product.regular && <span className="text-[var(--cream)]/34 line-through" style={{ fontFamily: FONT_BODY, fontSize: "1.05rem" }}>{product.regular}</span>}
             </div>
             {product.value && <p className="text-[var(--cream)]/45" style={{ fontFamily: FONT_LUXE, fontSize: "0.7rem", letterSpacing: "0.13em", textTransform: "uppercase" }}>{product.value}</p>}
-            <p className="mt-4 text-center text-[var(--cream)]/42" style={{ fontFamily: FONT_BODY, fontSize: "0.78rem" }}>Private digital access after purchase.</p>
+            {showCheckout ? (
+              <a href={product.checkoutUrl} className="mt-7 block rounded-full px-6 py-4 text-center transition-all hover:-translate-y-0.5" style={{ background: "var(--gold)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
+                Get Instant Access →
+              </a>
+            ) : (
+              <p className="mt-4 text-center text-[var(--cream)]/42" style={{ fontFamily: FONT_BODY, fontSize: "0.78rem" }}>Private digital access after purchase.</p>
+            )}
+            {showCheckout && <p className="mt-4 text-center text-[var(--cream)]/42" style={{ fontFamily: FONT_BODY, fontSize: "0.78rem" }}>Private digital access after purchase.</p>}
           </aside>
         </div>
       </section>
@@ -267,7 +383,9 @@ export function StanStoreProductPage({ product }: { product: BrandProduct }) {
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {product.inside.map((item) => (
               <article key={item.title} className="rounded-[24px] bg-white/64 p-6" style={{ border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}>
-                <img src={archMark} alt="" className="h-9 w-7 opacity-45" />
+                <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-[var(--blush)]/58">
+                  <InsideIllustration label={item.title} />
+                </div>
                 <h3 className="mt-5 text-[var(--ink)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.45rem", lineHeight: 1.1 }}>{item.title}</h3>
                 <p className="mt-3 text-[var(--ink)]/62" style={{ fontFamily: FONT_BODY, fontSize: "0.92rem", lineHeight: 1.65 }}>{item.body}</p>
               </article>
@@ -289,7 +407,7 @@ export function StanStoreProductPage({ product }: { product: BrandProduct }) {
         <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-2">
           <div>
             <p className="text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase" }}>Perfect For</p>
-            <h2 className="mt-4 text-[var(--cream)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 5vw, 3.8rem)", lineHeight: 1, fontWeight: 400 }}>Built for founders who want clarity before they spend more.</h2>
+            <h2 className="mt-4 text-[var(--cream)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 5vw, 3.8rem)", lineHeight: 1, fontWeight: 400 }}>Built for beginners who want clarity before they spend more.</h2>
             {product.bonuses && (
               <>
                 <p className="mt-8 text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase" }}>Included</p>
@@ -337,10 +455,21 @@ export function StanStoreProductPage({ product }: { product: BrandProduct }) {
           <p className="mx-auto mt-6 max-w-2xl text-[var(--ink)]/72" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.5rem, 4vw, 2.25rem)", lineHeight: 1.18 }}>
             {details.close}
           </p>
-          <div className="mx-auto mt-8 grid max-w-2xl gap-3 rounded-[26px] bg-white/42 p-5 text-[var(--ink)]/64 sm:grid-cols-2" style={{ border: "1px solid color-mix(in oklab, var(--gold) 24%, transparent)" }}>
-            <p style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.14em", textTransform: "uppercase" }}>Product: {product.price}</p>
-            <p style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.14em", textTransform: "uppercase" }}>Marketing: Apply when ready</p>
-          </div>
+          {showCheckout ? (
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <a href={product.checkoutUrl} className="rounded-full bg-[var(--ink)] px-8 py-4 text-[var(--cream)] transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
+                {product.finalCta} <span aria-hidden>→</span>
+              </a>
+              <a href="/#contact" className="rounded-full border border-[var(--gold)]/40 bg-white/30 px-8 py-4 text-[var(--ink)]/62 transition-all hover:-translate-y-0.5" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
+                Apply for Marketing
+              </a>
+            </div>
+          ) : (
+            <div className="mx-auto mt-8 grid max-w-2xl gap-3 rounded-[26px] bg-white/42 p-5 text-[var(--ink)]/64 sm:grid-cols-2" style={{ border: "1px solid color-mix(in oklab, var(--gold) 24%, transparent)" }}>
+              <p style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.14em", textTransform: "uppercase" }}>Product: {product.price}</p>
+              <p style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.14em", textTransform: "uppercase" }}>Marketing: Apply when ready</p>
+            </div>
+          )}
           <p className="mx-auto mt-6 max-w-xl text-[var(--ink)]/42" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", lineHeight: 1.6 }}>
             {allSalesFinal}
           </p>
