@@ -242,7 +242,7 @@ function WhatsInside() {
               <p className="mt-2 italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem" }}>{PIECES[0].tagline}</p>
               <p className="mt-4 leading-relaxed" style={{ fontFamily: FONT_BODY, fontSize: "0.95rem", color: "rgba(250,243,234,0.7)" }}>{PIECES[0].detail}</p>
               <div className="mt-6 grid sm:grid-cols-3 gap-3">
-                {["Color story", "Logo direction", "Content look"].map((item) => (
+                {["Colour story", "Logo direction", "Content look"].map((item) => (
                   <span key={item} className="rounded-full px-3 py-2 text-center" style={{ fontFamily: FONT_LUXE, fontSize: "0.58rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(250,243,234,0.7)", border: "1px solid rgba(200,168,100,0.22)" }}>
                     {item}
                   </span>
