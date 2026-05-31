@@ -1568,7 +1568,7 @@ Goal: [get more calls / promote a service / share a seasonal offer / get more re
 Image size for this post: 1200 × 900 px
 
 Write:
-1. The post copy (150–300 characters — short, local, conversational. Include the city/neighborhood name.)
+1. The post copy (150–300 characters — short, local, conversational. Include the city/neighbourhood name.)
 2. A call to action suggestion (Book / Call / Learn More / Get Offer)
 3. Brief image direction: what photo would work best for this post (interior shot, product, team, before/after, etc.)
 4. 3 keywords to naturally include in the post for local SEO
