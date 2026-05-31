@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BrandProductSalesPage, type BrandProduct } from "@/components/BrandProductSalesPage";
+import productImage from "@/assets/product-brand-kit.jpg";
 
 export const Route = createFileRoute("/brand-room_/brand-kit")({ component: BrandKitPage });
 
@@ -56,6 +57,7 @@ const product: BrandProduct = {
   ],
   finalCta: "Join The Dollhouse Today",
   accent: "brand",
+  productImage,
 };
 
 function BrandKitPage() {

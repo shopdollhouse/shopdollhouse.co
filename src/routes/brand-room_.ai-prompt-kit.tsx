@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BrandProductSalesPage, type BrandProduct } from "@/components/BrandProductSalesPage";
+import productImage from "@/assets/product-ai-prompt-kit.jpg";
 
 export const Route = createFileRoute("/brand-room_/ai-prompt-kit")({ component: AiPromptKitPage });
 
@@ -55,6 +56,7 @@ const product: BrandProduct = {
   ],
   finalCta: "Get the Prompts",
   accent: "ai",
+  productImage,
 };
 
 function AiPromptKitPage() {

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BrandProductSalesPage, type BrandProduct } from "@/components/BrandProductSalesPage";
+import productImage from "@/assets/product-workbook.jpg";
 
 export const Route = createFileRoute("/brand-room_/workbook")({ component: WorkbookPage });
 
@@ -56,6 +57,7 @@ const product: BrandProduct = {
   ],
   finalCta: "Get the Workbook",
   accent: "workbook",
+  productImage,
 };
 
 function WorkbookPage() {
