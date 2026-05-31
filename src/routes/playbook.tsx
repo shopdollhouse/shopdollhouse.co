@@ -3604,7 +3604,7 @@ function ScriptCard({ step, title, tag, lines }: { step?: string; title: string;
 
 /* ─── Tab: Outreach ───────────────────────────────────── */
 function OutreachTab() {
-  const [section, setSection] = useState<"blueprint"|"aipitch"|"cold"|"salescall"|"objections"|"referral"|"mascot">("blueprint");
+  const [section, setSection] = useState<"blueprint"|"aipitch"|"cold"|"salescall"|"objections"|"referral"|"mascot"|"tiktok_live">("blueprint");
   const _scripts = [
     {
       title: "Cold Email — Local Business",
@@ -3783,6 +3783,7 @@ Thanks again for trusting me with [BUSINESS NAME].
     { id: "objections",icon: "shield",      label: "Objections & Close", sub: "Handle pushback and close the deal" },
     { id: "referral",  icon: "handshake",   label: "Referrals",          sub: "Turn clients into your best leads" },
     { id: "mascot",    icon: "masks",       label: "Mascot Strategy",    sub: "AI character hook — full workflow" },
+    { id: "tiktok_live", icon: "video",     label: "TikTok Live",        sub: "14-day live strategy — both audiences" },
   ];
 
   return (
@@ -4570,6 +4571,191 @@ Thanks again for trusting me with [BUSINESS NAME].
           </div>
 
         </div>
+      </div>
+      </>}
+
+      {section === "tiktok_live" && <>
+      <div className="space-y-6">
+        <SectionHeader label="TikTok Live Strategy" title="14 days straight. One hour each. Both audiences." sub="Go live every day for 14 days and build your brand, your following, and your sales simultaneously. Two audiences — business owners and aspiring entrepreneurs — one channel." />
+
+        {/* Key Rules */}
+        <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+          <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+            <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Super Important</p>
+            <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>TikTok Live Rules — Read First</h3>
+          </div>
+          <div className="px-6 py-5 space-y-3">
+            {[
+              ["People come from your FYP", "You don't know who is watching — treat every second like someone important just tuned in."],
+              ["Start talking immediately", "Don't wait for people to join. Start as if 100 people are already watching."],
+              ["Never pause", "No silence, no waiting for engagement. If no one is responding, keep talking. Fill the dead air with value, your story, or a question."],
+              ["Over 1 hour = results", "TikTok pushes longer lives harder. Stay on for at least 60 minutes every single day."],
+              ["14 days in a row", "Consistency is everything. 14 consecutive days builds real momentum. Don't miss a day."],
+            ].map(([title, desc]) => (
+              <div key={title as string} className="rounded-xl p-4" style={{ background: "rgba(200,168,100,0.07)", border: "1px solid rgba(200,168,100,0.15)" }}>
+                <p style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", color: "var(--ink)", fontWeight: 600, marginBottom: 4 }}>{title as string}</p>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.6)", lineHeight: 1.55 }}>{desc as string}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Setup & Before Live */}
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div className="rounded-2xl p-5" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
+            <p className="text-[9px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Live Setup</p>
+            {["Good lighting — ring light or natural window light","No clutter or mess in the background","No kids in the background","Wear bright or solid colours","Neutral or branded background","Stand up — not sitting","Bring HIGH energy — it transfers through the screen"].map((t, i) => (
+              <div key={i} className="flex gap-2 items-start mb-2">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="var(--gold)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginTop: 3, flexShrink: 0 }}><path d="M2.5 8.5L6 12L13.5 4.5"/></svg>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.45 }}>{t}</p>
+              </div>
+            ))}
+          </div>
+          <div className="rounded-2xl p-5" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
+            <p className="text-[9px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>30 Minutes Before Every Live</p>
+            {["Post a video 30 minutes before going live — drives traffic","Engage with other creators' content for 10 minutes (heart + comment)","Create a brief bio/intro slide in Canva to pin","Visualize: who are you helping today? What's your goal?","Pin a comment the second you go live: 'DM me CLONE · Brand Kit link in bio'","Post a countdown story: 'Going live in [X] mins — building a brand for someone tonight'"].map((t, i) => (
+              <div key={i} className="flex gap-2 items-start mb-2">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="var(--gold)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginTop: 3, flexShrink: 0 }}><path d="M2.5 8.5L6 12L13.5 4.5"/></svg>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.45 }}>{t}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Live Structure */}
+        <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+          <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+            <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>Every Live — 60 Min Structure</h3>
+          </div>
+          <div className="px-6 py-5 space-y-3">
+            {[
+              ["0–5 min", "The Hook", "\"Stay on this live because in the next hour I'm going to [SPECIFIC THING]. If you're a business owner who's struggling with social media — or if you've been thinking about starting a business — this is for you.\""],
+              ["5–10 min", "Who You Are", "\"Quick intro for anyone new — I'm Mandy, I run The Dollhouse Brand Studio. We build AI clones of businesses and manage their social media completely done for you. I also have the Brand Room for anyone just getting started. Tonight I'm showing you both.\""],
+              ["10–30 min", "Value Content — Teach Something Real", "Audit someone's page live, explain why content isn't converting, show what strong branding looks like, explain AI clone in simple terms. DON'T HOLD BACK. The more you give, the more they trust you."],
+              ["30–50 min", "The Live Brand Kit Demo", "\"I want to pick someone from this live to build their brand RIGHT NOW. Drop your business name or idea in the comments.\" → Pick one → Screen share the Brand Room → Build it live with their info → Make it fun and specific → Everyone watching thinks 'I want that.'"],
+              ["50–58 min", "The Offer", "\"What you just saw is the Brand Kit Blueprint — $97, instant access, link in bio. If you're a business owner and you want us to do ALL of this for you — DM me CLONE right now.\""],
+              ["58–60 min", "See You Tomorrow", "\"Come back tomorrow — I'm going live at [TIME] and we're going to [TEASE TOMORROW]. Follow so you don't miss it.\""],
+            ].map(([time, title, script]) => (
+              <div key={time as string} className="rounded-xl p-4" style={{ background: "rgba(200,168,100,0.06)", border: "1px solid rgba(200,168,100,0.12)" }}>
+                <div className="flex items-center gap-3 mb-2">
+                  <span style={{ fontFamily: FONT_LUXE, fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gold)", background: "rgba(200,168,100,0.15)", padding: "2px 8px", borderRadius: 99 }}>{time as string}</span>
+                  <p style={{ fontFamily: FONT_LUXE, fontSize: "0.8rem", color: "var(--ink)", fontWeight: 600 }}>{title as string}</p>
+                </div>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.6)", lineHeight: 1.6 }}>{script as string}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Engagement Strategies */}
+        <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+          <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+            <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>Engagement — The #1 Priority</h3>
+            <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.5)" }}>Engagement is what pushes the live out. More engagement = more FYP reach = more new viewers.</p>
+          </div>
+          <div className="px-6 py-5 space-y-4">
+            <div>
+              <p className="text-[9px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Acknowledge people constantly</p>
+              <div className="space-y-2">
+                {[
+                  "Greet people by name as they join: \"Hey [NAME], welcome in!\"",
+                  "Ask where they're from: \"Where are you watching from? Drop your city in the comments\"",
+                  "New viewer: ask them to drop NEW · Returning viewer: ask them to drop I'M BACK",
+                  "Ask about the weather: \"I'm in Toronto and it's [weather] — what's it like where you are?\"",
+                  "Always phrase things as a question — \"Drop a 1 if ____, drop a 2 if ____\"",
+                  "Block and mute trolls immediately — don't engage, just remove",
+                ].map((t, i) => (
+                  <div key={i} className="flex gap-2 items-start">
+                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="var(--gold)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginTop: 3, flexShrink: 0 }}><path d="M2.5 8.5L6 12L13.5 4.5"/></svg>
+                    <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.45 }}>{t}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p className="text-[9px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Tell them what to do — repeat every 5 minutes</p>
+              <div className="rounded-xl p-4" style={{ background: "var(--ink)" }}>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.7, whiteSpace: "pre-line" }}>{`"Follow me so you see my content every day.
+Click the link in my bio and grab the Brand Kit — it's $97 and you build your entire brand in one sitting.
+If you're a business owner — DM me CLONE and I'll show you what I built for your business.
+Check your spam and promotions folder for the email after you grab the kit."`}</p>
+              </div>
+            </div>
+            <div>
+              <p className="text-[9px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>When there are crickets (it happens a lot)</p>
+              <p style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.6 }}>Just keep going. Talk about the weather. Share your story. Explain why you started. If you've been live for 60 minutes with no engagement, you can end and start again fresh after 5–10 min. Consistency over time is what builds the audience.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* The Buddy System */}
+        <div className="rounded-2xl p-5" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
+          <p className="text-[9px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The Buddy Strategy</p>
+          <p className="mb-4" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.6 }}>Find another creator in a complementary niche and go on each other's lives. You moderate for each other, help get to 10k likes, and send each other's audiences to the other's page. Give more than you take — help them first.</p>
+          {[
+            "Go on each other's lives to boost engagement",
+            "Moderate for each other — remove trolls, respond to comments",
+            "Share each other's work genuinely — don't make it transactional",
+            "Help push each other to 10k likes on each live",
+          ].map((t, i) => (
+            <div key={i} className="flex gap-2 items-start mb-2">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="var(--gold)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginTop: 3, flexShrink: 0 }}><path d="M2.5 8.5L6 12L13.5 4.5"/></svg>
+              <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.45 }}>{t}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* 14 Day Calendar */}
+        <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+          <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+            <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>14-Day Live Calendar</h3>
+            <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.5)" }}>Rotate between business owners (audits) and aspiring entrepreneurs (brand builds). Both end with the same CTAs.</p>
+          </div>
+          <div className="px-6 py-5">
+            <div className="space-y-2">
+              {[
+                ["Day 1", "Meet The Dollhouse — What I Do & Who It's For", "Both", "Brand Kit demo — pre-selected volunteer"],
+                ["Day 2", "Your Instagram Is Losing You Clients — Free Audit", "Business owners", "Live audit of a viewer's page"],
+                ["Day 3", "Build Your Brand From Scratch — Live", "Aspiring entrepreneurs", "Brand Kit demo — audience volunteer"],
+                ["Day 4", "I Built An AI Clone — Let Me Show You", "Business owners", "AI clone demo"],
+                ["Day 5", "You Have A Business Idea — Let's Make It Real", "Aspiring entrepreneurs", "Brand Kit demo — audience volunteer"],
+                ["Day 6", "Why Your Social Media Isn't Working", "Business owners", "Live audit"],
+                ["Day 7", "Week 1 Recap + Q&A", "Both", "Brand Kit demo — audience volunteer"],
+                ["Day 8", "How To Make Your First Sale With Your Brand", "Aspiring entrepreneurs", "Brand Kit demo — audience volunteer"],
+                ["Day 9", "The Social Media Mistake Costing You Bookings", "Business owners", "Live audit"],
+                ["Day 10", "Pick Your Brand Colours, Fonts & Voice — Live", "Aspiring entrepreneurs", "Brand Kit demo — audience volunteer"],
+                ["Day 11", "What $1,000/mo In Social Media Management Gets You", "Both", "Show the full system"],
+                ["Day 12", "Build A Brand For A Real Business — Live", "Both", "Brand Kit demo — audience volunteer"],
+                ["Day 13", "Your Questions Answered", "Both", "Brand Kit demo"],
+                ["Day 14", "Grand Finale — Live Brand Build + Special Offer", "Both", "Build 2 brands live + close hard"],
+              ].map(([day, title, audience, demo]) => (
+                <div key={day as string} className="flex gap-3 rounded-xl p-3 items-start" style={{ background: "rgba(200,168,100,0.05)", border: "1px solid rgba(200,168,100,0.1)" }}>
+                  <span style={{ fontFamily: FONT_LUXE, fontSize: "0.65rem", letterSpacing: "0.1em", color: "var(--gold)", background: "rgba(200,168,100,0.15)", padding: "2px 8px", borderRadius: 99, flexShrink: 0, marginTop: 2 }}>{day as string}</span>
+                  <div className="flex-1">
+                    <p style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "var(--ink)", fontWeight: 600, marginBottom: 2 }}>{title as string}</p>
+                    <p style={{ fontFamily: FONT_BODY, fontSize: "0.75rem", color: "rgba(30,15,10,0.45)" }}>{audience as string} · {demo as string}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Goals */}
+        <div className="grid sm:grid-cols-4 gap-3">
+          {[
+            ["Over 1 Hour", "TikTok pushes longer lives harder"],
+            ["10K Likes in 10 Min", "Strong engagement signal"],
+            ["Daily Engagement", "Comments + drops + reactions"],
+            ["Every Single Day", "Consistency is the algorithm"],
+          ].map(([title, desc]) => (
+            <div key={title as string} className="rounded-xl p-4 text-center" style={{ background: "var(--ink)", border: "1px solid rgba(200,168,100,0.2)" }}>
+              <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: "var(--gold)", fontStyle: "italic", marginBottom: 4 }}>{title as string}</p>
+              <p style={{ fontFamily: FONT_BODY, fontSize: "0.75rem", color: "rgba(245,232,224,0.5)", lineHeight: 1.4 }}>{desc as string}</p>
+            </div>
+          ))}
+        </div>
+
       </div>
       </>}
 
