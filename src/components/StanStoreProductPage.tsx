@@ -16,18 +16,6 @@ function Divider() {
   );
 }
 
-function Button({ product, label = "Get Instant Access" }: { product: BrandProduct; label?: string }) {
-  return (
-    <a
-      href={product.checkoutUrl}
-      className="inline-flex min-h-12 items-center justify-center rounded-full bg-[var(--ink)] px-7 py-3.5 text-center text-[var(--cream)] shadow-[0_16px_34px_-26px_rgba(30,15,10,0.88)] transition-all hover:-translate-y-0.5 hover:opacity-90"
-      style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}
-    >
-      {label} <span aria-hidden className="ml-2">→</span>
-    </a>
-  );
-}
-
 function CheckItem({ children }: { children: React.ReactNode }) {
   return (
     <li className="flex items-start gap-3">
@@ -38,6 +26,73 @@ function CheckItem({ children }: { children: React.ReactNode }) {
       </span>
       <span className="text-[var(--ink)]/68" style={{ fontFamily: FONT_BODY, fontSize: "0.98rem", lineHeight: 1.6 }}>{children}</span>
     </li>
+  );
+}
+
+function FeatureIllustration({ label }: { label: string }) {
+  const normalized = label.toLowerCase();
+  const commonProps = {
+    className: "mx-auto mb-3 h-12 w-12 text-[var(--rose)]",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.7",
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    viewBox: "0 0 64 64",
+  };
+
+  if (normalized.includes("50") || normalized.includes("prompt")) {
+    return (
+      <svg {...commonProps}>
+        <rect x="14" y="10" width="36" height="44" rx="6" />
+        <path d="M23 22h18M23 31h18M23 40h12" />
+        <path d="M44 47l5 5M49 47l-5 5" />
+      </svg>
+    );
+  }
+
+  if (normalized.includes("room") || normalized.includes("guided") || normalized.includes("foundation")) {
+    return (
+      <svg {...commonProps}>
+        <path d="M18 52V27c0-8 6-15 14-15s14 7 14 15v25" />
+        <path d="M26 52V30c0-4 3-7 6-7s6 3 6 7v22" />
+        <path d="M14 52h36" />
+      </svg>
+    );
+  }
+
+  if (normalized.includes("caption") || normalized.includes("hook") || normalized.includes("content")) {
+    return (
+      <svg {...commonProps}>
+        <path d="M15 17h34a5 5 0 0 1 5 5v18a5 5 0 0 1-5 5H30l-11 8v-8h-4a5 5 0 0 1-5-5V22a5 5 0 0 1 5-5Z" />
+        <path d="M22 28h20M22 36h14" />
+      </svg>
+    );
+  }
+
+  if (normalized.includes("launch") || normalized.includes("copy")) {
+    return (
+      <svg {...commonProps}>
+        <path d="M36 9c9 4 14 13 13 24L31 51 13 33c11 1 20-4 23-24Z" />
+        <path d="M20 44l-7 7M29 53l-4 4M11 35l-4 4" />
+        <circle cx="38" cy="24" r="4" />
+      </svg>
+    );
+  }
+
+  if (normalized.includes("save") || normalized.includes("export")) {
+    return (
+      <svg {...commonProps}>
+        <path d="M18 12h28l6 7v33H18z" />
+        <path d="M25 12v14h16V12M25 52V38h14v14" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg {...commonProps}>
+      <path d="M32 8l6 17 18 7-18 7-6 17-6-17-18-7 18-7z" />
+    </svg>
   );
 }
 
@@ -71,11 +126,10 @@ export function StanStoreProductPage({ product }: { product: BrandProduct }) {
           <p className="mx-auto mt-8 max-w-3xl text-[var(--ink)]/76" style={{ fontFamily: FONT_BODY, fontSize: "clamp(1.05rem, 2.5vw, 1.35rem)", lineHeight: 1.65 }}>
             {product.tagline}
           </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button product={product} label={product.finalCta} />
-            <a href="#details" className="inline-flex min-h-12 items-center justify-center rounded-full border border-[var(--ink)]/35 px-7 py-3.5 text-center text-[var(--ink)] transition-all hover:bg-white/40" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase" }}>
-              See Details ↓
-            </a>
+          <div className="mx-auto mt-8 inline-flex flex-wrap items-center justify-center gap-3 rounded-full border border-[var(--gold)]/30 bg-white/36 px-5 py-3 text-[var(--ink)]/62" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+            <span>{product.price}</span>
+            {product.regular && <span className="text-[var(--ink)]/28 line-through">{product.regular}</span>}
+            <span>{product.value ?? "Instant access"}</span>
           </div>
         </div>
       </section>
@@ -92,7 +146,7 @@ export function StanStoreProductPage({ product }: { product: BrandProduct }) {
           <div className="mt-8 grid gap-4 md:grid-cols-4">
             {product.imageItems.map((item) => (
               <div key={item} className="rounded-[20px] bg-[var(--blush)]/60 px-5 py-5 text-center" style={{ border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}>
-                <img src={archMark} alt="" className="mx-auto mb-3 h-8 w-6 opacity-45" />
+                <FeatureIllustration label={item} />
                 <p className="text-[var(--ink)]/68" style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>{item}</p>
               </div>
             ))}
@@ -119,9 +173,6 @@ export function StanStoreProductPage({ product }: { product: BrandProduct }) {
               {product.regular && <span className="text-[var(--cream)]/34 line-through" style={{ fontFamily: FONT_BODY, fontSize: "1.05rem" }}>{product.regular}</span>}
             </div>
             {product.value && <p className="text-[var(--cream)]/45" style={{ fontFamily: FONT_LUXE, fontSize: "0.7rem", letterSpacing: "0.13em", textTransform: "uppercase" }}>{product.value}</p>}
-            <a href={product.checkoutUrl} className="mt-7 block rounded-full bg-[var(--gold)] px-6 py-4 text-center text-[var(--ink)] transition-all hover:-translate-y-0.5" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
-              Get Instant Access →
-            </a>
             <p className="mt-4 text-center text-[var(--cream)]/42" style={{ fontFamily: FONT_BODY, fontSize: "0.78rem" }}>Private digital access after purchase.</p>
           </aside>
         </div>
@@ -173,10 +224,9 @@ export function StanStoreProductPage({ product }: { product: BrandProduct }) {
           <SectionHeader eyebrow="Good To Know" title="Common Questions" />
           <div className="mt-8 grid gap-3">
             {product.faqs.map((faq) => (
-              <details key={faq.q} className="group rounded-2xl bg-white/70 px-6 py-5 [&_summary::-webkit-details-marker]:hidden" style={{ border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}>
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[var(--ink)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.2rem" }}>
+              <details key={faq.q} open className="group rounded-2xl bg-white/70 px-6 py-5 [&_summary::-webkit-details-marker]:hidden" style={{ border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}>
+                <summary className="flex list-none items-center justify-between gap-4 text-[var(--ink)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.2rem" }}>
                   {faq.q}
-                  <span className="text-2xl text-[var(--rose)] transition-transform group-open:rotate-45">+</span>
                 </summary>
                 <p className="mt-3 text-[var(--ink)]/65" style={{ fontFamily: FONT_BODY, fontSize: "0.92rem", lineHeight: 1.65 }}>{faq.a}</p>
               </details>
@@ -192,11 +242,9 @@ export function StanStoreProductPage({ product }: { product: BrandProduct }) {
           <p className="mx-auto mt-5 max-w-2xl text-[var(--ink)]/64" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.75 }}>
             Once your offer and direction are clear, The Dollhouse can help with managed marketing: content, AI clone videos, automation, and lead follow-up handled for you.
           </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button product={product} label={product.finalCta} />
-            <a href="/#contact" className="inline-flex min-h-12 items-center justify-center rounded-full border border-[var(--ink)]/35 px-7 py-3.5 text-[var(--ink)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase" }}>
-              Apply For Marketing →
-            </a>
+          <div className="mx-auto mt-8 grid max-w-2xl gap-3 rounded-[26px] bg-white/42 p-5 text-[var(--ink)]/64 sm:grid-cols-2" style={{ border: "1px solid color-mix(in oklab, var(--gold) 24%, transparent)" }}>
+            <p style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.14em", textTransform: "uppercase" }}>Product: {product.price}</p>
+            <p style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.14em", textTransform: "uppercase" }}>Marketing: Apply when ready</p>
           </div>
           <p className="mx-auto mt-6 max-w-xl text-[var(--ink)]/42" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", lineHeight: 1.6 }}>
             {allSalesFinal}
