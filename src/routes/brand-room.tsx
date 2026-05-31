@@ -13,6 +13,8 @@ const FONT_SCRIPT = "'Allura', cursive";
 const FONT_BODY = "'DM Sans', sans-serif";
 const FONT_LUXE = "'Jost', sans-serif";
 const BRAND_KIT_URL = "/brand-room/brand-kit";
+const WORKBOOK_URL = "/brand-room/workbook";
+const AI_KIT_URL = "/brand-room/ai-prompt-kit";
 
 /* ─── Shared ──────────────────────────────────────────── */
 const Divider = () => (
@@ -161,6 +163,8 @@ const PIECES = [
     name: "The Dollhouse Brand Kit Blueprint",
     tagline: "Interactive web app — your visual identity system",
     detail: "A guided build for your colors, fonts, logo direction, mood, content look, and brand presence so you stop piecing your identity together post by post.",
+    href: BRAND_KIT_URL,
+    cta: "View the Brand Kit",
     image: brandKitImage,
     imageAlt: "The Dollhouse Brand Kit product preview",
   },
@@ -171,6 +175,8 @@ const PIECES = [
     name: "Brand Workbook",
     tagline: "Interactive web app — your business foundation",
     detail: "Map your audience, positioning, offer, value, brand voice, and content pillars. Includes a bonus PDF workbook for founders who like to think on paper too.",
+    href: WORKBOOK_URL,
+    cta: "View the Workbook",
     image: workbookImage,
     imageAlt: "The Dollhouse Workbook product preview",
   },
@@ -181,6 +187,8 @@ const PIECES = [
     name: "AI Prompt Kit",
     tagline: "50+ prompts across 8 rooms — ready to customize",
     detail: "Captions, hooks, emails, offer copy, ad ideas, launch notes, and strategy prompts built from the foundation you just clarified.",
+    href: AI_KIT_URL,
+    cta: "View the Prompt Kit",
     image: aiPromptKitImage,
     imageAlt: "The Dollhouse AI Prompt Kit product preview",
   },
@@ -240,6 +248,9 @@ function WhatsInside() {
                   </span>
                 ))}
               </div>
+              <a href={PIECES[0].href} className="mt-7 inline-flex rounded-2xl px-7 py-3.5 text-center transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ backgroundColor: "var(--gold)", boxShadow: "0 12px 28px -10px rgba(160,110,60,0.5)" }}>
+                <span style={{ fontFamily: FONT_DISPLAY, fontSize: "1.05rem", fontStyle: "italic", fontWeight: 700, color: "var(--ink)" }}>{PIECES[0].cta} →</span>
+              </a>
             </div>
             <div className="relative">
               <img src={PIECES[0].image} alt={PIECES[0].imageAlt} className="aspect-[3/2] w-full rounded-[24px] object-cover shadow-[0_28px_70px_-38px_rgba(0,0,0,0.75)]" />
@@ -276,6 +287,9 @@ function WhatsInside() {
                 <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 50%, transparent), transparent)" }} />
               </div>
               <p className="mt-4 text-[var(--ink)]/70 leading-relaxed text-sm flex-1" style={{ fontFamily: FONT_BODY }}>{p.detail}</p>
+              <a href={p.href} className="mt-7 w-full block rounded-xl px-5 py-3 text-center transition-all hover:opacity-80" style={{ border: "1px solid color-mix(in oklab, var(--gold) 50%, transparent)", color: "var(--gold)" }}>
+                <span style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", fontStyle: "italic", fontWeight: 600 }}>{p.cta} →</span>
+              </a>
             </article>
           ))}
         </div>
