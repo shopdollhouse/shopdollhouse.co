@@ -1819,8 +1819,46 @@ function Pricing() {
         italic="Start with the foundation, then scale into the managed growth system when you are ready."
       />
 
+      <div className="mt-8 flex justify-center">
+        <div
+          className="grid w-full max-w-xl grid-cols-3 gap-1.5 rounded-full p-1.5"
+          style={{
+            background: "rgba(255,250,246,0.72)",
+            border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",
+            boxShadow: "0 22px 46px -32px rgba(90,45,38,0.45)",
+          }}
+        >
+          {[
+            { value: "3", label: "3 Months" },
+            { value: "6", label: "6 Months" },
+            { value: "12", label: "12 Months" },
+          ].map((option) => {
+            const active = contractTerm === option.value;
+            return (
+              <button
+                key={option.value}
+                type="button"
+                onClick={() => setContractTerm(option.value as "3" | "6" | "12")}
+                className="rounded-full px-3 py-3 transition-all"
+                style={{
+                  background: active ? "var(--ink)" : "transparent",
+                  color: active ? "var(--cream)" : "rgba(30,15,10,0.62)",
+                  fontFamily: "'Jost', sans-serif",
+                  fontSize: "0.68rem",
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  fontWeight: 700,
+                }}
+              >
+                {option.label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       <div
-        className="mt-12 max-w-5xl mx-auto grid gap-3 md:grid-cols-3 rounded-[28px] p-3"
+        className="mt-8 max-w-5xl mx-auto grid gap-3 md:grid-cols-3 rounded-[28px] p-3"
         style={{
           background: "rgba(255,250,246,0.5)",
           border: "1px solid color-mix(in oklab, var(--gold) 22%, transparent)",
@@ -1831,40 +1869,6 @@ function Pricing() {
           <p className="mt-2 text-[var(--ink)]/58 leading-6" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.84rem" }}>
             Build the website, follow-up, missed-call, review, and SEO foundation first.
           </p>
-          <div
-            className="mt-4 grid grid-cols-3 gap-1.5 rounded-full p-1.5"
-            style={{
-              background: "rgba(255,250,246,0.72)",
-              border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",
-            }}
-          >
-            {[
-              { value: "3", label: "3 Months" },
-              { value: "6", label: "6 Months" },
-              { value: "12", label: "12 Months" },
-            ].map((option) => {
-              const active = contractTerm === option.value;
-              return (
-                <button
-                  key={option.value}
-                  type="button"
-                  onClick={() => setContractTerm(option.value as "3" | "6" | "12")}
-                  className="rounded-full px-2 py-2 transition-all"
-                  style={{
-                    background: active ? "var(--ink)" : "transparent",
-                    color: active ? "var(--cream)" : "rgba(30,15,10,0.62)",
-                    fontFamily: "'Jost', sans-serif",
-                    fontSize: "0.58rem",
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    fontWeight: 700,
-                  }}
-                >
-                  {option.label}
-                </button>
-              );
-            })}
-          </div>
         </div>
         {[
           ["Every Plan", "All monthly plans include a $500 setup fee for onboarding, buildout, and launch prep."],
