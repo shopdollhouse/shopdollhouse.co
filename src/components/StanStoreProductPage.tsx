@@ -25,6 +25,140 @@ function Divider() {
   );
 }
 
+function MobileSalesPageStyles() {
+  return (
+    <style>{`
+      @media (max-width: 640px) {
+        .stan-sales-page section {
+          padding-left: 12px !important;
+          padding-right: 12px !important;
+          padding-top: 42px !important;
+          padding-bottom: 42px !important;
+        }
+
+        .stan-sales-page section:first-of-type {
+          padding-top: 26px !important;
+          padding-bottom: 44px !important;
+        }
+
+        .stan-sales-page .stan-shell,
+        .stan-sales-page .stan-card,
+        .stan-sales-page aside,
+        .stan-sales-page article,
+        .stan-sales-page details {
+          border-radius: 18px !important;
+        }
+
+        .stan-sales-page .stan-card,
+        .stan-sales-page aside,
+        .stan-sales-page article,
+        .stan-sales-page details {
+          padding: 18px !important;
+        }
+
+        .stan-sales-page .stan-product-image {
+          width: calc(100vw - 24px) !important;
+          max-width: none !important;
+          margin-left: 50% !important;
+          transform: translateX(-50%) !important;
+          border-radius: 18px !important;
+        }
+
+        .stan-sales-page .stan-arch {
+          height: 58px !important;
+          width: 44px !important;
+        }
+
+        .stan-sales-page .stan-eyebrow {
+          font-size: 0.78rem !important;
+          letter-spacing: 0.2em !important;
+        }
+
+        .stan-sales-page .stan-script {
+          margin-top: 22px !important;
+          font-size: 4.25rem !important;
+        }
+
+        .stan-sales-page .stan-hero-title {
+          font-size: clamp(4rem, 18vw, 5.6rem) !important;
+          line-height: 0.82 !important;
+          letter-spacing: 0.025em !important;
+        }
+
+        .stan-sales-page .stan-hero-copy {
+          margin-top: 24px !important;
+          font-size: 1.24rem !important;
+          line-height: 1.42 !important;
+        }
+
+        .stan-sales-page .stan-subcopy,
+        .stan-sales-page .stan-body-copy,
+        .stan-sales-page .stan-faq-copy,
+        .stan-sales-page .stan-final-copy {
+          font-size: 1.08rem !important;
+          line-height: 1.58 !important;
+        }
+
+        .stan-sales-page .stan-pill,
+        .stan-sales-page .stan-value-pill,
+        .stan-sales-page .stan-button,
+        .stan-sales-page .stan-bonus-pill {
+          width: 100% !important;
+          justify-content: center !important;
+          border-radius: 16px !important;
+          font-size: 0.82rem !important;
+          letter-spacing: 0.13em !important;
+          padding: 14px 16px !important;
+        }
+
+        .stan-sales-page .stan-section-label {
+          font-size: 0.8rem !important;
+          letter-spacing: 0.2em !important;
+        }
+
+        .stan-sales-page .stan-section-title {
+          font-size: clamp(2.75rem, 14vw, 4rem) !important;
+          line-height: 0.94 !important;
+        }
+
+        .stan-sales-page .stan-card-title {
+          font-size: 1.85rem !important;
+          line-height: 1.02 !important;
+        }
+
+        .stan-sales-page .stan-large-note {
+          font-size: clamp(2.1rem, 11vw, 3.2rem) !important;
+          line-height: 1.04 !important;
+        }
+
+        .stan-sales-page .stan-grid-tight {
+          gap: 10px !important;
+        }
+
+        .stan-sales-page .stan-feature-icon {
+          height: 4.25rem !important;
+          width: 4.25rem !important;
+        }
+
+        .stan-sales-page .stan-inside-icon {
+          height: 5rem !important;
+          width: 5rem !important;
+        }
+
+        .stan-sales-page .stan-check-text {
+          font-size: 1.05rem !important;
+          line-height: 1.5 !important;
+        }
+
+        .stan-sales-page summary {
+          font-size: 1.55rem !important;
+          line-height: 1.05 !important;
+        }
+      }
+    `}</style>
+  );
+}
+
 function CheckItem({ children }: { children: React.ReactNode }) {
   return (
     <li className="flex items-start gap-3">
@@ -33,7 +167,7 @@ function CheckItem({ children }: { children: React.ReactNode }) {
           <path d="M3 8.5 6.4 12 13 4.5" />
         </svg>
       </span>
-      <span className="text-[var(--ink)]/68" style={{ fontFamily: FONT_BODY, fontSize: "0.98rem", lineHeight: 1.6 }}>{children}</span>
+      <span className="stan-check-text text-[var(--ink)]/68" style={{ fontFamily: FONT_BODY, fontSize: "0.98rem", lineHeight: 1.6 }}>{children}</span>
     </li>
   );
 }
@@ -41,7 +175,7 @@ function CheckItem({ children }: { children: React.ReactNode }) {
 function FeatureIllustration({ label }: { label: string }) {
   const normalized = label.toLowerCase();
   const commonProps = {
-    className: "mx-auto mb-3 h-12 w-12 text-[var(--rose)]",
+    className: "stan-feature-icon mx-auto mb-3 h-12 w-12 text-[var(--rose)]",
     fill: "none",
     stroke: "currentColor",
     strokeWidth: "1.7",
@@ -108,7 +242,7 @@ function FeatureIllustration({ label }: { label: string }) {
 function InsideIllustration({ label }: { label: string }) {
   const normalized = label.toLowerCase();
   const commonProps = {
-    className: "h-14 w-14 text-[var(--rose)]",
+    className: "stan-inside-icon h-14 w-14 text-[var(--rose)]",
     fill: "none",
     stroke: "currentColor",
     strokeWidth: "1.55",
@@ -189,12 +323,12 @@ function InsideIllustration({ label }: { label: string }) {
 
 function VisualLearningPanel({ label, description }: { label: string; description: string }) {
   return (
-    <article className="rounded-[26px] bg-white/62 p-5 text-center" style={{ border: "1px solid color-mix(in oklab, var(--gold) 24%, transparent)" }}>
+    <article className="stan-card rounded-[26px] bg-white/62 p-5 text-center" style={{ border: "1px solid color-mix(in oklab, var(--gold) 24%, transparent)" }}>
       <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[var(--blush)]/60">
         <FeatureIllustration label={label} />
       </div>
-      <h3 className="mt-4 text-[var(--ink)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.55rem", lineHeight: 1.05 }}>{label}</h3>
-      <p className="mt-3 text-[var(--ink)]/60" style={{ fontFamily: FONT_BODY, fontSize: "0.92rem", lineHeight: 1.6 }}>{description}</p>
+      <h3 className="stan-card-title mt-4 text-[var(--ink)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.55rem", lineHeight: 1.05 }}>{label}</h3>
+      <p className="stan-body-copy mt-3 text-[var(--ink)]/60" style={{ fontFamily: FONT_BODY, fontSize: "0.92rem", lineHeight: 1.6 }}>{description}</p>
     </article>
   );
 }
@@ -202,8 +336,8 @@ function VisualLearningPanel({ label, description }: { label: string; descriptio
 function SectionHeader({ eyebrow, title }: { eyebrow: string; title: string }) {
   return (
     <div className="mx-auto max-w-2xl text-center">
-      <p className="text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase" }}>{eyebrow}</p>
-      <h2 className="mt-3 text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.1rem, 6vw, 4rem)", fontWeight: 400, lineHeight: 1 }}>
+      <p className="stan-section-label text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase" }}>{eyebrow}</p>
+      <h2 className="stan-section-title mt-3 text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.1rem, 6vw, 4rem)", fontWeight: 400, lineHeight: 1 }}>
         {title}
       </h2>
       <Divider />
@@ -255,34 +389,35 @@ export function StanStoreProductPage({ product, showCheckout = false }: { produc
   const details = salesDetails[product.accent];
 
   return (
-    <main className="min-h-screen bg-[var(--blush)] text-[var(--ink)]">
+    <main className="stan-sales-page min-h-screen bg-[var(--blush)] text-[var(--ink)]">
+      <MobileSalesPageStyles />
       <section className="relative overflow-hidden px-5 pb-16 pt-10 md:px-8 md:pb-24 md:pt-14">
         <div aria-hidden className="absolute inset-0" style={{ background: "radial-gradient(circle at 14% 2%, rgba(219,150,144,0.28), transparent 22%), radial-gradient(circle at 92% 12%, rgba(219,150,144,0.24), transparent 20%), linear-gradient(180deg, #fff8f3 0%, #f8e5df 100%)" }} />
         <div className="relative mx-auto max-w-5xl text-center">
-          <img src={archMark} alt="" className="mx-auto h-16 w-12 opacity-65" />
-          <p className="mt-6 text-[var(--rose)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.76rem", letterSpacing: "0.24em", textTransform: "uppercase", fontWeight: 700 }}>{product.eyebrow}</p>
-          <p className="mt-8 italic leading-none text-[var(--rose)]" style={{ fontFamily: FONT_SCRIPT, fontSize: "clamp(3rem, 8vw, 5rem)" }}>the</p>
-          <h1 className="mt-1 text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3.2rem, 11vw, 7.2rem)", lineHeight: 0.88, fontWeight: 400, letterSpacing: "0.035em", textTransform: "uppercase" }}>
+          <img src={archMark} alt="" className="stan-arch mx-auto h-16 w-12 opacity-65" />
+          <p className="stan-eyebrow mt-6 text-[var(--rose)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.76rem", letterSpacing: "0.24em", textTransform: "uppercase", fontWeight: 700 }}>{product.eyebrow}</p>
+          <p className="stan-script mt-8 italic leading-none text-[var(--rose)]" style={{ fontFamily: FONT_SCRIPT, fontSize: "clamp(3rem, 8vw, 5rem)" }}>the</p>
+          <h1 className="stan-hero-title mt-1 text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3.2rem, 11vw, 7.2rem)", lineHeight: 0.88, fontWeight: 400, letterSpacing: "0.035em", textTransform: "uppercase" }}>
             {product.name.replace("The Dollhouse ", "")}
           </h1>
-          <p className="mt-6 text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", letterSpacing: "0.35em", textTransform: "uppercase", fontWeight: 700 }}>The Dollhouse</p>
-          <p className="mx-auto mt-8 max-w-3xl text-[var(--ink)]/76" style={{ fontFamily: FONT_BODY, fontSize: "clamp(1.05rem, 2.5vw, 1.35rem)", lineHeight: 1.65 }}>
+          <p className="stan-section-label mt-6 text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", letterSpacing: "0.35em", textTransform: "uppercase", fontWeight: 700 }}>The Dollhouse</p>
+          <p className="stan-hero-copy mx-auto mt-8 max-w-3xl text-[var(--ink)]/76" style={{ fontFamily: FONT_BODY, fontSize: "clamp(1.05rem, 2.5vw, 1.35rem)", lineHeight: 1.65 }}>
             {details.hook}
           </p>
-          <p className="mx-auto mt-4 max-w-2xl text-[var(--ink)]/58" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.7 }}>
+          <p className="stan-subcopy mx-auto mt-4 max-w-2xl text-[var(--ink)]/58" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.7 }}>
             {details.subhook}
           </p>
-          <div className="mx-auto mt-8 inline-flex flex-wrap items-center justify-center gap-3 rounded-full border border-[var(--gold)]/30 bg-white/36 px-5 py-3 text-[var(--ink)]/62" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+          <div className="stan-pill mx-auto mt-8 inline-flex flex-wrap items-center justify-center gap-3 rounded-full border border-[var(--gold)]/30 bg-white/36 px-5 py-3 text-[var(--ink)]/62" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>
             <span>{product.price}</span>
             {product.regular && <span className="text-[var(--ink)]/28 line-through">{product.regular}</span>}
             <span>{product.value ?? "Instant access"}</span>
           </div>
           {showCheckout && (
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <a href={product.checkoutUrl} className="rounded-full bg-[var(--ink)] px-7 py-4 text-[var(--cream)] transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
+              <a href={product.checkoutUrl} className="stan-button rounded-full bg-[var(--ink)] px-7 py-4 text-[var(--cream)] transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
                 {product.finalCta} <span aria-hidden>→</span>
               </a>
-              <a href="/brand-room" className="rounded-full border border-[var(--gold)]/40 bg-white/26 px-7 py-4 text-[var(--ink)]/62 transition-all hover:-translate-y-0.5" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
+              <a href="/brand-room" className="stan-button rounded-full border border-[var(--gold)]/40 bg-white/26 px-7 py-4 text-[var(--ink)]/62 transition-all hover:-translate-y-0.5" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
                 Back to Brand Room
               </a>
             </div>
@@ -291,11 +426,11 @@ export function StanStoreProductPage({ product, showCheckout = false }: { produc
       </section>
 
       <section className="bg-[var(--cream)] px-5 py-10 md:px-8 md:py-14">
-        <div className="mx-auto max-w-6xl rounded-[28px] bg-white/62 p-5 md:p-7" style={{ border: "1px solid color-mix(in oklab, var(--gold) 24%, transparent)" }}>
-          <p className="text-center text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase" }}>What You Receive</p>
-          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="stan-shell stan-card mx-auto max-w-6xl rounded-[28px] bg-white/62 p-5 md:p-7" style={{ border: "1px solid color-mix(in oklab, var(--gold) 24%, transparent)" }}>
+          <p className="stan-section-label text-center text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase" }}>What You Receive</p>
+          <div className="stan-grid-tight mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {details.valueStack.map((item) => (
-              <div key={item} className="rounded-2xl bg-[var(--blush)]/50 px-4 py-4 text-center text-[var(--ink)]/72" style={{ border: "1px solid color-mix(in oklab, var(--gold) 22%, transparent)", fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.13em", textTransform: "uppercase" }}>
+              <div key={item} className="stan-value-pill rounded-2xl bg-[var(--blush)]/50 px-4 py-4 text-center text-[var(--ink)]/72" style={{ border: "1px solid color-mix(in oklab, var(--gold) 22%, transparent)", fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.13em", textTransform: "uppercase" }}>
                 {item}
               </div>
             ))}
@@ -309,14 +444,14 @@ export function StanStoreProductPage({ product, showCheckout = false }: { produc
             <img
               src={product.productImage}
               alt={`${product.name} product preview`}
-              className="aspect-[3/2] w-full rounded-[28px] border border-white/80 object-cover shadow-[0_32px_80px_-48px_rgba(90,45,35,0.72)]"
+              className="stan-product-image aspect-[3/2] w-full rounded-[28px] border border-white/80 object-cover shadow-[0_32px_80px_-48px_rgba(90,45,35,0.72)]"
             />
           )}
           <div className="mt-8 grid gap-4 md:grid-cols-4">
             {product.imageItems.map((item) => (
-              <div key={item} className="rounded-[20px] bg-[var(--blush)]/60 px-5 py-5 text-center" style={{ border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}>
+              <div key={item} className="stan-card rounded-[20px] bg-[var(--blush)]/60 px-5 py-5 text-center" style={{ border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}>
                 <FeatureIllustration label={item} />
-                <p className="text-[var(--ink)]/68" style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>{item}</p>
+                <p className="stan-section-label text-[var(--ink)]/68" style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>{item}</p>
               </div>
             ))}
           </div>
@@ -330,31 +465,31 @@ export function StanStoreProductPage({ product, showCheckout = false }: { produc
 
       <section id="details" className="px-5 py-16 md:px-8 md:py-24" style={{ background: "linear-gradient(180deg, #f8e5df 0%, #fff8f3 100%)" }}>
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_0.42fr]">
-          <div className="rounded-[30px] bg-white/58 p-7 md:p-10" style={{ border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}>
-            <p className="text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase" }}>Why You Need This</p>
-            <h2 className="mt-4 text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2rem, 5vw, 3.6rem)", lineHeight: 1, fontWeight: 400 }}>{product.painHeadline}</h2>
-            <p className="mt-5 text-[var(--ink)]/68" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.75 }}>{product.painBody}</p>
-            <p className="mt-4 text-[var(--ink)]/58" style={{ fontFamily: FONT_BODY, fontSize: "0.96rem", lineHeight: 1.7 }}>{product.intro}</p>
+          <div className="stan-card rounded-[30px] bg-white/58 p-7 md:p-10" style={{ border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}>
+            <p className="stan-section-label text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase" }}>Why You Need This</p>
+            <h2 className="stan-section-title mt-4 text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2rem, 5vw, 3.6rem)", lineHeight: 1, fontWeight: 400 }}>{product.painHeadline}</h2>
+            <p className="stan-body-copy mt-5 text-[var(--ink)]/68" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.75 }}>{product.painBody}</p>
+            <p className="stan-body-copy mt-4 text-[var(--ink)]/58" style={{ fontFamily: FONT_BODY, fontSize: "0.96rem", lineHeight: 1.7 }}>{product.intro}</p>
             <ul className="mt-8 grid gap-4 sm:grid-cols-2">
               {product.outcomes.map((item) => <CheckItem key={item}>{item}</CheckItem>)}
             </ul>
           </div>
 
           <aside className="rounded-[30px] bg-[var(--ink)] p-7 text-[var(--cream)] lg:sticky lg:top-6 lg:self-start">
-            <p className="text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase" }}>Instant Access</p>
+            <p className="stan-section-label text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase" }}>Instant Access</p>
             <div className="mt-5 flex items-baseline gap-3">
               <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "4.4rem", lineHeight: 1 }}>{product.price}</span>
               {product.regular && <span className="text-[var(--cream)]/34 line-through" style={{ fontFamily: FONT_BODY, fontSize: "1.05rem" }}>{product.regular}</span>}
             </div>
-            {product.value && <p className="text-[var(--cream)]/45" style={{ fontFamily: FONT_LUXE, fontSize: "0.7rem", letterSpacing: "0.13em", textTransform: "uppercase" }}>{product.value}</p>}
+            {product.value && <p className="stan-section-label text-[var(--cream)]/45" style={{ fontFamily: FONT_LUXE, fontSize: "0.7rem", letterSpacing: "0.13em", textTransform: "uppercase" }}>{product.value}</p>}
             {showCheckout ? (
-              <a href={product.checkoutUrl} className="mt-7 block rounded-full px-6 py-4 text-center transition-all hover:-translate-y-0.5" style={{ background: "var(--gold)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
+              <a href={product.checkoutUrl} className="stan-button mt-7 block rounded-full px-6 py-4 text-center transition-all hover:-translate-y-0.5" style={{ background: "var(--gold)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
                 Get Instant Access →
               </a>
             ) : (
-              <p className="mt-4 text-center text-[var(--cream)]/42" style={{ fontFamily: FONT_BODY, fontSize: "0.78rem" }}>Private digital access after purchase.</p>
+              <p className="stan-body-copy mt-4 text-center text-[var(--cream)]/42" style={{ fontFamily: FONT_BODY, fontSize: "0.78rem" }}>Private digital access after purchase.</p>
             )}
-            {showCheckout && <p className="mt-4 text-center text-[var(--cream)]/42" style={{ fontFamily: FONT_BODY, fontSize: "0.78rem" }}>Private digital access after purchase.</p>}
+            {showCheckout && <p className="stan-body-copy mt-4 text-center text-[var(--cream)]/42" style={{ fontFamily: FONT_BODY, fontSize: "0.78rem" }}>Private digital access after purchase.</p>}
           </aside>
         </div>
       </section>
@@ -364,12 +499,12 @@ export function StanStoreProductPage({ product, showCheckout = false }: { produc
           <SectionHeader eyebrow="The Transformation" title="Before vs. After" />
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {details.shift.map((item) => (
-              <article key={item.before} className="overflow-hidden rounded-[26px] bg-white/68" style={{ border: "1px solid color-mix(in oklab, var(--gold) 26%, transparent)" }}>
-                <div className="bg-[var(--ink)] px-5 py-4 text-[var(--cream)]/74" style={{ fontFamily: FONT_BODY, fontSize: "0.92rem" }}>
+              <article key={item.before} className="stan-card overflow-hidden rounded-[26px] bg-white/68" style={{ border: "1px solid color-mix(in oklab, var(--gold) 26%, transparent)" }}>
+                <div className="stan-body-copy bg-[var(--ink)] px-5 py-4 text-[var(--cream)]/74" style={{ fontFamily: FONT_BODY, fontSize: "0.92rem" }}>
                   Before: {item.before}
                 </div>
                 <div className="px-5 py-5">
-                  <p className="text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.55rem", lineHeight: 1.1 }}>After: {item.after}</p>
+                  <p className="stan-card-title text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.55rem", lineHeight: 1.1 }}>After: {item.after}</p>
                 </div>
               </article>
             ))}
@@ -382,12 +517,12 @@ export function StanStoreProductPage({ product, showCheckout = false }: { produc
           <SectionHeader eyebrow="What's Inside" title={product.insideTitle} />
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {product.inside.map((item) => (
-              <article key={item.title} className="rounded-[24px] bg-white/64 p-6" style={{ border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}>
+              <article key={item.title} className="stan-card rounded-[24px] bg-white/64 p-6" style={{ border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}>
                 <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-[var(--blush)]/58">
                   <InsideIllustration label={item.title} />
                 </div>
-                <h3 className="mt-5 text-[var(--ink)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.45rem", lineHeight: 1.1 }}>{item.title}</h3>
-                <p className="mt-3 text-[var(--ink)]/62" style={{ fontFamily: FONT_BODY, fontSize: "0.92rem", lineHeight: 1.65 }}>{item.body}</p>
+                <h3 className="stan-card-title mt-5 text-[var(--ink)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.45rem", lineHeight: 1.1 }}>{item.title}</h3>
+                <p className="stan-body-copy mt-3 text-[var(--ink)]/62" style={{ fontFamily: FONT_BODY, fontSize: "0.92rem", lineHeight: 1.65 }}>{item.body}</p>
               </article>
             ))}
           </div>
@@ -395,9 +530,9 @@ export function StanStoreProductPage({ product, showCheckout = false }: { produc
       </section>
 
       <section className="bg-[var(--cream)] px-5 py-14 md:px-8 md:py-18">
-        <div className="mx-auto max-w-4xl rounded-[30px] bg-[var(--ink)] p-7 text-center text-[var(--cream)] md:p-10">
-          <p className="text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase" }}>Read This First</p>
-          <p className="mx-auto mt-4 max-w-2xl text-[var(--cream)]/78" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.7rem, 4vw, 2.6rem)", lineHeight: 1.18 }}>
+        <div className="stan-card mx-auto max-w-4xl rounded-[30px] bg-[var(--ink)] p-7 text-center text-[var(--cream)] md:p-10">
+          <p className="stan-section-label text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase" }}>Read This First</p>
+          <p className="stan-large-note mx-auto mt-4 max-w-2xl text-[var(--cream)]/78" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.7rem, 4vw, 2.6rem)", lineHeight: 1.18 }}>
             {details.objection}
           </p>
         </div>
@@ -406,14 +541,14 @@ export function StanStoreProductPage({ product, showCheckout = false }: { produc
       <section className="px-5 py-16 md:px-8 md:py-24" style={{ background: "var(--ink)" }}>
         <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-2">
           <div>
-            <p className="text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase" }}>Perfect For</p>
-            <h2 className="mt-4 text-[var(--cream)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 5vw, 3.8rem)", lineHeight: 1, fontWeight: 400 }}>Built for beginners who want clarity before they spend more.</h2>
+            <p className="stan-section-label text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase" }}>Perfect For</p>
+            <h2 className="stan-section-title mt-4 text-[var(--cream)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 5vw, 3.8rem)", lineHeight: 1, fontWeight: 400 }}>Built for beginners who want clarity before they spend more.</h2>
             {product.bonuses && (
               <>
-                <p className="mt-8 text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase" }}>Included</p>
+                <p className="stan-section-label mt-8 text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase" }}>Included</p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {product.bonuses.map((bonus) => (
-                    <span key={bonus} className="rounded-full border border-[var(--gold)]/30 px-4 py-2 text-[var(--cream)]/72" style={{ fontFamily: FONT_BODY, fontSize: "0.86rem" }}>{bonus}</span>
+                    <span key={bonus} className="stan-bonus-pill rounded-full border border-[var(--gold)]/30 px-4 py-2 text-[var(--cream)]/72" style={{ fontFamily: FONT_BODY, fontSize: "0.86rem" }}>{bonus}</span>
                   ))}
                 </div>
               </>
@@ -421,7 +556,7 @@ export function StanStoreProductPage({ product, showCheckout = false }: { produc
           </div>
           <div className="grid gap-3">
             {product.perfectFor.map((item) => (
-              <div key={item} className="rounded-2xl bg-white/[0.06] p-5 text-[var(--cream)]/72" style={{ border: "1px solid rgba(200,168,100,0.18)", fontFamily: FONT_BODY, fontSize: "0.95rem", lineHeight: 1.65 }}>
+              <div key={item} className="stan-card stan-body-copy rounded-2xl bg-white/[0.06] p-5 text-[var(--cream)]/72" style={{ border: "1px solid rgba(200,168,100,0.18)", fontFamily: FONT_BODY, fontSize: "0.95rem", lineHeight: 1.65 }}>
                 {item}
               </div>
             ))}
@@ -438,7 +573,7 @@ export function StanStoreProductPage({ product, showCheckout = false }: { produc
                 <summary className="flex list-none items-center justify-between gap-4 text-[var(--ink)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.2rem" }}>
                   {faq.q}
                 </summary>
-                <p className="mt-3 text-[var(--ink)]/65" style={{ fontFamily: FONT_BODY, fontSize: "0.92rem", lineHeight: 1.65 }}>{faq.a}</p>
+                <p className="stan-faq-copy mt-3 text-[var(--ink)]/65" style={{ fontFamily: FONT_BODY, fontSize: "0.92rem", lineHeight: 1.65 }}>{faq.a}</p>
               </details>
             ))}
           </div>
@@ -447,30 +582,30 @@ export function StanStoreProductPage({ product, showCheckout = false }: { produc
 
       <section className="px-5 py-16 text-center md:px-8 md:py-24" style={{ background: "linear-gradient(180deg, #f8e5df 0%, #f1d2cc 100%)" }}>
         <div className="mx-auto max-w-4xl">
-          <p className="text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase" }}>After You Build The Foundation</p>
-          <h2 className="mt-4 text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 6vw, 4.2rem)", lineHeight: 1, fontWeight: 400 }}>Ready for done-for-you growth?</h2>
-          <p className="mx-auto mt-5 max-w-2xl text-[var(--ink)]/64" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.75 }}>
+          <p className="stan-section-label text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase" }}>After You Build The Foundation</p>
+          <h2 className="stan-section-title mt-4 text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 6vw, 4.2rem)", lineHeight: 1, fontWeight: 400 }}>Ready for done-for-you growth?</h2>
+          <p className="stan-final-copy mx-auto mt-5 max-w-2xl text-[var(--ink)]/64" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.75 }}>
             Once your offer and direction are clear, The Dollhouse can help with managed marketing: content, AI clone videos, automation, and lead follow-up handled for you.
           </p>
-          <p className="mx-auto mt-6 max-w-2xl text-[var(--ink)]/72" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.5rem, 4vw, 2.25rem)", lineHeight: 1.18 }}>
+          <p className="stan-large-note mx-auto mt-6 max-w-2xl text-[var(--ink)]/72" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.5rem, 4vw, 2.25rem)", lineHeight: 1.18 }}>
             {details.close}
           </p>
           {showCheckout ? (
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <a href={product.checkoutUrl} className="rounded-full bg-[var(--ink)] px-8 py-4 text-[var(--cream)] transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
+              <a href={product.checkoutUrl} className="stan-button rounded-full bg-[var(--ink)] px-8 py-4 text-[var(--cream)] transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
                 {product.finalCta} <span aria-hidden>→</span>
               </a>
-              <a href="/#contact" className="rounded-full border border-[var(--gold)]/40 bg-white/30 px-8 py-4 text-[var(--ink)]/62 transition-all hover:-translate-y-0.5" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
+              <a href="/#contact" className="stan-button rounded-full border border-[var(--gold)]/40 bg-white/30 px-8 py-4 text-[var(--ink)]/62 transition-all hover:-translate-y-0.5" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
                 Apply for Marketing
               </a>
             </div>
           ) : (
-            <div className="mx-auto mt-8 grid max-w-2xl gap-3 rounded-[26px] bg-white/42 p-5 text-[var(--ink)]/64 sm:grid-cols-2" style={{ border: "1px solid color-mix(in oklab, var(--gold) 24%, transparent)" }}>
-              <p style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.14em", textTransform: "uppercase" }}>Product: {product.price}</p>
-              <p style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.14em", textTransform: "uppercase" }}>Marketing: Apply when ready</p>
+            <div className="stan-card mx-auto mt-8 grid max-w-2xl gap-3 rounded-[26px] bg-white/42 p-5 text-[var(--ink)]/64 sm:grid-cols-2" style={{ border: "1px solid color-mix(in oklab, var(--gold) 24%, transparent)" }}>
+              <p className="stan-section-label" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.14em", textTransform: "uppercase" }}>Product: {product.price}</p>
+              <p className="stan-section-label" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.14em", textTransform: "uppercase" }}>Marketing: Apply when ready</p>
             </div>
           )}
-          <p className="mx-auto mt-6 max-w-xl text-[var(--ink)]/42" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", lineHeight: 1.6 }}>
+          <p className="stan-faq-copy mx-auto mt-6 max-w-xl text-[var(--ink)]/42" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", lineHeight: 1.6 }}>
             {allSalesFinal}
           </p>
         </div>
