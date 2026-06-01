@@ -4,11 +4,17 @@ import {
   BarChart3,
   Bot,
   Check,
+  ClipboardClock,
+  Inbox,
   MessageSquare,
   PhoneCall,
   Play,
+  Printer,
+  Search,
   ShieldCheck,
   Sparkles,
+  SquareMousePointer,
+  Star,
   Video,
 } from "lucide-react";
 import bgImage from "@/assets/password-bg.jpg";
@@ -122,6 +128,7 @@ function Nav() {
 
   const links = [
     { href: "#services", label: "Services" },
+    { href: "#systems", label: "Systems" },
     { href: "#about", label: "About" },
     { href: "#pricing", label: "Pricing" },
     { href: "#faq", label: "FAQ" },
@@ -1258,6 +1265,118 @@ function Services() {
             <div className="[direction:ltr]">{it.visual}</div>
           </div>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function SystemsFeatures() {
+  const features = [
+    {
+      icon: SquareMousePointer,
+      title: "Functional Website",
+      desc: "A lead-generating 10-20 page website built to turn visits into text conversations.",
+    },
+    {
+      icon: PhoneCall,
+      title: "Missed Call Text Back",
+      desc: "Automatically text missed callers so warm leads get a fast response.",
+    },
+    {
+      icon: Printer,
+      title: "Printing Services",
+      desc: "Put your business out there online and offline with polished brand materials.",
+    },
+    {
+      icon: Inbox,
+      title: "All-In-One Inbox",
+      desc: "Keep messages from your website, forms, calls, and campaigns in one place.",
+    },
+    {
+      icon: Bot,
+      title: "Business Phone",
+      desc: "Separate business and personal while keeping calls and texts easy to manage.",
+    },
+    {
+      icon: Search,
+      title: "Local SEO",
+      desc: "Help your business get found on Google with optimized pages and local signals.",
+    },
+    {
+      icon: Star,
+      title: "5-Star Magic Review Funnel",
+      desc: "Get more 5-star reviews and route private feedback before it becomes public.",
+    },
+    {
+      icon: ClipboardClock,
+      title: "One-Click Marketing Campaigns",
+      desc: "Send simple referral, promo, and reactivation campaigns without starting from scratch.",
+    },
+    {
+      icon: MessageSquare,
+      title: "Automated Lead Follow-Up",
+      desc: "Follow up with leads by text so inquiries turn into conversations faster.",
+    },
+  ];
+
+  return (
+    <section id="systems" className="scroll-mt-32 py-20 md:py-28 px-6 bg-[var(--cream)]">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 border-b border-[var(--gold)]/22 pb-8">
+          <div>
+            <Eyebrow>Systems & Features</Eyebrow>
+            <h2
+              className="mt-3 text-[var(--ink)]"
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: "clamp(2.2rem, 4.5vw, 3.8rem)",
+                lineHeight: 1.05,
+                fontWeight: 400,
+              }}
+            >
+              The tools behind the growth system.
+            </h2>
+          </div>
+          <p className="max-w-md text-[var(--ink)]/58 leading-7" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem" }}>
+            A clear view of the website, automation, review, and follow-up pieces we can build into your plan.
+          </p>
+        </div>
+
+        <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12">
+          {features.map((feature) => {
+            const Icon = feature.icon;
+            return (
+              <div key={feature.title} className="flex gap-5 items-start">
+                <div
+                  className="h-[72px] w-[72px] rounded-2xl flex items-center justify-center shrink-0"
+                  style={{
+                    background: "linear-gradient(145deg, rgba(255,255,255,0.72), rgba(244,220,215,0.58))",
+                    border: "1px solid rgba(200,168,100,0.22)",
+                    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.72)",
+                  }}
+                >
+                  <Icon size={31} strokeWidth={1.7} color="var(--ink)" />
+                </div>
+                <div>
+                  <h3
+                    className="text-[var(--ink)] leading-tight"
+                    style={{
+                      fontFamily: "'Jost', sans-serif",
+                      fontSize: "clamp(1.05rem, 1.5vw, 1.35rem)",
+                      fontWeight: 600,
+                      letterSpacing: "0",
+                    }}
+                  >
+                    {feature.title}
+                  </h3>
+                  <p className="mt-2 text-[var(--ink)]/52 leading-7" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem" }}>
+                    {feature.desc}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
@@ -2891,6 +3010,7 @@ function Index() {
       <Hero />
       <TrustBar />
       <Services />
+      <SystemsFeatures />
       <AICloneSection />
       <About />
       <HowItWorks />
