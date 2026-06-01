@@ -1769,7 +1769,7 @@ function Pricing() {
       outcome: "All 3 social platforms, paid Meta ads, voice AI, and follow-up automation.",
       tagline: "Facebook, Instagram, and TikTok fully managed — more content, paid ads, and strategy built in.",
       featured: true,
-      topBadge: { label: "Best Path To $20k/mo", tone: "pink" as "gold" | "pink" },
+      topBadge: { label: "Best for Lead Flow", tone: "pink" as "gold" | "pink" },
       cta: "Get a Free Proposal →",
       features: [
         "3 platforms fully managed — Facebook, Instagram & TikTok — nothing to post, nothing to think about",
@@ -1884,8 +1884,8 @@ function Pricing() {
       >
         {[
           ["Start At $297", "Build the website, follow-up, missed-call, review, and SEO foundation first."],
-          ["Aim For Growth", "The Growth plan is the main offer: 8 clients at $2,500/mo gets you to $20k/mo."],
-          ["Scale To $100k", "A clear product ladder lets you move clients from foundation into higher-value managed growth."],
+          ["Most Complete", "The Growth plan is the main offer for clients who want content, ads, automation, and follow-up working together."],
+          ["Scale When Ready", "A clear product ladder lets clients start with the foundation, then move into higher-value managed growth."],
         ].map(([title, copy]) => (
           <div key={title} className="rounded-2xl px-5 py-4 text-center" style={{ background: "rgba(255,255,255,0.5)" }}>
             <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>{title}</p>
