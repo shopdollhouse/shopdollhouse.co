@@ -11,6 +11,15 @@ export type SystemService = {
   result: string;
 };
 
+export const managedServiceLinks = [
+  { href: "/#service-content-social-media-management", title: "Content & Social Media Management", short: "Branded posts, captions, design, and scheduling." },
+  { href: "/#service-paid-social-search-advertising", title: "Paid Social & Search Advertising", short: "Meta and Google ads built to bring in leads." },
+  { href: "/#service-strategy-analytics-reporting", title: "Strategy, Analytics & Reporting", short: "Clear monthly reporting and next-step planning." },
+  { href: "/#service-ai-voice-chat-automation", title: "AI Voice & Chat Automation", short: "Instant call, text, and DM support for leads." },
+  { href: "/#service-automated-appointment-reminders", title: "Automated Appointment Reminders", short: "Text and email reminders that reduce no-shows." },
+  { href: "/#service-review-reputation-management", title: "Review & Reputation Management", short: "Automated review requests and reputation support." },
+];
+
 export const systemServices: SystemService[] = [
   {
     slug: "functional-website",

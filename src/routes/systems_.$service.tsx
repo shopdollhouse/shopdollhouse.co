@@ -12,7 +12,7 @@ import {
   Star,
 } from "lucide-react";
 import archMark from "@/assets/arch-mark.svg";
-import { getSystemService, systemServices } from "@/lib/system-services";
+import { getSystemService, managedServiceLinks, systemServices } from "@/lib/system-services";
 
 export const Route = createFileRoute("/systems_/$service")({
   component: SystemServicePage,
@@ -51,7 +51,85 @@ function Nav() {
       </Link>
 
       <div className="hidden md:flex items-center gap-7 text-[10px] tracking-[0.2em] uppercase text-[var(--ink)]/70" style={{ fontFamily: FONT_LUXE }}>
-        <Link to="/" hash="systems" className="hover:text-[var(--rose)] transition-colors">Systems</Link>
+        <div className="relative group">
+          <a href="/#services" className="hover:text-[var(--rose)] transition-colors inline-flex items-center gap-1.5">
+            Systems
+            <span className="text-[var(--gold)] text-[9px]">⌄</span>
+          </a>
+          <div
+            className="absolute left-1/2 top-full z-50 mt-5 w-[860px] -translate-x-1/2 rounded-[26px] p-5 opacity-0 translate-y-2 pointer-events-none transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"
+            style={{
+              background: "color-mix(in oklab, var(--cream) 96%, white)",
+              border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",
+              boxShadow: "0 34px 80px -40px rgba(70,35,25,0.42)",
+            }}
+          >
+            <div className="flex items-center justify-between border-b border-[var(--gold)]/18 pb-4 mb-4">
+              <p className="text-[var(--ink)] text-[13px] normal-case tracking-normal" style={{ fontFamily: FONT_LUXE, fontWeight: 700 }}>
+                Services & Systems
+              </p>
+              <a href="/#services" className="text-[var(--gold)] text-[9px] tracking-[0.2em] uppercase hover:text-[var(--rose)]">
+                Main services
+              </a>
+            </div>
+            <div className="mb-5">
+              <p className="mb-2 text-[var(--gold)] text-[9px] tracking-[0.2em] uppercase" style={{ fontFamily: FONT_LUXE }}>
+                Managed Growth Services
+              </p>
+              <div className="grid grid-cols-2 gap-2">
+                {managedServiceLinks.map((service) => (
+                  <a
+                    key={service.href}
+                    href={service.href}
+                    className="rounded-2xl px-3 py-2.5 hover:bg-white/70 transition-colors"
+                  >
+                    <span className="block text-[var(--ink)] normal-case tracking-normal leading-tight" style={{ fontFamily: FONT_LUXE, fontSize: "0.76rem", fontWeight: 700 }}>
+                      {service.title}
+                    </span>
+                    <span className="mt-1 block text-[var(--ink)]/48 normal-case tracking-normal leading-snug" style={{ fontFamily: FONT_BODY, fontSize: "0.66rem" }}>
+                      {service.short}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
+            <p className="mb-2 text-[var(--gold)] text-[9px] tracking-[0.2em] uppercase" style={{ fontFamily: FONT_LUXE }}>
+              Systems & Automation Pages
+            </p>
+            <div className="grid grid-cols-3 gap-3">
+              {systemServices.map((item) => {
+                const ItemIcon = iconMap[item.icon as keyof typeof iconMap];
+                return (
+                  <Link
+                    key={item.slug}
+                    to="/systems/$service"
+                    params={{ service: item.slug }}
+                    className="group/item rounded-2xl p-3 flex gap-3 hover:bg-white/70 transition-colors"
+                  >
+                    <span
+                      className="h-10 w-10 rounded-xl flex items-center justify-center shrink-0"
+                      style={{
+                        background: "rgba(200,168,100,0.1)",
+                        border: "1px solid rgba(200,168,100,0.18)",
+                        color: "var(--ink)",
+                      }}
+                    >
+                      <ItemIcon size={18} strokeWidth={1.8} />
+                    </span>
+                    <span>
+                      <span className="block text-[var(--ink)] normal-case tracking-normal leading-tight" style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", fontWeight: 700 }}>
+                        {item.title}
+                      </span>
+                      <span className="mt-1 block text-[var(--ink)]/48 normal-case tracking-normal leading-snug" style={{ fontFamily: FONT_BODY, fontSize: "0.68rem" }}>
+                        {item.short}
+                      </span>
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </div>
         <Link to="/" hash="pricing" className="hover:text-[var(--rose)] transition-colors">Pricing</Link>
         <Link to="/" hash="contact" className="rounded-full bg-[var(--ink)] text-[var(--cream)] px-5 py-2.5 hover:opacity-85 transition-opacity">Get a proposal</Link>
       </div>

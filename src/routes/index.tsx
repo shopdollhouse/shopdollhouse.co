@@ -22,7 +22,7 @@ import signatureBrandingBg from "@/assets/signature-branding-bg.jpg";
 import archMark from "@/assets/arch-mark.svg";
 import mandyPhoto from "@/assets/mandy-photo.jpg";
 import mandyAIClonePreview from "@/assets/mandy-ai-clone-preview.jpg";
-import { systemServices } from "@/lib/system-services";
+import { managedServiceLinks, systemServices } from "@/lib/system-services";
 
 export const Route = createFileRoute("/")({ component: Index });
 
@@ -210,12 +210,12 @@ function Nav() {
             style={{ fontFamily: "'Jost', sans-serif" }}
           >
             <div className="relative group">
-              <a href="#systems" className="nav-link hover:text-[var(--rose)] transition-colors inline-flex items-center gap-1.5">
+              <a href="#services" className="nav-link hover:text-[var(--rose)] transition-colors inline-flex items-center gap-1.5">
                 Systems
                 <span className="text-[var(--gold)] text-[9px]">⌄</span>
               </a>
               <div
-                className="absolute left-1/2 top-full z-50 mt-5 w-[760px] -translate-x-1/2 rounded-[26px] p-5 opacity-0 translate-y-2 pointer-events-none transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"
+                className="absolute left-1/2 top-full z-50 mt-5 w-[860px] -translate-x-1/2 rounded-[26px] p-5 opacity-0 translate-y-2 pointer-events-none transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"
                 style={{
                   background: "color-mix(in oklab, var(--cream) 96%, white)",
                   border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",
@@ -224,12 +224,36 @@ function Nav() {
               >
                 <div className="flex items-center justify-between border-b border-[var(--gold)]/18 pb-4 mb-4">
                   <p className="text-[var(--ink)] text-[13px] normal-case tracking-normal" style={{ fontFamily: "'Jost', sans-serif", fontWeight: 700 }}>
-                    Systems & Features
+                    Services & Systems
                   </p>
-                  <a href="#systems" className="text-[var(--gold)] text-[9px] tracking-luxe uppercase hover:text-[var(--rose)]">
-                    View all
+                  <a href="#services" className="text-[var(--gold)] text-[9px] tracking-luxe uppercase hover:text-[var(--rose)]">
+                    Main services
                   </a>
                 </div>
+                <div className="mb-5">
+                  <p className="mb-2 text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
+                    Managed Growth Services
+                  </p>
+                  <div className="grid grid-cols-2 gap-2">
+                    {managedServiceLinks.map((service) => (
+                      <a
+                        key={service.href}
+                        href={service.href}
+                        className="rounded-2xl px-3 py-2.5 hover:bg-white/70 transition-colors"
+                      >
+                        <span className="block text-[var(--ink)] normal-case tracking-normal leading-tight" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.76rem", fontWeight: 700 }}>
+                          {service.title}
+                        </span>
+                        <span className="mt-1 block text-[var(--ink)]/48 normal-case tracking-normal leading-snug" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.66rem" }}>
+                          {service.short}
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+                <p className="mb-2 text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
+                  Systems & Automation Pages
+                </p>
                 <div className="grid grid-cols-3 gap-3">
                   {systemServices.map((service) => {
                     const Icon = systemIconMap[service.icon as keyof typeof systemIconMap];
@@ -321,9 +345,28 @@ function Nav() {
             </a>
           ))}
           <div className="pt-2 border-t border-[var(--gold)]/20">
-            <a href="#systems" onClick={() => setOpen(false)} className="block mb-3 hover:text-[var(--rose)]">
+            <a href="#services" onClick={() => setOpen(false)} className="block mb-3 hover:text-[var(--rose)]">
               Systems
             </a>
+            <p className="mb-2 text-[var(--gold)] text-[9px] tracking-luxe uppercase">
+              Managed Services
+            </p>
+            <div className="grid gap-2 normal-case tracking-normal mb-4">
+              {managedServiceLinks.map((service) => (
+                <a
+                  key={service.href}
+                  href={service.href}
+                  onClick={() => setOpen(false)}
+                  className="rounded-xl bg-white/50 border border-[var(--gold)]/15 px-3 py-2 text-[var(--ink)]/70"
+                  style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem" }}
+                >
+                  {service.title}
+                </a>
+              ))}
+            </div>
+            <p className="mb-2 text-[var(--gold)] text-[9px] tracking-luxe uppercase">
+              Systems Pages
+            </p>
             <div className="grid gap-2 normal-case tracking-normal">
               {systemServices.map((service) => (
                 <a
@@ -1268,6 +1311,7 @@ function ReviewCard() {
 function Services() {
   const items = [
     {
+      id: "service-content-social-media-management",
       tag: "Content & Social Media Management",
       title: "Branded content, created and published for you — every day.",
       sub: "Show up consistently without lifting a finger.",
@@ -1275,6 +1319,7 @@ function Services() {
       visual: <ContentCalendarCard />,
     },
     {
+      id: "service-paid-social-search-advertising",
       tag: "Paid Social & Search Advertising",
       title: "Facebook, Instagram, and Google ads that bring in real leads.",
       sub: "More reach. More bookings. Less guesswork.",
@@ -1282,6 +1327,7 @@ function Services() {
       visual: <AnalyticsCard />,
     },
     {
+      id: "service-strategy-analytics-reporting",
       tag: "Strategy, Analytics & Reporting",
       title: "Always know what's working — and a plan to scale it.",
       sub: "Clear data. Smarter decisions. Every month.",
@@ -1289,6 +1335,7 @@ function Services() {
       visual: <CaptionCard />,
     },
     {
+      id: "service-ai-voice-chat-automation",
       tag: "AI Voice & Chat Automation",
       title: "Never miss a lead — calls, texts, and DMs answered instantly, 24/7.",
       sub: "Your business never sleeps.",
@@ -1296,6 +1343,7 @@ function Services() {
       visual: <AIChatCard />,
     },
     {
+      id: "service-automated-appointment-reminders",
       tag: "Automated Appointment Reminders",
       title: "Reduce no-shows before they happen.",
       sub: "Keep your calendar full and your clients showing up.",
@@ -1303,6 +1351,7 @@ function Services() {
       visual: <ReminderCard />,
     },
     {
+      id: "service-review-reputation-management",
       tag: "Review & Reputation Management",
       title: "Build your 5-star presence — automatically.",
       sub: "More reviews. More trust. More new clients.",
@@ -1320,6 +1369,7 @@ function Services() {
         {items.map((it, i) => (
           <div
             key={it.tag}
+            id={it.id}
             className={`grid md:grid-cols-2 gap-12 items-center ${i % 2 === 1 ? "md:[direction:rtl]" : ""}`}
           >
             <div className="[direction:ltr]">
@@ -1349,70 +1399,6 @@ function Services() {
             <div className="[direction:ltr]">{it.visual}</div>
           </div>
         ))}
-      </div>
-    </section>
-  );
-}
-
-function SystemsFeatures() {
-  return (
-    <section id="systems" className="scroll-mt-32 py-20 md:py-28 px-6 bg-[var(--cream)]">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 border-b border-[var(--gold)]/22 pb-8">
-          <div>
-            <Eyebrow>Systems & Features</Eyebrow>
-            <h2
-              className="mt-3 text-[var(--ink)]"
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(2.2rem, 4.5vw, 3.8rem)",
-                lineHeight: 1.05,
-                fontWeight: 400,
-              }}
-            >
-              The tools behind the growth system.
-            </h2>
-          </div>
-          <p className="max-w-md text-[var(--ink)]/58 leading-7" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem" }}>
-            A clear view of the website, automation, review, and follow-up pieces we can build into your plan.
-          </p>
-        </div>
-
-        <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12">
-          {systemServices.map((feature) => {
-            const Icon = systemIconMap[feature.icon as keyof typeof systemIconMap];
-            return (
-              <a key={feature.slug} href={`/systems/${feature.slug}`} className="flex gap-5 items-start group">
-                <div
-                  className="h-[72px] w-[72px] rounded-2xl flex items-center justify-center shrink-0"
-                  style={{
-                    background: "linear-gradient(145deg, rgba(255,255,255,0.72), rgba(244,220,215,0.58))",
-                    border: "1px solid rgba(200,168,100,0.22)",
-                    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.72)",
-                  }}
-                >
-                  <Icon size={31} strokeWidth={1.7} color="var(--ink)" />
-                </div>
-                <div>
-                  <h3
-                    className="text-[var(--ink)] leading-tight group-hover:text-[var(--rose)] transition-colors"
-                    style={{
-                      fontFamily: "'Jost', sans-serif",
-                      fontSize: "clamp(1.05rem, 1.5vw, 1.35rem)",
-                      fontWeight: 600,
-                      letterSpacing: "0",
-                    }}
-                  >
-                    {feature.title}
-                  </h3>
-                  <p className="mt-2 text-[var(--ink)]/52 leading-7" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem" }}>
-                    {feature.short}
-                  </p>
-                </div>
-              </a>
-            );
-          })}
-        </div>
       </div>
     </section>
   );
@@ -3046,7 +3032,6 @@ function Index() {
       <Hero />
       <TrustBar />
       <Services />
-      <SystemsFeatures />
       <AICloneSection />
       <About />
       <HowItWorks />
