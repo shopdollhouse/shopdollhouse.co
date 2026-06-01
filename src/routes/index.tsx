@@ -1530,10 +1530,19 @@ function AICloneSection() {
 }
 
 function Pricing() {
+  const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">("monthly");
+  const isAnnual = billingCycle === "annual";
+  const freeWeeks = "5.2";
+  const displayPrice = (monthlyPrice: number) => {
+    const price = isAnnual ? Math.round(monthlyPrice * 12 * 0.9) : monthlyPrice;
+    return `$${price.toLocaleString()}`;
+  };
+
   const tiers = [
     {
       name: "Content Lite",
       price: "$500",
+      monthlyPrice: 500,
       software: "1 platform",
       fit: "Best for a polished starting point",
       outcome: "One platform with consistent static posts and carousels.",
@@ -1553,6 +1562,7 @@ function Pricing() {
     {
       name: "Starter",
       price: "$1,000",
+      monthlyPrice: 1000,
       software: "$300/mo",
       fit: "Best for focused launches",
       outcome: "One platform, one clear offer, one polished content system.",
@@ -1573,6 +1583,7 @@ function Pricing() {
     {
       name: "Growth",
       price: "$2,500",
+      monthlyPrice: 2500,
       software: "$300/mo",
       fit: "Best for consistent lead flow",
       outcome: "All 3 social platforms, paid Meta ads, voice AI, and follow-up automation.",
@@ -1600,6 +1611,7 @@ function Pricing() {
     {
       name: "Website + Lead Follow-Up",
       price: "$297",
+      monthlyPrice: 297,
       fit: "Best for service businesses that need every inquiry answered fast",
       summary:
         "A functional 10-20 page website connected to text-back, review, and simple campaign automations so leads turn into conversations instead of getting lost in email.",
@@ -1628,6 +1640,79 @@ function Pricing() {
         title="Choose your plan"
         italic="Start with light content support, then scale into the managed growth system when you are ready."
       />
+
+      <div className="mt-8 flex flex-col items-center gap-3">
+        <div
+          className="inline-flex items-center gap-4 rounded-full px-5 py-3"
+          style={{
+            background: "rgba(255,250,246,0.6)",
+            border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",
+            boxShadow: "0 18px 42px -34px rgba(120,70,55,0.45)",
+          }}
+        >
+          <button
+            type="button"
+            onClick={() => setBillingCycle("monthly")}
+            className="transition-colors"
+            style={{
+              fontFamily: "'Jost', sans-serif",
+              fontSize: "0.82rem",
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+              color: !isAnnual ? "var(--ink)" : "rgba(30,15,10,0.45)",
+              fontWeight: !isAnnual ? 700 : 500,
+            }}
+          >
+            Monthly
+          </button>
+          <button
+            type="button"
+            role="switch"
+            aria-checked={isAnnual}
+            aria-label="Toggle annual pricing"
+            onClick={() => setBillingCycle(isAnnual ? "monthly" : "annual")}
+            className="relative h-9 w-[70px] rounded-full transition-all"
+            style={{
+              background: isAnnual ? "var(--gold)" : "rgba(30,15,10,0.14)",
+              border: "1px solid rgba(200,168,100,0.35)",
+            }}
+          >
+            <span
+              className="absolute top-1 h-7 w-7 rounded-full bg-white shadow-sm transition-all"
+              style={{ left: isAnnual ? "37px" : "4px" }}
+            />
+          </button>
+          <button
+            type="button"
+            onClick={() => setBillingCycle("annual")}
+            className="transition-colors"
+            style={{
+              fontFamily: "'Jost', sans-serif",
+              fontSize: "0.82rem",
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+              color: isAnnual ? "var(--ink)" : "rgba(30,15,10,0.45)",
+              fontWeight: isAnnual ? 700 : 500,
+            }}
+          >
+            Annual
+          </button>
+        </div>
+        <p
+          className="text-center"
+          style={{
+            fontFamily: "'Jost', sans-serif",
+            fontSize: "0.68rem",
+            letterSpacing: "0.16em",
+            textTransform: "uppercase",
+            color: isAnnual ? "var(--rose)" : "rgba(30,15,10,0.45)",
+            fontWeight: 600,
+          }}
+        >
+          Annual plans save 10% — equal to {freeWeeks} weeks free
+        </p>
+      </div>
+
       <div
         className="mt-12 max-w-5xl mx-auto grid gap-3 md:grid-cols-3 rounded-[28px] p-3"
         style={{
@@ -1728,7 +1813,7 @@ function Pricing() {
                 >
                   <svg viewBox="0 0 24 22" fill="currentColor" style={{ width: "13px", height: "13px", color: "var(--gold)" }}>
                     <path d="M12 21.6C6.3 16.1 1 11.3 1 7.2 1 3.4 4.1 2 6.3 2c1.3 0 4.2.5 5.7 4.5C13.6 2.5 16.5 2 17.7 2 20.3 2 23 3.6 23 7.2c0 4.1-5.1 8.9-11 14.4z"/>
-                  </svg> Monthly Retainer
+                  </svg> {isAnnual ? "Annual Plan" : "Monthly Retainer"}
                 </div>
                 {t.trialAvailable === false ? (
                   <div
@@ -1744,7 +1829,7 @@ function Pricing() {
                     }}
                   >
                     <Sparkles size={12} strokeWidth={1.8} />
-                    Simple monthly package
+                    Simple content package
                   </div>
                 ) : (
                   <div
@@ -1781,7 +1866,7 @@ function Pricing() {
                       color: "var(--gold)",
                     }}
                   >
-                    {t.price}
+                    {displayPrice(t.monthlyPrice)}
                   </span>
                   <span
                     style={{
@@ -1792,8 +1877,25 @@ function Pricing() {
                       marginTop: "4px",
                     }}
                   >
-                    /MO
+                    {isAnnual ? "/YR" : "/MO"}
                   </span>
+                  {isAnnual && (
+                    <span
+                      className="mt-2 rounded-full px-3 py-1"
+                      style={{
+                        background: "rgba(201,122,122,0.1)",
+                        color: "var(--rose)",
+                        border: "1px solid rgba(201,122,122,0.22)",
+                        fontFamily: "'Jost', sans-serif",
+                        fontSize: "0.56rem",
+                        letterSpacing: "0.14em",
+                        textTransform: "uppercase",
+                        fontWeight: 700,
+                      }}
+                    >
+                      10% off · {freeWeeks} weeks free
+                    </span>
+                  )}
                 </div>
 
                 {/* One-time setup fee */}
@@ -1972,11 +2074,16 @@ function Pricing() {
                       color: "var(--gold)",
                     }}
                   >
-                    {pkg.price}
+                    {displayPrice(pkg.monthlyPrice)}
                   </span>
                   <p className="mt-1 text-[var(--ink)]/42 text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
-                    /MO
+                    {isAnnual ? "/YR" : "/MO"}
                   </p>
+                  {isAnnual && (
+                    <p className="mt-2 text-[var(--rose)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", fontWeight: 700 }}>
+                      10% off · {freeWeeks} weeks free
+                    </p>
+                  )}
                 </div>
               </div>
               <p className="mt-4 leading-7 text-[var(--ink)]/68" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem" }}>
