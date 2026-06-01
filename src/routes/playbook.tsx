@@ -5301,6 +5301,46 @@ function GrowthTab() {
         sub="Cold outreach gets your first clients. This system brings 20+ leads a month to you without paying for ads. The sooner you start, the better it gets."
       />
 
+      {/* Expert Pricing Tiers */}
+      <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+        <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+          <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Expert Reference — $120k/mo Agency Pricing Model</p>
+          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>Universal Tiers That Work Across Any Niche</h3>
+          <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.5)" }}>Two agencies: one averaging $300/client (88 customers) · one averaging $1,200/client (17 customers). Both work.</p>
+        </div>
+        <div className="px-6 py-5 space-y-3">
+          {[
+            ["$97–$150/mo", "Hosting Only", "Website live + GHL account + 1 automated follow-up. No setup fee for templates. Easiest yes — lowest friction entry point."],
+            ["$300/mo", "Full SaaS Suite", "Website + CRM + booking calendar + automated sequences + chat widget + missed call text-back. The baseline that makes clients never cancel."],
+            ["$500/mo", "SaaS + Local Ads or AI", "Everything in $300 plan + Google Local Service Ads (link their Google Business + hit run — it runs itself) OR AI receptionist/chat widget."],
+            ["$1,000–$2,000/mo", "Full Ads Management", "Running Google Ads, Meta Ads, or SEO. $1k for one channel, $2k–$3k for multiple. Needs some advertising experience."],
+            ["$4k–$10k upfront", "Custom Website", "Built in Claude Code or GHL AI Studio, deployed in GHL. Clients love the speed (days not months). Always add $97–$300/mo hosting on top."],
+          ].map(([price, name, desc]) => (
+            <div key={name as string} className="flex gap-4 rounded-xl p-4" style={{ background: "rgba(200,168,100,0.06)", border: "1px solid rgba(200,168,100,0.12)" }}>
+              <div style={{ flexShrink: 0, minWidth: 100 }}>
+                <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: "var(--gold)", fontStyle: "italic" }}>{price as string}</p>
+              </div>
+              <div>
+                <p style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", color: "var(--ink)", fontWeight: 600, marginBottom: 3 }}>{name as string}</p>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.6)", lineHeight: 1.5 }}>{desc as string}</p>
+              </div>
+            </div>
+          ))}
+          <div className="rounded-xl p-4" style={{ background: "var(--ink)" }}>
+            <p className="text-[9px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Prepay Tactic — Collect More Upfront</p>
+            <p style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.7 }}>
+              "Pay 3 months upfront and get your 4th month free." Instead of collecting $300 on the first payment, you collect $900. Client feels like they're winning — you get cash flow and de-risk churn in month 1.
+            </p>
+          </div>
+          <div className="rounded-xl p-4" style={{ background: "rgba(200,168,100,0.07)", border: "1px solid rgba(200,168,100,0.2)" }}>
+            <p className="text-[9px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The Path: Free → Paid</p>
+            <p style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.6 }}>
+              Start with cold outreach (free) until you hit $4k–$5k/mo MRR. <strong>Then</strong> start running ads. Ad cost: ~$50–$70 per booked appointment. 10 meetings from $700 spend → close 2–3 → $2k–$3k new MRR. Spend $1k, make back $3k in month 1. People who don't close on high-ticket → downsell to $300/mo SaaS.
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* MRR Math */}
       <div className="rounded-2xl p-6" style={{ background: "var(--ink)" }}>
         <p className="text-[10px] tracking-[0.25em] uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The MRR Math — Why This Business Model Wins</p>
@@ -8066,6 +8106,39 @@ function ScheduleTab() {
 
 /* ─── Quote Builder ───────────────────────────────────── */
 const QB_PACKAGES = {
+  hosting: {
+    name: "Hosting Only", monthly: 97, setup: 0, emoji: "globe", color: "#8a9870",
+    tagline: "Website live + GHL account access + 1 automated follow-up. No setup fee.",
+    includes: [
+      "Website hosted and live on their domain",
+      "GHL account access (Conversations tab)",
+      "1 automated email + SMS follow-up when someone fills out the contact form",
+      "No content creation — strictly hosting",
+    ],
+  },
+  saas_suite: {
+    name: "SaaS Suite", monthly: 300, setup: 0, emoji: "settings", color: "#7a98c8",
+    tagline: "Full GHL suite — website + CRM + booking + automations + chat widget. No setup fee.",
+    includes: [
+      "Website (template — no upfront cost) or custom ($4k–$10k upfront + $97/mo)",
+      "CRM — manage all leads with automated pipeline stages",
+      "Booking calendar — contact form → calendar redirect → appointment booked",
+      "Automated follow-up sequences (email + SMS based on where they are in pipeline)",
+      "Chat widget to capture visitors before they leave",
+      "Missed call text-back — instant SMS when they miss a call",
+    ],
+  },
+  saas_ads: {
+    name: "SaaS + Ads/AI", monthly: 500, setup: 0, emoji: "megaphone", color: "#c87a98",
+    tagline: "Everything in SaaS + Google Local Service Ads OR AI receptionist/chat widget.",
+    includes: [
+      "Everything in the SaaS Suite plan",
+      "Google Local Service Ads — link their Google Business Profile + runs itself",
+      "OR AI receptionist — answers calls, handles FAQs, books appointments 24/7",
+      "OR AI chat widget — talking AI assistant on the website",
+      "No advertising experience needed for Google Local Service Ads",
+    ],
+  },
   content_starter: {
     name: "Content Starter", monthly: 500, setup: 500, emoji: "sprout", color: "#a8b87a",
     tagline: "Entry-level done-for-you content — branded posts, scheduled and managed.",
@@ -10403,15 +10476,21 @@ const PROPOSAL_DECKS: PDeck[] = [
 /* ── Live Quote Slide ────────────────────────────────────────────────────── */
 function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
   const PLANS = [
-    { id: "starter",  name: "Starter",  price: 1000 },
-    { id: "growth",   name: "Growth",   price: 2500 },
-    { id: "elite",    name: "Elite",    price: 5000 },
+    { id: "hosting",  name: "Hosting Only",  price: 97,   desc: "Website live + GHL access + 1 auto follow-up" },
+    { id: "saas",     name: "SaaS Suite",    price: 300,  desc: "Website + CRM + booking + automations + chat widget + missed call text-back" },
+    { id: "saas_ads", name: "SaaS + Ads",   price: 500,  desc: "Everything in SaaS + Google Local Service Ads OR AI receptionist/chat widget" },
+    { id: "starter",  name: "Starter",       price: 1000, desc: "Full social media management + AI clone + automations" },
+    { id: "growth",   name: "Growth",        price: 2500, desc: "3 platforms + paid ads management + full automation stack" },
+    { id: "elite",    name: "Elite",         price: 5000, desc: "Maximum content + all ad channels + full AI system" },
   ];
   const ADDONS = [
-    { id: "meta_ads",  name: "Meta Ads Management",  price: 500,  note: "+ min $1k/mo ad spend paid directly by client to Meta (recommend $1k–$2k to start)" },
-    { id: "google",    name: "Google Ads Management", price: 750,  note: "$750 (≤$3.5k spend) · $850 ($3.5k–$7k spend) · paid direct to Google" },
-    { id: "email_sms", name: "Email & SMS Sequences", price: 400,  note: "Automated nurture flows" },
-    { id: "ai_video",  name: "AI Avatar Videos",      price: 800,  note: "4–8 branded videos/mo" },
+    { id: "meta_ads",  name: "Meta Ads Management",       price: 500,  note: "+ min $1k/mo ad spend paid directly by client to Meta" },
+    { id: "google",    name: "Google Ads Management",      price: 750,  note: "$750 (≤$3.5k spend) · $850 ($3.5k–$7k spend)" },
+    { id: "local_ads", name: "Google Local Service Ads",   price: 200,  note: "Link their Google Business Profile + hit run — runs itself" },
+    { id: "ai_recept", name: "AI Receptionist / Voice AI", price: 300,  note: "Answers calls, handles FAQs, books appointments 24/7" },
+    { id: "email_sms", name: "Email & SMS Sequences",      price: 400,  note: "Automated nurture flows" },
+    { id: "ai_video",  name: "AI Avatar Videos",           price: 800,  note: "4–8 branded videos/mo" },
+    { id: "review",    name: "Review Funnel Setup",        price: 150,  note: "5★ → Google · 4★ or below → private form only" },
   ];
 
   const [plan, setPlan] = useState("starter");
@@ -10448,12 +10527,13 @@ function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
         {/* Plan selector */}
         <div>
           <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: C.fg2, marginBottom: 8 }}>Choose Your Plan</div>
-          <div style={{ display: "flex", gap: 8 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6 }}>
             {PLANS.map(p => (
               <button key={p.id} onClick={() => setPlan(p.id)}
-                style={{ flex: 1, padding: "12px 10px", borderRadius: 12, border: `1.5px solid ${plan === p.id ? C.activeBorder : C.border}`, background: plan === p.id ? C.active : C.card, cursor: "pointer", textAlign: "left" }}>
-                <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.12em", textTransform: "uppercase", color: plan === p.id ? C.acc : C.fg2, marginBottom: 3 }}>{p.name}</div>
-                <div style={{ fontFamily: SERIF, fontSize: 22, color: plan === p.id ? C.acc : C.fg, fontWeight: 500 }}>${p.price.toLocaleString()}<span style={{ fontSize: 12, fontWeight: 400 }}>/mo</span></div>
+                style={{ padding: "10px 8px", borderRadius: 10, border: `1.5px solid ${plan === p.id ? C.activeBorder : C.border}`, background: plan === p.id ? C.active : C.card, cursor: "pointer", textAlign: "left" }}>
+                <div style={{ fontFamily: LUXE, fontSize: 8, letterSpacing: "0.1em", textTransform: "uppercase", color: plan === p.id ? C.acc : C.fg2, marginBottom: 2 }}>{p.name}</div>
+                <div style={{ fontFamily: SERIF, fontSize: 18, color: plan === p.id ? C.acc : C.fg, fontWeight: 500 }}>${p.price.toLocaleString()}<span style={{ fontSize: 10, fontWeight: 400 }}>/mo</span></div>
+                {'desc' in p && <div style={{ fontFamily: SANS, fontSize: 8, color: plan === p.id ? C.acc : C.fg2, marginTop: 2, lineHeight: 1.3, opacity: 0.75 }}>{(p as {desc: string}).desc.split(' + ')[0]}</div>}
               </button>
             ))}
           </div>
