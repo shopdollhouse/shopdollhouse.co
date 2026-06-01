@@ -17,6 +17,7 @@ import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as BrandRoomRouteImport } from './routes/brand-room'
 import { Route as AiCloneRouteImport } from './routes/ai-clone'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SystemsServiceRouteImport } from './routes/systems_.$service'
 import { Route as StanstoreWorkbookRouteImport } from './routes/stanstore_.workbook'
 import { Route as StanstoreBrandKitRouteImport } from './routes/stanstore_.brand-kit'
 import { Route as StanstoreAiPromptKitRouteImport } from './routes/stanstore_.ai-prompt-kit'
@@ -62,6 +63,11 @@ const AiCloneRoute = AiCloneRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SystemsServiceRoute = SystemsServiceRouteImport.update({
+  id: '/systems_/$service',
+  path: '/systems/$service',
   getParentRoute: () => rootRouteImport,
 } as any)
 const StanstoreWorkbookRoute = StanstoreWorkbookRouteImport.update({
@@ -110,6 +116,7 @@ export interface FileRoutesByFullPath {
   '/stanstore/ai-prompt-kit': typeof StanstoreAiPromptKitRoute
   '/stanstore/brand-kit': typeof StanstoreBrandKitRoute
   '/stanstore/workbook': typeof StanstoreWorkbookRoute
+  '/systems/$service': typeof SystemsServiceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -126,6 +133,7 @@ export interface FileRoutesByTo {
   '/stanstore/ai-prompt-kit': typeof StanstoreAiPromptKitRoute
   '/stanstore/brand-kit': typeof StanstoreBrandKitRoute
   '/stanstore/workbook': typeof StanstoreWorkbookRoute
+  '/systems/$service': typeof SystemsServiceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -143,6 +151,7 @@ export interface FileRoutesById {
   '/stanstore_/ai-prompt-kit': typeof StanstoreAiPromptKitRoute
   '/stanstore_/brand-kit': typeof StanstoreBrandKitRoute
   '/stanstore_/workbook': typeof StanstoreWorkbookRoute
+  '/systems_/$service': typeof SystemsServiceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -161,6 +170,7 @@ export interface FileRouteTypes {
     | '/stanstore/ai-prompt-kit'
     | '/stanstore/brand-kit'
     | '/stanstore/workbook'
+    | '/systems/$service'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -177,6 +187,7 @@ export interface FileRouteTypes {
     | '/stanstore/ai-prompt-kit'
     | '/stanstore/brand-kit'
     | '/stanstore/workbook'
+    | '/systems/$service'
   id:
     | '__root__'
     | '/'
@@ -193,6 +204,7 @@ export interface FileRouteTypes {
     | '/stanstore_/ai-prompt-kit'
     | '/stanstore_/brand-kit'
     | '/stanstore_/workbook'
+    | '/systems_/$service'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -210,6 +222,7 @@ export interface RootRouteChildren {
   StanstoreAiPromptKitRoute: typeof StanstoreAiPromptKitRoute
   StanstoreBrandKitRoute: typeof StanstoreBrandKitRoute
   StanstoreWorkbookRoute: typeof StanstoreWorkbookRoute
+  SystemsServiceRoute: typeof SystemsServiceRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -268,6 +281,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/systems_/$service': {
+      id: '/systems_/$service'
+      path: '/systems/$service'
+      fullPath: '/systems/$service'
+      preLoaderRoute: typeof SystemsServiceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/stanstore_/workbook': {
@@ -330,6 +350,7 @@ const rootRouteChildren: RootRouteChildren = {
   StanstoreAiPromptKitRoute: StanstoreAiPromptKitRoute,
   StanstoreBrandKitRoute: StanstoreBrandKitRoute,
   StanstoreWorkbookRoute: StanstoreWorkbookRoute,
+  SystemsServiceRoute: SystemsServiceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -4,11 +4,17 @@ import {
   BarChart3,
   Bot,
   Check,
+  ClipboardClock,
+  Inbox,
   MessageSquare,
   PhoneCall,
   Play,
+  Printer,
+  Search,
   ShieldCheck,
   Sparkles,
+  SquareMousePointer,
+  Star,
   Video,
 } from "lucide-react";
 import bgImage from "@/assets/password-bg.jpg";
@@ -16,6 +22,7 @@ import signatureBrandingBg from "@/assets/signature-branding-bg.jpg";
 import archMark from "@/assets/arch-mark.svg";
 import mandyPhoto from "@/assets/mandy-photo.jpg";
 import mandyAIClonePreview from "@/assets/mandy-ai-clone-preview.jpg";
+import { managedServiceLinks, systemServices } from "@/lib/system-services";
 
 export const Route = createFileRoute("/")({ component: Index });
 
@@ -29,6 +36,18 @@ const LockIcon = ({ className = "" }) => (
 const DoorIcon = ({ className = "" }: { className?: string }) => (
   <img src={archMark} alt="" className={className} />
 );
+
+const systemIconMap = {
+  website: SquareMousePointer,
+  phone: PhoneCall,
+  print: Printer,
+  inbox: Inbox,
+  bot: Bot,
+  search: Search,
+  star: Star,
+  campaign: ClipboardClock,
+  message: MessageSquare,
+};
 
 const PlanFeatureIcon = ({ index, filled }: { index: number; filled: boolean }) => {
   const color = filled ? "#c97a7a" : "var(--gold)";
@@ -112,6 +131,7 @@ const SectionTitle = ({
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [systemsOpen, setSystemsOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -190,6 +210,97 @@ function Nav() {
             className="hidden md:flex items-center gap-10 text-[10px] tracking-luxe uppercase text-[var(--ink)]/80"
             style={{ fontFamily: "'Jost', sans-serif" }}
           >
+            <div
+              className="relative"
+              onMouseEnter={() => setSystemsOpen(true)}
+              onMouseLeave={() => setSystemsOpen(false)}
+            >
+              <button
+                type="button"
+                aria-expanded={systemsOpen}
+                onClick={() => setSystemsOpen((value) => !value)}
+                className="nav-link hover:text-[var(--rose)] transition-colors inline-flex items-center gap-1.5 bg-transparent border-0 p-0 uppercase cursor-pointer"
+              >
+                Systems
+                <span className="text-[var(--gold)] text-[9px]">⌄</span>
+              </button>
+              <div
+                className={`absolute left-1/2 top-full z-50 mt-0 w-[860px] -translate-x-1/2 rounded-[26px] p-5 pt-10 transition-all duration-200 ${
+                  systemsOpen
+                    ? "opacity-100 translate-y-0 pointer-events-auto"
+                    : "opacity-0 translate-y-2 pointer-events-none"
+                }`}
+                style={{
+                  background: "color-mix(in oklab, var(--cream) 96%, white)",
+                  border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",
+                  boxShadow: "0 34px 80px -40px rgba(70,35,25,0.42)",
+                }}
+              >
+                <div className="flex items-center justify-between border-b border-[var(--gold)]/18 pb-4 mb-4">
+                  <p className="text-[var(--ink)] text-[13px] normal-case tracking-normal" style={{ fontFamily: "'Jost', sans-serif", fontWeight: 700 }}>
+                    Services & Systems
+                  </p>
+                  <a href="#services" className="text-[var(--gold)] text-[9px] tracking-luxe uppercase hover:text-[var(--rose)]">
+                    Main services
+                  </a>
+                </div>
+                <div className="mb-5">
+                  <p className="mb-2 text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
+                    Managed Growth Services
+                  </p>
+                  <div className="grid grid-cols-2 gap-2">
+                    {managedServiceLinks.map((service) => (
+                      <a
+                        key={service.href}
+                        href={service.href}
+                        className="rounded-2xl px-3 py-2.5 hover:bg-white/70 transition-colors"
+                      >
+                        <span className="block text-[var(--ink)] normal-case tracking-normal leading-tight" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.76rem", fontWeight: 700 }}>
+                          {service.title}
+                        </span>
+                        <span className="mt-1 block text-[var(--ink)]/48 normal-case tracking-normal leading-snug" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.66rem" }}>
+                          {service.short}
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+                <p className="mb-2 text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
+                  Systems & Automation Pages
+                </p>
+                <div className="grid grid-cols-3 gap-3">
+                  {systemServices.map((service) => {
+                    const Icon = systemIconMap[service.icon as keyof typeof systemIconMap];
+                    return (
+                      <a
+                        key={service.slug}
+                        href={`/systems/${service.slug}`}
+                        className="group/item rounded-2xl p-3 flex gap-3 hover:bg-white/70 transition-colors"
+                      >
+                        <span
+                          className="h-10 w-10 rounded-xl flex items-center justify-center shrink-0"
+                          style={{
+                            background: "rgba(200,168,100,0.1)",
+                            border: "1px solid rgba(200,168,100,0.18)",
+                            color: "var(--ink)",
+                          }}
+                        >
+                          <Icon size={18} strokeWidth={1.8} />
+                        </span>
+                        <span>
+                          <span className="block text-[var(--ink)] normal-case tracking-normal leading-tight" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.78rem", fontWeight: 700 }}>
+                            {service.title}
+                          </span>
+                          <span className="mt-1 block text-[var(--ink)]/48 normal-case tracking-normal leading-snug" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.68rem" }}>
+                            {service.short}
+                          </span>
+                        </span>
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
             {links.map((l) => (
               <a key={l.href} href={l.href} className="nav-link hover:text-[var(--rose)] transition-colors">
                 {l.label}
@@ -247,6 +358,43 @@ function Nav() {
               {l.label}
             </a>
           ))}
+          <div className="pt-2 border-t border-[var(--gold)]/20">
+            <p className="block mb-3">
+              Systems
+            </p>
+            <p className="mb-2 text-[var(--gold)] text-[9px] tracking-luxe uppercase">
+              Managed Services
+            </p>
+            <div className="grid gap-2 normal-case tracking-normal mb-4">
+              {managedServiceLinks.map((service) => (
+                <a
+                  key={service.href}
+                  href={service.href}
+                  onClick={() => setOpen(false)}
+                  className="rounded-xl bg-white/50 border border-[var(--gold)]/15 px-3 py-2 text-[var(--ink)]/70"
+                  style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem" }}
+                >
+                  {service.title}
+                </a>
+              ))}
+            </div>
+            <p className="mb-2 text-[var(--gold)] text-[9px] tracking-luxe uppercase">
+              Systems Pages
+            </p>
+            <div className="grid gap-2 normal-case tracking-normal">
+              {systemServices.map((service) => (
+                <a
+                  key={service.slug}
+                  href={`/systems/${service.slug}`}
+                  onClick={() => setOpen(false)}
+                  className="rounded-xl bg-white/50 border border-[var(--gold)]/15 px-3 py-2 text-[var(--ink)]/70"
+                  style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem" }}
+                >
+                  {service.title}
+                </a>
+              ))}
+            </div>
+          </div>
           <a href="#contact" onClick={() => setOpen(false)} className="btn-ink justify-center mt-2">
             Get a Free Proposal
           </a>
@@ -1177,6 +1325,7 @@ function ReviewCard() {
 function Services() {
   const items = [
     {
+      id: "service-content-social-media-management",
       tag: "Content & Social Media Management",
       title: "Branded content, created and published for you — every day.",
       sub: "Show up consistently without lifting a finger.",
@@ -1184,6 +1333,7 @@ function Services() {
       visual: <ContentCalendarCard />,
     },
     {
+      id: "service-paid-social-search-advertising",
       tag: "Paid Social & Search Advertising",
       title: "Facebook, Instagram, and Google ads that bring in real leads.",
       sub: "More reach. More bookings. Less guesswork.",
@@ -1191,6 +1341,7 @@ function Services() {
       visual: <AnalyticsCard />,
     },
     {
+      id: "service-strategy-analytics-reporting",
       tag: "Strategy, Analytics & Reporting",
       title: "Always know what's working — and a plan to scale it.",
       sub: "Clear data. Smarter decisions. Every month.",
@@ -1198,6 +1349,7 @@ function Services() {
       visual: <CaptionCard />,
     },
     {
+      id: "service-ai-voice-chat-automation",
       tag: "AI Voice & Chat Automation",
       title: "Never miss a lead — calls, texts, and DMs answered instantly, 24/7.",
       sub: "Your business never sleeps.",
@@ -1205,6 +1357,7 @@ function Services() {
       visual: <AIChatCard />,
     },
     {
+      id: "service-automated-appointment-reminders",
       tag: "Automated Appointment Reminders",
       title: "Reduce no-shows before they happen.",
       sub: "Keep your calendar full and your clients showing up.",
@@ -1212,6 +1365,7 @@ function Services() {
       visual: <ReminderCard />,
     },
     {
+      id: "service-review-reputation-management",
       tag: "Review & Reputation Management",
       title: "Build your 5-star presence — automatically.",
       sub: "More reviews. More trust. More new clients.",
@@ -1229,6 +1383,7 @@ function Services() {
         {items.map((it, i) => (
           <div
             key={it.tag}
+            id={it.id}
             className={`grid md:grid-cols-2 gap-12 items-center ${i % 2 === 1 ? "md:[direction:rtl]" : ""}`}
           >
             <div className="[direction:ltr]">
@@ -1530,10 +1685,39 @@ function AICloneSection() {
 }
 
 function Pricing() {
+  const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">("monthly");
+  const isAnnual = billingCycle === "annual";
+  const freeWeeks = "5.2";
+  const displayPrice = (monthlyPrice: number) => {
+    const price = isAnnual ? Math.round(monthlyPrice * 12 * 0.9) : monthlyPrice;
+    return `$${price.toLocaleString()}`;
+  };
+
   const tiers = [
+    {
+      name: "Content Lite",
+      price: "$500",
+      monthlyPrice: 500,
+      software: "1 platform",
+      fit: "Best for a polished starting point",
+      outcome: "One platform with consistent static posts and carousels.",
+      tagline: "Light content support for businesses that are not ready for the full AI clone or automation system yet.",
+      setupLabel: "No AI clone setup included",
+      trialAvailable: false,
+      cta: "Ask About Content Lite →",
+      features: [
+        "1 platform of your choice — Facebook, Instagram or TikTok",
+        "3 posts per week — static posts and carousels only",
+        "Offer-led content direction so posts support what you sell",
+        "On-brand captions written for clarity, trust, and simple calls to action",
+        "Content approval before posting — you review before anything goes live",
+        "Monthly performance snapshot — what posted, what worked, and what to improve next",
+      ],
+    },
     {
       name: "Starter",
       price: "$1,000",
+      monthlyPrice: 1000,
       software: "$300/mo",
       fit: "Best for focused launches",
       outcome: "One platform, one clear offer, one polished content system.",
@@ -1554,6 +1738,7 @@ function Pricing() {
     {
       name: "Growth",
       price: "$2,500",
+      monthlyPrice: 2500,
       software: "$300/mo",
       fit: "Best for consistent lead flow",
       outcome: "All 3 social platforms, paid Meta ads, voice AI, and follow-up automation.",
@@ -1576,30 +1761,22 @@ function Pricing() {
         "Review management — automated review requests after every appointment",
       ],
     },
+  ];
+  const smallerPackages = [
     {
-      name: "Elite",
-      price: "$5,000+",
-      software: "$300/mo",
-      fit: "Best for full-scale takeover",
-      outcome: "Maximum 3-platform content, ads, automation, website, reporting, and priority strategy.",
-      tagline: "Your 3-platform growth system fully managed — maximum content, ads, and AI support.",
-      featured: true,
-      topBadge: { label: "Premium Partner", tone: "gold" as "gold" | "pink" },
-      cta: "Apply for Elite →",
+      name: "Website + Lead Follow-Up",
+      price: "$297",
+      monthlyPrice: 297,
+      fit: "Best for service businesses that need every inquiry answered fast",
+      summary:
+        "A functional 10-20 page website connected to text-back, review, and simple campaign automations so leads turn into conversations instead of getting lost in email.",
       features: [
-        "3 platforms fully managed — Instagram, TikTok & Facebook — nothing to post, nothing to manage",
-        "AI clone or brand mascot across all 3 platforms — your face and voice, every single day",
-        "12 AI clone videos/month — 4 per platform, always pinned as your signature content",
-        "36 posts/month — 12 per platform (4 Reels · 4 Carousels · 4 Static), all on-brand",
-        "Content approval before posting — you see and approve everything before it goes live",
-        "Full social ad management — Facebook, Instagram & TikTok campaigns fully managed",
-        "Advanced AI voice agent — handles calls, answers FAQs & books appointments 24/7",
-        "Full AI booking system — automated chat, confirmations, reminders & review collection",
-        "Comment-to-DM + text follow-up bot + missed call text-back across all 3 platforms",
-        "Monthly email newsletter — written, designed & sent for you",
-        "Website design & build — a complete, conversion-ready site done for you",
-        "Monthly 60-min strategy call + weekly performance reports",
-        "Priority 48-hour content revisions + quarterly brand audit",
+        { icon: MessageSquare, title: "Functional website", desc: "10-20 pages built to create text conversations with chat, quote forms, SMS confirmations, and hyperlinked phone numbers." },
+        { icon: Bot, title: "Automated lead follow-up", desc: "Instant SMS confirmations sent to you and your lead, so the conversation starts right away." },
+        { icon: PhoneCall, title: "Missed call text-back", desc: "Automatic replies for missed calls, helping you respond quickly before leads move to a competitor." },
+        { icon: ShieldCheck, title: "5-star review funnel", desc: "Automated review requests with a private feedback step before anything reaches your public pages." },
+        { icon: Sparkles, title: "One-click campaigns", desc: "Referral and return-customer campaigns designed for easy sending once your system is set up." },
+        { icon: BarChart3, title: "On-site SEO", desc: "Keyword content, alt tags, schema, image optimization, and page-speed basics included." },
       ],
     },
   ];
@@ -1616,8 +1793,81 @@ function Pricing() {
       <SectionTitle
         eyebrow="Monthly Plans"
         title="Choose your plan"
-        italic="Start with a 14-day founding client trial, then choose the level of support you want us to own."
+        italic="Start with light content support, then scale into the managed growth system when you are ready."
       />
+
+      <div className="mt-8 flex flex-col items-center gap-3">
+        <div
+          className="inline-flex items-center gap-4 rounded-full px-5 py-3"
+          style={{
+            background: "rgba(255,250,246,0.6)",
+            border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",
+            boxShadow: "0 18px 42px -34px rgba(120,70,55,0.45)",
+          }}
+        >
+          <button
+            type="button"
+            onClick={() => setBillingCycle("monthly")}
+            className="transition-colors"
+            style={{
+              fontFamily: "'Jost', sans-serif",
+              fontSize: "0.82rem",
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+              color: !isAnnual ? "var(--ink)" : "rgba(30,15,10,0.45)",
+              fontWeight: !isAnnual ? 700 : 500,
+            }}
+          >
+            Monthly
+          </button>
+          <button
+            type="button"
+            role="switch"
+            aria-checked={isAnnual}
+            aria-label="Toggle annual pricing"
+            onClick={() => setBillingCycle(isAnnual ? "monthly" : "annual")}
+            className="relative h-9 w-[70px] rounded-full transition-all"
+            style={{
+              background: isAnnual ? "var(--gold)" : "rgba(30,15,10,0.14)",
+              border: "1px solid rgba(200,168,100,0.35)",
+            }}
+          >
+            <span
+              className="absolute top-1 h-7 w-7 rounded-full bg-white shadow-sm transition-all"
+              style={{ left: isAnnual ? "37px" : "4px" }}
+            />
+          </button>
+          <button
+            type="button"
+            onClick={() => setBillingCycle("annual")}
+            className="transition-colors"
+            style={{
+              fontFamily: "'Jost', sans-serif",
+              fontSize: "0.82rem",
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+              color: isAnnual ? "var(--ink)" : "rgba(30,15,10,0.45)",
+              fontWeight: isAnnual ? 700 : 500,
+            }}
+          >
+            Annual
+          </button>
+        </div>
+        <p
+          className="text-center"
+          style={{
+            fontFamily: "'Jost', sans-serif",
+            fontSize: "0.68rem",
+            letterSpacing: "0.16em",
+            textTransform: "uppercase",
+            color: isAnnual ? "var(--rose)" : "rgba(30,15,10,0.45)",
+            fontWeight: 600,
+          }}
+        >
+          Annual plans save 10% — equal to {freeWeeks} weeks free
+        </p>
+      </div>
+
       <div
         className="mt-12 max-w-5xl mx-auto grid gap-3 md:grid-cols-3 rounded-[28px] p-3"
         style={{
@@ -1626,9 +1876,9 @@ function Pricing() {
         }}
       >
         {[
-          ["14-Day Trial", "Founding clients can test the strategy, content direction, and workflow before signing on."],
-          ["Then We Recommend", "After the trial, we recommend the plan that actually fits your business."],
-          ["No DIY Required", "If you continue, content, automations, reporting, and setup are handled for you."],
+          ["Start At $500", "Begin with simple weekly content if you only need one platform to look polished."],
+          ["Scale When Ready", "Move into Starter or Growth when you want AI clone content, automation, and lead follow-up."],
+          ["No DIY Required", "The right plan is handled for you: content, setup, reporting, and next steps."],
         ].map(([title, copy]) => (
           <div key={title} className="rounded-2xl px-5 py-4 text-center" style={{ background: "rgba(255,255,255,0.5)" }}>
             <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>{title}</p>
@@ -1718,28 +1968,46 @@ function Pricing() {
                 >
                   <svg viewBox="0 0 24 22" fill="currentColor" style={{ width: "13px", height: "13px", color: "var(--gold)" }}>
                     <path d="M12 21.6C6.3 16.1 1 11.3 1 7.2 1 3.4 4.1 2 6.3 2c1.3 0 4.2.5 5.7 4.5C13.6 2.5 16.5 2 17.7 2 20.3 2 23 3.6 23 7.2c0 4.1-5.1 8.9-11 14.4z"/>
-                  </svg> Monthly Retainer
+                  </svg> {isAnnual ? "Annual Plan" : "Monthly Retainer"}
                 </div>
-                <div
-                  className="mt-3 inline-flex items-center justify-center gap-2 rounded-full px-4 py-2"
-                  style={{
-                    background: isFilled ? "rgba(201,122,122,0.16)" : "rgba(201,122,122,0.1)",
-                    border: "1px solid rgba(201,122,122,0.28)",
-                    color: isFilled ? "rgba(250,243,234,0.9)" : "var(--rose)",
-                    fontFamily: "'Jost', sans-serif",
-                    fontSize: "0.62rem",
-                    letterSpacing: "0.16em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  <Sparkles size={12} strokeWidth={1.8} />
-                  14-day free trial available
-                </div>
+                {t.trialAvailable === false ? (
+                  <div
+                    className="mt-3 inline-flex items-center justify-center gap-2 rounded-full px-4 py-2"
+                    style={{
+                      background: isFilled ? "rgba(200,168,100,0.14)" : "rgba(200,168,100,0.12)",
+                      border: "1px solid rgba(200,168,100,0.3)",
+                      color: "var(--gold)",
+                      fontFamily: "'Jost', sans-serif",
+                      fontSize: "0.62rem",
+                      letterSpacing: "0.16em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    <Sparkles size={12} strokeWidth={1.8} />
+                    Simple content package
+                  </div>
+                ) : (
+                  <div
+                    className="mt-3 inline-flex items-center justify-center gap-2 rounded-full px-4 py-2"
+                    style={{
+                      background: isFilled ? "rgba(201,122,122,0.16)" : "rgba(201,122,122,0.1)",
+                      border: "1px solid rgba(201,122,122,0.28)",
+                      color: isFilled ? "rgba(250,243,234,0.9)" : "var(--rose)",
+                      fontFamily: "'Jost', sans-serif",
+                      fontSize: "0.62rem",
+                      letterSpacing: "0.16em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    <Sparkles size={12} strokeWidth={1.8} />
+                    14-day free trial available
+                  </div>
+                )}
                 <p
                   className="mt-1.5 text-center"
                   style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: isFilled ? "rgba(250,243,234,0.4)" : "rgba(30,15,10,0.35)" }}
                 >
-                  6-month minimum only if you sign on
+                  {t.trialAvailable === false ? "no AI clone or automation included" : "6-month minimum only if you sign on"}
                 </p>
 
                 {/* Price */}
@@ -1753,7 +2021,7 @@ function Pricing() {
                       color: "var(--gold)",
                     }}
                   >
-                    {t.price}
+                    {displayPrice(t.monthlyPrice)}
                   </span>
                   <span
                     style={{
@@ -1764,8 +2032,25 @@ function Pricing() {
                       marginTop: "4px",
                     }}
                   >
-                    /MO
+                    {isAnnual ? "/YR" : "/MO"}
                   </span>
+                  {isAnnual && (
+                    <span
+                      className="mt-2 rounded-full px-3 py-1"
+                      style={{
+                        background: "rgba(201,122,122,0.1)",
+                        color: "var(--rose)",
+                        border: "1px solid rgba(201,122,122,0.22)",
+                        fontFamily: "'Jost', sans-serif",
+                        fontSize: "0.56rem",
+                        letterSpacing: "0.14em",
+                        textTransform: "uppercase",
+                        fontWeight: 700,
+                      }}
+                    >
+                      10% off · {freeWeeks} weeks free
+                    </span>
+                  )}
                 </div>
 
                 {/* One-time setup fee */}
@@ -1777,7 +2062,7 @@ function Pricing() {
                   }}
                 >
                   <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.68rem", letterSpacing: "0.14em", textTransform: "uppercase", color: isFilled ? "rgba(250,243,234,0.6)" : "rgba(30,15,10,0.5)" }}>
-                    + $500 one-time setup fee
+                    {t.setupLabel ?? "+ $500 one-time setup fee"}
                   </span>
                 </div>
 
@@ -1891,16 +2176,131 @@ function Pricing() {
 
       {/* Pricing footnote */}
       <p className="text-center mt-6 mb-2" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.4)" }}>
-        14-day founding client trial &nbsp;·&nbsp; 6-month minimum after trial &nbsp;·&nbsp; 12-month partner terms available
+        Content Lite starts at $500/mo &nbsp;·&nbsp; 14-day founding client trial on Starter and Growth &nbsp;·&nbsp; 6-month minimum after trial
       </p>
 
-      {/* Content Starter — hidden */}
+      {/* Smaller packages */}
+      <div className="mt-16 max-w-6xl mx-auto">
+        <div className="text-center mb-8 max-w-3xl mx-auto">
+          <p className="text-[var(--gold)] text-[11px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
+            Website Entry Package
+          </p>
+          <h3
+            className="mt-3 italic text-[var(--ink)]"
+            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2rem, 3.8vw, 3.1rem)", lineHeight: 1.05 }}
+          >
+            Need the website system first?
+          </h3>
+          <p className="mt-4 text-[var(--ink)]/58 leading-7" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.96rem" }}>
+            This is for service businesses that want the lead-response foundation before moving into full social media management.
+          </p>
+        </div>
+
+        <div className="grid gap-5 max-w-3xl mx-auto">
+          {smallerPackages.map((pkg) => (
+            <article
+              key={pkg.name}
+              className="rounded-[28px] p-7 md:p-8"
+              style={{
+                background: "rgba(255,250,246,0.66)",
+                border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",
+                boxShadow: "0 26px 70px -46px rgba(120,70,55,0.42)",
+              }}
+            >
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                <div>
+                  <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
+                    {pkg.fit}
+                  </p>
+                  <h4
+                    className="mt-2 italic text-[var(--ink)]"
+                    style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.7rem, 3vw, 2.4rem)", lineHeight: 1.05 }}
+                  >
+                    {pkg.name}
+                  </h4>
+                </div>
+                <div className="shrink-0 text-left sm:text-right">
+                  <span
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      fontSize: "clamp(2.4rem, 4vw, 3.2rem)",
+                      lineHeight: 1,
+                      fontStyle: "italic",
+                      color: "var(--gold)",
+                    }}
+                  >
+                    {displayPrice(pkg.monthlyPrice)}
+                  </span>
+                  <p className="mt-1 text-[var(--ink)]/42 text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
+                    {isAnnual ? "/YR" : "/MO"}
+                  </p>
+                  {isAnnual && (
+                    <p className="mt-2 text-[var(--rose)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", fontWeight: 700 }}>
+                      10% off · {freeWeeks} weeks free
+                    </p>
+                  )}
+                </div>
+              </div>
+              <p className="mt-4 leading-7 text-[var(--ink)]/68" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem" }}>
+                {pkg.summary}
+              </p>
+              <div className={`mt-6 grid gap-3 ${pkg.features.length > 4 ? "sm:grid-cols-2" : ""}`}>
+                {pkg.features.map((feature) => {
+                  const Icon = feature.icon;
+                  return (
+                    <div
+                      key={feature.title}
+                      className="rounded-2xl p-4 flex gap-3"
+                      style={{
+                        background: "rgba(255,255,255,0.55)",
+                        border: "1px solid rgba(200,168,100,0.2)",
+                      }}
+                    >
+                      <span
+                        className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
+                        style={{ background: "rgba(200,168,100,0.12)", color: "var(--gold)" }}
+                      >
+                        <Icon size={15} strokeWidth={1.7} />
+                      </span>
+                      <div>
+                        <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.82rem", fontWeight: 600, color: "var(--ink)", letterSpacing: "0" }}>
+                          {feature.title}
+                        </p>
+                        <p className="mt-1 leading-5 text-[var(--ink)]/55" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem" }}>
+                          {feature.desc}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              <a
+                href="#contact"
+                className="mt-6 inline-flex rounded-full px-6 py-3 transition-all hover:-translate-y-0.5"
+                style={{
+                  background: "var(--ink)",
+                  color: "var(--cream)",
+                  fontFamily: "'Jost', sans-serif",
+                  fontSize: "0.72rem",
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                }}
+              >
+                Ask about this package →
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
 
       {/* Setup fee + ad spend notes */}
       <div className="mt-12 max-w-2xl mx-auto rounded-2xl px-8 py-6 text-center space-y-4"
         style={{ background: "rgba(200,168,100,0.07)", border: "1px solid rgba(200,168,100,0.22)" }}>
         <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "var(--ink)", opacity: 0.75, fontStyle: "italic", lineHeight: 1.6 }}>
-          <span style={{ color: "var(--gold)", fontStyle: "normal", fontWeight: 600 }}>$500 one-time setup fee</span> — required upfront to start your trial. Covers complete system buildout, landing pages, calendar integration, automation sequences & CRM setup. After your trial, choose a 6 or 12-month retainer.
+          <span style={{ color: "var(--gold)", fontStyle: "normal", fontWeight: 600 }}>$500 one-time setup fee</span> — required upfront to start the 14-day trial on the main managed-growth plans. Covers complete system buildout, landing pages, calendar integration, automation sequences & CRM setup.
+        </p>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "rgba(30,15,10,0.52)", lineHeight: 1.6 }}>
+          Smaller entry packages are quoted separately and do not include the full AI clone buildout unless added.
         </p>
         <div style={{ height: "1px", background: "rgba(200,168,100,0.2)" }} />
         <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "var(--ink)", opacity: 0.7, fontStyle: "italic", lineHeight: 1.6 }}>
@@ -1908,107 +2308,6 @@ function Pricing() {
         </p>
       </div>
 
-      {/* Add-on Services */}
-      <div className="mt-20 max-w-5xl mx-auto">
-        <div className="text-center mb-10 max-w-3xl mx-auto">
-          <p className="text-[var(--gold)] text-[11px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
-            Available on any plan
-          </p>
-          <h3
-            className="mt-3 italic text-[var(--ink)]"
-            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.2rem, 4vw, 3.4rem)", lineHeight: 1.05 }}
-          >
-            Add only what moves the needle.
-          </h3>
-          <p className="mt-4 text-[var(--ink)]/58 leading-7" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.98rem" }}>
-            These are not random extras. We recommend add-ons when they make the system stronger: faster lead response, stronger proof, more content volume, or a cleaner path to booking.
-          </p>
-        </div>
-
-        {/* Monthly add-ons */}
-        <div className="mb-4 flex items-center justify-between gap-4">
-          <p className="text-[9px] tracking-luxe uppercase text-[var(--ink)]/45" style={{ fontFamily: "'Jost', sans-serif" }}>
-            Monthly Add-Ons
-          </p>
-          <span className="hidden sm:block h-px flex-1 bg-[var(--gold)]/18" />
-        </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {[
-            { emoji: "🎬", title: "Extra AI Clone Videos", desc: "4–8 additional branded AI clone videos/month — your face, your voice, more selling moments." },
-            { emoji: "📞", title: "AI Voice Agent", desc: "Never miss a call. Your AI answers 24/7, qualifies leads, and books appointments." },
-            { emoji: "⭐", title: "Review & Reputation Management", desc: "Automated review requests, respond to feedback, and 5-star Google presence." },
-            { emoji: "📧", title: "Email & SMS Marketing", desc: "Done-for-you campaigns, broadcasts, and nurture sequences." },
-            { emoji: "📲", title: "Additional Content Volume", desc: "More posts for Facebook, Instagram, and TikTok — same quality, more reach." },
-            { emoji: "📍", title: "Google Business Profile", desc: "Weekly posts, review monitoring, and Q&A management." },
-            { emoji: "🎯", title: "Google Ads Management", desc: "Full campaign management — ad spend is separate." },
-          ].map((addon) => (
-            <div
-              key={addon.title}
-              className="rounded-xl px-5 py-4 flex gap-3 items-start"
-              style={{
-                background: "linear-gradient(160deg, rgba(255,255,255,0.7) 0%, rgba(251,240,235,0.6) 100%)",
-                border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",
-                backdropFilter: "blur(8px)",
-              }}
-            >
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "13px", height: "13px", color: "var(--gold)", marginTop: "5px", flexShrink: 0 }}><path d="M2.5 8.5L6 12L13.5 4.5" /></svg>
-              <div>
-                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.05rem", fontStyle: "italic", color: "var(--ink)" }}>
-                  {addon.title}
-                </p>
-                <p className="mt-0.5" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.76rem", color: "rgba(30,15,10,0.58)", lineHeight: 1.5 }}>
-                  {addon.desc}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* One-time services */}
-        <div className="mt-8 mb-4 flex items-center justify-between gap-4">
-          <p className="text-[9px] tracking-luxe uppercase text-[var(--ink)]/45" style={{ fontFamily: "'Jost', sans-serif" }}>
-            One-Time Services
-          </p>
-          <span className="hidden sm:block h-px flex-1 bg-[var(--gold)]/18" />
-        </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {[
-            { emoji: "🏗️", title: "Website & Landing Page Design", desc: "Conversion-ready site built for your brand." },
-            { emoji: "🔍", title: "AI Revenue Audit", desc: "Full pipeline + social + workflow audit with growth plan." },
-            { emoji: "📦", title: "Digital Product Build", desc: "A fully interactive web app — not a PDF. The next level of digital products." },
-            { emoji: "👕", title: "Merch & Brand Design", desc: "On-brand merch, apparel, and print-ready assets." },
-          ].map((addon) => (
-            <div
-              key={addon.title}
-              className="rounded-xl px-5 py-4 flex gap-3 items-start"
-              style={{
-                background: "linear-gradient(160deg, rgba(255,255,255,0.7) 0%, rgba(251,240,235,0.6) 100%)",
-                border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",
-                backdropFilter: "blur(8px)",
-              }}
-            >
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "13px", height: "13px", color: "var(--gold)", marginTop: "5px", flexShrink: 0 }}><path d="M2.5 8.5L6 12L13.5 4.5" /></svg>
-              <div>
-                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.05rem", fontStyle: "italic", color: "var(--ink)" }}>
-                  {addon.title}
-                </p>
-                <p className="mt-0.5" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.76rem", color: "rgba(30,15,10,0.58)", lineHeight: 1.5 }}>
-                  {addon.desc}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-8 rounded-2xl px-6 py-5 text-center" style={{ background: "rgba(255,250,246,0.55)", border: "1px solid color-mix(in oklab, var(--gold) 22%, transparent)" }}>
-          <p className="text-[var(--ink)]/55 text-[11px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
-            Add-on pricing is included in your custom quote
-          </p>
-          <p className="mt-2 text-[var(--ink)]/58" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem" }}>
-            Tell us what you are considering in the proposal form and we will show you what is worth adding now, later, or not at all.
-          </p>
-        </div>
-      </div>
     </section>
   );
 }
@@ -2494,9 +2793,10 @@ function Contact() {
         <div>
           <label className={labelClass} style={labelStyle}>Which plan interests you?</label>
           <select name="plan" className={inputClass} style={inputStyle}>
-            <option>Elite — $5,000+/mo</option>
-            <option>Growth — $2,500/mo</option>
+            <option>Content Lite — $500/mo</option>
             <option>Starter — $1,000/mo</option>
+            <option>Growth — $2,500/mo</option>
+            <option>Website + Lead Follow-Up — $297/mo</option>
             <option>Not sure yet</option>
           </select>
         </div>
