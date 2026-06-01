@@ -5156,6 +5156,101 @@ Is it cool if I send over the link to show you guys how it looks?` },
           </div>
         </div>
 
+        {/* Script F — Mandy's SMS */}
+        <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+          <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+            <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Script F — Cold SMS</p>
+            <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>Mandy's No-Website SMS Pitch</h3>
+            <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.5)" }}>Casual, personal, low pressure. The "byebye" opt-out actually increases response rates — it shows respect and removes the fear of being spammed.</p>
+          </div>
+          <div className="px-6 py-5">
+            <ScriptCard title="No-Website SMS" tag="Text Message" lines={[
+              { type: "send", label: "Text to send", text: `hey this is Mandy... i was looking you guys up on google and saw that you don't have a website or anything like that. i know this is kinda random but i went ahead and built you one. do you wanna see it? just say "byebye" if you want me to stop` },
+            ]} />
+            <div className="rounded-xl p-4 mt-3" style={{ background: "rgba(200,168,100,0.07)", border: "1px solid rgba(200,168,100,0.15)" }}>
+              <p className="text-[9px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Why this works</p>
+              <div className="space-y-1.5">
+                {["Lowercase, casual tone = feels like a real person texting, not a robot", "\"kinda random\" = disarming. They lower their guard.", "\"went ahead and built you one\" = gives them something before asking for anything", "\"byebye\" opt-out = respectful, removes fear of spam. People who don't opt out are genuinely curious", "Send after scraping Google Maps for businesses with no website listed"].map((t, i) => (
+                  <div key={i} className="flex gap-2 items-start">
+                    <span style={{ color: "var(--gold)", flexShrink: 0 }}>✓</span>
+                    <p style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.45 }}>{t}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Live Cold Call Transcript */}
+        <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+          <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+            <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Real Call — Study This</p>
+            <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>Live Cold Call — Booked a Zoom in Under 3 Minutes</h3>
+            <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.5)" }}>Notice: no hard pitch. No features listed. Just curiosity + "it's already built" + book the demo. That's it.</p>
+          </div>
+          <div className="px-6 py-5">
+            <ScriptCard title="Live Cold Call Transcript" tag="Cold Call" lines={[
+              { type: "you_say", text: "\"Hello hello?\"" },
+              { type: "subhead", text: "Julio answers — says they already have a website" },
+              { type: "you_say", text: "\"I think I called you like 20 minutes ago, right? I'm assuming you guys are still open because it did say closed when I tried to look you up.\"" },
+              { type: "subhead", text: "Julio says: 'Really? That's odd.'" },
+              { type: "you_say", text: "\"Um, well look — I actually built you guys a talking website and it's all ready and set up. Is that something you would even want?\"" },
+              { type: "subhead", text: "Julio: 'A website? No, we already have one.'" },
+              { type: "you_say", text: "\"No no, it's a talking website. Like a super smart talking website.\"" },
+              { type: "subhead", text: "Julio: 'So... can you send me a sample or something?'" },
+              { type: "you_say", text: "\"Yeah man — I mean look, it's already done so I can show you what I have. The thing is I don't have it live on the internet so I can't just send you a link, but if you want I can show it to you. So if you're available, we can do a Zoom call and I'll just show you what I have.\"" },
+              { type: "subhead", text: "Julio says he's driving but free at 6pm" },
+              { type: "you_say", text: "\"Okay, you want to do 6:00 PM today? Yeah I'm down. What's your best email? I'll just send the meeting link there.\"" },
+              { type: "note", text: "BOOKED. What made this work: 1) 'Already built' removes risk 2) 'Talking website' = curiosity 3) Never explained features 4) Just asked to SHOW, not to SELL. The demo does the selling." },
+            ]} />
+          </div>
+        </div>
+
+        {/* Sub-account profitability */}
+        <div className="rounded-2xl p-5" style={{ background: "var(--ink)", border: "1px solid rgba(200,168,100,0.2)" }}>
+          <p className="text-[9px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The Math That Makes This Unstoppable</p>
+          <div className="grid sm:grid-cols-3 gap-4 mb-4">
+            {[
+              ["Unlimited", "Sub-accounts per GHL account"],
+              ["1 client", "= you're already profitable"],
+              ["Same cost", "Whether you have 1 or 1,000 clients"],
+            ].map(([n, l]) => (
+              <div key={n} className="text-center p-4 rounded-xl" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.2)" }}>
+                <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.8rem", color: "var(--gold)", fontStyle: "italic", lineHeight: 1 }}>{n}</p>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.72rem", color: "rgba(245,232,224,0.5)", marginTop: 4 }}>{l}</p>
+              </div>
+            ))}
+          </div>
+          <p style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(245,232,224,0.6)", lineHeight: 1.65 }}>
+            Each client gets their own sub-account with their own login — they see YOUR logo at the top. They're logging into YOUR software. As soon as client #1 pays $300/mo, you've covered your GHL cost. Every client after that is pure profit margin.
+          </p>
+        </div>
+
+        {/* The Mobile App Close */}
+        <div className="rounded-2xl p-5" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
+          <p className="text-[9px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The Mobile App Close — Why They Never Cancel</p>
+          <p className="mb-3" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.6 }}>Install the Lead Connector mobile app on every client's phone in the first session. This is the single most important thing you can do for retention.</p>
+          <div className="space-y-2">
+            {[
+              "All their leads, appointments, and conversations show up in one app — on their phone",
+              "They check it while driving, while working, between jobs",
+              "Every time a lead pops in, they associate that win with YOU",
+              "This is why they keep paying — they're seeing the results in real time",
+              "Never show them the backend — focus only on the outcome screen",
+            ].map((t, i) => (
+              <div key={i} className="flex gap-2 items-start">
+                <svg width="14" height="14" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: 3 }}><circle cx="10" cy="10" r="9" stroke="var(--gold)" strokeWidth="1.2"/><polyline points="6,10 9,13 14,7" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.45 }}>{t}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-3 rounded-xl p-3" style={{ background: "var(--ink)" }}>
+            <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: "var(--gold)", fontStyle: "italic" }}>
+              "Never focus on features. Focus on the outcome: 'Hey, remember — we're going to follow up with all your leads and you will get more appointments, more sales from this system.'"
+            </p>
+          </div>
+        </div>
+
       </div>
       </>}
 
