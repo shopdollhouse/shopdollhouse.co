@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import {
   Bot,
   Check,
@@ -36,6 +37,8 @@ const iconMap = {
 };
 
 function Nav() {
+  const [systemsOpen, setSystemsOpen] = useState(false);
+
   return (
     <nav className="sticky top-0 z-40 flex items-center justify-between px-6 md:px-12 py-5 bg-[var(--cream)]/88 backdrop-blur-md border-b border-[var(--gold)]/15">
       <Link to="/" className="flex flex-col items-start leading-tight no-underline">
@@ -51,13 +54,26 @@ function Nav() {
       </Link>
 
       <div className="hidden md:flex items-center gap-7 text-[10px] tracking-[0.2em] uppercase text-[var(--ink)]/70" style={{ fontFamily: FONT_LUXE }}>
-        <div className="relative group">
-          <a href="/#services" className="hover:text-[var(--rose)] transition-colors inline-flex items-center gap-1.5">
+        <div
+          className="relative"
+          onMouseEnter={() => setSystemsOpen(true)}
+          onMouseLeave={() => setSystemsOpen(false)}
+        >
+          <button
+            type="button"
+            aria-expanded={systemsOpen}
+            onClick={() => setSystemsOpen((value) => !value)}
+            className="hover:text-[var(--rose)] transition-colors inline-flex items-center gap-1.5 bg-transparent border-0 p-0 uppercase cursor-pointer"
+          >
             Systems
             <span className="text-[var(--gold)] text-[9px]">⌄</span>
-          </a>
+          </button>
           <div
-            className="absolute left-1/2 top-full z-50 mt-5 w-[860px] -translate-x-1/2 rounded-[26px] p-5 opacity-0 translate-y-2 pointer-events-none transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"
+            className={`absolute left-1/2 top-full z-50 mt-0 w-[860px] -translate-x-1/2 rounded-[26px] p-5 pt-10 transition-all duration-200 ${
+              systemsOpen
+                ? "opacity-100 translate-y-0 pointer-events-auto"
+                : "opacity-0 translate-y-2 pointer-events-none"
+            }`}
             style={{
               background: "color-mix(in oklab, var(--cream) 96%, white)",
               border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",

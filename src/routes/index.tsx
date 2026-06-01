@@ -131,6 +131,7 @@ const SectionTitle = ({
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [systemsOpen, setSystemsOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -209,13 +210,26 @@ function Nav() {
             className="hidden md:flex items-center gap-10 text-[10px] tracking-luxe uppercase text-[var(--ink)]/80"
             style={{ fontFamily: "'Jost', sans-serif" }}
           >
-            <div className="relative group">
-              <a href="#services" className="nav-link hover:text-[var(--rose)] transition-colors inline-flex items-center gap-1.5">
+            <div
+              className="relative"
+              onMouseEnter={() => setSystemsOpen(true)}
+              onMouseLeave={() => setSystemsOpen(false)}
+            >
+              <button
+                type="button"
+                aria-expanded={systemsOpen}
+                onClick={() => setSystemsOpen((value) => !value)}
+                className="nav-link hover:text-[var(--rose)] transition-colors inline-flex items-center gap-1.5 bg-transparent border-0 p-0 uppercase cursor-pointer"
+              >
                 Systems
                 <span className="text-[var(--gold)] text-[9px]">⌄</span>
-              </a>
+              </button>
               <div
-                className="absolute left-1/2 top-full z-50 mt-5 w-[860px] -translate-x-1/2 rounded-[26px] p-5 opacity-0 translate-y-2 pointer-events-none transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"
+                className={`absolute left-1/2 top-full z-50 mt-0 w-[860px] -translate-x-1/2 rounded-[26px] p-5 pt-10 transition-all duration-200 ${
+                  systemsOpen
+                    ? "opacity-100 translate-y-0 pointer-events-auto"
+                    : "opacity-0 translate-y-2 pointer-events-none"
+                }`}
                 style={{
                   background: "color-mix(in oklab, var(--cream) 96%, white)",
                   border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",
@@ -345,9 +359,9 @@ function Nav() {
             </a>
           ))}
           <div className="pt-2 border-t border-[var(--gold)]/20">
-            <a href="#services" onClick={() => setOpen(false)} className="block mb-3 hover:text-[var(--rose)]">
+            <p className="block mb-3">
               Systems
-            </a>
+            </p>
             <p className="mb-2 text-[var(--gold)] text-[9px] tracking-luxe uppercase">
               Managed Services
             </p>
