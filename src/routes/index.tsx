@@ -2737,8 +2737,33 @@ function Contact() {
             <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
               Best fit for
             </p>
-            <p className="mt-3 text-[var(--cream)]/82 leading-7" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.35rem", fontStyle: "italic" }}>
-              Service businesses, clinics, beauty brands, consultants, and online brands ready to invest in content, booking, and lead follow-up that feels managed.
+            <div className="mt-4 grid gap-2 sm:grid-cols-2">
+              {[
+                "Roofing contractors",
+                "HVAC companies",
+                "Plumbers & electricians",
+                "Med spas & aesthetic clinics",
+                "Chiropractors",
+                "Physical therapists",
+                "Local law firms",
+              ].map((industry) => (
+                <div
+                  key={industry}
+                  className="rounded-full px-3 py-2 text-[var(--cream)]/82"
+                  style={{
+                    border: "1px solid rgba(200,168,100,0.24)",
+                    background: "rgba(255,250,246,0.06)",
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: "0.78rem",
+                    lineHeight: 1.25,
+                  }}
+                >
+                  {industry}
+                </div>
+              ))}
+            </div>
+            <p className="mt-4 text-[var(--cream)]/62 leading-6" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem" }}>
+              Built for service businesses that need more calls, booked appointments, reviews, and follow-up without managing a marketing team.
             </p>
           </div>
         </div>
