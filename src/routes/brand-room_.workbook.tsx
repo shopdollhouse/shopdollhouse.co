@@ -12,9 +12,9 @@ const product: BrandProduct = {
   regular: "$261",
   value: "Interactive workbook · bonus PDF included",
   checkoutUrl: "",
-  tagline: "Build your brand from the ground up with a guided workbook that turns scattered ideas into a clear foundation, offer, audience, and content direction.",
+  tagline: "Not a PDF download. A guided live experience that walks you through every brand decision — one clear prompt at a time.",
   intro: "This is for the founder who already knows what she wants to build, but does not know where to start. Walk through the prompts, organize your answers, and leave with a brand foundation you can actually use.",
-  painHeadline: "You know what you want to build. You just do not know where to start.",
+  painHeadline: "Stop trying to hold your entire business in your head.",
   painBody: "The workbook helps you stop trying to hold the whole business in your head. It gives you a calm, structured place to define your audience, offer, value, positioning, brand voice, content pillars, and launch direction.",
   imageTitle: "Workbook",
   imageSubtitle: "A guided brand-building experience for turning your ideas into a clear business foundation.",
@@ -31,7 +31,7 @@ const product: BrandProduct = {
   outcomes: [
     "Know what your brand stands for and who it is really for.",
     "Stop second guessing your offer, content direction, and message.",
-    "Walk away with clear answers you can use on your website, socials, and launch plan.",
+    "Walk away with answers, not more questions — and a foundation you can actually build on.",
     "Create the foundation before moving into the Brand Kit or managed marketing.",
   ],
   perfectFor: [
