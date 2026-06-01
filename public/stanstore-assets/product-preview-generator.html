@@ -127,60 +127,65 @@
       .thumb {
         width: 400px;
         height: 400px;
-        padding: 24px;
+        padding: 22px;
         text-align: center;
       }
 
       .thumb .arch {
-        width: 28px;
-        height: 40px;
-        margin: 0 auto 8px;
+        width: 24px;
+        height: 34px;
+        margin: 0 auto 7px;
       }
 
       .thumb .eyebrow {
         margin: 0;
-        font-size: 8px;
+        font-size: 7px;
         color: var(--gold);
       }
 
       .thumb .script {
-        margin-top: 10px;
-        font-size: 40px;
+        margin-top: 8px;
+        font-size: 34px;
       }
 
       .thumb h1 {
         margin: 0 auto;
-        max-width: 320px;
+        max-width: 352px;
         color: var(--rose);
-        font-size: 48px;
-        line-height: 0.88;
+        font-size: 46px;
+        line-height: 0.86;
         letter-spacing: 0.03em;
         text-transform: uppercase;
       }
 
       .thumb .product-wrap {
         position: absolute;
-        left: 42px;
-        right: 42px;
-        bottom: 72px;
-        height: 122px;
-        border-radius: 22px;
+        left: 20px;
+        right: 20px;
+        bottom: 68px;
+        height: 136px;
+        border-radius: 24px;
         overflow: hidden;
+        padding: 7px;
+        background: rgba(255, 255, 255, 0.52);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        box-shadow: 0 24px 54px -34px rgba(80, 35, 28, 0.82);
       }
 
       .thumb .product {
         width: 100%;
         height: 100%;
+        border-radius: 18px;
       }
 
       .thumb .price {
         position: absolute;
         left: 50%;
-        bottom: 26px;
+        bottom: 20px;
         transform: translateX(-50%);
-        min-width: 214px;
-        padding: 13px 18px;
-        font-size: 9px;
+        width: calc(100% - 40px);
+        padding: 14px 16px;
+        font-size: 9.5px;
       }
 
       .thumb .corner-note {
@@ -202,7 +207,7 @@
       .social {
         width: 1092px;
         height: 1080px;
-        padding: 64px 72px;
+        padding: 54px 58px;
       }
 
       .social .topline {
@@ -236,8 +241,8 @@
 
       .social .main {
         display: grid;
-        grid-template-columns: 0.82fr 1.18fr;
-        gap: 42px;
+        grid-template-columns: 0.72fr 1.28fr;
+        gap: 30px;
         align-items: center;
         height: calc(100% - 82px);
       }
@@ -247,87 +252,87 @@
       }
 
       .social .script {
-        font-size: 82px;
+        font-size: 78px;
         margin-bottom: -10px;
       }
 
       .social h1 {
         margin: 0;
         color: var(--rose);
-        font-size: 64px;
+        font-size: 76px;
         line-height: 0.94;
         letter-spacing: 0.035em;
         text-transform: uppercase;
       }
 
       .social .subhead {
-        margin: 28px 0 0;
-        max-width: 370px;
+        margin: 24px 0 0;
+        max-width: 390px;
         color: rgba(29, 15, 11, 0.76);
-        font-size: 27px;
+        font-size: 30px;
         line-height: 1.28;
       }
 
       .social .support {
         margin: 20px 0 0;
-        max-width: 350px;
+        max-width: 378px;
         color: rgba(29, 15, 11, 0.56);
-        font-size: 18px;
-        line-height: 1.6;
+        font-size: 19px;
+        line-height: 1.52;
       }
 
       .social .button {
-        margin-top: 36px;
-        padding: 22px 34px;
-        font-size: 13px;
+        margin-top: 30px;
+        padding: 21px 30px;
+        font-size: 12px;
       }
 
       .social .features {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
-        margin-top: 34px;
-        max-width: 390px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 28px;
+        max-width: 410px;
       }
 
       .social .feature {
-        min-height: 76px;
-        border-radius: 22px;
+        min-height: 0;
+        border-radius: 999px;
         background: rgba(255, 255, 255, 0.52);
         border: 1px solid rgba(200, 164, 100, 0.24);
-        padding: 18px;
-        font-size: 11px;
+        padding: 13px 16px;
+        font-size: 10px;
         color: rgba(29, 15, 11, 0.62);
       }
 
       .social .visual {
         position: relative;
-        min-height: 700px;
+        min-height: 760px;
       }
 
       .social .product-card {
         position: absolute;
-        inset: 42px 0 auto auto;
-        width: 538px;
-        border-radius: 38px;
-        padding: 16px;
-        background: rgba(255, 255, 255, 0.5);
+        inset: 38px 0 auto auto;
+        width: 630px;
+        border-radius: 42px;
+        padding: 18px;
+        background: rgba(255, 255, 255, 0.58);
         border: 1px solid rgba(255, 255, 255, 0.78);
-        box-shadow: 0 40px 90px -48px rgba(80, 35, 28, 0.8);
+        box-shadow: 0 42px 92px -44px rgba(80, 35, 28, 0.88);
       }
 
       .social .product {
         width: 100%;
         aspect-ratio: 3 / 2;
-        border-radius: 28px;
+        border-radius: 30px;
       }
 
       .social .floating-card {
         position: absolute;
-        left: 0;
-        bottom: 88px;
-        width: 270px;
-        min-height: 210px;
+        left: 12px;
+        bottom: 86px;
+        width: 256px;
+        min-height: 184px;
         border-radius: 30px;
         background: rgba(29, 15, 11, 0.93);
         color: var(--cream);
@@ -339,7 +344,7 @@
         display: block;
         color: var(--gold);
         font-family: "Cormorant Garamond", serif;
-        font-size: 54px;
+        font-size: 50px;
         font-weight: 400;
         font-style: italic;
         line-height: 0.9;
@@ -354,9 +359,9 @@
 
       .social .mini {
         position: absolute;
-        right: 24px;
-        bottom: 22px;
-        width: 300px;
+        right: 12px;
+        bottom: 28px;
+        width: 330px;
         border-radius: 28px;
         background: rgba(255, 248, 243, 0.82);
         border: 1px solid rgba(200, 164, 100, 0.28);
@@ -369,6 +374,19 @@
         border-radius: 999px;
         background: rgba(189, 116, 118, 0.18);
         margin-top: 12px;
+      }
+
+      .social .visual-label {
+        position: absolute;
+        right: 34px;
+        top: 0;
+        z-index: 2;
+        border-radius: 999px;
+        background: rgba(29, 15, 11, 0.92);
+        color: var(--cream);
+        padding: 16px 24px;
+        font-size: 11px;
+        box-shadow: 0 24px 48px -30px rgba(29, 15, 11, 0.8);
       }
     </style>
   </head>
@@ -446,6 +464,7 @@
               </div>
             </div>
             <div class="visual">
+              <div class="visual-label luxe">Private web app</div>
               <div class="product-card"><img class="product" src="${product.image}" alt="" /></div>
               <div class="floating-card"><strong>${product.stat}</strong><span class="luxe">${product.statLabel}</span></div>
               <div class="mini">
