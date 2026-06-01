@@ -2498,13 +2498,15 @@ function ComparisonTable() {
 
 function FAQ() {
   const faqs: [string, string][] = [
-    ["What does 'done-for-you' actually mean?", "Everything — content creation, posting, scheduling, automation, ad management, and reporting. No tools to learn, no content to make, nothing to manage. You focus on your business; we handle the rest."],
-    ["What is the AI clone or brand character?", "We create either an AI version of you (your face, your voice, your energy — posting content without you filming) or a custom brand character built for your business. Either way, your content goes live every day on autopilot."],
-    ["How does the 14-day free trial work?", "Founding clients can start with a 14-day trial on eligible managed plans so we can audit the brand, map the content direction, create the first sample assets, and show how the system would work before you commit to the monthly retainer."],
-    ["What's included in the $500 setup fee?", "Every monthly plan has a $500 setup fee. It covers onboarding, system buildout, launch prep, calendar integration, automated follow-up sequences, and CRM setup before your first month begins."],
-    ["Is there a minimum commitment?", "For now, you can choose a 3-month, 6-month, or 12-month agreement. Growth clients who sign a 6-month or 12-month contract receive the last month free."],
-    ["What kinds of businesses do you work with?", "Local service businesses, boutique brands, coaches, creatives, and entrepreneurs who want to show up online consistently without doing it themselves."],
-    ["What is your refund policy?", "All sales are final. Once your system is built and your plan is active, the work has begun — but if you have concerns at any point, reach out and we'll work through it."],
+    ["What does 'done-for-you' actually mean?", "We do the setup and the monthly work for you. Depending on your plan, that can include your website, content, posting, ads, AI clone, booking links, CRM, text follow-up, missed-call text-back, reminders, and reporting."],
+    ["Which plan should I start with?", "Foundation is for your website and lead follow-up system. Content Lite is for simple weekly content. Starter is for one managed platform with AI clone support. Growth is the most complete option for content, ads, AI voice/chat, reviews, booking, and follow-up working together."],
+    ["What is the AI clone or brand character?", "We create either an AI version of you or a custom brand character for your business. It helps your brand show up with polished content without you having to film every week."],
+    ["How does the 14-day trial work?", "Eligible managed plans can begin with a founding client trial. The $500 setup fee is still due upfront because we are building your audit, strategy, sample direction, and system map before the monthly retainer begins."],
+    ["What's included in the $500 setup fee?", "Every monthly plan has a $500 setup fee. It covers onboarding, system buildout, launch prep, calendar or booking setup, CRM setup, automation mapping, and the assets needed to start the plan cleanly."],
+    ["What contract options do you offer?", "For now, you can choose 3 months, 6 months, or 12 months. Growth clients who choose a 6-month or 12-month agreement receive the last month free."],
+    ["What is the $500 Appointment Booking setup?", "It is a focused setup for businesses that mainly need a cleaner way for leads to book. It can include the calendar connection, booking flow, confirmation messages, reminders, and simple lead handoff."],
+    ["What kinds of businesses do you work with?", "Local service businesses, beauty and wellness brands, clinics, consultants, coaches, boutiques, and online brands that want stronger content, lead follow-up, and booking systems without managing it themselves."],
+    ["What is your refund policy?", "All sales are final once setup or monthly work begins because strategy, buildout, and implementation time are reserved for your business. If there is a concern, reach out and we will work through the next best step."],
   ];
   return (
     <section id="faq" className="scroll-mt-32 py-24 md:py-32 px-6" style={{ background: "linear-gradient(180deg, var(--cream) 0%, var(--blush) 100%)" }}>
@@ -2515,7 +2517,7 @@ function FAQ() {
             Clear answers before you apply.
           </h2>
           <p className="mt-5 text-[var(--ink)]/60 leading-8" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.98rem" }}>
-            The proposal will map the exact recommendation for your business, but these are the details most founders ask before taking the next step.
+            The proposal will map the exact recommendation for your business, but these are the details most people ask before taking the next step.
           </p>
           <a href="#contact" className="btn-ink mt-8 inline-flex">
             Ask for a proposal <span aria-hidden>→</span>
@@ -2609,19 +2611,19 @@ function Contact() {
               fontWeight: 400,
             }}
           >
-            Ready for a system that sells while you run the business?
+            Apply for your private growth plan.
           </h2>
           <p
             className="mt-6 max-w-lg text-[var(--ink)]/62 leading-8"
             style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem" }}
           >
-            Share the essentials and we’ll map the strongest path for your content, ads, AI clone, and lead follow-up. This is for founders who want a managed partner, not another DIY tool.
+            Share what you sell, what is getting stuck, and which level of support feels realistic. We will recommend the right plan, contract term, setup path, and add-ons before you commit.
           </p>
           <div className="mt-8 grid gap-3">
             {[
-              ["1", "We review your business, offer, and current online presence."],
-              ["2", "You receive a custom recommendation for the right plan and add-ons."],
-              ["3", "If it is a fit, we book your strategy call and build timeline."],
+              ["1", "We review your business, offer, current online presence, and lead flow."],
+              ["2", "You receive a private recommendation for the plan, term, setup fee, and add-ons."],
+              ["3", "If it is a fit, we book your strategy call and map the build timeline."],
             ].map(([step, copy]) => (
               <div
                 key={step}
@@ -2654,7 +2656,7 @@ function Contact() {
               Best fit for
             </p>
             <p className="mt-3 text-[var(--cream)]/82 leading-7" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.35rem", fontStyle: "italic" }}>
-              Service businesses, clinics, beauty brands, consultants, and founders ready to invest in consistent lead generation.
+              Service businesses, clinics, beauty brands, consultants, and online brands ready to invest in content, booking, and lead follow-up that feels managed.
             </p>
           </div>
         </div>
@@ -2669,11 +2671,11 @@ function Contact() {
               Application Details
             </p>
             <h3 className="mt-2 text-[var(--ink)] italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.8rem, 3vw, 2.45rem)", lineHeight: 1.05 }}>
-              Tell us what you want built.
+              Tell us what you need built.
             </h3>
           </div>
           <p className="text-[var(--ink)]/45 text-sm md:text-right" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-            Response within 24 hours.
+            Private reply within 24 hours.
           </p>
         </div>
         {/* First / Last */}
@@ -2715,16 +2717,49 @@ function Contact() {
         </div>
 
         {/* Plan */}
-        <div>
-          <label className={labelClass} style={labelStyle}>Which plan interests you?</label>
-          <select name="plan" className={inputClass} style={inputStyle}>
-            <option>Foundation — $297/mo</option>
-            <option>Content Lite — $500/mo</option>
-            <option>Starter — $1,000/mo</option>
-            <option>Growth — $2,500/mo</option>
-            <option>Appointment Booking — $500 setup</option>
-            <option>Not sure yet</option>
-          </select>
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label className={labelClass} style={labelStyle}>Which plan interests you?</label>
+            <select name="plan" className={inputClass} style={inputStyle}>
+              <option>Foundation — $297/mo</option>
+              <option>Content Lite — $500/mo</option>
+              <option>Starter — $1,000/mo</option>
+              <option>Growth — $2,500/mo</option>
+              <option>Appointment Booking — $500 setup</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div>
+            <label className={labelClass} style={labelStyle}>Preferred commitment</label>
+            <select name="contract_term" className={inputClass} style={inputStyle}>
+              <option>3 months</option>
+              <option>6 months — interested in last month free on Growth</option>
+              <option>12 months — interested in last month free on Growth</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label className={labelClass} style={labelStyle}>Setup readiness</label>
+            <select name="setup_readiness" className={inputClass} style={inputStyle}>
+              <option>I understand there is a $500 setup fee</option>
+              <option>I have questions about the setup fee</option>
+              <option>I am only browsing right now</option>
+            </select>
+          </div>
+          <div>
+            <label className={labelClass} style={labelStyle}>Main goal</label>
+            <select name="main_goal" className={inputClass} style={inputStyle}>
+              <option>Get more booked leads</option>
+              <option>Improve my website and follow-up</option>
+              <option>Post more consistently</option>
+              <option>Run ads and scale lead flow</option>
+              <option>Build an AI clone or brand character</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
         </div>
 
         {/* Add-ons */}
@@ -2737,6 +2772,7 @@ function Contact() {
             {[
               "Extra AI Clone Videos",
               "AI Voice Agent",
+              "Appointment Booking Setup",
               "Review Management",
               "Email & SMS Marketing",
               "Additional Content Volume",
