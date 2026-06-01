@@ -5406,7 +5406,7 @@ function GrowthTab() {
         <div className="px-6 py-5 space-y-3">
           {[
             ["$97–$150/mo", "Hosting Only", "Website live + GHL account + 1 automated follow-up. No setup fee for templates. Easiest yes — lowest friction entry point."],
-            ["$300/mo", "Full SaaS Suite", "Website + CRM + booking calendar + automated sequences + chat widget + missed call text-back. The baseline that makes clients never cancel."],
+            ["$297/mo", "SaaS Suite", "Talking website + backend autoresponder + Google reviews. Software monthly access. No setup fee. The baseline that makes clients never cancel."],
             ["$500/mo", "SaaS + Local Ads or AI", "Everything in $300 plan + Google Local Service Ads (link their Google Business + hit run — it runs itself) OR AI receptionist/chat widget."],
             ["$1,000–$2,000/mo", "Full Ads Management", "Running Google Ads, Meta Ads, or SEO. $1k for one channel, $2k–$3k for multiple. Needs some advertising experience."],
             ["$4k–$10k upfront", "Custom Website", "Built in Claude Code or GHL AI Studio, deployed in GHL. Clients love the speed (days not months). Always add $97–$300/mo hosting on top."],
@@ -5424,7 +5424,7 @@ function GrowthTab() {
           <div className="rounded-xl p-4" style={{ background: "var(--ink)" }}>
             <p className="text-[9px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Prepay Tactic — Collect More Upfront</p>
             <p style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.7 }}>
-              "Pay 3 months upfront and get your 4th month free." Instead of collecting $300 on the first payment, you collect $900. Client feels like they're winning — you get cash flow and de-risk churn in month 1.
+              "Pay 3 months upfront and get your 4th month free." Instead of collecting $297 on the first payment, you collect $891. Client feels like they're winning — you get cash flow and de-risk churn in month 1.
             </p>
           </div>
           <div className="rounded-xl p-4" style={{ background: "rgba(200,168,100,0.07)", border: "1px solid rgba(200,168,100,0.2)" }}>
@@ -5496,7 +5496,7 @@ function GrowthTab() {
             ["Negotiating your prices down", "If a client can't afford $6,000 upfront, don't drop to $3,000. Instead: 'No problem — you can pay $1,000/month for 6 months. How does that sound?' You protect your rate AND make it easier for them to say yes."],
             ["No revision limits in your contract", "Add a clause: '2 rounds of revisions included.' Clients will rarely push it, but having it in writing protects you from the rare one who does."],
             ["Being too desperate on calls", "If you're nervous, fidgety, or you really need the sale — they can feel it. Be calm. Ask for the money. Be okay with silence. The more okay you are with them saying no, the more sales you'll close."],
-            ["Only charging upfront — no MRR", "This is the biggest trap. You feel rich one month, then $0 the next. Always onboard into a monthly plan. Even a $5k custom site client should be on $300/mo hosting + automations. You already did the hardest part — getting them. Make the income last."],
+            ["Only charging upfront — no MRR", "This is the biggest trap. You feel rich one month, then $0 the next. Always onboard into a monthly plan. Even a $5k custom site client should be on $297/mo — talking website + autoresponder + Google reviews. You already did the hardest part — getting them. Make the income last."],
           ].map(([mistake, fix]) => (
             <div key={mistake as string} className="rounded-xl p-4" style={{ background: "rgba(200,168,100,0.06)", border: "1px solid rgba(200,168,100,0.12)" }}>
               <p style={{ fontFamily: FONT_LUXE, fontSize: "0.75rem", color: "var(--rose)", fontWeight: 600, marginBottom: 4 }}>✕ {mistake as string}</p>
@@ -8212,15 +8212,14 @@ const QB_PACKAGES = {
     ],
   },
   saas_suite: {
-    name: "SaaS Suite", monthly: 300, setup: 0, emoji: "settings", color: "#7a98c8",
-    tagline: "Full GHL suite — website + CRM + booking + automations + chat widget. No setup fee.",
+    name: "SaaS Suite", monthly: 297, setup: 0, emoji: "settings", color: "#7a98c8",
+    tagline: "Talking website + backend autoresponder + Google reviews. No setup fee.",
     includes: [
-      "Website (template — no upfront cost) or custom ($4k–$10k upfront + $97/mo)",
-      "CRM — manage all leads with automated pipeline stages",
-      "Booking calendar — contact form → calendar redirect → appointment booked",
-      "Automated follow-up sequences (email + SMS based on where they are in pipeline)",
-      "Chat widget to capture visitors before they leave",
-      "Missed call text-back — instant SMS when they miss a call",
+      "Talking website — AI chat widget reads all pages, answers questions, books appointments automatically",
+      "Backend autoresponder — automatic SMS + email when someone fills out a form, with follow-up sequences",
+      "Google reviews funnel — 5 stars → Google · 4 stars or below → private feedback form only",
+      "Software monthly access — client gets their own sub-account with your branding",
+      "Mobile app — Lead Connector on their phone so they see every lead in real time",
     ],
   },
   saas_ads: {
@@ -10572,7 +10571,7 @@ const PROPOSAL_DECKS: PDeck[] = [
 function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
   const PLANS = [
     { id: "hosting",  name: "Hosting Only",  price: 97,   desc: "Website live + GHL access + 1 auto follow-up" },
-    { id: "saas",     name: "SaaS Suite",    price: 300,  desc: "Website + CRM + booking + automations + chat widget + missed call text-back" },
+    { id: "saas",     name: "SaaS Suite",    price: 297,  desc: "Talking website + backend autoresponder + Google reviews" },
     { id: "saas_ads", name: "SaaS + Ads",   price: 500,  desc: "Everything in SaaS + Google Local Service Ads OR AI receptionist/chat widget" },
     { id: "starter",  name: "Starter",       price: 1000, desc: "Full social media management + AI clone + automations" },
     { id: "growth",   name: "Growth",        price: 2500, desc: "3 platforms + paid ads management + full automation stack" },
