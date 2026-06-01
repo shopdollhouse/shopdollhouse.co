@@ -249,6 +249,7 @@
 
       .social .copy {
         padding-top: 28px;
+        max-width: 330px;
       }
 
       .social .script {
@@ -265,9 +266,14 @@
         text-transform: uppercase;
       }
 
+      .social.product-workbook h1 {
+        font-size: 54px;
+        letter-spacing: 0.02em;
+      }
+
       .social .subhead {
         margin: 24px 0 0;
-        max-width: 390px;
+        max-width: 330px;
         color: rgba(29, 15, 11, 0.76);
         font-size: 30px;
         line-height: 1.28;
@@ -275,7 +281,7 @@
 
       .social .support {
         margin: 20px 0 0;
-        max-width: 378px;
+        max-width: 330px;
         color: rgba(29, 15, 11, 0.56);
         font-size: 19px;
         line-height: 1.52;
@@ -441,7 +447,7 @@
 
       const product = products[productKey] || products["brand-kit"];
       const asset = document.getElementById("asset");
-      asset.className = `asset ${format === "social" ? "social" : "thumb"}`;
+      asset.className = `asset ${format === "social" ? "social" : "thumb"} product-${productKey}`;
 
       if (format === "social") {
         asset.innerHTML = `
