@@ -9470,12 +9470,12 @@ const PROPOSAL_DECKS: PDeck[] = [
         layout: "pricing", bg: "light",
         heading: "Our plans",
         prices: [
+          { name: "Foundation", price: "$297/mo", tag: "Website · lead follow-up · review funnel" },
+          { name: "Content Lite", price: "$500/mo", tag: "1 platform · 3 posts/week · static + carousel" },
           { name: "Starter", price: "$1,000/mo", tag: "1 platform · AI clone · 12 posts/mo" },
           { name: "Growth", price: "$2,500/mo", tag: "3 platforms · ads · full automation" },
-          { name: "Elite", price: "$5,000+/mo", tag: "Maximum content · all ads · full system" },
-          { name: "Setup Fee", price: "$500", tag: "One-time · all plans" },
         ],
-        script: "We have four plans depending on where you're at and where you want to go. I'll be honest — based on what you've told me today, I already have one in mind for you. But let me walk you through all of them so you can see the full picture.",
+        script: "We have a path for where you are right now and where you want to go next. Foundation is the website and follow-up system. Content Lite keeps one platform active. Starter adds the AI clone and stronger content support. Growth is the full system with three platforms, ads, and automations. Every plan has a $500 setup fee so we can build the system correctly from the start.",
       },
       {
         layout: "bullets", bg: "blush",
@@ -9509,9 +9509,9 @@ const PROPOSAL_DECKS: PDeck[] = [
       },
       {
         layout: "cta", bg: "rose",
-        heading: "Try it free for 14 days.",
-        sub: "$500 setup fee  ·  14-day free trial  ·  6-month minimum  ·  30-day cancellation notice",
-        script: "Here's the offer. 14-day free trial. You only pay the $500 setup fee today — that covers the buildout. Your first two full weeks of content and service are completely on us. After the trial, we start with a 6-month minimum — you'll see real results within the first 90 days, and months 4 through 6 are where it really compounds. After your 6 months, 30 days' notice and you're out. I'm confident enough in what we deliver that I'm willing to put my money where my mouth is.",
+        heading: "Choose the path that fits your season.",
+        sub: "$500 setup fee  ·  3, 6, or 12-month options  ·  Growth clients get the last month free on 6 or 12 months",
+        script: "Here's the offer. Every plan starts with a $500 setup fee so we can build the system correctly. You can choose 3 months if you want to start small, or 6 to 12 months if you want the system to compound. If you choose the full Growth plan on a 6 or 12-month contract, your last month is free. The goal is simple: get your marketing running, prove the system, and turn more leads into booked clients.",
       },
       {
         layout: "title", bg: "dark",
@@ -9837,12 +9837,12 @@ const PROPOSAL_DECKS: PDeck[] = [
         layout: "pricing", bg: "light",
         heading: "Investment",
         prices: [
+          { name: "Foundation", price: "$297/mo", tag: "Website + lead system" },
+          { name: "Content Lite", price: "$500/mo", tag: "1 platform · 3 posts/week" },
           { name: "Growth", price: "$2,500/mo", tag: "3 platforms" },
-          { name: "Elite", price: "$5,000+/mo", tag: "Full system" },
-          { name: "Website", price: "From $3,000", tag: "One-time add-on" },
-          { name: "Merch Store", price: "From $997", tag: "One-time add-on" },
+          { name: "Setup Fee", price: "$500", tag: "One-time · all monthly plans" },
         ],
-        script: "Here's how the all-in-one system is priced. The monthly plan covers your ongoing content, automation, and management. Website and merch are one-time buildouts on top of that. Based on what you've told me today, I have a specific recommendation — let me walk you through it.",
+        script: "Here's how the all-in-one system is priced. Foundation gives you the website and lead follow-up engine. Content Lite keeps one platform active. Growth is the full managed system with three platforms, ads, and automation. Every monthly plan has a $500 setup fee so we can build the account correctly.",
       },
       {
         layout: "steps", bg: "dark",
@@ -9856,9 +9856,9 @@ const PROPOSAL_DECKS: PDeck[] = [
       },
       {
         layout: "cta", bg: "rose",
-        heading: "Try it free for 14 days.",
-        sub: "$500 setup fee  ·  14-day free trial  ·  6-month minimum  ·  30-day cancellation notice",
-        script: "And here's the offer to make this as easy a decision as possible. 14-day free trial. You only pay the $500 setup fee today. Your first two weeks are completely on us. After the trial, there's a 6-month minimum — you'll see real results within 90 days, and months 4 through 6 are where it really compounds for your brand. After your 6 months, 30 days' notice and you're free to leave. I'm confident in what we build, which is why I'm willing to put the first two weeks on us.",
+        heading: "Choose your growth path.",
+        sub: "$500 setup fee  ·  3, 6, or 12-month options  ·  Growth clients get the last month free on 6 or 12 months",
+        script: "The next step is choosing the path that fits your business right now. We can start with the foundation, keep your content active, or build the full Growth system. The $500 setup fee covers the buildout, and if you choose Growth for 6 or 12 months, your last month is free. That gives the system enough time to start compounding.",
       },
       {
         layout: "title", bg: "dark",
@@ -10248,14 +10248,14 @@ const PROPOSAL_DECKS: PDeck[] = [
       },
       {
         layout: "pricing", bg: "light",
-        heading: "Automation is included in Growth + Elite",
+        heading: "Automation is strongest inside Growth",
         prices: [
+          { name: "Foundation", price: "$297/mo", tag: "Website + follow-up basics" },
           { name: "Starter", price: "$1,000/mo", tag: "Content + AI clone + comment-to-DM" },
-          { name: "Growth", price: "$2,500/mo", tag: "Includes automation" },
-          { name: "Elite", price: "$5,000+/mo", tag: "Full system" },
+          { name: "Growth", price: "$2,500/mo", tag: "Full automation stack" },
           { name: "Setup fee", price: "$500", tag: "One-time, all plans" },
         ],
-        script: "Here's how the packages break down. The Starter plan covers your content — AI clone, posts, managed platforms. The Growth and Elite plans are where the full automation stack comes in — voice agent, DM responder, follow-up sequences, review automation, everything. Based on what you've told me about the leads you're currently missing, I think Growth is the level that would genuinely transform what's happening in your business.",
+        script: "Here's how the packages break down. Foundation covers the website and basic lead follow-up. Starter covers your content and AI clone. Growth is where the full automation stack comes in — voice agent, DM responder, follow-up sequences, review automation, everything. Based on what you've told me about the leads you're currently missing, I think Growth is the level that would genuinely transform what's happening in your business.",
       },
       {
         layout: "headline", bg: "blush",
@@ -10496,9 +10496,23 @@ const PROPOSAL_DECKS: PDeck[] = [
           "Every person who contacts you gets an instant reply — even at 2am",
           "You see and approve everything before it goes live — you're always in control",
           "We show you exactly what's working every month — in plain, simple language",
-          "Try it free for 14 days — you only pay the setup fee, first 2 weeks are on us",
+          "3, 6, and 12-month options — with the best value on the full Growth system",
         ],
-        script: "Here's why businesses like yours choose The Dollhouse. We're not just a posting service. We build your entire online system — content, automation, ads, and follow-up — all in one place. And we're the only agency that builds you an AI clone of yourself. That means even when you're busy with clients, your brand is out there every day looking amazing. And you can try it for free for two weeks. There's almost no risk.",
+        script: "Here's why businesses like yours choose The Dollhouse. We're not just a posting service. We build your entire online system — content, automation, ads, and follow-up — all in one place. And we're the only agency that builds you an AI clone of yourself. That means even when you're busy with clients, your brand is out there every day looking amazing.",
+      },
+      {
+        layout: "bullets", bg: "light",
+        heading: "Best fit industries",
+        bullets: [
+          "Roofing contractors — more quote requests and faster text follow-up",
+          "HVAC companies — seasonal campaigns, missed-call text back, and reviews",
+          "Plumbers & electricians — emergency leads answered fast",
+          "Med spas & aesthetic clinics — content, booking, offers, and nurture",
+          "Chiropractors — local trust, patient education, and appointment reminders",
+          "Physical therapists — referral support, follow-up, and reputation building",
+          "Local law firms — personal injury or family law inquiries organized and followed up",
+        ],
+        script: "This system is strongest for businesses where one new client is worth real money, speed matters, and trust matters. Roofing, HVAC, plumbers, electricians, med spas, chiropractors, physical therapists, and local law firms are all a strong fit because they need calls, bookings, reviews, and follow-up to happen without the owner chasing every lead by hand.",
       },
       {
         layout: "headline", bg: "rose",
@@ -10623,7 +10637,7 @@ const PROPOSAL_DECKS: PDeck[] = [
         layout: "title", bg: "dark",
         heading: "Thank you.",
         sub: "The Dollhouse Brand Studio  ·  hello@shopdollhouse.co",
-        script: "Thank you so much for your time today. I hope this made everything really clear — how it works, what's involved, and what it costs. I want you to feel 100% comfortable before making any decision. If you have any questions after this, my email is on the screen. I'd love to get you started with a free 14-day trial so you can see it working with zero risk. What would you like to do next?",
+        script: "Thank you so much for your time today. I hope this made everything really clear — how it works, what's involved, and what it costs. I want you to feel 100% comfortable before making any decision. If you have any questions after this, my email is on the screen. The next step is choosing the plan and contract length that makes the most sense for your business. What would you like to do next?",
       },
     ],
   },
@@ -10633,12 +10647,10 @@ const PROPOSAL_DECKS: PDeck[] = [
 /* ── Live Quote Slide ────────────────────────────────────────────────────── */
 function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
   const PLANS = [
-    { id: "hosting",  name: "Hosting Only",  price: 97,   desc: "Website live + GHL access + 1 auto follow-up" },
-    { id: "saas",     name: "SaaS Suite",    price: 297,  desc: "Talking website + backend autoresponder + Google reviews" },
-    { id: "saas_ads", name: "SaaS + Ads",   price: 500,  desc: "Everything in SaaS + Google Local Service Ads OR AI receptionist/chat widget" },
-    { id: "starter",  name: "Starter",       price: 1000, desc: "Full social media management + AI clone + automations" },
-    { id: "growth",   name: "Growth",        price: 2500, desc: "3 platforms + paid ads management + full automation stack" },
-    { id: "elite",    name: "Elite",         price: 5000, desc: "Maximum content + all ad channels + full AI system" },
+    { id: "foundation",   name: "Foundation",   price: 297,  desc: "Functional website + automated lead follow-up + reviews + SEO foundation" },
+    { id: "content_lite", name: "Content Lite", price: 500,  desc: "1 platform + static and carousel posts 3 times per week" },
+    { id: "starter",      name: "Starter",      price: 1000, desc: "1 platform + AI clone + 12 posts/mo + lead follow-up" },
+    { id: "growth",       name: "Growth",       price: 2500, desc: "3 platforms + ads + AI clone + full automation stack" },
   ];
   const ADDONS = [
     { id: "meta_ads",  name: "Meta Ads Management",       price: 500,  note: "+ min $1k/mo ad spend paid directly by client to Meta" },
@@ -10652,13 +10664,18 @@ function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
 
   const [plan, setPlan] = useState("starter");
   const [addons, setAddons] = useState<Set<string>>(new Set());
-  const [contract, setContract] = useState<"6mo" | "12mo">("6mo");
+  const [contract, setContract] = useState<"3mo" | "6mo" | "12mo">("3mo");
 
   const sel = PLANS.find(p => p.id === plan)!;
   const addonTotal = ADDONS.filter(a => addons.has(a.id)).reduce((s, a) => s + a.price, 0);
   const subtotal = sel.price + addonTotal;
-  const discount = contract === "12mo" ? Math.round(subtotal * 0.10) : 0;
-  const monthly = subtotal - discount;
+  const monthly = subtotal;
+  const setupFee = 500;
+  const months = contract === "3mo" ? 3 : contract === "6mo" ? 6 : 12;
+  const freeMonths = plan === "growth" && contract !== "3mo" ? 1 : 0;
+  const regularTotal = monthly * months + setupFee;
+  const contractTotal = monthly * (months - freeMonths) + setupFee;
+  const savings = regularTotal - contractTotal;
 
   const dark = bg === "dark" || bg === "rose";
   const C = dark
@@ -10684,7 +10701,7 @@ function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
         {/* Plan selector */}
         <div>
           <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: C.fg2, marginBottom: 8 }}>Choose Your Plan</div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 6 }}>
             {PLANS.map(p => (
               <button key={p.id} onClick={() => setPlan(p.id)}
                 style={{ padding: "10px 8px", borderRadius: 10, border: `1.5px solid ${plan === p.id ? C.activeBorder : C.border}`, background: plan === p.id ? C.active : C.card, cursor: "pointer", textAlign: "left" }}>
@@ -10725,7 +10742,7 @@ function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
         <div>
           <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: C.fg2, marginBottom: 8 }}>Contract Length</div>
           <div style={{ display: "flex", gap: 8 }}>
-            {([["6mo","6 Months","Standard"],["12mo","12 Months","Save 10%"]] as const).map(([v, label, sub]) => (
+            {([["3mo","3 Months","Fast start"],["6mo","6 Months","Growth saves 1 month"],["12mo","12 Months","Growth saves 1 month"]] as const).map(([v, label, sub]) => (
               <button key={v} onClick={() => setContract(v)}
                 style={{ flex: 1, padding: "10px 14px", borderRadius: 10, border: `1.5px solid ${contract === v ? C.activeBorder : C.border}`, background: contract === v ? C.active : C.card, cursor: "pointer", textAlign: "left" }}>
                 <div style={{ fontFamily: LUXE, fontSize: 11, color: contract === v ? C.acc : C.fg, fontWeight: 600 }}>{label}</div>
@@ -10752,10 +10769,10 @@ function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
               <span style={{ fontFamily: SANS, fontSize: 12, color: C.fg }}>+${a.price}/mo</span>
             </div>
           ))}
-          {discount > 0 && (
+          {savings > 0 && (
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <span style={{ fontFamily: SANS, fontSize: 12, color: "#4a9970" }}>12-Month Discount (10%)</span>
-              <span style={{ fontFamily: SANS, fontSize: 12, color: "#4a9970" }}>−${discount}/mo</span>
+              <span style={{ fontFamily: SANS, fontSize: 12, color: "#4a9970" }}>Growth Contract Bonus</span>
+              <span style={{ fontFamily: SANS, fontSize: 12, color: "#4a9970" }}>−${savings.toLocaleString()}</span>
             </div>
           )}
           <div style={{ height: 1, background: C.border, margin: "4px 0" }} />
@@ -10765,7 +10782,11 @@ function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
           </div>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <span style={{ fontFamily: SANS, fontSize: 11, color: C.fg2 }}>One-Time Setup</span>
-            <span style={{ fontFamily: SANS, fontSize: 11, color: C.fg }}>$500</span>
+            <span style={{ fontFamily: SANS, fontSize: 11, color: C.fg }}>${setupFee}</span>
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <span style={{ fontFamily: SANS, fontSize: 11, color: C.fg2 }}>{months}-Month Total</span>
+            <span style={{ fontFamily: SERIF, fontSize: 22, color: C.fg }}>${contractTotal.toLocaleString()}</span>
           </div>
           {addons.has("meta_ads") && (
             <div style={{ padding: "8px 10px", borderRadius: 8, background: C.active, border: `1px solid ${C.border}` }}>
@@ -10780,7 +10801,7 @@ function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
           <div style={{ fontFamily: SANS, fontSize: 10, color: C.fg2, lineHeight: 1.6 }}>
             ✦ 14-day free trial available<br />
             ✦ $500 setup fee applies<br />
-            ✦ {contract === "12mo" ? "12-month agreement" : "6-month minimum"}
+            ✦ {months}-month agreement{freeMonths > 0 ? " · last month free" : ""}
           </div>
         </div>
       </div>
