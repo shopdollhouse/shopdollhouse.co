@@ -2467,6 +2467,82 @@ After the site is built:
 → Connect the contact form to their CRM pipeline
 → Charge: $500 build fee + $97/mo hosting (set up as a recurring invoice)`,
     },
+    // ─── GHL Website Selling (Pavlo Framework) ───────────
+    {
+      title: "GHL Website — Revamp an Existing Site (Vibe Builder)",
+      tag: "Platform AI",
+      prompt: `Use this in the AI Studio Vibe Builder to rebuild a client's existing website into a high-converting GHL site.
+
+Paste into AI Studio Vibe Builder:
+
+"Build a modern, high-converting website using the following details:
+- Client Business Name: [Business Name]
+- Location: [City, Province/State]
+- Current Website for Context: [Insert Current URL]
+- Design Style Inspiration: [Describe style — e.g., clean minimalist with smooth hover-highlight sections and serif typography]
+- Primary Services: [List 3–4 key services — e.g., Luxury Kitchen Remodeling, Custom Cabinetry, Quartz Countertop Installation]
+- Core Goal: Convert cold traffic into estimate survey submissions and direct calendar bookings."
+
+AFTER BUILDING — add these two things immediately:
+1. Replace the contact form with a multi-step Survey → Book a Call flow (removes friction, increases conversions)
+2. Add a Review Funnel landing page with QR code: 5-star → redirects to Google Business Profile. 4 stars or below → private feedback form only.`,
+    },
+    {
+      title: "GHL Website — Build From Scratch (Vibe Builder)",
+      tag: "Platform AI",
+      prompt: `Use this when the client has no website at all. One prompt builds the entire site.
+
+Paste into AI Studio Vibe Builder:
+
+"Build a premium, responsive local business website from scratch with these details:
+- Business Name: [Business Name]
+- Industry: [e.g., Kitchen Remodeling / Roofing / HVAC]
+- Location: [City, Province/State]
+- Services Offered: [List core services]
+- Objective: Generate high-end leads. Write persuasive, result-driven copywriting for the headers. Automatically source relevant high-quality industry images and lay out a structured, interactive visual interface."
+
+PRICING OPTIONS for website clients:
+
+Tier 1 — Beginner Recurring (easiest to close):
+→ Build it FREE (zero upfront friction)
+→ Charge $200–$300/mo for hosting + lead capture + SMS text-back + review funnel
+→ Pitch: "I'll build it free. You just pay $200 a month to keep it running and getting you leads."
+
+Tier 2 — High Ticket Cash Injection:
+→ $3,000–$6,000 upfront for the custom AI Studio design
+→ $100/mo hosting + maintenance only
+→ Use GHL's Visual Edits (point and click) for ongoing updates — no code needed
+
+CLOSING FRAMEWORK — The "Leaky Bucket" Pitch:
+→ Never mention CSS, HTML, prompts, or software
+→ Say: "Your current website is a leaky bucket. People land on it and leave. We're going to plug the holes."
+→ Show them the Lead Connector mobile app: "You'll manage every lead, review request, and text reply from your phone — without touching a laptop."`,
+    },
+    {
+      title: "Lead Scraping — TrySmartScraper (Google Maps)",
+      tag: "Strategy",
+      prompt: `How to pull hundreds of qualified local business leads in minutes using the SmartScraper Chrome extension.
+
+SETUP:
+1. Install TrySmartScraper.com Chrome Extension (free trial available)
+2. Go to Google Maps
+3. Search your target niche + city (e.g., "Kitchen Remodeling in Toronto")
+4. Click the SmartScraper extension → select "Extract Data"
+5. Download the CSV — you get: business name, phone number, website URL, review count, rating
+
+SORT THE CSV — PRIME TARGETS:
+✓ Under 30 Google reviews OR rating below 4.3 → need reputation help
+✓ Website URL listed but looks outdated or mobile-unfriendly → ready for a rebuild
+✓ No website listed at all → easiest sell (build it free and pitch the $200/mo)
+✓ Phone number listed → cold call immediately
+
+SKIP:
+✗ National chains or franchises
+✗ 200+ reviews with 4.8+ rating → already well-managed
+✗ No phone number → can't reach
+
+Use the "Website Fixed" or "Student Tech Experiment" script below to reach out to each one.`,
+    },
     {
       title: "AI Revenue Audit — Find the Hidden Money",
       tag: "Strategy",
@@ -5031,6 +5107,50 @@ If your average job is worth $5,000, this system only needs to save you one lead
             <div className="rounded-xl p-4" style={{ background: "rgba(200,168,100,0.08)", border: "1px solid rgba(200,168,100,0.2)" }}>
               <p style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "var(--ink)", lineHeight: 1.65 }}>
                 <strong>The Arbitrage Model:</strong> Once you scale past 3–4 clients, hire a GoHighLevel or Make.com specialist on Upwork for $200–$400 per client build-out. You collect the $500 setup fee, pay the contractor, and pocket the margin — while owning the client relationship completely.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Script D — Website Fixed (Pavlo) */}
+        <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+          <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+            <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Script D — Website Pitch</p>
+            <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>The "Website Fixed" Direct Pitch</h3>
+            <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.5)" }}>Send via Email, DM, or Text. Build the demo site first — then send this. Works because they're getting something for free before you ask for anything.</p>
+          </div>
+          <div className="px-6 py-5">
+            <ScriptCard title="Website Fixed" tag="Email / DM / Text" lines={[
+              { type: "send", label: "Message to send", text: `Hey [Owner Name],
+
+Are you guys still open? Your website listing online said closed or broken for some reason when I tried to look at it.
+
+I actually went ahead and built a brand new, updated website for you guys and fixed a couple of the conversion errors.
+
+Is it cool if I send over the link so you can check it out?` },
+            ]} />
+          </div>
+        </div>
+
+        {/* Script E — Student Tech Experiment (Pavlo) */}
+        <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+          <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+            <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Script E — Lower Friction</p>
+            <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>The "Student / Tech Experiment" Angle</h3>
+            <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.5)" }}>Disarms defensiveness. Nobody feels sold to by a student experimenting with tech. Curiosity drives the reply.</p>
+          </div>
+          <div className="px-6 py-5">
+            <ScriptCard title="Tech Experiment" tag="Email / DM / Text" lines={[
+              { type: "send", label: "Message to send", text: `Hey [Owner Name], are you still open?
+
+I'm a student messing around with some new automation technology and I actually built your company a brand new interactive website. It has a custom talking AI employee and a live-chat system fully installed on it.
+
+Is it cool if I send over the link to show you guys how it looks?` },
+            ]} />
+            <div className="rounded-xl p-4 mt-3" style={{ background: "rgba(200,168,100,0.07)", border: "1px solid rgba(200,168,100,0.15)" }}>
+              <p style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "var(--ink)", lineHeight: 1.65 }}>
+                <strong>After they say yes</strong> — send the link to the GHL demo site you already built. Then hop on a 15-min Zoom and show them the Lead Connector mobile app. Tell them: <em>"You can manage every lead, review request, and text reply right from your phone — no laptop needed."</em><br /><br />
+                <strong>Pitch:</strong> Build it free. $200–$300/mo to keep it running and generating leads.
               </p>
             </div>
           </div>
