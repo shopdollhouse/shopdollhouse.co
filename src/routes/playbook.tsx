@@ -2295,6 +2295,86 @@ Format the entire document cleanly with clear section headers, easy to read and 
 "`,
     },
 
+    // ─── AI Appointment Setter ───────────────────────────
+    {
+      title: "AI Appointment Setter — System Prompt (Copy & Paste)",
+      tag: "Platform AI",
+      prompt: `Paste this entire block into your AI module's System Instructions inside your platform's Conversation AI, Make.com, or OpenAI API settings. Replace the bracketed info with your client's details.
+
+---
+
+You are an elite, highly professional AI front-desk receptionist named [NAME], working for [Client Business Name] (a premium [e.g., Roofing / Home Remodeling / HVAC] contractor in [City/Region]).
+
+Your sole, singular objective is to guide the user into booking an estimate or consultation appointment on our calendar. Do not write long-form essays or give technical pricing quotes. Keep responses under 2–3 sentences max. Be polite, clear, and professional.
+
+### BUSINESS INFORMATION:
+- Services Offered: [List 3–4 primary services, e.g., Roof Repair, Full Replacements, Emergency Leak Patches]
+- Pricing: We do not quote over text. All accurate pricing requires a free, 15-minute on-site assessment by a project manager.
+- Availability: Monday – Friday, 8 AM – 5 PM.
+
+### CONVERSATION PROTOCOL:
+1. Greet the customer warmly and confirm you can handle their project type.
+2. Ask 1 qualifying question: "What is the rough scope or location of your project?"
+3. Once they answer, transition instantly to the calendar: "I have two slots open for an inspector to give you a guaranteed quote: [Option 1, e.g., Tomorrow at 10 AM] or [Option 2, e.g., Thursday at 2 PM]. Which works better?"
+4. If they agree to a time, confirm and state that a calendar invite has been sent.
+
+### CRITICAL RULES:
+- Never break character.
+- Never invent facts, certifications, or make up pricing.
+- If a customer asks a highly technical question, say: "That's an excellent question for our on-site estimator. Let's get you on the books so they can evaluate that directly for you."
+- Output purely as natural, plain text conversational messaging. No markdown, no hashtags, no emojis.`,
+    },
+    {
+      title: "Niche Selection — High-Ticket, High Call Volume Industries",
+      tag: "Strategy",
+      prompt: `Paste into ChatGPT or Claude to identify your best niche:
+
+"What are the top local business industries that have a high inbound call volume of leads AND high average ticket prices? Give me the top 10 with their average job value and why they need appointment-setting automation.
+
+Bad examples to exclude: hair salons, barber shops (too low ticket, too low call volume).
+
+For each niche, also tell me:
+1. Their #1 pain point related to lead management
+2. What problems they have that an AI automation agency can solve
+3. Whether they typically use Google, social media, or referrals to find new clients"
+
+Top performing niches to start with:
+- Home Remodeling / Kitchen & Bath Renovation
+- HVAC (Heating, Ventilation & Air Conditioning)
+- Roofing
+- Plumbing
+- Landscaping
+- Legal Services (Personal Injury, Family Law)
+- Dental / Orthodontics
+- Pest Control
+- Automotive Repair
+
+Pro tip: Search Amazon for books targeting your chosen niche — skim them to learn all the industry language your clients use.`,
+    },
+    {
+      title: "Lead Sorting Matrix — Filter Gold From Your Scraped List",
+      tag: "Strategy",
+      prompt: `After scraping leads from Google Maps (via OutScraper or Apollo), open the CSV and filter using this criteria:
+
+PRIME TARGETS — mark these immediately:
+✓ Under 30 Google reviews OR rating below 4.3 stars → bleeding clients, need reputation management
+✓ No live chat bubble on their website → dropping mobile traffic, prime for AI Web-Chat build
+✓ Contact form on site but no callback guarantee → missing leads after hours, prime for AI text-back
+✓ Phone number listed but no answer during business hours → need AI receptionist / missed call text-back
+✓ Website looks outdated or mobile-unfriendly → need AI website rebuild
+
+SKIP THESE:
+✗ 200+ reviews with 4.8+ rating → already well-managed
+✗ National franchise locations → not the decision maker
+✗ No phone number listed → can't cold call
+✗ "Permanently Closed" listing → verify first
+
+For each prime target, note:
+1. Their name and best phone number
+2. What specific problem you spotted (e.g., "no chat widget", "low reviews", "no text-back")
+3. Which service to lead with when you call`,
+    },
+
     // ─── Additional Services ─────────────────────────────
     {
       title: "AI Website Builder — Full Site in One Prompt",
@@ -3604,7 +3684,7 @@ function ScriptCard({ step, title, tag, lines }: { step?: string; title: string;
 
 /* ─── Tab: Outreach ───────────────────────────────────── */
 function OutreachTab() {
-  const [section, setSection] = useState<"blueprint"|"aipitch"|"cold"|"salescall"|"objections"|"referral"|"mascot"|"tiktok_live">("blueprint");
+  const [section, setSection] = useState<"blueprint"|"aipitch"|"cold"|"salescall"|"objections"|"referral"|"mascot"|"tiktok_live"|"expert_scripts">("blueprint");
   const _scripts = [
     {
       title: "Cold Email — Local Business",
@@ -3784,6 +3864,7 @@ Thanks again for trusting me with [BUSINESS NAME].
     { id: "referral",  icon: "handshake",   label: "Referrals",          sub: "Turn clients into your best leads" },
     { id: "mascot",    icon: "masks",       label: "Mascot Strategy",    sub: "AI character hook — full workflow" },
     { id: "tiktok_live", icon: "video",     label: "TikTok Live",        sub: "14-day live strategy — both audiences" },
+    { id: "expert_scripts", icon: "target",  label: "Expert Scripts",    sub: "AAA cold call, email & demo scripts" },
   ];
 
   return (
@@ -4754,6 +4835,137 @@ Check your spam and promotions folder for the email after you grab the kit."`}</
               <p style={{ fontFamily: FONT_BODY, fontSize: "0.75rem", color: "rgba(245,232,224,0.5)", lineHeight: 1.4 }}>{desc as string}</p>
             </div>
           ))}
+        </div>
+
+      </div>
+      </>}
+
+      {section === "expert_scripts" && <>
+      <div className="space-y-6">
+        <SectionHeader label="Expert AAA Blueprint" title="High-converting scripts from a $50k+/mo agency owner." sub="These scripts are field-tested. Use them word-for-word, customised for your niche. Source: 7+ years building agencies, $30k in courses — the winning formula." />
+
+        {/* Script A — Cold Call Speed to Lead */}
+        <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+          <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+            <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Script A — Cold Call</p>
+            <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>The Speed-to-Lead Angle</h3>
+            <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.5)" }}>Opens with a question that makes them admit their own problem out loud. Works on any high-ticket local business.</p>
+          </div>
+          <div className="px-6 py-5">
+            <ScriptCard title="Speed-to-Lead Cold Call" tag="Phone" lines={[
+              { type: "you_say", text: "\"Hi [Owner's Name], my name is [Your Name]. Quick question for you — if a high-paying client submits an emergency quote request on your website at 8:30 PM, how long does it typically take your team to text or call them back?\"" },
+              { type: "subhead", text: "They usually say 'next morning' or 'when we're back in'" },
+              { type: "you_say", text: "\"Right, and by that time they've already called three other [contractors/dentists/lawyers] down the list. The reason I'm calling is that I built an AI system specifically for [niche] that automatically hooks onto your site, responds to every inquiry in under 45 seconds, qualifies them, and drops them directly onto your calendar.\n\nIt works 24/7. I put together a quick 60-second video showing exactly how it handles a fake lead in [City Name]. Can I text that over to this number or send it to your email?\"" },
+            ]} />
+          </div>
+        </div>
+
+        {/* Script B — Pattern Interrupt */}
+        <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+          <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+            <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Script B — Pattern Interrupt</p>
+            <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>The "Business Looks Closed" Technique</h3>
+            <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.5)" }}>Use when hitting a gatekeeper or when the owner tries to brush you off. The "breaking up" line buys 2–3 seconds and triggers immediate concern about their Google listing.</p>
+          </div>
+          <div className="px-6 py-5">
+            <ScriptCard title="Pattern Interrupt" tag="Phone — Gatekeeper" lines={[
+              { type: "you_say", text: "\"Hey there, I was actually looking for the owner — is [Owner's Name] around?\"" },
+              { type: "subhead", text: "Gatekeeper says he's on a job / they're wrapping up / not available" },
+              { type: "you_say", text: "\"Oh sorry — you're breaking up a bit... I just called because I seen your business is listed as closed online, but I see you guys are still picking up the phone?\"" },
+              { type: "subhead", text: "They say 'what? listed as closed? where?'" },
+              { type: "you_say", text: "\"Yeah, on the local map directory listing here it shows you guys aren't operating, which means Google is actively hiding your business from incoming emergency calls in [City Name]. I build AI tracking systems that scan for these listing drops and automatically fix them so you don't lose jobs to your competitors down the street.\n\nSince you're still open — let me send a quick screenshot of where it's showing up broken to your cell phone. What's the best number to text that to?\"" },
+            ]} />
+          </div>
+        </div>
+
+        {/* Script C — Cold Email */}
+        <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+          <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+            <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Script C — Cold Email</p>
+            <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>Missed Call Text-Back Pitch</h3>
+            <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.5)" }}>Send via warmed-up cold email software (Instantly or Smartlead) from a secondary domain — never your primary domain.</p>
+          </div>
+          <div className="px-6 py-5">
+            <ScriptCard title="Cold Email" tag="Email" lines={[
+              { type: "subhead", text: "Subject line: Quick fix for the missed calls at [Company Name]" },
+              { type: "send", label: "Email body", text: `Hi [Owner Name],
+
+I noticed your team has a solid rating on Google, but when I ran a quick speed-test on your digital intake process, I realized you don't have an automated text-back protocol for missed calls or late-night site visitors.
+
+When a homeowner calls you while your crew is on a job site or after hours, they don't leave voicemails anymore — they just click the next [contractor/business] down on the Google Maps listing.
+
+I built a custom AI receptionist that steps in the exact second a call is missed or a chat comes in. It text-messages the lead instantly, answers their questions, and locks them into an appointment slot on your calendar before they move on to your competitors.
+
+I built a quick, interactive text-demo for [Company Name] so you can test it out on your own phone.
+
+Drop me a quick "yes" if I can text the link over?
+
+Best,
+[Your Name]
+The Dollhouse Brand Studio` },
+            ]} />
+          </div>
+        </div>
+
+        {/* Zoom Demo Script */}
+        <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+          <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+            <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Zoom Demo Script</p>
+            <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>The Live Demo Close — Step by Step</h3>
+            <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.5)" }}>Do NOT show them the backend tech. Keep it centred on business results. Let the demo do the selling.</p>
+          </div>
+          <div className="px-6 py-5 space-y-3">
+            {[
+              ["Step 1 — Diagnose First (10 min)", `"Thanks for jumping on, [Owner Name]. Before I show you anything, I want to make sure I understand your setup. Walk me through what happens the exact second a lead hits your website or you miss a call. Who reaches out, and how fast does it happen?"
+
+[Listen carefully — they will admit they miss calls or reply slowly. This is gold.]
+
+Follow up: "Got it. And when you actually get out to a property for an estimate, what's your average close rate? What's a standard job worth to you guys?"`],
+              ["Step 2 — Live Demo", `[Share your screen. Open your platform's Conversations tab.]
+
+"Instead of explaining the code, let's just test it live. I'm going to text your AI assistant from my personal phone right now pretending to be an aggressive customer."
+
+[Type live: "Hey, need an estimate on a leaky roof fast. Can you guys come out tomorrow?"]
+
+[Let them watch the AI respond within 5 seconds with a perfect answer offering calendar slots.]`],
+              ["Step 3 — Frame the Price", `"You aren't paying for software here. You are paying for a digital office assistant that doesn't take lunch breaks, never calls in sick, works 24/7, costs 90% less than a human salary, and ensures you never lose a $5,000–$10,000 job to a faster competitor.
+
+Our setup fee is a one-time $500 to map out your calendar, phone routes, and AI system. After that, it's $1,000 a month to keep the AI active on your channels.
+
+If your average job is worth $5,000, this system only needs to save you one lead to pay for itself for the whole year. Everything else goes straight into your pocket. Shall we get this set up this week?"`],
+            ].map(([title, script]) => (
+              <div key={title as string} className="rounded-xl p-4" style={{ background: "rgba(200,168,100,0.06)", border: "1px solid rgba(200,168,100,0.12)" }}>
+                <p style={{ fontFamily: FONT_LUXE, fontSize: "0.75rem", color: "var(--gold)", fontWeight: 600, marginBottom: 8 }}>{title as string}</p>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.7, whiteSpace: "pre-line" }}>{script as string}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* DNS Setup */}
+        <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+          <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+            <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Critical Setup</p>
+            <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>Domain DNS Security — Prevent Cold Emails Going to Spam</h3>
+            <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.5)" }}>NEVER send cold outreach from your primary domain. If it gets marked as spam, all your business emails bounce. Buy 2 secondary domains for outbound only.</p>
+          </div>
+          <div className="px-6 py-5 space-y-3">
+            {[
+              ["SPF Record", "Type: TXT · Host: @ · Value: v=spf1 include:_spf.google.com ~all"],
+              ["DKIM Record", "Type: TXT · Host: google._domainkey · Value: Generate inside Google Workspace Admin console → paste the string here"],
+              ["DMARC Record", "Type: TXT · Host: _dmarc · Value: v=DMARC1; p=none; rua=mailto:dmarc-reports@yourdomain.com"],
+            ].map(([title, val]) => (
+              <div key={title as string} className="rounded-xl p-4" style={{ background: "rgba(200,168,100,0.06)", border: "1px solid rgba(200,168,100,0.12)" }}>
+                <p style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", color: "var(--gold)", fontWeight: 600, marginBottom: 4 }}>{title as string}</p>
+                <code style={{ fontFamily: "monospace", fontSize: "0.8rem", color: "rgba(30,15,10,0.7)", lineHeight: 1.6 }}>{val as string}</code>
+              </div>
+            ))}
+            <div className="rounded-xl p-4" style={{ background: "rgba(200,168,100,0.08)", border: "1px solid rgba(200,168,100,0.2)" }}>
+              <p style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "var(--ink)", lineHeight: 1.65 }}>
+                <strong>The Arbitrage Model:</strong> Once you scale past 3–4 clients, hire a GoHighLevel or Make.com specialist on Upwork for $200–$400 per client build-out. You collect the $500 setup fee, pay the contractor, and pocket the margin — while owning the client relationship completely.
+              </p>
+            </div>
+          </div>
         </div>
 
       </div>
