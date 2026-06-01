@@ -232,6 +232,41 @@ function WorkflowTab() {
         { text: "Send launch confirmation to client", sub: "Let them know everything is live. Tell them what to expect in the first 7–14 days. Manage expectations — results build over time." },
       ]} />
 
+      {/* Lead Connector App Training */}
+      <div className="rounded-2xl overflow-hidden" style={{ border: "2px solid rgba(200,168,100,0.4)", background: "var(--ink)" }}>
+        <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.2)", background: "rgba(200,168,100,0.08)" }}>
+          <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>🔴 Mandatory — Every Single Client</p>
+          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "var(--cream)" }}>Lead Connector App — Download & Training</h3>
+          <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(245,232,224,0.5)" }}>This is the single most important thing you do for client retention. Do this before you hang up from your first call. Every client, no exceptions.</p>
+        </div>
+        <div className="px-6 py-5 space-y-4">
+          <div className="rounded-xl p-4" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.25)" }}>
+            <p className="text-[9px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>What to say on the call</p>
+            <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(245,232,224,0.85)", lineHeight: 1.7, fontStyle: "italic" }}>
+              "Before we hang up — I need you to do one thing right now. Take out your phone and download an app called Lead Connector. This is where every lead, every appointment, every review request, and every conversation is going to live. When you're on a job site, driving to a meeting, or with a client — you're going to be able to see everything happening in your business from one screen. This is how you stay on top of your leads without touching your laptop."
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-3">
+            {[
+              { title: "Step 1 — Download", body: "Ask them to search 'Lead Connector' in the App Store or Google Play right now, while you're still on the call. Don't let them do it later — later means never." },
+              { title: "Step 2 — Log In", body: "Walk them through logging in with their sub-account credentials. Make sure they can see the Conversations tab and the Opportunities/Pipeline screen." },
+              { title: "Step 3 — Show them a lead coming in", body: "If you can, send a test form submission from their website right now so they watch a lead appear in their app in real time. This moment sells the service better than any pitch." },
+              { title: "Step 4 — Train them to check it daily", body: "Tell them: 'Every morning, just open this and look at what came in overnight. Your AI already replied to them. You just need to review and follow up on the hot ones.'" },
+            ].map(({ title, body }) => (
+              <div key={title} className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(200,168,100,0.15)" }}>
+                <p style={{ fontFamily: FONT_LUXE, fontSize: "0.75rem", color: "var(--gold)", fontWeight: 600, marginBottom: 6 }}>{title}</p>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(245,232,224,0.6)", lineHeight: 1.55 }}>{body}</p>
+              </div>
+            ))}
+          </div>
+          <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(200,168,100,0.12)" }}>
+            <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", color: "var(--cream)", fontStyle: "italic", lineHeight: 1.5 }}>
+              "This is why they keep paying you every single month — because their leads keep popping in here. They don't want to see the backend. They want to be on their phone when they're driving, when they're working, and just check it real quick and see how many appointments came in."
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Onboarding Questionnaire Card */}
       <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
         <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
@@ -5844,6 +5879,17 @@ We are a small team. Trust and showing up are non-negotiable.`,
 function ContentStrategyTab() {
   const [openStep, setOpenStep] = useState<number | null>(null);
 
+  // ── Expert principles applied from top-performing ads ──────────────
+  const expertPrinciples = [
+    { title: "First 2–3 seconds = everything", body: "If someone stops scrolling in the first 2–3 seconds, 95% of them will watch to the end. If they don't stop — you never get them back. Your hook is not an intro. It is a disruption. Get to the point immediately." },
+    { title: "Stop selling features. Sell outcomes.", body: "Nobody cares what your service does. They care what their life looks like after. 'How are you going to enhance their life? How are you going to solve the problem? How are you going to make them feel like they don't just want it — they need it?' That is your messaging." },
+    { title: "The visual sells itself", body: "The best content doesn't need you to explain it — you can see it working. For your AI clone, your automations, your review funnel — show it running, don't describe it. Let the demo do the selling." },
+    { title: "Data > Feelings", body: "When ads aren't converting, don't change things out of emotion. Read the data. What's the clickthrough rate? Cost per click? Add-to-cart? Let the numbers tell you what to fix. Every dollar on ads is buying you information, not just sales." },
+    { title: "If paid stalls, flood organic", body: "When paid isn't moving fast enough — post everything organically on TikTok and Instagram. Same creatives. Same scripts. Let the algorithm see what resonates for free before you put budget behind it." },
+    { title: "Let the algorithm decide", body: "Run CBO (Campaign Budget Optimization). Don't micromanage which ad gets spend. Give Facebook/TikTok multiple creatives and let it find the winner. Most of your budget will go to one ad — that's the winner. Scale that one." },
+    { title: "Evergreen over viral", body: "A viral post that dies in 30 days is worth nothing. Build content around problems that never go away — missed leads, inconsistent posting, invisible businesses. These problems exist in every niche, every month, every year." },
+  ];
+
   const steps = [
     {
       n: "01",
@@ -6058,6 +6104,23 @@ Urgency is okay. Desperation isn't. The difference is confidence.`,
 
   return (
     <div className="space-y-8">
+
+      {/* Expert Principles */}
+      <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+        <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+          <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Expert Principles — Apply to Every Piece of Content</p>
+          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>What Actually Makes Content Convert</h3>
+        </div>
+        <div className="px-6 py-5 space-y-3">
+          {expertPrinciples.map(({ title, body }) => (
+            <div key={title} className="rounded-xl p-4" style={{ background: "rgba(200,168,100,0.06)", border: "1px solid rgba(200,168,100,0.12)" }}>
+              <p style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", color: "var(--rose)", fontWeight: 600, marginBottom: 5 }}>{title}</p>
+              <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.6 }}>{body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <SectionHeader
         label="The 4x4 Method"
         title="How to Make Videos People Can't Stop Watching."
