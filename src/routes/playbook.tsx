@@ -9367,14 +9367,16 @@ async function idbDelete(key: string): Promise<void> {
 
 interface PStep { n: string; title: string; desc: string; }
 interface PPrice { name: string; price: string; tag?: string; }
+interface PMetric { value: string; label: string; caption: string; }
 interface PSlide {
-  layout: "title" | "headline" | "bullets" | "steps" | "image" | "pricing" | "cta" | "live_quote" | "before_after";
+  layout: "title" | "headline" | "bullets" | "steps" | "image" | "pricing" | "cta" | "live_quote" | "before_after" | "metrics" | "funnel" | "industry_grid";
   bg: "dark" | "light" | "blush" | "rose";
   heading: string;
   sub?: string;
   body?: string;
   bullets?: string[];
   steps?: PStep[];
+  metrics?: PMetric[];
   imageSlot?: true;
   imageLabel?: string;
   prices?: PPrice[];
@@ -10464,16 +10466,28 @@ const PROPOSAL_DECKS: PDeck[] = [
         script: "I want to start by asking you something. When someone looks up your business online right now — what do they see? Most business owners I talk to are posting once in a while when they remember, or not at all. Their Instagram looks empty or inconsistent. And because of that, they're losing clients to competitors who just look better online. That's not about the quality of your work — it's about visibility. And that's exactly what we fix.",
       },
       {
-        layout: "bullets", bg: "blush",
-        heading: "Here is what we do for you",
-        bullets: [
-          "Post on your social media every single day — you never touch your phone to post",
-          "Create an AI version of you — videos that look and sound like you, without filming",
-          "Run Facebook and Instagram ads — bringing new clients directly to your booking page",
-          "Set up automations — when someone messages you, they get an instant reply 24/7",
-          "Send follow-up emails and texts — so leads don't fall through the cracks",
+        layout: "metrics", bg: "light",
+        heading: "The hidden cost of looking quiet online",
+        sub: "Most lost revenue is quiet: a lead who never got a fast reply, a missed call, or a prospect who chose the business that looked more active.",
+        metrics: [
+          { value: "Fast", label: "Reply speed", caption: "The first business to respond often feels like the safest choice." },
+          { value: "Daily", label: "Visible trust", caption: "Consistent content makes your business look open, active, and ready." },
+          { value: "3-4x", label: "Follow-up touches", caption: "Most interested leads need more than one message before they book." },
         ],
-        script: "Here's the simple version of what we do. We handle everything online so you can focus on your actual work. Think of us like having a full social media team — but at a fraction of the cost, and everything is done specifically for your business. You don't need to know anything about social media. That's our job.",
+        script: "Before I show you services, I want to show you what this is really solving. The problem usually isn't that people dislike your business. It's that they do not see you enough, they do not hear back fast enough, or they forget to book. That is the quiet revenue leak we fix.",
+      },
+      {
+        layout: "funnel", bg: "blush",
+        heading: "The growth engine we build",
+        sub: "Content gets attention. Ads bring the right people in. Automation turns that interest into booked conversations.",
+        steps: [
+          { n: "01", title: "Attract", desc: "Daily content and paid ads make your business visible to the right local audience." },
+          { n: "02", title: "Capture", desc: "Website forms, DMs, missed calls, and chat all feed into one lead system." },
+          { n: "03", title: "Reply", desc: "Leads get instant text, email, or DM responses before they move on." },
+          { n: "04", title: "Book", desc: "Booking links, reminders, and follow-ups help turn interest into appointments." },
+          { n: "05", title: "Repeat", desc: "Reviews and campaigns keep past clients coming back and referring more people." },
+        ],
+        script: "Here's the simple version of what we do. We do not just make posts. We build a growth engine. First we get you seen. Then we capture the lead. Then the system replies instantly, follows up, books them, and keeps the relationship going after the first visit.",
       },
       {
         layout: "steps", bg: "dark",
@@ -10501,16 +10515,16 @@ const PROPOSAL_DECKS: PDeck[] = [
         script: "Here's why businesses like yours choose The Dollhouse. We're not just a posting service. We build your entire online system — content, automation, ads, and follow-up — all in one place. And we're the only agency that builds you an AI clone of yourself. That means even when you're busy with clients, your brand is out there every day looking amazing.",
       },
       {
-        layout: "bullets", bg: "light",
+        layout: "industry_grid", bg: "light",
         heading: "Best fit industries",
         bullets: [
-          "Roofing contractors — more quote requests and faster text follow-up",
-          "HVAC companies — seasonal campaigns, missed-call text back, and reviews",
-          "Plumbers & electricians — emergency leads answered fast",
-          "Med spas & aesthetic clinics — content, booking, offers, and nurture",
-          "Chiropractors — local trust, patient education, and appointment reminders",
-          "Physical therapists — referral support, follow-up, and reputation building",
-          "Local law firms — personal injury or family law inquiries organized and followed up",
+          "Roofing contractors",
+          "HVAC companies",
+          "Plumbers & electricians",
+          "Med spas & aesthetic clinics",
+          "Chiropractors",
+          "Physical therapists",
+          "Local law firms",
         ],
         script: "This system is strongest for businesses where one new client is worth real money, speed matters, and trust matters. Roofing, HVAC, plumbers, electricians, med spas, chiropractors, physical therapists, and local law firms are all a strong fit because they need calls, bookings, reviews, and follow-up to happen without the owner chasing every lead by hand.",
       },
@@ -10619,14 +10633,15 @@ const PROPOSAL_DECKS: PDeck[] = [
         script: "Let me be honest with you about why this works so well long term. Most agencies sell you something and then disappear. What we build is a system that runs 24 hours a day, 7 days a week — appointments booking themselves, reviews growing, leads getting followed up automatically. When a client thinks about cancelling, they realize that if they cancel, all of that stops. The automations stop. The text-backs stop. The review funnel stops. That's why our clients don't cancel. Not because we lock them in — but because the system is genuinely making them money while they sleep.",
       },
       {
-        layout: "steps", bg: "blush",
-        heading: "The math — why $1,000/mo compounds.",
-        steps: [
-          { n: "Yr 1", title: "3 clients/month", desc: "Even going slow — 3 new clients a month for 12 months = 36 clients. At $1,000/mo each, that's $36,000/mo in year 2. Month-1 clients are still paying in month 12." },
-          { n: "Key", title: "You only do the hard part once", desc: "Getting the client is the hard part. Once they're in the system, the automations keep them. You're building equity — not starting from zero every month." },
-          { n: "Rule", title: "Always convert to monthly", desc: "Even a client who pays $5k upfront for a custom site should be on a $1k/mo retainer. You already did the hardest part — getting them. Make the income last." },
+        layout: "metrics", bg: "blush",
+        heading: "The math is simple",
+        sub: "A managed system does not need to change your whole business overnight. It needs to save missed leads, create more trust, and help more interested people book.",
+        metrics: [
+          { value: "1", label: "Extra booked client", caption: "For many service businesses, one additional client or job can cover a large part of the monthly investment." },
+          { value: "24/7", label: "Lead response", caption: "The system keeps answering and following up after hours, weekends, and busy days." },
+          { value: "90", label: "Day growth window", caption: "The first 90 days are for setup, testing, consistency, and building momentum." },
         ],
-        script: "Here's how this business grows. Every client you sign stays. The system makes them money, so they don't leave. That means your income from month one is still coming in in month six, month twelve, month twenty-four. Most agencies have a feast-or-famine problem — big month, then zero. We built ours differently. Even if you signed only three clients a month — just three — after one year you'd have 36 paying clients. At our Starter plan, that's $36,000 a month in recurring income. And that's assuming you never got a single referral.",
+        script: "Here is the way I want you to think about the investment. We do not need to make this complicated. If this system helps you capture one lead you would have missed, makes your business look more trustworthy, or gets one more person booked, it starts paying for itself. Then the content, reviews, and follow-up keep compounding over the next 90 days.",
       },
       {
         layout: "live_quote", bg: "dark",
@@ -10830,16 +10845,39 @@ function renderSlideVisual(
 
   const base: React.CSSProperties = {
     width: "100%", height: "100%",
-    backgroundColor: C.bg,
+    background: `radial-gradient(circle at 12% 18%, ${C.acc}22 0, transparent 25%), radial-gradient(circle at 88% 82%, ${C.acc}18 0, transparent 28%), ${C.bg}`,
     position: "relative", overflow: "hidden",
     boxSizing: "border-box",
     padding: "60px 80px",
     fontFamily: SANS,
   };
 
+  const SvgSymbol = ({ kind, size = 42, color = C.acc }: { kind: string; size?: number; color?: string }) => {
+    const common = { stroke: color, strokeWidth: 1.6, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, fill: "none" };
+    if (kind === "roof") return <svg width={size} height={size} viewBox="0 0 48 48"><path {...common} d="M7 25 24 11l17 14"/><path {...common} d="M12 23v20h28V23"/><path {...common} d="M20 43V31h8v12"/></svg>;
+    if (kind === "hvac") return <svg width={size} height={size} viewBox="0 0 48 48"><circle {...common} cx="24" cy="24" r="15"/><path {...common} d="M24 9v30M9 24h30M14 14l20 20M34 14 14 34"/><circle cx="24" cy="24" r="3" fill={color}/></svg>;
+    if (kind === "tools") return <svg width={size} height={size} viewBox="0 0 48 48"><path {...common} d="m15 33 18-18"/><path {...common} d="m29 11 8 8"/><path {...common} d="M12 37h12"/><path {...common} d="M16 29 9 36l3 3 7-7"/></svg>;
+    if (kind === "spark") return <svg width={size} height={size} viewBox="0 0 48 48"><path {...common} d="M24 7v10M24 31v10M7 24h10M31 24h10"/><path {...common} d="M16 16 9 9M32 16l7-7M16 32l-7 7M32 32l7 7"/><circle {...common} cx="24" cy="24" r="6"/></svg>;
+    if (kind === "health") return <svg width={size} height={size} viewBox="0 0 48 48"><path {...common} d="M24 40s-15-9-15-22c0-6 7-9 15-1 8-8 15-5 15 1 0 13-15 22-15 22Z"/><path {...common} d="M17 25h6l3-6 3 10 3-4h6"/></svg>;
+    if (kind === "law") return <svg width={size} height={size} viewBox="0 0 48 48"><path {...common} d="M24 9v32M13 15h22M17 15l-8 14h16l-8-14ZM31 15l-8 14h16l-8-14ZM16 41h16"/></svg>;
+    if (kind === "chart") return <svg width={size} height={size} viewBox="0 0 48 48"><path {...common} d="M9 39h31"/><path {...common} d="M13 34V23M23 34V15M33 34V9"/><path {...common} d="m12 22 10-7 10-6"/></svg>;
+    if (kind === "message") return <svg width={size} height={size} viewBox="0 0 48 48"><path {...common} d="M10 13h28v20H20l-9 7v-7h-1Z"/><path {...common} d="M17 21h16M17 27h10"/></svg>;
+    return <svg width={size} height={size} viewBox="0 0 48 48"><path {...common} d="M24 8v32M8 24h32"/><circle {...common} cx="24" cy="24" r="15"/></svg>;
+  };
+
+  const slideMark = (
+    <div style={{ position: "absolute", right: 58, top: 44, opacity: 0.16, color: C.acc }}>
+      <svg width="118" height="118" viewBox="0 0 118 118" fill="none">
+        <path d="M59 16v86M16 59h86" stroke="currentColor" strokeWidth="1" />
+        <circle cx="59" cy="59" r="42" stroke="currentColor" strokeWidth="1" />
+        <circle cx="59" cy="59" r="18" stroke="currentColor" strokeWidth="1" />
+      </svg>
+    </div>
+  );
+
   // Reusable media slot — supports images and videos
   const ImgSlot = ({ w, h }: { w: number; h: number }) => (
-    <div style={{ width: w, height: h, borderRadius: 16, overflow: "hidden", position: "relative", background: "rgba(128,80,60,0.12)", border: `2px dashed ${C.line}`, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 14, flexShrink: 0 }}>
+    <div style={{ width: w, height: h, borderRadius: 24, overflow: "hidden", position: "relative", background: "linear-gradient(135deg, rgba(255,255,255,0.16), rgba(128,80,60,0.08))", border: `2px dashed ${C.line}`, boxShadow: "0 28px 70px -45px rgba(30,18,16,0.75)", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 14, flexShrink: 0 }}>
       {mediaItem ? (
         <>
           {mediaItem.isVideo ? (
@@ -10857,7 +10895,9 @@ function renderSlideVisual(
         </>
       ) : (
         <>
-          <div style={{ fontSize: 52, opacity: 0.25 }}>📷</div>
+          <div style={{ width: 86, height: 86, borderRadius: "50%", border: `1px solid ${C.line}`, display: "flex", alignItems: "center", justifyContent: "center", opacity: 0.82 }}>
+            <SvgSymbol kind="chart" size={42} />
+          </div>
           <div style={{ color: C.fg2, fontFamily: SANS, fontSize: 14, textAlign: "center", padding: "0 24px", lineHeight: 1.5 }}>
             {slide.imageLabel || "Upload an image or video for this slide"}
           </div>
@@ -11005,6 +11045,137 @@ function renderSlideVisual(
       {scriptPanel}
     </div>
   );
+
+  if (slide.layout === "metrics") {
+    const metrics = slide.metrics || [];
+    return (
+      <div style={{ ...base, display: "grid", gridTemplateColumns: "0.92fr 1.08fr", gap: 46, alignItems: "center" }}>
+        {slideMark}
+        <div style={{ position: "relative", zIndex: 1 }}>
+          <div style={{ fontFamily: LUXE, fontSize: 11, letterSpacing: "0.28em", textTransform: "uppercase", color: C.acc, marginBottom: 18 }}>
+            The Dollhouse Brand Studio
+          </div>
+          <div style={{ fontFamily: SERIF, fontSize: 54, color: C.fg, lineHeight: 1.06, marginBottom: 20 }}>
+            {slide.heading}
+          </div>
+          {slide.sub && (
+            <div style={{ fontFamily: SANS, fontSize: 19, color: C.fg2, lineHeight: 1.65, maxWidth: 500 }}>
+              {slide.sub}
+            </div>
+          )}
+        </div>
+        <div style={{ position: "relative", zIndex: 1, display: "grid", gap: 16 }}>
+          {metrics.map((m, i) => (
+            <div key={m.label} style={{ display: "grid", gridTemplateColumns: "116px 1fr", gap: 18, alignItems: "center", padding: "22px 24px", borderRadius: 22, border: `1px solid ${C.line}`, background: C.cardBg, boxShadow: "0 24px 56px -42px rgba(30,18,16,0.85)" }}>
+              <div style={{ height: 92, borderRadius: 18, background: `linear-gradient(135deg, ${C.acc}30, ${C.acc}08)`, border: `1px solid ${C.line}`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: SERIF, fontSize: m.value.length > 3 ? 36 : 48, color: C.acc, lineHeight: 1 }}>
+                {m.value}
+              </div>
+              <div>
+                <div style={{ fontFamily: LUXE, fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: C.acc, marginBottom: 6 }}>
+                  {m.label}
+                </div>
+                <div style={{ fontFamily: SANS, fontSize: 15, color: C.fg2, lineHeight: 1.5 }}>
+                  {m.caption}
+                </div>
+                <div style={{ height: 7, borderRadius: 999, background: "rgba(255,255,255,0.16)", marginTop: 12, overflow: "hidden" }}>
+                  <div style={{ height: "100%", width: `${64 + i * 13}%`, background: `linear-gradient(90deg, ${C.acc}, ${C.acc}77)`, borderRadius: 999 }} />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        {scriptPanel}
+      </div>
+    );
+  }
+
+  if (slide.layout === "funnel") {
+    const steps = slide.steps || [];
+    return (
+      <div style={{ ...base, padding: "52px 70px", display: "flex", flexDirection: "column" }}>
+        {slideMark}
+        <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "space-between", gap: 40, alignItems: "flex-end", marginBottom: 36 }}>
+          <div>
+            <div style={{ fontFamily: LUXE, fontSize: 11, letterSpacing: "0.28em", textTransform: "uppercase", color: C.acc, marginBottom: 12 }}>
+              Conversion System
+            </div>
+            <div style={{ fontFamily: SERIF, fontSize: 50, color: C.fg, lineHeight: 1.08 }}>
+              {slide.heading}
+            </div>
+          </div>
+          {slide.sub && (
+            <div style={{ fontFamily: SANS, fontSize: 17, color: C.fg2, lineHeight: 1.55, maxWidth: 440 }}>
+              {slide.sub}
+            </div>
+          )}
+        </div>
+        <div style={{ position: "relative", zIndex: 1, flex: 1, display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 12, alignItems: "stretch" }}>
+          {steps.map((step, i) => (
+            <div key={step.n} style={{ position: "relative", borderRadius: 24, border: `1px solid ${C.line}`, background: i === 2 ? `linear-gradient(180deg, ${C.acc}33, ${C.cardBg})` : C.cardBg, padding: "24px 18px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", minHeight: 310 }}>
+              <div style={{ width: 74, height: 74, borderRadius: "50%", border: `1px solid ${C.line}`, background: `linear-gradient(135deg, ${C.acc}24, transparent)`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 18 }}>
+                <SvgSymbol kind={["chart", "message", "spark", "health", "roof"][i] || "chart"} size={36} />
+              </div>
+              <div style={{ fontFamily: SERIF, fontSize: 21, color: C.fg, marginBottom: 8 }}>{step.title}</div>
+              <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: C.acc, marginBottom: 12 }}>{step.n}</div>
+              <div style={{ fontFamily: SANS, fontSize: 13, color: C.fg2, lineHeight: 1.5 }}>{step.desc}</div>
+              {i < steps.length - 1 && (
+                <div style={{ position: "absolute", right: -19, top: "50%", transform: "translateY(-50%)", zIndex: 4, width: 28, height: 28, borderRadius: "50%", background: C.bg, border: `1px solid ${C.line}`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke={C.acc} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+        {scriptPanel}
+      </div>
+    );
+  }
+
+  if (slide.layout === "industry_grid") {
+    const industries = slide.bullets || [];
+    const icons = ["roof", "hvac", "tools", "spark", "health", "health", "law"];
+    const captions = [
+      "Quote requests and missed-call text back",
+      "Seasonal campaigns and review growth",
+      "Emergency leads answered fast",
+      "Offers, booking, nurture, and trust",
+      "Patient education and reminders",
+      "Referral support and follow-up",
+      "Organized intake and faster response",
+    ];
+    return (
+      <div style={{ ...base, padding: "54px 72px", display: "flex", flexDirection: "column" }}>
+        {slideMark}
+        <div style={{ position: "relative", zIndex: 1, marginBottom: 30 }}>
+          <div style={{ fontFamily: LUXE, fontSize: 11, letterSpacing: "0.28em", textTransform: "uppercase", color: C.acc, marginBottom: 10 }}>
+            Best Fit For
+          </div>
+          <div style={{ fontFamily: SERIF, fontSize: 50, color: C.fg, lineHeight: 1.08 }}>{slide.heading}</div>
+          <div style={{ width: 64, height: 2, background: C.acc, marginTop: 18 }} />
+        </div>
+        <div style={{ position: "relative", zIndex: 1, flex: 1, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14 }}>
+          {industries.map((industry, i) => (
+            <div key={industry} style={{ borderRadius: 22, border: `1px solid ${C.line}`, background: i === 0 ? `linear-gradient(145deg, ${C.acc}2e, ${C.cardBg})` : C.cardBg, padding: "22px 18px", minHeight: 175, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
+                <SvgSymbol kind={icons[i] || "chart"} size={40} />
+                <div style={{ fontFamily: SERIF, color: C.acc, fontSize: 26, lineHeight: 1 }}>{String(i + 1).padStart(2, "0")}</div>
+              </div>
+              <div>
+                <div style={{ fontFamily: SERIF, fontSize: 21, color: C.fg, lineHeight: 1.12, marginBottom: 7 }}>{industry}</div>
+                <div style={{ fontFamily: SANS, fontSize: 12.5, color: C.fg2, lineHeight: 1.45 }}>{captions[i]}</div>
+              </div>
+            </div>
+          ))}
+          <div style={{ borderRadius: 22, border: `1px solid ${C.acc}`, background: `linear-gradient(145deg, ${C.acc}24, transparent)`, padding: "24px 20px", display: "flex", flexDirection: "column", justifyContent: "center", gap: 12 }}>
+            <div style={{ fontFamily: LUXE, fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: C.acc }}>Ideal client profile</div>
+            <div style={{ fontFamily: SERIF, fontSize: 26, color: C.fg, lineHeight: 1.1 }}>High-value local service businesses</div>
+            <div style={{ fontFamily: SANS, fontSize: 13, color: C.fg2, lineHeight: 1.5 }}>One more booked client, better reviews, or a faster lead response can change the month.</div>
+          </div>
+        </div>
+        {scriptPanel}
+      </div>
+    );
+  }
 
   if (slide.layout === "image") return (
     <div style={{ ...base, padding: 0, display: "flex" }}>
