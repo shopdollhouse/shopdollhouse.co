@@ -1695,6 +1695,29 @@ function Pricing() {
 
   const tiers = [
     {
+      name: "Foundation",
+      price: "$297",
+      monthlyPrice: 297,
+      software: "Website + CRM",
+      fit: "Best for getting the lead system in place",
+      outcome: "A functional website and follow-up system that turns inquiries into text conversations.",
+      tagline: "For service businesses that need the website, missed-call, review, and follow-up foundation before full marketing management.",
+      setupLabel: "Website setup scoped before launch",
+      trialAvailable: false,
+      badgeLabel: "Lead automation included",
+      supportNote: "no AI clone or social posting included",
+      cta: "Ask About Foundation →",
+      features: [
+        "Functional 10-20 page website built to create text conversations",
+        "Website chat, quote forms, SMS confirmations, and clickable phone numbers",
+        "Automated lead follow-up so new inquiries get an instant text response",
+        "Missed call text-back so warm leads hear from you right away",
+        "5-star review funnel with private feedback step before public reviews",
+        "One-click referral and return-customer campaigns",
+        "On-site SEO basics — keywords, alt tags, schema, image optimization, and page-speed cleanup",
+      ],
+    },
+    {
       name: "Content Lite",
       price: "$500",
       monthlyPrice: 500,
@@ -1704,6 +1727,8 @@ function Pricing() {
       tagline: "Light content support for businesses that are not ready for the full AI clone or automation system yet.",
       setupLabel: "No AI clone setup included",
       trialAvailable: false,
+      badgeLabel: "Simple content package",
+      supportNote: "no AI clone or automation included",
       cta: "Ask About Content Lite →",
       features: [
         "1 platform of your choice — Facebook, Instagram or TikTok",
@@ -1743,7 +1768,8 @@ function Pricing() {
       fit: "Best for consistent lead flow",
       outcome: "All 3 social platforms, paid Meta ads, voice AI, and follow-up automation.",
       tagline: "Facebook, Instagram, and TikTok fully managed — more content, paid ads, and strategy built in.",
-      topBadge: { label: "Most Requested", tone: "pink" as "gold" | "pink" },
+      featured: true,
+      topBadge: { label: "Best Path To $20k/mo", tone: "pink" as "gold" | "pink" },
       cta: "Get a Free Proposal →",
       features: [
         "3 platforms fully managed — Facebook, Instagram & TikTok — nothing to post, nothing to think about",
@@ -1762,25 +1788,6 @@ function Pricing() {
       ],
     },
   ];
-  const smallerPackages = [
-    {
-      name: "Website + Lead Follow-Up",
-      price: "$297",
-      monthlyPrice: 297,
-      fit: "Best for service businesses that need every inquiry answered fast",
-      summary:
-        "A functional 10-20 page website connected to text-back, review, and simple campaign automations so leads turn into conversations instead of getting lost in email.",
-      features: [
-        { icon: MessageSquare, title: "Functional website", desc: "10-20 pages built to create text conversations with chat, quote forms, SMS confirmations, and hyperlinked phone numbers." },
-        { icon: Bot, title: "Automated lead follow-up", desc: "Instant SMS confirmations sent to you and your lead, so the conversation starts right away." },
-        { icon: PhoneCall, title: "Missed call text-back", desc: "Automatic replies for missed calls, helping you respond quickly before leads move to a competitor." },
-        { icon: ShieldCheck, title: "5-star review funnel", desc: "Automated review requests with a private feedback step before anything reaches your public pages." },
-        { icon: Sparkles, title: "One-click campaigns", desc: "Referral and return-customer campaigns designed for easy sending once your system is set up." },
-        { icon: BarChart3, title: "On-site SEO", desc: "Keyword content, alt tags, schema, image optimization, and page-speed basics included." },
-      ],
-    },
-  ];
-
   return (
     <section
       id="pricing"
@@ -1793,7 +1800,7 @@ function Pricing() {
       <SectionTitle
         eyebrow="Monthly Plans"
         title="Choose your plan"
-        italic="Start with light content support, then scale into the managed growth system when you are ready."
+        italic="Start with the foundation, then scale into the managed growth system when you are ready."
       />
 
       <div className="mt-8 flex flex-col items-center gap-3">
@@ -1876,9 +1883,9 @@ function Pricing() {
         }}
       >
         {[
-          ["Start At $500", "Begin with simple weekly content if you only need one platform to look polished."],
-          ["Scale When Ready", "Move into Starter or Growth when you want AI clone content, automation, and lead follow-up."],
-          ["No DIY Required", "The right plan is handled for you: content, setup, reporting, and next steps."],
+          ["Start At $297", "Build the website, follow-up, missed-call, review, and SEO foundation first."],
+          ["Aim For Growth", "The Growth plan is the main offer: 8 clients at $2,500/mo gets you to $20k/mo."],
+          ["Scale To $100k", "A clear product ladder lets you move clients from foundation into higher-value managed growth."],
         ].map(([title, copy]) => (
           <div key={title} className="rounded-2xl px-5 py-4 text-center" style={{ background: "rgba(255,255,255,0.5)" }}>
             <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>{title}</p>
@@ -1887,7 +1894,7 @@ function Pricing() {
         ))}
       </div>
 
-      <div className="mt-14 max-w-7xl mx-auto grid md:grid-cols-3 gap-8 lg:gap-10">
+      <div className="mt-14 max-w-7xl mx-auto grid md:grid-cols-2 xl:grid-cols-4 gap-8 lg:gap-7">
         {tiers.map((t) => {
           const isFilled = !!t.featured;
           return (
@@ -1984,7 +1991,7 @@ function Pricing() {
                     }}
                   >
                     <Sparkles size={12} strokeWidth={1.8} />
-                    Simple content package
+                    {t.badgeLabel ?? "Entry package"}
                   </div>
                 ) : (
                   <div
@@ -2007,7 +2014,7 @@ function Pricing() {
                   className="mt-1.5 text-center"
                   style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: isFilled ? "rgba(250,243,234,0.4)" : "rgba(30,15,10,0.35)" }}
                 >
-                  {t.trialAvailable === false ? "no AI clone or automation included" : "6-month minimum only if you sign on"}
+                  {t.trialAvailable === false ? t.supportNote : "6-month minimum only if you sign on"}
                 </p>
 
                 {/* Price */}
@@ -2176,122 +2183,8 @@ function Pricing() {
 
       {/* Pricing footnote */}
       <p className="text-center mt-6 mb-2" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.4)" }}>
-        Content Lite starts at $500/mo &nbsp;·&nbsp; 14-day founding client trial on Starter and Growth &nbsp;·&nbsp; 6-month minimum after trial
+        Foundation starts at $297/mo &nbsp;·&nbsp; Growth is the primary scale plan &nbsp;·&nbsp; 14-day founding client trial on Starter and Growth &nbsp;·&nbsp; 6-month minimum after trial
       </p>
-
-      {/* Smaller packages */}
-      <div className="mt-16 max-w-6xl mx-auto">
-        <div className="text-center mb-8 max-w-3xl mx-auto">
-          <p className="text-[var(--gold)] text-[11px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
-            Website Entry Package
-          </p>
-          <h3
-            className="mt-3 italic text-[var(--ink)]"
-            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2rem, 3.8vw, 3.1rem)", lineHeight: 1.05 }}
-          >
-            Need the website system first?
-          </h3>
-          <p className="mt-4 text-[var(--ink)]/58 leading-7" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.96rem" }}>
-            This is for service businesses that want the lead-response foundation before moving into full social media management.
-          </p>
-        </div>
-
-        <div className="grid gap-5 max-w-3xl mx-auto">
-          {smallerPackages.map((pkg) => (
-            <article
-              key={pkg.name}
-              className="rounded-[28px] p-7 md:p-8"
-              style={{
-                background: "rgba(255,250,246,0.66)",
-                border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",
-                boxShadow: "0 26px 70px -46px rgba(120,70,55,0.42)",
-              }}
-            >
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                <div>
-                  <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
-                    {pkg.fit}
-                  </p>
-                  <h4
-                    className="mt-2 italic text-[var(--ink)]"
-                    style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.7rem, 3vw, 2.4rem)", lineHeight: 1.05 }}
-                  >
-                    {pkg.name}
-                  </h4>
-                </div>
-                <div className="shrink-0 text-left sm:text-right">
-                  <span
-                    style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: "clamp(2.4rem, 4vw, 3.2rem)",
-                      lineHeight: 1,
-                      fontStyle: "italic",
-                      color: "var(--gold)",
-                    }}
-                  >
-                    {displayPrice(pkg.monthlyPrice)}
-                  </span>
-                  <p className="mt-1 text-[var(--ink)]/42 text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
-                    {isAnnual ? "/YR" : "/MO"}
-                  </p>
-                  {isAnnual && (
-                    <p className="mt-2 text-[var(--rose)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", fontWeight: 700 }}>
-                      10% off · {freeWeeks} weeks free
-                    </p>
-                  )}
-                </div>
-              </div>
-              <p className="mt-4 leading-7 text-[var(--ink)]/68" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem" }}>
-                {pkg.summary}
-              </p>
-              <div className={`mt-6 grid gap-3 ${pkg.features.length > 4 ? "sm:grid-cols-2" : ""}`}>
-                {pkg.features.map((feature) => {
-                  const Icon = feature.icon;
-                  return (
-                    <div
-                      key={feature.title}
-                      className="rounded-2xl p-4 flex gap-3"
-                      style={{
-                        background: "rgba(255,255,255,0.55)",
-                        border: "1px solid rgba(200,168,100,0.2)",
-                      }}
-                    >
-                      <span
-                        className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
-                        style={{ background: "rgba(200,168,100,0.12)", color: "var(--gold)" }}
-                      >
-                        <Icon size={15} strokeWidth={1.7} />
-                      </span>
-                      <div>
-                        <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.82rem", fontWeight: 600, color: "var(--ink)", letterSpacing: "0" }}>
-                          {feature.title}
-                        </p>
-                        <p className="mt-1 leading-5 text-[var(--ink)]/55" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem" }}>
-                          {feature.desc}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-              <a
-                href="#contact"
-                className="mt-6 inline-flex rounded-full px-6 py-3 transition-all hover:-translate-y-0.5"
-                style={{
-                  background: "var(--ink)",
-                  color: "var(--cream)",
-                  fontFamily: "'Jost', sans-serif",
-                  fontSize: "0.72rem",
-                  letterSpacing: "0.16em",
-                  textTransform: "uppercase",
-                }}
-              >
-                Ask about this package →
-              </a>
-            </article>
-          ))}
-        </div>
-      </div>
 
       {/* Setup fee + ad spend notes */}
       <div className="mt-12 max-w-2xl mx-auto rounded-2xl px-8 py-6 text-center space-y-4"
