@@ -1686,7 +1686,9 @@ function AICloneSection() {
 
 function Pricing() {
   const [contractTerm, setContractTerm] = useState<"3" | "6" | "12">("3");
-  const fullPlanBonus = contractTerm === "3" ? "No bonus month on 3-month starts" : "Growth plan bonus: last month free";
+  const contractMonths = Number(contractTerm);
+  const setupFee = 500;
+  const fullPlanBonus = contractTerm === "3" ? "Choose a longer plan to unlock the Growth bonus" : "Growth plan bonus: last month free";
   const displayPrice = (monthlyPrice: number) => `$${monthlyPrice.toLocaleString()}`;
 
   const tiers = [
@@ -1793,6 +1795,14 @@ function Pricing() {
       "A focused setup for businesses that need leads to book faster: calendar connection, booking flow, confirmations, and appointment reminders.",
     features: ["Booking calendar setup", "Confirmation text/email flow", "Reminder sequence", "Simple lead handoff"],
   };
+  const getPlanMath = (tier: (typeof tiers)[number]) => {
+    const regularTotal = tier.monthlyPrice * contractMonths + setupFee;
+    const bonusMonths = tier.featured && contractTerm !== "3" ? 1 : 0;
+    const paidMonths = contractMonths - bonusMonths;
+    const total = tier.monthlyPrice * paidMonths + setupFee;
+    const savings = regularTotal - total;
+    return { bonusMonths, paidMonths, regularTotal, savings, total };
+  };
 
   return (
     <section
@@ -1809,58 +1819,6 @@ function Pricing() {
         italic="Start with the foundation, then scale into the managed growth system when you are ready."
       />
 
-      <div className="mt-8 flex flex-col items-center gap-3">
-        <div
-          className="inline-flex flex-wrap items-center justify-center gap-2 rounded-full px-3 py-3"
-          style={{
-            background: "rgba(255,250,246,0.6)",
-            border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",
-            boxShadow: "0 18px 42px -34px rgba(120,70,55,0.45)",
-          }}
-        >
-          {[
-            { value: "3", label: "3 Months", note: "Start here" },
-            { value: "6", label: "6 Months", note: "Last month free on Growth" },
-            { value: "12", label: "12 Months", note: "Last month free on Growth" },
-          ].map((option) => {
-            const active = contractTerm === option.value;
-            return (
-              <button
-                key={option.value}
-                type="button"
-                onClick={() => setContractTerm(option.value as "3" | "6" | "12")}
-                className="rounded-full px-5 py-2.5 transition-all"
-                style={{
-                  background: active ? "var(--ink)" : "rgba(255,255,255,0.42)",
-                  border: active ? "1px solid var(--ink)" : "1px solid rgba(200,168,100,0.22)",
-                  color: active ? "var(--cream)" : "rgba(30,15,10,0.62)",
-                  fontFamily: "'Jost', sans-serif",
-                  fontSize: "0.72rem",
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  fontWeight: 700,
-                }}
-              >
-                {option.label}
-              </button>
-            );
-          })}
-        </div>
-        <p
-          className="text-center"
-          style={{
-            fontFamily: "'Jost', sans-serif",
-            fontSize: "0.68rem",
-            letterSpacing: "0.16em",
-            textTransform: "uppercase",
-            color: contractTerm === "3" ? "rgba(30,15,10,0.45)" : "var(--rose)",
-            fontWeight: 600,
-          }}
-        >
-          {fullPlanBonus}
-        </p>
-      </div>
-
       <div
         className="mt-12 max-w-5xl mx-auto grid gap-3 md:grid-cols-3 rounded-[28px] p-3"
         style={{
@@ -1868,14 +1826,69 @@ function Pricing() {
           border: "1px solid color-mix(in oklab, var(--gold) 22%, transparent)",
         }}
       >
+        <div className="rounded-2xl px-5 py-4 text-center md:col-span-1" style={{ background: "rgba(255,255,255,0.5)" }}>
+          <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>Start At $297</p>
+          <p className="mt-2 text-[var(--ink)]/58 leading-6" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.84rem" }}>
+            Build the website, follow-up, missed-call, review, and SEO foundation first.
+          </p>
+          <div
+            className="mt-4 grid grid-cols-3 gap-1.5 rounded-full p-1.5"
+            style={{
+              background: "rgba(255,250,246,0.72)",
+              border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",
+            }}
+          >
+            {[
+              { value: "3", label: "3 Months" },
+              { value: "6", label: "6 Months" },
+              { value: "12", label: "12 Months" },
+            ].map((option) => {
+              const active = contractTerm === option.value;
+              return (
+                <button
+                  key={option.value}
+                  type="button"
+                  onClick={() => setContractTerm(option.value as "3" | "6" | "12")}
+                  className="rounded-full px-2 py-2 transition-all"
+                  style={{
+                    background: active ? "var(--ink)" : "transparent",
+                    color: active ? "var(--cream)" : "rgba(30,15,10,0.62)",
+                    fontFamily: "'Jost', sans-serif",
+                    fontSize: "0.58rem",
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    fontWeight: 700,
+                  }}
+                >
+                  {option.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
         {[
-          ["Start At $297", "Build the website, follow-up, missed-call, review, and SEO foundation first."],
           ["Every Plan", "All monthly plans include a $500 setup fee for onboarding, buildout, and launch prep."],
           ["Full Plan Bonus", "On 6-month or 12-month Growth contracts, the last month is free."],
         ].map(([title, copy]) => (
           <div key={title} className="rounded-2xl px-5 py-4 text-center" style={{ background: "rgba(255,255,255,0.5)" }}>
             <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>{title}</p>
             <p className="mt-2 text-[var(--ink)]/58 leading-6" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.84rem" }}>{copy}</p>
+            {title === "Full Plan Bonus" && (
+              <p
+                className="mt-3 rounded-full px-3 py-2"
+                style={{
+                  background: contractTerm === "3" ? "rgba(30,15,10,0.05)" : "rgba(201,122,122,0.1)",
+                  color: contractTerm === "3" ? "rgba(30,15,10,0.45)" : "var(--rose)",
+                  fontFamily: "'Jost', sans-serif",
+                  fontSize: "0.62rem",
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  fontWeight: 700,
+                }}
+              >
+                {fullPlanBonus}
+              </p>
+            )}
           </div>
         ))}
       </div>
@@ -1883,6 +1896,7 @@ function Pricing() {
       <div className="mt-14 max-w-7xl mx-auto grid md:grid-cols-2 xl:grid-cols-4 gap-8 lg:gap-7">
         {tiers.map((t) => {
           const isFilled = !!t.featured;
+          const math = getPlanMath(t);
           return (
             <div key={t.name} className={`relative pt-8 ${isFilled ? "md:-mt-4 md:z-10" : ""}`}>
               {t.topBadge && (
@@ -2057,6 +2071,74 @@ function Pricing() {
                   <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.68rem", letterSpacing: "0.14em", textTransform: "uppercase", color: isFilled ? "rgba(250,243,234,0.6)" : "rgba(30,15,10,0.5)" }}>
                     {t.setupLabel ?? "+ $500 setup fee"}
                   </span>
+                </div>
+
+                <div
+                  className="mt-4 w-full rounded-2xl px-5 py-4 text-left"
+                  style={{
+                    background: isFilled ? "rgba(255,255,255,0.07)" : "rgba(255,255,255,0.55)",
+                    border: isFilled ? "1px solid rgba(200,168,100,0.25)" : "1px solid rgba(200,168,100,0.22)",
+                  }}
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.62rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--gold)", fontWeight: 700 }}>
+                      {contractTerm}-month total
+                    </p>
+                    {math.savings > 0 && (
+                      <span
+                        className="rounded-full px-3 py-1"
+                        style={{
+                          background: "rgba(201,122,122,0.16)",
+                          color: isFilled ? "rgba(250,243,234,0.95)" : "var(--rose)",
+                          fontFamily: "'Jost', sans-serif",
+                          fontSize: "0.55rem",
+                          letterSpacing: "0.12em",
+                          textTransform: "uppercase",
+                          fontWeight: 800,
+                        }}
+                      >
+                        Save ${math.savings.toLocaleString()}
+                      </span>
+                    )}
+                  </div>
+                  <div className="mt-3 flex items-end gap-2">
+                    {math.savings > 0 && (
+                      <span
+                        style={{
+                          fontFamily: "'Cormorant Garamond', serif",
+                          fontSize: "1.4rem",
+                          color: isFilled ? "rgba(250,243,234,0.36)" : "rgba(30,15,10,0.35)",
+                          textDecoration: "line-through",
+                          lineHeight: 1,
+                        }}
+                      >
+                        ${math.regularTotal.toLocaleString()}
+                      </span>
+                    )}
+                    <span
+                      style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        fontSize: "2.05rem",
+                        fontStyle: "italic",
+                        color: isFilled ? "var(--cream)" : "var(--ink)",
+                        lineHeight: 1,
+                      }}
+                    >
+                      ${math.total.toLocaleString()}
+                    </span>
+                  </div>
+                  <p
+                    className="mt-2 leading-5"
+                    style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: "0.76rem",
+                      color: isFilled ? "rgba(250,243,234,0.62)" : "rgba(30,15,10,0.52)",
+                    }}
+                  >
+                    {math.savings > 0
+                      ? `Pay for ${math.paidMonths} months + $500 setup. Your ${contractTerm}th month is free.`
+                      : `${contractTerm} months at ${displayPrice(t.monthlyPrice)}/mo + $500 setup fee.`}
+                  </p>
                 </div>
 
                 {/* Tagline */}
