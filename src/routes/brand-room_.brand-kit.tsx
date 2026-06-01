@@ -11,7 +11,7 @@ const product: BrandProduct = {
   price: "$97",
   regular: "$145",
   value: "$497 value · instant access after purchase",
-  checkoutUrl: "https://thedollhouse-brand-kit.vercel.app",
+  checkoutUrl: "",
   tagline: "The interactive brand strategy web app designed to help you build, launch, and grow your dream brand even if you are starting from scratch.",
   intro: "This is your private place to organize the brand foundation, offer, content direction, launch roadmap, and business vision you keep trying to piece together from random advice.",
   painHeadline: "Most brands fail because they do not have a clear plan.",

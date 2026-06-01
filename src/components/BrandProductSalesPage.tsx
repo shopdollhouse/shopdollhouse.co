@@ -241,8 +241,8 @@ function PricePanel({ product }: { product: BrandProduct }) {
       {product.value && (
         <p className="mt-1 text-[var(--cream)]/42" style={{ fontFamily: FONT_LUXE, fontSize: "0.65rem", letterSpacing: "0.14em", textTransform: "uppercase" }}>{product.value}</p>
       )}
-      <a href={product.checkoutUrl} className="mt-7 block rounded-full px-6 py-4 text-center transition-all hover:-translate-y-0.5" style={{ background: "var(--gold)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
-        Get Instant Access →
+      <a href="#" onClick={(e) => e.preventDefault()} className="mt-7 block rounded-full px-6 py-4 text-center transition-all hover:-translate-y-0.5" style={{ background: "var(--gold)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
+        Coming Soon
       </a>
       <p className="mt-4 text-center text-[var(--cream)]/38" style={{ fontFamily: FONT_BODY, fontSize: "0.78rem" }}>Private browser access · Digital product · All sales final</p>
       <div className="mt-7 border-t border-[rgba(200,168,100,0.18)] pt-6">
@@ -282,7 +282,7 @@ export function BrandProductSalesPage({ product }: { product: BrandProduct }) {
               {product.intro}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
-              <a href={product.checkoutUrl} className="btn-ink text-center">
+              <a href="#" onClick={(e) => e.preventDefault()} className="btn-ink text-center">
                 {product.finalCta} <span aria-hidden>→</span>
               </a>
               <a href="#inside" className="btn-ghost text-center">
@@ -399,7 +399,7 @@ export function BrandProductSalesPage({ product }: { product: BrandProduct }) {
         <h2 className="mx-auto mt-4 max-w-3xl text-[var(--rose)] leading-tight" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.4rem, 5vw, 4rem)", fontWeight: 400 }}>
           Your dream brand starts here.
         </h2>
-        <a href={product.checkoutUrl} className="btn-ink mt-8 inline-flex">
+        <a href="#" onClick={(e) => e.preventDefault()} className="btn-ink mt-8 inline-flex">
           {product.finalCta} <span aria-hidden>→</span>
         </a>
         <p className="mt-5 text-[var(--ink)]/42" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem" }}>All sales final due to instant digital access.</p>

@@ -11,7 +11,7 @@ const product: BrandProduct = {
   price: "$47",
   regular: "$261",
   value: "Interactive workbook · bonus PDF included",
-  checkoutUrl: "https://thedollhouse-workbook.vercel.app",
+  checkoutUrl: "",
   tagline: "Build your brand from the ground up with a guided workbook that turns scattered ideas into a clear foundation, offer, audience, and content direction.",
   intro: "This is for the founder who already knows what she wants to build, but does not know where to start. Walk through the prompts, organize your answers, and leave with a brand foundation you can actually use.",
   painHeadline: "You know what you want to build. You just do not know where to start.",

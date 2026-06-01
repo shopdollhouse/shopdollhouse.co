@@ -10,7 +10,7 @@ const product: BrandProduct = {
   shortName: "AI Kit",
   price: "$17",
   value: "50+ ready-to-use prompts · instant access",
-  checkoutUrl: "https://ai-prompt-kit.vercel.app",
+  checkoutUrl: "",
   tagline: "Get the words instantly with 50+ zero-blank-page prompts for captions, hooks, emails, offers, ads, launch content, and brand messaging.",
   intro: "This is the quick-start kit for founders who already have an idea or brand direction and need help turning it into polished content, faster. Copy the prompt, customize the details, and let AI help you get unstuck.",
   painHeadline: "Stop staring at the blank page.",
