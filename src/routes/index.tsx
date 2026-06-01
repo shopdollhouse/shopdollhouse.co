@@ -22,6 +22,7 @@ import signatureBrandingBg from "@/assets/signature-branding-bg.jpg";
 import archMark from "@/assets/arch-mark.svg";
 import mandyPhoto from "@/assets/mandy-photo.jpg";
 import mandyAIClonePreview from "@/assets/mandy-ai-clone-preview.jpg";
+import { systemServices } from "@/lib/system-services";
 
 export const Route = createFileRoute("/")({ component: Index });
 
@@ -35,6 +36,18 @@ const LockIcon = ({ className = "" }) => (
 const DoorIcon = ({ className = "" }: { className?: string }) => (
   <img src={archMark} alt="" className={className} />
 );
+
+const systemIconMap = {
+  website: SquareMousePointer,
+  phone: PhoneCall,
+  print: Printer,
+  inbox: Inbox,
+  bot: Bot,
+  search: Search,
+  star: Star,
+  campaign: ClipboardClock,
+  message: MessageSquare,
+};
 
 const PlanFeatureIcon = ({ index, filled }: { index: number; filled: boolean }) => {
   const color = filled ? "#c97a7a" : "var(--gold)";
@@ -128,7 +141,6 @@ function Nav() {
 
   const links = [
     { href: "#services", label: "Services" },
-    { href: "#systems", label: "Systems" },
     { href: "#about", label: "About" },
     { href: "#pricing", label: "Pricing" },
     { href: "#faq", label: "FAQ" },
@@ -197,6 +209,60 @@ function Nav() {
             className="hidden md:flex items-center gap-10 text-[10px] tracking-luxe uppercase text-[var(--ink)]/80"
             style={{ fontFamily: "'Jost', sans-serif" }}
           >
+            <div className="relative group">
+              <a href="#systems" className="nav-link hover:text-[var(--rose)] transition-colors inline-flex items-center gap-1.5">
+                Systems
+                <span className="text-[var(--gold)] text-[9px]">⌄</span>
+              </a>
+              <div
+                className="absolute left-1/2 top-full z-50 mt-5 w-[760px] -translate-x-1/2 rounded-[26px] p-5 opacity-0 translate-y-2 pointer-events-none transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"
+                style={{
+                  background: "color-mix(in oklab, var(--cream) 96%, white)",
+                  border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",
+                  boxShadow: "0 34px 80px -40px rgba(70,35,25,0.42)",
+                }}
+              >
+                <div className="flex items-center justify-between border-b border-[var(--gold)]/18 pb-4 mb-4">
+                  <p className="text-[var(--ink)] text-[13px] normal-case tracking-normal" style={{ fontFamily: "'Jost', sans-serif", fontWeight: 700 }}>
+                    Systems & Features
+                  </p>
+                  <a href="#systems" className="text-[var(--gold)] text-[9px] tracking-luxe uppercase hover:text-[var(--rose)]">
+                    View all
+                  </a>
+                </div>
+                <div className="grid grid-cols-3 gap-3">
+                  {systemServices.map((service) => {
+                    const Icon = systemIconMap[service.icon as keyof typeof systemIconMap];
+                    return (
+                      <a
+                        key={service.slug}
+                        href={`/systems/${service.slug}`}
+                        className="group/item rounded-2xl p-3 flex gap-3 hover:bg-white/70 transition-colors"
+                      >
+                        <span
+                          className="h-10 w-10 rounded-xl flex items-center justify-center shrink-0"
+                          style={{
+                            background: "rgba(200,168,100,0.1)",
+                            border: "1px solid rgba(200,168,100,0.18)",
+                            color: "var(--ink)",
+                          }}
+                        >
+                          <Icon size={18} strokeWidth={1.8} />
+                        </span>
+                        <span>
+                          <span className="block text-[var(--ink)] normal-case tracking-normal leading-tight" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.78rem", fontWeight: 700 }}>
+                            {service.title}
+                          </span>
+                          <span className="mt-1 block text-[var(--ink)]/48 normal-case tracking-normal leading-snug" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.68rem" }}>
+                            {service.short}
+                          </span>
+                        </span>
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
             {links.map((l) => (
               <a key={l.href} href={l.href} className="nav-link hover:text-[var(--rose)] transition-colors">
                 {l.label}
@@ -254,6 +320,24 @@ function Nav() {
               {l.label}
             </a>
           ))}
+          <div className="pt-2 border-t border-[var(--gold)]/20">
+            <a href="#systems" onClick={() => setOpen(false)} className="block mb-3 hover:text-[var(--rose)]">
+              Systems
+            </a>
+            <div className="grid gap-2 normal-case tracking-normal">
+              {systemServices.map((service) => (
+                <a
+                  key={service.slug}
+                  href={`/systems/${service.slug}`}
+                  onClick={() => setOpen(false)}
+                  className="rounded-xl bg-white/50 border border-[var(--gold)]/15 px-3 py-2 text-[var(--ink)]/70"
+                  style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem" }}
+                >
+                  {service.title}
+                </a>
+              ))}
+            </div>
+          </div>
           <a href="#contact" onClick={() => setOpen(false)} className="btn-ink justify-center mt-2">
             Get a Free Proposal
           </a>
@@ -1271,54 +1355,6 @@ function Services() {
 }
 
 function SystemsFeatures() {
-  const features = [
-    {
-      icon: SquareMousePointer,
-      title: "Functional Website",
-      desc: "A lead-generating 10-20 page website built to turn visits into text conversations.",
-    },
-    {
-      icon: PhoneCall,
-      title: "Missed Call Text Back",
-      desc: "Automatically text missed callers so warm leads get a fast response.",
-    },
-    {
-      icon: Printer,
-      title: "Printing Services",
-      desc: "Put your business out there online and offline with polished brand materials.",
-    },
-    {
-      icon: Inbox,
-      title: "All-In-One Inbox",
-      desc: "Keep messages from your website, forms, calls, and campaigns in one place.",
-    },
-    {
-      icon: Bot,
-      title: "Business Phone",
-      desc: "Separate business and personal while keeping calls and texts easy to manage.",
-    },
-    {
-      icon: Search,
-      title: "Local SEO",
-      desc: "Help your business get found on Google with optimized pages and local signals.",
-    },
-    {
-      icon: Star,
-      title: "5-Star Magic Review Funnel",
-      desc: "Get more 5-star reviews and route private feedback before it becomes public.",
-    },
-    {
-      icon: ClipboardClock,
-      title: "One-Click Marketing Campaigns",
-      desc: "Send simple referral, promo, and reactivation campaigns without starting from scratch.",
-    },
-    {
-      icon: MessageSquare,
-      title: "Automated Lead Follow-Up",
-      desc: "Follow up with leads by text so inquiries turn into conversations faster.",
-    },
-  ];
-
   return (
     <section id="systems" className="scroll-mt-32 py-20 md:py-28 px-6 bg-[var(--cream)]">
       <div className="max-w-7xl mx-auto">
@@ -1343,10 +1379,10 @@ function SystemsFeatures() {
         </div>
 
         <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12">
-          {features.map((feature) => {
-            const Icon = feature.icon;
+          {systemServices.map((feature) => {
+            const Icon = systemIconMap[feature.icon as keyof typeof systemIconMap];
             return (
-              <div key={feature.title} className="flex gap-5 items-start">
+              <a key={feature.slug} href={`/systems/${feature.slug}`} className="flex gap-5 items-start group">
                 <div
                   className="h-[72px] w-[72px] rounded-2xl flex items-center justify-center shrink-0"
                   style={{
@@ -1359,7 +1395,7 @@ function SystemsFeatures() {
                 </div>
                 <div>
                   <h3
-                    className="text-[var(--ink)] leading-tight"
+                    className="text-[var(--ink)] leading-tight group-hover:text-[var(--rose)] transition-colors"
                     style={{
                       fontFamily: "'Jost', sans-serif",
                       fontSize: "clamp(1.05rem, 1.5vw, 1.35rem)",
@@ -1370,10 +1406,10 @@ function SystemsFeatures() {
                     {feature.title}
                   </h3>
                   <p className="mt-2 text-[var(--ink)]/52 leading-7" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem" }}>
-                    {feature.desc}
+                    {feature.short}
                   </p>
                 </div>
-              </div>
+              </a>
             );
           })}
         </div>
