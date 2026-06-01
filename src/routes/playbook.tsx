@@ -617,11 +617,66 @@ For each slide include:
 💡 2026 tip: Carousels are outperforming Reels in engagement right now. Prioritize these for education and social proof content.`,
     },
     {
+      title: "Full Month of Content — One Prompt (Create + Schedule)",
+      tag: "Platform AI",
+      prompt: `This is the most powerful workflow in the platform. One prompt creates AND schedules an entire month of client content without leaving Ask AI.
+
+Paste this into the platform's Ask AI — fill in the brackets for each client:
+
+"Create [12–20] Instagram carousel posts for a [NICHE] business, [5] slides each.
+
+Topics should include [list 4–6 themes relevant to their niche — see examples below].
+
+Generate all carousel images with professional designs, bold text overlays, and a [describe their brand colours — e.g. 'blush pink and gold'] colour palette.
+
+Write captions with hashtags for each post.
+
+Then schedule all posts to Instagram, [3] per week on [Monday, Wednesday, Friday] at [10am EST], starting [DATE]."
+
+---
+SAMPLE TOPICS BY NICHE:
+
+Med Spa / Aesthetics:
+Before & after transformations · Treatment spotlights · Skincare tips · New client specials · FAQ about treatments
+
+Dental:
+Teeth whitening tips · New patient specials · Before and after smile transformations · Oral health tips · Common dental myths
+
+Gym / Fitness:
+Workout tips · Nutrition guides · Member success stories · Exercise of the week · Motivation + mindset
+
+Home Remodeling:
+Project reveals · Design tips · Before and after renovations · Client testimonials · Seasonal home care tips
+
+Restaurant / Bakery:
+Seasonal specials · Behind the scenes baking · Custom order highlights · Customer testimonials · Menu spotlights
+
+Real Estate:
+Market updates · Home buying tips · Property reveals · Neighbourhood spotlights · Client success stories
+
+---
+PRO POSTING TIPS (add to every client's strategy):
+✓ Caption hook = mirror Slide 1's text exactly — boosts the first 3-second stop rate
+✓ Best post times: Tuesday–Thursday, 9–11am or 6–8pm in the client's timezone
+✓ Use Slide 1 as the Reel cover thumbnail for maximum reach
+✓ Pin the best-performing carousel as their profile's authority piece
+✓ Hashtags to rotate: [niche]-specific + location + broad reach mix
+
+---
+KEY SELLING LINES — say these to clients when pitching:
+• "I'll make sure you never miss another phone call."
+• "I'll keep your social media active every single day so you stay in front of your customers."`,
+    },
+    {
       title: "Auto-Schedule via Platform AI",
       tag: "Platform AI",
       prompt: `After creating graphics and captions in the platform's Ask AI, use this prompt to schedule everything automatically.
 
 Once the content is approved, type into Ask AI:
+
+"Schedule all 12 carousels to Instagram, spread them out across the month with 3 posts per week (Monday, Wednesday, Friday at 10am EST). Write unique captions and hashtags for each one."
+
+Or use this version:
 
 "Schedule all of these posts. You choose the best dates and times based on current best practices for [PLATFORM — Instagram / Facebook / TikTok]. Space them out evenly across [X] weeks."
 
@@ -3896,6 +3951,19 @@ Thanks again for trusting me with [BUSINESS NAME].
       {/* ── Blueprint ─────────────────────────────────── */}
       {section === "blueprint" && <>
       <SectionHeader label="Step 0 — Before You Start" title="The Blueprint." sub="Know the numbers and the mindset before you send a single message." />
+
+      {/* Key Selling Lines */}
+      <div className="grid sm:grid-cols-2 gap-4">
+        {[
+          ["I'll make sure you never miss another phone call.", "This one line instantly speaks to their biggest fear — losing a hot lead because no one picked up. Use it in your first sentence."],
+          ["I'll keep your social media active every single day so you stay in front of your customers.", "Consistency = trust. Clients don't want to post — they want to be everywhere. This is the promise that closes."],
+        ].map(([quote, why]) => (
+          <div key={quote as string} className="rounded-2xl p-5" style={{ background: "var(--ink)", border: "1px solid rgba(200,168,100,0.2)" }}>
+            <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.2rem", color: "var(--gold)", fontStyle: "italic", lineHeight: 1.3, marginBottom: 10 }}>"{quote as string}"</p>
+            <p style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "rgba(250,243,234,0.5)", lineHeight: 1.55 }}>{why as string}</p>
+          </div>
+        ))}
+      </div>
       {/* Numbers Game */}
       <div className="rounded-2xl p-6" style={{ background: "var(--ink)" }}>
         <p className="text-[10px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The Blueprint — It's a Numbers Game</p>
