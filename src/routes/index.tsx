@@ -1532,6 +1532,25 @@ function AICloneSection() {
 function Pricing() {
   const tiers = [
     {
+      name: "Content Lite",
+      price: "$500",
+      software: "1 platform",
+      fit: "Best for a polished starting point",
+      outcome: "One platform with consistent static posts and carousels.",
+      tagline: "Light content support for businesses that are not ready for the full AI clone or automation system yet.",
+      setupLabel: "No AI clone setup included",
+      trialAvailable: false,
+      cta: "Ask About Content Lite →",
+      features: [
+        "1 platform of your choice — Facebook, Instagram or TikTok",
+        "3 posts per week — static posts and carousels only",
+        "Offer-led content direction so posts support what you sell",
+        "On-brand captions written for clarity, trust, and simple calls to action",
+        "Content approval before posting — you review before anything goes live",
+        "Monthly performance snapshot — what posted, what worked, and what to improve next",
+      ],
+    },
+    {
       name: "Starter",
       price: "$1,000",
       software: "$300/mo",
@@ -1576,32 +1595,6 @@ function Pricing() {
         "Review management — automated review requests after every appointment",
       ],
     },
-    {
-      name: "Elite",
-      price: "$5,000+",
-      software: "$300/mo",
-      fit: "Best for full-scale takeover",
-      outcome: "Maximum 3-platform content, ads, automation, website, reporting, and priority strategy.",
-      tagline: "Your 3-platform growth system fully managed — maximum content, ads, and AI support.",
-      featured: true,
-      topBadge: { label: "Premium Partner", tone: "gold" as "gold" | "pink" },
-      cta: "Apply for Elite →",
-      features: [
-        "3 platforms fully managed — Instagram, TikTok & Facebook — nothing to post, nothing to manage",
-        "AI clone or brand mascot across all 3 platforms — your face and voice, every single day",
-        "12 AI clone videos/month — 4 per platform, always pinned as your signature content",
-        "36 posts/month — 12 per platform (4 Reels · 4 Carousels · 4 Static), all on-brand",
-        "Content approval before posting — you see and approve everything before it goes live",
-        "Full social ad management — Facebook, Instagram & TikTok campaigns fully managed",
-        "Advanced AI voice agent — handles calls, answers FAQs & books appointments 24/7",
-        "Full AI booking system — automated chat, confirmations, reminders & review collection",
-        "Comment-to-DM + text follow-up bot + missed call text-back across all 3 platforms",
-        "Monthly email newsletter — written, designed & sent for you",
-        "Website design & build — a complete, conversion-ready site done for you",
-        "Monthly 60-min strategy call + weekly performance reports",
-        "Priority 48-hour content revisions + quarterly brand audit",
-      ],
-    },
   ];
   const smallerPackages = [
     {
@@ -1619,19 +1612,6 @@ function Pricing() {
         { icon: BarChart3, title: "On-site SEO", desc: "Keyword content, alt tags, schema, image optimization, and page-speed basics included." },
       ],
     },
-    {
-      name: "Content Lite",
-      price: "$500",
-      fit: "Best when you only need one platform to look alive and polished",
-      summary:
-        "Simple weekly content support for businesses that are not ready for the full AI clone or automation system yet.",
-      features: [
-        { icon: Sparkles, title: "1 platform managed", desc: "Choose Facebook, Instagram, or TikTok." },
-        { icon: Video, title: "3 posts per week", desc: "Static posts and carousels only, planned around your offer and brand voice." },
-        { icon: Check, title: "Approval before posting", desc: "You review the content before it goes live." },
-        { icon: BarChart3, title: "Monthly snapshot", desc: "Simple notes on what posted, what worked, and what to improve next." },
-      ],
-    },
   ];
 
   return (
@@ -1646,7 +1626,7 @@ function Pricing() {
       <SectionTitle
         eyebrow="Monthly Plans"
         title="Choose your plan"
-        italic="Start with a 14-day founding client trial, then choose the level of support you want us to own."
+        italic="Start with light content support, then scale into the managed growth system when you are ready."
       />
       <div
         className="mt-12 max-w-5xl mx-auto grid gap-3 md:grid-cols-3 rounded-[28px] p-3"
@@ -1656,9 +1636,9 @@ function Pricing() {
         }}
       >
         {[
-          ["14-Day Trial", "Founding clients can test the strategy, content direction, and workflow before signing on."],
-          ["Then We Recommend", "After the trial, we recommend the plan that actually fits your business."],
-          ["No DIY Required", "If you continue, content, automations, reporting, and setup are handled for you."],
+          ["Start At $500", "Begin with simple weekly content if you only need one platform to look polished."],
+          ["Scale When Ready", "Move into Starter or Growth when you want AI clone content, automation, and lead follow-up."],
+          ["No DIY Required", "The right plan is handled for you: content, setup, reporting, and next steps."],
         ].map(([title, copy]) => (
           <div key={title} className="rounded-2xl px-5 py-4 text-center" style={{ background: "rgba(255,255,255,0.5)" }}>
             <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>{title}</p>
@@ -1750,26 +1730,44 @@ function Pricing() {
                     <path d="M12 21.6C6.3 16.1 1 11.3 1 7.2 1 3.4 4.1 2 6.3 2c1.3 0 4.2.5 5.7 4.5C13.6 2.5 16.5 2 17.7 2 20.3 2 23 3.6 23 7.2c0 4.1-5.1 8.9-11 14.4z"/>
                   </svg> Monthly Retainer
                 </div>
-                <div
-                  className="mt-3 inline-flex items-center justify-center gap-2 rounded-full px-4 py-2"
-                  style={{
-                    background: isFilled ? "rgba(201,122,122,0.16)" : "rgba(201,122,122,0.1)",
-                    border: "1px solid rgba(201,122,122,0.28)",
-                    color: isFilled ? "rgba(250,243,234,0.9)" : "var(--rose)",
-                    fontFamily: "'Jost', sans-serif",
-                    fontSize: "0.62rem",
-                    letterSpacing: "0.16em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  <Sparkles size={12} strokeWidth={1.8} />
-                  14-day free trial available
-                </div>
+                {t.trialAvailable === false ? (
+                  <div
+                    className="mt-3 inline-flex items-center justify-center gap-2 rounded-full px-4 py-2"
+                    style={{
+                      background: isFilled ? "rgba(200,168,100,0.14)" : "rgba(200,168,100,0.12)",
+                      border: "1px solid rgba(200,168,100,0.3)",
+                      color: "var(--gold)",
+                      fontFamily: "'Jost', sans-serif",
+                      fontSize: "0.62rem",
+                      letterSpacing: "0.16em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    <Sparkles size={12} strokeWidth={1.8} />
+                    Simple monthly package
+                  </div>
+                ) : (
+                  <div
+                    className="mt-3 inline-flex items-center justify-center gap-2 rounded-full px-4 py-2"
+                    style={{
+                      background: isFilled ? "rgba(201,122,122,0.16)" : "rgba(201,122,122,0.1)",
+                      border: "1px solid rgba(201,122,122,0.28)",
+                      color: isFilled ? "rgba(250,243,234,0.9)" : "var(--rose)",
+                      fontFamily: "'Jost', sans-serif",
+                      fontSize: "0.62rem",
+                      letterSpacing: "0.16em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    <Sparkles size={12} strokeWidth={1.8} />
+                    14-day free trial available
+                  </div>
+                )}
                 <p
                   className="mt-1.5 text-center"
                   style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: isFilled ? "rgba(250,243,234,0.4)" : "rgba(30,15,10,0.35)" }}
                 >
-                  6-month minimum only if you sign on
+                  {t.trialAvailable === false ? "no AI clone or automation included" : "6-month minimum only if you sign on"}
                 </p>
 
                 {/* Price */}
@@ -1807,7 +1805,7 @@ function Pricing() {
                   }}
                 >
                   <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.68rem", letterSpacing: "0.14em", textTransform: "uppercase", color: isFilled ? "rgba(250,243,234,0.6)" : "rgba(30,15,10,0.5)" }}>
-                    + $500 one-time setup fee
+                    {t.setupLabel ?? "+ $500 one-time setup fee"}
                   </span>
                 </div>
 
@@ -1921,27 +1919,27 @@ function Pricing() {
 
       {/* Pricing footnote */}
       <p className="text-center mt-6 mb-2" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.4)" }}>
-        14-day founding client trial &nbsp;·&nbsp; 6-month minimum after trial &nbsp;·&nbsp; 12-month partner terms available
+        Content Lite starts at $500/mo &nbsp;·&nbsp; 14-day founding client trial on Starter and Growth &nbsp;·&nbsp; 6-month minimum after trial
       </p>
 
       {/* Smaller packages */}
       <div className="mt-16 max-w-6xl mx-auto">
         <div className="text-center mb-8 max-w-3xl mx-auto">
           <p className="text-[var(--gold)] text-[11px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
-            Smaller Entry Packages
+            Website Entry Package
           </p>
           <h3
             className="mt-3 italic text-[var(--ink)]"
             style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2rem, 3.8vw, 3.1rem)", lineHeight: 1.05 }}
           >
-            Need the system before the full takeover?
+            Need the website system first?
           </h3>
           <p className="mt-4 text-[var(--ink)]/58 leading-7" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.96rem" }}>
-            These smaller packages are for businesses that want a cleaner foundation first: a website that creates text conversations, or light content support on one platform.
+            This is for service businesses that want the lead-response foundation before moving into full social media management.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-5">
+        <div className="grid gap-5 max-w-3xl mx-auto">
           {smallerPackages.map((pkg) => (
             <article
               key={pkg.name}
@@ -2634,11 +2632,10 @@ function Contact() {
         <div>
           <label className={labelClass} style={labelStyle}>Which plan interests you?</label>
           <select name="plan" className={inputClass} style={inputStyle}>
-            <option>Elite — $5,000+/mo</option>
-            <option>Growth — $2,500/mo</option>
-            <option>Starter — $1,000/mo</option>
-            <option>Website + Lead Follow-Up — $297/mo</option>
             <option>Content Lite — $500/mo</option>
+            <option>Starter — $1,000/mo</option>
+            <option>Growth — $2,500/mo</option>
+            <option>Website + Lead Follow-Up — $297/mo</option>
             <option>Not sure yet</option>
           </select>
         </div>
