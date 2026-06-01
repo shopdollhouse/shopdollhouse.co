@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1092, initial-scale=1" />
+    <title>The Dollhouse Etsy Threads Preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,500&family=DM+Sans:wght@400;500;600;700&family=Jost:wght@500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      * { box-sizing: border-box; }
+      html, body { margin: 0; width: 1092px; height: 1080px; overflow: hidden; background: #f5ded8; }
+      body { font-family: "DM Sans", sans-serif; }
+      .asset {
+        position: relative;
+        width: 1092px;
+        height: 1080px;
+        overflow: hidden;
+        padding: 58px;
+        color: #1d0f0b;
+        background:
+          radial-gradient(circle at 10% 12%, rgba(255,255,255,0.95), transparent 30%),
+          radial-gradient(circle at 88% 15%, rgba(200,164,100,0.16), transparent 28%),
+          linear-gradient(135deg, #fff8f3 0%, #f7e2dc 44%, #eec7c2 100%);
+      }
+      .asset::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(189,116,118,0.08) 1px, transparent 1px),
+          linear-gradient(180deg, rgba(200,164,100,0.08) 1px, transparent 1px);
+        background-size: 46px 46px;
+        mask-image: linear-gradient(135deg, rgba(0,0,0,0.82), transparent 56%);
+      }
+      .topline, .main, .product-strip, .cta { position: relative; z-index: 1; }
+      .topline { display: flex; align-items: center; justify-content: space-between; }
+      .brand { display: flex; align-items: center; gap: 18px; color: #c8a464; font-family: "Jost", sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+      .brand img { width: 42px; height: 62px; opacity: 0.65; }
+      .badge { border-radius: 999px; background: rgba(255,255,255,0.62); border: 1px solid rgba(200,164,100,0.32); padding: 16px 25px; font-family: "Jost", sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+      .main { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 36px; align-items: center; height: 620px; }
+      .script { font-family: "Allura", cursive; color: #bd7476; font-size: 86px; line-height: 0.82; margin-bottom: -8px; }
+      h1 { margin: 0; max-width: 410px; font-family: "Cormorant Garamond", serif; color: #bd7476; font-size: 82px; line-height: 0.9; font-weight: 400; letter-spacing: 0.03em; text-transform: uppercase; }
+      .subhead { margin: 26px 0 0; max-width: 390px; color: rgba(29,15,11,0.78); font-size: 31px; line-height: 1.25; font-weight: 500; }
+      .support { margin: 18px 0 0; max-width: 380px; color: rgba(29,15,11,0.58); font-size: 19px; line-height: 1.5; }
+      .button { display: inline-flex; margin-top: 30px; border-radius: 999px; background: #1d0f0b; color: #fff8f3; padding: 21px 31px; font-family: "Jost", sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; box-shadow: 0 24px 44px -26px rgba(29,15,11,0.82); }
+      .visual { position: relative; height: 620px; }
+      .hero-card { position: absolute; right: 0; top: 44px; width: 610px; border-radius: 42px; padding: 18px; background: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.82); box-shadow: 0 42px 92px -44px rgba(80,35,28,0.88); }
+      .hero-card img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 30px; border: 1px solid rgba(255,255,255,0.82); }
+      .floating { position: absolute; left: 18px; bottom: 38px; width: 275px; border-radius: 30px; background: rgba(29,15,11,0.94); color: #fff8f3; padding: 30px; box-shadow: 0 34px 70px -40px rgba(29,15,11,0.86); }
+      .floating strong { display: block; color: #c8a464; font-family: "Cormorant Garamond", serif; font-size: 54px; font-weight: 400; font-style: italic; line-height: 0.9; }
+      .floating span { display: block; margin-top: 18px; color: rgba(255,248,243,0.7); font-family: "Jost", sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+      .product-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 10px; }
+      .product-card { border-radius: 28px; background: rgba(255,255,255,0.58); border: 1px solid rgba(200,164,100,0.22); padding: 12px; box-shadow: 0 22px 54px -42px rgba(80,35,28,0.72); }
+      .product-card img { display: block; width: 100%; aspect-ratio: 1.35; object-fit: cover; border-radius: 20px; }
+      .product-card p { margin: 12px 4px 2px; font-family: "Jost", sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(29,15,11,0.68); }
+    </style>
+  </head>
+  <body>
+    <div class="asset">
+      <div class="topline">
+        <div class="brand"><img src="/favicon.svg" alt="" />The Dollhouse Brand Studio</div>
+        <div class="badge">Etsy Shop</div>
+      </div>
+      <div class="main">
+        <div>
+          <div class="script">the</div>
+          <h1>Digital Brand Shop</h1>
+          <p class="subhead">Brand tools for beginners starting a business.</p>
+          <p class="support">Guided web apps, prompts, and planning tools to help you stop guessing and start building with clarity.</p>
+          <div class="button">Shop The Dollhouse →</div>
+        </div>
+        <div class="visual">
+          <div class="hero-card"><img src="/stanstore-assets/brand-kit-threads-preview-1092x1080.png" alt="" /></div>
+          <div class="floating"><strong>3</strong><span>Starter tools to build your brand</span></div>
+        </div>
+      </div>
+      <div class="product-strip">
+        <div class="product-card"><img src="/stanstore-assets/brand-kit-thumbnail-400x400.png" alt="" /><p>Brand Kit</p></div>
+        <div class="product-card"><img src="/stanstore-assets/workbook-thumbnail-400x400.png" alt="" /><p>Workbook</p></div>
+        <div class="product-card"><img src="/stanstore-assets/ai-prompt-kit-thumbnail-400x400.png" alt="" /><p>AI Prompt Kit</p></div>
+      </div>
+    </div>
+  </body>
+</html>
