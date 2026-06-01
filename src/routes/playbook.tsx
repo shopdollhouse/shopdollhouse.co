@@ -5301,6 +5301,91 @@ function GrowthTab() {
         sub="Cold outreach gets your first clients. This system brings 20+ leads a month to you without paying for ads. The sooner you start, the better it gets."
       />
 
+      {/* MRR Math */}
+      <div className="rounded-2xl p-6" style={{ background: "var(--ink)" }}>
+        <p className="text-[10px] tracking-[0.25em] uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The MRR Math — Why This Business Model Wins</p>
+        <p className="italic mb-4" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: "var(--cream)", lineHeight: 1.5 }}>
+          "People invest $200,000 into real estate to make $900/month. You can get there in month one."
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+          {[
+            { num: "3", label: "New clients/month (slow pace)" },
+            { num: "12", label: "Months to 40 clients" },
+            { num: "$12k", label: "/mo at $300/client" },
+            { num: "∞", label: "Month-1 clients still paying in month 12" },
+          ].map(({ num, label }) => (
+            <div key={num} className="rounded-xl p-4 text-center" style={{ background: "rgba(200,168,100,0.12)", border: "1px solid rgba(200,168,100,0.2)" }}>
+              <p className="italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.8rem", color: "var(--gold)", lineHeight: 1 }}>{num}</p>
+              <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.72rem", color: "rgba(250,243,234,0.6)" }}>{label}</p>
+            </div>
+          ))}
+        </div>
+        <p style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(250,243,234,0.5)", lineHeight: 1.6 }}>
+          Traditional web agencies make $10k one month, then $0 the next — starting from zero every time. The MRR model compounds. You're building equity, not just income. Even if you lose some clients, your acquisition system replaces them.
+        </p>
+      </div>
+
+      {/* Why Clients Never Cancel */}
+      <div className="rounded-2xl p-6" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
+        <p className="text-[10px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Why Clients Never Cancel</p>
+        <p className="mb-4 italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", color: "var(--rose)", lineHeight: 1.4 }}>
+          "They're not paying for a website. They're paying for a system that generates leads while they sleep."
+        </p>
+        <div className="space-y-3">
+          {[
+            ["Automations run 24/7", "Missed call text-back, review requests, appointment booking — all running without the client doing anything. They stop paying, it all stops."],
+            ["Appointments on their calendar every morning", "Instead of a 'thanks for contacting us' page → they're forwarded to a calendar to book directly. Client wakes up to appointments already booked."],
+            ["5-star reviews on autopilot", "Review funnel: 5 stars → redirects to Google. 4 stars or below → private feedback form only. Their Google ranking improves every month they stay."],
+            ["Website in a day speed advantage", "Built in 20 minutes with Claude Code or AI Studio — live in days, not months. Clients love the speed. No other agency can match it."],
+          ].map(([title, desc]) => (
+            <div key={title as string} className="flex gap-3 rounded-xl p-4" style={{ background: "rgba(200,168,100,0.06)", border: "1px solid rgba(200,168,100,0.12)" }}>
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: 3 }}><circle cx="10" cy="10" r="9" stroke="var(--gold)" strokeWidth="1.2"/><polyline points="6,10 9,13 14,7" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              <div>
+                <p style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", color: "var(--ink)", fontWeight: 600, marginBottom: 3 }}>{title as string}</p>
+                <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.6)", lineHeight: 1.55 }}>{desc as string}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Mistakes to Avoid */}
+      <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
+        <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+          <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Mistakes to Avoid — From a $117k/mo Agency Owner</p>
+          <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>Phase 7 — Don't Make These</h3>
+        </div>
+        <div className="px-6 py-5 space-y-3">
+          {[
+            ["Not reaching out enough", "Most people call 10 people, get 10 no's, give up. This is not a luck game — it's a volume game. 50–100 outreach attempts/day minimum when starting. Outreach IS your job in the beginning."],
+            ["Negotiating your prices down", "If a client can't afford $6,000 upfront, don't drop to $3,000. Instead: 'No problem — you can pay $1,000/month for 6 months. How does that sound?' You protect your rate AND make it easier for them to say yes."],
+            ["No revision limits in your contract", "Add a clause: '2 rounds of revisions included.' Clients will rarely push it, but having it in writing protects you from the rare one who does."],
+            ["Being too desperate on calls", "If you're nervous, fidgety, or you really need the sale — they can feel it. Be calm. Ask for the money. Be okay with silence. The more okay you are with them saying no, the more sales you'll close."],
+            ["Only charging upfront — no MRR", "This is the biggest trap. You feel rich one month, then $0 the next. Always onboard into a monthly plan. Even a $5k custom site client should be on $300/mo hosting + automations. You already did the hardest part — getting them. Make the income last."],
+          ].map(([mistake, fix]) => (
+            <div key={mistake as string} className="rounded-xl p-4" style={{ background: "rgba(200,168,100,0.06)", border: "1px solid rgba(200,168,100,0.12)" }}>
+              <p style={{ fontFamily: FONT_LUXE, fontSize: "0.75rem", color: "var(--rose)", fontWeight: 600, marginBottom: 4 }}>✕ {mistake as string}</p>
+              <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.6 }}>{fix as string}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Meta Ads Script */}
+      <div className="rounded-2xl p-5" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
+        <p className="text-[10px] tracking-widest uppercase mb-3" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Meta Ads — Free Website Hook</p>
+        <p className="mb-3" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.65)", lineHeight: 1.6 }}>Run this as a Facebook/Instagram ad targeting local home service businesses. The free website hook removes all friction. If they want custom on the call — sell the $5k site instead.</p>
+        <div className="rounded-xl p-4" style={{ background: "var(--ink)" }}>
+          <p className="text-[9px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Ad Script (film 10–15 variations)</p>
+          <p style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.7, fontStyle: "italic" }}>
+            "Contractors — if you've ever paid thousands of dollars to some scammy lead generation company, hear me out. We charge $297 a month and that's it — there's the price, let's just get it out of the way. What do we deliver for that? First: your website. And don't tell me you already have one, because your website probably doesn't convert, it probably doesn't build trust. So we install a smart website that automatically follows up with everyone that interacts with it."
+          </p>
+        </div>
+        <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "rgba(30,15,10,0.45)", lineHeight: 1.6 }}>
+          Student result: $4,200 ad spend → $3,500 MRR from one campaign → $7,000+/mo by month 2 with zero cancellations. Math: spend once, collect forever.
+        </p>
+      </div>
+
       {/* Philosophy callout */}
       <div className="rounded-2xl p-6" style={{ background: "var(--ink)" }}>
         <p className="text-[10px] tracking-[0.25em] uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>The Shift</p>
@@ -10276,6 +10361,28 @@ const PROPOSAL_DECKS: PDeck[] = [
         sub: "Stay in touch with every person who has ever shown interest in your business.",
         body: "We set up automatic emails and text messages that go out to your leads, past clients, and people who almost booked — bringing them back to you over and over.",
         script: "The last piece of the system is email and text marketing. Here's the simple idea: most people who contact your business don't book on the first contact. They're interested, but life gets in the way. Email and text marketing is how you stay in their mind until they're ready. We set up automatic messages that go out at the perfect time — a thank you after their first visit, a reminder after 60 days, a special offer in a slow month. Set it up once and it works forever.",
+      },
+      {
+        layout: "bullets", bg: "dark",
+        heading: "Why our clients never cancel.",
+        bullets: [
+          "Automations run 24/7 — even when you're asleep, on holiday, or with another client",
+          "Appointments show up on their calendar automatically — no back and forth, no manual booking",
+          "5-star reviews build on autopilot — clients rank higher on Google every month they stay",
+          "Missed calls get an instant text-back — they never lose a lead to a faster competitor again",
+          "You're not paying for a website — you're paying for a system that generates leads while you sleep",
+        ],
+        script: "Let me be honest with you about why this works so well long term. Most agencies sell you something and then disappear. What we build is a system that runs 24 hours a day, 7 days a week — appointments booking themselves, reviews growing, leads getting followed up automatically. When a client thinks about cancelling, they realize that if they cancel, all of that stops. The automations stop. The text-backs stop. The review funnel stops. That's why our clients don't cancel. Not because we lock them in — but because the system is genuinely making them money while they sleep.",
+      },
+      {
+        layout: "steps", bg: "blush",
+        heading: "The math — why $1,000/mo compounds.",
+        steps: [
+          { n: "Yr 1", title: "3 clients/month", desc: "Even going slow — 3 new clients a month for 12 months = 36 clients. At $1,000/mo each, that's $36,000/mo in year 2. Month-1 clients are still paying in month 12." },
+          { n: "Key", title: "You only do the hard part once", desc: "Getting the client is the hard part. Once they're in the system, the automations keep them. You're building equity — not starting from zero every month." },
+          { n: "Rule", title: "Always convert to monthly", desc: "Even a client who pays $5k upfront for a custom site should be on a $1k/mo retainer. You already did the hardest part — getting them. Make the income last." },
+        ],
+        script: "Here's how this business grows. Every client you sign stays. The system makes them money, so they don't leave. That means your income from month one is still coming in in month six, month twelve, month twenty-four. Most agencies have a feast-or-famine problem — big month, then zero. We built ours differently. Even if you signed only three clients a month — just three — after one year you'd have 36 paying clients. At our Starter plan, that's $36,000 a month in recurring income. And that's assuming you never got a single referral.",
       },
       {
         layout: "live_quote", bg: "dark",
