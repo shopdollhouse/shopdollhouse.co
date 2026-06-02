@@ -10229,8 +10229,8 @@ const PROPOSAL_DECKS: PDeck[] = [
         layout: "headline", bg: "rose",
         heading: "AI Review Automation.",
         sub: "More 5-star reviews. Zero effort.",
-        body: "After every completed service, your system automatically requests a review — at exactly the right moment.",
-        script: "Here's one more thing this system does for you. After every client you serve, the system automatically sends them a review request — at exactly the right moment when they're happiest with your work. You know how you always mean to ask clients for reviews but never remember? This does it for you. Every single time. No exceptions. For most of our clients, their review count doubles within 90 days.",
+        body: "Happy clients go straight to Google. Lower ratings go to private feedback first.",
+        script: "Here's one more thing this system does for you. After every client you serve, the system automatically asks for a review at the right moment. If they click five stars, they go straight to your Google review page so the public rating goes up. If they click a lower rating, they go to a private feedback form that asks what happened, and that message goes to the owner. That gives you a chance to fix the issue before it becomes a public bad review. We can also create QR codes for your front desk, receipts, cards, or follow-up texts, and we can upload a list of past clients so the system asks them to leave a rating too.",
       },
       {
         layout: "steps", bg: "light",
@@ -10249,11 +10249,13 @@ const PROPOSAL_DECKS: PDeck[] = [
           "AI Voice Agent — answers calls, books appointments, 24/7",
           "DM Responder — instant replies on Instagram and Facebook",
           "Lead follow-up sequences — SMS and email, fully automated",
-          "Review requests — sent automatically after every service",
+          "Review funnel — 5-star to Google, lower ratings to private feedback",
+          "QR review codes — make it easy for customers to leave a review in person",
+          "Past-client review campaigns — prompt old customers to raise your Google rating",
           "Appointment booking + reminders — no-shows eliminated",
           "Re-engagement campaigns — wake up cold leads automatically",
         ],
-        script: "So here's the full picture of what your automation system looks like when it's all running together. Every entry point into your business — phone, DMs, web form, email — covered. Every stage of the client journey — first contact, follow-up, booking, reminder, review — automated. You focus on delivering your service. The system handles everything else.",
+        script: "So here's the full picture of what your automation system looks like when it's all running together. Every entry point into your business — phone, DMs, web form, estimate calculator, booking page, email — is covered. Every stage of the client journey is covered too: first contact, follow-up, booking, reminder, review, and re-engagement. The review funnel is especially powerful because happy clients are routed to Google, lower ratings are routed to private feedback, and QR codes or past-client campaigns make it easy to collect more ratings. You focus on delivering your service. The system handles the parts that usually get missed.",
       },
       {
         layout: "image", bg: "dark",
@@ -10462,7 +10464,6 @@ const PROPOSAL_DECKS: PDeck[] = [
         sub: "The Dollhouse Brand Studio  ·  hello@shopdollhouse.co",
         script: "That's everything for today. You're officially a Dollhouse client and I am so excited to build your brand room. Check your email — your onboarding follow-up will have your media folder link, your calendar link, and a full summary of everything we covered today. Any last questions before I let you go? [Pause. Smile. End warm and confident. They should feel excited, not overwhelmed.]",
       },
-      LIVE_QUOTE_BUILDER_SLIDE,
     ],
   },
 
@@ -10604,13 +10605,13 @@ const PROPOSAL_DECKS: PDeck[] = [
         bullets: [
           "Our management fee and your ad budget are two separate things",
           "Your ad budget goes directly to Facebook/Instagram — not to us",
-          "Ad spend minimum is $1,000/month — this is what gets real, measurable results",
-          "Ad spend minimum $1,000/mo — recommend starting at $1,000–$2,000/mo · no maximum, client decides",
-          "With $1,000–$2,000 we typically run 6 high-quality ads at a time",
+          "Recommended starting ad budget: $1,000–$2,000/mo for stronger testing",
+          "Client controls the ad spend — there is no maximum unless you set one",
+          "We usually start with a focused group of high-quality ads instead of random volume",
           "Quality of ads matters more than how many you run",
           "Most clients see their first results within the first 2–4 weeks",
         ],
-        script: "I want to be fully transparent about how ad spending works. There are two costs — what you pay us to manage the ads, and what you pay Facebook directly for the ads to run. These are completely separate. We recommend $1,000 a month to Facebook as your starting budget. That gives us enough to run 6 good ads and really test what works. You can start with $500, but I want to be honest — the results come slower. The sweet spot is $1,000. And remember — you're not paying that to us. It goes directly to Facebook.",
+        script: "I want to be fully transparent about how ad spending works. There are two costs: what you pay us to manage the ads, and what you pay Meta directly for the ads to run. Those are separate. For stronger testing, I usually recommend starting around $1,000 to $2,000 a month in ad spend because it gives us enough room to test creative, audiences, and offers properly. You control the spend. It does not go to us. It goes directly to the ad platform.",
       },
       {
         layout: "headline", bg: "blush",
@@ -10707,8 +10708,19 @@ function getReadAloudScript(deck: PDeck, slide: PSlide, slideIndex: number) {
       : "";
 
   const heading = slide.heading.toLowerCase();
+  const deckId = deck.id;
   const featureOutcome =
-    heading.includes("website") || heading.includes("storefront")
+    deckId === "onboarding"
+      ? ""
+      : deckId === "made_for_you"
+      ? "The reason this deck works is because it does not ask them to imagine the result from scratch. They can see it. You already did the hardest part for them: you showed what their content, clone, and brand presence could look like. That makes the close stronger because the conversation moves from 'Do I believe this?' to 'Do I want this running for my business?'"
+      : heading.includes("complete") || heading.includes("four pillars") || heading.includes("full picture") || heading.includes("brand system")
+      ? "The outcome of the full brand system is that the client stops buying random pieces of marketing that do not connect. Content brings attention, the website captures the lead, automation follows up, reviews build trust, and the brand experience makes everything feel premium. That is what makes the system feel bigger than a single service."
+      : heading.includes("merch") || heading.includes("brand everywhere") || heading.includes("movement") || heading.includes("walking billboards")
+      ? "The outcome of merch is not just shirts or products. The outcome is visibility, loyalty, and a new way for happy customers to talk about the business without being asked. For the right brand, merch can create referral energy, deepen community, and add a revenue stream that keeps the brand in front of people outside social media."
+      : heading.includes("logo") || heading.includes("brand refresh") || heading.includes("first impression") || heading.includes("brand identity") || heading.includes("outdated brand")
+      ? "The outcome of a brand refresh is faster trust. People decide quickly whether a business feels professional, premium, and safe to buy from. A stronger logo, website, and visual system makes the client look established, which helps them charge with more confidence and makes prospects more comfortable reaching out."
+      : heading.includes("website") || heading.includes("storefront")
       ? "The outcome of the website is not just that it looks pretty. The outcome is that when someone lands on it, they know what you do, they trust you faster, and they have an easy way to become a lead. For service businesses, we can also add quote forms, booking surveys, and estimate calculators so a visitor does not just browse and leave. They answer a few simple questions, the system captures their information, and now you have a real lead to follow up with."
       : heading.includes("automation") || heading.includes("follow") || heading.includes("reply") || heading.includes("text")
       ? "The outcome of automation is speed. If someone calls while you are busy, in an appointment, driving, or offline, they do not sit there waiting. Missed-call text back can reply for you, the lead can get a booking link, and the system can keep following up. That means you can wake up or finish a client appointment and already have new people booked on your calendar."
@@ -10723,7 +10735,11 @@ function getReadAloudScript(deck: PDeck, slide: PSlide, slideIndex: number) {
       : "";
 
   const close =
-    slide.layout === "pricing" || slide.layout === "cta"
+    deckId === "onboarding" && slideIndex === deck.slides.length - 1
+      ? "Before we hang up, make sure they know exactly what happens next, where to send assets, who to contact, and when they will hear from you. The client should leave calm, excited, and fully clear."
+      : deckId === "onboarding"
+      ? ""
+      : slide.layout === "pricing" || slide.layout === "cta"
       ? "As you look at this, I want you to think less about the monthly payment and more about what one extra booked client is worth. If this system helps you capture even one lead you would have missed, the investment starts making sense very quickly."
       : slideIndex === deck.slides.length - 1
       ? "The best next step is choosing the plan that fits your goals and letting us start the setup while everything is fresh. What questions do you have before we decide which path makes the most sense?"
