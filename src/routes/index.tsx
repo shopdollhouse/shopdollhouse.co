@@ -1767,7 +1767,7 @@ function Pricing() {
       outcome: "All 3 social platforms, paid Meta ads, voice AI, and follow-up automation.",
       tagline: "Facebook, Instagram, and TikTok fully managed — more content, paid ads, and strategy built in.",
       featured: true,
-      topBadge: { label: "Featured Growth System", tone: "pink" as "gold" | "pink" },
+      topBadge: { label: "Most Popular", tone: "gold" as "gold" | "pink" },
       setupLabel: "+ $500 one-time setup",
       cta: "Get a Free Proposal →",
       features: [
@@ -1820,16 +1820,16 @@ function Pricing() {
 
       <div className="mt-8 flex justify-center">
         <div
-          className="grid w-full max-w-md grid-cols-2 gap-1.5 rounded-full p-1.5"
+          className="grid w-full max-w-[680px] grid-cols-2 gap-2 rounded-full p-2.5 sm:p-3"
           style={{
-            background: "rgba(255,250,246,0.72)",
-            border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",
-            boxShadow: "0 22px 46px -32px rgba(90,45,38,0.45)",
+            background: "rgba(255,250,246,0.82)",
+            border: "1px solid color-mix(in oklab, var(--gold) 24%, transparent)",
+            boxShadow: "0 22px 54px -34px rgba(90,45,38,0.45), inset 0 1px 0 rgba(255,255,255,0.72)",
           }}
         >
           {[
-            { value: "6", label: "6 Months" },
-            { value: "12", label: "12 Months" },
+            { value: "6", label: "6 Months", badge: "" },
+            { value: "12", label: "12 Months", badge: "1 mo free" },
           ].map((option) => {
             const active = contractTerm === option.value;
             return (
@@ -1837,18 +1837,35 @@ function Pricing() {
                 key={option.value}
                 type="button"
                 onClick={() => setContractTerm(option.value as "6" | "12")}
-                className="rounded-full px-3 py-3 transition-all"
+                className="flex min-h-[58px] items-center justify-center gap-2 rounded-full px-3 py-3 transition-all sm:gap-3"
                 style={{
                   background: active ? "var(--ink)" : "transparent",
                   color: active ? "var(--cream)" : "rgba(30,15,10,0.62)",
                   fontFamily: "'Jost', sans-serif",
-                  fontSize: "0.68rem",
-                  letterSpacing: "0.12em",
+                  fontSize: "clamp(0.68rem, 1.7vw, 0.95rem)",
+                  letterSpacing: "0.18em",
                   textTransform: "uppercase",
                   fontWeight: 700,
+                  boxShadow: active ? "0 14px 28px -18px rgba(30,15,10,0.74)" : "none",
                 }}
               >
-                {option.label}
+                <span>{option.label}</span>
+                {option.badge && (
+                  <span
+                    className="rounded-full px-2.5 py-1 sm:px-4"
+                    style={{
+                      background: active ? "rgba(200,168,100,0.95)" : "var(--gold)",
+                      color: "var(--ink)",
+                      fontFamily: "'Jost', sans-serif",
+                      fontSize: "clamp(0.5rem, 1.2vw, 0.7rem)",
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {option.badge}
+                  </span>
+                )}
               </button>
             );
           })}
@@ -1903,7 +1920,7 @@ function Pricing() {
             <div key={t.name} className={`relative pt-8 ${isFilled ? "md:-mt-4 md:z-10" : ""}`}>
               {t.topBadge && (
                 <span
-                  className="absolute top-5 left-1/2 -translate-x-1/2 z-10 px-6 py-2 rounded-full text-[10px] tracking-luxe uppercase whitespace-nowrap"
+                  className="absolute top-4 left-1/2 -translate-x-1/2 z-10 min-w-[210px] px-8 py-3 rounded-full text-center text-[10px] tracking-luxe uppercase whitespace-nowrap"
                   style={{
                     fontFamily: "'Jost', sans-serif",
                     backgroundColor:
@@ -1911,10 +1928,11 @@ function Pricing() {
                         ? "#c97a7a"
                         : "var(--gold)",
                     color: "var(--ink)",
+                    fontWeight: 700,
                     boxShadow:
                       t.topBadge.tone === "pink"
                         ? "0 8px 20px -10px rgba(201,122,122,0.45)"
-                        : "0 8px 20px -10px rgba(120,80,60,0.35)",
+                        : "0 16px 34px -18px rgba(120,80,60,0.55)",
                   }}
                 >
                   {t.topBadge.label}
