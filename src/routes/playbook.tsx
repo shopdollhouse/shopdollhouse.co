@@ -9541,20 +9541,20 @@ const PROPOSAL_DECKS: PDeck[] = [
   /* ── Website Proposal ──────────────────────────────────────────────────── */
   {
     id: "website", name: "Website Proposal", icon: "globe",
-    tagline: "A high-converting website that works while you sleep",
+    tagline: "A lead-capturing website system that works while you sleep",
     slides: [
       {
         layout: "title", bg: "dark",
         heading: "Your Website Should\nBe Working For You",
         sub: "The Dollhouse Brand Studio",
-        script: "Thank you for sitting down with me today. What I want to show you is how a well-built website completely changes the way clients find you, trust you, and reach out — without you having to chase anyone.",
+        script: "Thank you for sitting down with me today. What I want to show you is how your website can become more than a page people visit. It can become a lead system: it captures inquiries, texts people back, sends them to booking, helps build your Google reviews, and gives you more chances to turn visitors into paying clients.",
       },
       {
         layout: "headline", bg: "blush",
         heading: "Your website is your storefront.",
         sub: "Is it open — or is it turning people away?",
         body: "Most business websites lose leads before a single word is read.",
-        script: "Think of your website as the front door of your business. When someone Googles you, finds your Instagram, or hears about you from a friend — the first thing they do is go to your website. And in about three seconds, they've decided whether to stay or leave. We build websites that make them stay.",
+        script: "Think of your website as the front door of your business. When someone Googles you, finds your Instagram, or hears about you from a friend, the first thing they do is go to your website. In a few seconds, they decide if they trust you. But trust is only step one. We also want the website to push them into action: call, text, request an estimate, fill out a quote form, or book an appointment.",
       },
       {
         layout: "bullets", bg: "dark",
@@ -9564,16 +9564,17 @@ const PROPOSAL_DECKS: PDeck[] = [
           "Slow or broken — they leave before the page even loads",
           "No clear call to action — they don't know what to do next",
           "Not mobile-friendly — over 80% of your traffic is on phones",
-          "Not showing up on Google — invisible to people actively searching for you",
+          "No instant follow-up — the lead gets cold while waiting",
+          "No estimate or booking flow — visitors browse, then disappear",
         ],
-        script: "This is what most business websites are doing wrong. And the worst part is — you might not even know it's happening, because the people leaving never tell you. They just go to your competitor instead.",
+        script: "This is what most business websites are doing wrong. The worst part is that you usually never see the lost lead. They do not message you and say, 'your site confused me.' They just leave. Or they fill out a form and wait too long for a reply. Or they call while you are busy and move on to the next company. We build the website so those moments are captured instead of wasted.",
       },
       {
         layout: "headline", bg: "rose",
         heading: "We build websites that convert.",
-        sub: "Designed for your brand. Built to generate leads.",
-        body: "Fast, mobile-first, and built to turn visitors into clients.",
-        script: "What we build is a premium, fully custom website designed around your brand — and more importantly, designed to get visitors to take action. Book a call. Fill out a form. Buy a product. That's what a website is actually for, and that's what we build.",
+        sub: "Designed for your brand. Built to capture leads.",
+        body: "Fast, mobile-first, and connected to texts, booking, reviews, forms, and follow-up.",
+        script: "What we build is a premium website designed around your brand, but the real value is what happens after someone lands on it. We can add quote forms, booking surveys, clickable phone numbers, website chat, missed-call text back, estimate calculators, and automated follow-up. The goal is not just a beautiful website. The goal is more people contacting you, more people booking, and fewer inquiries falling through the cracks.",
       },
       {
         layout: "image", bg: "light",
@@ -9595,24 +9596,25 @@ const PROPOSAL_DECKS: PDeck[] = [
         layout: "bullets", bg: "dark",
         heading: "What's included",
         bullets: [
-          "Custom design — built around your brand, not a template",
-          "Mobile-first — looks perfect on every device",
-          "Contact forms, booking links, and lead capture built in",
-          "SEO foundation — so Google can actually find you",
-          "Fast load times — built for performance",
-          "Ongoing support — we handle updates and fixes",
+          "Functional 10-20 page website — built around your services and local market",
+          "Quote forms and booking surveys — turn visitors into real leads",
+          "Missed-call text back — inquiries get a reply even when you're busy",
+          "Website chat and SMS confirmations — start text conversations automatically",
+          "Estimate calculators for contractors — collect project details before the call",
+          "Review funnel, QR codes, and Google review links — build public trust",
+          "On-site SEO foundation — service pages, alt tags, schema, and page speed",
         ],
-        script: "Here's exactly what's included. This is not a template or a website builder. This is a fully custom site built by our team from the ground up, designed specifically for your business and your ideal clients.",
+        script: "Here's exactly what is included. This is not just a template or a website builder. We build the pages your customers need to see, and then we connect the website to the actions that make you money. If someone wants an estimate, they can answer a few questions and become a lead. If someone calls and you miss it, they can get an automatic text back. If someone had a good experience, we can send them straight to leave a five-star Google review. Everything is built around turning attention into booked conversations.",
       },
       {
         layout: "steps", bg: "light",
         heading: "Our process",
         steps: [
-          { n: "01", title: "Discovery", desc: "We learn your brand, your clients, and exactly what action you want visitors to take." },
-          { n: "02", title: "Design & Build", desc: "We create your full site — you review, we refine. Usually 2–3 weeks." },
-          { n: "03", title: "Launch & Support", desc: "Your site goes live. We handle updates and keep everything running." },
+          { n: "01", title: "Map the lead path", desc: "We decide what visitors should do: call, text, book, request a quote, or use an estimate calculator." },
+          { n: "02", title: "Build the website system", desc: "We create the pages, forms, booking flow, SMS confirmations, review funnel, and automation." },
+          { n: "03", title: "Launch and capture", desc: "Your site goes live. Leads go into text follow-up, calendar booking, and review/reputation flows." },
         ],
-        script: "The process is clear and fast. We start with a deep-dive to understand your brand and your goals. Then we design and build — you'll see the site before it goes live and can request changes. Once you approve it, we launch. And we don't disappear after that — we're here for ongoing support.",
+        script: "The process is clear. First, we map the lead path. For a contractor, that might be an estimate calculator that asks about the project and sends the lead into a booking survey. For a med spa, that might be a consultation request with instant text confirmation. For any service business, the point is the same: the website should tell people what to do next, then the system should follow up automatically.",
       },
       {
         layout: "pricing", bg: "blush",
@@ -10494,15 +10496,15 @@ const PROPOSAL_DECKS: PDeck[] = [
       {
         layout: "funnel", bg: "blush",
         heading: "The growth engine we build",
-        sub: "Content gets attention. Ads bring the right people in. Automation turns that interest into booked conversations.",
+        sub: "Content gets attention. Your website captures the lead. Automation replies, books, follows up, and helps build reviews.",
         steps: [
           { n: "01", title: "Attract", desc: "Daily content and paid ads make your business visible to the right local audience." },
-          { n: "02", title: "Capture", desc: "Website forms, DMs, missed calls, and chat all feed into one lead system." },
+          { n: "02", title: "Capture", desc: "Website forms, estimate calculators, DMs, missed calls, and chat all feed into one lead system." },
           { n: "03", title: "Reply", desc: "Leads get instant text, email, or DM responses before they move on." },
-          { n: "04", title: "Book", desc: "Booking links, reminders, and follow-ups help turn interest into appointments." },
-          { n: "05", title: "Repeat", desc: "Reviews and campaigns keep past clients coming back and referring more people." },
+          { n: "04", title: "Book", desc: "Booking links, surveys, reminders, and follow-ups help turn interest into appointments." },
+          { n: "05", title: "Review", desc: "5-star clients go to Google. Lower ratings go to a private feedback form so you can fix issues." },
         ],
-        script: "Here's the simple version of what we do. We do not just make posts. We build a growth engine. First we get you seen. Then we capture the lead. Then the system replies instantly, follows up, books them, and keeps the relationship going after the first visit.",
+        script: "Here's the simple version of what we do. We do not just make posts. We build a growth engine. First, we get you seen. Then your website, forms, chat, missed-call text back, or estimate calculator captures the lead. Then the system replies instantly, sends the booking link, reminds them, and keeps following up. After they become a customer, the review funnel helps turn happy customers into public Google reviews while private feedback goes directly to you.",
       },
       {
         layout: "steps", bg: "dark",
@@ -10615,18 +10617,18 @@ const PROPOSAL_DECKS: PDeck[] = [
         heading: "Automation System",
         sub: "Every person who reaches out gets an instant reply — even at 3am.",
         body: "When someone sends you a message, calls, or fills out a form on your website — our system sends them an instant reply, a booking link, and follows up automatically until they book.",
-        script: "Here's a question for you. Have you ever had someone reach out to your business after hours and then never heard from them again? That happens all the time. People message, don't get a quick reply, and they move on to the next option. Our automation system fixes that completely. The second someone contacts you — from any source — they get an instant, friendly reply with all the information they need to book. You're not even awake. The system does it for you.",
+        script: "Here's the part that makes the system feel different. Have you ever missed a call because you were with a client, on a job, driving, or offline? That person might have been ready to book, but if they do not hear back quickly, they often move on. With missed-call text back, they can get an instant message from your business even when you cannot answer. If someone fills out a form, uses an estimate calculator, sends a DM, or clicks your booking link, the system can reply, confirm, and move them toward an appointment. The outcome is simple: fewer lost inquiries and more people booked on your calendar.",
       },
       {
         layout: "steps", bg: "light",
         heading: "How the automation works",
         steps: [
-          { n: "01", title: "Someone contacts you", desc: "A person sends a DM, fills out your web form, or clicks your ad. Doesn't matter what time — day or night." },
-          { n: "02", title: "They get an instant reply", desc: "Within seconds, they receive a friendly message from your business with information and a link to book. Looks like you sent it." },
-          { n: "03", title: "Automatic follow-ups", desc: "If they don't book right away, the system sends them reminders over the next 1–2 weeks. Most people book on the 3rd or 4th follow-up." },
-          { n: "04", title: "You just get the bookings", desc: "You wake up in the morning and see new appointments in your calendar. The system did all the work while you slept." },
+          { n: "01", title: "Someone contacts you", desc: "A person calls, sends a DM, fills out your web form, uses an estimate calculator, or clicks your ad." },
+          { n: "02", title: "They get an instant reply", desc: "Within seconds, they receive a friendly text, email, or DM with next steps and a booking link." },
+          { n: "03", title: "The system keeps nudging", desc: "If they do not book right away, follow-ups continue so the lead does not disappear." },
+          { n: "04", title: "They book or request a quote", desc: "You can wake up or finish an appointment and already have inquiries, estimates, or bookings waiting." },
         ],
-        script: "Think of it like having a receptionist who never sleeps. The moment someone contacts your business, they hear from you. If they don't book right away, they get a follow-up. Then another one. Most people need 3 or 4 touches before they book. Without automation, those people are gone. With it, they become clients. And you did nothing. Zero work.",
+        script: "Think of it like having a receptionist who never sleeps. The moment someone contacts your business, the system answers the first step for you. If they call and you miss it, they can get a text. If they fill out a form, they can get a confirmation. If they need a quote, we can send them through the right questions. If they do not book right away, the system follows up again. This is how you turn more inquiries into booked appointments without personally chasing every single person.",
       },
       {
         layout: "headline", bg: "dark",
@@ -10641,11 +10643,13 @@ const PROPOSAL_DECKS: PDeck[] = [
         bullets: [
           "Automations run 24/7 — even when you're asleep, on holiday, or with another client",
           "Appointments show up on their calendar automatically — no back and forth, no manual booking",
-          "5-star reviews build on autopilot — clients rank higher on Google every month they stay",
+          "5-star reviews build on autopilot — happy clients go straight to Google",
+          "Lower ratings go to private feedback — the owner can fix the issue before it becomes public",
+          "QR codes and past-client review prompts help raise Google ratings faster",
           "Missed calls get an instant text-back — they never lose a lead to a faster competitor again",
           "You're not paying for a website — you're paying for a system that generates leads while you sleep",
         ],
-        script: "Let me be honest with you about why this works so well long term. Most agencies sell you something and then disappear. What we build is a system that runs 24 hours a day, 7 days a week — appointments booking themselves, reviews growing, leads getting followed up automatically. When a client thinks about cancelling, they realize that if they cancel, all of that stops. The automations stop. The text-backs stop. The review funnel stops. That's why our clients don't cancel. Not because we lock them in — but because the system is genuinely making them money while they sleep.",
+        script: "Let me be honest with you about why this works so well long term. Most agencies sell you something and disappear. What we build is a system that keeps working every day. The missed-call text back keeps leads from going cold. The booking follow-up keeps people moving toward the calendar. The review funnel sends five-star clients straight to Google, while lower ratings go to a private form that tells the owner what happened. We can create QR codes so customers can leave reviews from the front desk, a receipt, or a card. We can also take a list of past clients and prompt them to leave a rating, which helps your Google rating and trust go up. That is why clients keep the system. If they cancel, all those lead and review engines stop.",
       },
       {
         layout: "metrics", bg: "blush",
@@ -10702,14 +10706,32 @@ function getReadAloudScript(deck: PDeck, slide: PSlide, slideIndex: number) {
       ? "This is the full system. The reason it works is because every step connects to the next one."
       : "";
 
+  const heading = slide.heading.toLowerCase();
+  const featureOutcome =
+    heading.includes("website") || heading.includes("storefront")
+      ? "The outcome of the website is not just that it looks pretty. The outcome is that when someone lands on it, they know what you do, they trust you faster, and they have an easy way to become a lead. For service businesses, we can also add quote forms, booking surveys, and estimate calculators so a visitor does not just browse and leave. They answer a few simple questions, the system captures their information, and now you have a real lead to follow up with."
+      : heading.includes("automation") || heading.includes("follow") || heading.includes("reply") || heading.includes("text")
+      ? "The outcome of automation is speed. If someone calls while you are busy, in an appointment, driving, or offline, they do not sit there waiting. Missed-call text back can reply for you, the lead can get a booking link, and the system can keep following up. That means you can wake up or finish a client appointment and already have new people booked on your calendar."
+      : heading.includes("review") || heading.includes("reputation") || heading.includes("google")
+      ? "The outcome of the review system is stronger trust on Google. We can build a review link where five-star clients go straight to your Google rating page, while anyone who clicks a lower rating goes to a private form asking what went wrong. That feedback goes to the owner instead of becoming a public bad review. We can also create QR codes for the front desk, receipts, cards, or follow-up texts, and we can upload a list of past clients so the system prompts them to leave a rating. The goal is simple: more public five-star reviews, better Google trust, and fewer unhappy clients posting publicly before you can fix it."
+      : heading.includes("ad") || heading.includes("facebook") || heading.includes("instagram")
+      ? "The outcome of ads is targeted attention. We are not just boosting random posts. We are putting your offer in front of the people most likely to book, sending them to a page or form that captures their information, and then using follow-up so that click does not get wasted."
+      : heading.includes("clone") || heading.includes("content") || heading.includes("social")
+      ? "The outcome of content is trust before the person ever contacts you. People should see your business, understand what you offer, and feel like you are active and credible. The AI clone and branded content help you show up consistently without needing to film, write captions, design posts, or remember to post every day."
+      : heading.includes("math") || heading.includes("cost")
+      ? "The reason this matters is because one saved lead can change the month. If the system captures a missed call, turns one website visitor into a booked estimate, or gets one extra person to trust your Google reviews and schedule, the system starts paying for itself."
+      : "";
+
   const close =
     slide.layout === "pricing" || slide.layout === "cta"
       ? "As you look at this, I want you to think less about the monthly payment and more about what one extra booked client is worth. If this system helps you capture even one lead you would have missed, the investment starts making sense very quickly."
       : slideIndex === deck.slides.length - 1
       ? "The best next step is choosing the plan that fits your goals and letting us start the setup while everything is fresh. What questions do you have before we decide which path makes the most sense?"
-      : "Before I move on, does this part match what you are experiencing in your business right now?";
+      : heading.includes("which of these sounds like you")
+      ? "Pause here and let them answer. Their answer tells you what to focus on next: content if they need visibility, ads if they need reach, automation if they are losing inquiries, or the full system if they need everything connected."
+      : "";
 
-  return [intro, visualCue, layoutCue, slide.script, close].filter(Boolean).join("\n\n");
+  return [intro, visualCue, layoutCue, slide.script, featureOutcome, close].filter(Boolean).join("\n\n");
 }
 
 /* ── Slide visual renderer (1280 × 720 internal canvas) ─────────────────── */
