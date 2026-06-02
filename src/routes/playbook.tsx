@@ -9402,20 +9402,29 @@ async function idbDelete(key: string): Promise<void> {
 
 interface PStep { n: string; title: string; desc: string; }
 interface PPrice { name: string; price: string; tag?: string; }
+interface PMetric { value: string; label: string; caption: string; }
 interface PSlide {
-  layout: "title" | "headline" | "bullets" | "steps" | "image" | "pricing" | "cta" | "live_quote" | "before_after";
+  layout: "title" | "headline" | "bullets" | "steps" | "image" | "pricing" | "cta" | "live_quote" | "before_after" | "metrics" | "funnel" | "industry_grid";
   bg: "dark" | "light" | "blush" | "rose";
   heading: string;
   sub?: string;
   body?: string;
   bullets?: string[];
   steps?: PStep[];
+  metrics?: PMetric[];
   imageSlot?: true;
   imageLabel?: string;
   prices?: PPrice[];
   script: string;
 }
 interface PDeck { id: string; name: string; icon: string; tagline: string; slides: PSlide[]; }
+
+const LIVE_QUOTE_BUILDER_SLIDE: PSlide = {
+  layout: "live_quote",
+  bg: "dark",
+  heading: "Let's build your plan right now",
+  script: "Now let's build your exact plan live. We'll choose the best package, add anything your business needs, and compare the 6-month and annual options. If annual makes sense, you'll see the exact savings from the free 12th month right on the screen. No hidden fees — the only separate cost is ad spend if we're running ads, and that is paid directly to the ad platform.",
+};
 
 const PROPOSAL_DECKS: PDeck[] = [
   /* ── AI Clone ──────────────────────────────────────────────────────────── */
@@ -9545,8 +9554,8 @@ const PROPOSAL_DECKS: PDeck[] = [
       {
         layout: "cta", bg: "rose",
         heading: "Choose the path that fits your season.",
-        sub: "$500 setup fee  ·  3, 6, or 12-month options  ·  Growth clients get the last month free on 6 or 12 months",
-        script: "Here's the offer. Every plan starts with a $500 setup fee so we can build the system correctly. You can choose 3 months if you want to start small, or 6 to 12 months if you want the system to compound. If you choose the full Growth plan on a 6 or 12-month contract, your last month is free. The goal is simple: get your marketing running, prove the system, and turn more leads into booked clients.",
+        sub: "$500 one-time setup  ·  6 or 12-month options  ·  Annual clients get the 12th month free",
+        script: "Here's the offer. Every plan starts with a one-time $500 setup fee so we can build the system correctly. You can choose a 6-month start or an annual plan if you want the best value. Annual clients get the 12th month free, and the quote builder will show the exact savings.",
       },
       {
         layout: "title", bg: "dark",
@@ -9554,6 +9563,7 @@ const PROPOSAL_DECKS: PDeck[] = [
         sub: "The Dollhouse Brand Studio",
         script: "So — based on everything I've shown you today, can you see this working for your business? [Pause. Let them respond. Do not fill the silence. Whoever speaks first, loses. This moment is the most important part of the entire pitch.]",
       },
+      LIVE_QUOTE_BUILDER_SLIDE,
       {
         layout: "title", bg: "dark",
         heading: "Thank you.",
@@ -9566,20 +9576,20 @@ const PROPOSAL_DECKS: PDeck[] = [
   /* ── Website Proposal ──────────────────────────────────────────────────── */
   {
     id: "website", name: "Website Proposal", icon: "globe",
-    tagline: "A high-converting website that works while you sleep",
+    tagline: "A lead-capturing website system that works while you sleep",
     slides: [
       {
         layout: "title", bg: "dark",
         heading: "Your Website Should\nBe Working For You",
         sub: "The Dollhouse Brand Studio",
-        script: "Thank you for sitting down with me today. What I want to show you is how a well-built website completely changes the way clients find you, trust you, and reach out — without you having to chase anyone.",
+        script: "Thank you for sitting down with me today. What I want to show you is how your website can become more than a page people visit. It can become a lead system: it captures inquiries, texts people back, sends them to booking, helps build your Google reviews, and gives you more chances to turn visitors into paying clients.",
       },
       {
         layout: "headline", bg: "blush",
         heading: "Your website is your storefront.",
         sub: "Is it open — or is it turning people away?",
         body: "Most business websites lose leads before a single word is read.",
-        script: "Think of your website as the front door of your business. When someone Googles you, finds your Instagram, or hears about you from a friend — the first thing they do is go to your website. And in about three seconds, they've decided whether to stay or leave. We build websites that make them stay.",
+        script: "Think of your website as the front door of your business. When someone Googles you, finds your Instagram, or hears about you from a friend, the first thing they do is go to your website. In a few seconds, they decide if they trust you. But trust is only step one. We also want the website to push them into action: call, text, request an estimate, fill out a quote form, or book an appointment.",
       },
       {
         layout: "bullets", bg: "dark",
@@ -9589,16 +9599,17 @@ const PROPOSAL_DECKS: PDeck[] = [
           "Slow or broken — they leave before the page even loads",
           "No clear call to action — they don't know what to do next",
           "Not mobile-friendly — over 80% of your traffic is on phones",
-          "Not showing up on Google — invisible to people actively searching for you",
+          "No instant follow-up — the lead gets cold while waiting",
+          "No estimate or booking flow — visitors browse, then disappear",
         ],
-        script: "This is what most business websites are doing wrong. And the worst part is — you might not even know it's happening, because the people leaving never tell you. They just go to your competitor instead.",
+        script: "This is what most business websites are doing wrong. The worst part is that you usually never see the lost lead. They do not message you and say, 'your site confused me.' They just leave. Or they fill out a form and wait too long for a reply. Or they call while you are busy and move on to the next company. We build the website so those moments are captured instead of wasted.",
       },
       {
         layout: "headline", bg: "rose",
         heading: "We build websites that convert.",
-        sub: "Designed for your brand. Built to generate leads.",
-        body: "Fast, mobile-first, and built to turn visitors into clients.",
-        script: "What we build is a premium, fully custom website designed around your brand — and more importantly, designed to get visitors to take action. Book a call. Fill out a form. Buy a product. That's what a website is actually for, and that's what we build.",
+        sub: "Designed for your brand. Built to capture leads.",
+        body: "Fast, mobile-first, and connected to texts, booking, reviews, forms, and follow-up.",
+        script: "What we build is a premium website designed around your brand, but the real value is what happens after someone lands on it. We can add quote forms, booking surveys, clickable phone numbers, website chat, missed-call text back, estimate calculators, and automated follow-up. The goal is not just a beautiful website. The goal is more people contacting you, more people booking, and fewer inquiries falling through the cracks.",
       },
       {
         layout: "image", bg: "light",
@@ -9620,24 +9631,25 @@ const PROPOSAL_DECKS: PDeck[] = [
         layout: "bullets", bg: "dark",
         heading: "What's included",
         bullets: [
-          "Custom design — built around your brand, not a template",
-          "Mobile-first — looks perfect on every device",
-          "Contact forms, booking links, and lead capture built in",
-          "SEO foundation — so Google can actually find you",
-          "Fast load times — built for performance",
-          "Ongoing support — we handle updates and fixes",
+          "Functional 10-20 page website — built around your services and local market",
+          "Quote forms and booking surveys — turn visitors into real leads",
+          "Missed-call text back — inquiries get a reply even when you're busy",
+          "Website chat and SMS confirmations — start text conversations automatically",
+          "Estimate calculators for contractors — collect project details before the call",
+          "Review funnel, QR codes, and Google review links — build public trust",
+          "On-site SEO foundation — service pages, alt tags, schema, and page speed",
         ],
-        script: "Here's exactly what's included. This is not a template or a website builder. This is a fully custom site built by our team from the ground up, designed specifically for your business and your ideal clients.",
+        script: "Here's exactly what is included. This is not just a template or a website builder. We build the pages your customers need to see, and then we connect the website to the actions that make you money. If someone wants an estimate, they can answer a few questions and become a lead. If someone calls and you miss it, they can get an automatic text back. If someone had a good experience, we can send them straight to leave a five-star Google review. Everything is built around turning attention into booked conversations.",
       },
       {
         layout: "steps", bg: "light",
         heading: "Our process",
         steps: [
-          { n: "01", title: "Discovery", desc: "We learn your brand, your clients, and exactly what action you want visitors to take." },
-          { n: "02", title: "Design & Build", desc: "We create your full site — you review, we refine. Usually 2–3 weeks." },
-          { n: "03", title: "Launch & Support", desc: "Your site goes live. We handle updates and keep everything running." },
+          { n: "01", title: "Map the lead path", desc: "We decide what visitors should do: call, text, book, request a quote, or use an estimate calculator." },
+          { n: "02", title: "Build the website system", desc: "We create the pages, forms, booking flow, SMS confirmations, review funnel, and automation." },
+          { n: "03", title: "Launch and capture", desc: "Your site goes live. Leads go into text follow-up, calendar booking, and review/reputation flows." },
         ],
-        script: "The process is clear and fast. We start with a deep-dive to understand your brand and your goals. Then we design and build — you'll see the site before it goes live and can request changes. Once you approve it, we launch. And we don't disappear after that — we're here for ongoing support.",
+        script: "The process is clear. First, we map the lead path. For a contractor, that might be an estimate calculator that asks about the project and sends the lead into a booking survey. For a med spa, that might be a consultation request with instant text confirmation. For any service business, the point is the same: the website should tell people what to do next, then the system should follow up automatically.",
       },
       {
         layout: "pricing", bg: "blush",
@@ -9656,6 +9668,7 @@ const PROPOSAL_DECKS: PDeck[] = [
         sub: "The Dollhouse Brand Studio",
         script: "So — what do you think? Does this feel like what your business needs right now? [Pause and let them answer. Don't rush this moment.]",
       },
+      LIVE_QUOTE_BUILDER_SLIDE,
       {
         layout: "title", bg: "dark",
         heading: "Thank you.",
@@ -9759,6 +9772,7 @@ const PROPOSAL_DECKS: PDeck[] = [
         sub: "The Dollhouse Brand Studio",
         script: "So — can you see this for your brand? What does your gut tell you? [Pause and let them respond. Don't fill the silence.]",
       },
+      LIVE_QUOTE_BUILDER_SLIDE,
       {
         layout: "title", bg: "dark",
         heading: "Thank you.",
@@ -9892,8 +9906,8 @@ const PROPOSAL_DECKS: PDeck[] = [
       {
         layout: "cta", bg: "rose",
         heading: "Choose your growth path.",
-        sub: "$500 setup fee  ·  3, 6, or 12-month options  ·  Growth clients get the last month free on 6 or 12 months",
-        script: "The next step is choosing the path that fits your business right now. We can start with the foundation, keep your content active, or build the full Growth system. The $500 setup fee covers the buildout, and if you choose Growth for 6 or 12 months, your last month is free. That gives the system enough time to start compounding.",
+        sub: "$500 one-time setup  ·  6 or 12-month options  ·  Annual clients get the 12th month free",
+        script: "The next step is choosing the path that fits your business right now. We can start with the foundation, keep your content active, or build the full Growth system. The $500 setup fee covers the buildout, and if you choose the annual option, your 12th month is free. The quote builder will show the exact savings.",
       },
       {
         layout: "title", bg: "dark",
@@ -9901,6 +9915,7 @@ const PROPOSAL_DECKS: PDeck[] = [
         sub: "The Dollhouse Brand Studio",
         script: "So — based on everything I've shown you today, can you see this system working for your business? What's your honest reaction? [Pause. Let them speak. Do not fill the silence. This is the moment that matters most.]",
       },
+      LIVE_QUOTE_BUILDER_SLIDE,
       {
         layout: "title", bg: "dark",
         heading: "Thank you.",
@@ -10019,6 +10034,7 @@ const PROPOSAL_DECKS: PDeck[] = [
         sub: "The Dollhouse Brand Studio",
         script: "So — when you imagine your brand looking like the examples I just showed you — how does that feel? Can you see it? [Pause and let them sit with it. This is an emotional decision. Give them space to feel it.]",
       },
+      LIVE_QUOTE_BUILDER_SLIDE,
       {
         layout: "title", bg: "dark",
         heading: "Thank you.",
@@ -10156,8 +10172,8 @@ const PROPOSAL_DECKS: PDeck[] = [
       {
         layout: "cta", bg: "rose",
         heading: "This is already built.\nAll you have to do\nis say yes.",
-        sub: "$500 setup fee  ·  14-day free trial  ·  6-month minimum  ·  30-day cancellation notice",
-        script: "I want to be direct with you. We built this before you walked in today because we believed in your business enough to invest in it first. Everything you saw — it exists, it's ready, it can go live this week. The only thing standing between your business and this content running is one decision. We start with a 6-month minimum — you'll see real results within 90 days, and months 4 through 6 are where the growth really compounds — and after that, 30 days' notice if you ever need to stop. But I'm confident enough in what we build that I'm willing to put the first two weeks on us. So — what do you think?",
+        sub: "$500 one-time setup  ·  14-day free trial  ·  6 or 12-month options  ·  Annual saves 1 month",
+        script: "I want to be direct with you. We built this before you walked in today because we believed in your business enough to invest in it first. Everything you saw exists, it is ready, and it can go live this week. The only thing standing between your business and this content running is one decision. We can start with 6 months, or if annual makes sense, your 12th month is free. The first two weeks are on us so you can see the system working.",
       },
       {
         layout: "title", bg: "dark",
@@ -10165,6 +10181,7 @@ const PROPOSAL_DECKS: PDeck[] = [
         sub: "The Dollhouse Brand Studio",
         script: "[Say nothing. Let them sit with everything they've seen. If they ask a question, answer it calmly. If they go quiet — let them. Do not fill the silence. You've done the work. You showed them what's possible. Now let them decide. The first person to speak after this slide loses.]",
       },
+      LIVE_QUOTE_BUILDER_SLIDE,
       {
         layout: "title", bg: "dark",
         heading: "Thank you.",
@@ -10247,8 +10264,8 @@ const PROPOSAL_DECKS: PDeck[] = [
         layout: "headline", bg: "rose",
         heading: "AI Review Automation.",
         sub: "More 5-star reviews. Zero effort.",
-        body: "After every completed service, your system automatically requests a review — at exactly the right moment.",
-        script: "Here's one more thing this system does for you. After every client you serve, the system automatically sends them a review request — at exactly the right moment when they're happiest with your work. You know how you always mean to ask clients for reviews but never remember? This does it for you. Every single time. No exceptions. For most of our clients, their review count doubles within 90 days.",
+        body: "Happy clients go straight to Google. Lower ratings go to private feedback first.",
+        script: "Here's one more thing this system does for you. After every client you serve, the system automatically asks for a review at the right moment. If they click five stars, they go straight to your Google review page so the public rating goes up. If they click a lower rating, they go to a private feedback form that asks what happened, and that message goes to the owner. That gives you a chance to fix the issue before it becomes a public bad review. We can also create QR codes for your front desk, receipts, cards, or follow-up texts, and we can upload a list of past clients so the system asks them to leave a rating too.",
       },
       {
         layout: "steps", bg: "light",
@@ -10267,11 +10284,13 @@ const PROPOSAL_DECKS: PDeck[] = [
           "AI Voice Agent — answers calls, books appointments, 24/7",
           "DM Responder — instant replies on Instagram and Facebook",
           "Lead follow-up sequences — SMS and email, fully automated",
-          "Review requests — sent automatically after every service",
+          "Review funnel — 5-star to Google, lower ratings to private feedback",
+          "QR review codes — make it easy for customers to leave a review in person",
+          "Past-client review campaigns — prompt old customers to raise your Google rating",
           "Appointment booking + reminders — no-shows eliminated",
           "Re-engagement campaigns — wake up cold leads automatically",
         ],
-        script: "So here's the full picture of what your automation system looks like when it's all running together. Every entry point into your business — phone, DMs, web form, email — covered. Every stage of the client journey — first contact, follow-up, booking, reminder, review — automated. You focus on delivering your service. The system handles everything else.",
+        script: "So here's the full picture of what your automation system looks like when it's all running together. Every entry point into your business — phone, DMs, web form, estimate calculator, booking page, email — is covered. Every stage of the client journey is covered too: first contact, follow-up, booking, reminder, review, and re-engagement. The review funnel is especially powerful because happy clients are routed to Google, lower ratings are routed to private feedback, and QR codes or past-client campaigns make it easy to collect more ratings. You focus on delivering your service. The system handles the parts that usually get missed.",
       },
       {
         layout: "image", bg: "dark",
@@ -10305,6 +10324,7 @@ const PROPOSAL_DECKS: PDeck[] = [
         sub: "The Dollhouse Brand Studio",
         script: "So — how many leads do you think you're losing right now every week? And what would it mean for your business if you stopped losing them? [Let them answer. This question plants the seed. Whatever number they say — agree with it. That's your ROI argument. Then ask: 'What would you say if I could show you exactly how to fix that today?']",
       },
+      LIVE_QUOTE_BUILDER_SLIDE,
       {
         layout: "title", bg: "dark",
         heading: "Thank you.",
@@ -10499,16 +10519,28 @@ const PROPOSAL_DECKS: PDeck[] = [
         script: "I want to start by asking you something. When someone looks up your business online right now — what do they see? Most business owners I talk to are posting once in a while when they remember, or not at all. Their Instagram looks empty or inconsistent. And because of that, they're losing clients to competitors who just look better online. That's not about the quality of your work — it's about visibility. And that's exactly what we fix.",
       },
       {
-        layout: "bullets", bg: "blush",
-        heading: "Here is what we do for you",
-        bullets: [
-          "Post on your social media every single day — you never touch your phone to post",
-          "Create an AI version of you — videos that look and sound like you, without filming",
-          "Run Facebook and Instagram ads — bringing new clients directly to your booking page",
-          "Set up automations — when someone messages you, they get an instant reply 24/7",
-          "Send follow-up emails and texts — so leads don't fall through the cracks",
+        layout: "metrics", bg: "light",
+        heading: "The hidden cost of looking quiet online",
+        sub: "Most lost revenue is quiet: a lead who never got a fast reply, a missed call, or a prospect who chose the business that looked more active.",
+        metrics: [
+          { value: "Fast", label: "Reply speed", caption: "The first business to respond often feels like the safest choice." },
+          { value: "Daily", label: "Visible trust", caption: "Consistent content makes your business look open, active, and ready." },
+          { value: "3-4x", label: "Follow-up touches", caption: "Most interested leads need more than one message before they book." },
         ],
-        script: "Here's the simple version of what we do. We handle everything online so you can focus on your actual work. Think of us like having a full social media team — but at a fraction of the cost, and everything is done specifically for your business. You don't need to know anything about social media. That's our job.",
+        script: "Before I show you services, I want to show you what this is really solving. The problem usually isn't that people dislike your business. It's that they do not see you enough, they do not hear back fast enough, or they forget to book. That is the quiet revenue leak we fix.",
+      },
+      {
+        layout: "funnel", bg: "blush",
+        heading: "The growth engine we build",
+        sub: "Content gets attention. Your website captures the lead. Automation replies, books, follows up, and helps build reviews.",
+        steps: [
+          { n: "01", title: "Attract", desc: "Daily content and paid ads make your business visible to the right local audience." },
+          { n: "02", title: "Capture", desc: "Website forms, estimate calculators, DMs, missed calls, and chat all feed into one lead system." },
+          { n: "03", title: "Reply", desc: "Leads get instant text, email, or DM responses before they move on." },
+          { n: "04", title: "Book", desc: "Booking links, surveys, reminders, and follow-ups help turn interest into appointments." },
+          { n: "05", title: "Review", desc: "5-star clients go to Google. Lower ratings go to a private feedback form so you can fix issues." },
+        ],
+        script: "Here's the simple version of what we do. We do not just make posts. We build a growth engine. First, we get you seen. Then your website, forms, chat, missed-call text back, or estimate calculator captures the lead. Then the system replies instantly, sends the booking link, reminds them, and keeps following up. After they become a customer, the review funnel helps turn happy customers into public Google reviews while private feedback goes directly to you.",
       },
       {
         layout: "steps", bg: "dark",
@@ -10531,21 +10563,21 @@ const PROPOSAL_DECKS: PDeck[] = [
           "Every person who contacts you gets an instant reply — even at 2am",
           "You see and approve everything before it goes live — you're always in control",
           "We show you exactly what's working every month — in plain, simple language",
-          "3, 6, and 12-month options — with the best value on the full Growth system",
+          "6 and 12-month options — annual clients get the 12th month free",
         ],
         script: "Here's why businesses like yours choose The Dollhouse. We're not just a posting service. We build your entire online system — content, automation, ads, and follow-up — all in one place. And we're the only agency that builds you an AI clone of yourself. That means even when you're busy with clients, your brand is out there every day looking amazing.",
       },
       {
-        layout: "bullets", bg: "light",
+        layout: "industry_grid", bg: "light",
         heading: "Best fit industries",
         bullets: [
-          "Roofing contractors — more quote requests and faster text follow-up",
-          "HVAC companies — seasonal campaigns, missed-call text back, and reviews",
-          "Plumbers & electricians — emergency leads answered fast",
-          "Med spas & aesthetic clinics — content, booking, offers, and nurture",
-          "Chiropractors — local trust, patient education, and appointment reminders",
-          "Physical therapists — referral support, follow-up, and reputation building",
-          "Local law firms — personal injury or family law inquiries organized and followed up",
+          "Roofing contractors",
+          "HVAC companies",
+          "Plumbers & electricians",
+          "Med spas & aesthetic clinics",
+          "Chiropractors",
+          "Physical therapists",
+          "Local law firms",
         ],
         script: "This system is strongest for businesses where one new client is worth real money, speed matters, and trust matters. Roofing, HVAC, plumbers, electricians, med spas, chiropractors, physical therapists, and local law firms are all a strong fit because they need calls, bookings, reviews, and follow-up to happen without the owner chasing every lead by hand.",
       },
@@ -10608,31 +10640,31 @@ const PROPOSAL_DECKS: PDeck[] = [
         bullets: [
           "Our management fee and your ad budget are two separate things",
           "Your ad budget goes directly to Facebook/Instagram — not to us",
-          "Ad spend minimum is $1,000/month — this is what gets real, measurable results",
-          "Ad spend minimum $1,000/mo — recommend starting at $1,000–$2,000/mo · no maximum, client decides",
-          "With $1,000–$2,000 we typically run 6 high-quality ads at a time",
+          "Recommended starting ad budget: $1,000–$2,000/mo for stronger testing",
+          "Client controls the ad spend — there is no maximum unless you set one",
+          "We usually start with a focused group of high-quality ads instead of random volume",
           "Quality of ads matters more than how many you run",
           "Most clients see their first results within the first 2–4 weeks",
         ],
-        script: "I want to be fully transparent about how ad spending works. There are two costs — what you pay us to manage the ads, and what you pay Facebook directly for the ads to run. These are completely separate. We recommend $1,000 a month to Facebook as your starting budget. That gives us enough to run 6 good ads and really test what works. You can start with $500, but I want to be honest — the results come slower. The sweet spot is $1,000. And remember — you're not paying that to us. It goes directly to Facebook.",
+        script: "I want to be fully transparent about how ad spending works. There are two costs: what you pay us to manage the ads, and what you pay Meta directly for the ads to run. Those are separate. For stronger testing, I usually recommend starting around $1,000 to $2,000 a month in ad spend because it gives us enough room to test creative, audiences, and offers properly. You control the spend. It does not go to us. It goes directly to the ad platform.",
       },
       {
         layout: "headline", bg: "blush",
         heading: "Automation System",
         sub: "Every person who reaches out gets an instant reply — even at 3am.",
         body: "When someone sends you a message, calls, or fills out a form on your website — our system sends them an instant reply, a booking link, and follows up automatically until they book.",
-        script: "Here's a question for you. Have you ever had someone reach out to your business after hours and then never heard from them again? That happens all the time. People message, don't get a quick reply, and they move on to the next option. Our automation system fixes that completely. The second someone contacts you — from any source — they get an instant, friendly reply with all the information they need to book. You're not even awake. The system does it for you.",
+        script: "Here's the part that makes the system feel different. Have you ever missed a call because you were with a client, on a job, driving, or offline? That person might have been ready to book, but if they do not hear back quickly, they often move on. With missed-call text back, they can get an instant message from your business even when you cannot answer. If someone fills out a form, uses an estimate calculator, sends a DM, or clicks your booking link, the system can reply, confirm, and move them toward an appointment. The outcome is simple: fewer lost inquiries and more people booked on your calendar.",
       },
       {
         layout: "steps", bg: "light",
         heading: "How the automation works",
         steps: [
-          { n: "01", title: "Someone contacts you", desc: "A person sends a DM, fills out your web form, or clicks your ad. Doesn't matter what time — day or night." },
-          { n: "02", title: "They get an instant reply", desc: "Within seconds, they receive a friendly message from your business with information and a link to book. Looks like you sent it." },
-          { n: "03", title: "Automatic follow-ups", desc: "If they don't book right away, the system sends them reminders over the next 1–2 weeks. Most people book on the 3rd or 4th follow-up." },
-          { n: "04", title: "You just get the bookings", desc: "You wake up in the morning and see new appointments in your calendar. The system did all the work while you slept." },
+          { n: "01", title: "Someone contacts you", desc: "A person calls, sends a DM, fills out your web form, uses an estimate calculator, or clicks your ad." },
+          { n: "02", title: "They get an instant reply", desc: "Within seconds, they receive a friendly text, email, or DM with next steps and a booking link." },
+          { n: "03", title: "The system keeps nudging", desc: "If they do not book right away, follow-ups continue so the lead does not disappear." },
+          { n: "04", title: "They book or request a quote", desc: "You can wake up or finish an appointment and already have inquiries, estimates, or bookings waiting." },
         ],
-        script: "Think of it like having a receptionist who never sleeps. The moment someone contacts your business, they hear from you. If they don't book right away, they get a follow-up. Then another one. Most people need 3 or 4 touches before they book. Without automation, those people are gone. With it, they become clients. And you did nothing. Zero work.",
+        script: "Think of it like having a receptionist who never sleeps. The moment someone contacts your business, the system answers the first step for you. If they call and you miss it, they can get a text. If they fill out a form, they can get a confirmation. If they need a quote, we can send them through the right questions. If they do not book right away, the system follows up again. This is how you turn more inquiries into booked appointments without personally chasing every single person.",
       },
       {
         layout: "headline", bg: "dark",
@@ -10647,27 +10679,26 @@ const PROPOSAL_DECKS: PDeck[] = [
         bullets: [
           "Automations run 24/7 — even when you're asleep, on holiday, or with another client",
           "Appointments show up on their calendar automatically — no back and forth, no manual booking",
-          "5-star reviews build on autopilot — clients rank higher on Google every month they stay",
+          "5-star reviews build on autopilot — happy clients go straight to Google",
+          "Lower ratings go to private feedback — the owner can fix the issue before it becomes public",
+          "QR codes and past-client review prompts help raise Google ratings faster",
           "Missed calls get an instant text-back — they never lose a lead to a faster competitor again",
           "You're not paying for a website — you're paying for a system that generates leads while you sleep",
         ],
-        script: "Let me be honest with you about why this works so well long term. Most agencies sell you something and then disappear. What we build is a system that runs 24 hours a day, 7 days a week — appointments booking themselves, reviews growing, leads getting followed up automatically. When a client thinks about cancelling, they realize that if they cancel, all of that stops. The automations stop. The text-backs stop. The review funnel stops. That's why our clients don't cancel. Not because we lock them in — but because the system is genuinely making them money while they sleep.",
+        script: "Let me be honest with you about why this works so well long term. Most agencies sell you something and disappear. What we build is a system that keeps working every day. The missed-call text back keeps leads from going cold. The booking follow-up keeps people moving toward the calendar. The review funnel sends five-star clients straight to Google, while lower ratings go to a private form that tells the owner what happened. We can create QR codes so customers can leave reviews from the front desk, a receipt, or a card. We can also take a list of past clients and prompt them to leave a rating, which helps your Google rating and trust go up. That is why clients keep the system. If they cancel, all those lead and review engines stop.",
       },
       {
-        layout: "steps", bg: "blush",
-        heading: "The math — why $1,000/mo compounds.",
-        steps: [
-          { n: "Yr 1", title: "3 clients/month", desc: "Even going slow — 3 new clients a month for 12 months = 36 clients. At $1,000/mo each, that's $36,000/mo in year 2. Month-1 clients are still paying in month 12." },
-          { n: "Key", title: "You only do the hard part once", desc: "Getting the client is the hard part. Once they're in the system, the automations keep them. You're building equity — not starting from zero every month." },
-          { n: "Rule", title: "Always convert to monthly", desc: "Even a client who pays $5k upfront for a custom site should be on a $1k/mo retainer. You already did the hardest part — getting them. Make the income last." },
+        layout: "metrics", bg: "blush",
+        heading: "The math is simple",
+        sub: "A managed system does not need to change your whole business overnight. It needs to save missed leads, create more trust, and help more interested people book.",
+        metrics: [
+          { value: "1", label: "Extra booked client", caption: "For many service businesses, one additional client or job can cover a large part of the monthly investment." },
+          { value: "24/7", label: "Lead response", caption: "The system keeps answering and following up after hours, weekends, and busy days." },
+          { value: "90", label: "Day growth window", caption: "The first 90 days are for setup, testing, consistency, and building momentum." },
         ],
-        script: "Here's how this business grows. Every client you sign stays. The system makes them money, so they don't leave. That means your income from month one is still coming in in month six, month twelve, month twenty-four. Most agencies have a feast-or-famine problem — big month, then zero. We built ours differently. Even if you signed only three clients a month — just three — after one year you'd have 36 paying clients. At our Starter plan, that's $36,000 a month in recurring income. And that's assuming you never got a single referral.",
+        script: "Here is the way I want you to think about the investment. We do not need to make this complicated. If this system helps you capture one lead you would have missed, makes your business look more trustworthy, or gets one more person booked, it starts paying for itself. Then the content, reviews, and follow-up keep compounding over the next 90 days.",
       },
-      {
-        layout: "live_quote", bg: "dark",
-        heading: "Let's build your plan right now",
-        script: "Okay — so now let's talk about your specific situation. I'm going to build your custom quote right here, live on screen. [Select their plan, toggle on the services they want, and choose contract length. The total updates as you go.] There are no hidden fees. What you see is what you pay. The only extra cost is your ad budget if we're running ads — and that goes directly to Facebook, not to us. Any questions while we do this?",
-      },
+      LIVE_QUOTE_BUILDER_SLIDE,
       {
         layout: "title", bg: "dark",
         heading: "Thank you.",
@@ -10677,6 +10708,82 @@ const PROPOSAL_DECKS: PDeck[] = [
     ],
   },
 ];
+
+function getReadAloudScript(deck: PDeck, slide: PSlide, slideIndex: number) {
+  if (slide.layout === "live_quote") {
+    return [
+      "Now I am going to build your plan with you on the screen, so you can see exactly what is included and what the investment looks like.",
+      "First, I am choosing the package that matches what you told me you need. If you want the leanest start, we can begin with Foundation or Content Lite. If you want the stronger growth path, Starter gives you the AI clone and content support. If you want the full system that can realistically create momentum, Growth is the best fit because it combines content, ads, the AI clone, and automation.",
+      "Next, I am going to add only the services that make sense for your business. I do not want to sell you random extras. I want anything we add to either help you get seen, capture leads, follow up faster, book appointments, or turn happy clients into reviews.",
+      "The $500 setup fee is one time. That covers the buildout, onboarding, platform setup, automations, and making sure the system is actually ready before we launch. The monthly price is what keeps the system running, managed, optimized, and reported on.",
+      "If you choose the 12-month option, you get the last month free. That is why the savings shows here. The reason I like the annual option is because this is not a one-week fix. The first month is setup and launch. Months two and three are where we test, improve, and build momentum. After that, the system starts compounding.",
+      "Based on what you told me today, this is the plan I would recommend. Does this feel like the right level of support for where you want the business to go?",
+    ].join("\n\n");
+  }
+
+  const intro = slideIndex === 0
+    ? "I am going to walk you through this in a really simple way. My goal is not to overwhelm you. My goal is to show you what is currently costing you clients, what we would build, and what the next step would look like if this feels right."
+    : "";
+
+  const visualCue = slide.imageSlot
+    ? "Take a second and look at the example on the screen. This is the kind of quality and clarity I want people to associate with your business."
+    : "";
+
+  const layoutCue =
+    slide.layout === "bullets"
+      ? "I am going to walk through these one by one, because each point matters."
+      : slide.layout === "steps"
+      ? "This slide is the simple process. I want you to see that this is not complicated on your side."
+      : slide.layout === "pricing"
+      ? "Now I am going to explain the plans in plain English, because I want the investment to feel clear, not confusing."
+      : slide.layout === "metrics"
+      ? "These numbers are here to make the decision practical. We do not need vague marketing promises. We need to know how this can pay for itself."
+      : slide.layout === "funnel"
+      ? "This is the full system. The reason it works is because every step connects to the next one."
+      : "";
+
+  const heading = slide.heading.toLowerCase();
+  const deckId = deck.id;
+  const featureOutcome =
+    deckId === "onboarding"
+      ? ""
+      : deckId === "made_for_you"
+      ? "The reason this deck works is because it does not ask them to imagine the result from scratch. They can see it. You already did the hardest part for them: you showed what their content, clone, and brand presence could look like. That makes the close stronger because the conversation moves from 'Do I believe this?' to 'Do I want this running for my business?'"
+      : heading.includes("complete") || heading.includes("four pillars") || heading.includes("full picture") || heading.includes("brand system")
+      ? "The outcome of the full brand system is that the client stops buying random pieces of marketing that do not connect. Content brings attention, the website captures the lead, automation follows up, reviews build trust, and the brand experience makes everything feel premium. That is what makes the system feel bigger than a single service."
+      : heading.includes("merch") || heading.includes("brand everywhere") || heading.includes("movement") || heading.includes("walking billboards")
+      ? "The outcome of merch is not just shirts or products. The outcome is visibility, loyalty, and a new way for happy customers to talk about the business without being asked. For the right brand, merch can create referral energy, deepen community, and add a revenue stream that keeps the brand in front of people outside social media."
+      : heading.includes("logo") || heading.includes("brand refresh") || heading.includes("first impression") || heading.includes("brand identity") || heading.includes("outdated brand")
+      ? "The outcome of a brand refresh is faster trust. People decide quickly whether a business feels professional, premium, and safe to buy from. A stronger logo, website, and visual system makes the client look established, which helps them charge with more confidence and makes prospects more comfortable reaching out."
+      : heading.includes("website") || heading.includes("storefront")
+      ? "The outcome of the website is not just that it looks pretty. The outcome is that when someone lands on it, they know what you do, they trust you faster, and they have an easy way to become a lead. For service businesses, we can also add quote forms, booking surveys, and estimate calculators so a visitor does not just browse and leave. They answer a few simple questions, the system captures their information, and now you have a real lead to follow up with."
+      : heading.includes("automation") || heading.includes("follow") || heading.includes("reply") || heading.includes("text")
+      ? "The outcome of automation is speed. If someone calls while you are busy, in an appointment, driving, or offline, they do not sit there waiting. Missed-call text back can reply for you, the lead can get a booking link, and the system can keep following up. That means you can wake up or finish a client appointment and already have new people booked on your calendar."
+      : heading.includes("review") || heading.includes("reputation") || heading.includes("google")
+      ? "The outcome of the review system is stronger trust on Google. We can build a review link where five-star clients go straight to your Google rating page, while anyone who clicks a lower rating goes to a private form asking what went wrong. That feedback goes to the owner instead of becoming a public bad review. We can also create QR codes for the front desk, receipts, cards, or follow-up texts, and we can upload a list of past clients so the system prompts them to leave a rating. The goal is simple: more public five-star reviews, better Google trust, and fewer unhappy clients posting publicly before you can fix it."
+      : heading.includes("ad") || heading.includes("facebook") || heading.includes("instagram")
+      ? "The outcome of ads is targeted attention. We are not just boosting random posts. We are putting your offer in front of the people most likely to book, sending them to a page or form that captures their information, and then using follow-up so that click does not get wasted."
+      : heading.includes("clone") || heading.includes("content") || heading.includes("social")
+      ? "The outcome of content is trust before the person ever contacts you. People should see your business, understand what you offer, and feel like you are active and credible. The AI clone and branded content help you show up consistently without needing to film, write captions, design posts, or remember to post every day."
+      : heading.includes("math") || heading.includes("cost")
+      ? "The reason this matters is because one saved lead can change the month. If the system captures a missed call, turns one website visitor into a booked estimate, or gets one extra person to trust your Google reviews and schedule, the system starts paying for itself."
+      : "";
+
+  const close =
+    deckId === "onboarding" && slideIndex === deck.slides.length - 1
+      ? "Before we hang up, make sure they know exactly what happens next, where to send assets, who to contact, and when they will hear from you. The client should leave calm, excited, and fully clear."
+      : deckId === "onboarding"
+      ? ""
+      : slide.layout === "pricing" || slide.layout === "cta"
+      ? "As you look at this, I want you to think less about the monthly payment and more about what one extra booked client is worth. If this system helps you capture even one lead you would have missed, the investment starts making sense very quickly."
+      : slideIndex === deck.slides.length - 1
+      ? "The best next step is choosing the plan that fits your goals and letting us start the setup while everything is fresh. What questions do you have before we decide which path makes the most sense?"
+      : heading.includes("which of these sounds like you")
+      ? "Pause here and let them answer. Their answer tells you what to focus on next: content if they need visibility, ads if they need reach, automation if they are losing inquiries, or the full system if they need everything connected."
+      : "";
+
+  return [intro, visualCue, layoutCue, slide.script, featureOutcome, close].filter(Boolean).join("\n\n");
+}
 
 /* ── Slide visual renderer (1280 × 720 internal canvas) ─────────────────── */
 /* ── Live Quote Slide ────────────────────────────────────────────────────── */
@@ -10699,23 +10806,23 @@ function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
 
   const [plan, setPlan] = useState("starter");
   const [addons, setAddons] = useState<Set<string>>(new Set());
-  const [contract, setContract] = useState<"3mo" | "6mo" | "12mo">("3mo");
+  const [contract, setContract] = useState<"6mo" | "12mo">("6mo");
 
   const sel = PLANS.find(p => p.id === plan)!;
   const addonTotal = ADDONS.filter(a => addons.has(a.id)).reduce((s, a) => s + a.price, 0);
   const subtotal = sel.price + addonTotal;
   const monthly = subtotal;
   const setupFee = 500;
-  const months = contract === "3mo" ? 3 : contract === "6mo" ? 6 : 12;
-  const freeMonths = plan === "growth" && contract !== "3mo" ? 1 : 0;
+  const months = contract === "6mo" ? 6 : 12;
+  const freeMonths = contract === "12mo" ? 1 : 0;
   const regularTotal = monthly * months + setupFee;
   const contractTotal = monthly * (months - freeMonths) + setupFee;
   const savings = regularTotal - contractTotal;
 
   const dark = bg === "dark" || bg === "rose";
   const C = dark
-    ? { bg: "#1e1210", fg: "#f5e8e0", fg2: "rgba(245,232,224,0.6)", acc: "#c4a87a", card: "rgba(255,255,255,0.07)", border: "rgba(196,168,122,0.25)", active: "rgba(196,168,122,0.18)", activeBorder: "#c4a87a", sum: "rgba(255,255,255,0.06)" }
-    : { bg: "#f5e8e0", fg: "#1e1210", fg2: "rgba(30,18,16,0.5)", acc: "#b8956a", card: "rgba(255,255,255,0.7)", border: "rgba(184,149,106,0.25)", active: "rgba(184,149,106,0.15)", activeBorder: "#b8956a", sum: "rgba(0,0,0,0.04)" };
+    ? { bg: "#170d0b", fg: "#f7ece4", fg2: "rgba(247,236,228,0.62)", acc: "#c9ab78", rose: "#d58b84", card: "rgba(255,255,255,0.075)", border: "rgba(201,171,120,0.28)", active: "rgba(201,171,120,0.18)", activeBorder: "#c9ab78", sum: "rgba(255,255,255,0.08)" }
+    : { bg: "#f7e8df", fg: "#1e1210", fg2: "rgba(30,18,16,0.55)", acc: "#b8956a", rose: "#c97a7a", card: "rgba(255,255,255,0.74)", border: "rgba(184,149,106,0.28)", active: "rgba(184,149,106,0.16)", activeBorder: "#b8956a", sum: "rgba(255,255,255,0.62)" };
 
   const SERIF = "'Cormorant Garamond', serif";
   const SANS  = "'DM Sans', sans-serif";
@@ -10724,120 +10831,109 @@ function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
   const toggle = (id: string) => setAddons(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
 
   return (
-    <div style={{ width: "100%", height: "100%", background: C.bg, display: "flex", gap: 0, boxSizing: "border-box", overflow: "hidden" }}>
-      {/* LEFT — selectors */}
-      <div style={{ flex: 1, padding: "42px 36px 42px 56px", display: "flex", flexDirection: "column", gap: 20, overflowY: "auto" }}>
-        <div>
-          <div style={{ fontFamily: LUXE, fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", color: C.acc, marginBottom: 6 }}>The Dollhouse Brand Studio</div>
-          <div style={{ fontFamily: SERIF, fontSize: 36, color: C.fg, lineHeight: 1.1, marginBottom: 4 }}>Build Your Plan</div>
-          <div style={{ width: 36, height: 1.5, background: C.acc }} />
-        </div>
-
-        {/* Plan selector */}
-        <div>
-          <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: C.fg2, marginBottom: 8 }}>Choose Your Plan</div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 6 }}>
-            {PLANS.map(p => (
-              <button key={p.id} onClick={() => setPlan(p.id)}
-                style={{ padding: "10px 8px", borderRadius: 10, border: `1.5px solid ${plan === p.id ? C.activeBorder : C.border}`, background: plan === p.id ? C.active : C.card, cursor: "pointer", textAlign: "left" }}>
-                <div style={{ fontFamily: LUXE, fontSize: 8, letterSpacing: "0.1em", textTransform: "uppercase", color: plan === p.id ? C.acc : C.fg2, marginBottom: 2 }}>{p.name}</div>
-                <div style={{ fontFamily: SERIF, fontSize: 18, color: plan === p.id ? C.acc : C.fg, fontWeight: 500 }}>${p.price.toLocaleString()}<span style={{ fontSize: 10, fontWeight: 400 }}>/mo</span></div>
-                {'desc' in p && <div style={{ fontFamily: SANS, fontSize: 8, color: plan === p.id ? C.acc : C.fg2, marginTop: 2, lineHeight: 1.3, opacity: 0.75 }}>{(p as {desc: string}).desc.split(' + ')[0]}</div>}
-              </button>
-            ))}
+    <div style={{ width: "100%", height: "100%", background: `radial-gradient(circle at 12% 8%, ${C.rose}24, transparent 30%), radial-gradient(circle at 82% 92%, ${C.acc}22, transparent 28%), ${C.bg}`, boxSizing: "border-box", overflow: "hidden", padding: 34, display: "grid", gridTemplateColumns: "1fr 335px", gap: 22 }}>
+      <div style={{ minWidth: 0, display: "flex", flexDirection: "column", gap: 14 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 24 }}>
+          <div>
+            <div style={{ fontFamily: LUXE, fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", color: C.acc, marginBottom: 8 }}>The Dollhouse Brand Studio</div>
+            <div style={{ fontFamily: SERIF, fontSize: 47, color: C.fg, lineHeight: 0.98 }}>Your proposal, built live.</div>
           </div>
-        </div>
-
-        {/* Addons */}
-        <div>
-          <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: C.fg2, marginBottom: 8 }}>Add-On Services</div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-            {ADDONS.map(a => {
-              const on = addons.has(a.id);
+          <div style={{ display: "flex", gap: 8, padding: 6, borderRadius: 999, border: `1px solid ${C.border}`, background: C.card }}>
+            {([["6mo","6 Months","Standard"],["12mo","12 Months","1 month free"]] as const).map(([v, label, sub]) => {
+              const active = contract === v;
               return (
-                <button key={a.id} onClick={() => toggle(a.id)}
-                  style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 14px", borderRadius: 10, border: `1px solid ${on ? C.activeBorder : C.border}`, background: on ? C.active : C.card, cursor: "pointer" }}>
-                  <div style={{ textAlign: "left" }}>
-                    <div style={{ fontFamily: SANS, fontSize: 12, color: C.fg, fontWeight: on ? 600 : 400 }}>{a.name}</div>
-                    <div style={{ fontFamily: SANS, fontSize: 10, color: C.fg2, marginTop: 1 }}>{a.note}</div>
-                  </div>
-                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                    <div style={{ fontFamily: SERIF, fontSize: 18, color: C.acc }}>+${a.price}/mo</div>
-                    <div style={{ width: 18, height: 18, borderRadius: "50%", border: `1.5px solid ${on ? C.acc : C.border}`, background: on ? C.acc : "transparent", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                      {on && <div style={{ width: 8, height: 8, borderRadius: "50%", background: dark ? C.bg : "#fff" }} />}
-                    </div>
-                  </div>
+                <button key={v} onClick={() => setContract(v)} style={{ minWidth: 130, border: "none", borderRadius: 999, padding: "11px 16px", background: active ? C.acc : "transparent", color: active ? C.bg : C.fg, cursor: "pointer", textAlign: "center", boxShadow: active ? "0 14px 34px -24px rgba(0,0,0,0.8)" : "none" }}>
+                  <div style={{ fontFamily: LUXE, fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 700 }}>{label}</div>
+                  <div style={{ fontFamily: SANS, fontSize: 10, opacity: active ? 0.8 : 0.58, marginTop: 2 }}>{sub}</div>
                 </button>
               );
             })}
           </div>
         </div>
 
-        {/* Contract */}
-        <div>
-          <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: C.fg2, marginBottom: 8 }}>Contract Length</div>
-          <div style={{ display: "flex", gap: 8 }}>
-            {([["3mo","3 Months","Fast start"],["6mo","6 Months","Growth saves 1 month"],["12mo","12 Months","Growth saves 1 month"]] as const).map(([v, label, sub]) => (
-              <button key={v} onClick={() => setContract(v)}
-                style={{ flex: 1, padding: "10px 14px", borderRadius: 10, border: `1.5px solid ${contract === v ? C.activeBorder : C.border}`, background: contract === v ? C.active : C.card, cursor: "pointer", textAlign: "left" }}>
-                <div style={{ fontFamily: LUXE, fontSize: 11, color: contract === v ? C.acc : C.fg, fontWeight: 600 }}>{label}</div>
-                <div style={{ fontFamily: SANS, fontSize: 10, color: contract === v ? C.acc : C.fg2, marginTop: 2 }}>{sub}</div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10 }}>
+          {PLANS.map((p) => {
+            const active = plan === p.id;
+            return (
+              <button key={p.id} onClick={() => setPlan(p.id)} style={{ minHeight: 136, borderRadius: 22, border: `1.5px solid ${active ? C.activeBorder : C.border}`, background: active ? `linear-gradient(145deg, ${C.active}, ${C.card})` : C.card, padding: "17px 15px", cursor: "pointer", textAlign: "left", boxShadow: active ? "0 28px 60px -46px rgba(0,0,0,0.86)" : "none" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
+                  <div style={{ width: 28, height: 28, borderRadius: 12, border: `1px solid ${active ? C.activeBorder : C.border}`, display: "flex", alignItems: "center", justifyContent: "center", color: C.acc }}>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 17l5-5 4 4 7-9" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/><path d="M4 20h17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                  </div>
+                  {p.id === "growth" && <span style={{ fontFamily: LUXE, fontSize: 8, letterSpacing: "0.12em", textTransform: "uppercase", color: C.rose }}>Featured</span>}
+                </div>
+                <div style={{ fontFamily: SERIF, fontSize: 23, lineHeight: 1, color: active ? C.acc : C.fg }}>{p.name}</div>
+                <div style={{ marginTop: 7, fontFamily: SERIF, fontSize: 30, lineHeight: 1, color: C.fg }}>${p.price.toLocaleString()}<span style={{ fontFamily: SANS, fontSize: 11, color: C.fg2 }}>/mo</span></div>
+                <div style={{ marginTop: 9, fontFamily: SANS, fontSize: 10.5, color: C.fg2, lineHeight: 1.35 }}>{p.desc.split(" + ").slice(0, 2).join(" + ")}</div>
               </button>
-            ))}
+            );
+          })}
+        </div>
+
+        <div style={{ flex: 1, minHeight: 0, borderRadius: 28, border: `1px solid ${C.border}`, background: C.card, padding: "20px 22px", overflow: "hidden", display: "flex", flexDirection: "column" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
+            <div>
+              <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.2em", textTransform: "uppercase", color: C.acc }}>Optional add-ons</div>
+              <div style={{ marginTop: 4, fontFamily: SANS, fontSize: 12, color: C.fg2 }}>Add only what helps this client book, follow up, or convert.</div>
+            </div>
+            <div style={{ fontFamily: SERIF, fontSize: 24, color: C.fg }}>+${addonTotal.toLocaleString()}<span style={{ fontFamily: SANS, fontSize: 10, color: C.fg2 }}>/mo</span></div>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 8, overflowY: "auto", paddingRight: 4 }}>
+            {ADDONS.map((a) => {
+              const on = addons.has(a.id);
+              return (
+                <button key={a.id} onClick={() => toggle(a.id)} style={{ minHeight: 66, borderRadius: 16, border: `1px solid ${on ? C.activeBorder : C.border}`, background: on ? C.active : "rgba(255,255,255,0.035)", padding: "12px 13px", cursor: "pointer", display: "grid", gridTemplateColumns: "1fr auto", gap: 10, alignItems: "center", textAlign: "left" }}>
+                  <div>
+                    <div style={{ fontFamily: SANS, fontSize: 12, color: C.fg, fontWeight: on ? 700 : 500 }}>{a.name}</div>
+                    <div style={{ fontFamily: SANS, fontSize: 9.5, color: C.fg2, marginTop: 2, lineHeight: 1.3 }}>{a.note}</div>
+                  </div>
+                  <div style={{ textAlign: "right" }}>
+                    <div style={{ fontFamily: SERIF, fontSize: 20, color: C.acc }}>+${a.price}</div>
+                    <div style={{ width: 18, height: 18, borderRadius: 999, marginLeft: "auto", marginTop: 5, border: `1.5px solid ${on ? C.acc : C.border}`, background: on ? C.acc : "transparent" }} />
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
 
-      {/* RIGHT — live summary */}
-      <div style={{ width: 260, background: C.sum, borderLeft: `1px solid ${C.border}`, padding: "42px 28px", display: "flex", flexDirection: "column", gap: 16 }}>
-        <div style={{ fontFamily: SERIF, fontSize: 26, color: C.fg, lineHeight: 1.15 }}>Your Investment</div>
-        <div style={{ height: 1, background: C.border }} />
-
-        <div style={{ display: "flex", flexDirection: "column", gap: 10, flex: 1 }}>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <span style={{ fontFamily: SANS, fontSize: 12, color: C.fg2 }}>{sel.name} Plan</span>
-            <span style={{ fontFamily: SANS, fontSize: 12, color: C.fg }}>${sel.price.toLocaleString()}/mo</span>
-          </div>
-          {ADDONS.filter(a => addons.has(a.id)).map(a => (
-            <div key={a.id} style={{ display: "flex", justifyContent: "space-between" }}>
-              <span style={{ fontFamily: SANS, fontSize: 12, color: C.fg2 }}>{a.name}</span>
-              <span style={{ fontFamily: SANS, fontSize: 12, color: C.fg }}>+${a.price}/mo</span>
+      <div style={{ borderRadius: 32, border: `1px solid ${C.border}`, background: `linear-gradient(180deg, ${C.sum}, rgba(255,255,255,0.035))`, padding: 28, display: "flex", flexDirection: "column", boxShadow: "0 36px 90px -58px rgba(0,0,0,0.9)" }}>
+        <div style={{ fontFamily: LUXE, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: C.acc, marginBottom: 10 }}>Investment Summary</div>
+        <div style={{ fontFamily: SERIF, fontSize: 36, color: C.fg, lineHeight: 1.02 }}>{sel.name} System</div>
+        <div style={{ marginTop: 14, borderRadius: 20, background: `${C.acc}16`, border: `1px solid ${C.border}`, padding: "18px 18px" }}>
+          <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.16em", textTransform: "uppercase", color: C.fg2 }}>Monthly</div>
+          <div style={{ marginTop: 5, fontFamily: SERIF, fontSize: 48, color: C.acc, lineHeight: 1 }}>${monthly.toLocaleString()}<span style={{ fontFamily: SANS, fontSize: 14, color: C.fg2 }}>/mo</span></div>
+        </div>
+        <div style={{ display: "grid", gap: 10, marginTop: 18 }}>
+          {[
+            ["Base plan", `$${sel.price.toLocaleString()}/mo`],
+            ["Add-ons", `+$${addonTotal.toLocaleString()}/mo`],
+            ["One-time setup", `$${setupFee.toLocaleString()}`],
+          ].map(([label, value]) => (
+            <div key={label} style={{ display: "flex", justifyContent: "space-between", gap: 16, fontFamily: SANS, fontSize: 13, color: C.fg2 }}>
+              <span>{label}</span>
+              <span style={{ color: C.fg }}>{value}</span>
             </div>
           ))}
           {savings > 0 && (
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <span style={{ fontFamily: SANS, fontSize: 12, color: "#4a9970" }}>Growth Contract Bonus</span>
-              <span style={{ fontFamily: SANS, fontSize: 12, color: "#4a9970" }}>−${savings.toLocaleString()}</span>
-            </div>
-          )}
-          <div style={{ height: 1, background: C.border, margin: "4px 0" }} />
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <span style={{ fontFamily: LUXE, fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: C.fg2 }}>Monthly Total</span>
-            <span style={{ fontFamily: SERIF, fontSize: 28, color: C.acc, fontWeight: 500 }}>${monthly.toLocaleString()}/mo</span>
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <span style={{ fontFamily: SANS, fontSize: 11, color: C.fg2 }}>One-Time Setup</span>
-            <span style={{ fontFamily: SANS, fontSize: 11, color: C.fg }}>${setupFee}</span>
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <span style={{ fontFamily: SANS, fontSize: 11, color: C.fg2 }}>{months}-Month Total</span>
-            <span style={{ fontFamily: SERIF, fontSize: 22, color: C.fg }}>${contractTotal.toLocaleString()}</span>
-          </div>
-          {addons.has("meta_ads") && (
-            <div style={{ padding: "8px 10px", borderRadius: 8, background: C.active, border: `1px solid ${C.border}` }}>
-              <div style={{ fontFamily: SANS, fontSize: 10, color: C.fg2, lineHeight: 1.5 }}>
-                Meta ad spend is separate — paid directly by you to Meta. min $1,000/mo · recommend starting at $1,000–$2,000/mo (no cap) · never included in your package.
-              </div>
+            <div style={{ display: "flex", justifyContent: "space-between", gap: 16, fontFamily: SANS, fontSize: 13, color: "#75b58b" }}>
+              <span>Annual bonus</span>
+              <span>{`- $${savings.toLocaleString()}`}</span>
             </div>
           )}
         </div>
-
-        <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: 12 }}>
-          <div style={{ fontFamily: SANS, fontSize: 10, color: C.fg2, lineHeight: 1.6 }}>
-            ✦ 14-day free trial available<br />
-            ✦ $500 setup fee applies<br />
-            ✦ {months}-month agreement{freeMonths > 0 ? " · last month free" : ""}
-          </div>
+        <div style={{ height: 1, background: C.border, margin: "18px 0" }} />
+        <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: C.fg2 }}>{months}-month total</div>
+        <div style={{ marginTop: 6, display: "flex", alignItems: "end", gap: 10 }}>
+          {savings > 0 && <div style={{ fontFamily: SERIF, fontSize: 25, color: C.fg2, textDecoration: "line-through", lineHeight: 1 }}>${regularTotal.toLocaleString()}</div>}
+          <div style={{ fontFamily: SERIF, fontSize: 46, color: C.fg, lineHeight: 1 }}>${contractTotal.toLocaleString()}</div>
+        </div>
+        {savings > 0 && <div style={{ marginTop: 10, display: "inline-flex", alignSelf: "flex-start", borderRadius: 999, padding: "8px 12px", background: "rgba(117,181,139,0.14)", border: "1px solid rgba(117,181,139,0.32)", color: "#75b58b", fontFamily: LUXE, fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase" }}>Save ${savings.toLocaleString()} · 12th month free</div>}
+        <div style={{ marginTop: "auto", borderTop: `1px solid ${C.border}`, paddingTop: 16, fontFamily: SANS, fontSize: 11.5, color: C.fg2, lineHeight: 1.65 }}>
+          14-day free trial available<br />
+          $500 one-time setup applies<br />
+          Ad spend is paid directly to the ad platform.
         </div>
       </div>
     </div>
@@ -10865,16 +10961,39 @@ function renderSlideVisual(
 
   const base: React.CSSProperties = {
     width: "100%", height: "100%",
-    backgroundColor: C.bg,
+    background: `radial-gradient(circle at 12% 18%, ${C.acc}22 0, transparent 25%), radial-gradient(circle at 88% 82%, ${C.acc}18 0, transparent 28%), ${C.bg}`,
     position: "relative", overflow: "hidden",
     boxSizing: "border-box",
     padding: "60px 80px",
     fontFamily: SANS,
   };
 
+  const SvgSymbol = ({ kind, size = 42, color = C.acc }: { kind: string; size?: number; color?: string }) => {
+    const common = { stroke: color, strokeWidth: 1.6, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, fill: "none" };
+    if (kind === "roof") return <svg width={size} height={size} viewBox="0 0 48 48"><path {...common} d="M7 25 24 11l17 14"/><path {...common} d="M12 23v20h28V23"/><path {...common} d="M20 43V31h8v12"/></svg>;
+    if (kind === "hvac") return <svg width={size} height={size} viewBox="0 0 48 48"><circle {...common} cx="24" cy="24" r="15"/><path {...common} d="M24 9v30M9 24h30M14 14l20 20M34 14 14 34"/><circle cx="24" cy="24" r="3" fill={color}/></svg>;
+    if (kind === "tools") return <svg width={size} height={size} viewBox="0 0 48 48"><path {...common} d="m15 33 18-18"/><path {...common} d="m29 11 8 8"/><path {...common} d="M12 37h12"/><path {...common} d="M16 29 9 36l3 3 7-7"/></svg>;
+    if (kind === "spark") return <svg width={size} height={size} viewBox="0 0 48 48"><path {...common} d="M24 7v10M24 31v10M7 24h10M31 24h10"/><path {...common} d="M16 16 9 9M32 16l7-7M16 32l-7 7M32 32l7 7"/><circle {...common} cx="24" cy="24" r="6"/></svg>;
+    if (kind === "health") return <svg width={size} height={size} viewBox="0 0 48 48"><path {...common} d="M24 40s-15-9-15-22c0-6 7-9 15-1 8-8 15-5 15 1 0 13-15 22-15 22Z"/><path {...common} d="M17 25h6l3-6 3 10 3-4h6"/></svg>;
+    if (kind === "law") return <svg width={size} height={size} viewBox="0 0 48 48"><path {...common} d="M24 9v32M13 15h22M17 15l-8 14h16l-8-14ZM31 15l-8 14h16l-8-14ZM16 41h16"/></svg>;
+    if (kind === "chart") return <svg width={size} height={size} viewBox="0 0 48 48"><path {...common} d="M9 39h31"/><path {...common} d="M13 34V23M23 34V15M33 34V9"/><path {...common} d="m12 22 10-7 10-6"/></svg>;
+    if (kind === "message") return <svg width={size} height={size} viewBox="0 0 48 48"><path {...common} d="M10 13h28v20H20l-9 7v-7h-1Z"/><path {...common} d="M17 21h16M17 27h10"/></svg>;
+    return <svg width={size} height={size} viewBox="0 0 48 48"><path {...common} d="M24 8v32M8 24h32"/><circle {...common} cx="24" cy="24" r="15"/></svg>;
+  };
+
+  const slideMark = (
+    <div style={{ position: "absolute", right: 58, top: 44, opacity: 0.16, color: C.acc }}>
+      <svg width="118" height="118" viewBox="0 0 118 118" fill="none">
+        <path d="M59 16v86M16 59h86" stroke="currentColor" strokeWidth="1" />
+        <circle cx="59" cy="59" r="42" stroke="currentColor" strokeWidth="1" />
+        <circle cx="59" cy="59" r="18" stroke="currentColor" strokeWidth="1" />
+      </svg>
+    </div>
+  );
+
   // Reusable media slot — supports images and videos
   const ImgSlot = ({ w, h }: { w: number; h: number }) => (
-    <div style={{ width: w, height: h, borderRadius: 16, overflow: "hidden", position: "relative", background: "rgba(128,80,60,0.12)", border: `2px dashed ${C.line}`, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 14, flexShrink: 0 }}>
+    <div style={{ width: w, height: h, borderRadius: 24, overflow: "hidden", position: "relative", background: "linear-gradient(135deg, rgba(255,255,255,0.16), rgba(128,80,60,0.08))", border: `2px dashed ${C.line}`, boxShadow: "0 28px 70px -45px rgba(30,18,16,0.75)", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 14, flexShrink: 0 }}>
       {mediaItem ? (
         <>
           {mediaItem.isVideo ? (
@@ -10892,7 +11011,9 @@ function renderSlideVisual(
         </>
       ) : (
         <>
-          <div style={{ fontSize: 52, opacity: 0.25 }}>📷</div>
+          <div style={{ width: 86, height: 86, borderRadius: "50%", border: `1px solid ${C.line}`, display: "flex", alignItems: "center", justifyContent: "center", opacity: 0.82 }}>
+            <SvgSymbol kind="chart" size={42} />
+          </div>
           <div style={{ color: C.fg2, fontFamily: SANS, fontSize: 14, textAlign: "center", padding: "0 24px", lineHeight: 1.5 }}>
             {slide.imageLabel || "Upload an image or video for this slide"}
           </div>
@@ -10908,24 +11029,60 @@ function renderSlideVisual(
   );
 
   const scriptPanel = (showScript && slide.script)
-    ? <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "rgba(12,6,4,0.92)", backdropFilter: "blur(10px)", borderTop: `1px solid ${C.acc}55`, padding: "12px 72px 12px", zIndex: 20 }}>
-        <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: C.acc, marginBottom: 4 }}>✦ What to say</div>
-        <div style={{ fontFamily: SANS, fontSize: 14, color: "rgba(245,232,224,0.9)", lineHeight: 1.65, maxWidth: 1100 }}>{slide.script}</div>
+    ? <div style={{ position: "absolute", bottom: 10, left: 88, right: 88, maxHeight: 78, overflow: "auto", background: "rgba(12,6,4,0.72)", backdropFilter: "blur(14px)", border: `1px solid ${C.acc}44`, borderRadius: 18, padding: "8px 16px 9px", zIndex: 20, boxShadow: "0 18px 46px -34px rgba(0,0,0,0.9)" }}>
+        <div style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
+          <div style={{ fontFamily: LUXE, fontSize: 8, letterSpacing: "0.18em", textTransform: "uppercase", color: C.acc, whiteSpace: "nowrap", paddingTop: 2 }}>What to say</div>
+          <div style={{ fontFamily: SANS, fontSize: 11.5, color: "rgba(245,232,224,0.82)", lineHeight: 1.35 }}>{slide.script}</div>
+        </div>
       </div>
     : null;
 
   if (slide.layout === "title") return (
-    <div style={{ ...base, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center" }}>
+    <div style={{ ...base, display: "grid", gridTemplateColumns: "1.04fr 0.96fr", gap: 52, alignItems: "center" }}>
       <div style={{ position: "absolute", top: 44, left: 54, width: 72, height: 1, background: C.acc }} />
       <div style={{ position: "absolute", top: 44, left: 54, width: 1, height: 72, background: C.acc }} />
       <div style={{ position: "absolute", bottom: 44, right: 54, width: 72, height: 1, background: C.acc }} />
       <div style={{ position: "absolute", bottom: 44, right: 54, width: 1, height: 72, background: C.acc }} />
-      <div style={{ fontFamily: LUXE, fontSize: 12, letterSpacing: "0.32em", textTransform: "uppercase", color: C.acc, marginBottom: 28 }}>
-        {slide.sub || "The Dollhouse Brand Studio"}
+      <div style={{ position: "relative", zIndex: 1 }}>
+        <div style={{ fontFamily: LUXE, fontSize: 12, letterSpacing: "0.32em", textTransform: "uppercase", color: C.acc, marginBottom: 28 }}>
+          {slide.sub || "The Dollhouse Brand Studio"}
+        </div>
+        <div style={{ width: 54, height: 2, background: C.acc, marginBottom: 32 }} />
+        <div style={{ fontFamily: SERIF, fontSize: 78, fontWeight: 400, color: C.fg, lineHeight: 1.04, whiteSpace: "pre-line" }}>
+          {slide.heading}
+        </div>
+        <div style={{ marginTop: 32, display: "inline-flex", alignItems: "center", gap: 12, padding: "13px 20px", borderRadius: 999, border: `1px solid ${C.line}`, background: C.cardBg, color: C.acc, fontFamily: LUXE, fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase" }}>
+          <SvgSymbol kind="chart" size={18} />
+          Client Growth System
+        </div>
       </div>
-      <div style={{ width: 36, height: 1, background: C.acc, marginBottom: 32 }} />
-      <div style={{ fontFamily: SERIF, fontSize: 84, fontWeight: 400, color: C.fg, lineHeight: 1.08, whiteSpace: "pre-line" }}>
-        {slide.heading}
+      <div style={{ position: "relative", zIndex: 1, height: 430 }}>
+        <div style={{ position: "absolute", inset: "20px 0 0 44px", borderRadius: 30, border: `1px solid ${C.line}`, background: `linear-gradient(145deg, ${C.cardBg}, ${C.acc}14)`, boxShadow: "0 36px 90px -58px rgba(0,0,0,0.8)", padding: 24 }}>
+          <div style={{ display: "flex", gap: 8, marginBottom: 28 }}>
+            {[0, 1, 2].map((i) => <span key={i} style={{ width: 9, height: 9, borderRadius: 999, background: i === 0 ? C.acc : C.line }} />)}
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 20 }}>
+            {["Leads", "Bookings", "Reviews", "Content"].map((label, i) => (
+              <div key={label} style={{ borderRadius: 18, padding: "16px 14px", border: `1px solid ${C.line}`, background: "rgba(255,255,255,0.06)" }}>
+                <div style={{ fontFamily: SERIF, fontSize: 34, color: C.acc, lineHeight: 1 }}>{["24", "11", "5.0", "30"][i]}</div>
+                <div style={{ marginTop: 6, fontFamily: LUXE, fontSize: 8, letterSpacing: "0.18em", textTransform: "uppercase", color: C.fg2 }}>{label}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{ borderRadius: 22, border: `1px solid ${C.line}`, padding: 18, background: "rgba(255,255,255,0.05)" }}>
+            <div style={{ display: "flex", alignItems: "end", gap: 10, height: 118 }}>
+              {[38, 54, 48, 72, 86, 104].map((h, i) => (
+                <div key={i} style={{ flex: 1, height: h, borderRadius: "12px 12px 4px 4px", background: `linear-gradient(180deg, ${C.acc}, ${C.acc}55)` }} />
+              ))}
+            </div>
+            <div style={{ marginTop: 14, fontFamily: SANS, fontSize: 13, color: C.fg2 }}>More visibility, faster response, better follow-up.</div>
+          </div>
+        </div>
+        <div style={{ position: "absolute", left: 0, bottom: 8, width: 190, borderRadius: 24, border: `1px solid ${C.line}`, background: C.bg, padding: 20, boxShadow: "0 28px 70px -50px rgba(0,0,0,0.85)" }}>
+          <SvgSymbol kind="message" size={34} />
+          <div style={{ marginTop: 12, fontFamily: SERIF, fontSize: 24, color: C.fg, lineHeight: 1.05 }}>Instant lead reply</div>
+          <div style={{ marginTop: 8, fontFamily: SANS, fontSize: 12, color: C.fg2, lineHeight: 1.4 }}>No inquiry waits in silence.</div>
+        </div>
       </div>
       {scriptPanel}
     </div>
@@ -10952,7 +11109,8 @@ function renderSlideVisual(
   );
 
   if (slide.layout === "headline") return (
-    <div style={{ ...base, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+    <div style={{ ...base, display: "grid", gridTemplateColumns: "0.95fr 1.05fr", gap: 48, alignItems: "center" }}>
+      <div style={{ position: "relative", zIndex: 1 }}>
       <div style={{ fontFamily: LUXE, fontSize: 11, letterSpacing: "0.28em", textTransform: "uppercase", color: C.acc, marginBottom: 28 }}>
         The Dollhouse Brand Studio
       </div>
@@ -10969,15 +11127,32 @@ function renderSlideVisual(
           {slide.body}
         </div>
       )}
-      {/* Decorative SVG right side */}
-      <div style={{ position: "absolute", right: 60, top: "50%", transform: "translateY(-50%)" }}>
-        <svg width="180" height="180" viewBox="0 0 180 180" fill="none" opacity={0.12}>
-          <circle cx="90" cy="90" r="80" stroke={C.acc} strokeWidth="1"/>
-          <circle cx="90" cy="90" r="55" stroke={C.acc} strokeWidth="1"/>
-          <circle cx="90" cy="90" r="30" stroke={C.acc} strokeWidth="1"/>
-          <line x1="10" y1="90" x2="170" y2="90" stroke={C.acc} strokeWidth="1"/>
-          <line x1="90" y1="10" x2="90" y2="170" stroke={C.acc} strokeWidth="1"/>
-        </svg>
+      </div>
+      <div style={{ position: "relative", minHeight: 430 }}>
+        <div style={{ position: "absolute", inset: "24px 20px 24px 24px", borderRadius: 34, border: `1px solid ${C.line}`, background: `linear-gradient(145deg, ${C.cardBg}, ${C.acc}18)`, transform: "rotate(-2deg)" }} />
+        <div style={{ position: "absolute", inset: "42px 0 0 58px", borderRadius: 34, border: `1px solid ${C.line}`, background: C.bg, boxShadow: "0 36px 90px -58px rgba(0,0,0,0.85)", padding: 28 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 22 }}>
+            <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.2em", textTransform: "uppercase", color: C.acc }}>Client result path</div>
+            <SvgSymbol kind="spark" size={30} />
+          </div>
+          {[
+            ["Attention", "Content + Ads"],
+            ["Response", "Text + DM automation"],
+            ["Booked", "Calendar + reminders"],
+            ["Proof", "Reviews + reports"],
+          ].map(([label, value], i) => (
+            <div key={label} style={{ display: "grid", gridTemplateColumns: "36px 1fr", gap: 14, alignItems: "center", padding: "12px 0", borderTop: i ? `1px solid ${C.line}` : "none" }}>
+              <div style={{ width: 36, height: 36, borderRadius: "50%", background: `${C.acc}22`, border: `1px solid ${C.line}`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: SERIF, color: C.acc, fontSize: 20 }}>{i + 1}</div>
+              <div>
+                <div style={{ fontFamily: SERIF, fontSize: 24, color: C.fg, lineHeight: 1 }}>{label}</div>
+                <div style={{ marginTop: 4, fontFamily: SANS, fontSize: 13, color: C.fg2 }}>{value}</div>
+              </div>
+            </div>
+          ))}
+          <div style={{ marginTop: 18, borderRadius: 18, background: `${C.acc}16`, border: `1px solid ${C.line}`, padding: "14px 16px", fontFamily: SANS, color: C.fg2, fontSize: 13, lineHeight: 1.45 }}>
+            A clear system clients can understand quickly and say yes to confidently.
+          </div>
+        </div>
       </div>
       {scriptPanel}
     </div>
@@ -10985,19 +11160,22 @@ function renderSlideVisual(
 
   if (slide.layout === "bullets") return (
     <div style={{ ...base, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+      {slideMark}
       <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 5, background: `linear-gradient(180deg, ${C.acc}, ${C.acc}44)` }} />
       <div style={{ fontFamily: SERIF, fontSize: 44, fontWeight: 400, color: C.fg, marginBottom: 8, maxWidth: 860 }}>
         {slide.heading}
       </div>
       <div style={{ width: 56, height: 2, background: C.acc, marginBottom: 28 }} />
-      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 14 }}>
         {(slide.bullets || []).map((b, i) => (
-          <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 18 }}>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: 4 }}>
-              <circle cx="10" cy="10" r="9" stroke={C.acc} strokeWidth="1.2"/>
-              <polyline points="6,10 9,13 14,7" stroke={C.acc} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            <div style={{ fontFamily: SANS, fontSize: 19, color: C.fg2, lineHeight: 1.5 }}>{b}</div>
+          <div key={i} style={{ display: "grid", gridTemplateColumns: "48px 1fr", gap: 14, alignItems: "start", minHeight: 88, padding: "18px 18px", borderRadius: 20, border: `1px solid ${C.line}`, background: i === 0 ? `linear-gradient(145deg, ${C.acc}24, ${C.cardBg})` : C.cardBg, boxShadow: "0 22px 56px -46px rgba(0,0,0,0.7)" }}>
+            <div style={{ width: 48, height: 48, borderRadius: 16, background: `${C.acc}18`, border: `1px solid ${C.line}`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <SvgSymbol kind={["chart", "message", "spark", "health"][i % 4]} size={25} />
+            </div>
+            <div>
+              <div style={{ fontFamily: LUXE, fontSize: 8, letterSpacing: "0.18em", textTransform: "uppercase", color: C.acc, marginBottom: 5 }}>Point {String(i + 1).padStart(2, "0")}</div>
+              <div style={{ fontFamily: SANS, fontSize: 16, color: C.fg2, lineHeight: 1.45 }}>{b}</div>
+            </div>
           </div>
         ))}
       </div>
@@ -11040,6 +11218,137 @@ function renderSlideVisual(
       {scriptPanel}
     </div>
   );
+
+  if (slide.layout === "metrics") {
+    const metrics = slide.metrics || [];
+    return (
+      <div style={{ ...base, display: "grid", gridTemplateColumns: "0.92fr 1.08fr", gap: 46, alignItems: "center" }}>
+        {slideMark}
+        <div style={{ position: "relative", zIndex: 1 }}>
+          <div style={{ fontFamily: LUXE, fontSize: 11, letterSpacing: "0.28em", textTransform: "uppercase", color: C.acc, marginBottom: 18 }}>
+            The Dollhouse Brand Studio
+          </div>
+          <div style={{ fontFamily: SERIF, fontSize: 54, color: C.fg, lineHeight: 1.06, marginBottom: 20 }}>
+            {slide.heading}
+          </div>
+          {slide.sub && (
+            <div style={{ fontFamily: SANS, fontSize: 19, color: C.fg2, lineHeight: 1.65, maxWidth: 500 }}>
+              {slide.sub}
+            </div>
+          )}
+        </div>
+        <div style={{ position: "relative", zIndex: 1, display: "grid", gap: 16 }}>
+          {metrics.map((m, i) => (
+            <div key={m.label} style={{ display: "grid", gridTemplateColumns: "116px 1fr", gap: 18, alignItems: "center", padding: "22px 24px", borderRadius: 22, border: `1px solid ${C.line}`, background: C.cardBg, boxShadow: "0 24px 56px -42px rgba(30,18,16,0.85)" }}>
+              <div style={{ height: 92, borderRadius: 18, background: `linear-gradient(135deg, ${C.acc}30, ${C.acc}08)`, border: `1px solid ${C.line}`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: SERIF, fontSize: m.value.length > 3 ? 36 : 48, color: C.acc, lineHeight: 1 }}>
+                {m.value}
+              </div>
+              <div>
+                <div style={{ fontFamily: LUXE, fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: C.acc, marginBottom: 6 }}>
+                  {m.label}
+                </div>
+                <div style={{ fontFamily: SANS, fontSize: 15, color: C.fg2, lineHeight: 1.5 }}>
+                  {m.caption}
+                </div>
+                <div style={{ height: 7, borderRadius: 999, background: "rgba(255,255,255,0.16)", marginTop: 12, overflow: "hidden" }}>
+                  <div style={{ height: "100%", width: `${64 + i * 13}%`, background: `linear-gradient(90deg, ${C.acc}, ${C.acc}77)`, borderRadius: 999 }} />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        {scriptPanel}
+      </div>
+    );
+  }
+
+  if (slide.layout === "funnel") {
+    const steps = slide.steps || [];
+    return (
+      <div style={{ ...base, padding: "52px 70px", display: "flex", flexDirection: "column" }}>
+        {slideMark}
+        <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "space-between", gap: 40, alignItems: "flex-end", marginBottom: 36 }}>
+          <div>
+            <div style={{ fontFamily: LUXE, fontSize: 11, letterSpacing: "0.28em", textTransform: "uppercase", color: C.acc, marginBottom: 12 }}>
+              Conversion System
+            </div>
+            <div style={{ fontFamily: SERIF, fontSize: 50, color: C.fg, lineHeight: 1.08 }}>
+              {slide.heading}
+            </div>
+          </div>
+          {slide.sub && (
+            <div style={{ fontFamily: SANS, fontSize: 17, color: C.fg2, lineHeight: 1.55, maxWidth: 440 }}>
+              {slide.sub}
+            </div>
+          )}
+        </div>
+        <div style={{ position: "relative", zIndex: 1, flex: 1, display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 12, alignItems: "stretch" }}>
+          {steps.map((step, i) => (
+            <div key={step.n} style={{ position: "relative", borderRadius: 24, border: `1px solid ${C.line}`, background: i === 2 ? `linear-gradient(180deg, ${C.acc}33, ${C.cardBg})` : C.cardBg, padding: "24px 18px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", minHeight: 310 }}>
+              <div style={{ width: 74, height: 74, borderRadius: "50%", border: `1px solid ${C.line}`, background: `linear-gradient(135deg, ${C.acc}24, transparent)`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 18 }}>
+                <SvgSymbol kind={["chart", "message", "spark", "health", "roof"][i] || "chart"} size={36} />
+              </div>
+              <div style={{ fontFamily: SERIF, fontSize: 21, color: C.fg, marginBottom: 8 }}>{step.title}</div>
+              <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: C.acc, marginBottom: 12 }}>{step.n}</div>
+              <div style={{ fontFamily: SANS, fontSize: 13, color: C.fg2, lineHeight: 1.5 }}>{step.desc}</div>
+              {i < steps.length - 1 && (
+                <div style={{ position: "absolute", right: -19, top: "50%", transform: "translateY(-50%)", zIndex: 4, width: 28, height: 28, borderRadius: "50%", background: C.bg, border: `1px solid ${C.line}`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke={C.acc} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+        {scriptPanel}
+      </div>
+    );
+  }
+
+  if (slide.layout === "industry_grid") {
+    const industries = slide.bullets || [];
+    const icons = ["roof", "hvac", "tools", "spark", "health", "health", "law"];
+    const captions = [
+      "Quote requests and missed-call text back",
+      "Seasonal campaigns and review growth",
+      "Emergency leads answered fast",
+      "Offers, booking, nurture, and trust",
+      "Patient education and reminders",
+      "Referral support and follow-up",
+      "Organized intake and faster response",
+    ];
+    return (
+      <div style={{ ...base, padding: "54px 72px", display: "flex", flexDirection: "column" }}>
+        {slideMark}
+        <div style={{ position: "relative", zIndex: 1, marginBottom: 30 }}>
+          <div style={{ fontFamily: LUXE, fontSize: 11, letterSpacing: "0.28em", textTransform: "uppercase", color: C.acc, marginBottom: 10 }}>
+            Best Fit For
+          </div>
+          <div style={{ fontFamily: SERIF, fontSize: 50, color: C.fg, lineHeight: 1.08 }}>{slide.heading}</div>
+          <div style={{ width: 64, height: 2, background: C.acc, marginTop: 18 }} />
+        </div>
+        <div style={{ position: "relative", zIndex: 1, flex: 1, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14 }}>
+          {industries.map((industry, i) => (
+            <div key={industry} style={{ borderRadius: 22, border: `1px solid ${C.line}`, background: i === 0 ? `linear-gradient(145deg, ${C.acc}2e, ${C.cardBg})` : C.cardBg, padding: "22px 18px", minHeight: 175, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
+                <SvgSymbol kind={icons[i] || "chart"} size={40} />
+                <div style={{ fontFamily: SERIF, color: C.acc, fontSize: 26, lineHeight: 1 }}>{String(i + 1).padStart(2, "0")}</div>
+              </div>
+              <div>
+                <div style={{ fontFamily: SERIF, fontSize: 21, color: C.fg, lineHeight: 1.12, marginBottom: 7 }}>{industry}</div>
+                <div style={{ fontFamily: SANS, fontSize: 12.5, color: C.fg2, lineHeight: 1.45 }}>{captions[i]}</div>
+              </div>
+            </div>
+          ))}
+          <div style={{ borderRadius: 22, border: `1px solid ${C.acc}`, background: `linear-gradient(145deg, ${C.acc}24, transparent)`, padding: "24px 20px", display: "flex", flexDirection: "column", justifyContent: "center", gap: 12 }}>
+            <div style={{ fontFamily: LUXE, fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: C.acc }}>Ideal client profile</div>
+            <div style={{ fontFamily: SERIF, fontSize: 26, color: C.fg, lineHeight: 1.1 }}>High-value local service businesses</div>
+            <div style={{ fontFamily: SANS, fontSize: 13, color: C.fg2, lineHeight: 1.5 }}>One more booked client, better reviews, or a faster lead response can change the month.</div>
+          </div>
+        </div>
+        {scriptPanel}
+      </div>
+    );
+  }
 
   if (slide.layout === "image") return (
     <div style={{ ...base, padding: 0, display: "flex" }}>
@@ -11212,6 +11521,13 @@ function ProposalTab() {
     document.addEventListener("fullscreenchange", handler);
     return () => document.removeEventListener("fullscreenchange", handler);
   }, []);
+
+  useEffect(() => {
+    if (mode !== "present") return;
+    requestAnimationFrame(() => {
+      presentRef.current?.scrollIntoView({ block: "start", behavior: "smooth" });
+    });
+  }, [mode, deck]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -11395,6 +11711,7 @@ function ProposalTab() {
     const curSlide = deck.slides[slideIdx];
     const mKey = `${deck.id}_${slideIdx}`;
     const mItem = media[mKey];
+    const presenterScript = getReadAloudScript(deck, curSlide, slideIdx);
 
     return (
       <div
@@ -11410,7 +11727,7 @@ function ProposalTab() {
             {/* Script on slide toggle */}
             <button
               onClick={() => setShowScript(s => !s)}
-              title="Show/hide script on slide"
+              title="Show/hide read-aloud script"
               style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase", color: showScript ? "#c4a87a" : "rgba(255,255,255,0.22)", background: showScript ? "rgba(196,168,122,0.1)" : "none", border: `1px solid ${showScript ? "rgba(196,168,122,0.35)" : "rgba(255,255,255,0.08)"}`, borderRadius: 6, padding: "3px 10px", cursor: "pointer" }}
             >
               {showScript ? "Hide Script" : "Show Script"}
@@ -11448,7 +11765,7 @@ function ProposalTab() {
           {/* Scaled slide */}
           <div
             ref={slideWrapRef}
-            style={{ width: "100%", maxWidth: isFullscreen ? "none" : 1120, flex: "0 0 auto", position: "relative", borderRadius: isFullscreen ? 8 : 12, overflow: "hidden", boxShadow: "0 40px 120px -20px rgba(0,0,0,0.95), 0 0 0 1px rgba(255,255,255,0.05)" }}
+            style={{ width: "100%", maxWidth: isFullscreen ? "none" : showScript ? 920 : 1120, flex: "0 0 auto", position: "relative", borderRadius: isFullscreen ? 8 : 12, overflow: "hidden", boxShadow: "0 40px 120px -20px rgba(0,0,0,0.95), 0 0 0 1px rgba(255,255,255,0.05)" }}
           >
             <div style={{ paddingBottom: "56.25%" }} />
             <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
@@ -11458,7 +11775,7 @@ function ProposalTab() {
                   mItem,
                   (file) => saveMediaFile(deck.id, slideIdx, file),
                   () => clearMediaFile(deck.id, slideIdx),
-                  showScript,
+                  false,
                 )}
               </div>
             </div>
@@ -11474,6 +11791,24 @@ function ProposalTab() {
             </div>
           )}
         </div>
+
+        {showScript && presenterScript && (
+          <div style={{ flexShrink: 0, padding: isFullscreen ? "6px 24px 0" : "8px 28px 0", zIndex: 10 }}>
+            <div style={{ width: "100%", maxWidth: 1120, margin: "0 auto", border: "1px solid rgba(196,168,122,0.22)", borderRadius: 14, background: "rgba(18,9,7,0.86)", boxShadow: "0 22px 70px -50px rgba(0,0,0,0.95)", overflow: "hidden" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "140px 1fr", gap: 0 }}>
+                <div style={{ borderRight: "1px solid rgba(196,168,122,0.16)", padding: "14px 16px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                  <div style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#c4a87a" }}>What to say</div>
+                  <div style={{ marginTop: 5, fontFamily: FONT_BODY, fontSize: "0.74rem", color: "rgba(255,255,255,0.34)" }}>Read this out loud</div>
+                </div>
+                <div key={`${deck.id}-${slideIdx}-script`} style={{ height: isFullscreen ? 118 : 112, overflow: "auto", padding: "14px 20px 16px" }}>
+                  <div style={{ fontFamily: FONT_BODY, fontSize: "0.95rem", color: "rgba(255,255,255,0.86)", lineHeight: 1.55, whiteSpace: "pre-line" }}>
+                    {presenterScript}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Nav bar */}
         <div style={{ padding: "10px 24px", display: "flex", alignItems: "center", justifyContent: "center", gap: 12, flexShrink: 0, zIndex: 10 }}>
