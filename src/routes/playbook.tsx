@@ -9384,6 +9384,13 @@ interface PSlide {
 }
 interface PDeck { id: string; name: string; icon: string; tagline: string; slides: PSlide[]; }
 
+const LIVE_QUOTE_BUILDER_SLIDE: PSlide = {
+  layout: "live_quote",
+  bg: "dark",
+  heading: "Let's build your plan right now",
+  script: "Now let's build your exact plan live. We'll choose the best package, add anything your business needs, and compare the 6-month and annual options. If annual makes sense, you'll see the exact savings from the free 12th month right on the screen. No hidden fees — the only separate cost is ad spend if we're running ads, and that is paid directly to the ad platform.",
+};
+
 const PROPOSAL_DECKS: PDeck[] = [
   /* ── AI Clone ──────────────────────────────────────────────────────────── */
   {
@@ -9512,8 +9519,8 @@ const PROPOSAL_DECKS: PDeck[] = [
       {
         layout: "cta", bg: "rose",
         heading: "Choose the path that fits your season.",
-        sub: "$500 setup fee  ·  3, 6, or 12-month options  ·  Growth clients get the last month free on 6 or 12 months",
-        script: "Here's the offer. Every plan starts with a $500 setup fee so we can build the system correctly. You can choose 3 months if you want to start small, or 6 to 12 months if you want the system to compound. If you choose the full Growth plan on a 6 or 12-month contract, your last month is free. The goal is simple: get your marketing running, prove the system, and turn more leads into booked clients.",
+        sub: "$500 one-time setup  ·  6 or 12-month options  ·  Annual clients get the 12th month free",
+        script: "Here's the offer. Every plan starts with a one-time $500 setup fee so we can build the system correctly. You can choose a 6-month start or an annual plan if you want the best value. Annual clients get the 12th month free, and the quote builder will show the exact savings.",
       },
       {
         layout: "title", bg: "dark",
@@ -9521,6 +9528,7 @@ const PROPOSAL_DECKS: PDeck[] = [
         sub: "The Dollhouse Brand Studio",
         script: "So — based on everything I've shown you today, can you see this working for your business? [Pause. Let them respond. Do not fill the silence. Whoever speaks first, loses. This moment is the most important part of the entire pitch.]",
       },
+      LIVE_QUOTE_BUILDER_SLIDE,
       {
         layout: "title", bg: "dark",
         heading: "Thank you.",
@@ -9623,6 +9631,7 @@ const PROPOSAL_DECKS: PDeck[] = [
         sub: "The Dollhouse Brand Studio",
         script: "So — what do you think? Does this feel like what your business needs right now? [Pause and let them answer. Don't rush this moment.]",
       },
+      LIVE_QUOTE_BUILDER_SLIDE,
       {
         layout: "title", bg: "dark",
         heading: "Thank you.",
@@ -9726,6 +9735,7 @@ const PROPOSAL_DECKS: PDeck[] = [
         sub: "The Dollhouse Brand Studio",
         script: "So — can you see this for your brand? What does your gut tell you? [Pause and let them respond. Don't fill the silence.]",
       },
+      LIVE_QUOTE_BUILDER_SLIDE,
       {
         layout: "title", bg: "dark",
         heading: "Thank you.",
@@ -9859,8 +9869,8 @@ const PROPOSAL_DECKS: PDeck[] = [
       {
         layout: "cta", bg: "rose",
         heading: "Choose your growth path.",
-        sub: "$500 setup fee  ·  3, 6, or 12-month options  ·  Growth clients get the last month free on 6 or 12 months",
-        script: "The next step is choosing the path that fits your business right now. We can start with the foundation, keep your content active, or build the full Growth system. The $500 setup fee covers the buildout, and if you choose Growth for 6 or 12 months, your last month is free. That gives the system enough time to start compounding.",
+        sub: "$500 one-time setup  ·  6 or 12-month options  ·  Annual clients get the 12th month free",
+        script: "The next step is choosing the path that fits your business right now. We can start with the foundation, keep your content active, or build the full Growth system. The $500 setup fee covers the buildout, and if you choose the annual option, your 12th month is free. The quote builder will show the exact savings.",
       },
       {
         layout: "title", bg: "dark",
@@ -9868,6 +9878,7 @@ const PROPOSAL_DECKS: PDeck[] = [
         sub: "The Dollhouse Brand Studio",
         script: "So — based on everything I've shown you today, can you see this system working for your business? What's your honest reaction? [Pause. Let them speak. Do not fill the silence. This is the moment that matters most.]",
       },
+      LIVE_QUOTE_BUILDER_SLIDE,
       {
         layout: "title", bg: "dark",
         heading: "Thank you.",
@@ -9986,6 +9997,7 @@ const PROPOSAL_DECKS: PDeck[] = [
         sub: "The Dollhouse Brand Studio",
         script: "So — when you imagine your brand looking like the examples I just showed you — how does that feel? Can you see it? [Pause and let them sit with it. This is an emotional decision. Give them space to feel it.]",
       },
+      LIVE_QUOTE_BUILDER_SLIDE,
       {
         layout: "title", bg: "dark",
         heading: "Thank you.",
@@ -10123,8 +10135,8 @@ const PROPOSAL_DECKS: PDeck[] = [
       {
         layout: "cta", bg: "rose",
         heading: "This is already built.\nAll you have to do\nis say yes.",
-        sub: "$500 setup fee  ·  14-day free trial  ·  6-month minimum  ·  30-day cancellation notice",
-        script: "I want to be direct with you. We built this before you walked in today because we believed in your business enough to invest in it first. Everything you saw — it exists, it's ready, it can go live this week. The only thing standing between your business and this content running is one decision. We start with a 6-month minimum — you'll see real results within 90 days, and months 4 through 6 are where the growth really compounds — and after that, 30 days' notice if you ever need to stop. But I'm confident enough in what we build that I'm willing to put the first two weeks on us. So — what do you think?",
+        sub: "$500 one-time setup  ·  14-day free trial  ·  6 or 12-month options  ·  Annual saves 1 month",
+        script: "I want to be direct with you. We built this before you walked in today because we believed in your business enough to invest in it first. Everything you saw exists, it is ready, and it can go live this week. The only thing standing between your business and this content running is one decision. We can start with 6 months, or if annual makes sense, your 12th month is free. The first two weeks are on us so you can see the system working.",
       },
       {
         layout: "title", bg: "dark",
@@ -10132,6 +10144,7 @@ const PROPOSAL_DECKS: PDeck[] = [
         sub: "The Dollhouse Brand Studio",
         script: "[Say nothing. Let them sit with everything they've seen. If they ask a question, answer it calmly. If they go quiet — let them. Do not fill the silence. You've done the work. You showed them what's possible. Now let them decide. The first person to speak after this slide loses.]",
       },
+      LIVE_QUOTE_BUILDER_SLIDE,
       {
         layout: "title", bg: "dark",
         heading: "Thank you.",
@@ -10272,6 +10285,7 @@ const PROPOSAL_DECKS: PDeck[] = [
         sub: "The Dollhouse Brand Studio",
         script: "So — how many leads do you think you're losing right now every week? And what would it mean for your business if you stopped losing them? [Let them answer. This question plants the seed. Whatever number they say — agree with it. That's your ROI argument. Then ask: 'What would you say if I could show you exactly how to fix that today?']",
       },
+      LIVE_QUOTE_BUILDER_SLIDE,
       {
         layout: "title", bg: "dark",
         heading: "Thank you.",
@@ -10446,6 +10460,7 @@ const PROPOSAL_DECKS: PDeck[] = [
         sub: "The Dollhouse Brand Studio  ·  hello@shopdollhouse.co",
         script: "That's everything for today. You're officially a Dollhouse client and I am so excited to build your brand room. Check your email — your onboarding follow-up will have your media folder link, your calendar link, and a full summary of everything we covered today. Any last questions before I let you go? [Pause. Smile. End warm and confident. They should feel excited, not overwhelmed.]",
       },
+      LIVE_QUOTE_BUILDER_SLIDE,
     ],
   },
 
@@ -10510,7 +10525,7 @@ const PROPOSAL_DECKS: PDeck[] = [
           "Every person who contacts you gets an instant reply — even at 2am",
           "You see and approve everything before it goes live — you're always in control",
           "We show you exactly what's working every month — in plain, simple language",
-          "3, 6, and 12-month options — with the best value on the full Growth system",
+          "6 and 12-month options — annual clients get the 12th month free",
         ],
         script: "Here's why businesses like yours choose The Dollhouse. We're not just a posting service. We build your entire online system — content, automation, ads, and follow-up — all in one place. And we're the only agency that builds you an AI clone of yourself. That means even when you're busy with clients, your brand is out there every day looking amazing.",
       },
@@ -10643,11 +10658,7 @@ const PROPOSAL_DECKS: PDeck[] = [
         ],
         script: "Here is the way I want you to think about the investment. We do not need to make this complicated. If this system helps you capture one lead you would have missed, makes your business look more trustworthy, or gets one more person booked, it starts paying for itself. Then the content, reviews, and follow-up keep compounding over the next 90 days.",
       },
-      {
-        layout: "live_quote", bg: "dark",
-        heading: "Let's build your plan right now",
-        script: "Okay — so now let's talk about your specific situation. I'm going to build your custom quote right here, live on screen. [Select their plan, toggle on the services they want, and choose contract length. The total updates as you go.] There are no hidden fees. What you see is what you pay. The only extra cost is your ad budget if we're running ads — and that goes directly to Facebook, not to us. Any questions while we do this?",
-      },
+      LIVE_QUOTE_BUILDER_SLIDE,
       {
         layout: "title", bg: "dark",
         heading: "Thank you.",
@@ -10679,15 +10690,15 @@ function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
 
   const [plan, setPlan] = useState("starter");
   const [addons, setAddons] = useState<Set<string>>(new Set());
-  const [contract, setContract] = useState<"3mo" | "6mo" | "12mo">("3mo");
+  const [contract, setContract] = useState<"6mo" | "12mo">("6mo");
 
   const sel = PLANS.find(p => p.id === plan)!;
   const addonTotal = ADDONS.filter(a => addons.has(a.id)).reduce((s, a) => s + a.price, 0);
   const subtotal = sel.price + addonTotal;
   const monthly = subtotal;
   const setupFee = 500;
-  const months = contract === "3mo" ? 3 : contract === "6mo" ? 6 : 12;
-  const freeMonths = plan === "growth" && contract !== "3mo" ? 1 : 0;
+  const months = contract === "6mo" ? 6 : 12;
+  const freeMonths = contract === "12mo" ? 1 : 0;
   const regularTotal = monthly * months + setupFee;
   const contractTotal = monthly * (months - freeMonths) + setupFee;
   const savings = regularTotal - contractTotal;
@@ -10757,7 +10768,7 @@ function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
         <div>
           <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: C.fg2, marginBottom: 8 }}>Contract Length</div>
           <div style={{ display: "flex", gap: 8 }}>
-            {([["3mo","3 Months","Fast start"],["6mo","6 Months","Growth saves 1 month"],["12mo","12 Months","Growth saves 1 month"]] as const).map(([v, label, sub]) => (
+            {([["6mo","6 Months","Standard start"],["12mo","12 Months","1 month free"]] as const).map(([v, label, sub]) => (
               <button key={v} onClick={() => setContract(v)}
                 style={{ flex: 1, padding: "10px 14px", borderRadius: 10, border: `1.5px solid ${contract === v ? C.activeBorder : C.border}`, background: contract === v ? C.active : C.card, cursor: "pointer", textAlign: "left" }}>
                 <div style={{ fontFamily: LUXE, fontSize: 11, color: contract === v ? C.acc : C.fg, fontWeight: 600 }}>{label}</div>
@@ -10786,7 +10797,7 @@ function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
           ))}
           {savings > 0 && (
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <span style={{ fontFamily: SANS, fontSize: 12, color: "#4a9970" }}>Growth Contract Bonus</span>
+              <span style={{ fontFamily: SANS, fontSize: 12, color: "#4a9970" }}>Annual Bonus</span>
               <span style={{ fontFamily: SANS, fontSize: 12, color: "#4a9970" }}>−${savings.toLocaleString()}</span>
             </div>
           )}
@@ -10815,8 +10826,8 @@ function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
         <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: 12 }}>
           <div style={{ fontFamily: SANS, fontSize: 10, color: C.fg2, lineHeight: 1.6 }}>
             ✦ 14-day free trial available<br />
-            ✦ $500 setup fee applies<br />
-            ✦ {months}-month agreement{freeMonths > 0 ? " · last month free" : ""}
+            ✦ $500 one-time setup applies<br />
+            ✦ {months}-month agreement{freeMonths > 0 ? " · 12th month free" : ""}
           </div>
         </div>
       </div>
@@ -10920,17 +10931,51 @@ function renderSlideVisual(
     : null;
 
   if (slide.layout === "title") return (
-    <div style={{ ...base, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center" }}>
+    <div style={{ ...base, display: "grid", gridTemplateColumns: "1.04fr 0.96fr", gap: 52, alignItems: "center" }}>
       <div style={{ position: "absolute", top: 44, left: 54, width: 72, height: 1, background: C.acc }} />
       <div style={{ position: "absolute", top: 44, left: 54, width: 1, height: 72, background: C.acc }} />
       <div style={{ position: "absolute", bottom: 44, right: 54, width: 72, height: 1, background: C.acc }} />
       <div style={{ position: "absolute", bottom: 44, right: 54, width: 1, height: 72, background: C.acc }} />
-      <div style={{ fontFamily: LUXE, fontSize: 12, letterSpacing: "0.32em", textTransform: "uppercase", color: C.acc, marginBottom: 28 }}>
-        {slide.sub || "The Dollhouse Brand Studio"}
+      <div style={{ position: "relative", zIndex: 1 }}>
+        <div style={{ fontFamily: LUXE, fontSize: 12, letterSpacing: "0.32em", textTransform: "uppercase", color: C.acc, marginBottom: 28 }}>
+          {slide.sub || "The Dollhouse Brand Studio"}
+        </div>
+        <div style={{ width: 54, height: 2, background: C.acc, marginBottom: 32 }} />
+        <div style={{ fontFamily: SERIF, fontSize: 78, fontWeight: 400, color: C.fg, lineHeight: 1.04, whiteSpace: "pre-line" }}>
+          {slide.heading}
+        </div>
+        <div style={{ marginTop: 32, display: "inline-flex", alignItems: "center", gap: 12, padding: "13px 20px", borderRadius: 999, border: `1px solid ${C.line}`, background: C.cardBg, color: C.acc, fontFamily: LUXE, fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase" }}>
+          <SvgSymbol kind="chart" size={18} />
+          Client Growth System
+        </div>
       </div>
-      <div style={{ width: 36, height: 1, background: C.acc, marginBottom: 32 }} />
-      <div style={{ fontFamily: SERIF, fontSize: 84, fontWeight: 400, color: C.fg, lineHeight: 1.08, whiteSpace: "pre-line" }}>
-        {slide.heading}
+      <div style={{ position: "relative", zIndex: 1, height: 430 }}>
+        <div style={{ position: "absolute", inset: "20px 0 0 44px", borderRadius: 30, border: `1px solid ${C.line}`, background: `linear-gradient(145deg, ${C.cardBg}, ${C.acc}14)`, boxShadow: "0 36px 90px -58px rgba(0,0,0,0.8)", padding: 24 }}>
+          <div style={{ display: "flex", gap: 8, marginBottom: 28 }}>
+            {[0, 1, 2].map((i) => <span key={i} style={{ width: 9, height: 9, borderRadius: 999, background: i === 0 ? C.acc : C.line }} />)}
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 20 }}>
+            {["Leads", "Bookings", "Reviews", "Content"].map((label, i) => (
+              <div key={label} style={{ borderRadius: 18, padding: "16px 14px", border: `1px solid ${C.line}`, background: "rgba(255,255,255,0.06)" }}>
+                <div style={{ fontFamily: SERIF, fontSize: 34, color: C.acc, lineHeight: 1 }}>{["24", "11", "5.0", "30"][i]}</div>
+                <div style={{ marginTop: 6, fontFamily: LUXE, fontSize: 8, letterSpacing: "0.18em", textTransform: "uppercase", color: C.fg2 }}>{label}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{ borderRadius: 22, border: `1px solid ${C.line}`, padding: 18, background: "rgba(255,255,255,0.05)" }}>
+            <div style={{ display: "flex", alignItems: "end", gap: 10, height: 118 }}>
+              {[38, 54, 48, 72, 86, 104].map((h, i) => (
+                <div key={i} style={{ flex: 1, height: h, borderRadius: "12px 12px 4px 4px", background: `linear-gradient(180deg, ${C.acc}, ${C.acc}55)` }} />
+              ))}
+            </div>
+            <div style={{ marginTop: 14, fontFamily: SANS, fontSize: 13, color: C.fg2 }}>More visibility, faster response, better follow-up.</div>
+          </div>
+        </div>
+        <div style={{ position: "absolute", left: 0, bottom: 8, width: 190, borderRadius: 24, border: `1px solid ${C.line}`, background: C.bg, padding: 20, boxShadow: "0 28px 70px -50px rgba(0,0,0,0.85)" }}>
+          <SvgSymbol kind="message" size={34} />
+          <div style={{ marginTop: 12, fontFamily: SERIF, fontSize: 24, color: C.fg, lineHeight: 1.05 }}>Instant lead reply</div>
+          <div style={{ marginTop: 8, fontFamily: SANS, fontSize: 12, color: C.fg2, lineHeight: 1.4 }}>No inquiry waits in silence.</div>
+        </div>
       </div>
       {scriptPanel}
     </div>
@@ -10957,7 +11002,8 @@ function renderSlideVisual(
   );
 
   if (slide.layout === "headline") return (
-    <div style={{ ...base, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+    <div style={{ ...base, display: "grid", gridTemplateColumns: "0.95fr 1.05fr", gap: 48, alignItems: "center" }}>
+      <div style={{ position: "relative", zIndex: 1 }}>
       <div style={{ fontFamily: LUXE, fontSize: 11, letterSpacing: "0.28em", textTransform: "uppercase", color: C.acc, marginBottom: 28 }}>
         The Dollhouse Brand Studio
       </div>
@@ -10974,15 +11020,32 @@ function renderSlideVisual(
           {slide.body}
         </div>
       )}
-      {/* Decorative SVG right side */}
-      <div style={{ position: "absolute", right: 60, top: "50%", transform: "translateY(-50%)" }}>
-        <svg width="180" height="180" viewBox="0 0 180 180" fill="none" opacity={0.12}>
-          <circle cx="90" cy="90" r="80" stroke={C.acc} strokeWidth="1"/>
-          <circle cx="90" cy="90" r="55" stroke={C.acc} strokeWidth="1"/>
-          <circle cx="90" cy="90" r="30" stroke={C.acc} strokeWidth="1"/>
-          <line x1="10" y1="90" x2="170" y2="90" stroke={C.acc} strokeWidth="1"/>
-          <line x1="90" y1="10" x2="90" y2="170" stroke={C.acc} strokeWidth="1"/>
-        </svg>
+      </div>
+      <div style={{ position: "relative", minHeight: 430 }}>
+        <div style={{ position: "absolute", inset: "24px 20px 24px 24px", borderRadius: 34, border: `1px solid ${C.line}`, background: `linear-gradient(145deg, ${C.cardBg}, ${C.acc}18)`, transform: "rotate(-2deg)" }} />
+        <div style={{ position: "absolute", inset: "42px 0 0 58px", borderRadius: 34, border: `1px solid ${C.line}`, background: C.bg, boxShadow: "0 36px 90px -58px rgba(0,0,0,0.85)", padding: 28 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 22 }}>
+            <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.2em", textTransform: "uppercase", color: C.acc }}>Client result path</div>
+            <SvgSymbol kind="spark" size={30} />
+          </div>
+          {[
+            ["Attention", "Content + Ads"],
+            ["Response", "Text + DM automation"],
+            ["Booked", "Calendar + reminders"],
+            ["Proof", "Reviews + reports"],
+          ].map(([label, value], i) => (
+            <div key={label} style={{ display: "grid", gridTemplateColumns: "36px 1fr", gap: 14, alignItems: "center", padding: "12px 0", borderTop: i ? `1px solid ${C.line}` : "none" }}>
+              <div style={{ width: 36, height: 36, borderRadius: "50%", background: `${C.acc}22`, border: `1px solid ${C.line}`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: SERIF, color: C.acc, fontSize: 20 }}>{i + 1}</div>
+              <div>
+                <div style={{ fontFamily: SERIF, fontSize: 24, color: C.fg, lineHeight: 1 }}>{label}</div>
+                <div style={{ marginTop: 4, fontFamily: SANS, fontSize: 13, color: C.fg2 }}>{value}</div>
+              </div>
+            </div>
+          ))}
+          <div style={{ marginTop: 18, borderRadius: 18, background: `${C.acc}16`, border: `1px solid ${C.line}`, padding: "14px 16px", fontFamily: SANS, color: C.fg2, fontSize: 13, lineHeight: 1.45 }}>
+            A clear system clients can understand quickly and say yes to confidently.
+          </div>
+        </div>
       </div>
       {scriptPanel}
     </div>
@@ -10990,19 +11053,22 @@ function renderSlideVisual(
 
   if (slide.layout === "bullets") return (
     <div style={{ ...base, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+      {slideMark}
       <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 5, background: `linear-gradient(180deg, ${C.acc}, ${C.acc}44)` }} />
       <div style={{ fontFamily: SERIF, fontSize: 44, fontWeight: 400, color: C.fg, marginBottom: 8, maxWidth: 860 }}>
         {slide.heading}
       </div>
       <div style={{ width: 56, height: 2, background: C.acc, marginBottom: 28 }} />
-      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 14 }}>
         {(slide.bullets || []).map((b, i) => (
-          <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 18 }}>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: 4 }}>
-              <circle cx="10" cy="10" r="9" stroke={C.acc} strokeWidth="1.2"/>
-              <polyline points="6,10 9,13 14,7" stroke={C.acc} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            <div style={{ fontFamily: SANS, fontSize: 19, color: C.fg2, lineHeight: 1.5 }}>{b}</div>
+          <div key={i} style={{ display: "grid", gridTemplateColumns: "48px 1fr", gap: 14, alignItems: "start", minHeight: 88, padding: "18px 18px", borderRadius: 20, border: `1px solid ${C.line}`, background: i === 0 ? `linear-gradient(145deg, ${C.acc}24, ${C.cardBg})` : C.cardBg, boxShadow: "0 22px 56px -46px rgba(0,0,0,0.7)" }}>
+            <div style={{ width: 48, height: 48, borderRadius: 16, background: `${C.acc}18`, border: `1px solid ${C.line}`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <SvgSymbol kind={["chart", "message", "spark", "health"][i % 4]} size={25} />
+            </div>
+            <div>
+              <div style={{ fontFamily: LUXE, fontSize: 8, letterSpacing: "0.18em", textTransform: "uppercase", color: C.acc, marginBottom: 5 }}>Point {String(i + 1).padStart(2, "0")}</div>
+              <div style={{ fontFamily: SANS, fontSize: 16, color: C.fg2, lineHeight: 1.45 }}>{b}</div>
+            </div>
           </div>
         ))}
       </div>
