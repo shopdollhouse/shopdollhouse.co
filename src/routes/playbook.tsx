@@ -9418,6 +9418,40 @@ interface PSlide {
   script: string;
 }
 interface PDeck { id: string; name: string; icon: string; tagline: string; slides: PSlide[]; }
+interface SavedClientDeck {
+  id: string;
+  company: string;
+  deckName: string;
+  baseDeckId: string;
+  updatedAt: string;
+  slideCount: number;
+}
+
+const SAVED_CLIENT_DECKS_LS = "dh_saved_client_decks_v1";
+
+function loadSavedClientDecks(): SavedClientDeck[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const parsed = JSON.parse(localStorage.getItem(SAVED_CLIENT_DECKS_LS) || "[]");
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter((deck): deck is SavedClientDeck =>
+      typeof deck?.id === "string" &&
+      typeof deck?.company === "string" &&
+      typeof deck?.deckName === "string" &&
+      typeof deck?.baseDeckId === "string" &&
+      typeof deck?.updatedAt === "string" &&
+      typeof deck?.slideCount === "number"
+    );
+  } catch {
+    return [];
+  }
+}
+
+function formatClientDeckDate(value: string) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "Recently saved";
+  return new Intl.DateTimeFormat("en", { month: "short", day: "numeric", year: "numeric" }).format(date);
+}
 
 const LIVE_QUOTE_BUILDER_SLIDE: PSlide = {
   layout: "live_quote",
@@ -11479,9 +11513,17 @@ function ProposalTab() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showNotes, setShowNotes] = useState(false);
   const [showScript, setShowScript] = useState(true);
+  const [savedClientDecks] = useState<SavedClientDeck[]>(() => loadSavedClientDecks());
+  const [clientDeckSearch, setClientDeckSearch] = useState("");
   const slideWrapRef = useRef<HTMLDivElement>(null);
   const presentRef = useRef<HTMLDivElement>(null);
   const revokeUrls = useRef<string[]>([]);
+  const normalizedClientDeckSearch = clientDeckSearch.trim().toLowerCase();
+  const filteredClientDecks = savedClientDecks.filter(clientDeck => {
+    if (!normalizedClientDeckSearch) return true;
+    return [clientDeck.company, clientDeck.deckName]
+      .some(value => value.toLowerCase().includes(normalizedClientDeckSearch));
+  });
 
   // Load all saved media from IndexedDB on mount
   useEffect(() => {
@@ -11593,8 +11635,8 @@ function ProposalTab() {
           const mediaCount = d.slides.filter((_, i) => media[`${d.id}_${i}`]).length;
           const slotCount = d.slides.filter(s => s.imageSlot).length;
           return (
+            <Fragment key={d.id}>
             <button
-              key={d.id}
               onClick={() => { setDeck(d); setSlideIdx(0); setMode("overview"); }}
               style={{ textAlign: "left", padding: "28px 32px", background: "var(--cream)", border: "1px solid rgba(196,168,122,0.25)", borderRadius: 20, cursor: "pointer", transition: "box-shadow 0.2s, transform 0.2s" }}
               onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 12px 36px -10px rgba(60,30,20,0.18)"; (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)"; }}
@@ -11614,6 +11656,62 @@ function ProposalTab() {
                 )}
               </div>
             </button>
+            {d.id === "service_overview" && (
+              <section
+                aria-label="Saved client custom decks"
+                style={{ minHeight: 224, padding: "28px 32px", background: "linear-gradient(145deg, #1e1210 0%, #2b1714 100%)", border: "1px solid rgba(196,168,122,0.38)", borderRadius: 20, boxShadow: "0 18px 48px -20px rgba(30,18,16,0.35)" }}
+              >
+                <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 18, marginBottom: 18 }}>
+                  <div>
+                    <div style={{ width: 46, height: 46, borderRadius: 14, background: "rgba(196,168,122,0.12)", border: "1px solid rgba(196,168,122,0.28)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--gold)", marginBottom: 14 }}>
+                      <SvgIcon id="inbox" size={24} />
+                    </div>
+                    <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.45rem", color: "#f8eee6", fontWeight: 400, margin: "0 0 6px" }}>
+                      Saved Client Decks
+                    </h3>
+                    <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(248,238,230,0.58)", lineHeight: 1.55, margin: 0 }}>
+                      Custom slides by company will save here after we build them.
+                    </p>
+                  </div>
+                  <div style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--gold)", border: "1px solid rgba(196,168,122,0.3)", borderRadius: 999, padding: "7px 10px", whiteSpace: "nowrap" }}>
+                    {savedClientDecks.length} saved
+                  </div>
+                </div>
+                <label style={{ display: "flex", alignItems: "center", gap: 10, background: "rgba(248,238,230,0.08)", border: "1px solid rgba(248,238,230,0.12)", borderRadius: 999, padding: "10px 14px", marginBottom: 14 }}>
+                  <span style={{ color: "rgba(248,238,230,0.6)", display: "flex" }}><SvgIcon id="search" size={16} /></span>
+                  <input
+                    value={clientDeckSearch}
+                    onChange={e => setClientDeckSearch(e.target.value)}
+                    placeholder="Search company"
+                    style={{ flex: 1, background: "transparent", border: "none", outline: "none", color: "#f8eee6", fontFamily: FONT_BODY, fontSize: "0.82rem", minWidth: 0 }}
+                  />
+                </label>
+                <div style={{ display: "flex", flexDirection: "column", gap: 9, maxHeight: 172, overflowY: "auto", paddingRight: 2 }}>
+                  {filteredClientDecks.length ? (
+                    filteredClientDecks.map(clientDeck => (
+                      <div key={clientDeck.id} style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 12, alignItems: "center", background: "rgba(248,238,230,0.07)", border: "1px solid rgba(248,238,230,0.1)", borderRadius: 12, padding: "11px 12px" }}>
+                        <div style={{ minWidth: 0 }}>
+                          <div style={{ fontFamily: FONT_BODY, fontSize: "0.84rem", color: "#f8eee6", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{clientDeck.company}</div>
+                          <div style={{ fontFamily: FONT_LUXE, fontSize: "8px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(196,168,122,0.86)", marginTop: 3 }}>
+                            {clientDeck.deckName} · {clientDeck.slideCount} slides
+                          </div>
+                        </div>
+                        <div style={{ fontFamily: FONT_BODY, fontSize: "0.68rem", color: "rgba(248,238,230,0.48)", whiteSpace: "nowrap" }}>
+                          {formatClientDeckDate(clientDeck.updatedAt)}
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div style={{ border: "1px dashed rgba(196,168,122,0.28)", borderRadius: 14, padding: "17px 16px", color: "rgba(248,238,230,0.55)", fontFamily: FONT_BODY, fontSize: "0.78rem", lineHeight: 1.55 }}>
+                      {clientDeckSearch.trim()
+                        ? "No saved client decks match that company yet."
+                        : "No client decks saved yet. Once we create custom slides for a company, they will appear here and stay searchable."}
+                    </div>
+                  )}
+                </div>
+              </section>
+            )}
+            </Fragment>
           );
         })}
       </div>
