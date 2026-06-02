@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import archMark from "@/assets/arch-mark.svg";
+import { usePageMeta } from "@/lib/use-page-meta";
 
 export const Route = createFileRoute("/quiz")({ component: QuizPage });
 
@@ -167,6 +168,11 @@ function SuiteMockup({ compact = false }: { compact?: boolean }) {
 }
 
 function QuizPage() {
+  usePageMeta(
+    "Free Brand Readiness Quiz | The Dollhouse Brand Studio",
+    "Take The Dollhouse quiz to find out whether your brand needs foundation, offer clarity, content direction, or a launch roadmap first.",
+  );
+
   const [phase, setPhase] = useState<"intro" | "q" | "email" | "result">("intro");
   const [qIndex, setQIndex] = useState(0);
   const [answers, setAnswers] = useState<ResultKey[]>([]);
@@ -239,7 +245,7 @@ function QuizPage() {
           <a href={BRAND_KIT_URL} className="hover:text-[var(--rose)] transition-colors">Brand Kit</a>
         </div>
         <a href={BRAND_KIT_URL} className="rounded-full px-4 py-2.5 bg-[var(--ink)] text-[var(--cream)] text-[10px] tracking-[0.16em] uppercase" style={{ fontFamily: FONT_LUXE }}>
-          Get Access
+          View Brand Kit
         </a>
       </nav>
 
@@ -268,7 +274,7 @@ function QuizPage() {
                 Find out what your brand needs first: foundation, offer clarity, content direction, or a launch roadmap. Then get matched to the private strategy suite built to help you stop guessing and start building.
               </p>
               <div className="mt-8 grid max-w-xl mx-auto lg:mx-0 grid-cols-2 sm:grid-cols-4 gap-3">
-                {["17 guided rooms", "Custom strategy", "Save & export", "Instant access"].map((item) => (
+                {["17 guided rooms", "Custom strategy", "Save & export", "Private access"].map((item) => (
                   <div key={item} className="rounded-2xl px-3 py-4 text-center" style={{ background: "rgba(255,250,246,0.62)", border: "1px solid rgba(200,168,100,0.24)" }}>
                     <img src={archMark} alt="" className="mx-auto mb-2 h-7 w-5 opacity-55" />
                     <p className="text-[9px] tracking-[0.14em] uppercase text-[var(--ink)]/58" style={{ fontFamily: FONT_LUXE }}>{item}</p>
@@ -364,7 +370,7 @@ function QuizPage() {
                   <p className="mt-1" style={{ fontFamily: FONT_DISPLAY, fontSize: "2.2rem", fontStyle: "italic", color: "var(--gold)", lineHeight: 1 }}>$97 <span className="text-[rgba(250,243,234,0.34)] line-through" style={{ fontFamily: FONT_BODY, fontSize: "1rem", fontStyle: "normal" }}>$145</span></p>
                 </div>
                 <a href={BRAND_KIT_URL} className="rounded-full px-7 py-4 text-center transition-all hover:-translate-y-0.5" style={{ background: "var(--gold)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
-                  Get instant access →
+                  View the Brand Kit →
                 </a>
               </div>
 

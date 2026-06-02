@@ -23,6 +23,7 @@ import archMark from "@/assets/arch-mark.svg";
 import mandyPhoto from "@/assets/mandy-photo.jpg";
 import mandyAIClonePreview from "@/assets/mandy-ai-clone-preview.jpg";
 import { managedServiceLinks, systemServices } from "@/lib/system-services";
+import { usePageMeta } from "@/lib/use-page-meta";
 
 export const Route = createFileRoute("/")({ component: Index });
 
@@ -3091,6 +3092,11 @@ function BackToTop() {
 }
 
 function Index() {
+  usePageMeta(
+    "The Dollhouse Brand Studio | Social Media Marketing & Lead Automation",
+    "Done-for-you social media, AI clone content, websites, text follow-up, review funnels, and automation systems for service businesses.",
+  );
+
   return (
     <main className="bg-[var(--blush)] text-[var(--ink)]">
       <Nav />

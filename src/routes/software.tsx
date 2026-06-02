@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import archMark from "@/assets/arch-mark.svg";
+import { usePageMeta } from "@/lib/use-page-meta";
 
 export const Route = createFileRoute("/software")({ component: SoftwarePage });
 
@@ -253,7 +254,7 @@ function Pricing() {
 
                 {/* 14-Day Free Trial CTA */}
                 <a
-                  href="#"
+                  href="/#contact"
                   className="mt-10 w-full block rounded-2xl px-5 py-4 text-center transition-all hover:-translate-y-0.5 hover:opacity-90"
                   style={{ backgroundColor: "var(--gold)", boxShadow: "0 12px 28px -10px rgba(160,110,60,0.5)" }}
                 >
@@ -328,6 +329,11 @@ function Footer() {
 
 /* ─── Page ─────────────────────────────────────────────── */
 function SoftwarePage() {
+  usePageMeta(
+    "Brand Software Systems | The Dollhouse Brand Studio",
+    "Private web app and workflow systems for brands that need guided client experiences, onboarding, dashboards, and automation support.",
+  );
+
   return (
     <main className="bg-[var(--blush)] text-[var(--ink)]">
       <Nav />
