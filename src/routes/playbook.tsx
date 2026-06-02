@@ -10669,6 +10669,49 @@ const PROPOSAL_DECKS: PDeck[] = [
   },
 ];
 
+function getReadAloudScript(deck: PDeck, slide: PSlide, slideIndex: number) {
+  if (slide.layout === "live_quote") {
+    return [
+      "Now I am going to build your plan with you on the screen, so you can see exactly what is included and what the investment looks like.",
+      "First, I am choosing the package that matches what you told me you need. If you want the leanest start, we can begin with Foundation or Content Lite. If you want the stronger growth path, Starter gives you the AI clone and content support. If you want the full system that can realistically create momentum, Growth is the best fit because it combines content, ads, the AI clone, and automation.",
+      "Next, I am going to add only the services that make sense for your business. I do not want to sell you random extras. I want anything we add to either help you get seen, capture leads, follow up faster, book appointments, or turn happy clients into reviews.",
+      "The $500 setup fee is one time. That covers the buildout, onboarding, platform setup, automations, and making sure the system is actually ready before we launch. The monthly price is what keeps the system running, managed, optimized, and reported on.",
+      "If you choose the 12-month option, you get the last month free. That is why the savings shows here. The reason I like the annual option is because this is not a one-week fix. The first month is setup and launch. Months two and three are where we test, improve, and build momentum. After that, the system starts compounding.",
+      "Based on what you told me today, this is the plan I would recommend. Does this feel like the right level of support for where you want the business to go?",
+    ].join("\n\n");
+  }
+
+  const intro = slideIndex === 0
+    ? "I am going to walk you through this in a really simple way. My goal is not to overwhelm you. My goal is to show you what is currently costing you clients, what we would build, and what the next step would look like if this feels right."
+    : "";
+
+  const visualCue = slide.imageSlot
+    ? "Take a second and look at the example on the screen. This is the kind of quality and clarity I want people to associate with your business."
+    : "";
+
+  const layoutCue =
+    slide.layout === "bullets"
+      ? "I am going to walk through these one by one, because each point matters."
+      : slide.layout === "steps"
+      ? "This slide is the simple process. I want you to see that this is not complicated on your side."
+      : slide.layout === "pricing"
+      ? "Now I am going to explain the plans in plain English, because I want the investment to feel clear, not confusing."
+      : slide.layout === "metrics"
+      ? "These numbers are here to make the decision practical. We do not need vague marketing promises. We need to know how this can pay for itself."
+      : slide.layout === "funnel"
+      ? "This is the full system. The reason it works is because every step connects to the next one."
+      : "";
+
+  const close =
+    slide.layout === "pricing" || slide.layout === "cta"
+      ? "As you look at this, I want you to think less about the monthly payment and more about what one extra booked client is worth. If this system helps you capture even one lead you would have missed, the investment starts making sense very quickly."
+      : slideIndex === deck.slides.length - 1
+      ? "The best next step is choosing the plan that fits your goals and letting us start the setup while everything is fresh. What questions do you have before we decide which path makes the most sense?"
+      : "Before I move on, does this part match what you are experiencing in your business right now?";
+
+  return [intro, visualCue, layoutCue, slide.script, close].filter(Boolean).join("\n\n");
+}
+
 /* ── Slide visual renderer (1280 × 720 internal canvas) ─────────────────── */
 /* ── Live Quote Slide ────────────────────────────────────────────────────── */
 function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
@@ -11406,6 +11449,13 @@ function ProposalTab() {
     return () => document.removeEventListener("fullscreenchange", handler);
   }, []);
 
+  useEffect(() => {
+    if (mode !== "present") return;
+    requestAnimationFrame(() => {
+      presentRef.current?.scrollIntoView({ block: "start", behavior: "smooth" });
+    });
+  }, [mode, deck]);
+
   // Keyboard navigation
   useEffect(() => {
     if (mode !== "present" || !deck) return;
@@ -11588,6 +11638,7 @@ function ProposalTab() {
     const curSlide = deck.slides[slideIdx];
     const mKey = `${deck.id}_${slideIdx}`;
     const mItem = media[mKey];
+    const presenterScript = getReadAloudScript(deck, curSlide, slideIdx);
 
     return (
       <div
@@ -11603,7 +11654,7 @@ function ProposalTab() {
             {/* Script on slide toggle */}
             <button
               onClick={() => setShowScript(s => !s)}
-              title="Show/hide script on slide"
+              title="Show/hide read-aloud script"
               style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase", color: showScript ? "#c4a87a" : "rgba(255,255,255,0.22)", background: showScript ? "rgba(196,168,122,0.1)" : "none", border: `1px solid ${showScript ? "rgba(196,168,122,0.35)" : "rgba(255,255,255,0.08)"}`, borderRadius: 6, padding: "3px 10px", cursor: "pointer" }}
             >
               {showScript ? "Hide Script" : "Show Script"}
@@ -11641,7 +11692,7 @@ function ProposalTab() {
           {/* Scaled slide */}
           <div
             ref={slideWrapRef}
-            style={{ width: "100%", maxWidth: isFullscreen ? "none" : 1120, flex: "0 0 auto", position: "relative", borderRadius: isFullscreen ? 8 : 12, overflow: "hidden", boxShadow: "0 40px 120px -20px rgba(0,0,0,0.95), 0 0 0 1px rgba(255,255,255,0.05)" }}
+            style={{ width: "100%", maxWidth: isFullscreen ? "none" : showScript ? 920 : 1120, flex: "0 0 auto", position: "relative", borderRadius: isFullscreen ? 8 : 12, overflow: "hidden", boxShadow: "0 40px 120px -20px rgba(0,0,0,0.95), 0 0 0 1px rgba(255,255,255,0.05)" }}
           >
             <div style={{ paddingBottom: "56.25%" }} />
             <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
@@ -11651,7 +11702,7 @@ function ProposalTab() {
                   mItem,
                   (file) => saveMediaFile(deck.id, slideIdx, file),
                   () => clearMediaFile(deck.id, slideIdx),
-                  showScript,
+                  false,
                 )}
               </div>
             </div>
@@ -11667,6 +11718,24 @@ function ProposalTab() {
             </div>
           )}
         </div>
+
+        {showScript && presenterScript && (
+          <div style={{ flexShrink: 0, padding: isFullscreen ? "6px 24px 0" : "8px 28px 0", zIndex: 10 }}>
+            <div style={{ width: "100%", maxWidth: 1120, margin: "0 auto", border: "1px solid rgba(196,168,122,0.22)", borderRadius: 14, background: "rgba(18,9,7,0.86)", boxShadow: "0 22px 70px -50px rgba(0,0,0,0.95)", overflow: "hidden" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "140px 1fr", gap: 0 }}>
+                <div style={{ borderRight: "1px solid rgba(196,168,122,0.16)", padding: "14px 16px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                  <div style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#c4a87a" }}>What to say</div>
+                  <div style={{ marginTop: 5, fontFamily: FONT_BODY, fontSize: "0.74rem", color: "rgba(255,255,255,0.34)" }}>Read this out loud</div>
+                </div>
+                <div key={`${deck.id}-${slideIdx}-script`} style={{ height: isFullscreen ? 118 : 112, overflow: "auto", padding: "14px 20px 16px" }}>
+                  <div style={{ fontFamily: FONT_BODY, fontSize: "0.95rem", color: "rgba(255,255,255,0.86)", lineHeight: 1.55, whiteSpace: "pre-line" }}>
+                    {presenterScript}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Nav bar */}
         <div style={{ padding: "10px 24px", display: "flex", alignItems: "center", justifyContent: "center", gap: 12, flexShrink: 0, zIndex: 10 }}>
