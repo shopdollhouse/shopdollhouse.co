@@ -519,7 +519,7 @@ function Hero() {
             animationDelay: "0.58s",
           }}
         >
-          We create your content, run your ads, and automate your follow-up — so you can focus on running your business.
+          For local service businesses that want more booked calls without managing content, ads, missed calls, reviews, or follow-up themselves.
         </p>
 
         <div
@@ -587,7 +587,7 @@ function Hero() {
           className="reveal mt-5 text-[var(--ink)]/60 italic"
           style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1rem, 2vw, 1.2rem)", animationDelay: "0.85s" }}
         >
-          14-day free trial for founding clients · Then continue only if it feels like a fit
+          $500 setup due upfront · First 14 days of monthly management free · Continue only if it feels like a fit
         </p>
       </div>
 
@@ -1370,7 +1370,7 @@ function Services() {
       tag: "Review & Reputation Management",
       title: "Build your 5-star presence — automatically.",
       sub: "More reviews. More trust. More new clients.",
-      body: "After every appointment, we send a review request to your client. We track your reputation across Google, respond to feedback, and keep your star rating climbing — building social proof that brings in new business on its own.",
+      body: "After every appointment, happy clients are guided to your Google review link, while lower ratings go to a private feedback form first. We can also create QR codes and review prompts for past customers so your public rating has more chances to grow.",
       visual: <ReviewCard />,
     },
   ];
@@ -1414,6 +1414,90 @@ function Services() {
             <div className="[direction:ltr]">{it.visual}</div>
           </div>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function ProofSection() {
+  const flow = [
+    { icon: Search, label: "Find", body: "A local customer searches, sees your content, ad, or website, and clicks through." },
+    { icon: MessageSquare, label: "Ask", body: "They fill a quote form, open chat, comment, DM, or call after hours." },
+    { icon: PhoneCall, label: "Respond", body: "Text-back, chat, voice, and follow-up automations answer fast while the lead is warm." },
+    { icon: ClipboardClock, label: "Book", body: "The lead gets moved toward a calendar, estimate flow, phone call, or private proposal." },
+    { icon: Star, label: "Review", body: "Happy customers are guided to Google. Lower ratings go to a private feedback form first." },
+  ];
+  const proofCards = [
+    {
+      title: "Review funnel example",
+      body: "5-star clicks go straight to your Google review link. Lower ratings open a private form so the owner can fix the issue before it becomes public.",
+      stats: ["QR code ready", "Past client list prompts", "Private feedback route"],
+    },
+    {
+      title: "Missed-call rescue",
+      body: "If a customer calls while you are busy or closed, they immediately get a text. Instead of waking up to missed calls, you can wake up to booked appointments.",
+      stats: ["Instant SMS", "Booking link", "Conversation history"],
+    },
+    {
+      title: "Estimate-to-booking path",
+      body: "For contractors, we can build estimate calculators and quote forms that turn curious visitors into warm leads inside a booking or survey flow.",
+      stats: ["Quote form", "Lead survey", "Owner text alert"],
+    },
+  ];
+
+  return (
+    <section className="py-24 md:py-32 px-6" style={{ background: "linear-gradient(180deg, var(--cream) 0%, #f8e7e2 100%)" }}>
+      <div className="max-w-6xl mx-auto">
+        <SectionTitle
+          eyebrow="Proof Preview"
+          title="What the system is built to do"
+          italic="Not just prettier content. More chances to capture, follow up, book, and review."
+        />
+
+        <div className="mt-14 rounded-[34px] p-5 md:p-8" style={{ background: "rgba(255,250,246,0.68)", border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)", boxShadow: "0 34px 80px -54px rgba(90,45,35,0.45)" }}>
+          <div className="grid gap-4 md:grid-cols-5">
+            {flow.map(({ icon: Icon, label, body }, index) => (
+              <div key={label} className="relative rounded-2xl p-5 text-center" style={{ background: index === 4 ? "var(--ink)" : "rgba(255,255,255,0.58)", border: "1px solid rgba(200,168,100,0.2)" }}>
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full" style={{ background: index === 4 ? "rgba(200,168,100,0.14)" : "rgba(200,168,100,0.12)", color: "var(--gold)" }}>
+                  <Icon size={22} strokeWidth={1.7} />
+                </div>
+                <p className="mt-4 text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", color: index === 4 ? "var(--gold)" : "var(--rose)", fontWeight: 700 }}>
+                  0{index + 1} · {label}
+                </p>
+                <p className="mt-2 leading-6" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.84rem", color: index === 4 ? "rgba(250,243,234,0.72)" : "rgba(30,15,10,0.62)" }}>
+                  {body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-8 grid lg:grid-cols-3 gap-5">
+          {proofCards.map((card) => (
+            <article key={card.title} className="rounded-[28px] p-6" style={{ background: "rgba(255,250,246,0.72)", border: "1px solid color-mix(in oklab, var(--gold) 24%, transparent)" }}>
+              <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>System example</p>
+              <h3 className="mt-3 italic text-[var(--ink)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.7rem", lineHeight: 1.1 }}>
+                {card.title}
+              </h3>
+              <p className="mt-3 text-[var(--ink)]/64 leading-7" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem" }}>
+                {card.body}
+              </p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {card.stats.map((stat) => (
+                  <span key={stat} className="rounded-full px-3 py-2 text-[9px] tracking-[0.14em] uppercase" style={{ fontFamily: "'Jost', sans-serif", background: "rgba(200,168,100,0.11)", border: "1px solid rgba(200,168,100,0.24)", color: "var(--gold)" }}>
+                    {stat}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-10 text-center">
+          <a href="#contact" className="btn-ink">
+            Build my lead flow <span aria-hidden>→</span>
+          </a>
+        </div>
       </div>
     </section>
   );
@@ -1763,9 +1847,9 @@ function Pricing() {
       price: "$2,500",
       monthlyPrice: 2500,
       software: "$300/mo",
-      fit: "Best for consistent lead flow",
+      fit: "Featured for steady booked leads",
       outcome: "All 3 social platforms, paid Meta ads, voice AI, and follow-up automation.",
-      tagline: "Facebook, Instagram, and TikTok fully managed — more content, paid ads, and strategy built in.",
+      tagline: "The recommended path when you want content, ads, AI clone, review requests, missed-call text-back, and lead follow-up working together.",
       featured: true,
       topBadge: { label: "Most Popular", tone: "gold" as "gold" | "pink" },
       setupLabel: "+ $500 one-time setup",
@@ -1818,60 +1902,6 @@ function Pricing() {
         italic="Start with the foundation, then scale into the managed growth system when you are ready."
       />
 
-      <div className="mt-8 flex justify-center">
-        <div
-          className="grid w-full max-w-[680px] grid-cols-2 gap-2 rounded-full p-2.5 sm:p-3"
-          style={{
-            background: "rgba(255,250,246,0.82)",
-            border: "1px solid color-mix(in oklab, var(--gold) 24%, transparent)",
-            boxShadow: "0 22px 54px -34px rgba(90,45,38,0.45), inset 0 1px 0 rgba(255,255,255,0.72)",
-          }}
-        >
-          {[
-            { value: "6", label: "6 Months", badge: "" },
-            { value: "12", label: "12 Months", badge: "1 mo free" },
-          ].map((option) => {
-            const active = contractTerm === option.value;
-            return (
-              <button
-                key={option.value}
-                type="button"
-                onClick={() => setContractTerm(option.value as "6" | "12")}
-                className="flex min-h-[58px] items-center justify-center gap-2 rounded-full px-3 py-3 transition-all sm:gap-3"
-                style={{
-                  background: active ? "var(--ink)" : "transparent",
-                  color: active ? "var(--cream)" : "rgba(30,15,10,0.62)",
-                  fontFamily: "'Jost', sans-serif",
-                  fontSize: "clamp(0.68rem, 1.7vw, 0.95rem)",
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  fontWeight: 700,
-                  boxShadow: active ? "0 14px 28px -18px rgba(30,15,10,0.74)" : "none",
-                }}
-              >
-                <span>{option.label}</span>
-                {option.badge && (
-                  <span
-                    className="rounded-full px-2.5 py-1 sm:px-4"
-                    style={{
-                      background: active ? "rgba(200,168,100,0.95)" : "var(--gold)",
-                      color: "var(--ink)",
-                      fontFamily: "'Jost', sans-serif",
-                      fontSize: "clamp(0.5rem, 1.2vw, 0.7rem)",
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {option.badge}
-                  </span>
-                )}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
       <div
         className="mt-8 max-w-5xl mx-auto grid gap-3 md:grid-cols-3 rounded-[28px] p-3"
         style={{
@@ -1912,7 +1942,64 @@ function Pricing() {
         ))}
       </div>
 
-      <div className="mt-14 max-w-7xl mx-auto grid md:grid-cols-2 xl:grid-cols-4 gap-8 lg:gap-7">
+      <div className="mt-8 flex justify-center px-1">
+        <div
+          className="grid w-full max-w-[430px] grid-cols-2 gap-1 rounded-full p-1"
+          style={{
+            background: "rgba(255,250,246,0.9)",
+            border: "1px solid rgba(255,255,255,0.88)",
+            boxShadow: "0 14px 30px -26px rgba(90,45,38,0.42), inset 0 0 0 1px rgba(200,168,100,0.14)",
+          }}
+        >
+          {[
+            { value: "6", label: "6 Months", badge: "" },
+            { value: "12", label: "12 Months", badge: "1 Month Free" },
+          ].map((option) => {
+            const active = contractTerm === option.value;
+            return (
+              <button
+                key={option.value}
+                type="button"
+                aria-label={option.badge ? `${option.label}, ${option.badge}` : option.label}
+                onClick={() => setContractTerm(option.value as "6" | "12")}
+                className="flex min-h-[34px] items-center justify-center gap-1 rounded-full px-2 py-2 transition-all sm:min-h-[38px] sm:gap-1.5 sm:px-2.5"
+                style={{
+                  background: active ? "var(--ink)" : "transparent",
+                  color: active ? "var(--cream)" : "rgba(30,15,10,0.58)",
+                  fontFamily: "'Jost', sans-serif",
+                  fontSize: "clamp(0.5rem, 0.9vw, 0.58rem)",
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  fontWeight: 800,
+                  boxShadow: active ? "0 8px 18px -14px rgba(30,15,10,0.78)" : "none",
+                }}
+              >
+                <span>{option.label}</span>
+                {option.badge && (
+                  <span
+                    aria-hidden="true"
+                    className="rounded-full px-1.5 py-0.5 sm:px-2"
+                    style={{
+                      background: active ? "rgba(200,168,100,0.95)" : "var(--gold)",
+                      color: "var(--ink)",
+                      fontFamily: "'Jost', sans-serif",
+                      fontSize: "clamp(0.38rem, 0.7vw, 0.46rem)",
+                      letterSpacing: "0.07em",
+                      textTransform: "uppercase",
+                      whiteSpace: "nowrap",
+                      fontWeight: 800,
+                    }}
+                  >
+                    {option.badge}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="mt-12 max-w-7xl mx-auto grid md:grid-cols-2 xl:grid-cols-4 gap-8 lg:gap-7">
         {tiers.map((t) => {
           const isFilled = !!t.featured;
           const math = getPlanMath(t);
@@ -2010,13 +2097,13 @@ function Pricing() {
                   }}
                 >
                   <Sparkles size={12} strokeWidth={1.8} />
-                  14-day free trial available
+                  first 14 days of monthly management free
                 </div>
                 <p
                   className="mt-1.5 text-center"
                   style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: isFilled ? "rgba(250,243,234,0.4)" : "rgba(30,15,10,0.35)" }}
                 >
-                  {contractTerm === "6" ? "6-month contract option" : "annual contract · 1 month free"}
+                  $500 setup due upfront · {contractTerm === "6" ? "6-month contract option" : "annual contract · 1 month free"}
                 </p>
 
                 {/* Price */}
@@ -2299,7 +2386,7 @@ function Pricing() {
 
       {/* Pricing footnote */}
       <p className="text-center mt-6 mb-2" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.4)" }}>
-        Foundation starts at $297/mo &nbsp;·&nbsp; one-time $500 setup fee on every contract &nbsp;·&nbsp; 6 or 12-month options available
+        Foundation starts at $297/mo &nbsp;·&nbsp; first 14 days of monthly management free &nbsp;·&nbsp; one-time $500 setup fee due upfront
       </p>
 
       {/* Setup fee + ad spend notes */}
@@ -2309,7 +2396,7 @@ function Pricing() {
           <span style={{ color: "var(--gold)", fontStyle: "normal", fontWeight: 600 }}>$500 one-time setup fee on every contract</span> — required upfront for onboarding, system buildout, launch prep, calendar integration, automation sequences, and CRM setup.
         </p>
         <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "rgba(30,15,10,0.52)", lineHeight: 1.6 }}>
-          Choose a 6-month start or commit annually. Annual clients receive the 12th month free, and every plan shows the exact savings before you request a proposal.
+          Your $500 setup starts the build. Your first 14 days of monthly management are free, then monthly billing begins if you continue. Choose a 6-month start or commit annually. Annual clients receive the 12th month free, and every plan shows the exact savings before you request a proposal.
         </p>
         <div style={{ height: "1px", background: "rgba(200,168,100,0.2)" }} />
         <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "var(--ink)", opacity: 0.7, fontStyle: "italic", lineHeight: 1.6 }}>
@@ -2585,7 +2672,7 @@ function FAQ() {
     ["What does 'done-for-you' actually mean?", "We do the setup and the monthly work for you. Depending on your plan, that can include your website, content, posting, ads, AI clone, booking links, CRM, text follow-up, missed-call text-back, reminders, and reporting."],
     ["Which plan should I start with?", "Foundation is for your website and lead follow-up system. Content Lite is for simple weekly content. Starter is for one managed platform with AI clone support. Growth is the most complete option for content, ads, AI voice/chat, reviews, booking, and follow-up working together."],
     ["What is the AI clone or brand character?", "We create either an AI version of you or a custom brand character for your business. It helps your brand show up with polished content without you having to film every week."],
-    ["How does the 14-day trial work?", "Every monthly package can begin with a 14-day founding client trial. The one-time $500 setup fee is still due upfront because we are building your audit, strategy, sample direction, and system map before the monthly retainer begins."],
+    ["How does the 14-day trial work?", "Every monthly package can begin with 14 free days of monthly management. The one-time $500 setup fee is due upfront because we are building your audit, strategy, sample direction, CRM, automation map, and launch setup. Monthly billing begins after the trial if you continue."],
     ["What's included in the $500 setup fee?", "Every contract has a one-time $500 setup fee. It covers onboarding, system buildout, launch prep, calendar or booking setup, CRM setup, automation mapping, and the assets needed to start the plan cleanly."],
     ["What contract options do you offer?", "For now, you can choose 6 months or 12 months. Annual clients receive the 12th month free, and each plan shows the exact dollar savings."],
     ["What is the $500 Appointment Booking setup?", "It is a focused setup for businesses that mainly need a cleaner way for leads to book. It can include the calendar connection, booking flow, confirmation messages, reminders, and simple lead handoff."],
@@ -2701,12 +2788,12 @@ function Contact() {
             className="mt-6 max-w-lg text-[var(--ink)]/62 leading-8"
             style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem" }}
           >
-            Share what you sell, what is getting stuck, and which level of support feels realistic. We will recommend the right plan, contract term, setup path, and add-ons before you commit.
+            Share what you sell, what is getting stuck, and which level of support feels realistic. We will recommend the right plan, contract term, setup path, add-ons, and free-trial timeline before you commit.
           </p>
           <div className="mt-8 grid gap-3">
             {[
               ["1", "We review your business, offer, current online presence, and lead flow."],
-              ["2", "You receive a private recommendation for the plan, term, setup fee, and add-ons."],
+              ["2", "You receive a private recommendation for the plan, term, setup fee, free-trial window, and add-ons."],
               ["3", "If it is a fit, we book your strategy call and map the build timeline."],
             ].map(([step, copy]) => (
               <div
@@ -3006,7 +3093,7 @@ function FinalCTA() {
         className="mt-4 text-[var(--ink)]/65 max-w-md mx-auto"
         style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", lineHeight: 1.6 }}
       >
-        The Brand Room helps new founders shape their offer, brand, content direction, and web app foundation before they move into a full growth retainer.
+        The Brand Room helps beginners shape their offer, brand, content direction, and web app foundation before they move into a full growth retainer.
       </p>
       <Link
         to="/brand-room"
@@ -3031,7 +3118,7 @@ function Footer() {
             <p className="text-[var(--gold)] font-semibold" style={{ fontFamily: "'Jost', sans-serif", fontSize: "8px", letterSpacing: "3px", textTransform: "uppercase", marginTop: "4px" }}>Brand Studio</p>
           </div>
           <p className="mt-5 max-w-sm text-[var(--ink)]/58 leading-7" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem" }}>
-            Done-for-you content, ads, AI clone, and follow-up systems for founders who want the work handled beautifully.
+            Done-for-you content, ads, AI clone, and follow-up systems for business owners who want the work handled beautifully.
           </p>
         </div>
 
@@ -3121,6 +3208,7 @@ function Index() {
       <Hero />
       <TrustBar />
       <Services />
+      <ProofSection />
       <AICloneSection />
       <About />
       <HowItWorks />
