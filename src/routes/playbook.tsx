@@ -10913,9 +10913,11 @@ function renderSlideVisual(
   );
 
   const scriptPanel = (showScript && slide.script)
-    ? <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "rgba(12,6,4,0.92)", backdropFilter: "blur(10px)", borderTop: `1px solid ${C.acc}55`, padding: "12px 72px 12px", zIndex: 20 }}>
-        <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: C.acc, marginBottom: 4 }}>✦ What to say</div>
-        <div style={{ fontFamily: SANS, fontSize: 14, color: "rgba(245,232,224,0.9)", lineHeight: 1.65, maxWidth: 1100 }}>{slide.script}</div>
+    ? <div style={{ position: "absolute", bottom: 10, left: 88, right: 88, maxHeight: 78, overflow: "auto", background: "rgba(12,6,4,0.72)", backdropFilter: "blur(14px)", border: `1px solid ${C.acc}44`, borderRadius: 18, padding: "8px 16px 9px", zIndex: 20, boxShadow: "0 18px 46px -34px rgba(0,0,0,0.9)" }}>
+        <div style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
+          <div style={{ fontFamily: LUXE, fontSize: 8, letterSpacing: "0.18em", textTransform: "uppercase", color: C.acc, whiteSpace: "nowrap", paddingTop: 2 }}>What to say</div>
+          <div style={{ fontFamily: SANS, fontSize: 11.5, color: "rgba(245,232,224,0.82)", lineHeight: 1.35 }}>{slide.script}</div>
+        </div>
       </div>
     : null;
 
