@@ -9609,7 +9609,7 @@ const PROPOSAL_DECKS: PDeck[] = [
         heading: "We build websites that convert.",
         sub: "Designed for your brand. Built to capture leads.",
         body: "Fast, mobile-first, and connected to texts, booking, reviews, forms, and follow-up.",
-        script: "What we build is a premium website designed around your brand, but the real value is what happens after someone lands on it. We can add quote forms, booking surveys, clickable phone numbers, website chat, missed-call text back, estimate calculators, and automated follow-up. The goal is not just a beautiful website. The goal is more people contacting you, more people booking, and fewer inquiries falling through the cracks.",
+        script: "What we build is a premium website designed around your brand, but the real value is what happens after someone lands on it. We can add quote forms, booking surveys, clickable phone numbers, website chat, missed-call text back, estimate calculators, and automated follow-up. We can also add a talking chat feature, where a visitor clicks the chat box and can call or speak through the chat. If the business owner or team is available, they can talk back by voice right there, so the lead does not have to wait, search for a number, or leave the website. The goal is not just a beautiful website. The goal is more people contacting you, more people booking, and fewer inquiries falling through the cracks.",
       },
       {
         layout: "image", bg: "light",
@@ -9634,12 +9634,14 @@ const PROPOSAL_DECKS: PDeck[] = [
           "Functional 10-20 page website — built around your services and local market",
           "Quote forms and booking surveys — turn visitors into real leads",
           "Missed-call text back — inquiries get a reply even when you're busy",
+          "Talking website chat — visitors can call or speak through the chat box",
+          "Owner voice reply when available — talk back through the chat in real time",
           "Website chat and SMS confirmations — start text conversations automatically",
           "Estimate calculators for contractors — collect project details before the call",
           "Review funnel, QR codes, and Google review links — build public trust",
           "On-site SEO foundation — service pages, alt tags, schema, and page speed",
         ],
-        script: "Here's exactly what is included. This is not just a template or a website builder. We build the pages your customers need to see, and then we connect the website to the actions that make you money. If someone wants an estimate, they can answer a few questions and become a lead. If someone calls and you miss it, they can get an automatic text back. If someone had a good experience, we can send them straight to leave a five-star Google review. Everything is built around turning attention into booked conversations.",
+        script: "Here's exactly what is included. This is not just a template or a website builder. We build the pages your customers need to see, and then we connect the website to the actions that make you money. If someone wants an estimate, they can answer a few questions and become a lead. If they want help while they are on the website, they can use the talking chat box to call or speak through the chat. If you or your team are available, you can talk back by voice inside that chat experience. If someone calls and you miss it, they can get an automatic text back. If someone had a good experience, we can send them straight to leave a five-star Google review. Everything is built around turning attention into booked conversations.",
       },
       {
         layout: "steps", bg: "light",
@@ -10218,9 +10220,9 @@ const PROPOSAL_DECKS: PDeck[] = [
       {
         layout: "headline", bg: "rose",
         heading: "Meet your AI Voice Agent.",
-        sub: "Answers every call. Books every appointment. Never takes a day off.",
-        body: "A natural AI voice that responds to missed calls, answers questions, and books clients into your calendar — 24 hours a day.",
-        script: "So here's what we build for you. An AI Voice Agent — a natural-sounding AI that answers your phone when you can't. Not a voicemail. Not a menu of options. An actual conversation. It answers questions about your business, captures lead information, and books appointments directly into your calendar. While you're with a client, asleep, on vacation — it doesn't matter. Your phone is always answered.",
+        sub: "Answers every call. Powers website voice chat. Books every appointment.",
+        body: "A natural AI voice that responds to missed calls, talks with website visitors, answers questions, and books clients into your calendar.",
+        script: "So here's what we build for you. An AI Voice Agent — a natural-sounding AI that answers your phone when you can't. Not a voicemail. Not a menu of options. An actual conversation. It can also support the talking website chat, so when someone clicks the chat box on your site, they can call or speak through the chat instead of just typing. If you or your team are available, you can talk back by voice inside that chat experience. If you're not available, the AI can still answer questions, capture lead information, and move them toward booking. While you're with a client, asleep, or on another job, your business is still answering.",
       },
       {
         layout: "steps", bg: "light",
@@ -10282,6 +10284,8 @@ const PROPOSAL_DECKS: PDeck[] = [
         heading: "Your complete automation stack",
         bullets: [
           "AI Voice Agent — answers calls, books appointments, 24/7",
+          "Talking website chat — visitors can call or speak from the chat box",
+          "Owner voice reply when available — jump into the chat and speak back",
           "DM Responder — instant replies on Instagram and Facebook",
           "Lead follow-up sequences — SMS and email, fully automated",
           "Review funnel — 5-star to Google, lower ratings to private feedback",
@@ -10535,12 +10539,12 @@ const PROPOSAL_DECKS: PDeck[] = [
         sub: "Content gets attention. Your website captures the lead. Automation replies, books, follows up, and helps build reviews.",
         steps: [
           { n: "01", title: "Attract", desc: "Daily content and paid ads make your business visible to the right local audience." },
-          { n: "02", title: "Capture", desc: "Website forms, estimate calculators, DMs, missed calls, and chat all feed into one lead system." },
+          { n: "02", title: "Capture", desc: "Website forms, estimate calculators, DMs, missed calls, and talking website chat feed into one lead system." },
           { n: "03", title: "Reply", desc: "Leads get instant text, email, or DM responses before they move on." },
           { n: "04", title: "Book", desc: "Booking links, surveys, reminders, and follow-ups help turn interest into appointments." },
           { n: "05", title: "Review", desc: "5-star clients go to Google. Lower ratings go to a private feedback form so you can fix issues." },
         ],
-        script: "Here's the simple version of what we do. We do not just make posts. We build a growth engine. First, we get you seen. Then your website, forms, chat, missed-call text back, or estimate calculator captures the lead. Then the system replies instantly, sends the booking link, reminds them, and keeps following up. After they become a customer, the review funnel helps turn happy customers into public Google reviews while private feedback goes directly to you.",
+        script: "Here's the simple version of what we do. We do not just make posts. We build a growth engine. First, we get you seen. Then your website, forms, talking chat, missed-call text back, or estimate calculator captures the lead. The talking chat is powerful because a visitor can click the chat box and call or speak through it while they are still on your site. If you are available, you can talk back by voice. If not, the automation can still respond, collect their information, and move them toward booking. Then the system sends the booking link, reminds them, and keeps following up. After they become a customer, the review funnel helps turn happy customers into public Google reviews while private feedback goes directly to you.",
       },
       {
         layout: "steps", bg: "dark",
@@ -10653,7 +10657,7 @@ const PROPOSAL_DECKS: PDeck[] = [
         heading: "Automation System",
         sub: "Every person who reaches out gets an instant reply — even at 3am.",
         body: "When someone sends you a message, calls, or fills out a form on your website — our system sends them an instant reply, a booking link, and follows up automatically until they book.",
-        script: "Here's the part that makes the system feel different. Have you ever missed a call because you were with a client, on a job, driving, or offline? That person might have been ready to book, but if they do not hear back quickly, they often move on. With missed-call text back, they can get an instant message from your business even when you cannot answer. If someone fills out a form, uses an estimate calculator, sends a DM, or clicks your booking link, the system can reply, confirm, and move them toward an appointment. The outcome is simple: fewer lost inquiries and more people booked on your calendar.",
+        script: "Here's the part that makes the system feel different. Have you ever missed a call because you were with a client, on a job, driving, or offline? That person might have been ready to book, but if they do not hear back quickly, they often move on. With missed-call text back, they can get an instant message from your business even when you cannot answer. With talking website chat, a visitor can click the chat box and call or speak through the chat, and if you are available, you can talk back by voice right there. If someone fills out a form, uses an estimate calculator, sends a DM, or clicks your booking link, the system can reply, confirm, and move them toward an appointment. The outcome is simple: fewer lost inquiries and more people booked on your calendar.",
       },
       {
         layout: "steps", bg: "light",
@@ -10756,9 +10760,9 @@ function getReadAloudScript(deck: PDeck, slide: PSlide, slideIndex: number) {
       : heading.includes("logo") || heading.includes("brand refresh") || heading.includes("first impression") || heading.includes("brand identity") || heading.includes("outdated brand")
       ? "The outcome of a brand refresh is faster trust. People decide quickly whether a business feels professional, premium, and safe to buy from. A stronger logo, website, and visual system makes the client look established, which helps them charge with more confidence and makes prospects more comfortable reaching out."
       : heading.includes("website") || heading.includes("storefront")
-      ? "The outcome of the website is not just that it looks pretty. The outcome is that when someone lands on it, they know what you do, they trust you faster, and they have an easy way to become a lead. For service businesses, we can also add quote forms, booking surveys, and estimate calculators so a visitor does not just browse and leave. They answer a few simple questions, the system captures their information, and now you have a real lead to follow up with."
+      ? "The outcome of the website is not just that it looks pretty. The outcome is that when someone lands on it, they know what you do, they trust you faster, and they have an easy way to become a lead. For service businesses, we can also add quote forms, booking surveys, estimate calculators, and talking website chat so a visitor does not just browse and leave. They can answer a few simple questions, speak through the chat, or request a call, and the system captures their information so you have a real lead to follow up with."
       : heading.includes("automation") || heading.includes("follow") || heading.includes("reply") || heading.includes("text")
-      ? "The outcome of automation is speed. If someone calls while you are busy, in an appointment, driving, or offline, they do not sit there waiting. Missed-call text back can reply for you, the lead can get a booking link, and the system can keep following up. That means you can wake up or finish a client appointment and already have new people booked on your calendar."
+      ? "The outcome of automation is speed. If someone calls while you are busy, in an appointment, driving, or offline, they do not sit there waiting. Missed-call text back can reply for you, talking website chat can let visitors call or speak through the chat box, and the system can keep following up. If you are available, you can jump in and voice-reply through the chat. If you are not, the automation still captures the lead and moves them toward booking."
       : heading.includes("review") || heading.includes("reputation") || heading.includes("google")
       ? "The outcome of the review system is stronger trust on Google. We can build a review link where five-star clients go straight to your Google rating page, while anyone who clicks a lower rating goes to a private form asking what went wrong. That feedback goes to the owner instead of becoming a public bad review. We can also create QR codes for the front desk, receipts, cards, or follow-up texts, and we can upload a list of past clients so the system prompts them to leave a rating. The goal is simple: more public five-star reviews, better Google trust, and fewer unhappy clients posting publicly before you can fix it."
       : heading.includes("ad") || heading.includes("facebook") || heading.includes("instagram")
