@@ -5039,12 +5039,15 @@ Check your spam and promotions folder for the email after you grab the kit."`}</
           </div>
         </div>
 
-        {/* Script B — Pattern Interrupt */}
-        <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.65)" }}>
-          <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
-            <p className="text-[10px] tracking-widest uppercase mb-0.5" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Script B — Pattern Interrupt</p>
-            <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>The "Business Looks Closed" Technique</h3>
-            <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.5)" }}>Use when hitting a gatekeeper or when the owner tries to brush you off. The "breaking up" line buys 2–3 seconds and triggers immediate concern about their Google listing.</p>
+        {/* Script B — Pattern Interrupt ⭐ PRIMARY */}
+        <div className="rounded-2xl overflow-hidden" style={{ border: "2px solid rgba(200,168,100,0.5)", background: "rgba(255,255,255,0.65)" }}>
+          <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(200,168,100,0.2)", background: "rgba(200,168,100,0.1)" }}>
+            <div className="flex items-center gap-2 mb-1">
+              <span style={{ fontSize: "1rem" }}>⭐</span>
+              <p className="text-[10px] tracking-widest uppercase" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>PRIMARY Cold Call Script</p>
+            </div>
+            <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "var(--ink)" }}>The "Sorry You're Breaking Up — Are You Still Closed?" Script</h3>
+            <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.55)" }}>⭐ Use this as your main cold call opener. The "breaking up" line buys 2–3 seconds of attention. The "closed on Google" hook triggers immediate concern — they drop everything to find out. Proven to get past gatekeepers and directly to owners.</p>
           </div>
           <div className="px-6 py-5">
             <ScriptCard title="Pattern Interrupt" tag="Phone — Gatekeeper" lines={[
@@ -10571,248 +10574,125 @@ const PROPOSAL_DECKS: PDeck[] = [
   /* ── Service Overview / Discovery Deck ─────────────────────────────────── */
   {
     id: "service_overview", name: "Service Overview Deck", icon: "bar-chart",
-    tagline: "Walk prospects through every service — used during discovery calls",
+    tagline: "14 slides · discovery calls · walk every prospect through the full system",
     slides: [
-      {
-        layout: "title", bg: "dark",
-        heading: "Let's grow your\nbusiness together.",
-        sub: "The Dollhouse Brand Studio",
-        script: "Hi! Thank you so much for your time today. My name is Mandy and I run The Dollhouse Brand Studio. What I'm going to show you today is how we help businesses like yours get more clients using social media — and the best part is, you don't have to do any of the work. By the end of this, you'll know exactly what we offer, how it works, and what it costs. Sound good? Let's start.",
-      },
-      {
-        layout: "before_after", bg: "dark",
-        heading: "What does your online presence look like right now?",
-        script: "I want to start by asking you something. When someone looks up your business online right now — what do they see? Most business owners I talk to are posting once in a while when they remember, or not at all. Their Instagram looks empty or inconsistent. And because of that, they're losing clients to competitors who just look better online. That's not about the quality of your work — it's about visibility. And that's exactly what we fix.",
-      },
-      {
-        layout: "metrics", bg: "light",
-        heading: "The hidden cost of looking quiet online",
-        sub: "Most lost revenue is quiet: a lead who never got a fast reply, a missed call, or a prospect who chose the business that looked more active.",
-        metrics: [
-          { value: "Fast", label: "Reply speed", caption: "The first business to respond often feels like the safest choice." },
-          { value: "Daily", label: "Visible trust", caption: "Consistent content makes your business look open, active, and ready." },
-          { value: "3-4x", label: "Follow-up touches", caption: "Most interested leads need more than one message before they book." },
-        ],
-        script: "Before I show you services, I want to show you what this is really solving. The problem usually isn't that people dislike your business. It's that they do not see you enough, they do not hear back fast enough, or they forget to book. That is the quiet revenue leak we fix.",
-      },
-      {
-        layout: "funnel", bg: "blush",
-        heading: "The growth engine we build",
-        sub: "Content gets attention. Your website captures the lead. Automation replies, books, follows up, and helps build reviews.",
-        steps: [
-          { n: "01", title: "Attract", desc: "Daily content and paid ads make your business visible to the right local audience." },
-          { n: "02", title: "Capture", desc: "Website forms, estimate calculators, DMs, missed calls, and talking website chat feed into one lead system." },
-          { n: "03", title: "Reply", desc: "Leads get instant text, email, or DM responses before they move on." },
-          { n: "04", title: "Book", desc: "Booking links, surveys, reminders, and follow-ups help turn interest into appointments." },
-          { n: "05", title: "Review", desc: "5-star clients go to Google. Lower ratings go to a private feedback form so you can fix issues." },
-        ],
-        script: "Here's the simple version of what we do. We do not just make posts. We build a growth engine. First, we get you seen. Then your website, forms, talking chat, missed-call text back, or estimate calculator captures the lead. The talking chat is powerful because a visitor can click the chat box and call or speak through it while they are still on your site. If you are available, you can talk back by voice. If not, the automation can still respond, collect their information, and move them toward booking. Then the system sends the booking link, reminds them, and keeps following up. After they become a customer, the review funnel helps turn happy customers into public Google reviews while private feedback goes directly to you.",
-      },
-      {
+      /* 1 */ { layout: "title", bg: "dark", heading: "Let's grow your\nbusiness together.", sub: "The Dollhouse Brand Studio", script: "Hi! Thank you so much for your time today. My name is Mandy and I run The Dollhouse Brand Studio. What I'm going to show you today is how we help businesses like yours get more clients — and the best part is, you don't have to do any of the work. By the end of this, you'll know exactly what we offer, how it works, and what it costs. Sound good? Let's start." },
+      /* 2 */ { layout: "before_after", bg: "dark", heading: "What does your online presence look like right now?", script: "When someone looks up your business online right now — what do they see? Most business owners I talk to are posting once in a while when they remember, or not at all. Their page looks empty. And because of that, they're losing clients to competitors who just look better online. That's not about the quality of your work — it's about visibility. And that's exactly what we fix." },
+      /* 3 */ {
         layout: "steps", bg: "dark",
         heading: "Which of these sounds like you?",
         steps: [
-          { n: "A", title: "I need to post more consistently", desc: "You know you should be on social media every day, but you never have time. → Social Media Management" },
-          { n: "B", title: "I want more people to find me", desc: "You want to reach people in your city who have never heard of you. → Meta Ads" },
-          { n: "C", title: "I lose leads — people reach out but never book", desc: "Inquiries come in but they don't convert. You need automatic follow-ups. → Automation" },
-          { n: "D", title: "All of the above", desc: "You want the full system — content, ads, automation, and email all working together. → Full Package" },
+          { n: "A", title: "I need to post consistently", desc: "You know you should show up online every day — but you never have the time. → Social Media Management" },
+          { n: "B", title: "I want more people to find me", desc: "You want to reach people in your city who've never heard of you. → Ads" },
+          { n: "C", title: "I lose leads before they book", desc: "People reach out but don't convert. Calls go unanswered. → Automation" },
+          { n: "D", title: "All of the above", desc: "You want the full system — content, AI clone, ads, and automation all running together." },
         ],
-        script: "I want to make sure we talk about the right things today. So let me ask you — which of these sounds most like what you're dealing with right now? [Wait for them to answer.] Perfect. That's exactly what we're going to focus on. Most of our clients say 'all of the above' — and that's okay. We have options for every budget.",
+        script: "Before I show you anything, let me ask — which of these sounds most like what you're dealing with right now? [Wait for them.] Perfect. That's where we start. Most clients say all of the above. And we have options for every budget.",
       },
-      {
+      /* 4 */ {
         layout: "bullets", bg: "blush",
-        heading: "Why businesses choose us",
-        bullets: [
-          "We do EVERYTHING — you never have to write, film, post, or design anything",
-          "AI Clone technology — your face and voice creates content while you sleep",
-          "Your brand looks professional and consistent every single day",
-          "Every person who contacts you gets an instant reply — even at 2am",
-          "You see and approve everything before it goes live — you're always in control",
-          "We show you exactly what's working every month — in plain, simple language",
-          "6 and 12-month options — annual clients get the 12th month free",
-        ],
-        script: "Here's why businesses like yours choose The Dollhouse. We're not just a posting service. We build your entire online system — content, automation, ads, and follow-up — all in one place. And we're the only agency that builds you an AI clone of yourself. That means even when you're busy with clients, your brand is out there every day looking amazing.",
-      },
-      {
-        layout: "industry_grid", bg: "light",
-        heading: "Best fit industries",
-        bullets: [
-          "Roofing contractors",
-          "HVAC companies",
-          "Plumbers & electricians",
-          "Med spas & aesthetic clinics",
-          "Chiropractors",
-          "Physical therapists",
-          "Local law firms",
-        ],
-        script: "This system is strongest for businesses where one new client is worth real money, speed matters, and trust matters. Roofing, HVAC, plumbers, electricians, med spas, chiropractors, physical therapists, and local law firms are all a strong fit because they need calls, bookings, reviews, and follow-up to happen without the owner chasing every lead by hand.",
-      },
-      {
-        layout: "headline", bg: "rose",
-        heading: "Social Media Management",
-        sub: "We post for you every single day.",
-        body: "Think about it like having a professional social media team — they write your captions, design your posts, schedule everything, and put it all online. You never have to think about it.",
-        script: "Let me start with the most popular service — social media management. Here's the simple way to think about it: right now, if you want to post something, you have to take the photo, write the caption, figure out the hashtags, and actually post it. We do all of that for you. Every single day. You focus on your business — we make it look amazing online.",
-      },
-      {
-        layout: "steps", bg: "light",
-        heading: "How we manage your social media",
-        steps: [
-          { n: "01", title: "We learn everything about you", desc: "We ask you about your business, your customers, what you love, what you don't. Then we create content that sounds exactly like you." },
-          { n: "02", title: "We create your posts", desc: "Photos, videos, captions, hashtags — all made for your brand. You see everything and say yes before we post." },
-          { n: "03", title: "We post every day for you", desc: "Your posts go up automatically every day at the best times. Your page looks active and professional, always." },
-          { n: "04", title: "We tell you what worked", desc: "Every month we send you a simple report. More followers? More clicks? More bookings? You'll see it all in plain English." },
-        ],
-        script: "Here's exactly what happens when you sign up. First, we spend time really understanding your business. Then we create your first batch of content — you get to look at it and say yes or no before anything goes live. Then we take over — posting every single day while you do your actual job. And every month we send you a simple report showing how your page is growing.",
-      },
-      {
-        layout: "headline", bg: "dark",
-        heading: "Your AI Clone",
-        sub: "A video version of you — that posts every day without you filming.",
-        body: "We record you one time for 20 minutes. We use that to build a digital version of you that can create video content on its own — your face, your voice, your personality.",
-        script: "This is the part that surprises everyone. We can create a digital version of you — an AI Clone — that looks and sounds exactly like you. All you do is record yourself one time for about 20 minutes. From that recording, we build your AI model. After that, your AI clone can create videos for your social media every single day without you ever picking up a camera. No filming. No editing. Just done.",
-      },
-      {
-        layout: "steps", bg: "blush",
-        heading: "How your AI clone is created",
-        steps: [
-          { n: "01", title: "You talk to us for 20 minutes", desc: "We record a video call with you. Just talk naturally — tell us about your work, your story, what makes you different. That's it." },
-          { n: "02", title: "We build your digital twin", desc: "Our team uses that recording to train an AI model that looks and sounds like you. Takes about one week." },
-          { n: "03", title: "Your clone posts every day", desc: "We write the scripts, your AI clone records the videos, we edit and post them. Your face and voice — every day — automatically." },
-        ],
-        script: "So here's how simple it really is. You get on a video call with us for 20 minutes and just talk. We do the rest. A week later, you have a digital version of yourself that can create video content every single day — without you doing anything. Think about how powerful that is. Your business shows up online every day, your face is on it, and you're not filming a single thing.",
-      },
-      {
-        layout: "headline", bg: "rose",
-        heading: "Facebook & Instagram Ads",
-        sub: "We put your business in front of thousands of the right people in your city.",
-        body: "Ads are like a megaphone. We take what's already working on your social media and show it to thousands of people who are looking for exactly what you offer.",
-        script: "Let me explain ads in the simplest way possible. Right now when you post on Instagram, only your followers see it. Ads are how you get seen by thousands of people who have never heard of you. We create the ads, choose exactly who sees them based on where they live, how old they are, and what they're interested in — and we make sure every dollar you spend is working to bring you more clients.",
-      },
-      {
-        layout: "steps", bg: "light",
-        heading: "How Facebook & Instagram ads work",
-        steps: [
-          { n: "01", title: "We make the ads", desc: "We create eye-catching videos and photos designed to stop people while they're scrolling and make them want to know more about you." },
-          { n: "02", title: "We find your perfect customers", desc: "We choose exactly who sees your ads — people in your city, the right age, with the right interests. No wasted money." },
-          { n: "03", title: "People click and book with you", desc: "When someone sees your ad and clicks, they go straight to your booking page. More clicks = more bookings." },
-          { n: "04", title: "We make it better every week", desc: "We check your ads every week. What's working gets more money. What isn't gets fixed. Your results keep improving." },
-        ],
-        script: "Here's how it works step by step. We create beautiful ads for your business. We show those ads to exactly the right people in your area. When they click, they land on your booking page. And every single week, we look at the numbers and make improvements. Over time, your cost per booking gets lower and lower. It's not magic — it's just smart marketing.",
-      },
-      {
-        layout: "bullets", bg: "dark",
-        heading: "What you need to know about ad budget",
-        bullets: [
-          "Our management fee and your ad budget are two separate things",
-          "Your ad budget goes directly to Facebook/Instagram — not to us",
-          "Recommended starting ad budget: $1,000–$2,000/mo for stronger testing",
-          "Client controls the ad spend — there is no maximum unless you set one",
-          "We usually start with a focused group of high-quality ads instead of random volume",
-          "Quality of ads matters more than how many you run",
-          "Most clients see their first results within the first 2–4 weeks",
-        ],
-        script: "I want to be fully transparent about how ad spending works. There are two costs: what you pay us to manage the ads, and what you pay Meta directly for the ads to run. Those are separate. For stronger testing, I usually recommend starting around $1,000 to $2,000 a month in ad spend because it gives us enough room to test creative, audiences, and offers properly. You control the spend. It does not go to us. It goes directly to the ad platform.",
-      },
-      {
-        layout: "bullets", bg: "dark",
         heading: "Two things we promise every client.",
         bullets: [
           "\"I'll make sure you never miss another phone call.\"",
           "\"I'll keep your social media active every single day so you stay in front of your customers.\"",
-          "Every missed call gets an automatic text reply — within seconds, day or night",
-          "Every day your brand posts — you never have to touch your phone to do it",
-          "Every lead gets followed up — even the ones you would have forgotten",
+          "Every missed call → instant text-back within seconds, 24 hours a day",
+          "Every day → content posts automatically, you never touch your phone",
+          "Every lead → followed up automatically until they book",
           "This is not a website. This is a system that runs your online presence for you.",
         ],
-        script: "Before I go any further, I want to make two promises to you right now. First: you will never miss another phone call. Every call that goes unanswered — no matter when, no matter why — automatically sends that person a text message from your business within seconds. They are kept warm while you're busy. Second: your social media will be active every single day so you stay in front of your customers. No gaps. No 'I forgot to post this week.' Every day, without you lifting a finger. Let me show you exactly how we do both.",
+        script: "Before anything else — two promises. First: you will never miss another phone call. Every unanswered call gets an automatic text from your business within seconds. Second: your social media will be active every single day. No gaps. No forgetting. Every day, without you lifting a finger. Let me show you exactly how we do both.",
       },
-      {
+      /* 5 */ {
         layout: "headline", bg: "rose",
         heading: "Your website is a leaky bucket.",
         sub: "People land on it — and leave. We plug the holes.",
-        body: "Most business websites have a contact form that goes nowhere, no live chat, no follow-up if someone calls and hangs up. Visitors come in — and quietly disappear. We fix all of that.",
-        script: "Here's how I want you to think about your current website. It's a leaky bucket. People visit — they look around — and then they leave. Maybe they filled out the form. Maybe they called but you didn't answer. Maybe they just couldn't find what they needed fast enough. And in every single one of those cases, you lose the lead. What we build stops that from happening.",
+        body: "Most business websites have a form that goes nowhere, no live chat, and no follow-up when someone calls and hangs up. Visitors come in — and quietly disappear. We fix all of that.",
+        script: "Think about your current website. It's a leaky bucket. People visit, look around, and leave. Maybe they filled out the form — but nobody called them back fast enough. Maybe they called and you didn't answer. In every one of those cases, you lost the lead. What we build stops that from happening.",
       },
-      {
+      /* 6 */ {
         layout: "steps", bg: "light",
         heading: "What makes our website smart",
         steps: [
-          { n: "01", title: "The Talking Website", desc: "A built-in AI chat widget reads every page of the site — services, location, pricing — and answers visitor questions instantly. It then books them directly onto your calendar. No phone tag." },
-          { n: "02", title: "Missed Call Text-Back", desc: "Someone calls, you don't answer. Within seconds they get a text from your business: 'Hey, sorry we missed you — how can we help?' The conversation starts automatically." },
-          { n: "03", title: "Contact Form → Calendar", desc: "Instead of 'thanks for submitting' pages that go nowhere, every form submission forwards to a booking calendar. They pick a time slot and they're on your calendar before you even see the lead." },
+          { n: "01", title: "The Talking Website", desc: "An AI chat widget reads every page — services, location, pricing — answers questions instantly, and books appointments directly onto your calendar. No phone tag." },
+          { n: "02", title: "Missed Call Text-Back", desc: "You miss a call. Within seconds, that person gets a text from your business: 'Hey, sorry we missed you — how can we help?' The conversation starts automatically." },
+          { n: "03", title: "Form → Calendar", desc: "Instead of dead 'thanks for submitting' pages, every form submission redirects to your booking calendar. They pick a time slot. Done." },
         ],
-        script: "This is what turns a regular website into a revenue machine. The AI chat widget on the bottom of the screen reads your entire site — all your services, your location, your process — and has real conversations with visitors. It answers their questions and books them in. If they call and you miss it, they get a text within seconds. If they fill out a form, they're immediately redirected to your calendar. You wake up with appointments already booked — without doing anything.",
+        script: "This is what turns a regular website into a revenue machine. The AI chat reads your entire site and talks to visitors — it books them before they leave. If they call and you miss it, they get a text in seconds. If they fill out a form, they're immediately redirected to your calendar. You wake up with appointments already booked — without doing anything.",
       },
-      {
-        layout: "headline", bg: "blush",
-        heading: "Automation System",
-        sub: "Every person who reaches out gets an instant reply — even at 3am.",
-        body: "When someone sends you a message, calls, or fills out a form on your website — our system sends them an instant reply, a booking link, and follows up automatically until they book.",
-        script: "Here's the part that makes the system feel different. Have you ever missed a call because you were with a client, on a job, driving, or offline? That person might have been ready to book, but if they do not hear back quickly, they often move on. With missed-call text back, they can get an instant message from your business even when you cannot answer. With talking website chat, a visitor can click the chat box and call or speak through the chat, and if you are available, you can talk back by voice right there. If someone fills out a form, uses an estimate calculator, sends a DM, or clicks your booking link, the system can reply, confirm, and move them toward an appointment. The outcome is simple: fewer lost inquiries and more people booked on your calendar.",
-      },
-      {
-        layout: "steps", bg: "light",
-        heading: "How the automation works",
-        steps: [
-          { n: "01", title: "Someone contacts you", desc: "A person calls, sends a DM, fills out your web form, uses an estimate calculator, or clicks your ad." },
-          { n: "02", title: "They get an instant reply", desc: "Within seconds, they receive a friendly text, email, or DM with next steps and a booking link." },
-          { n: "03", title: "The system keeps nudging", desc: "If they do not book right away, follow-ups continue so the lead does not disappear." },
-          { n: "04", title: "They book or request a quote", desc: "You can wake up or finish an appointment and already have inquiries, estimates, or bookings waiting." },
-        ],
-        script: "Think of it like having a receptionist who never sleeps. The moment someone contacts your business, the system answers the first step for you. If they call and you miss it, they can get a text. If they fill out a form, they can get a confirmation. If they need a quote, we can send them through the right questions. If they do not book right away, the system follows up again. This is how you turn more inquiries into booked appointments without personally chasing every single person.",
-      },
-      {
+      /* 7 */ {
         layout: "headline", bg: "dark",
-        heading: "Email & Text Marketing",
-        sub: "Stay in touch with every person who has ever shown interest in your business.",
-        body: "We set up automatic emails and text messages that go out to your leads, past clients, and people who almost booked — bringing them back to you over and over.",
-        script: "The last piece of the system is email and text marketing. Here's the simple idea: most people who contact your business don't book on the first contact. They're interested, but life gets in the way. Email and text marketing is how you stay in their mind until they're ready. We set up automatic messages that go out at the perfect time — a thank you after their first visit, a reminder after 60 days, a special offer in a slow month. Set it up once and it works forever.",
+        heading: "Your AI Clone",
+        sub: "Your face. Your voice. Posting every day — without you filming.",
+        body: "We record you once for 20 minutes. From that, we build a digital version of you that creates video content on its own — every single day.",
+        script: "This is the part that surprises everyone. We create a digital version of you — an AI Clone — that looks and sounds exactly like you. You record yourself once for 20 minutes. A week later, your AI clone is creating videos for your social media every day without you ever picking up a camera. No filming. No editing. Just done.",
       },
-      {
+      /* 8 */ {
+        layout: "bullets", bg: "blush",
+        heading: "Social Media + AI Clone — What you get",
+        bullets: [
+          "3 AI clone videos pinned at the top of your profile — your face and voice, always front and centre",
+          "12–36 posts/month — Reels, carousels, and static posts — all on-brand, all done for you",
+          "1 platform (Starter) or 3 platforms (Growth) — Facebook, Instagram & TikTok",
+          "Content approval before posting — you see and approve everything first",
+          "Dedicated content strategy — hashtag research, caption writing, optimal posting times",
+          "Monthly performance report — clear results in plain English every month",
+        ],
+        script: "Here's what you get every month. Your AI clone videos are pinned at the top of your page so every new visitor sees you immediately. Then we fill the rest of your calendar with reels, carousels, and static posts — all branded, all approved by you before they go live. You get a monthly report in plain English so you always know what's working.",
+      },
+      /* 9 */ {
+        layout: "steps", bg: "dark",
+        heading: "Facebook & Instagram Ads",
+        steps: [
+          { n: "01", title: "We create the ads", desc: "Eye-catching videos and images designed to stop the scroll and drive action — built around your offer and audience." },
+          { n: "02", title: "We find your perfect customers", desc: "Hyper-targeted audiences — people in your city, right age, right interests. Every dollar goes toward people who are actually looking for what you offer." },
+          { n: "03", title: "They click and book", desc: "Clicks go straight to your booking page or estimate form. More clicks = more booked appointments." },
+          { n: "04", title: "We optimise every week", desc: "We check the data weekly. What's working gets more budget. What isn't gets fixed. Your cost per booking gets lower over time." },
+        ],
+        script: "Right now when you post on Instagram, only your followers see it. Ads are how you get in front of thousands of people in your city who have never heard of you. We build the ads, find the right audience, and optimise every week. The ad budget goes directly to Meta — not to us. We recommend starting at $1,000–$2,000/mo for real results.",
+      },
+      /* 10 */ {
+        layout: "steps", bg: "light",
+        heading: "The full automation system",
+        steps: [
+          { n: "01", title: "Lead comes in from anywhere", desc: "DM, web form, missed call, ad click, estimate calculator — all captured in one place, nothing falls through." },
+          { n: "02", title: "Instant reply — within seconds", desc: "They get a text or email from your business immediately with a booking link. Even at 2am on a Sunday." },
+          { n: "03", title: "Automatic follow-ups", desc: "If they don't book right away, the system follows up for up to 2 weeks until they say yes or no." },
+          { n: "04", title: "Google reviews on autopilot", desc: "5-star clients go straight to Google. 4-star or below goes to a private feedback form — only you see it." },
+        ],
+        script: "Think of it like having a receptionist who never sleeps. Every lead that comes in gets replied to immediately. Every person who doesn't book gets followed up with — automatically. And every happy client is nudged to leave a Google review. The 5-star ones go public. The unhappy ones go to you privately so you can fix it before it damages your reputation.",
+      },
+      /* 11 */ {
         layout: "bullets", bg: "dark",
         heading: "Why our clients never cancel.",
         bullets: [
-          "Automations run 24/7 — even when you're asleep, on holiday, or with another client",
-          "Appointments show up on their calendar automatically — no back and forth, no manual booking",
-          "5-star reviews build on autopilot — happy clients go straight to Google",
-          "Lower ratings go to private feedback — the owner can fix the issue before it becomes public",
-          "QR codes and past-client review prompts help raise Google ratings faster",
-          "Missed calls get an instant text-back — they never lose a lead to a faster competitor again",
-          "You're not paying for a website — you're paying for a system that generates leads while you sleep",
+          "Automations run 24/7 — even when you're asleep, on a job, or with a client",
+          "Appointments show up on their calendar automatically — no back and forth",
+          "5-star reviews build on autopilot — Google ranking goes up every month",
+          "Missed calls get instant text-back — leads never go to a faster competitor",
+          "Lead Connector mobile app — they see every lead and booking from their phone in real time",
+          "If they cancel — all of this stops. That's why they don't.",
         ],
-        script: "Let me be honest with you about why this works so well long term. Most agencies sell you something and disappear. What we build is a system that keeps working every day. The missed-call text back keeps leads from going cold. The booking follow-up keeps people moving toward the calendar. The review funnel sends five-star clients straight to Google, while lower ratings go to a private form that tells the owner what happened. We can create QR codes so customers can leave reviews from the front desk, a receipt, or a card. We can also take a list of past clients and prompt them to leave a rating, which helps your Google rating and trust go up. That is why clients keep the system. If they cancel, all those lead and review engines stop.",
+        script: "Here's the truth about why this works long-term. We don't lock clients in with contracts. They stay because the system is genuinely making them money while they sleep. Leads come in, get followed up automatically, reviews build, their Google ranking goes up. Every morning they open the Lead Connector app on their phone and see what came in overnight. That's the moment they realise this is working. If they cancel, all of it stops. And that's why they don't.",
       },
-      {
-        layout: "metrics", bg: "blush",
-        heading: "The math is simple",
-        sub: "A managed system does not need to change your whole business overnight. It needs to save missed leads, create more trust, and help more interested people book.",
-        metrics: [
-          { value: "1", label: "Extra booked client", caption: "For many service businesses, one additional client or job can cover a large part of the monthly investment." },
-          { value: "24/7", label: "Lead response", caption: "The system keeps answering and following up after hours, weekends, and busy days." },
-          { value: "90", label: "Day growth window", caption: "The first 90 days are for setup, testing, consistency, and building momentum." },
-        ],
-        script: "Here is the way I want you to think about the investment. We do not need to make this complicated. If this system helps you capture one lead you would have missed, makes your business look more trustworthy, or gets one more person booked, it starts paying for itself. Then the content, reviews, and follow-up keep compounding over the next 90 days.",
-      },
-      {
-        layout: "bullets", bg: "dark",
+      /* 12 */ {
+        layout: "bullets", bg: "rose",
         heading: "Every budget has a starting point.",
         bullets: [
-          "$297/mo — Talking website + backend autoresponder + Google reviews. No setup fee. The foundation.",
+          "$297/mo — Talking website + backend autoresponder + Google reviews · No setup fee",
           "$500/mo — Everything above + Google Local Service Ads or AI voice receptionist",
-          "$1,000/mo — Full social media management + AI clone + daily content + full automation",
-          "$2,500/mo — 3 platforms + paid ads management + the full system",
-          "Every plan includes the Lead Connector mobile app — see every lead and booking from your phone",
-          "Start anywhere. Upgrade when you're ready. The system keeps compounding.",
+          "$1,000/mo — Full social media management + AI clone + full automation",
+          "$2,500/mo — 3 platforms + paid Meta ads + full system",
+          "$5,000+/mo — Elite — daily content across all platforms + all ad channels + website build",
+          "Every plan includes Lead Connector — see every lead and booking from your phone",
         ],
-        script: "Here's something I want you to know — you don't have to start with the full system. Some clients start at $297 a month. That gets you the talking website, the automated follow-ups, and the Google review funnel. That alone has helped clients go from 10 Google reviews to 50 in two weeks. From there, you can add on when it makes sense. The important thing is every plan includes the mobile app — so you can see your leads and appointments from your phone in real time, wherever you are.",
+        script: "You don't have to start with the full system. Some clients start at $297 a month. That gets you the talking website, the automated follow-ups, and the Google review funnel. That alone has helped clients go from 10 reviews to 50 in two weeks. From there you add on when it makes sense. The important thing is every single plan includes the mobile app — so you see your leads in real time from your phone, wherever you are.",
       },
-      LIVE_QUOTE_BUILDER_SLIDE,
-      {
+      /* 13 */ LIVE_QUOTE_BUILDER_SLIDE,
+      /* 14 */ {
         layout: "title", bg: "dark",
         heading: "Thank you.",
         sub: "The Dollhouse Brand Studio  ·  hello@shopdollhouse.co",
-        script: "Thank you so much for your time today. I hope this made everything really clear — how it works, what's involved, and what it costs. I want you to feel 100% comfortable before making any decision. If you have any questions after this, my email is on the screen. The next step is choosing the plan and contract length that makes the most sense for your business. What would you like to do next?",
+        script: "Thank you so much for your time today. I hope everything is crystal clear — how it works, what's included, and what it costs. I want you to feel 100% comfortable before making any decision. If you have questions after this, my email is on the screen. What would you like to do next?",
       },
     ],
   },
