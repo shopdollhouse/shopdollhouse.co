@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import archMark from "@/assets/arch-mark.svg";
 import bgImage from "@/assets/password-bg.jpg";
+import { usePageMeta } from "@/lib/use-page-meta";
 
 const FONT_DISPLAY = "'Cormorant Garamond', serif";
 const FONT_SCRIPT = "'Allura', cursive";
@@ -231,9 +232,12 @@ function ProductMockup({ product }: { product: BrandProduct }) {
 }
 
 function PricePanel({ product }: { product: BrandProduct }) {
+  const accessUrl = getProductAccessUrl(product);
+  const accessLabel = product.checkoutUrl ? product.finalCta : "Request Access";
+
   return (
     <aside className="rounded-[28px] bg-[var(--ink)] p-7 text-[var(--cream)] shadow-[0_34px_80px_-42px_rgba(30,15,10,0.8)] md:p-8">
-      <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Instant Access</p>
+      <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>{product.checkoutUrl ? "Instant Access" : "Private Access"}</p>
       <div className="mt-5 flex items-baseline gap-3">
         <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3rem, 6vw, 4.4rem)", lineHeight: 1 }}>{product.price}</span>
         {product.regular && <span className="line-through text-[var(--cream)]/30" style={{ fontFamily: FONT_BODY, fontSize: "1.05rem" }}>{product.regular}</span>}
@@ -241,8 +245,8 @@ function PricePanel({ product }: { product: BrandProduct }) {
       {product.value && (
         <p className="mt-1 text-[var(--cream)]/42" style={{ fontFamily: FONT_LUXE, fontSize: "0.65rem", letterSpacing: "0.14em", textTransform: "uppercase" }}>{product.value}</p>
       )}
-      <a href="#" onClick={(e) => e.preventDefault()} className="mt-7 block rounded-full px-6 py-4 text-center transition-all hover:-translate-y-0.5" style={{ background: "var(--gold)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
-        Coming Soon
+      <a href={accessUrl} className="mt-7 block rounded-full px-6 py-4 text-center transition-all hover:-translate-y-0.5" style={{ background: "var(--gold)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
+        {accessLabel}
       </a>
       <p className="mt-4 text-center text-[var(--cream)]/38" style={{ fontFamily: FONT_BODY, fontSize: "0.78rem" }}>Private browser access · Digital product · All sales final</p>
       <div className="mt-7 border-t border-[rgba(200,168,100,0.18)] pt-6">
@@ -258,7 +262,22 @@ function PricePanel({ product }: { product: BrandProduct }) {
   );
 }
 
+function getProductAccessUrl(product: BrandProduct) {
+  if (product.checkoutUrl) return product.checkoutUrl;
+  const subject = encodeURIComponent(`Request access: ${product.name}`);
+  const body = encodeURIComponent(`Hi The Dollhouse,\n\nI would like access to ${product.name}.\n\nProduct: ${product.shortName}\nPrice: ${product.price}\n\nThank you!`);
+  return `mailto:hello@shopdollhouse.co?subject=${subject}&body=${body}`;
+}
+
 export function BrandProductSalesPage({ product }: { product: BrandProduct }) {
+  const accessUrl = getProductAccessUrl(product);
+  const accessLabel = product.checkoutUrl ? product.finalCta : "Request Access";
+
+  usePageMeta(
+    `${product.name} | The Dollhouse Brand Studio`,
+    `${product.tagline} ${product.price} ${product.value ?? ""}`.trim(),
+  );
+
   return (
     <main className="min-h-screen bg-[var(--blush)] text-[var(--ink)]">
       <Nav />
@@ -282,8 +301,8 @@ export function BrandProductSalesPage({ product }: { product: BrandProduct }) {
               {product.intro}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
-              <a href="#" onClick={(e) => e.preventDefault()} className="btn-ink text-center">
-                {product.finalCta} <span aria-hidden>→</span>
+              <a href={accessUrl} className="btn-ink text-center">
+                {accessLabel} <span aria-hidden>→</span>
               </a>
               <a href="#inside" className="btn-ghost text-center">
                 See What’s Inside <span aria-hidden>↓</span>
@@ -342,7 +361,7 @@ export function BrandProductSalesPage({ product }: { product: BrandProduct }) {
           <div>
             <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Perfect For</p>
             <h2 className="mt-4 text-[var(--rose)] leading-tight" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2rem, 4vw, 3.4rem)", fontWeight: 400 }}>
-              Founders who want clarity before they spend more.
+              Beginners who want clarity before they spend more.
             </h2>
           </div>
           <div className="grid gap-3">
@@ -399,10 +418,12 @@ export function BrandProductSalesPage({ product }: { product: BrandProduct }) {
         <h2 className="mx-auto mt-4 max-w-3xl text-[var(--rose)] leading-tight" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.4rem, 5vw, 4rem)", fontWeight: 400 }}>
           Your dream brand starts here.
         </h2>
-        <a href="#" onClick={(e) => e.preventDefault()} className="btn-ink mt-8 inline-flex">
-          {product.finalCta} <span aria-hidden>→</span>
+        <a href={accessUrl} className="btn-ink mt-8 inline-flex">
+          {accessLabel} <span aria-hidden>→</span>
         </a>
-        <p className="mt-5 text-[var(--ink)]/42" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem" }}>All sales final due to instant digital access.</p>
+        <p className="mt-5 text-[var(--ink)]/42" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem" }}>
+          {product.checkoutUrl ? "All sales final due to instant digital access." : "Digital product access is arranged privately until checkout opens."}
+        </p>
       </section>
     </main>
   );

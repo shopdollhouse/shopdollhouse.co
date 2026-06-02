@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import archMark from "@/assets/arch-mark.svg";
 import { getSystemService, managedServiceLinks, systemServices } from "@/lib/system-services";
+import { usePageMeta } from "@/lib/use-page-meta";
 
 export const Route = createFileRoute("/systems_/$service")({
   component: SystemServicePage,
@@ -204,6 +205,10 @@ function SystemServicePage() {
   const { service } = Route.useParams();
   const current = getSystemService(service) ?? systemServices[0];
   const Icon = iconMap[current.icon as keyof typeof iconMap];
+  usePageMeta(
+    `${current.title} | The Dollhouse Systems`,
+    `${current.short} ${current.result}`,
+  );
 
   return (
     <main className="min-h-screen bg-[var(--blush)] text-[var(--ink)]">

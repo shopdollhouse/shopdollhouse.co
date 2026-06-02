@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { usePageMeta } from "@/lib/use-page-meta";
 
 export const Route = createFileRoute("/ai-clone")({ component: AIClonePage });
 
@@ -12,6 +13,11 @@ const ink   = "var(--ink)";
 const cream = "var(--cream)";
 
 function AIClonePage() {
+  usePageMeta(
+    "AI Clone Content System | The Dollhouse Brand Studio",
+    "Get an AI clone or custom brand character built for your content system, with done-for-you strategy, posts, automations, and lead follow-up.",
+  );
+
   return (
     <div style={{ fontFamily: FONT_BODY, color: ink, overflowX: "hidden" }}>
 

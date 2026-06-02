@@ -5,6 +5,7 @@ import archMark from "@/assets/arch-mark.svg";
 import brandKitImage from "@/assets/product-brand-kit.jpg";
 import workbookImage from "@/assets/product-workbook.jpg";
 import aiPromptKitImage from "@/assets/product-ai-prompt-kit.jpg";
+import { usePageMeta } from "@/lib/use-page-meta";
 
 export const Route = createFileRoute("/brand-room")({ component: BrandRoomPage });
 
@@ -99,7 +100,7 @@ function Hero() {
         />
 
         <div className="reveal inline-flex items-center gap-2 rounded-full border border-[var(--gold)]/55 bg-white/45 backdrop-blur-md px-5 py-2 text-[var(--gold)]" style={{ animationDelay: "0.05s" }}>
-          <span className="text-[10px] tracking-luxe uppercase font-medium" style={{ fontFamily: FONT_LUXE }}>For founders building from scratch</span>
+          <span className="text-[10px] tracking-luxe uppercase font-medium" style={{ fontFamily: FONT_LUXE }}>For beginners building from scratch</span>
         </div>
 
         <div className="reveal mt-8 flex justify-center text-[var(--gold)]" style={{ animationDelay: "0.15s" }}>
@@ -128,7 +129,7 @@ function Hero() {
         </h2>
 
         <p className="reveal mt-4 text-[var(--ink)]/76 leading-relaxed max-w-lg mx-auto" style={{ fontFamily: FONT_BODY, fontSize: "clamp(0.95rem, 1.8vw, 1.1rem)", animationDelay: "0.58s", textShadow: "0 1px 16px rgba(255,255,255,0.72)" }}>
-          The Brand Room is a guided web-app system for founders who need a polished offer, brand voice, content direction, and launch foundation before monthly management makes sense.
+          The Brand Room is a guided web-app system for beginners who need a polished offer, brand voice, content direction, and launch foundation before monthly management makes sense.
         </p>
 
         <div className="reveal mt-9 flex flex-col sm:flex-row items-center justify-center gap-4" style={{ animationDelay: "0.65s" }}>
@@ -174,7 +175,7 @@ const PIECES = [
     originalPrice: "$261",
     name: "Brand Workbook",
     tagline: "Interactive web app — your business foundation",
-    detail: "Map your audience, positioning, offer, value, brand voice, and content pillars. Includes a bonus PDF workbook for founders who like to think on paper too.",
+    detail: "Map your audience, positioning, offer, value, brand voice, and content pillars. Includes a bonus PDF workbook for beginners who like to think on paper too.",
     href: WORKBOOK_URL,
     cta: "View the Workbook",
     image: workbookImage,
@@ -208,7 +209,7 @@ function WhatsInside() {
           </p>
           <Divider />
           <p className="mt-5 text-[var(--ink)]/62 leading-relaxed" style={{ fontFamily: FONT_BODY, fontSize: "0.98rem" }}>
-            This is for the founder who is not ready for monthly management yet, but is ready to stop guessing. Each room turns a messy early-stage idea into decisions you can use.
+            This is for the beginner who is not ready for monthly management yet, but is ready to stop guessing. Each room turns a messy early-stage idea into decisions you can use.
           </p>
         </div>
 
@@ -255,7 +256,7 @@ function WhatsInside() {
             <div className="relative">
               <img src={PIECES[0].image} alt={PIECES[0].imageAlt} className="aspect-[3/2] w-full rounded-[24px] object-cover shadow-[0_28px_70px_-38px_rgba(0,0,0,0.75)]" />
               <div className="mt-5 flex items-end justify-between gap-4">
-                <p style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(250,243,234,0.4)" }}>One-time · Instant access</p>
+                <p style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(250,243,234,0.4)" }}>One-time · Private access</p>
                 <div className="flex items-baseline gap-3">
                   <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.4rem, 4vw, 3.4rem)", lineHeight: 1 }}>{PIECES[0].price}</span>
                   <span className="line-through" style={{ fontFamily: FONT_BODY, fontSize: "1rem", color: "rgba(250,243,234,0.3)" }}>{PIECES[0].originalPrice}</span>
@@ -327,7 +328,7 @@ function Includes() {
           Your first real business foundation, built today.
         </h2>
         <p className="mt-5 max-w-2xl text-[var(--cream)]/62 leading-relaxed" style={{ fontFamily: FONT_BODY, fontSize: "0.95rem" }}>
-          The Brand Room gives you the decisions, words, and visual direction most founders try to make after they start posting. Build it first, then grow from something clear.
+          The Brand Room gives you the decisions, words, and visual direction most beginners try to make after they start posting. Build it first, then grow from something clear.
         </p>
         <div className="mt-3 flex items-center gap-3">
           <span className="h-px w-12" style={{ background: "linear-gradient(90deg, transparent, rgba(201,122,122,0.5), transparent)" }} />
@@ -507,13 +508,13 @@ function ManagedGrowth() {
 
 /* ─── FAQ ─────────────────────────────────────────────── */
 const FAQS: [string, string][] = [
-  ["Who is The Brand Room for?", "New founders, creators, and service providers who are not ready for a monthly growth retainer yet, but need a real business, brand, offer, and content foundation."],
+  ["Who is The Brand Room for?", "New business owners, creators, and service providers who are not ready for a monthly growth retainer yet, but need a real business, brand, offer, and content foundation."],
   ["Is this just a PDF?", "No. The core pieces are interactive web apps that guide you through decisions step by step. The workbook also includes a bonus PDF for offline planning."],
   ["Can I buy just one product?", "Yes. Start with the $97 Brand Kit Blueprint, grab the $47 Brand Workbook, or pick up the $17 AI Prompt Kit on its own. Or save $34 and grab all three for $127."],
   ["How is this delivered?", "Instantly. After checkout you'll receive an email with access to your Brand Kit Blueprint, Brand Workbook, and AI Prompt Kit."],
   ["Do I need design experience?", "No. The apps walk you through the decisions in plain language so you can create a polished foundation without hiring a designer first."],
   ["Can I upgrade to a done-for-you retainer later?", "Yes. The Brand Room is the starting point, and your investment can be credited toward your first month on any monthly plan."],
-  ["Are there refunds?", "Because these are digital products with instant access, all sales are final."],
+  ["Are there refunds?", "Because these are digital products with private access after payment is arranged, all sales are final."],
 ];
 
 function FAQ() {
@@ -609,6 +610,11 @@ function BackToTop() {
 
 /* ─── Page ─────────────────────────────────────────────── */
 function BrandRoomPage() {
+  usePageMeta(
+    "The Brand Room | The Dollhouse Brand Studio",
+    "A guided brand-building room for beginners who need a brand foundation, offer clarity, content direction, and launch plan before monthly marketing.",
+  );
+
   return (
     <main className="bg-[var(--blush)] text-[var(--ink)]">
       <Nav />
