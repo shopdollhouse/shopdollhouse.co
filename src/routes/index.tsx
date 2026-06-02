@@ -1685,10 +1685,10 @@ function AICloneSection() {
 }
 
 function Pricing() {
-  const [contractTerm, setContractTerm] = useState<"3" | "6" | "12">("3");
+  const [contractTerm, setContractTerm] = useState<"6" | "12">("6");
   const contractMonths = Number(contractTerm);
   const setupFee = 500;
-  const fullPlanBonus = contractTerm === "3" ? "Choose a longer plan to unlock the Growth bonus" : "Growth plan bonus: last month free";
+  const fullPlanBonus = contractTerm === "12" ? "Annual bonus: 1 month free on every plan" : "Choose annual to unlock 1 month free";
   const displayPrice = (monthlyPrice: number) => `$${monthlyPrice.toLocaleString()}`;
 
   const tiers = [
@@ -1700,8 +1700,7 @@ function Pricing() {
       fit: "Best for getting the lead system in place",
       outcome: "A functional website and follow-up system that turns inquiries into text conversations.",
       tagline: "For service businesses that need the website, missed-call, review, and follow-up foundation before full marketing management.",
-      setupLabel: "+ $500 setup fee",
-      trialAvailable: false,
+      setupLabel: "+ $500 one-time setup",
       badgeLabel: "Lead automation included",
       supportNote: "no AI clone or social posting included",
       cta: "Ask About Foundation →",
@@ -1723,8 +1722,7 @@ function Pricing() {
       fit: "Best for a polished starting point",
       outcome: "One platform with consistent static posts and carousels.",
       tagline: "Light content support for businesses that are not ready for the full AI clone or automation system yet.",
-      setupLabel: "+ $500 setup fee",
-      trialAvailable: false,
+      setupLabel: "+ $500 one-time setup",
       badgeLabel: "Simple content package",
       supportNote: "no AI clone or automation included",
       cta: "Ask About Content Lite →",
@@ -1745,7 +1743,7 @@ function Pricing() {
       fit: "Best for focused launches",
       outcome: "One platform, one clear offer, one polished content system.",
       tagline: "Social media management + a full back-end conversion system — done for you, every day.",
-      setupLabel: "+ $500 setup fee",
+      setupLabel: "+ $500 one-time setup",
       cta: "Get Started →",
       features: [
         "1 platform of your choice — Facebook, Instagram or TikTok — fully managed, nothing to post",
@@ -1768,8 +1766,8 @@ function Pricing() {
       outcome: "All 3 social platforms, paid Meta ads, voice AI, and follow-up automation.",
       tagline: "Facebook, Instagram, and TikTok fully managed — more content, paid ads, and strategy built in.",
       featured: true,
-      topBadge: { label: "Best for Lead Flow", tone: "pink" as "gold" | "pink" },
-      setupLabel: "+ $500 setup fee",
+      topBadge: { label: "Featured Growth System", tone: "pink" as "gold" | "pink" },
+      setupLabel: "+ $500 one-time setup",
       cta: "Get a Free Proposal →",
       features: [
         "3 platforms fully managed — Facebook, Instagram & TikTok — nothing to post, nothing to think about",
@@ -1797,7 +1795,7 @@ function Pricing() {
   };
   const getPlanMath = (tier: (typeof tiers)[number]) => {
     const regularTotal = tier.monthlyPrice * contractMonths + setupFee;
-    const bonusMonths = tier.featured && contractTerm !== "3" ? 1 : 0;
+    const bonusMonths = contractTerm === "12" ? 1 : 0;
     const paidMonths = contractMonths - bonusMonths;
     const total = tier.monthlyPrice * paidMonths + setupFee;
     const savings = regularTotal - total;
@@ -1821,7 +1819,7 @@ function Pricing() {
 
       <div className="mt-8 flex justify-center">
         <div
-          className="grid w-full max-w-xl grid-cols-3 gap-1.5 rounded-full p-1.5"
+          className="grid w-full max-w-md grid-cols-2 gap-1.5 rounded-full p-1.5"
           style={{
             background: "rgba(255,250,246,0.72)",
             border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",
@@ -1829,7 +1827,6 @@ function Pricing() {
           }}
         >
           {[
-            { value: "3", label: "3 Months" },
             { value: "6", label: "6 Months" },
             { value: "12", label: "12 Months" },
           ].map((option) => {
@@ -1838,7 +1835,7 @@ function Pricing() {
               <button
                 key={option.value}
                 type="button"
-                onClick={() => setContractTerm(option.value as "3" | "6" | "12")}
+                onClick={() => setContractTerm(option.value as "6" | "12")}
                 className="rounded-full px-3 py-3 transition-all"
                 style={{
                   background: active ? "var(--ink)" : "transparent",
@@ -1871,18 +1868,18 @@ function Pricing() {
           </p>
         </div>
         {[
-          ["Every Plan", "All monthly plans include a $500 setup fee for onboarding, buildout, and launch prep."],
-          ["Full Plan Bonus", "On 6-month or 12-month Growth contracts, the last month is free."],
+          ["Every Plan", "All monthly plans include a one-time $500 setup fee for onboarding, buildout, and launch prep."],
+          ["Annual Bonus", "Choose a 12-month contract and your last month is free on every plan."],
         ].map(([title, copy]) => (
           <div key={title} className="rounded-2xl px-5 py-4 text-center" style={{ background: "rgba(255,255,255,0.5)" }}>
             <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>{title}</p>
             <p className="mt-2 text-[var(--ink)]/58 leading-6" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.84rem" }}>{copy}</p>
-            {title === "Full Plan Bonus" && (
+            {title === "Annual Bonus" && (
               <p
                 className="mt-3 rounded-full px-3 py-2"
                 style={{
-                  background: contractTerm === "3" ? "rgba(30,15,10,0.05)" : "rgba(201,122,122,0.1)",
-                  color: contractTerm === "3" ? "rgba(30,15,10,0.45)" : "var(--rose)",
+                  background: contractTerm === "6" ? "rgba(30,15,10,0.05)" : "rgba(201,122,122,0.1)",
+                  color: contractTerm === "6" ? "rgba(30,15,10,0.45)" : "var(--rose)",
                   fontFamily: "'Jost', sans-serif",
                   fontSize: "0.62rem",
                   letterSpacing: "0.14em",
@@ -1981,44 +1978,26 @@ function Pricing() {
                     <path d="M12 21.6C6.3 16.1 1 11.3 1 7.2 1 3.4 4.1 2 6.3 2c1.3 0 4.2.5 5.7 4.5C13.6 2.5 16.5 2 17.7 2 20.3 2 23 3.6 23 7.2c0 4.1-5.1 8.9-11 14.4z"/>
                   </svg> {contractTerm}-Month Agreement
                 </div>
-                {t.trialAvailable === false ? (
-                  <div
-                    className="mt-3 inline-flex items-center justify-center gap-2 rounded-full px-4 py-2"
-                    style={{
-                      background: isFilled ? "rgba(200,168,100,0.14)" : "rgba(200,168,100,0.12)",
-                      border: "1px solid rgba(200,168,100,0.3)",
-                      color: "var(--gold)",
-                      fontFamily: "'Jost', sans-serif",
-                      fontSize: "0.62rem",
-                      letterSpacing: "0.16em",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    <Sparkles size={12} strokeWidth={1.8} />
-                    {t.badgeLabel ?? "Entry package"}
-                  </div>
-                ) : (
-                  <div
-                    className="mt-3 inline-flex items-center justify-center gap-2 rounded-full px-4 py-2"
-                    style={{
-                      background: isFilled ? "rgba(201,122,122,0.16)" : "rgba(201,122,122,0.1)",
-                      border: "1px solid rgba(201,122,122,0.28)",
-                      color: isFilled ? "rgba(250,243,234,0.9)" : "var(--rose)",
-                      fontFamily: "'Jost', sans-serif",
-                      fontSize: "0.62rem",
-                      letterSpacing: "0.16em",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    <Sparkles size={12} strokeWidth={1.8} />
-                    14-day free trial available
-                  </div>
-                )}
+                <div
+                  className="mt-3 inline-flex items-center justify-center gap-2 rounded-full px-4 py-2"
+                  style={{
+                    background: isFilled ? "rgba(201,122,122,0.16)" : "rgba(201,122,122,0.1)",
+                    border: "1px solid rgba(201,122,122,0.28)",
+                    color: isFilled ? "rgba(250,243,234,0.9)" : "var(--rose)",
+                    fontFamily: "'Jost', sans-serif",
+                    fontSize: "0.62rem",
+                    letterSpacing: "0.16em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  <Sparkles size={12} strokeWidth={1.8} />
+                  14-day free trial available
+                </div>
                 <p
                   className="mt-1.5 text-center"
                   style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: isFilled ? "rgba(250,243,234,0.4)" : "rgba(30,15,10,0.35)" }}
                 >
-                  {contractTerm === "3" ? "3-month option available for now" : contractTerm === "6" ? "6-month contract option" : "12-month contract option"}
+                  {contractTerm === "6" ? "6-month contract option" : "annual contract · 1 month free"}
                 </p>
 
                 {/* Price */}
@@ -2045,7 +2024,7 @@ function Pricing() {
                   >
                     /MO
                   </span>
-                  {t.featured && contractTerm !== "3" && (
+                  {contractTerm === "12" && (
                     <span
                       className="mt-2 rounded-full px-3 py-1"
                       style={{
@@ -2059,7 +2038,7 @@ function Pricing() {
                         fontWeight: 700,
                       }}
                     >
-                      last month free
+                      save ${t.monthlyPrice.toLocaleString()} · last month free
                     </span>
                   )}
                 </div>
@@ -2140,8 +2119,8 @@ function Pricing() {
                     }}
                   >
                     {math.savings > 0
-                      ? `Pay for ${math.paidMonths} months + $500 setup. Your ${contractTerm}th month is free.`
-                      : `${contractTerm} months at ${displayPrice(t.monthlyPrice)}/mo + $500 setup fee.`}
+                      ? `Pay for ${math.paidMonths} months + one-time $500 setup. Your 12th month is free.`
+                      : `${contractTerm} months at ${displayPrice(t.monthlyPrice)}/mo + one-time $500 setup fee.`}
                   </p>
                 </div>
 
@@ -2301,17 +2280,17 @@ function Pricing() {
 
       {/* Pricing footnote */}
       <p className="text-center mt-6 mb-2" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.4)" }}>
-        Foundation starts at $297/mo &nbsp;·&nbsp; $500 setup fee on every monthly plan &nbsp;·&nbsp; 3, 6, and 12-month options available
+        Foundation starts at $297/mo &nbsp;·&nbsp; one-time $500 setup fee on every contract &nbsp;·&nbsp; 6 or 12-month options available
       </p>
 
       {/* Setup fee + ad spend notes */}
       <div className="mt-12 max-w-2xl mx-auto rounded-2xl px-8 py-6 text-center space-y-4"
         style={{ background: "rgba(200,168,100,0.07)", border: "1px solid rgba(200,168,100,0.22)" }}>
         <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "var(--ink)", opacity: 0.75, fontStyle: "italic", lineHeight: 1.6 }}>
-          <span style={{ color: "var(--gold)", fontStyle: "normal", fontWeight: 600 }}>$500 setup fee on every plan</span> — required upfront for onboarding, system buildout, launch prep, calendar integration, automation sequences, and CRM setup.
+          <span style={{ color: "var(--gold)", fontStyle: "normal", fontWeight: 600 }}>$500 one-time setup fee on every contract</span> — required upfront for onboarding, system buildout, launch prep, calendar integration, automation sequences, and CRM setup.
         </p>
         <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "rgba(30,15,10,0.52)", lineHeight: 1.6 }}>
-          Choose a 3-month start, or commit to 6 or 12 months. Growth clients on 6-month or 12-month contracts receive their last month free.
+          Choose a 6-month start or commit annually. Annual clients receive the 12th month free, and every plan shows the exact savings before you request a proposal.
         </p>
         <div style={{ height: "1px", background: "rgba(200,168,100,0.2)" }} />
         <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "var(--ink)", opacity: 0.7, fontStyle: "italic", lineHeight: 1.6 }}>
@@ -2587,9 +2566,9 @@ function FAQ() {
     ["What does 'done-for-you' actually mean?", "We do the setup and the monthly work for you. Depending on your plan, that can include your website, content, posting, ads, AI clone, booking links, CRM, text follow-up, missed-call text-back, reminders, and reporting."],
     ["Which plan should I start with?", "Foundation is for your website and lead follow-up system. Content Lite is for simple weekly content. Starter is for one managed platform with AI clone support. Growth is the most complete option for content, ads, AI voice/chat, reviews, booking, and follow-up working together."],
     ["What is the AI clone or brand character?", "We create either an AI version of you or a custom brand character for your business. It helps your brand show up with polished content without you having to film every week."],
-    ["How does the 14-day trial work?", "Eligible managed plans can begin with a founding client trial. The $500 setup fee is still due upfront because we are building your audit, strategy, sample direction, and system map before the monthly retainer begins."],
-    ["What's included in the $500 setup fee?", "Every monthly plan has a $500 setup fee. It covers onboarding, system buildout, launch prep, calendar or booking setup, CRM setup, automation mapping, and the assets needed to start the plan cleanly."],
-    ["What contract options do you offer?", "For now, you can choose 3 months, 6 months, or 12 months. Growth clients who choose a 6-month or 12-month agreement receive the last month free."],
+    ["How does the 14-day trial work?", "Every monthly package can begin with a 14-day founding client trial. The one-time $500 setup fee is still due upfront because we are building your audit, strategy, sample direction, and system map before the monthly retainer begins."],
+    ["What's included in the $500 setup fee?", "Every contract has a one-time $500 setup fee. It covers onboarding, system buildout, launch prep, calendar or booking setup, CRM setup, automation mapping, and the assets needed to start the plan cleanly."],
+    ["What contract options do you offer?", "For now, you can choose 6 months or 12 months. Annual clients receive the 12th month free, and each plan shows the exact dollar savings."],
     ["What is the $500 Appointment Booking setup?", "It is a focused setup for businesses that mainly need a cleaner way for leads to book. It can include the calendar connection, booking flow, confirmation messages, reminders, and simple lead handoff."],
     ["What kinds of businesses do you work with?", "Local service businesses, beauty and wellness brands, clinics, consultants, coaches, boutiques, and online brands that want stronger content, lead follow-up, and booking systems without managing it themselves."],
     ["What is your refund policy?", "All sales are final once setup or monthly work begins because strategy, buildout, and implementation time are reserved for your business. If there is a concern, reach out and we will work through the next best step."],
@@ -2843,9 +2822,8 @@ function Contact() {
           <div>
             <label className={labelClass} style={labelStyle}>Preferred commitment</label>
             <select name="contract_term" className={inputClass} style={inputStyle}>
-              <option>3 months</option>
-              <option>6 months — interested in last month free on Growth</option>
-              <option>12 months — interested in last month free on Growth</option>
+              <option>6 months</option>
+              <option>12 months — interested in 1 month free</option>
               <option>Not sure yet</option>
             </select>
           </div>
@@ -2855,7 +2833,7 @@ function Contact() {
           <div>
             <label className={labelClass} style={labelStyle}>Setup readiness</label>
             <select name="setup_readiness" className={inputClass} style={inputStyle}>
-              <option>I understand there is a $500 setup fee</option>
+              <option>I understand there is a one-time $500 setup fee</option>
               <option>I have questions about the setup fee</option>
               <option>I am only browsing right now</option>
             </select>
