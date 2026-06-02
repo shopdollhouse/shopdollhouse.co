@@ -7909,11 +7909,46 @@ function LinksTab() {
       icon: "settings",
       links: [
         { label: "The Platform (CRM & Automations)", url: "https://app.gohighlevel.com", desc: "Your client CRM, automation builder, calendar, and pipeline — log in here to manage all client accounts" },
+        { label: "GHL Free Trial (for clients)", url: "https://go-freetrial.com", desc: "Send this to prospects to start their GoHighLevel trial" },
         { label: "OpenArt (AI Mascot / Clone)", url: "https://openart.ai", desc: "AI image and video generation for mascot content and AI clone visuals" },
         { label: "Formspree (Contact Form)", url: "https://formspree.io", desc: "Where proposal form and onboarding form submissions are managed" },
         { label: "Google Drive", url: "https://drive.google.com", desc: "Client file storage — one folder per client" },
         { label: "Vercel (Site Hosting)", url: "https://vercel.com", desc: "Your website is auto-deployed here from GitHub" },
         { label: "GitHub (Site Code)", url: "https://github.com/shopdollhouse/shopdollhouse.co", desc: "Source code for your website" },
+        { label: "Make.com (Automations)", url: "https://make.com", desc: "Visual automation builder — connects GHL, OpenAI, and other tools via webhooks" },
+        { label: "N8N (Advanced Automation)", url: "https://n8n.io", desc: "Advanced automation — used to auto-build GHL websites from onboarding forms via GPT" },
+      ],
+    },
+    {
+      title: "Lead Generation Tools",
+      icon: "target",
+      links: [
+        { label: "TrySmartScraper (Google Maps)", url: "https://trysmartscraper.com", desc: "Chrome extension — scrapes business names, phones, websites from Google Maps. Free trial. Best for getting started." },
+        { label: "Outscraper (Bulk Scraping)", url: "https://app.outscraper.com", desc: "Scrape entire states at once. Filter by niche, city, review count. Download CSV with phones + websites." },
+        { label: "ClearoutPhone (Phone Validation)", url: "https://app.clearoutphone.io", desc: "Run your scraped list through this to get only cell phones — skip landlines and office receptionists. Speak to the owner." },
+        { label: "Instantly (Cold Email)", url: "https://instantly.ai", desc: "Cold email software — use with your secondary domains (never your primary). Warms up inbox automatically." },
+        { label: "Smartlead (Cold Email)", url: "https://smartlead.ai", desc: "Alternative to Instantly for cold email outreach at scale. Same workflow — warmed domains, personalized sequences." },
+        { label: "FreeUpex (Ad Templates)", url: "https://freeupex.com", desc: "Winning ad templates from real agencies. Filter by niche to find high-converting creatives to model." },
+      ],
+    },
+    {
+      title: "AI & Content Creation",
+      icon: "bot",
+      links: [
+        { label: "EcomBoss AI (Ad Creation)", url: "https://ecomboss.ai", desc: "AI ad creation tool — generates photo and video ads from a product image. Connect to Claude via MCP for full automation." },
+        { label: "Retell AI (Voice AI Agents)", url: "https://retellai.com", desc: "Build AI voice agents that answer phone calls, qualify leads, and book appointments. Used for client AI receptionist setup." },
+        { label: "Vapi (Voice AI Platform)", url: "https://vapi.ai", desc: "Alternative to Retell for voice AI — more developer-friendly. Good for advanced AI phone call automations." },
+        { label: "Sora 2 (AI Video)", url: "https://sora.openai.com", desc: "OpenAI's AI video generation tool. Create realistic client video ads without filming. Use VPN if not available in your region." },
+        { label: "ChatGPT", url: "https://chat.openai.com", desc: "Niche research, content creation, email writing, carousel scripts, system prompts. Use GPT-4o for best results." },
+        { label: "Claude (Anthropic)", url: "https://claude.ai", desc: "Best for long-form copy, complex system prompts, website content, and AI agent instruction writing." },
+      ],
+    },
+    {
+      title: "Hiring & Outsourcing",
+      icon: "users",
+      links: [
+        { label: "Upwork", url: "https://upwork.com", desc: "Hire GoHighLevel specialists, Make.com developers, and web designers. Search: 'GoHighLevel Automation Expert' or 'Make.com Specialist'. Pay $200–$400 per build, charge client $500+" },
+        { label: "Fiverr", url: "https://fiverr.com", desc: "Alternative to Upwork for one-off tasks. Good for graphic design, carousel creation, and video editing." },
       ],
     },
     {
