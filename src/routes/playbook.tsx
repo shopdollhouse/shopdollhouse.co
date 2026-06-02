@@ -10705,8 +10705,8 @@ function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
 
   const dark = bg === "dark" || bg === "rose";
   const C = dark
-    ? { bg: "#1e1210", fg: "#f5e8e0", fg2: "rgba(245,232,224,0.6)", acc: "#c4a87a", card: "rgba(255,255,255,0.07)", border: "rgba(196,168,122,0.25)", active: "rgba(196,168,122,0.18)", activeBorder: "#c4a87a", sum: "rgba(255,255,255,0.06)" }
-    : { bg: "#f5e8e0", fg: "#1e1210", fg2: "rgba(30,18,16,0.5)", acc: "#b8956a", card: "rgba(255,255,255,0.7)", border: "rgba(184,149,106,0.25)", active: "rgba(184,149,106,0.15)", activeBorder: "#b8956a", sum: "rgba(0,0,0,0.04)" };
+    ? { bg: "#170d0b", fg: "#f7ece4", fg2: "rgba(247,236,228,0.62)", acc: "#c9ab78", rose: "#d58b84", card: "rgba(255,255,255,0.075)", border: "rgba(201,171,120,0.28)", active: "rgba(201,171,120,0.18)", activeBorder: "#c9ab78", sum: "rgba(255,255,255,0.08)" }
+    : { bg: "#f7e8df", fg: "#1e1210", fg2: "rgba(30,18,16,0.55)", acc: "#b8956a", rose: "#c97a7a", card: "rgba(255,255,255,0.74)", border: "rgba(184,149,106,0.28)", active: "rgba(184,149,106,0.16)", activeBorder: "#b8956a", sum: "rgba(255,255,255,0.62)" };
 
   const SERIF = "'Cormorant Garamond', serif";
   const SANS  = "'DM Sans', sans-serif";
@@ -10715,120 +10715,109 @@ function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
   const toggle = (id: string) => setAddons(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
 
   return (
-    <div style={{ width: "100%", height: "100%", background: C.bg, display: "flex", gap: 0, boxSizing: "border-box", overflow: "hidden" }}>
-      {/* LEFT — selectors */}
-      <div style={{ flex: 1, padding: "42px 36px 42px 56px", display: "flex", flexDirection: "column", gap: 20, overflowY: "auto" }}>
-        <div>
-          <div style={{ fontFamily: LUXE, fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", color: C.acc, marginBottom: 6 }}>The Dollhouse Brand Studio</div>
-          <div style={{ fontFamily: SERIF, fontSize: 36, color: C.fg, lineHeight: 1.1, marginBottom: 4 }}>Build Your Plan</div>
-          <div style={{ width: 36, height: 1.5, background: C.acc }} />
-        </div>
-
-        {/* Plan selector */}
-        <div>
-          <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: C.fg2, marginBottom: 8 }}>Choose Your Plan</div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 6 }}>
-            {PLANS.map(p => (
-              <button key={p.id} onClick={() => setPlan(p.id)}
-                style={{ padding: "10px 8px", borderRadius: 10, border: `1.5px solid ${plan === p.id ? C.activeBorder : C.border}`, background: plan === p.id ? C.active : C.card, cursor: "pointer", textAlign: "left" }}>
-                <div style={{ fontFamily: LUXE, fontSize: 8, letterSpacing: "0.1em", textTransform: "uppercase", color: plan === p.id ? C.acc : C.fg2, marginBottom: 2 }}>{p.name}</div>
-                <div style={{ fontFamily: SERIF, fontSize: 18, color: plan === p.id ? C.acc : C.fg, fontWeight: 500 }}>${p.price.toLocaleString()}<span style={{ fontSize: 10, fontWeight: 400 }}>/mo</span></div>
-                {'desc' in p && <div style={{ fontFamily: SANS, fontSize: 8, color: plan === p.id ? C.acc : C.fg2, marginTop: 2, lineHeight: 1.3, opacity: 0.75 }}>{(p as {desc: string}).desc.split(' + ')[0]}</div>}
-              </button>
-            ))}
+    <div style={{ width: "100%", height: "100%", background: `radial-gradient(circle at 12% 8%, ${C.rose}24, transparent 30%), radial-gradient(circle at 82% 92%, ${C.acc}22, transparent 28%), ${C.bg}`, boxSizing: "border-box", overflow: "hidden", padding: 34, display: "grid", gridTemplateColumns: "1fr 335px", gap: 22 }}>
+      <div style={{ minWidth: 0, display: "flex", flexDirection: "column", gap: 14 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 24 }}>
+          <div>
+            <div style={{ fontFamily: LUXE, fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", color: C.acc, marginBottom: 8 }}>The Dollhouse Brand Studio</div>
+            <div style={{ fontFamily: SERIF, fontSize: 47, color: C.fg, lineHeight: 0.98 }}>Your proposal, built live.</div>
           </div>
-        </div>
-
-        {/* Addons */}
-        <div>
-          <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: C.fg2, marginBottom: 8 }}>Add-On Services</div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-            {ADDONS.map(a => {
-              const on = addons.has(a.id);
+          <div style={{ display: "flex", gap: 8, padding: 6, borderRadius: 999, border: `1px solid ${C.border}`, background: C.card }}>
+            {([["6mo","6 Months","Standard"],["12mo","12 Months","1 month free"]] as const).map(([v, label, sub]) => {
+              const active = contract === v;
               return (
-                <button key={a.id} onClick={() => toggle(a.id)}
-                  style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 14px", borderRadius: 10, border: `1px solid ${on ? C.activeBorder : C.border}`, background: on ? C.active : C.card, cursor: "pointer" }}>
-                  <div style={{ textAlign: "left" }}>
-                    <div style={{ fontFamily: SANS, fontSize: 12, color: C.fg, fontWeight: on ? 600 : 400 }}>{a.name}</div>
-                    <div style={{ fontFamily: SANS, fontSize: 10, color: C.fg2, marginTop: 1 }}>{a.note}</div>
-                  </div>
-                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                    <div style={{ fontFamily: SERIF, fontSize: 18, color: C.acc }}>+${a.price}/mo</div>
-                    <div style={{ width: 18, height: 18, borderRadius: "50%", border: `1.5px solid ${on ? C.acc : C.border}`, background: on ? C.acc : "transparent", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                      {on && <div style={{ width: 8, height: 8, borderRadius: "50%", background: dark ? C.bg : "#fff" }} />}
-                    </div>
-                  </div>
+                <button key={v} onClick={() => setContract(v)} style={{ minWidth: 130, border: "none", borderRadius: 999, padding: "11px 16px", background: active ? C.acc : "transparent", color: active ? C.bg : C.fg, cursor: "pointer", textAlign: "center", boxShadow: active ? "0 14px 34px -24px rgba(0,0,0,0.8)" : "none" }}>
+                  <div style={{ fontFamily: LUXE, fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 700 }}>{label}</div>
+                  <div style={{ fontFamily: SANS, fontSize: 10, opacity: active ? 0.8 : 0.58, marginTop: 2 }}>{sub}</div>
                 </button>
               );
             })}
           </div>
         </div>
 
-        {/* Contract */}
-        <div>
-          <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: C.fg2, marginBottom: 8 }}>Contract Length</div>
-          <div style={{ display: "flex", gap: 8 }}>
-            {([["6mo","6 Months","Standard start"],["12mo","12 Months","1 month free"]] as const).map(([v, label, sub]) => (
-              <button key={v} onClick={() => setContract(v)}
-                style={{ flex: 1, padding: "10px 14px", borderRadius: 10, border: `1.5px solid ${contract === v ? C.activeBorder : C.border}`, background: contract === v ? C.active : C.card, cursor: "pointer", textAlign: "left" }}>
-                <div style={{ fontFamily: LUXE, fontSize: 11, color: contract === v ? C.acc : C.fg, fontWeight: 600 }}>{label}</div>
-                <div style={{ fontFamily: SANS, fontSize: 10, color: contract === v ? C.acc : C.fg2, marginTop: 2 }}>{sub}</div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10 }}>
+          {PLANS.map((p) => {
+            const active = plan === p.id;
+            return (
+              <button key={p.id} onClick={() => setPlan(p.id)} style={{ minHeight: 136, borderRadius: 22, border: `1.5px solid ${active ? C.activeBorder : C.border}`, background: active ? `linear-gradient(145deg, ${C.active}, ${C.card})` : C.card, padding: "17px 15px", cursor: "pointer", textAlign: "left", boxShadow: active ? "0 28px 60px -46px rgba(0,0,0,0.86)" : "none" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
+                  <div style={{ width: 28, height: 28, borderRadius: 12, border: `1px solid ${active ? C.activeBorder : C.border}`, display: "flex", alignItems: "center", justifyContent: "center", color: C.acc }}>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 17l5-5 4 4 7-9" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/><path d="M4 20h17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                  </div>
+                  {p.id === "growth" && <span style={{ fontFamily: LUXE, fontSize: 8, letterSpacing: "0.12em", textTransform: "uppercase", color: C.rose }}>Featured</span>}
+                </div>
+                <div style={{ fontFamily: SERIF, fontSize: 23, lineHeight: 1, color: active ? C.acc : C.fg }}>{p.name}</div>
+                <div style={{ marginTop: 7, fontFamily: SERIF, fontSize: 30, lineHeight: 1, color: C.fg }}>${p.price.toLocaleString()}<span style={{ fontFamily: SANS, fontSize: 11, color: C.fg2 }}>/mo</span></div>
+                <div style={{ marginTop: 9, fontFamily: SANS, fontSize: 10.5, color: C.fg2, lineHeight: 1.35 }}>{p.desc.split(" + ").slice(0, 2).join(" + ")}</div>
               </button>
-            ))}
+            );
+          })}
+        </div>
+
+        <div style={{ flex: 1, minHeight: 0, borderRadius: 28, border: `1px solid ${C.border}`, background: C.card, padding: "20px 22px", overflow: "hidden", display: "flex", flexDirection: "column" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
+            <div>
+              <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.2em", textTransform: "uppercase", color: C.acc }}>Optional add-ons</div>
+              <div style={{ marginTop: 4, fontFamily: SANS, fontSize: 12, color: C.fg2 }}>Add only what helps this client book, follow up, or convert.</div>
+            </div>
+            <div style={{ fontFamily: SERIF, fontSize: 24, color: C.fg }}>+${addonTotal.toLocaleString()}<span style={{ fontFamily: SANS, fontSize: 10, color: C.fg2 }}>/mo</span></div>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 8, overflowY: "auto", paddingRight: 4 }}>
+            {ADDONS.map((a) => {
+              const on = addons.has(a.id);
+              return (
+                <button key={a.id} onClick={() => toggle(a.id)} style={{ minHeight: 66, borderRadius: 16, border: `1px solid ${on ? C.activeBorder : C.border}`, background: on ? C.active : "rgba(255,255,255,0.035)", padding: "12px 13px", cursor: "pointer", display: "grid", gridTemplateColumns: "1fr auto", gap: 10, alignItems: "center", textAlign: "left" }}>
+                  <div>
+                    <div style={{ fontFamily: SANS, fontSize: 12, color: C.fg, fontWeight: on ? 700 : 500 }}>{a.name}</div>
+                    <div style={{ fontFamily: SANS, fontSize: 9.5, color: C.fg2, marginTop: 2, lineHeight: 1.3 }}>{a.note}</div>
+                  </div>
+                  <div style={{ textAlign: "right" }}>
+                    <div style={{ fontFamily: SERIF, fontSize: 20, color: C.acc }}>+${a.price}</div>
+                    <div style={{ width: 18, height: 18, borderRadius: 999, marginLeft: "auto", marginTop: 5, border: `1.5px solid ${on ? C.acc : C.border}`, background: on ? C.acc : "transparent" }} />
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
 
-      {/* RIGHT — live summary */}
-      <div style={{ width: 260, background: C.sum, borderLeft: `1px solid ${C.border}`, padding: "42px 28px", display: "flex", flexDirection: "column", gap: 16 }}>
-        <div style={{ fontFamily: SERIF, fontSize: 26, color: C.fg, lineHeight: 1.15 }}>Your Investment</div>
-        <div style={{ height: 1, background: C.border }} />
-
-        <div style={{ display: "flex", flexDirection: "column", gap: 10, flex: 1 }}>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <span style={{ fontFamily: SANS, fontSize: 12, color: C.fg2 }}>{sel.name} Plan</span>
-            <span style={{ fontFamily: SANS, fontSize: 12, color: C.fg }}>${sel.price.toLocaleString()}/mo</span>
-          </div>
-          {ADDONS.filter(a => addons.has(a.id)).map(a => (
-            <div key={a.id} style={{ display: "flex", justifyContent: "space-between" }}>
-              <span style={{ fontFamily: SANS, fontSize: 12, color: C.fg2 }}>{a.name}</span>
-              <span style={{ fontFamily: SANS, fontSize: 12, color: C.fg }}>+${a.price}/mo</span>
+      <div style={{ borderRadius: 32, border: `1px solid ${C.border}`, background: `linear-gradient(180deg, ${C.sum}, rgba(255,255,255,0.035))`, padding: 28, display: "flex", flexDirection: "column", boxShadow: "0 36px 90px -58px rgba(0,0,0,0.9)" }}>
+        <div style={{ fontFamily: LUXE, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: C.acc, marginBottom: 10 }}>Investment Summary</div>
+        <div style={{ fontFamily: SERIF, fontSize: 36, color: C.fg, lineHeight: 1.02 }}>{sel.name} System</div>
+        <div style={{ marginTop: 14, borderRadius: 20, background: `${C.acc}16`, border: `1px solid ${C.border}`, padding: "18px 18px" }}>
+          <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.16em", textTransform: "uppercase", color: C.fg2 }}>Monthly</div>
+          <div style={{ marginTop: 5, fontFamily: SERIF, fontSize: 48, color: C.acc, lineHeight: 1 }}>${monthly.toLocaleString()}<span style={{ fontFamily: SANS, fontSize: 14, color: C.fg2 }}>/mo</span></div>
+        </div>
+        <div style={{ display: "grid", gap: 10, marginTop: 18 }}>
+          {[
+            ["Base plan", `$${sel.price.toLocaleString()}/mo`],
+            ["Add-ons", `+$${addonTotal.toLocaleString()}/mo`],
+            ["One-time setup", `$${setupFee.toLocaleString()}`],
+          ].map(([label, value]) => (
+            <div key={label} style={{ display: "flex", justifyContent: "space-between", gap: 16, fontFamily: SANS, fontSize: 13, color: C.fg2 }}>
+              <span>{label}</span>
+              <span style={{ color: C.fg }}>{value}</span>
             </div>
           ))}
           {savings > 0 && (
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <span style={{ fontFamily: SANS, fontSize: 12, color: "#4a9970" }}>Annual Bonus</span>
-              <span style={{ fontFamily: SANS, fontSize: 12, color: "#4a9970" }}>−${savings.toLocaleString()}</span>
-            </div>
-          )}
-          <div style={{ height: 1, background: C.border, margin: "4px 0" }} />
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <span style={{ fontFamily: LUXE, fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: C.fg2 }}>Monthly Total</span>
-            <span style={{ fontFamily: SERIF, fontSize: 28, color: C.acc, fontWeight: 500 }}>${monthly.toLocaleString()}/mo</span>
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <span style={{ fontFamily: SANS, fontSize: 11, color: C.fg2 }}>One-Time Setup</span>
-            <span style={{ fontFamily: SANS, fontSize: 11, color: C.fg }}>${setupFee}</span>
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <span style={{ fontFamily: SANS, fontSize: 11, color: C.fg2 }}>{months}-Month Total</span>
-            <span style={{ fontFamily: SERIF, fontSize: 22, color: C.fg }}>${contractTotal.toLocaleString()}</span>
-          </div>
-          {addons.has("meta_ads") && (
-            <div style={{ padding: "8px 10px", borderRadius: 8, background: C.active, border: `1px solid ${C.border}` }}>
-              <div style={{ fontFamily: SANS, fontSize: 10, color: C.fg2, lineHeight: 1.5 }}>
-                Meta ad spend is separate — paid directly by you to Meta. min $1,000/mo · recommend starting at $1,000–$2,000/mo (no cap) · never included in your package.
-              </div>
+            <div style={{ display: "flex", justifyContent: "space-between", gap: 16, fontFamily: SANS, fontSize: 13, color: "#75b58b" }}>
+              <span>Annual bonus</span>
+              <span>{`- $${savings.toLocaleString()}`}</span>
             </div>
           )}
         </div>
-
-        <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: 12 }}>
-          <div style={{ fontFamily: SANS, fontSize: 10, color: C.fg2, lineHeight: 1.6 }}>
-            ✦ 14-day free trial available<br />
-            ✦ $500 one-time setup applies<br />
-            ✦ {months}-month agreement{freeMonths > 0 ? " · 12th month free" : ""}
-          </div>
+        <div style={{ height: 1, background: C.border, margin: "18px 0" }} />
+        <div style={{ fontFamily: LUXE, fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: C.fg2 }}>{months}-month total</div>
+        <div style={{ marginTop: 6, display: "flex", alignItems: "end", gap: 10 }}>
+          {savings > 0 && <div style={{ fontFamily: SERIF, fontSize: 25, color: C.fg2, textDecoration: "line-through", lineHeight: 1 }}>${regularTotal.toLocaleString()}</div>}
+          <div style={{ fontFamily: SERIF, fontSize: 46, color: C.fg, lineHeight: 1 }}>${contractTotal.toLocaleString()}</div>
+        </div>
+        {savings > 0 && <div style={{ marginTop: 10, display: "inline-flex", alignSelf: "flex-start", borderRadius: 999, padding: "8px 12px", background: "rgba(117,181,139,0.14)", border: "1px solid rgba(117,181,139,0.32)", color: "#75b58b", fontFamily: LUXE, fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase" }}>Save ${savings.toLocaleString()} · 12th month free</div>}
+        <div style={{ marginTop: "auto", borderTop: `1px solid ${C.border}`, paddingTop: 16, fontFamily: SANS, fontSize: 11.5, color: C.fg2, lineHeight: 1.65 }}>
+          14-day free trial available<br />
+          $500 one-time setup applies<br />
+          Ad spend is paid directly to the ad platform.
         </div>
       </div>
     </div>
