@@ -10649,6 +10649,36 @@ const PROPOSAL_DECKS: PDeck[] = [
         script: "I want to be fully transparent about how ad spending works. There are two costs: what you pay us to manage the ads, and what you pay Meta directly for the ads to run. Those are separate. For stronger testing, I usually recommend starting around $1,000 to $2,000 a month in ad spend because it gives us enough room to test creative, audiences, and offers properly. You control the spend. It does not go to us. It goes directly to the ad platform.",
       },
       {
+        layout: "bullets", bg: "dark",
+        heading: "Two things we promise every client.",
+        bullets: [
+          "\"I'll make sure you never miss another phone call.\"",
+          "\"I'll keep your social media active every single day so you stay in front of your customers.\"",
+          "Every missed call gets an automatic text reply — within seconds, day or night",
+          "Every day your brand posts — you never have to touch your phone to do it",
+          "Every lead gets followed up — even the ones you would have forgotten",
+          "This is not a website. This is a system that runs your online presence for you.",
+        ],
+        script: "Before I go any further, I want to make two promises to you right now. First: you will never miss another phone call. Every call that goes unanswered — no matter when, no matter why — automatically sends that person a text message from your business within seconds. They are kept warm while you're busy. Second: your social media will be active every single day so you stay in front of your customers. No gaps. No 'I forgot to post this week.' Every day, without you lifting a finger. Let me show you exactly how we do both.",
+      },
+      {
+        layout: "headline", bg: "rose",
+        heading: "Your website is a leaky bucket.",
+        sub: "People land on it — and leave. We plug the holes.",
+        body: "Most business websites have a contact form that goes nowhere, no live chat, no follow-up if someone calls and hangs up. Visitors come in — and quietly disappear. We fix all of that.",
+        script: "Here's how I want you to think about your current website. It's a leaky bucket. People visit — they look around — and then they leave. Maybe they filled out the form. Maybe they called but you didn't answer. Maybe they just couldn't find what they needed fast enough. And in every single one of those cases, you lose the lead. What we build stops that from happening.",
+      },
+      {
+        layout: "steps", bg: "light",
+        heading: "What makes our website smart",
+        steps: [
+          { n: "01", title: "The Talking Website", desc: "A built-in AI chat widget reads every page of the site — services, location, pricing — and answers visitor questions instantly. It then books them directly onto your calendar. No phone tag." },
+          { n: "02", title: "Missed Call Text-Back", desc: "Someone calls, you don't answer. Within seconds they get a text from your business: 'Hey, sorry we missed you — how can we help?' The conversation starts automatically." },
+          { n: "03", title: "Contact Form → Calendar", desc: "Instead of 'thanks for submitting' pages that go nowhere, every form submission forwards to a booking calendar. They pick a time slot and they're on your calendar before you even see the lead." },
+        ],
+        script: "This is what turns a regular website into a revenue machine. The AI chat widget on the bottom of the screen reads your entire site — all your services, your location, your process — and has real conversations with visitors. It answers their questions and books them in. If they call and you miss it, they get a text within seconds. If they fill out a form, they're immediately redirected to your calendar. You wake up with appointments already booked — without doing anything.",
+      },
+      {
         layout: "headline", bg: "blush",
         heading: "Automation System",
         sub: "Every person who reaches out gets an instant reply — even at 3am.",
@@ -10697,6 +10727,19 @@ const PROPOSAL_DECKS: PDeck[] = [
           { value: "90", label: "Day growth window", caption: "The first 90 days are for setup, testing, consistency, and building momentum." },
         ],
         script: "Here is the way I want you to think about the investment. We do not need to make this complicated. If this system helps you capture one lead you would have missed, makes your business look more trustworthy, or gets one more person booked, it starts paying for itself. Then the content, reviews, and follow-up keep compounding over the next 90 days.",
+      },
+      {
+        layout: "bullets", bg: "dark",
+        heading: "Every budget has a starting point.",
+        bullets: [
+          "$297/mo — Talking website + backend autoresponder + Google reviews. No setup fee. The foundation.",
+          "$500/mo — Everything above + Google Local Service Ads or AI voice receptionist",
+          "$1,000/mo — Full social media management + AI clone + daily content + full automation",
+          "$2,500/mo — 3 platforms + paid ads management + the full system",
+          "Every plan includes the Lead Connector mobile app — see every lead and booking from your phone",
+          "Start anywhere. Upgrade when you're ready. The system keeps compounding.",
+        ],
+        script: "Here's something I want you to know — you don't have to start with the full system. Some clients start at $297 a month. That gets you the talking website, the automated follow-ups, and the Google review funnel. That alone has helped clients go from 10 Google reviews to 50 in two weeks. From there, you can add on when it makes sense. The important thing is every plan includes the mobile app — so you can see your leads and appointments from your phone in real time, wherever you are.",
       },
       LIVE_QUOTE_BUILDER_SLIDE,
       {
