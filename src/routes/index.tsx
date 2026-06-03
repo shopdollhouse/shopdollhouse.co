@@ -1323,6 +1323,110 @@ function ReviewCard() {
   );
 }
 
+function ServiceImageCard({
+  image,
+  tag,
+  title,
+  points,
+  icon,
+}: {
+  image: string;
+  tag: string;
+  title: string;
+  points: string[];
+  icon: "content" | "ads" | "reporting" | "voice" | "reminders" | "reviews";
+}) {
+  const common = { fill: "none", stroke: "currentColor", strokeWidth: 1.55, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+  const symbols = {
+    content: (
+      <>
+        <rect {...common} x="5" y="5" width="14" height="14" rx="3" />
+        <path {...common} d="M8.5 10h7M8.5 13h5M8.5 16h6.5M16 5l2.2-2.2" />
+      </>
+    ),
+    ads: (
+      <>
+        <path {...common} d="M4.5 17.5c3.4-5.8 7.3-8.9 11.8-9.4" />
+        <path {...common} d="M13.5 5.6h4.8v4.8M6 18.5h12M6.8 13.2l2.1 2.1M10.8 9.7l2 2" />
+      </>
+    ),
+    reporting: (
+      <>
+        <path {...common} d="M5 19h14M7 16v-5M12 16V7M17 16v-8" />
+        <path {...common} d="M6.5 7.5l3 2.8 3.2-4 4.2 2.2" />
+      </>
+    ),
+    voice: (
+      <>
+        <path {...common} d="M7.5 8.5a4.5 4.5 0 0 1 9 0v3a4.5 4.5 0 0 1-9 0z" />
+        <path {...common} d="M5 11.5a7 7 0 0 0 14 0M12 18.8V21M9 21h6" />
+      </>
+    ),
+    reminders: (
+      <>
+        <rect {...common} x="5" y="4.5" width="14" height="15" rx="2.5" />
+        <path {...common} d="M8.5 3v4M15.5 3v4M5 9h14M8.5 13.2h4.8M8.5 16.2h3" />
+      </>
+    ),
+    reviews: (
+      <>
+        <path {...common} d="m12 4.2 2.1 4.2 4.7.7-3.4 3.3.8 4.7-4.2-2.2-4.2 2.2.8-4.7-3.4-3.3 4.7-.7z" />
+        <path {...common} d="M7 20h10" />
+      </>
+    ),
+  };
+
+  return (
+    <div className="relative">
+      <div
+        aria-hidden
+        className="absolute -inset-5 -z-10 rounded-[34px] opacity-70 blur-2xl"
+        style={{ background: "radial-gradient(60% 60% at 50% 45%, rgba(201,122,122,0.2), transparent 72%)" }}
+      />
+      <div
+        className="relative overflow-hidden rounded-[30px] border border-white/85 p-3 shadow-[0_34px_78px_-42px_rgba(90,45,35,0.52)]"
+        style={{ background: "linear-gradient(155deg, rgba(255,250,246,0.88), rgba(246,224,218,0.7))" }}
+      >
+        <div className="relative overflow-hidden rounded-[24px]">
+          <img
+            src={image}
+            alt={`${tag} visual preview`}
+            className="aspect-[4/3] w-full object-cover"
+            style={{ objectPosition: "center", filter: "saturate(0.95) contrast(1.02)" }}
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{ background: "linear-gradient(180deg, rgba(30,15,10,0.02) 30%, rgba(30,15,10,0.52) 100%)" }}
+          />
+          <div className="absolute left-4 top-4 flex h-14 w-14 items-center justify-center rounded-2xl text-[var(--gold)]" style={{ background: "rgba(255,250,246,0.82)", border: "1px solid rgba(200,168,100,0.32)", backdropFilter: "blur(10px)" }}>
+            <svg viewBox="0 0 24 24" aria-hidden className="h-8 w-8">
+              {symbols[icon]}
+            </svg>
+          </div>
+          <div className="absolute inset-x-4 bottom-4 rounded-2xl px-4 py-3" style={{ background: "rgba(255,250,246,0.84)", border: "1px solid rgba(255,255,255,0.7)", backdropFilter: "blur(12px)" }}>
+            <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.56rem", fontWeight: 700 }}>
+              {tag}
+            </p>
+            <p className="mt-1 text-[var(--ink)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.28rem", lineHeight: 1.1 }}>
+              {title}
+            </p>
+          </div>
+        </div>
+        <div className="mt-3 grid grid-cols-3 gap-2">
+          {points.map((point) => (
+            <div key={point} className="rounded-2xl px-3 py-3 text-center" style={{ background: "rgba(255,255,255,0.56)", border: "1px solid rgba(200,168,100,0.22)" }}>
+              <p className="text-[var(--ink)]/58 tracking-[0.12em] uppercase" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.48rem", lineHeight: 1.45 }}>
+                {point}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Services() {
   const items = [
     {
@@ -1331,7 +1435,7 @@ function Services() {
       title: "Branded content, created and published for you — every day.",
       sub: "Show up consistently without lifting a finger.",
       body: "We handle the strategy, writing, design, and scheduling. Branded posts go live across your platforms on time, every time — captions, hashtags, and visuals all done. You stay focused on running your business.",
-      visual: <ContentCalendarCard />,
+      visual: <ServiceImageCard image="/system-assets/one-click-marketing-campaigns.jpg" tag="Content System" title="Posts planned, designed, and scheduled" points={["Branded posts", "Captions done", "3 platforms"]} icon="content" />,
     },
     {
       id: "service-paid-social-search-advertising",
@@ -1339,7 +1443,7 @@ function Services() {
       title: "Facebook, Instagram, and Google ads that bring in real leads.",
       sub: "More reach. More bookings. Less guesswork.",
       body: "We build and manage your ad campaigns from scratch — audience targeting, ad creative, budget allocation, and daily optimisation. Every dollar is tracked and working toward your growth.",
-      visual: <AnalyticsCard />,
+      visual: <ServiceImageCard image="/system-assets/local-seo.jpg" tag="Lead Growth" title="Ads and search built to capture demand" points={["Meta ads", "Google intent", "Lead tracking"]} icon="ads" />,
     },
     {
       id: "service-strategy-analytics-reporting",
@@ -1347,7 +1451,7 @@ function Services() {
       title: "Always know what's working — and a plan to scale it.",
       sub: "Clear data. Smarter decisions. Every month.",
       body: "Detailed performance reports and a dedicated monthly strategy session keep you in the loop. We track what's growing your business and build the next month's plan around what's working.",
-      visual: <CaptionCard />,
+      visual: <ServiceImageCard image="/system-assets/all-in-one-inbox.jpg" tag="Monthly Clarity" title="Reports you can actually understand" points={["Plain English", "Next steps", "Wins tracked"]} icon="reporting" />,
     },
     {
       id: "service-ai-voice-chat-automation",
@@ -1355,7 +1459,7 @@ function Services() {
       title: "Never miss a lead — calls, texts, and DMs answered instantly, 24/7.",
       sub: "Your business never sleeps.",
       body: "Our AI answers every call, text, and message the moment it comes in. It qualifies the lead, answers questions, and books the appointment — so no opportunity ever slips through the cracks, even at 2am.",
-      visual: <AIChatCard />,
+      visual: <ServiceImageCard image="/system-assets/business-phone.jpg" tag="Voice + Chat" title="Calls and website chat answered fast" points={["AI voice", "Live handoff", "24/7 replies"]} icon="voice" />,
     },
     {
       id: "service-automated-appointment-reminders",
@@ -1363,7 +1467,7 @@ function Services() {
       title: "Reduce no-shows before they happen.",
       sub: "Keep your calendar full and your clients showing up.",
       body: "Automated text and email reminders go out 48 hours, 24 hours, and 2 hours before every appointment. Less no-shows, less chasing, and a more professional experience for your clients — all on autopilot.",
-      visual: <ReminderCard />,
+      visual: <ServiceImageCard image="/system-assets/automated-lead-follow-up.jpg" tag="Booking Flow" title="Reminders keep appointments protected" points={["SMS reminders", "Email prompts", "Less no-shows"]} icon="reminders" />,
     },
     {
       id: "service-review-reputation-management",
@@ -1371,7 +1475,7 @@ function Services() {
       title: "Build your 5-star presence — automatically.",
       sub: "More reviews. More trust. More new clients.",
       body: "After every appointment, happy clients are guided to your Google review link, while lower ratings go to a private feedback form first. We can also create QR codes and review prompts for past customers so your public rating has more chances to grow.",
-      visual: <ReviewCard />,
+      visual: <ServiceImageCard image="/system-assets/review-funnel.jpg" tag="Review Funnel" title="More public trust, less public damage" points={["5-star link", "Private feedback", "QR ready"]} icon="reviews" />,
     },
   ];
   return (

@@ -91,6 +91,42 @@ function ResultTypeSymbol({ result }: { result: ResultKey }) {
   );
 }
 
+function SuiteFeatureIcon({ id }: { id: "rooms" | "strategy" | "export" | "access" }) {
+  const common = { fill: "none", stroke: "currentColor", strokeWidth: 1.45, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+  const symbols: Record<"rooms" | "strategy" | "export" | "access", ReactNode> = {
+    rooms: (
+      <>
+        <path {...common} d="M5 19V7.5L12 4l7 3.5V19" />
+        <path {...common} d="M9 19v-6.2h6V19M8.5 9.5h.01M12 9.5h.01M15.5 9.5h.01" />
+      </>
+    ),
+    strategy: (
+      <>
+        <path {...common} d="M4.5 17.5c3.4-5.8 7.3-8.9 11.8-9.4" />
+        <path {...common} d="M13.5 5.6h4.8v4.8M6 18.5h12M6.8 13.2l2.1 2.1M10.8 9.7l2 2" />
+      </>
+    ),
+    export: (
+      <>
+        <path {...common} d="M12 4v10.4M8.5 10.8 12 14.4l3.5-3.6" />
+        <path {...common} d="M5.5 15.5v3.2A1.8 1.8 0 0 0 7.3 20.5h9.4a1.8 1.8 0 0 0 1.8-1.8v-3.2" />
+      </>
+    ),
+    access: (
+      <>
+        <rect {...common} x="6.2" y="10.2" width="11.6" height="9.5" rx="2" />
+        <path {...common} d="M8.8 10.2V8a3.2 3.2 0 0 1 6.4 0v2.2M12 14.1v2.2" />
+      </>
+    ),
+  };
+
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden className="mx-auto mb-2 h-7 w-7 text-[var(--gold)] opacity-80">
+      {symbols[id]}
+    </svg>
+  );
+}
+
 const QUESTIONS: {
   q: string;
   helper: string;
@@ -209,27 +245,34 @@ function BrandMark() {
 }
 
 function SuiteMockup({ compact = false }: { compact?: boolean }) {
+  const features: { label: string; icon: "rooms" | "strategy" | "export" | "access" }[] = [
+    { label: "17 guided rooms", icon: "rooms" },
+    { label: "Custom strategy", icon: "strategy" },
+    { label: "Save & export", icon: "export" },
+    { label: "Private access", icon: "access" },
+  ];
+
   return (
     <div className="relative overflow-hidden rounded-[32px] border border-white/80 bg-[rgba(255,250,246,0.72)] p-6 shadow-[0_35px_80px_-42px_rgba(90,45,35,0.55)]">
       <div aria-hidden className="absolute -left-24 -top-24 h-56 w-56 rounded-full bg-[rgba(201,122,122,0.16)] blur-3xl" />
       <div aria-hidden className="absolute -right-16 bottom-8 h-44 w-44 rounded-full bg-[rgba(200,168,100,0.13)] blur-3xl" />
       <div className="relative text-center">
-        <img src={archMark} alt="" className="mx-auto h-14 w-10 opacity-60" />
-        <p className="mt-5 text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Private Strategy Suite</p>
-        <p className="mt-2 italic text-[var(--gold)] leading-none" style={{ fontFamily: FONT_SCRIPT, fontSize: compact ? "2rem" : "2.6rem" }}>the</p>
-        <h2 className="mt-1 text-[var(--rose)] leading-[0.92]" style={{ fontFamily: FONT_DISPLAY, fontSize: compact ? "3rem" : "clamp(3.6rem, 7vw, 6rem)", fontWeight: 400, letterSpacing: "0.04em", textTransform: "uppercase" }}>
+        <img src={archMark} alt="" className="mx-auto h-12 w-9 opacity-55" />
+        <p className="mt-4 text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "9px" }}>Private Strategy Suite</p>
+        <p className="mt-2 italic text-[var(--gold)] leading-none" style={{ fontFamily: FONT_SCRIPT, fontSize: compact ? "1.85rem" : "2.25rem" }}>the</p>
+        <h2 className="mx-auto mt-1 max-w-[92%] text-[var(--rose)] leading-[0.92]" style={{ fontFamily: FONT_DISPLAY, fontSize: compact ? "2.45rem" : "clamp(2.8rem, 5.6vw, 4.7rem)", fontWeight: 400, letterSpacing: "0.04em", textTransform: "uppercase" }}>
           Dollhouse
         </h2>
-        <p className="mx-auto mt-5 max-w-md text-[var(--ink)]/68 leading-7" style={{ fontFamily: FONT_BODY, fontSize: compact ? "0.9rem" : "1rem" }}>
+        <p className="mx-auto mt-4 max-w-md text-[var(--ink)]/68 leading-7" style={{ fontFamily: FONT_BODY, fontSize: compact ? "0.9rem" : "1rem" }}>
           Your complete brand strategy, product plan, and launch roadmap built inside a private web app.
         </p>
       </div>
 
       <div className="relative mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
-        {["17 guided rooms", "Custom strategy", "Save & export", "Private access"].map((item) => (
-          <div key={item} className="rounded-2xl px-3 py-4 text-center" style={{ background: "rgba(255,255,255,0.58)", border: "1px solid rgba(200,168,100,0.22)" }}>
-            <img src={archMark} alt="" className="mx-auto mb-2 h-7 w-5 opacity-45" />
-            <p className="text-[8px] tracking-[0.14em] uppercase text-[var(--ink)]/58" style={{ fontFamily: FONT_LUXE }}>{item}</p>
+        {features.map((item) => (
+          <div key={item.label} className="rounded-2xl px-3 py-4 text-center" style={{ background: "rgba(255,255,255,0.58)", border: "1px solid rgba(200,168,100,0.22)" }}>
+            <SuiteFeatureIcon id={item.icon} />
+            <p className="text-[8px] tracking-[0.14em] uppercase text-[var(--ink)]/58" style={{ fontFamily: FONT_LUXE }}>{item.label}</p>
           </div>
         ))}
       </div>
