@@ -2134,13 +2134,13 @@ function Pricing() {
                 className={`h-full rounded-[28px] p-10 flex flex-col items-center text-center ${isFilled ? "md:py-14" : ""}`}
                 style={{
                   background: isFilled
-                    ? "var(--ink)"
+                    ? "linear-gradient(180deg, #fbeae6 0%, #f6dcd6 55%, #f1cfca 100%)"
                     : "linear-gradient(180deg, #fbf3ee 0%, #f6e8e1 100%)",
                   border: isFilled
-                    ? "1.5px solid rgba(255,255,255,0.08)"
+                    ? "2px solid color-mix(in oklab, var(--gold) 55%, transparent)"
                     : "1px solid color-mix(in oklab, var(--gold) 35%, transparent)",
                   boxShadow: isFilled
-                    ? "0 40px 80px -20px rgba(30,15,10,0.55), 0 0 0 1px rgba(200,168,100,0.15)"
+                    ? "0 40px 80px -24px rgba(160,90,80,0.45), 0 0 0 1px rgba(200,168,100,0.25), inset 0 1px 0 rgba(255,255,255,0.7)"
                     : "0 30px 60px -30px rgba(160,110,95,0.35), inset 0 1px 0 rgba(255,255,255,0.6)",
                 }}
               >
@@ -2158,14 +2158,14 @@ function Pricing() {
                     fontFamily: "'Cormorant Garamond', serif",
                     fontSize: "clamp(1.75rem, 2.2vw, 2.25rem)",
                     lineHeight: 1.1,
-                    color: isFilled ? "var(--cream)" : "var(--ink)",
+                    color: "var(--ink)",
                   }}
                 >
                   {t.name}
                 </h3>
                 <p
                   className="mt-3 text-[10px] tracking-[0.18em] uppercase"
-                  style={{ fontFamily: "'Jost', sans-serif", color: isFilled ? "rgba(200,168,100,0.86)" : "var(--gold)" }}
+                  style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}
                 >
                   {t.fit}
                 </p>
@@ -2175,13 +2175,9 @@ function Pricing() {
                   className="mt-5 inline-flex items-center gap-2 px-5 py-2 rounded-full text-[10.5px] tracking-luxe uppercase"
                   style={{
                     fontFamily: "'Jost', sans-serif",
-                    color: isFilled ? "rgba(250,243,234,0.85)" : "var(--ink)",
-                    border: isFilled
-                      ? "1px solid rgba(200,168,100,0.35)"
-                      : "1px solid color-mix(in oklab, var(--gold) 40%, transparent)",
-                    backgroundColor: isFilled
-                      ? "rgba(255,255,255,0.07)"
-                      : "rgba(255,255,255,0.5)",
+                    color: "var(--ink)",
+                    border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)",
+                    backgroundColor: "rgba(255,255,255,0.5)",
                   }}
                 >
                   <svg viewBox="0 0 24 22" fill="currentColor" style={{ width: "13px", height: "13px", color: "var(--gold)" }}>
@@ -2191,9 +2187,9 @@ function Pricing() {
                 <div
                   className="mt-3 inline-flex items-center justify-center gap-2 rounded-full px-4 py-2"
                   style={{
-                    background: isFilled ? "rgba(201,122,122,0.16)" : "rgba(201,122,122,0.1)",
+                    background: "rgba(201,122,122,0.1)",
                     border: "1px solid rgba(201,122,122,0.28)",
-                    color: isFilled ? "rgba(250,243,234,0.9)" : "var(--rose)",
+                    color: "var(--rose)",
                     fontFamily: "'Jost', sans-serif",
                     fontSize: "0.62rem",
                     letterSpacing: "0.16em",
@@ -2205,7 +2201,7 @@ function Pricing() {
                 </div>
                 <p
                   className="mt-1.5 text-center"
-                  style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: isFilled ? "rgba(250,243,234,0.4)" : "rgba(30,15,10,0.35)" }}
+                  style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(30,15,10,0.35)" }}
                 >
                   $500 setup due upfront · {contractTerm === "6" ? "6-month contract option" : "annual contract · 1 month free"}
                 </p>
@@ -2228,7 +2224,7 @@ function Pricing() {
                       fontFamily: "'Jost', sans-serif",
                       fontSize: "0.5rem",
                       letterSpacing: "0.2em",
-                      color: isFilled ? "rgba(255,255,255,0.45)" : "rgba(30,15,10,0.45)",
+                      color: "rgba(30,15,10,0.45)",
                       marginTop: "4px",
                     }}
                   >
@@ -2257,11 +2253,11 @@ function Pricing() {
                 <div
                   className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg"
                   style={{
-                    background: isFilled ? "rgba(255,255,255,0.05)" : "rgba(30,15,10,0.04)",
-                    border: `1px dashed ${isFilled ? "rgba(255,255,255,0.15)" : "rgba(30,15,10,0.18)"}`,
+                    background: "rgba(30,15,10,0.04)",
+                    border: `1px dashed rgba(30,15,10,0.18)`,
                   }}
                 >
-                  <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.68rem", letterSpacing: "0.14em", textTransform: "uppercase", color: isFilled ? "rgba(250,243,234,0.6)" : "rgba(30,15,10,0.5)" }}>
+                  <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.68rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(30,15,10,0.5)" }}>
                     {t.setupLabel ?? "+ $500 setup fee"}
                   </span>
                 </div>
@@ -2269,8 +2265,8 @@ function Pricing() {
                 <div
                   className="mt-4 w-full rounded-2xl px-5 py-4 text-left"
                   style={{
-                    background: isFilled ? "rgba(255,255,255,0.07)" : "rgba(255,255,255,0.55)",
-                    border: isFilled ? "1px solid rgba(200,168,100,0.25)" : "1px solid rgba(200,168,100,0.22)",
+                    background: "rgba(255,255,255,0.55)",
+                    border: "1px solid rgba(200,168,100,0.22)",
                   }}
                 >
                   <div className="flex items-center justify-between gap-3">
@@ -2282,7 +2278,7 @@ function Pricing() {
                         className="rounded-full px-3 py-1"
                         style={{
                           background: "rgba(201,122,122,0.16)",
-                          color: isFilled ? "rgba(250,243,234,0.95)" : "var(--rose)",
+                          color: "var(--rose)",
                           fontFamily: "'Jost', sans-serif",
                           fontSize: "0.55rem",
                           letterSpacing: "0.12em",
@@ -2300,7 +2296,7 @@ function Pricing() {
                         style={{
                           fontFamily: "'Cormorant Garamond', serif",
                           fontSize: "1.4rem",
-                          color: isFilled ? "rgba(250,243,234,0.36)" : "rgba(30,15,10,0.35)",
+                          color: "rgba(30,15,10,0.35)",
                           textDecoration: "line-through",
                           lineHeight: 1,
                         }}
@@ -2313,7 +2309,7 @@ function Pricing() {
                         fontFamily: "'Cormorant Garamond', serif",
                         fontSize: "2.05rem",
                         fontStyle: "italic",
-                        color: isFilled ? "var(--cream)" : "var(--ink)",
+                        color: "var(--ink)",
                         lineHeight: 1,
                       }}
                     >
@@ -2325,7 +2321,7 @@ function Pricing() {
                     style={{
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: "0.76rem",
-                      color: isFilled ? "rgba(250,243,234,0.62)" : "rgba(30,15,10,0.52)",
+                      color: "rgba(30,15,10,0.52)",
                     }}
                   >
                     {math.savings > 0
@@ -2341,7 +2337,7 @@ function Pricing() {
                     fontFamily: "'Cormorant Garamond', serif",
                     fontSize: "1.05rem",
                     lineHeight: 1.55,
-                    color: isFilled ? "rgba(250,243,234,0.7)" : "rgba(30,15,10,0.75)",
+                    color: "rgba(30,15,10,0.75)",
                   }}
                 >
                   {t.tagline}
@@ -2350,8 +2346,8 @@ function Pricing() {
                 <div
                   className="mt-5 w-full rounded-2xl px-5 py-4"
                   style={{
-                    background: isFilled ? "rgba(255,255,255,0.06)" : "rgba(255,255,255,0.48)",
-                    border: isFilled ? "1px solid rgba(255,255,255,0.1)" : "1px solid rgba(200,168,100,0.22)",
+                    background: "rgba(255,255,255,0.48)",
+                    border: "1px solid rgba(200,168,100,0.22)",
                   }}
                 >
                   <p className="text-[9px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>
@@ -2362,7 +2358,7 @@ function Pricing() {
                     style={{
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: "0.86rem",
-                      color: isFilled ? "rgba(250,243,234,0.72)" : "rgba(30,15,10,0.62)",
+                      color: "rgba(30,15,10,0.62)",
                     }}
                   >
                     {t.outcome}
@@ -2392,7 +2388,7 @@ function Pricing() {
                       style={{
                         fontFamily: "'Jost', sans-serif",
                         fontSize: "0.92rem",
-                        color: isFilled ? "rgba(250,243,234,0.85)" : "rgba(30,15,10,0.85)",
+                        color: "rgba(30,15,10,0.85)",
                       }}
                     >
                       <PlanFeatureIcon index={idx} filled={isFilled} />
