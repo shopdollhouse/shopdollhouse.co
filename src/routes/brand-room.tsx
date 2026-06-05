@@ -230,11 +230,11 @@ function BrandRoomPage() {
       {/* ── MARQUEE BAR ──────────────────────────────────── */}
       <section className="px-6 py-4 text-center" style={{ background: "var(--rose)", color: "var(--cream)" }}>
         <p style={{ fontFamily: FONT_LUXE, fontSize: "0.74rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase" }}>
-          200+ women building their brand
-          <span className="mx-3" style={{ color: "var(--gold)" }}>✦</span>
           Instant digital access
           <span className="mx-3" style={{ color: "var(--gold)" }}>✦</span>
-          As seen on BuzzFeed
+          Built for beginners
+          <span className="mx-3" style={{ color: "var(--gold)" }}>✦</span>
+          Yours forever — no subscription
         </p>
       </section>
 
