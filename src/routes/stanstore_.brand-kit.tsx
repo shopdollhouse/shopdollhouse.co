@@ -5,5 +5,5 @@ import { brandKitProduct } from "@/lib/brand-products";
 export const Route = createFileRoute("/stanstore_/brand-kit")({ component: StanStoreBrandKitPage });
 
 function StanStoreBrandKitPage() {
-  return <StanStoreProductPage product={brandKitProduct} />;
+  return <StanStoreProductPage product={brandKitProduct} showCheckout />;
 }

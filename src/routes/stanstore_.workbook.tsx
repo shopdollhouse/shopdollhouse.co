@@ -5,5 +5,5 @@ import { workbookProduct } from "@/lib/brand-products";
 export const Route = createFileRoute("/stanstore_/workbook")({ component: StanStoreWorkbookPage });
 
 function StanStoreWorkbookPage() {
-  return <StanStoreProductPage product={workbookProduct} />;
+  return <StanStoreProductPage product={workbookProduct} showCheckout />;
 }

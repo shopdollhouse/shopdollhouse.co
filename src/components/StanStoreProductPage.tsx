@@ -384,6 +384,59 @@ const salesDetails: Record<BrandProduct["accent"], StanStoreSalesDetails> = {
   },
 };
 
+function CheckoutSection({ product, priceAmount, currency }: { product: BrandProduct; priceAmount: string; currency?: string }) {
+  if (!product.checkoutUrl) return null;
+
+  return (
+    <section id="checkout" className="bg-[var(--cream)] px-5 py-16 md:px-8 md:py-24">
+      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+        <div className="stan-card rounded-[30px] bg-white/70 p-7 md:p-10" style={{ border: "1px solid color-mix(in oklab, var(--gold) 30%, transparent)", boxShadow: "0 28px 70px -48px rgba(90,45,35,0.55)" }}>
+          <p className="stan-section-label text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase" }}>
+            Secure Checkout
+          </p>
+          <h2 className="stan-section-title mt-4 text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 5vw, 3.8rem)", lineHeight: 1, fontWeight: 400 }}>
+            Get instant access without leaving the page.
+          </h2>
+          <div className="mt-6 flex items-baseline gap-3">
+            <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3.2rem, 8vw, 5rem)", lineHeight: 1 }}>
+              {priceAmount}
+              {currency && (
+                <span style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", fontStyle: "normal", fontWeight: 700, letterSpacing: "0.16em", marginLeft: "0.45rem" }}>
+                  {currency}
+                </span>
+              )}
+            </span>
+            {product.regular && <span className="text-[var(--ink)]/28 line-through" style={{ fontFamily: FONT_BODY, fontSize: "1.05rem" }}>{product.regular}</span>}
+          </div>
+          <p className="stan-body-copy mt-4 text-[var(--ink)]/62" style={{ fontFamily: FONT_BODY, fontSize: "0.98rem", lineHeight: 1.7 }}>
+            Finish your purchase here, then use the access details shown after checkout to enter your private workspace.
+          </p>
+          <a href={product.checkoutUrl} className="stan-button mt-7 block rounded-full bg-[var(--ink)] px-6 py-4 text-center text-[var(--cream)] transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
+            Open Secure Checkout <span aria-hidden>→</span>
+          </a>
+          <p className="stan-faq-copy mt-4 text-center text-[var(--ink)]/42" style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", lineHeight: 1.6 }}>
+            If the payment frame does not load on your device, use the secure checkout button above.
+          </p>
+        </div>
+
+        <div className="stan-card overflow-hidden rounded-[30px] bg-white/74" style={{ border: "1px solid color-mix(in oklab, var(--gold) 30%, transparent)", boxShadow: "0 28px 70px -48px rgba(90,45,35,0.55)" }}>
+          <div className="border-b border-[var(--gold)]/20 bg-[var(--blush)]/45 px-5 py-4">
+            <p className="stan-section-label text-[var(--ink)]/58" style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", letterSpacing: "0.16em", textTransform: "uppercase" }}>
+              FastPay secure payment
+            </p>
+          </div>
+          <iframe
+            src={product.checkoutUrl}
+            title={`${product.shortName} secure checkout`}
+            className="h-[720px] w-full bg-white"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function StanStoreProductPage({ product, showCheckout = false }: { product: BrandProduct; showCheckout?: boolean }) {
   const allSalesFinal = product.faqs.find((faq) => faq.q.toLowerCase().includes("refund"))?.a ?? "Because this is a digital product with instant access, all sales are final.";
   const details = salesDetails[product.accent];
@@ -418,7 +471,7 @@ export function StanStoreProductPage({ product, showCheckout = false }: { produc
           </div>
           {showCheckout && (
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <a href={product.checkoutUrl} className="stan-button rounded-full bg-[var(--ink)] px-7 py-4 text-[var(--cream)] transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
+              <a href="#checkout" className="stan-button rounded-full bg-[var(--ink)] px-7 py-4 text-[var(--cream)] transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
                 {product.finalCta} <span aria-hidden>→</span>
               </a>
               <a href="/brand-room" className="stan-button rounded-full border border-[var(--gold)]/40 bg-white/26 px-7 py-4 text-[var(--ink)]/62 transition-all hover:-translate-y-0.5" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
@@ -494,7 +547,7 @@ export function StanStoreProductPage({ product, showCheckout = false }: { produc
             </div>
             {product.value && <p className="stan-section-label text-[var(--cream)]/45" style={{ fontFamily: FONT_LUXE, fontSize: "0.7rem", letterSpacing: "0.13em", textTransform: "uppercase" }}>{product.value}</p>}
             {showCheckout ? (
-              <a href={product.checkoutUrl} className="stan-button mt-7 block rounded-full px-6 py-4 text-center transition-all hover:-translate-y-0.5" style={{ background: "var(--gold)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
+              <a href="#checkout" className="stan-button mt-7 block rounded-full px-6 py-4 text-center transition-all hover:-translate-y-0.5" style={{ background: "var(--gold)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
                 Get Instant Access →
               </a>
             ) : (
@@ -548,6 +601,8 @@ export function StanStoreProductPage({ product, showCheckout = false }: { produc
           </p>
         </div>
       </section>
+
+      {showCheckout && <CheckoutSection product={product} priceAmount={priceAmount} currency={currency} />}
 
       <section className="px-5 py-16 md:px-8 md:py-24" style={{ background: "var(--ink)" }}>
         <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-2">
@@ -603,7 +658,7 @@ export function StanStoreProductPage({ product, showCheckout = false }: { produc
           </p>
           {showCheckout ? (
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <a href={product.checkoutUrl} className="stan-button rounded-full bg-[var(--ink)] px-8 py-4 text-[var(--cream)] transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
+              <a href="#checkout" className="stan-button rounded-full bg-[var(--ink)] px-8 py-4 text-[var(--cream)] transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
                 {product.finalCta} <span aria-hidden>→</span>
               </a>
               <a href="/#contact" className="stan-button rounded-full border border-[var(--gold)]/40 bg-white/30 px-8 py-4 text-[var(--ink)]/62 transition-all hover:-translate-y-0.5" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
