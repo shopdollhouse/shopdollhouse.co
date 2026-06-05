@@ -439,18 +439,18 @@ function BrandRoomPage() {
           <div className="flex justify-center" style={{ color: "var(--gold)" }}>
             <img src={archMark} alt="" className="h-9 w-6" />
           </div>
-          <p className="mt-2 leading-none" style={{ fontFamily: FONT_SCRIPT, fontStyle: "italic", color: "var(--gold)", fontSize: "clamp(2rem, 4vw, 2.6rem)", textTransform: "lowercase" }}>ready?</p>
+          <p className="mt-2 leading-none" style={{ fontFamily: FONT_SCRIPT, fontStyle: "italic", color: "var(--gold)", fontSize: "clamp(2rem, 4vw, 2.6rem)", textTransform: "lowercase" }}>ready to grow?</p>
           <h2 className="mt-1" style={{ fontFamily: FONT_DISPLAY, fontWeight: 400, color: "var(--rose)", fontSize: "clamp(2.4rem, 6vw, 3.4rem)", lineHeight: 1.05 }}>
-            Build something real.
+            Already have a business?
           </h2>
           <p className="mx-auto mt-5 max-w-lg" style={{ fontFamily: FONT_BODY, fontSize: "17px", lineHeight: 1.7, color: "rgba(29,15,11,0.65)" }}>
-            Join the women who are done guessing. Your brand starts today.
+            Once your foundation is set — or if you're already up and running — The Dollhouse takes it from here with done-for-you content, ads, and growth.
           </p>
           <div className="mt-8">
-            <Button href="/">Enter the Brand Room</Button>
+            <Button href="/">Explore Done-For-You Marketing →</Button>
           </div>
           <p className="mt-5" style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(29,15,11,0.5)" }}>
-            Starting at $17 · Instant access · No experience needed
+            Managed content · Ads · Websites · Lead follow-up
           </p>
         </div>
       </section>
