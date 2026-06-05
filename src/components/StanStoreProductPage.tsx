@@ -428,9 +428,9 @@ function CheckoutSection({ product, priceAmount, currency }: { product: BrandPro
           <iframe
             src={product.checkoutUrl}
             title={`${product.shortName} secure checkout`}
-            className="h-[1500px] w-full bg-white md:h-[1420px]"
+            className="h-[1040px] w-full bg-white md:h-[880px]"
             loading="lazy"
-            scrolling="no"
+            scrolling="auto"
             style={{ border: 0, display: "block" }}
           />
         </div>
