@@ -12,10 +12,10 @@ const FONT_LUXE = "'Jost', sans-serif";
 const FONT_SCRIPT = "'Allura', cursive";
 
 const CHECKOUT = {
-  ai: "/checkout/ai-prompt-kit",
-  workbook: "/checkout/brand-workbook",
-  brandKit: "/checkout/brand-kit",
-  suite: "/checkout/brand-room-suite",
+  ai: "https://link.fastpaydirect.com/payment-link/6a22a43471a0aa761e46326a",
+  workbook: "https://link.fastpaydirect.com/payment-link/6a22a3fe03b17c94f5714ba9",
+  brandKit: "https://link.fastpaydirect.com/payment-link/6a22a22903b17c94f5714ba7",
+  suite: "https://link.fastpaydirect.com/payment-link/6a23413403b17c94f5714d42",
 };
 
 const products = [
@@ -26,7 +26,7 @@ const products = [
     tagline: "For the woman who needs her brand to look like it means business.",
     body: "Your colours, fonts, and visual identity — decided, locked in, done. Interactive web app. Access forever.",
     bullets: ["Colour palette built for your brand", "Font pairings chosen and explained", "Visual identity direction locked in", "Access forever, no expiry"],
-    href: "/brand-room/brand-kit",
+    href: CHECKOUT.brandKit,
   },
   {
     name: "Brand Workbook",
@@ -35,7 +35,7 @@ const products = [
     tagline: "For the woman who needs to get clear on what she's actually building.",
     body: "Your offer, audience, messaging, and content plan — all figured out in one sitting. Bonus PDF included.",
     bullets: ["Niche and audience clarity", "Offer and pricing direction", "Brand messaging in plain English", "Content plan built in", "Bonus PDF version included"],
-    href: "/brand-room/brand-workbook",
+    href: CHECKOUT.workbook,
   },
   {
     name: "AI Prompt Kit",
@@ -44,7 +44,7 @@ const products = [
     tagline: "For the woman who knows what to post but can't find the words.",
     body: "200+ prompts across 8 brand rooms — written for women building brands online. No more blank captions.",
     bullets: ["200+ prompts organised by content type", "Social posts, emails, DMs, brand story", "Built for the Dollhouse content pillars", "Works with any AI tool", "Start using it today"],
-    href: "/brand-room/ai-prompt-kit",
+    href: CHECKOUT.ai,
   },
 ];
 
@@ -301,7 +301,7 @@ function BrandRoomPage() {
                     </li>
                   ))}
                 </ul>
-                <a href={product.href} className="mt-6 inline-block underline underline-offset-4" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gold)" }}>
+                <a href={product.href} target="_blank" rel="noopener noreferrer" className="mt-6 inline-block underline underline-offset-4" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gold)" }}>
                   Learn more →
                 </a>
               </article>
@@ -363,7 +363,7 @@ function BrandRoomPage() {
                   {item.regular && <span className="line-through" style={{ fontFamily: FONT_BODY, fontSize: "1.05rem", color: "rgba(29,15,11,0.4)" }}>{item.regular}</span>}
                 </div>
                 <p className="mt-4 min-h-[52px]" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.6, color: "rgba(29,15,11,0.65)" }}>{item.line}</p>
-                <a href={item.href} className="mt-6 flex min-h-12 items-center justify-center rounded-full px-5 py-3 text-center transition-opacity hover:opacity-90" style={{ border: "1px solid var(--ink)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase" }}>
+                <a href={item.href} target="_blank" rel="noopener noreferrer" className="mt-6 flex min-h-12 items-center justify-center rounded-full px-5 py-3 text-center transition-opacity hover:opacity-90" style={{ border: "1px solid var(--ink)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase" }}>
                   {item.button}
                 </a>
               </article>
@@ -375,7 +375,7 @@ function BrandRoomPage() {
               <p className="mt-1" style={{ fontFamily: FONT_DISPLAY, fontSize: "3rem", lineHeight: 1, color: "var(--gold)" }}><Price value="$127 USD" /></p>
               <p className="mt-2" style={{ fontFamily: FONT_LUXE, fontSize: "0.74rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--rose)" }}>Save $34</p>
               <p className="mt-4 min-h-[52px]" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.6, color: "rgba(253,246,240,0.74)" }}>All three tools. Everything you need.</p>
-              <a href={CHECKOUT.suite} className="mt-6 flex min-h-12 items-center justify-center rounded-full px-5 py-3 text-center transition-opacity hover:opacity-90" style={{ background: "var(--rose)", color: "var(--cream)", fontFamily: FONT_LUXE, fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase" }}>
+              <a href={CHECKOUT.suite} target="_blank" rel="noopener noreferrer" className="mt-6 flex min-h-12 items-center justify-center rounded-full px-5 py-3 text-center transition-opacity hover:opacity-90" style={{ background: "var(--rose)", color: "var(--cream)", fontFamily: FONT_LUXE, fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase" }}>
                 Get Everything — $127
               </a>
             </article>
@@ -439,18 +439,18 @@ function BrandRoomPage() {
           <div className="flex justify-center" style={{ color: "var(--gold)" }}>
             <img src={archMark} alt="" className="h-9 w-6" />
           </div>
-          <p className="mt-2 leading-none" style={{ fontFamily: FONT_SCRIPT, fontStyle: "italic", color: "var(--gold)", fontSize: "clamp(2rem, 4vw, 2.6rem)", textTransform: "lowercase" }}>ready to grow?</p>
+          <p className="mt-2 leading-none" style={{ fontFamily: FONT_SCRIPT, fontStyle: "italic", color: "var(--gold)", fontSize: "clamp(2rem, 4vw, 2.6rem)", textTransform: "lowercase" }}>ready?</p>
           <h2 className="mt-1" style={{ fontFamily: FONT_DISPLAY, fontWeight: 400, color: "var(--rose)", fontSize: "clamp(2.4rem, 6vw, 3.4rem)", lineHeight: 1.05 }}>
-            Already have a business?
+            Build something real.
           </h2>
           <p className="mx-auto mt-5 max-w-lg" style={{ fontFamily: FONT_BODY, fontSize: "17px", lineHeight: 1.7, color: "rgba(29,15,11,0.65)" }}>
-            Once your foundation is set — or if you're already up and running — The Dollhouse takes it from here with done-for-you content, ads, and growth.
+            Join the women who are done guessing. Your brand starts today.
           </p>
           <div className="mt-8">
-            <Button href="/">Explore Done-For-You Marketing →</Button>
+            <Button href="#pricing">Enter the Brand Room</Button>
           </div>
           <p className="mt-5" style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(29,15,11,0.5)" }}>
-            Managed content · Ads · Websites · Lead follow-up
+            Starting at $17 · Instant access · No experience needed
           </p>
         </div>
       </section>
