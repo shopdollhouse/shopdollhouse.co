@@ -149,7 +149,7 @@ function DeviceShowcase({ product }: { product: BrandProduct }) {
   return (
     <div className="mt-8">
       <p className="text-center uppercase tracking-[0.18em] text-[var(--ink)]/42" style={{ fontFamily: FONT_LUXE, fontSize: "8px" }}>
-        Desktop · Laptop · Tablet Preview
+        Desktop · Laptop Preview
       </p>
 
       <div className="mt-4 rounded-[24px] bg-[var(--ink)] p-3 shadow-[0_22px_46px_-30px_rgba(30,15,10,0.8)]">
@@ -190,7 +190,7 @@ function ProductMockup({ product }: { product: BrandProduct }) {
         <div aria-hidden className="absolute -right-12 bottom-10 h-52 w-52 rounded-full blur-3xl" style={{ background: "rgba(200,168,100,0.22)" }} />
         <img
           src={product.productImage}
-          alt={`${product.name} product preview on desktop, laptop, and tablet`}
+          alt={`${product.name} product preview on desktop and laptop`}
           className="relative aspect-[3/2] w-full rounded-[26px] object-cover shadow-[0_24px_60px_-34px_rgba(30,15,10,0.72)]"
         />
       </figure>

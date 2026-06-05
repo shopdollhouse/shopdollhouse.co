@@ -48,7 +48,7 @@ export const brandKitProduct: BrandProduct = {
     "Future updates",
   ],
   faqs: [
-    { q: "Is this a mobile app?", a: "No. The Dollhouse is a private interactive web app designed to work beautifully through your browser, especially on laptop and tablet." },
+    { q: "Is this a mobile app?", a: "No. The Dollhouse is a private interactive web app designed to work beautifully through your browser on a laptop or desktop." },
     { q: "Is this beginner friendly?", a: "Yes. Everything is guided, simple, aesthetic, and made for beginners who are starting from scratch." },
     { q: "How do I access it?", a: "Click the checkout button on this page. After payment, you will receive the private access details for your Brand Kit." },
     { q: "Can I hire The Dollhouse after I finish it?", a: "Yes. Once your foundation is clear, you can apply for managed marketing support for content, automations, AI clone videos, and lead follow-up." },

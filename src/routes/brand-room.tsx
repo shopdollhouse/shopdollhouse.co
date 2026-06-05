@@ -64,8 +64,8 @@ const faq = [
 
 const quickFacts = [
   { key: "instant", title: "Instant access", body: "The moment you purchase, your link and password arrive in your inbox. Takes less than 5 minutes to get started." },
-  { key: "mobile", title: "Built for mobile", body: "These are interactive web apps. Open them on your phone, tablet, or laptop — no downloads, no PDFs to print." },
-  { key: "easy", title: "No experience needed", body: "If you can use your phone, you can use the Brand Room. Built for women who are just starting out." },
+  { key: "desktop", title: "Built for laptop & desktop", body: "These are interactive web apps you fill out right in your browser on a laptop or desktop — no downloads, no PDFs to print." },
+  { key: "easy", title: "No experience needed", body: "If you can fill out a form online, you can use the Brand Room. Built for women who are just starting out." },
 ];
 
 /* ─── Brand atoms (matching the main site) ─────────────── */
@@ -117,7 +117,7 @@ function CrossIcon({ color = "currentColor" }: { color?: string }) {
 function FactIcon({ name }: { name: string }) {
   const common = { width: 26, height: 26, viewBox: "0 0 24 24", fill: "none", stroke: "var(--gold)", strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
   if (name === "instant") return <svg {...common}><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" /></svg>;
-  if (name === "mobile") return <svg {...common}><rect x="7" y="2" width="10" height="20" rx="2" /><path d="M11 18h2" /></svg>;
+  if (name === "desktop") return <svg {...common}><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" /></svg>;
   return <svg {...common}><path d="M12 3l2.5 5.2 5.7.8-4.1 4 1 5.7L12 21.2 6.9 18.7l1-5.7-4.1-4 5.7-.8L12 3Z" /></svg>;
 }
 
