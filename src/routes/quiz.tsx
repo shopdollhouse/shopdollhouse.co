@@ -326,23 +326,63 @@ function QuizPage() {
     setSubmitting(true);
     const nextResult = getResultType(answers);
     setResult(nextResult);
-    try {
-      await fetch("https://formspree.io/f/mwvrvrzj", {
+
+    // Fetch 1 — Formspree (unchanged)
+    const formspreeFetch = fetch("https://formspree.io/f/mwvrvrzj", {
+      method: "POST",
+      body: JSON.stringify({
+        name,
+        email,
+        phone,
+        business,
+        source: "Brand Clarity Quiz",
+        quiz_result: RESULTS[nextResult].type,
+        quiz_recommendation: RESULTS[nextResult].productName,
+        recommended_product_url: RESULTS[nextResult].ctaUrl,
+        price: RESULTS[nextResult].price,
+      }),
+      headers: { Accept: "application/json", "Content-Type": "application/json" },
+    });
+
+    // Fetch 2 — CRM inbound webhook (parallel, optional)
+    const crmWebhookUrl = import.meta.env.VITE_CRM_WEBHOOK_URL as string | undefined;
+    const fetches: Promise<unknown>[] = [formspreeFetch];
+
+    if (crmWebhookUrl) {
+      const trimmedName = name.trim();
+      const firstSpace = trimmedName.indexOf(" ");
+      const firstName = firstSpace === -1 ? trimmedName : trimmedName.slice(0, firstSpace);
+      const lastName = firstSpace === -1 ? "" : trimmedName.slice(firstSpace + 1).trim();
+      const resultTypeCapitalized = nextResult.charAt(0).toUpperCase() + nextResult.slice(1);
+
+      const crmFetch = fetch(crmWebhookUrl, {
         method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name,
+          firstName,
+          lastName,
           email,
           phone,
-          business,
           source: "Brand Clarity Quiz",
-          quiz_result: RESULTS[nextResult].type,
-          quiz_recommendation: RESULTS[nextResult].productName,
-          recommended_product_url: RESULTS[nextResult].ctaUrl,
-          price: RESULTS[nextResult].price,
+          tags: ["Quiz Lead", "Brand Type: " + resultTypeCapitalized],
+          customFields: [
+            { key: "quiz_result", value: nextResult },
+            { key: "quiz_recommendation", value: RESULTS[nextResult].productName },
+            { key: "quiz_result_url", value: RESULTS[nextResult].ctaUrl },
+            { key: "business_name", value: business },
+          ],
         }),
-        headers: { Accept: "application/json", "Content-Type": "application/json" },
       });
-    } catch (_) {}
+      fetches.push(crmFetch);
+    }
+
+    const outcomes = await Promise.allSettled(fetches);
+    outcomes.forEach((outcome, i) => {
+      if (outcome.status === "rejected") {
+        console.warn(`Quiz lead submission ${i === 0 ? "(Formspree)" : "(CRM webhook)"} failed:`, outcome.reason);
+      }
+    });
+
     setSubmitting(false);
     setPhase("result");
   }
