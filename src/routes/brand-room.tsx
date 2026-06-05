@@ -447,7 +447,7 @@ function BrandRoomPage() {
             Join the women who are done guessing. Your brand starts today.
           </p>
           <div className="mt-8">
-            <Button href="#pricing">Enter the Brand Room</Button>
+            <Button href="/">Enter the Brand Room</Button>
           </div>
           <p className="mt-5" style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(29,15,11,0.5)" }}>
             Starting at $17 · Instant access · No experience needed
