@@ -234,12 +234,20 @@ function ProductMockup({ product }: { product: BrandProduct }) {
 function PricePanel({ product }: { product: BrandProduct }) {
   const accessUrl = getProductAccessUrl(product);
   const accessLabel = product.checkoutUrl ? product.finalCta : "Request Access";
+  const [priceAmount, currency] = product.price.split(" ");
 
   return (
     <aside className="rounded-[28px] bg-[var(--ink)] p-7 text-[var(--cream)] shadow-[0_34px_80px_-42px_rgba(30,15,10,0.8)] md:p-8">
       <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>{product.checkoutUrl ? "Instant Access" : "Private Access"}</p>
       <div className="mt-5 flex items-baseline gap-3">
-        <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3rem, 6vw, 4.4rem)", lineHeight: 1 }}>{product.price}</span>
+        <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3rem, 6vw, 4.4rem)", lineHeight: 1 }}>
+          {priceAmount}
+          {currency && (
+            <span style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", fontStyle: "normal", fontWeight: 700, letterSpacing: "0.16em", marginLeft: "0.45rem", verticalAlign: "baseline" }}>
+              {currency}
+            </span>
+          )}
+        </span>
         {product.regular && <span className="line-through text-[var(--cream)]/30" style={{ fontFamily: FONT_BODY, fontSize: "1.05rem" }}>{product.regular}</span>}
       </div>
       {product.value && (

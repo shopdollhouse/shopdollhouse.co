@@ -1998,7 +1998,7 @@ function Pricing() {
       className="scroll-mt-32 py-24 md:py-32 px-6"
       style={{
         background:
-          "radial-gradient(circle at 50% 0%, rgba(201,122,122,0.18), transparent 34%), radial-gradient(circle at 50% 68%, rgba(200,168,100,0.08), transparent 38%), linear-gradient(180deg, #130807 0%, #1e0f0a 58%, #2a1510 100%)",
+          "radial-gradient(circle at 50% 0%, rgba(255,255,255,0.9), transparent 36%), radial-gradient(circle at 50% 58%, rgba(201,122,122,0.16), transparent 42%), linear-gradient(180deg, #fbf1ed 0%, #f5ddd7 52%, #fff8f3 100%)",
       }}
     >
       <div className="mx-auto max-w-4xl text-center">
@@ -2009,12 +2009,12 @@ function Pricing() {
             fontFamily: "'Cormorant Garamond', serif",
             fontSize: "clamp(3rem, 7vw, 6rem)",
             fontWeight: 400,
-            color: "var(--cream)",
+            color: "var(--ink)",
           }}
         >
           Choose your plan
         </h2>
-        <p className="mx-auto mt-5 max-w-2xl text-[rgba(250,243,234,0.62)] leading-7" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+        <p className="mx-auto mt-5 max-w-2xl text-[var(--ink)]/58 leading-7" style={{ fontFamily: "'DM Sans', sans-serif" }}>
           Start with the foundation, then scale into the managed growth system when you are ready.
         </p>
       </div>
@@ -2023,9 +2023,9 @@ function Pricing() {
         <div
           className="grid w-full max-w-[430px] grid-cols-2 gap-1 rounded-full p-1"
           style={{
-            background: "rgba(255,250,246,0.08)",
-            border: "1px solid rgba(250,243,234,0.14)",
-            boxShadow: "0 16px 36px -24px rgba(0,0,0,0.72), inset 0 0 0 1px rgba(200,168,100,0.12)",
+            background: "rgba(255,250,246,0.72)",
+            border: "1px solid rgba(200,168,100,0.28)",
+            boxShadow: "0 18px 40px -28px rgba(120,70,55,0.42), inset 0 1px 0 rgba(255,255,255,0.68)",
           }}
         >
           {[
@@ -2041,14 +2041,14 @@ function Pricing() {
                 onClick={() => setContractTerm(option.value as "6" | "12")}
                 className="flex min-h-[34px] items-center justify-center gap-1 rounded-full px-2 py-2 transition-all sm:min-h-[38px] sm:gap-1.5 sm:px-2.5"
                 style={{
-                  background: active ? "var(--cream)" : "transparent",
-                  color: active ? "var(--ink)" : "rgba(250,243,234,0.54)",
+                  background: active ? "var(--ink)" : "transparent",
+                  color: active ? "var(--cream)" : "rgba(30,15,10,0.58)",
                   fontFamily: "'Jost', sans-serif",
                   fontSize: "clamp(0.5rem, 0.9vw, 0.58rem)",
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
                   fontWeight: 800,
-                  boxShadow: active ? "0 8px 18px -14px rgba(0,0,0,0.78)" : "none",
+                  boxShadow: active ? "0 10px 22px -14px rgba(30,15,10,0.55)" : "none",
                 }}
               >
                 <span>{option.label}</span>
@@ -2057,7 +2057,7 @@ function Pricing() {
                     aria-hidden="true"
                     className="rounded-full px-1.5 py-0.5 sm:px-2"
                     style={{
-                      background: active ? "rgba(200,168,100,0.95)" : "var(--gold)",
+                      background: "var(--gold)",
                       color: "var(--ink)",
                       fontFamily: "'Jost', sans-serif",
                       fontSize: "clamp(0.38rem, 0.7vw, 0.46rem)",
@@ -2075,7 +2075,7 @@ function Pricing() {
           })}
         </div>
       </div>
-      <p className="mt-4 text-center text-[rgba(250,243,234,0.42)]" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem" }}>
+      <p className="mt-4 text-center text-[var(--ink)]/48" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem" }}>
         {contractTerm === "6" ? "6-month start · 14-day free trial · $500 setup due upfront" : "12-month plan · 1 month free · 14-day free trial · $500 setup due upfront"}
       </p>
 
@@ -2083,7 +2083,7 @@ function Pricing() {
         {tiers.map((t) => {
           const isFilled = !!t.featured;
           const math = getPlanMath(t);
-          const accent = t.name === "Foundation" ? "rgba(250,243,234,0.26)" : t.name === "Content Lite" ? "rgba(200,168,100,0.78)" : t.name === "Starter" ? "#c97a7a" : "var(--gold)";
+          const accent = t.name === "Foundation" ? "var(--ink)" : t.name === "Content Lite" ? "rgba(200,168,100,0.92)" : t.name === "Starter" ? "#c97a7a" : "var(--gold)";
           return (
             <div key={t.name} className={`relative pt-8 ${isFilled ? "xl:-mt-4 xl:z-10" : ""}`}>
               {t.topBadge && (
@@ -2453,21 +2453,21 @@ function Pricing() {
       </div>
 
       {/* Pricing footnote */}
-      <p className="text-center mt-6 mb-2" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(250,243,234,0.38)" }}>
+      <p className="text-center mt-6 mb-2" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.38)" }}>
         Foundation starts at $297/mo &nbsp;·&nbsp; first 14 days of monthly management free &nbsp;·&nbsp; one-time $500 setup fee due upfront
       </p>
 
       {/* Setup fee + ad spend notes */}
       <div className="mt-12 max-w-2xl mx-auto rounded-2xl px-8 py-6 text-center space-y-4"
-        style={{ background: "rgba(255,250,246,0.06)", border: "1px solid rgba(200,168,100,0.22)" }}>
-        <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "var(--cream)", opacity: 0.75, fontStyle: "italic", lineHeight: 1.6 }}>
+        style={{ background: "rgba(255,250,246,0.72)", border: "1px solid rgba(200,168,100,0.24)", boxShadow: "0 22px 55px -42px rgba(120,70,55,0.36)" }}>
+        <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "var(--ink)", opacity: 0.74, fontStyle: "italic", lineHeight: 1.6 }}>
           <span style={{ color: "var(--gold)", fontStyle: "normal", fontWeight: 600 }}>$500 one-time setup fee on every contract</span> — required upfront for onboarding, system buildout, launch prep, calendar integration, automation sequences, and CRM setup.
         </p>
-        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "rgba(250,243,234,0.52)", lineHeight: 1.6 }}>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "rgba(30,15,10,0.55)", lineHeight: 1.6 }}>
           Your $500 setup starts the build. Your first 14 days of monthly management are free, then monthly billing begins if you continue. Choose a 6-month start or commit annually. Annual clients receive the 12th month free, and every plan shows the exact savings before you request a proposal.
         </p>
         <div style={{ height: "1px", background: "rgba(200,168,100,0.2)" }} />
-        <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "var(--cream)", opacity: 0.7, fontStyle: "italic", lineHeight: 1.6 }}>
+        <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "var(--ink)", opacity: 0.72, fontStyle: "italic", lineHeight: 1.6 }}>
           <span style={{ color: "var(--rose)", fontStyle: "normal", fontWeight: 600 }}>* Ad spend is not included in any package</span> — paid directly by you to Meta. Minimum $1,000/mo · We recommend starting at $1,000–$2,000/mo for best results · Never included in your package.
         </p>
       </div>

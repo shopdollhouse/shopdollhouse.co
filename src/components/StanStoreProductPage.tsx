@@ -387,6 +387,7 @@ const salesDetails: Record<BrandProduct["accent"], StanStoreSalesDetails> = {
 export function StanStoreProductPage({ product, showCheckout = false }: { product: BrandProduct; showCheckout?: boolean }) {
   const allSalesFinal = product.faqs.find((faq) => faq.q.toLowerCase().includes("refund"))?.a ?? "Because this is a digital product with instant access, all sales are final.";
   const details = salesDetails[product.accent];
+  const [priceAmount, currency] = product.price.split(" ");
 
   return (
     <main className="stan-sales-page min-h-screen bg-[var(--blush)] text-[var(--ink)]">
@@ -408,7 +409,10 @@ export function StanStoreProductPage({ product, showCheckout = false }: { produc
             {details.subhook}
           </p>
           <div className="stan-pill mx-auto mt-8 inline-flex flex-wrap items-center justify-center gap-3 rounded-full border border-[var(--gold)]/30 bg-white/36 px-5 py-3 text-[var(--ink)]/62" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>
-            <span>{product.price}</span>
+            <span>
+              {priceAmount}
+              {currency && <span style={{ fontSize: "0.55rem", fontWeight: 700, marginLeft: "0.25rem" }}>{currency}</span>}
+            </span>
             {product.regular && <span className="text-[var(--ink)]/28 line-through">{product.regular}</span>}
             <span>{product.value ?? "Instant access"}</span>
           </div>
@@ -478,7 +482,14 @@ export function StanStoreProductPage({ product, showCheckout = false }: { produc
           <aside className="rounded-[30px] bg-[var(--ink)] p-7 text-[var(--cream)] lg:sticky lg:top-6 lg:self-start">
             <p className="stan-section-label text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase" }}>Instant Access</p>
             <div className="mt-5 flex items-baseline gap-3">
-              <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "4.4rem", lineHeight: 1 }}>{product.price}</span>
+              <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "4.4rem", lineHeight: 1 }}>
+                {priceAmount}
+                {currency && (
+                  <span style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", fontStyle: "normal", fontWeight: 700, letterSpacing: "0.16em", marginLeft: "0.45rem", verticalAlign: "baseline" }}>
+                    {currency}
+                  </span>
+                )}
+              </span>
               {product.regular && <span className="text-[var(--cream)]/34 line-through" style={{ fontFamily: FONT_BODY, fontSize: "1.05rem" }}>{product.regular}</span>}
             </div>
             {product.value && <p className="stan-section-label text-[var(--cream)]/45" style={{ fontFamily: FONT_LUXE, fontSize: "0.7rem", letterSpacing: "0.13em", textTransform: "uppercase" }}>{product.value}</p>}
