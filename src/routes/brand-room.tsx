@@ -118,6 +118,20 @@ function FactIcon({ name }: { name: string }) {
   return <svg {...common}><path d="M12 3l2.5 5.2 5.7.8-4.1 4 1 5.7L12 21.2 6.9 18.7l1-5.7-4.1-4 5.7-.8L12 3Z" /></svg>;
 }
 
+function Price({ value }: { value: string }) {
+  const [amount, currency] = value.split(" ");
+  return (
+    <>
+      {amount}
+      {currency && (
+        <span style={{ fontFamily: FONT_LUXE, fontSize: "0.3em", fontStyle: "normal", fontWeight: 600, letterSpacing: "0.14em", marginLeft: "0.4rem", verticalAlign: "baseline" }}>
+          {currency}
+        </span>
+      )}
+    </>
+  );
+}
+
 function Button({ href, children, rose = false, ghost = false }: { href: string; children: React.ReactNode; rose?: boolean; ghost?: boolean }) {
   if (ghost) {
     return (
@@ -338,7 +352,7 @@ function BrandRoomPage() {
               <article key={item.name} className="rounded-3xl p-7" style={{ background: "var(--cream)", border: "1px solid rgba(200,168,100,0.3)", boxShadow: "0 22px 60px -48px rgba(90,45,35,0.4)" }}>
                 {item.label && <p style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--gold)" }}>{item.label}</p>}
                 <h3 className="mt-3" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.7rem", lineHeight: 1.1, color: "var(--ink)" }}>{item.name}</h3>
-                <p className="mt-5" style={{ fontFamily: FONT_DISPLAY, fontSize: "2.7rem", lineHeight: 1, color: "var(--rose)" }}>{item.price}</p>
+                <p className="mt-5" style={{ fontFamily: FONT_DISPLAY, fontSize: "2.7rem", lineHeight: 1, color: "var(--rose)" }}><Price value={item.price} /></p>
                 <p className="mt-4 min-h-[52px]" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.6, color: "rgba(29,15,11,0.65)" }}>{item.line}</p>
                 <a href={item.href} className="mt-6 flex min-h-12 items-center justify-center rounded-full px-5 py-3 text-center transition-opacity hover:opacity-90" style={{ border: "1px solid var(--ink)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase" }}>
                   {item.button}
@@ -349,7 +363,7 @@ function BrandRoomPage() {
               <span className="inline-block rounded-full px-4 py-1" style={{ background: "var(--rose)", color: "var(--cream)", fontFamily: FONT_LUXE, fontSize: "0.66rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase" }}>Best Value</span>
               <h3 className="mt-5" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.9rem", lineHeight: 1.05 }}>The Full Suite</h3>
               <p className="mt-4 line-through" style={{ fontFamily: FONT_BODY, color: "rgba(253,246,240,0.45)" }}>$161</p>
-              <p className="mt-1" style={{ fontFamily: FONT_DISPLAY, fontSize: "3rem", lineHeight: 1, color: "var(--gold)" }}>$127 USD</p>
+              <p className="mt-1" style={{ fontFamily: FONT_DISPLAY, fontSize: "3rem", lineHeight: 1, color: "var(--gold)" }}><Price value="$127 USD" /></p>
               <p className="mt-2" style={{ fontFamily: FONT_LUXE, fontSize: "0.74rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--rose)" }}>Save $34</p>
               <p className="mt-4 min-h-[52px]" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.6, color: "rgba(253,246,240,0.74)" }}>All three tools. Everything you need.</p>
               <a href={CHECKOUT.suite} className="mt-6 flex min-h-12 items-center justify-center rounded-full px-5 py-3 text-center transition-opacity hover:opacity-90" style={{ background: "var(--rose)", color: "var(--cream)", fontFamily: FONT_LUXE, fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase" }}>
