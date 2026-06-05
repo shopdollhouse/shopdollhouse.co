@@ -133,43 +133,43 @@ const QUESTIONS: {
   options: { label: string; type: ResultKey }[];
 }[] = [
   {
-    q: "Where are you getting stuck with your brand?",
-    helper: "Choose the answer that sounds most like what happens when you sit down to build.",
+    q: "When you sit down to work on your brand, what usually happens?",
+    helper: "Pick the one that's most honest — not the polished version.",
     options: [
-      { label: "I have ideas everywhere, but no clear foundation or direction.", type: "foundation" },
-      { label: "I am not sure what to sell, how to price it, or how to package it.", type: "offer" },
-      { label: "I want to post, but I never know what to say or what content matters.", type: "content" },
-      { label: "I am ready to launch, but I need a clear plan before I move.", type: "launch" },
+      { label: "I open Canva, hate everything I make, and close my laptop.", type: "foundation" },
+      { label: "I write out a new idea for what to sell — then talk myself out of it.", type: "offer" },
+      { label: "I scroll for inspiration and never actually post anything.", type: "content" },
+      { label: "I add more things to my launch checklist. The list keeps growing.", type: "launch" },
     ],
   },
   {
-    q: "What would make you feel more confident this month?",
-    helper: "This helps us match you to the room inside The Dollhouse you need first.",
+    q: "Which of these sounds like something you've actually said to yourself?",
+    helper: "Choose the one that hits a little too close.",
     options: [
-      { label: "A guided roadmap that tells me what to decide first, second, and third.", type: "foundation" },
-      { label: "A stronger offer, audience, and pricing plan before I start promoting.", type: "offer" },
-      { label: "Content pillars, prompts, and visibility ideas I can actually follow.", type: "content" },
-      { label: "A launch checklist so I can stop preparing forever and finally sell.", type: "launch" },
+      { label: "\"I want to look more professional but I don't know where to start.\"", type: "foundation" },
+      { label: "\"I don't know how to explain what I do in a way that makes people want it.\"", type: "offer" },
+      { label: "\"I know I need to show up more — but I always run out of things to say.\"", type: "content" },
+      { label: "\"I've been almost ready to launch for months now.\"", type: "launch" },
     ],
   },
   {
-    q: "What have you already tried?",
-    helper: "Be honest. The quiz works best when you do not answer like the polished version of yourself.",
+    q: "What feels most unfinished about your brand right now?",
+    helper: "Be honest — this is where your clearest next step comes from.",
     options: [
-      { label: "Saved random advice, templates, and TikToks, but never turned it into a system.", type: "foundation" },
-      { label: "Changed my offer more than once because I was not sure what people would buy.", type: "offer" },
-      { label: "Posted inconsistently, then felt discouraged when it did not lead to sales.", type: "content" },
-      { label: "Planned a launch in my head, but did not have the steps organized.", type: "launch" },
+      { label: "My visuals. I don't have a consistent look, colour palette, or vibe I love.", type: "foundation" },
+      { label: "My offer. I'm not fully sure what I'm selling, who it's for, or what to charge.", type: "offer" },
+      { label: "My content. I have no system. I post when I feel like it and disappear when I don't.", type: "content" },
+      { label: "My plan. Everything is in my head. I just can't seem to make it real.", type: "launch" },
     ],
   },
   {
-    q: "If you had one private strategy suite, what would you want it to do?",
-    helper: "Pick the outcome that would create the most relief.",
+    q: "If your brand was exactly where you wanted it to be, what would that look like?",
+    helper: "Pick the outcome that would feel the best to finally have.",
     options: [
-      { label: "Organize my vision, brand identity, audience, and business direction in one place.", type: "foundation" },
-      { label: "Help me create offers, products, pricing, and a brand people understand.", type: "offer" },
-      { label: "Give me prompts, content planning, and visibility strategy without overwhelm.", type: "content" },
-      { label: "Turn my brand, content, and product plan into a real launch roadmap.", type: "launch" },
+      { label: "People would recognize my brand instantly. My aesthetic would feel like me.", type: "foundation" },
+      { label: "I'd have one clear offer that people immediately understood — and wanted to buy.", type: "offer" },
+      { label: "I'd have content ideas ready, and people would actually stop and read what I post.", type: "content" },
+      { label: "I'd have a launch date on the calendar and a step-by-step plan to hit it.", type: "launch" },
     ],
   },
 ];
@@ -178,51 +178,46 @@ const RESULTS: Record<ResultKey, {
   type: string;
   tagline: string;
   body: string;
-  rooms: string[];
-  blocker: string;
-  mistakes: string[];
-  plan: string[];
-  recommendation: string;
+  productName: string;
+  price: string;
+  ctaLabel: string;
+  ctaUrl: string;
 }> = {
   foundation: {
     type: "The Brand Foundation Builder",
-    tagline: "You do not need more random advice. You need one clear place to build from.",
-    body: "Your next move is to organize the vision, voice, audience, and identity before you keep posting. The Private Strategy Suite gives you 17 guided rooms so your brand stops living in notes, screenshots, and half-finished ideas.",
-    rooms: ["Brand Foundation", "Audience Clarity", "Brand Messaging", "Website & Brand Checklist"],
-    blocker: "Your ideas are not the problem. The missing piece is order: what your brand stands for, who it helps, and what decision comes first.",
-    mistakes: ["Collecting advice instead of choosing a direction", "Trying to design before the message is clear", "Starting content before the brand foundation is written down"],
-    plan: ["Write your one-sentence brand promise.", "Choose the audience you want to help first.", "List the top 3 problems your brand solves.", "Pick 3 words your brand should feel like.", "Choose your core colors, fonts, and mood direction.", "Write your short about section.", "Decide which room you need to build next."],
-    recommendation: "Start with the Brand Kit Blueprint, then use the Workbook to organize your audience, offer, and next steps.",
+    tagline: "Your vibe is there. It just needs a home.",
+    body: "You know what you like. You have an aesthetic — somewhere in your head, your saved folders, your Pinterest board. But your brand doesn't look like you yet. And when things don't look consistent, people scroll past. Not because your offer is bad. Because their brain can't process what you do fast enough to stop. The Brand Kit Blueprint walks you through your colours, fonts, visual identity, and brand direction from scratch. One purchase. One place. A brand that finally looks as good on the outside as it feels on the inside.",
+    productName: "The Brand Kit Blueprint",
+    price: "$97",
+    ctaLabel: "Get the Brand Kit — $97 →",
+    ctaUrl: BRAND_KIT_URL,
   },
   offer: {
     type: "The Offer Architect",
-    tagline: "Your brand can look beautiful, but it still needs something clear to sell.",
-    body: "You are close, but your offer, product plan, and pricing need structure. The Dollhouse walks you through the decisions that make your brand easier to understand, trust, and buy from.",
-    rooms: ["Offer & Product Planning", "Pricing Guidance", "Audience Clarity", "Goal Tracking"],
-    blocker: "People cannot buy confidently if the offer feels unclear. Your next move is to make the promise, price, and transformation easy to understand.",
-    mistakes: ["Changing your offer before testing one clear version", "Pricing from fear instead of value", "Explaining the features but not the outcome"],
-    plan: ["Name your main offer in plain language.", "Write who it is for and who it is not for.", "List what is included.", "Write the before and after transformation.", "Choose one price or price range to test.", "Write 3 reasons someone would want it now.", "Create one simple sales post for the offer."],
-    recommendation: "Start with the Workbook if your offer still feels messy, then use the Brand Kit Blueprint to make it look polished.",
+    tagline: "You're not confused. You just haven't written it down yet.",
+    body: "You have something real to offer. You know it. But when someone asks what you do, the words come out wrong. The price doesn't feel right. The audience feels fuzzy. That's not a talent problem. That's a clarity problem — and it's fixable. The Brand Workbook walks you through your audience, your offer, your messaging, and your content plan in one place. So your brand stops being a beautiful secret and starts making sales.",
+    productName: "The Brand Workbook",
+    price: "$47",
+    ctaLabel: "Get the Brand Workbook — $47 →",
+    ctaUrl: WORKBOOK_URL,
   },
   content: {
     type: "The Visibility Planner",
-    tagline: "You need content that follows a strategy, not content that depends on your mood.",
-    body: "Your brand needs a repeatable content direction. The Private Strategy Suite helps you plan what to say, what to promote, and how to show up with more confidence before you burn out from guessing.",
-    rooms: ["Content Planning", "Marketing Strategy", "Social & Visibility Planning", "Guided Prompts"],
-    blocker: "You are not out of ideas. You are missing a repeatable content system that tells you what to post and why it matters.",
-    mistakes: ["Posting random content that does not point to an offer", "Waiting to feel inspired before showing up", "Using prompts without matching them to your brand voice"],
-    plan: ["Choose 3 content pillars.", "Write 5 hooks for your audience's biggest problem.", "Create one proof or story post.", "Create one educational post.", "Create one offer post.", "Batch 3 captions from the same idea.", "Pick your next 7 posts before opening the app."],
-    recommendation: "Start with the AI Prompt Kit if content is the bottleneck. Add the Brand Kit Blueprint if your visuals and voice still feel inconsistent.",
+    tagline: "You have more to say than you think.",
+    body: "You're not out of ideas. You're out of a system. The blank caption box is killing your momentum because you're starting from nothing every single time. That's not a creativity problem. That's a process problem. The AI Prompt Kit gives you 200+ prompts written specifically for women building brands online. Stop waiting to feel inspired. Start posting with a plan that actually points to something.",
+    productName: "The AI Prompt Kit",
+    price: "$17",
+    ctaLabel: "Get the AI Prompt Kit — $17 →",
+    ctaUrl: AI_KIT_URL,
   },
   launch: {
-    type: "The Launch Builder",
-    tagline: "You are ready to move, but your launch needs a clean roadmap.",
-    body: "You need the steps in order: offer, content, messaging, launch plan, and goals. The Dollhouse gives you the private web app structure to build, save, export, and keep moving.",
-    rooms: ["Launch Roadmap", "Goal Tracking", "Export & Save Features", "Future Updates"],
-    blocker: "You are close to launching, but the steps need to be placed in order so you stop preparing forever and start selling.",
-    mistakes: ["Waiting until everything is perfect", "Launching without a simple sales message", "Skipping the follow-up plan after people show interest"],
-    plan: ["Choose the exact thing you are launching.", "Write your launch goal.", "Pick your launch date or soft launch week.", "Write your simple sales message.", "Plan 3 pre-launch posts.", "Plan 2 launch posts.", "Write the follow-up message for people who show interest."],
-    recommendation: "Start with the full Brand Room path so your offer, content, and launch roadmap stay connected.",
+    type: "The Ready-to-Launch",
+    tagline: "You're not behind. You're one clear plan away.",
+    body: "You have the idea. You have the drive. What you're missing is a private space where your brand, offer, content, and launch steps all live together — so you can stop holding it in your head and start moving. The Dollhouse Brand Room is a private strategy suite with 17 guided rooms built for women who are ready to stop preparing forever and start selling for real.",
+    productName: "The Dollhouse Brand Room",
+    price: "$97",
+    ctaLabel: "Enter the Brand Room →",
+    ctaUrl: "/brand-room",
   },
 };
 
@@ -339,15 +334,11 @@ function QuizPage() {
           email,
           phone,
           business,
-          source: "Private Strategy Suite Quiz",
+          source: "Brand Clarity Quiz",
           quiz_result: RESULTS[nextResult].type,
-          quiz_blocker: RESULTS[nextResult].blocker,
-          quiz_7_day_plan: RESULTS[nextResult].plan.map((step, index) => `Day ${index + 1}: ${step}`).join(" | "),
-          quiz_recommendation: "The Dollhouse Private Strategy Suite",
-          offer: "$97 Brand Kit",
-          product_url: BRAND_KIT_URL,
-          workbook_url: WORKBOOK_URL,
-          ai_kit_url: AI_KIT_URL,
+          quiz_recommendation: RESULTS[nextResult].productName,
+          recommended_product_url: RESULTS[nextResult].ctaUrl,
+          price: RESULTS[nextResult].price,
         }),
         headers: { Accept: "application/json", "Content-Type": "application/json" },
       });
@@ -398,22 +389,21 @@ function QuizPage() {
             <div className="text-center lg:text-left">
               <div className="inline-flex items-center gap-2 rounded-full border border-[var(--gold)]/45 bg-white/45 px-5 py-2 text-[var(--gold)]">
                 <span style={{ fontSize: "0.55rem" }}>✦</span>
-                <span className="text-[10px] tracking-luxe uppercase font-semibold" style={{ fontFamily: FONT_LUXE }}>Free Brand Readiness Quiz + 7-Day Plan</span>
+                <span className="text-[10px] tracking-luxe uppercase font-semibold" style={{ fontFamily: FONT_LUXE }}>The Dollhouse Brand Quiz</span>
                 <span style={{ fontSize: "0.55rem" }}>✦</span>
               </div>
-              <p className="mt-7 text-[var(--gold)] italic leading-none" style={{ fontFamily: FONT_SCRIPT, fontSize: "clamp(2.5rem, 5vw, 3.6rem)" }}>the</p>
-              <h1 className="mt-1 text-[var(--rose)] leading-[0.92]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3.2rem, 8vw, 6.8rem)", fontWeight: 400, letterSpacing: "0.04em", textTransform: "uppercase" }}>
-                Dollhouse
+              <h1 className="mt-6 text-[var(--rose)] leading-[1.02] italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.6rem, 6vw, 4.6rem)", fontWeight: 400 }}>
+                What Does Your Brand Actually Need Right Now?
               </h1>
-              <p className="mt-5 max-w-xl mx-auto lg:mx-0 text-[var(--ink)]/72 leading-8" style={{ fontFamily: FONT_BODY, fontSize: "clamp(1rem, 1.7vw, 1.16rem)" }}>
-                Find out what your brand needs first, what is blocking you, and exactly what to fix over the next 7 days. Then get matched to the digital product or managed marketing path that makes the most sense.
+              <p className="mt-5 max-w-xl mx-auto lg:mx-0 text-[var(--ink)]/72 leading-8" style={{ fontFamily: FONT_BODY, fontSize: "clamp(1.05rem, 1.8vw, 1.25rem)" }}>
+                4 questions. One honest result. Your clearest next step.
               </p>
               <div className="mt-8 grid max-w-xl mx-auto lg:mx-0 grid-cols-2 sm:grid-cols-4 gap-3">
                 {[
-                  { label: "Brand type", icon: "type" as const },
-                  { label: "3 mistakes", icon: "mistakes" as const },
-                  { label: "7-day fix plan", icon: "plan" as const },
-                  { label: "Next best offer", icon: "offer" as const },
+                  { label: "4 questions", icon: "type" as const },
+                  { label: "Brutally honest", icon: "mistakes" as const },
+                  { label: "Your brand type", icon: "plan" as const },
+                  { label: "Exact next step", icon: "offer" as const },
                 ].map((item) => (
                   <div key={item.label} className="rounded-2xl px-3 py-4 text-center" style={{ background: "rgba(255,250,246,0.62)", border: "1px solid rgba(200,168,100,0.24)" }}>
                     <LeadMagnetIcon id={item.icon} />
@@ -425,7 +415,7 @@ function QuizPage() {
                 Take the quiz →
               </button>
               <p className="mt-4 text-[var(--ink)]/38 tracking-[0.14em] uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>
-                Less than 60 seconds · Your plan shows instantly on this page
+                Less than 60 seconds · Your result shows instantly on this page
               </p>
             </div>
 
@@ -462,147 +452,56 @@ function QuizPage() {
             </div>
             <div className="rounded-[32px] border border-[var(--gold)]/24 bg-[rgba(255,250,246,0.78)] p-7 md:p-10">
               <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Your result is ready</p>
-              <h2 className="mt-4 text-[var(--rose)] leading-tight" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 5vw, 3.4rem)", fontWeight: 400 }}>
-                Unlock your instant brand plan.
+              <h2 className="mt-4 text-[var(--rose)] leading-tight italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 5vw, 3.4rem)", fontWeight: 400 }}>
+                See your brand type.
               </h2>
               <p className="mt-3 text-[var(--ink)]/56 leading-7" style={{ fontFamily: FONT_BODY }}>
-                Enter your email to see your brand type, mistake pattern, personalized 7-day Brand Fix Plan, and right next step on this page.
+                Enter your name and email to see your brand type — plus the exact next step made for where you are right now.
               </p>
               <form onSubmit={submitEmail} className="mt-7 grid gap-3">
                 <input required placeholder="Your first name" value={name} onChange={(e) => setName(e.target.value)} className="rounded-xl px-5 py-3.5 focus:outline-none" style={{ fontFamily: FONT_BODY, background: "rgba(255,255,255,0.86)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }} />
                 <input required type="email" placeholder="Your email address" value={email} onChange={(e) => setEmail(e.target.value)} className="rounded-xl px-5 py-3.5 focus:outline-none" style={{ fontFamily: FONT_BODY, background: "rgba(255,255,255,0.86)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }} />
-                <input placeholder="What kind of brand are you building?" value={business} onChange={(e) => setBusiness(e.target.value)} className="rounded-xl px-5 py-3.5 focus:outline-none" style={{ fontFamily: FONT_BODY, background: "rgba(255,255,255,0.86)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }} />
+                <input placeholder="What kind of brand are you building? (optional)" value={business} onChange={(e) => setBusiness(e.target.value)} className="rounded-xl px-5 py-3.5 focus:outline-none" style={{ fontFamily: FONT_BODY, background: "rgba(255,255,255,0.86)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }} />
                 <input type="tel" placeholder="Phone number (optional)" value={phone} onChange={(e) => setPhone(e.target.value)} className="rounded-xl px-5 py-3.5 focus:outline-none" style={{ fontFamily: FONT_BODY, background: "rgba(255,255,255,0.86)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }} />
                 <button disabled={submitting} className="mt-2 rounded-full px-6 py-4 transition-all hover:-translate-y-0.5 disabled:opacity-60" style={{ background: "var(--gold)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
-                  {submitting ? "Preparing your result..." : "Show my brand plan →"}
+                  {submitting ? "Preparing your result..." : "Show me my result →"}
                 </button>
-                <p className="text-center text-[rgba(30,15,10,0.36)] tracking-[0.12em] uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "9px" }}>No spam · Brand plan plus best next step</p>
+                <p className="text-center text-[rgba(30,15,10,0.36)] tracking-[0.12em] uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "9px" }}>No spam · Just your result + one honest recommendation</p>
               </form>
             </div>
           </section>
         )}
 
         {phase === "result" && (
-          <section className="relative mx-auto grid max-w-6xl items-start gap-8 lg:grid-cols-[0.92fr_1.08fr]">
-            <div className="relative overflow-hidden rounded-[32px] border border-white/80 bg-[rgba(255,250,246,0.76)] p-5 shadow-[0_35px_80px_-42px_rgba(90,45,35,0.55)]">
-              <img
-                src={productBrandKit}
-                alt="The Dollhouse Brand Kit product preview"
-                className="aspect-[4/5] w-full rounded-[24px] object-cover"
-                style={{ objectPosition: "center", filter: "saturate(0.95) contrast(1.02)" }}
-              />
-              <div className="mt-5 grid grid-cols-2 gap-3">
-                {[
-                  { label: "Brand type", icon: "type" as const },
-                  { label: "Fix plan", icon: "plan" as const },
-                ].map((item) => (
-                  <div key={item.label} className="rounded-2xl px-4 py-4 text-center" style={{ background: "rgba(255,255,255,0.56)", border: "1px solid rgba(200,168,100,0.22)" }}>
-                    <LeadMagnetIcon id={item.icon} />
-                    <p className="text-[8px] tracking-[0.14em] uppercase text-[var(--ink)]/55" style={{ fontFamily: FONT_LUXE }}>{item.label}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="rounded-[32px] bg-[var(--ink)] p-7 text-[var(--cream)] shadow-[0_40px_80px_-28px_rgba(30,15,10,0.58)] md:p-10">
-              <ResultTypeSymbol result={result} />
-              <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Your Brand Type</p>
-              <h2 className="mt-3 text-[var(--cream)] leading-tight" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 4.5vw, 3.8rem)", fontWeight: 400 }}>
+          <section className="relative mx-auto max-w-2xl">
+            <div className="rounded-[32px] p-8 md:p-12 text-center" style={{ background: "linear-gradient(180deg, #fbeae6 0%, #f6dcd6 55%, #f1cfca 100%)", border: "2px solid color-mix(in oklab, var(--gold) 45%, transparent)", boxShadow: "0 40px 80px -28px rgba(160,90,80,0.4), inset 0 1px 0 rgba(255,255,255,0.7)" }}>
+              <div className="flex justify-center"><ResultTypeSymbol result={result} /></div>
+              <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Your Result</p>
+              <h2 className="mt-3 text-[var(--rose)] leading-tight italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 5vw, 3.6rem)", fontWeight: 400 }}>
                 {res.type}
               </h2>
-              <p className="mt-3 italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.28rem", lineHeight: 1.45 }}>{res.tagline}</p>
-              <p className="mt-5 text-[rgba(250,243,234,0.72)] leading-7" style={{ fontFamily: FONT_BODY }}>{res.body}</p>
+              <p className="mt-4 italic text-[var(--ink)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", lineHeight: 1.35 }}>{res.tagline}</p>
+              <p className="mt-6 mx-auto max-w-lg text-[var(--ink)]/70 leading-8" style={{ fontFamily: FONT_BODY, fontSize: "1rem" }}>{res.body}</p>
 
-              <div className="mt-7 rounded-2xl border border-[rgba(200,168,100,0.24)] bg-[rgba(255,255,255,0.06)] p-5">
-                <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>What is blocking you</p>
-                <p className="mt-3 text-[rgba(250,243,234,0.76)] leading-7" style={{ fontFamily: FONT_BODY }}>
-                  {res.blocker}
-                </p>
-              </div>
-
-              <div className="mt-4 rounded-2xl border border-[rgba(201,122,122,0.24)] bg-[rgba(201,122,122,0.1)] p-5">
-                <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>3 mistakes to stop making</p>
-                <div className="mt-4 grid gap-2">
-                  {res.mistakes.map((mistake, index) => (
-                    <div key={mistake} className="flex gap-3 rounded-xl px-4 py-3" style={{ background: "rgba(255,255,255,0.055)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold" style={{ background: "rgba(201,122,122,0.16)", color: "var(--gold)", fontFamily: FONT_LUXE }}>
-                        {index + 1}
-                      </span>
-                      <p className="m-0 text-[rgba(250,243,234,0.76)] leading-6" style={{ fontFamily: FONT_BODY, fontSize: "0.9rem" }}>
-                        {mistake}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-4 rounded-2xl border border-[rgba(200,168,100,0.26)] bg-[rgba(200,168,100,0.1)] p-5">
-                <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Your 7-day brand fix plan</p>
-                <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                  {res.plan.map((step, index) => (
-                    <div key={step} className="rounded-xl px-4 py-3" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                      <p className="text-[var(--gold)] tracking-[0.14em] uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "8px" }}>Day {index + 1}</p>
-                      <p className="mt-1 text-[rgba(250,243,234,0.82)] leading-6" style={{ fontFamily: FONT_BODY, fontSize: "0.9rem" }}>
-                        {step}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-7 rounded-2xl border border-[rgba(200,168,100,0.24)] bg-[rgba(255,255,255,0.06)] p-5">
-                <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Recommended starting rooms</p>
-                <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                  {res.rooms.map((room) => (
-                    <div key={room} className="rounded-xl px-4 py-3 text-[rgba(250,243,234,0.82)]" style={{ fontFamily: FONT_BODY, background: "rgba(255,255,255,0.055)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                      {room}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-7 flex flex-col gap-4 rounded-2xl bg-[rgba(200,168,100,0.12)] p-5 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Private Strategy Suite</p>
-                  <p className="mt-1" style={{ fontFamily: FONT_DISPLAY, fontSize: "2.2rem", fontStyle: "italic", color: "var(--gold)", lineHeight: 1 }}>$97 <span className="text-[rgba(250,243,234,0.34)] line-through" style={{ fontFamily: FONT_BODY, fontSize: "1rem", fontStyle: "normal" }}>$145</span></p>
-                  <p className="mt-2 max-w-md text-[rgba(250,243,234,0.66)] leading-6" style={{ fontFamily: FONT_BODY, fontSize: "0.9rem" }}>
-                    {res.recommendation}
-                  </p>
-                </div>
-                <a href={BRAND_KIT_URL} className="rounded-full px-7 py-4 text-center transition-all hover:-translate-y-0.5" style={{ background: "var(--gold)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
-                  View the Brand Kit →
+              <div className="mt-9 rounded-3xl p-6" style={{ background: "rgba(255,250,246,0.7)", border: "1px solid rgba(200,168,100,0.3)" }}>
+                <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Your next step</p>
+                <p className="mt-2 italic text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.6rem", lineHeight: 1.2 }}>{res.productName}</p>
+                <a href={res.ctaUrl} className="mt-5 inline-flex rounded-full px-9 py-4 transition-all hover:-translate-y-0.5" style={{ background: "var(--ink)", color: "var(--cream)", fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700, boxShadow: "0 18px 38px -16px rgba(30,15,10,0.55)" }}>
+                  {res.ctaLabel}
                 </a>
               </div>
 
-              <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                <a href={WORKBOOK_URL} className="rounded-2xl px-5 py-4 transition-all hover:-translate-y-0.5" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(200,168,100,0.2)", color: "rgba(250,243,234,0.82)" }}>
-                  <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "9px" }}>Need the workbook?</p>
-                  <p className="mt-1 italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.15rem" }}>Open Brand Workbook →</p>
-                </a>
-                <a href={AI_KIT_URL} className="rounded-2xl px-5 py-4 transition-all hover:-translate-y-0.5" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(200,168,100,0.2)", color: "rgba(250,243,234,0.82)" }}>
-                  <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "9px" }}>Need content prompts?</p>
-                  <p className="mt-1 italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.15rem" }}>Open AI Prompt Kit →</p>
-                </a>
-              </div>
-
-              <div className="mt-4 rounded-2xl p-5" style={{ background: "rgba(201,122,122,0.12)", border: "1px solid rgba(201,122,122,0.26)" }}>
+              <div className="mt-6 rounded-2xl p-5" style={{ background: "rgba(255,255,255,0.45)", border: "1px solid rgba(201,122,122,0.25)" }}>
                 <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Already have a business?</p>
-                <p className="mt-2 text-[rgba(250,243,234,0.72)] leading-7" style={{ fontFamily: FONT_BODY }}>
-                  If your offer is live, or once you finish the Brand Kit, the next step is our managed marketing service: content, AI clone videos, automations, and lead follow-up handled for you.
+                <p className="mt-2 text-[var(--ink)]/65 leading-7" style={{ fontFamily: FONT_BODY, fontSize: "0.92rem" }}>
+                  If your offer is already live, the next step is our done-for-you marketing service — content, AI clone videos, ads, automations, and lead follow-up all handled for you.
                 </p>
-                <Link to="/#contact" className="mt-4 inline-flex rounded-full px-6 py-3 transition-all hover:-translate-y-0.5" style={{ background: "var(--cream)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.14em", textTransform: "uppercase" }}>
-                  Apply for marketing support →
+                <Link to="/#contact" className="mt-4 inline-flex rounded-full px-6 py-3 transition-all hover:-translate-y-0.5" style={{ background: "var(--rose)", color: "var(--cream)", fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.14em", textTransform: "uppercase" }}>
+                  Get a free proposal →
                 </Link>
               </div>
 
-              <div className="mt-5 flex flex-wrap gap-2 text-[rgba(250,243,234,0.48)]" style={{ fontFamily: FONT_LUXE, fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase" }}>
-                <span>17 guided rooms</span>
-                <span>·</span>
-                <span>Save & export</span>
-                <span>·</span>
-                <span>All sales final</span>
-              </div>
-
-              <button onClick={restart} className="mt-8 text-[rgba(250,243,234,0.36)] hover:text-[var(--gold)] transition-colors" style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase" }}>
+              <button onClick={restart} className="mt-8 text-[var(--ink)]/40 hover:text-[var(--rose)] transition-colors" style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase" }}>
                 Retake the quiz
               </button>
             </div>
