@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import archMark from "@/assets/arch-mark.svg";
-import heroBg from "@/assets/hero-rose-bg.jpg";
+import heroBg from "@/assets/password-bg.jpg";
 import productImage from "@/assets/product-brand-kit.jpg";
 import { usePageMeta } from "@/lib/use-page-meta";
 
