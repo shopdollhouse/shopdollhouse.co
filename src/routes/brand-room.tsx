@@ -421,7 +421,7 @@ function Bundle() {
               Get the Starter System →
             </p>
             <p className="text-[var(--ink)]/60 mt-0.5" style={{ fontFamily: FONT_LUXE, fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase" }}>
-              All three · Private access arranged by email
+              All three · Private access after checkout
             </p>
           </a>
 
@@ -511,10 +511,10 @@ const FAQS: [string, string][] = [
   ["Who is The Brand Room for?", "New business owners, creators, and service providers who are not ready for a monthly growth retainer yet, but need a real business, brand, offer, and content foundation."],
   ["Is this just a PDF?", "No. The core pieces are interactive web apps that guide you through decisions step by step. The workbook also includes a bonus PDF for offline planning."],
   ["Can I buy just one product?", "Yes. Start with the $97 Brand Kit Blueprint, grab the $47 Brand Workbook, or pick up the $17 AI Prompt Kit on its own. Or save $34 and grab all three for $127."],
-  ["How is this delivered?", "Private access is arranged by email. Once checkout is active, you'll receive the access details for your Brand Kit Blueprint, Brand Workbook, and AI Prompt Kit."],
+  ["How is this delivered?", "After checkout, you'll receive the private access details for your Brand Kit Blueprint, Brand Workbook, or AI Prompt Kit."],
   ["Do I need design experience?", "No. The apps walk you through the decisions in plain language so you can create a polished foundation without hiring a designer first."],
   ["Can I upgrade to a done-for-you retainer later?", "Yes. The Brand Room is the starting point, and your investment can be credited toward your first month on any monthly plan."],
-  ["Are there refunds?", "Because these are digital products with private access after payment is arranged, all sales are final."],
+  ["Are there refunds?", "Because these are digital products with private access after payment, all sales are final."],
 ];
 
 function FAQ() {

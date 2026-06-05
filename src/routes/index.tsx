@@ -1932,6 +1932,7 @@ function Pricing() {
       fit: "Best for focused launches",
       outcome: "One platform, one clear offer, one polished content system.",
       tagline: "Social media management + a full back-end conversion system — done for you, every day.",
+      topBadge: { label: "Best Starting Point", tone: "pink" as "gold" | "pink" },
       setupLabel: "+ $500 one-time setup",
       cta: "Get Started →",
       features: [
@@ -1997,62 +1998,34 @@ function Pricing() {
       className="scroll-mt-32 py-24 md:py-32 px-6"
       style={{
         background:
-          "linear-gradient(135deg, #f4dcdc 0%, #f7e6dc 45%, #f1d3cf 100%)",
+          "radial-gradient(circle at 50% 0%, rgba(201,122,122,0.18), transparent 34%), radial-gradient(circle at 50% 68%, rgba(200,168,100,0.08), transparent 38%), linear-gradient(180deg, #130807 0%, #1e0f0a 58%, #2a1510 100%)",
       }}
     >
-      <SectionTitle
-        eyebrow="Monthly Plans"
-        title="Choose your plan"
-        italic="Start with the foundation, then scale into the managed growth system when you are ready."
-      />
-
-      <div
-        className="mt-8 max-w-5xl mx-auto grid gap-3 md:grid-cols-3 rounded-[28px] p-3"
-        style={{
-          background: "rgba(255,250,246,0.5)",
-          border: "1px solid color-mix(in oklab, var(--gold) 22%, transparent)",
-        }}
-      >
-        <div className="rounded-2xl px-5 py-4 text-center md:col-span-1" style={{ background: "rgba(255,255,255,0.5)" }}>
-          <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>Start At $297</p>
-          <p className="mt-2 text-[var(--ink)]/58 leading-6" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.84rem" }}>
-            Build the website, follow-up, missed-call, review, and SEO foundation first.
-          </p>
-        </div>
-        {[
-          ["Every Plan", "All monthly plans include a one-time $500 setup fee for onboarding, buildout, and launch prep."],
-          ["Annual Bonus", "Choose a 12-month contract and your last month is free on every plan."],
-        ].map(([title, copy]) => (
-          <div key={title} className="rounded-2xl px-5 py-4 text-center" style={{ background: "rgba(255,255,255,0.5)" }}>
-            <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>{title}</p>
-            <p className="mt-2 text-[var(--ink)]/58 leading-6" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.84rem" }}>{copy}</p>
-            {title === "Annual Bonus" && (
-              <p
-                className="mt-3 rounded-full px-3 py-2"
-                style={{
-                  background: contractTerm === "6" ? "rgba(30,15,10,0.05)" : "rgba(201,122,122,0.1)",
-                  color: contractTerm === "6" ? "rgba(30,15,10,0.45)" : "var(--rose)",
-                  fontFamily: "'Jost', sans-serif",
-                  fontSize: "0.62rem",
-                  letterSpacing: "0.14em",
-                  textTransform: "uppercase",
-                  fontWeight: 700,
-                }}
-              >
-                {fullPlanBonus}
-              </p>
-            )}
-          </div>
-        ))}
+      <div className="mx-auto max-w-4xl text-center">
+        <Eyebrow>Monthly Plans</Eyebrow>
+        <h2
+          className="mt-4 leading-[0.96]"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: "clamp(3rem, 7vw, 6rem)",
+            fontWeight: 400,
+            color: "var(--cream)",
+          }}
+        >
+          Choose your plan
+        </h2>
+        <p className="mx-auto mt-5 max-w-2xl text-[rgba(250,243,234,0.62)] leading-7" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+          Start with the foundation, then scale into the managed growth system when you are ready.
+        </p>
       </div>
 
       <div className="mt-8 flex justify-center px-1">
         <div
           className="grid w-full max-w-[430px] grid-cols-2 gap-1 rounded-full p-1"
           style={{
-            background: "rgba(255,250,246,0.9)",
-            border: "1px solid rgba(255,255,255,0.88)",
-            boxShadow: "0 14px 30px -26px rgba(90,45,38,0.42), inset 0 0 0 1px rgba(200,168,100,0.14)",
+            background: "rgba(255,250,246,0.08)",
+            border: "1px solid rgba(250,243,234,0.14)",
+            boxShadow: "0 16px 36px -24px rgba(0,0,0,0.72), inset 0 0 0 1px rgba(200,168,100,0.12)",
           }}
         >
           {[
@@ -2068,14 +2041,14 @@ function Pricing() {
                 onClick={() => setContractTerm(option.value as "6" | "12")}
                 className="flex min-h-[34px] items-center justify-center gap-1 rounded-full px-2 py-2 transition-all sm:min-h-[38px] sm:gap-1.5 sm:px-2.5"
                 style={{
-                  background: active ? "var(--ink)" : "transparent",
-                  color: active ? "var(--cream)" : "rgba(30,15,10,0.58)",
+                  background: active ? "var(--cream)" : "transparent",
+                  color: active ? "var(--ink)" : "rgba(250,243,234,0.54)",
                   fontFamily: "'Jost', sans-serif",
                   fontSize: "clamp(0.5rem, 0.9vw, 0.58rem)",
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
                   fontWeight: 800,
-                  boxShadow: active ? "0 8px 18px -14px rgba(30,15,10,0.78)" : "none",
+                  boxShadow: active ? "0 8px 18px -14px rgba(0,0,0,0.78)" : "none",
                 }}
               >
                 <span>{option.label}</span>
@@ -2102,23 +2075,27 @@ function Pricing() {
           })}
         </div>
       </div>
+      <p className="mt-4 text-center text-[rgba(250,243,234,0.42)]" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem" }}>
+        {contractTerm === "6" ? "6-month start · 14-day free trial · $500 setup due upfront" : "12-month plan · 1 month free · 14-day free trial · $500 setup due upfront"}
+      </p>
 
       <div className="mt-12 max-w-7xl mx-auto grid md:grid-cols-2 xl:grid-cols-4 gap-8 lg:gap-7">
         {tiers.map((t) => {
           const isFilled = !!t.featured;
           const math = getPlanMath(t);
+          const accent = t.name === "Foundation" ? "rgba(250,243,234,0.26)" : t.name === "Content Lite" ? "rgba(200,168,100,0.78)" : t.name === "Starter" ? "#c97a7a" : "var(--gold)";
           return (
-            <div key={t.name} className={`relative pt-8 ${isFilled ? "md:-mt-4 md:z-10" : ""}`}>
+            <div key={t.name} className={`relative pt-8 ${isFilled ? "xl:-mt-4 xl:z-10" : ""}`}>
               {t.topBadge && (
                 <span
-                  className="absolute top-4 left-1/2 -translate-x-1/2 z-10 min-w-[210px] px-8 py-3 rounded-full text-center text-[10px] tracking-luxe uppercase whitespace-nowrap"
+                  className="absolute top-4 left-0 right-0 z-10 mx-auto flex h-12 max-w-[calc(100%-2px)] items-center justify-center rounded-t-[28px] text-center text-[10px] tracking-luxe uppercase whitespace-nowrap"
                   style={{
                     fontFamily: "'Jost', sans-serif",
                     backgroundColor:
                       t.topBadge.tone === "pink"
                         ? "#c97a7a"
                         : "var(--gold)",
-                    color: "var(--ink)",
+                    color: t.topBadge.tone === "pink" ? "var(--cream)" : "var(--ink)",
                     fontWeight: 700,
                     boxShadow:
                       t.topBadge.tone === "pink"
@@ -2131,7 +2108,7 @@ function Pricing() {
               )}
 
               <article
-                className={`h-full rounded-[28px] p-10 flex flex-col items-center text-center ${isFilled ? "md:py-14" : ""}`}
+                className={`h-full overflow-hidden rounded-[28px] p-8 flex flex-col text-left ${t.topBadge ? "pt-20" : "pt-10"} ${isFilled ? "xl:pb-10" : ""}`}
                 style={{
                   background: isFilled
                     ? "linear-gradient(180deg, #fbeae6 0%, #f6dcd6 55%, #f1cfca 100%)"
@@ -2144,19 +2121,18 @@ function Pricing() {
                     : "0 30px 60px -30px rgba(160,110,95,0.35), inset 0 1px 0 rgba(255,255,255,0.6)",
                 }}
               >
-                {/* Eyebrow */}
                 <p
-                  className="text-[var(--gold)] text-[11px] tracking-luxe uppercase"
-                  style={{ fontFamily: "'Jost', sans-serif" }}
+                  className="text-[11px] tracking-luxe uppercase"
+                  style={{ fontFamily: "'Jost', sans-serif", color: accent, fontWeight: 800 }}
                 >
                   The {t.name}
                 </p>
 
                 <h3
-                  className="mt-3 italic"
+                  className="mt-3"
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: "clamp(1.75rem, 2.2vw, 2.25rem)",
+                    fontSize: "clamp(2rem, 2.6vw, 2.55rem)",
                     lineHeight: 1.1,
                     color: "var(--ink)",
                   }}
@@ -2170,7 +2146,6 @@ function Pricing() {
                   {t.fit}
                 </p>
 
-                {/* Pill */}
                 <div
                   className="mt-5 inline-flex items-center gap-2 px-5 py-2 rounded-full text-[10.5px] tracking-luxe uppercase"
                   style={{
@@ -2206,15 +2181,14 @@ function Pricing() {
                   $500 setup due upfront · {contractTerm === "6" ? "6-month contract option" : "annual contract · 1 month free"}
                 </p>
 
-                {/* Price */}
-                <div className="mt-7 flex flex-col items-center">
+                <div className="mt-7 flex flex-col">
                   <span
                     style={{
                       fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: "clamp(2.5rem, 3.8vw, 3.25rem)",
+                      fontSize: "clamp(3.2rem, 4.4vw, 4.3rem)",
                       lineHeight: 1,
                       fontStyle: "italic",
-                      color: "var(--gold)",
+                      color: accent,
                     }}
                   >
                     {displayPrice(t.monthlyPrice)}
@@ -2235,7 +2209,7 @@ function Pricing() {
                       className="mt-2 rounded-full px-3 py-1"
                       style={{
                         background: "rgba(201,122,122,0.1)",
-                        color: "var(--rose)",
+                        color: "var(--cream)",
                         border: "1px solid rgba(201,122,122,0.22)",
                         fontFamily: "'Jost', sans-serif",
                         fontSize: "0.56rem",
@@ -2249,7 +2223,6 @@ function Pricing() {
                   )}
                 </div>
 
-                {/* One-time setup fee */}
                 <div
                   className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg"
                   style={{
@@ -2330,7 +2303,6 @@ function Pricing() {
                   </p>
                 </div>
 
-                {/* Tagline */}
                 <p
                   className="mt-5"
                   style={{
@@ -2365,11 +2337,10 @@ function Pricing() {
                   </p>
                 </div>
 
-                {/* Platform access highlight */}
                 <div
                   className="mt-5 w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl"
                   style={{
-                    background: isFilled ? "rgba(200,168,100,0.12)" : "rgba(200,168,100,0.1)",
+                    background: "rgba(200,168,100,0.1)",
                     border: "1px solid rgba(200,168,100,0.35)",
                   }}
                 >
@@ -2379,7 +2350,6 @@ function Pricing() {
                   </span>
                 </div>
 
-                {/* Features */}
                 <ul className="mt-7 space-y-3.5 flex-1 w-full text-left">
                   {t.features.map((f, idx) => (
                     <li
@@ -2397,12 +2367,11 @@ function Pricing() {
                   ))}
                 </ul>
 
-                {/* Proposal badge */}
                 <div className="mt-10 w-full text-center">
                   <div
                     className="w-full flex flex-col items-center justify-center gap-1.5 px-4 py-3 rounded-xl"
                     style={{
-                      background: isFilled ? "rgba(200,168,100,0.12)" : "rgba(200,168,100,0.1)",
+                      background: "rgba(200,168,100,0.1)",
                       border: "1px solid rgba(200,168,100,0.35)",
                     }}
                   >
@@ -2416,7 +2385,6 @@ function Pricing() {
                   </div>
                 </div>
 
-                {/* CTA */}
                 <a
                   href="#contact"
                   className="mt-4 w-full block rounded-2xl px-5 py-4 text-center transition-all hover:-translate-y-0.5 hover:opacity-90"
@@ -2485,21 +2453,21 @@ function Pricing() {
       </div>
 
       {/* Pricing footnote */}
-      <p className="text-center mt-6 mb-2" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.4)" }}>
+      <p className="text-center mt-6 mb-2" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(250,243,234,0.38)" }}>
         Foundation starts at $297/mo &nbsp;·&nbsp; first 14 days of monthly management free &nbsp;·&nbsp; one-time $500 setup fee due upfront
       </p>
 
       {/* Setup fee + ad spend notes */}
       <div className="mt-12 max-w-2xl mx-auto rounded-2xl px-8 py-6 text-center space-y-4"
-        style={{ background: "rgba(200,168,100,0.07)", border: "1px solid rgba(200,168,100,0.22)" }}>
-        <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "var(--ink)", opacity: 0.75, fontStyle: "italic", lineHeight: 1.6 }}>
+        style={{ background: "rgba(255,250,246,0.06)", border: "1px solid rgba(200,168,100,0.22)" }}>
+        <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "var(--cream)", opacity: 0.75, fontStyle: "italic", lineHeight: 1.6 }}>
           <span style={{ color: "var(--gold)", fontStyle: "normal", fontWeight: 600 }}>$500 one-time setup fee on every contract</span> — required upfront for onboarding, system buildout, launch prep, calendar integration, automation sequences, and CRM setup.
         </p>
-        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "rgba(30,15,10,0.52)", lineHeight: 1.6 }}>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "rgba(250,243,234,0.52)", lineHeight: 1.6 }}>
           Your $500 setup starts the build. Your first 14 days of monthly management are free, then monthly billing begins if you continue. Choose a 6-month start or commit annually. Annual clients receive the 12th month free, and every plan shows the exact savings before you request a proposal.
         </p>
         <div style={{ height: "1px", background: "rgba(200,168,100,0.2)" }} />
-        <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "var(--ink)", opacity: 0.7, fontStyle: "italic", lineHeight: 1.6 }}>
+        <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "var(--cream)", opacity: 0.7, fontStyle: "italic", lineHeight: 1.6 }}>
           <span style={{ color: "var(--rose)", fontStyle: "normal", fontWeight: 600 }}>* Ad spend is not included in any package</span> — paid directly by you to Meta. Minimum $1,000/mo · We recommend starting at $1,000–$2,000/mo for best results · Never included in your package.
         </p>
       </div>
