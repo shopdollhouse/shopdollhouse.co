@@ -14,11 +14,11 @@ const checkoutLinks: Record<string, string> = {
   "brand-room-suite": "mailto:hello@shopdollhouse.co?subject=Brand%20Room%20Suite%20Checkout",
 };
 
-const products: Record<string, { name: string; price: string; tagline: string }> = {
-  "ai-prompt-kit": { name: "AI Prompt Kit", price: "$17", tagline: "200+ prompts for content that converts." },
-  "brand-workbook": { name: "Brand Workbook", price: "$47", tagline: "Clarity on your offer, audience & message." },
-  "brand-kit": { name: "Brand Kit Blueprint", price: "$97", tagline: "Your full visual identity, built from scratch." },
-  "brand-room-suite": { name: "The Full Suite", price: "$127", tagline: "All three tools. Everything you need." },
+const products: Record<string, { name: string; price: string; regular?: string; tagline: string }> = {
+  "ai-prompt-kit": { name: "AI Prompt Kit", price: "$17", regular: "$37", tagline: "200+ prompts for content that converts." },
+  "brand-workbook": { name: "Brand Workbook", price: "$47", regular: "$261", tagline: "Clarity on your offer, audience & message." },
+  "brand-kit": { name: "Brand Kit Blueprint", price: "$97", regular: "$145", tagline: "Your full visual identity, built from scratch." },
+  "brand-room-suite": { name: "The Full Suite", price: "$127", regular: "$161", tagline: "All three tools. Everything you need." },
 };
 
 export const Route = createFileRoute("/checkout_/$product")({
@@ -68,10 +68,13 @@ function CheckoutRedirectPage() {
               <p className="mt-1" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", lineHeight: 1.1, color: "var(--ink)" }}>{info.name}</p>
               <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", lineHeight: 1.4, color: "rgba(29,15,11,0.6)" }}>{info.tagline}</p>
             </div>
-            <p style={{ fontFamily: FONT_DISPLAY, fontSize: "2rem", lineHeight: 1, color: "var(--rose)" }}>
-              {info.price}
-              <span style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", fontWeight: 600, letterSpacing: "0.12em", marginLeft: "0.25rem", verticalAlign: "super", color: "var(--gold)" }}>USD</span>
-            </p>
+            <div className="text-right">
+              <p style={{ fontFamily: FONT_DISPLAY, fontSize: "2rem", lineHeight: 1, color: "var(--rose)" }}>
+                {info.price}
+                <span style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", fontWeight: 600, letterSpacing: "0.12em", marginLeft: "0.25rem", verticalAlign: "super", color: "var(--gold)" }}>USD</span>
+              </p>
+              {info.regular && <p className="mt-0.5 line-through" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(29,15,11,0.4)" }}>{info.regular}</p>}
+            </div>
           </div>
         )}
 

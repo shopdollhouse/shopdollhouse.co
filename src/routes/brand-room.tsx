@@ -22,6 +22,7 @@ const products = [
   {
     name: "Brand Kit Blueprint",
     price: "$97 USD",
+    regular: "$145",
     tagline: "For the woman who needs her brand to look like it means business.",
     body: "Your colours, fonts, and visual identity — decided, locked in, done. Interactive web app. Access forever.",
     bullets: ["Colour palette built for your brand", "Font pairings chosen and explained", "Visual identity direction locked in", "Access forever, no expiry"],
@@ -30,6 +31,7 @@ const products = [
   {
     name: "Brand Workbook",
     price: "$47 USD",
+    regular: "$261",
     tagline: "For the woman who needs to get clear on what she's actually building.",
     body: "Your offer, audience, messaging, and content plan — all figured out in one sitting. Bonus PDF included.",
     bullets: ["Niche and audience clarity", "Offer and pricing direction", "Brand messaging in plain English", "Content plan built in", "Bonus PDF version included"],
@@ -38,6 +40,7 @@ const products = [
   {
     name: "AI Prompt Kit",
     price: "$17 USD",
+    regular: "$37",
     tagline: "For the woman who knows what to post but can't find the words.",
     body: "200+ prompts across 8 brand rooms — written for women building brands online. No more blank captions.",
     bullets: ["200+ prompts organised by content type", "Social posts, emails, DMs, brand story", "Built for the Dollhouse content pillars", "Works with any AI tool", "Start using it today"],
@@ -46,9 +49,9 @@ const products = [
 ];
 
 const pricing = [
-  { name: "AI Prompt Kit", price: "$17 USD", label: "Best place to start", line: "200+ prompts for content that converts", href: CHECKOUT.ai, button: "Get the Prompt Kit" },
-  { name: "Brand Workbook", price: "$47 USD", label: "", line: "Clarity on your offer, audience & message", href: CHECKOUT.workbook, button: "Get the Workbook" },
-  { name: "Brand Kit Blueprint", price: "$97 USD", label: "", line: "Your full visual identity, built from scratch", href: CHECKOUT.brandKit, button: "Get the Brand Kit" },
+  { name: "AI Prompt Kit", price: "$17 USD", regular: "$37", label: "Best place to start", line: "200+ prompts for content that converts", href: CHECKOUT.ai, button: "Get the Prompt Kit" },
+  { name: "Brand Workbook", price: "$47 USD", regular: "$261", label: "", line: "Clarity on your offer, audience & message", href: CHECKOUT.workbook, button: "Get the Workbook" },
+  { name: "Brand Kit Blueprint", price: "$97 USD", regular: "$145", label: "", line: "Your full visual identity, built from scratch", href: CHECKOUT.brandKit, button: "Get the Brand Kit" },
 ];
 
 const faq = [
@@ -283,7 +286,10 @@ function BrandRoomPage() {
           <div className="mt-8 grid gap-5 md:grid-cols-3">
             {products.map((product) => (
               <article key={product.name} className="rounded-3xl p-8" style={{ border: "1px solid rgba(200,168,100,0.28)", background: "rgba(255,255,255,0.03)" }}>
-                <p style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", fontWeight: 600, letterSpacing: "0.1em", color: "var(--gold)" }}>{product.price}</p>
+                <p className="flex items-baseline gap-2" style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", fontWeight: 600, letterSpacing: "0.1em", color: "var(--gold)" }}>
+                  <span>{product.price}</span>
+                  {product.regular && <span className="line-through" style={{ color: "rgba(253,246,240,0.4)", fontWeight: 500 }}>{product.regular}</span>}
+                </p>
                 <h3 className="mt-4" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.9rem", lineHeight: 1.1, color: "var(--cream)" }}>{product.name}</h3>
                 <p className="mt-3 italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.2rem", lineHeight: 1.3, color: "var(--rose)" }}>{product.tagline}</p>
                 <p className="mt-4" style={{ fontFamily: FONT_BODY, fontSize: "0.95rem", lineHeight: 1.65, color: "rgba(253,246,240,0.74)" }}>{product.body}</p>
@@ -352,7 +358,10 @@ function BrandRoomPage() {
               <article key={item.name} className="rounded-3xl p-7" style={{ background: "var(--cream)", border: "1px solid rgba(200,168,100,0.3)", boxShadow: "0 22px 60px -48px rgba(90,45,35,0.4)" }}>
                 {item.label && <p style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--gold)" }}>{item.label}</p>}
                 <h3 className="mt-3" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.7rem", lineHeight: 1.1, color: "var(--ink)" }}>{item.name}</h3>
-                <p className="mt-5" style={{ fontFamily: FONT_DISPLAY, fontSize: "2.7rem", lineHeight: 1, color: "var(--rose)" }}><Price value={item.price} /></p>
+                <div className="mt-5 flex items-baseline gap-2.5">
+                  <p style={{ fontFamily: FONT_DISPLAY, fontSize: "2.7rem", lineHeight: 1, color: "var(--rose)" }}><Price value={item.price} /></p>
+                  {item.regular && <span className="line-through" style={{ fontFamily: FONT_BODY, fontSize: "1.05rem", color: "rgba(29,15,11,0.4)" }}>{item.regular}</span>}
+                </div>
                 <p className="mt-4 min-h-[52px]" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.6, color: "rgba(29,15,11,0.65)" }}>{item.line}</p>
                 <a href={item.href} className="mt-6 flex min-h-12 items-center justify-center rounded-full px-5 py-3 text-center transition-opacity hover:opacity-90" style={{ border: "1px solid var(--ink)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase" }}>
                   {item.button}

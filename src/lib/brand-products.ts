@@ -120,6 +120,7 @@ export const aiPromptKitProduct: BrandProduct = {
   name: "The Dollhouse AI Prompt Kit",
   shortName: "AI Kit",
   price: "$17 USD",
+  regular: "$37",
   value: "50+ ready-to-use prompts · private access",
   checkoutUrl: "https://link.fastpaydirect.com/payment-link/6a22a43471a0aa761e46326a",
   tagline: "Not random prompts. A structured prompt system built for your brand, your offer, and your voice — so your AI output actually sounds like you.",
