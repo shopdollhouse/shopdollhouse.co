@@ -175,9 +175,40 @@ function BrandRoomPage() {
         Starting at $17 — Enter the Brand Room
       </a>
 
+      <div className="fixed inset-x-0 top-0 z-50 hidden h-9 items-center justify-center gap-3 px-4 md:flex" style={{ background: "var(--ink)" }}>
+        <span style={{ color: "var(--gold)", fontSize: "0.55rem" }}>✦</span>
+        <span style={{ color: "var(--cream)", fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+          Private digital suite — instant access after purchase
+        </span>
+        <span style={{ color: "var(--gold)", fontSize: "0.55rem" }}>✦</span>
+      </div>
+
+      <div className="pointer-events-none fixed inset-x-0 top-9 z-40 hidden px-8 py-5 md:block">
+        <div className="mx-auto flex max-w-7xl items-center justify-between">
+          <a href="/brand-room" className="pointer-events-auto flex flex-col items-start leading-tight no-underline">
+            <span style={{ color: "color-mix(in oklab, var(--ink) 55%, transparent)", fontFamily: FONT_SCRIPT, fontSize: "18px", letterSpacing: "1px", lineHeight: 1, textTransform: "lowercase" }}>
+              the
+            </span>
+            <span style={{ color: "var(--ink)", fontFamily: FONT_DISPLAY, fontSize: "15px", fontStyle: "italic", letterSpacing: "4px", lineHeight: 1, textTransform: "uppercase" }}>
+              Dollhouse
+            </span>
+            <span style={{ color: "var(--gold)", fontFamily: FONT_LUXE, fontSize: "6.5px", fontWeight: 700, letterSpacing: "3px", lineHeight: 1, marginTop: "4px", textTransform: "uppercase" }}>
+              Brand Room
+            </span>
+          </a>
+          <a
+            href="#pricing"
+            className="pointer-events-auto rounded-full px-7 py-3 transition-opacity hover:opacity-90"
+            style={{ background: "var(--ink)", color: "var(--cream)", fontFamily: FONT_LUXE, fontSize: "10px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase" }}
+          >
+            Enter the Room
+          </a>
+        </div>
+      </div>
+
       {/* ── HERO ─────────────────────────────────────────── */}
       <header
-        className="relative flex min-h-[88vh] items-center justify-center overflow-hidden px-5 pb-24 pt-32 text-center"
+        className="relative flex min-h-[88vh] items-center justify-center overflow-hidden px-5 pb-24 pt-32 text-center md:min-h-screen md:pt-40"
         style={{ backgroundImage: `url(${heroBg})`, backgroundSize: "cover", backgroundPosition: "center" }}
       >
         <div aria-hidden className="absolute inset-0" style={{ background: "rgba(247,228,223,0.34)" }} />
@@ -223,6 +254,25 @@ function BrandRoomPage() {
           <div className="mt-9 flex flex-col items-center gap-4">
             <Button href="#pricing">Enter the Brand Room — From $17</Button>
             <a href="#inside" className="btn-ghost">See what's inside ↓</a>
+          </div>
+        </div>
+
+        <div className="absolute inset-x-6 bottom-8 z-10 mx-auto hidden max-w-4xl rounded-[28px] px-8 py-5 backdrop-blur-sm md:block" style={{ background: "rgba(255,255,255,0.54)", border: "1px solid rgba(200,168,100,0.24)", boxShadow: "0 24px 70px -54px rgba(90,45,35,0.55)" }}>
+          <div className="grid grid-cols-3 divide-x divide-[var(--gold)]/24 text-center">
+            {[
+              ["3", "guided tools"],
+              ["$17", "starting point"],
+              ["Instant", "private access"],
+            ].map(([value, label]) => (
+              <div key={label} className="px-5">
+                <p style={{ color: "var(--rose)", fontFamily: FONT_DISPLAY, fontSize: "clamp(2rem, 4vw, 3rem)", fontStyle: "italic", lineHeight: 1 }}>
+                  {value}
+                </p>
+                <p className="mt-1" style={{ color: "rgba(29,15,11,0.55)", fontFamily: FONT_LUXE, fontSize: "0.66rem", letterSpacing: "0.18em", textTransform: "uppercase" }}>
+                  {label}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </header>
