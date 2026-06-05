@@ -21,8 +21,10 @@ import { Route as SystemsServiceRouteImport } from './routes/systems_.$service'
 import { Route as StanstoreWorkbookRouteImport } from './routes/stanstore_.workbook'
 import { Route as StanstoreBrandKitRouteImport } from './routes/stanstore_.brand-kit'
 import { Route as StanstoreAiPromptKitRouteImport } from './routes/stanstore_.ai-prompt-kit'
+import { Route as CheckoutProductRouteImport } from './routes/checkout_.$product'
 import { Route as CheckoutSuccessRouteImport } from './routes/checkout.success'
 import { Route as BrandRoomWorkbookRouteImport } from './routes/brand-room_.workbook'
+import { Route as BrandRoomBrandWorkbookRouteImport } from './routes/brand-room_.brand-workbook'
 import { Route as BrandRoomBrandKitRouteImport } from './routes/brand-room_.brand-kit'
 import { Route as BrandRoomAiPromptKitRouteImport } from './routes/brand-room_.ai-prompt-kit'
 
@@ -86,6 +88,11 @@ const StanstoreAiPromptKitRoute = StanstoreAiPromptKitRouteImport.update({
   path: '/stanstore/ai-prompt-kit',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CheckoutProductRoute = CheckoutProductRouteImport.update({
+  id: '/checkout_/$product',
+  path: '/checkout/$product',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CheckoutSuccessRoute = CheckoutSuccessRouteImport.update({
   id: '/checkout/success',
   path: '/checkout/success',
@@ -94,6 +101,11 @@ const CheckoutSuccessRoute = CheckoutSuccessRouteImport.update({
 const BrandRoomWorkbookRoute = BrandRoomWorkbookRouteImport.update({
   id: '/brand-room_/workbook',
   path: '/brand-room/workbook',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrandRoomBrandWorkbookRoute = BrandRoomBrandWorkbookRouteImport.update({
+  id: '/brand-room_/brand-workbook',
+  path: '/brand-room/brand-workbook',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BrandRoomBrandKitRoute = BrandRoomBrandKitRouteImport.update({
@@ -118,8 +130,10 @@ export interface FileRoutesByFullPath {
   '/software': typeof SoftwareRoute
   '/brand-room/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room/brand-kit': typeof BrandRoomBrandKitRoute
+  '/brand-room/brand-workbook': typeof BrandRoomBrandWorkbookRoute
   '/brand-room/workbook': typeof BrandRoomWorkbookRoute
   '/checkout/success': typeof CheckoutSuccessRoute
+  '/checkout/$product': typeof CheckoutProductRoute
   '/stanstore/ai-prompt-kit': typeof StanstoreAiPromptKitRoute
   '/stanstore/brand-kit': typeof StanstoreBrandKitRoute
   '/stanstore/workbook': typeof StanstoreWorkbookRoute
@@ -136,8 +150,10 @@ export interface FileRoutesByTo {
   '/software': typeof SoftwareRoute
   '/brand-room/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room/brand-kit': typeof BrandRoomBrandKitRoute
+  '/brand-room/brand-workbook': typeof BrandRoomBrandWorkbookRoute
   '/brand-room/workbook': typeof BrandRoomWorkbookRoute
   '/checkout/success': typeof CheckoutSuccessRoute
+  '/checkout/$product': typeof CheckoutProductRoute
   '/stanstore/ai-prompt-kit': typeof StanstoreAiPromptKitRoute
   '/stanstore/brand-kit': typeof StanstoreBrandKitRoute
   '/stanstore/workbook': typeof StanstoreWorkbookRoute
@@ -155,8 +171,10 @@ export interface FileRoutesById {
   '/software': typeof SoftwareRoute
   '/brand-room_/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room_/brand-kit': typeof BrandRoomBrandKitRoute
+  '/brand-room_/brand-workbook': typeof BrandRoomBrandWorkbookRoute
   '/brand-room_/workbook': typeof BrandRoomWorkbookRoute
   '/checkout/success': typeof CheckoutSuccessRoute
+  '/checkout_/$product': typeof CheckoutProductRoute
   '/stanstore_/ai-prompt-kit': typeof StanstoreAiPromptKitRoute
   '/stanstore_/brand-kit': typeof StanstoreBrandKitRoute
   '/stanstore_/workbook': typeof StanstoreWorkbookRoute
@@ -175,8 +193,10 @@ export interface FileRouteTypes {
     | '/software'
     | '/brand-room/ai-prompt-kit'
     | '/brand-room/brand-kit'
+    | '/brand-room/brand-workbook'
     | '/brand-room/workbook'
     | '/checkout/success'
+    | '/checkout/$product'
     | '/stanstore/ai-prompt-kit'
     | '/stanstore/brand-kit'
     | '/stanstore/workbook'
@@ -193,8 +213,10 @@ export interface FileRouteTypes {
     | '/software'
     | '/brand-room/ai-prompt-kit'
     | '/brand-room/brand-kit'
+    | '/brand-room/brand-workbook'
     | '/brand-room/workbook'
     | '/checkout/success'
+    | '/checkout/$product'
     | '/stanstore/ai-prompt-kit'
     | '/stanstore/brand-kit'
     | '/stanstore/workbook'
@@ -211,8 +233,10 @@ export interface FileRouteTypes {
     | '/software'
     | '/brand-room_/ai-prompt-kit'
     | '/brand-room_/brand-kit'
+    | '/brand-room_/brand-workbook'
     | '/brand-room_/workbook'
     | '/checkout/success'
+    | '/checkout_/$product'
     | '/stanstore_/ai-prompt-kit'
     | '/stanstore_/brand-kit'
     | '/stanstore_/workbook'
@@ -230,8 +254,10 @@ export interface RootRouteChildren {
   SoftwareRoute: typeof SoftwareRoute
   BrandRoomAiPromptKitRoute: typeof BrandRoomAiPromptKitRoute
   BrandRoomBrandKitRoute: typeof BrandRoomBrandKitRoute
+  BrandRoomBrandWorkbookRoute: typeof BrandRoomBrandWorkbookRoute
   BrandRoomWorkbookRoute: typeof BrandRoomWorkbookRoute
   CheckoutSuccessRoute: typeof CheckoutSuccessRoute
+  CheckoutProductRoute: typeof CheckoutProductRoute
   StanstoreAiPromptKitRoute: typeof StanstoreAiPromptKitRoute
   StanstoreBrandKitRoute: typeof StanstoreBrandKitRoute
   StanstoreWorkbookRoute: typeof StanstoreWorkbookRoute
@@ -324,6 +350,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StanstoreAiPromptKitRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/checkout_/$product': {
+      id: '/checkout_/$product'
+      path: '/checkout/$product'
+      fullPath: '/checkout/$product'
+      preLoaderRoute: typeof CheckoutProductRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/checkout/success': {
       id: '/checkout/success'
       path: '/checkout/success'
@@ -336,6 +369,13 @@ declare module '@tanstack/react-router' {
       path: '/brand-room/workbook'
       fullPath: '/brand-room/workbook'
       preLoaderRoute: typeof BrandRoomWorkbookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brand-room_/brand-workbook': {
+      id: '/brand-room_/brand-workbook'
+      path: '/brand-room/brand-workbook'
+      fullPath: '/brand-room/brand-workbook'
+      preLoaderRoute: typeof BrandRoomBrandWorkbookRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/brand-room_/brand-kit': {
@@ -366,8 +406,10 @@ const rootRouteChildren: RootRouteChildren = {
   SoftwareRoute: SoftwareRoute,
   BrandRoomAiPromptKitRoute: BrandRoomAiPromptKitRoute,
   BrandRoomBrandKitRoute: BrandRoomBrandKitRoute,
+  BrandRoomBrandWorkbookRoute: BrandRoomBrandWorkbookRoute,
   BrandRoomWorkbookRoute: BrandRoomWorkbookRoute,
   CheckoutSuccessRoute: CheckoutSuccessRoute,
+  CheckoutProductRoute: CheckoutProductRoute,
   StanstoreAiPromptKitRoute: StanstoreAiPromptKitRoute,
   StanstoreBrandKitRoute: StanstoreBrandKitRoute,
   StanstoreWorkbookRoute: StanstoreWorkbookRoute,
