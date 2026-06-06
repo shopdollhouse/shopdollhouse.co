@@ -1885,94 +1885,81 @@ function Pricing() {
       name: "Foundation",
       price: "$297",
       monthlyPrice: 297,
-      software: "Website + CRM",
+      platformFee: 0,
       fit: "Best for getting the lead system in place",
-      outcome: "A functional website and follow-up system that turns inquiries into text conversations.",
-      tagline: "For service businesses that need the website, missed-call, review, and follow-up foundation before full marketing management.",
+      outcome: "A website and automation system that turns every inquiry, missed call, and appointment into a managed conversation.",
+      tagline: "For service businesses that need a website and full lead system before anything else.",
       setupLabel: "+ $500 one-time setup",
-      badgeLabel: "Lead automation included",
-      supportNote: "no AI clone or social posting included",
-      cta: "Ask About Foundation →",
+      cta: "Build My Foundation →",
       features: [
-        "Functional 10-20 page website built to create text conversations",
-        "Website chat, quote forms, SMS confirmations, and clickable phone numbers",
-        "Automated lead follow-up so new inquiries get an instant text response",
-        "Missed call text-back so warm leads hear from you right away",
-        "5-star review funnel with private feedback step before public reviews",
-        "One-click referral and return-customer campaigns",
-        "On-site SEO basics — keywords, alt tags, schema, image optimization, and page-speed cleanup",
-      ],
-    },
-    {
-      name: "Content Lite",
-      price: "$500",
-      monthlyPrice: 500,
-      software: "1 platform",
-      fit: "Best for a polished starting point",
-      outcome: "One platform with consistent static posts and carousels.",
-      tagline: "Light content support for businesses that are not ready for the full AI clone or automation system yet.",
-      setupLabel: "+ $500 one-time setup",
-      badgeLabel: "Simple content package",
-      supportNote: "no AI clone or automation included",
-      cta: "Ask About Content Lite →",
-      features: [
-        "1 platform of your choice — Facebook, Instagram or TikTok",
-        "3 posts per week — static posts and carousels only",
-        "Offer-led content direction so posts support what you sell",
-        "On-brand captions written for clarity, trust, and simple calls to action",
-        "Content approval before posting — you review before anything goes live",
-        "Monthly performance snapshot — what posted, what worked, and what to improve next",
+        "10–20 page professional website built for lead generation",
+        "Website chat widget — visitors text you directly from your site",
+        "Quote forms, SMS confirmations, and clickable phone numbers",
+        "Automated lead follow-up — new inquiries get an instant text response",
+        "Missed call text-back — anyone who calls gets a text immediately",
+        "Voice AI receptionist — answers missed calls and books appointments 24/7",
+        "5-star review funnel with private feedback step before the public request",
+        "One-click referral campaign — happy clients send referrals automatically",
+        "Return customer campaigns — bring past clients back on autopilot",
+        "Automated appointment reminders — text and email before every booking",
+        "Full CRM setup and contact pipeline",
+        "On-site SEO basics — keywords, alt tags, schema, image optimisation, page speed",
       ],
     },
     {
       name: "Starter",
       price: "$1,000",
       monthlyPrice: 1000,
-      software: "$300/mo",
+      platformFee: 300,
       fit: "Best for focused launches",
-      outcome: "One platform, one clear offer, one polished content system.",
-      tagline: "Social media management + a full back-end conversion system — done for you, every day.",
+      outcome: "One platform, one polished content system, and a full automation stack turning followers into booked clients.",
+      tagline: "For businesses and personal brands ready to be fully active on one platform with a lead system behind every post.",
       topBadge: { label: "Best Starting Point", tone: "pink" as "gold" | "pink" },
       setupLabel: "+ $500 one-time setup",
-      cta: "Get Started →",
+      cta: "Launch My Brand →",
       features: [
-        "1 platform of your choice — Facebook, Instagram or TikTok — fully managed, nothing to post",
-        "AI clone or custom brand mascot — trained to your face, voice & energy in week 1",
-        "3 AI clone videos pinned at the top — your signature content, always front and centre",
-        "12 posts/month — 4 Reels · 4 Carousels · 4 Static posts, all on-brand",
-        "Content approval before posting — you see and approve everything before it goes live",
-        "Starter content strategy — offer angle, content pillars, caption direction & posting rhythm",
-        "Comment-to-DM automation — anyone who comments gets an instant private message turning them into a lead",
-        "Basic lead follow-up setup — CRM pipeline, booking link, and nurture flow connected during setup",
-        "Monthly performance snapshot — follower growth, reach, top posts & next steps in plain English",
+        "1 platform fully managed — Facebook, Instagram, or TikTok — nothing to post",
+        "AI Clone or custom brand mascot — built during onboarding to your look, voice & energy",
+        "3 AI Clone videos pinned — your signature content always front and centre",
+        "16 posts/month — Reels, Carousels & Static — all on-brand, all approved by you",
+        "Content approval — nothing goes live without your sign-off",
+        "Starter content strategy — offer angle, pillars, caption direction & posting rhythm",
+        "Comment-to-DM automation — every comment becomes a private lead conversation",
+        "Missed call text-back — warm leads hear from you within seconds",
+        "Voice AI receptionist — answers missed calls and books appointments 24/7",
+        "Automated appointment reminders — text and email before every booking",
+        "CRM pipeline and booking link setup",
+        "Monthly performance report — reach, growth, top posts & next steps in plain English",
       ],
     },
     {
       name: "Growth",
       price: "$2,500",
       monthlyPrice: 2500,
-      software: "$300/mo",
+      platformFee: 300,
       fit: "Featured for steady booked leads",
-      outcome: "All 3 social platforms, paid Meta ads, voice AI, and follow-up automation.",
-      tagline: "The recommended path when you want content, ads, AI clone, review requests, missed-call text-back, and lead follow-up working together.",
+      outcome: "Three platforms running, an AI Clone posting for you, leads followed up automatically, and ads bringing in new clients — while you focus on the work.",
+      tagline: "For service businesses ready for all 3 platforms, full automation, and paid Meta ads working together every day.",
       featured: true,
       topBadge: { label: "Most Popular", tone: "gold" as "gold" | "pink" },
       setupLabel: "+ $500 one-time setup",
-      cta: "Get a Free Proposal →",
+      cta: "Scale With Everything →",
       features: [
-        "3 platforms fully managed — Facebook, Instagram & TikTok — nothing to post, nothing to think about",
-        "AI clone or custom brand mascot/character across all 3 platforms",
-        "6 AI clone videos/month — 2 pinned per platform, always your best content front and centre",
-        "24 posts/month — 8 per platform across all 3 (Reels · Carousels · Static), all on-brand",
-        "Content approval before posting — you see and approve everything before it goes live",
-        "Dedicated content strategy — hashtag research, caption writing & optimal posting times",
-        "Paid Meta ads management — Facebook & Instagram campaigns built, managed & optimised",
-        "Comment-to-DM automation + text follow-up AI bot across Facebook, Instagram & TikTok",
-        "Voice AI receptionist — answers missed calls & books appointments 24/7",
-        "Missed call text-back — anyone who calls gets an automatic text reply instantly",
-        "Automated appointment reminders — text & email sent before every booking",
-        "Monthly strategy call + monthly performance report — clear results in plain English",
-        "Review management — automated review requests after every appointment",
+        "3 platforms fully managed — Facebook, Instagram & TikTok — nothing to post, nothing to manage",
+        "AI Clone or custom brand mascot — built during onboarding, active across all 3 platforms",
+        "6 AI Clone videos/month — 2 pinned per platform, always your best content front and centre",
+        "24 posts/month — 8 per platform, Reels, Carousels & Static — all on-brand",
+        "Content approval — you see and approve everything before it goes live",
+        "Dedicated content strategy — pillars, hashtags, caption writing & optimal posting times",
+        "Paid Meta ads — Facebook & Instagram campaigns built, managed & optimised for leads and bookings",
+        "Comment-to-DM + text follow-up AI bot across all 3 platforms",
+        "Voice AI receptionist — answers missed calls and books appointments 24/7",
+        "Missed call text-back — instant reply to anyone who calls",
+        "Automated appointment reminders — text and email before every booking",
+        "5-star review requests — sent automatically after every appointment",
+        "Full CRM and automation stack built during setup",
+        "Monthly strategy call — 30 minutes, real numbers, clear next steps",
+        "Monthly performance report across all 3 platforms",
       ],
     },
   ];
@@ -2079,11 +2066,11 @@ function Pricing() {
         {contractTerm === "6" ? "6-month start · 14-day free trial · $500 setup due upfront" : "12-month plan · 1 month free · 14-day free trial · $500 setup due upfront"}
       </p>
 
-      <div className="mt-12 max-w-7xl mx-auto grid md:grid-cols-2 xl:grid-cols-4 gap-8 lg:gap-7">
+      <div className="mt-12 max-w-6xl mx-auto grid md:grid-cols-3 gap-8 lg:gap-7">
         {tiers.map((t) => {
           const isFilled = !!t.featured;
           const math = getPlanMath(t);
-          const accent = t.name === "Foundation" ? "var(--ink)" : t.name === "Content Lite" ? "rgba(200,168,100,0.92)" : t.name === "Starter" ? "#c97a7a" : "var(--gold)";
+          const accent = t.name === "Foundation" ? "var(--ink)" : t.name === "Starter" ? "#c97a7a" : "var(--gold)";
           return (
             <div key={t.name} className={`relative pt-8 ${isFilled ? "xl:-mt-4 xl:z-10" : ""}`}>
               {t.topBadge && (
@@ -2346,7 +2333,7 @@ function Pricing() {
                 >
                   <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "13px", height: "13px", color: "var(--gold)", flexShrink: 0 }}><path d="M2.5 8.5L6 12L13.5 4.5" /></svg>
                   <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.72rem", color: "var(--gold)", letterSpacing: "0.16em", textTransform: "uppercase" }}>
-                    Includes platform access — {t.software}
+                    {t.platformFee > 0 ? `+ $${t.platformFee}/mo platform access` : "Platform access included — no extra fee"}
                   </span>
                 </div>
 
@@ -2738,7 +2725,7 @@ function ComparisonTable() {
 function FAQ() {
   const faqs: [string, string][] = [
     ["What does 'done-for-you' actually mean?", "We do the setup and the monthly work for you. Depending on your plan, that can include your website, content, posting, ads, AI clone, booking links, CRM, text follow-up, missed-call text-back, reminders, and reporting."],
-    ["Which plan should I start with?", "Foundation is for your website and lead follow-up system. Content Lite is for simple weekly content. Starter is for one managed platform with AI clone support. Growth is the most complete option for content, ads, AI voice/chat, reviews, booking, and follow-up working together."],
+    ["Which plan should I start with?", "Foundation is for your website and lead follow-up system. Starter is for one managed platform with AI Clone support. Growth is the most complete option for content, ads, AI voice/chat, reviews, booking, and follow-up working together."],
     ["What is the AI clone or brand character?", "We create either an AI version of you or a custom brand character for your business. It helps your brand show up with polished content without you having to film every week."],
     ["How does the 14-day trial work?", "Every monthly package can begin with 14 free days of monthly management. The one-time $500 setup fee is due upfront because we are building your audit, strategy, sample direction, CRM, automation map, and launch setup. Monthly billing begins after the trial if you continue."],
     ["What's included in the $500 setup fee?", "Every contract has a one-time $500 setup fee. It covers onboarding, system buildout, launch prep, calendar or booking setup, CRM setup, automation mapping, and the assets needed to start the plan cleanly."],
@@ -2986,7 +2973,6 @@ function Contact() {
             <label className={labelClass} style={labelStyle}>Which plan interests you?</label>
             <select name="plan" className={inputClass} style={inputStyle}>
               <option>Foundation — $297/mo</option>
-              <option>Content Lite — $500/mo</option>
               <option>Starter — $1,000/mo</option>
               <option>Growth — $2,500/mo</option>
               <option>Appointment Booking — $500 setup</option>
