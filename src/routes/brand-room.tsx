@@ -49,9 +49,9 @@ const products = [
 ];
 
 const pricing = [
-  { name: "AI Prompt Kit", price: "$17 USD", regular: "$37", label: "Best place to start", line: "200+ prompts for content that converts", href: CHECKOUT.ai, button: "Get the Prompt Kit" },
+  { name: "Brand Kit Blueprint", price: "$97 USD", regular: "$145", label: "Most popular", line: "Your full visual identity, built from scratch", href: CHECKOUT.brandKit, button: "Get the Brand Kit" },
   { name: "Brand Workbook", price: "$47 USD", regular: "$261", label: "", line: "Clarity on your offer, audience & message", href: CHECKOUT.workbook, button: "Get the Workbook" },
-  { name: "Brand Kit Blueprint", price: "$97 USD", regular: "$145", label: "", line: "Your full visual identity, built from scratch", href: CHECKOUT.brandKit, button: "Get the Brand Kit" },
+  { name: "AI Prompt Kit", price: "$17 USD", regular: "$37", label: "Best place to start", line: "200+ prompts for content that converts", href: CHECKOUT.ai, button: "Get the Prompt Kit" },
 ];
 
 const faq = [
@@ -177,7 +177,7 @@ function BrandRoomPage() {
 
       {/* ── HERO ─────────────────────────────────────────── */}
       <header
-        className="relative flex min-h-[88vh] items-center justify-center overflow-hidden px-5 pb-24 pt-32 text-center"
+        className="relative flex items-center justify-center overflow-hidden px-5 pb-14 pt-28 text-center"
         style={{ backgroundImage: `url(${heroBg})`, backgroundSize: "cover", backgroundPosition: "center" }}
       >
         <div aria-hidden className="absolute inset-0" style={{ background: "rgba(247,228,223,0.34)" }} />
@@ -220,7 +220,15 @@ function BrandRoomPage() {
             Three tools. One place. Built for women who are done guessing and ready to build something real.
           </p>
 
-          <div className="mt-9 flex flex-col items-center gap-4">
+          <div className="mx-auto mt-8 flex max-w-md items-stretch justify-center rounded-2xl px-3 py-4" style={{ background: "rgba(255,255,255,0.55)", backdropFilter: "blur(10px)", border: "1px solid rgba(200,168,100,0.25)" }}>
+            {[["3", "Guided tools"], ["$17", "Starting point"], ["Instant", "Private access"]].map(([n, l], i) => (
+              <div key={l} className="flex-1 px-3" style={i > 0 ? { borderLeft: "1px solid rgba(200,168,100,0.3)" } : undefined}>
+                <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.7rem", lineHeight: 1, color: "var(--rose)" }}>{n}</p>
+                <p className="mt-1.5" style={{ fontFamily: FONT_LUXE, fontSize: "0.55rem", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--gold)" }}>{l}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-7 flex flex-col items-center gap-4">
             <Button href="#pricing">Enter the Brand Room — From $17</Button>
             <a href="#inside" className="btn-ghost">See what's inside ↓</a>
           </div>
@@ -439,18 +447,18 @@ function BrandRoomPage() {
           <div className="flex justify-center" style={{ color: "var(--gold)" }}>
             <img src={archMark} alt="" className="h-9 w-6" />
           </div>
-          <p className="mt-2 leading-none" style={{ fontFamily: FONT_SCRIPT, fontStyle: "italic", color: "var(--gold)", fontSize: "clamp(2rem, 4vw, 2.6rem)", textTransform: "lowercase" }}>ready?</p>
+          <p className="mt-2 leading-none" style={{ fontFamily: FONT_SCRIPT, fontStyle: "italic", color: "var(--gold)", fontSize: "clamp(2rem, 4vw, 2.6rem)", textTransform: "lowercase" }}>ready to grow?</p>
           <h2 className="mt-1" style={{ fontFamily: FONT_DISPLAY, fontWeight: 400, color: "var(--rose)", fontSize: "clamp(2.4rem, 6vw, 3.4rem)", lineHeight: 1.05 }}>
             Build something real.
           </h2>
           <p className="mx-auto mt-5 max-w-lg" style={{ fontFamily: FONT_BODY, fontSize: "17px", lineHeight: 1.7, color: "rgba(29,15,11,0.65)" }}>
-            Join the women who are done guessing. Your brand starts today.
+            Once your foundation is set — or if you already have a business — The Dollhouse becomes your full marketing team. Done-for-you content, ads, websites, and lead follow-up that bring you booked clients.
           </p>
           <div className="mt-8">
-            <Button href="#pricing">Enter the Brand Room</Button>
+            <Button href="/">Explore Our Marketing Services →</Button>
           </div>
           <p className="mt-5" style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(29,15,11,0.5)" }}>
-            Starting at $17 · Instant access · No experience needed
+            Managed content · Ads · Websites · Lead follow-up
           </p>
         </div>
       </section>
