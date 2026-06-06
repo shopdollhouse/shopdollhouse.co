@@ -18,6 +18,14 @@ const CHECKOUT = {
   suite: "https://link.fastpaydirect.com/payment-link/6a23413403b17c94f5714d42",
 };
 
+// Soft "Learn more" links route to the full sales pages (more detail +
+// embedded checkout). Hard "Get the..." buttons go straight to checkout.
+const SALES_PAGES = {
+  ai: "/brand-room/ai-prompt-kit",
+  workbook: "/brand-room/workbook",
+  brandKit: "/brand-room/brand-kit",
+};
+
 const products = [
   {
     name: "Brand Kit Blueprint",
@@ -26,7 +34,7 @@ const products = [
     tagline: "For the woman who needs her brand to look like it means business.",
     body: "Your colours, fonts, and visual identity — decided, locked in, done. Interactive web app. Access forever.",
     bullets: ["Colour palette built for your brand", "Font pairings chosen and explained", "Visual identity direction locked in", "Access forever, no expiry"],
-    href: CHECKOUT.brandKit,
+    href: SALES_PAGES.brandKit,
   },
   {
     name: "Brand Workbook",
@@ -35,7 +43,7 @@ const products = [
     tagline: "For the woman who needs to get clear on what she's actually building.",
     body: "Your offer, audience, messaging, and content plan — all figured out in one sitting. Bonus PDF included.",
     bullets: ["Niche and audience clarity", "Offer and pricing direction", "Brand messaging in plain English", "Content plan built in", "Bonus PDF version included"],
-    href: CHECKOUT.workbook,
+    href: SALES_PAGES.workbook,
   },
   {
     name: "AI Prompt Kit",
@@ -44,7 +52,7 @@ const products = [
     tagline: "For the woman who knows what to post but can't find the words.",
     body: "200+ prompts across 8 brand rooms — written for women building brands online. No more blank captions.",
     bullets: ["200+ prompts organised by content type", "Social posts, emails, DMs, brand story", "Built for the Dollhouse content pillars", "Works with any AI tool", "Start using it today"],
-    href: CHECKOUT.ai,
+    href: SALES_PAGES.ai,
   },
 ];
 
@@ -309,7 +317,7 @@ function BrandRoomPage() {
                     </li>
                   ))}
                 </ul>
-                <a href={product.href} target="_blank" rel="noopener noreferrer" className="mt-6 inline-block underline underline-offset-4" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gold)" }}>
+                <a href={product.href} className="mt-6 inline-block underline underline-offset-4" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gold)" }}>
                   Learn more →
                 </a>
               </article>
