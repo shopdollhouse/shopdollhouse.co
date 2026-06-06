@@ -25,6 +25,7 @@ import mandyAIClonePreview from "@/assets/mandy-ai-clone-preview.jpg";
 import { managedServiceLinks, systemServices } from "@/lib/system-services";
 import { usePageMeta } from "@/lib/use-page-meta";
 import { PLANS, PlanCard } from "@/components/AgencyPlans";
+import { PlanComparisonSection, ResultsStatsSection, AgencyFaqSection, FinalCtaSection } from "@/components/AgencySections";
 
 export const Route = createFileRoute("/")({ component: Index });
 
@@ -2961,10 +2962,11 @@ function Index() {
       <About />
       <HowItWorks />
       <Pricing />
-      <ComparisonTable />
-      <FAQ />
+      <PlanComparisonSection />
+      <ResultsStatsSection />
+      <AgencyFaqSection />
+      <FinalCtaSection proposalHref="#contact" />
       <Contact />
-      <FinalCTA />
       <Footer />
       <BackToTop />
     </main>
