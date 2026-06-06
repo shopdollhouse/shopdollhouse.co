@@ -322,38 +322,36 @@ function QuizPage() {
   }
 
   function submitEmail(e: React.FormEvent) {
-    e.preventDefault();
-    setSubmitting(true);
-    const nextResult = getResultType(answers);
-    setResult(nextResult);
+  e.preventDefault();
+  setSubmitting(true);
+  const nextResult = getResultType(answers);
+  setResult(nextResult);
 
-    // Split the collected name into first / last.
-    const trimmedName = name.trim();
-    const firstSpace = trimmedName.indexOf(" ");
-    const firstName = firstSpace === -1 ? trimmedName : trimmedName.slice(0, firstSpace);
-    const lastName = firstSpace === -1 ? "" : trimmedName.slice(firstSpace + 1).trim();
+  const trimmedName = name.trim();
+  const firstSpace = trimmedName.indexOf(" ");
+  const firstName = firstSpace === -1 ? trimmedName : trimmedName.slice(0, firstSpace);
+  const lastName = firstSpace === -1 ? "" : trimmedName.slice(firstSpace + 1).trim();
 
-    // POST straight to the CRM inbound webhook. Fired immediately and
-    // non-blocking — a failed or slow request must never delay the results.
-    fetch("https://services.leadconnectorhq.com/hooks/ElOoFIfV3BYE54LNg3Yw/webhook-trigger/L1o1245Pw0wy3tl4STcq", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email,
-        firstName,
-        lastName,
-        phone,
-        quizResult: nextResult,
-        source: "Brand Quiz",
-      }),
-    }).catch((err) => {
-      console.warn("Quiz lead webhook failed:", err);
-    });
+  fetch("https://services.leadconnectorhq.com/hooks/ElOoFIfV3BYE54LNg3Yw/webhook-trigger/L1o1245Pw0wy3tl4STcq", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email,
+      firstName,
+      lastName,
+      phone,
+      business,
+      quizResult: nextResult,
+      source: "Brand Quiz",
+    }),
+  }).catch((err) => {
+    console.warn("Quiz lead webhook failed:", err);
+  });
 
-    // Always show the results, regardless of the webhook outcome.
-    setSubmitting(false);
-    setPhase("result");
-  }
+  setSubmitting(false);
+  setPhase("result");
+}
+
 
   function restart() {
     setPhase("intro");
