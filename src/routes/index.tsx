@@ -311,7 +311,7 @@ function Nav() {
             ))}
           </div>
 
-          <a href="#contact" className="hidden md:inline-flex btn-ink !py-2.5 !px-5 !text-[10px]">
+          <a href="#contact" className="!hidden md:!inline-flex btn-ink !py-2.5 !px-5 !text-[10px]">
             Get a Free Proposal
           </a>
 
@@ -411,7 +411,7 @@ function Nav() {
 function Hero() {
   return (
     <header
-      className="relative min-h-screen flex items-center justify-center px-4 pt-32 pb-24 overflow-hidden"
+      className="relative min-h-[calc(100svh-36px)] flex items-center justify-center px-4 pt-36 pb-10 overflow-hidden md:pt-24"
       style={{
         backgroundImage: `url(${bgImage})`,
         backgroundSize: "cover",
@@ -461,7 +461,7 @@ function Hero() {
           <span style={{ fontSize: "0.55rem" }}>✦</span>
         </div>
         <div
-          className="reveal mt-10 flex justify-center text-[var(--gold)]"
+          className="reveal mt-4 flex justify-center text-[var(--gold)]"
           style={{ animationDelay: "0.15s" }}
         >
           <DoorIcon className="w-7 h-10" />
@@ -482,7 +482,7 @@ function Hero() {
           className="reveal text-[var(--rose)] font-normal tracking-[0.04em] leading-[0.95] mt-1"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
-            fontSize: "clamp(3.5rem, 9vw, 6rem)",
+            fontSize: "clamp(3.5rem, 8vw, 5.4rem)",
             fontWeight: 400,
             animationDelay: "0.3s",
           }}
@@ -490,7 +490,7 @@ function Hero() {
           DOLLHOUSE
         </h1>
         <p
-          className="reveal mt-4 text-[var(--gold)] text-[15px] tracking-luxe uppercase"
+          className="reveal mt-3 text-[var(--gold)] text-[15px] tracking-luxe uppercase"
           style={{ fontFamily: "'Jost', sans-serif", animationDelay: "0.4s" }}
         >
           brand studio
@@ -501,10 +501,10 @@ function Hero() {
         </div>
 
         <h2
-          className="reveal mt-2 text-[var(--rose)] leading-snug max-w-xl mx-auto"
+          className="reveal mt-1 text-[var(--rose)] leading-snug max-w-xl mx-auto"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
-            fontSize: "clamp(1.8rem, 3.8vw, 2.8rem)",
+            fontSize: "clamp(1.75rem, 3.4vw, 2.45rem)",
             fontWeight: 400,
             fontStyle: "italic",
             animationDelay: "0.52s",
@@ -514,7 +514,7 @@ function Hero() {
         </h2>
 
         <p
-          className="reveal mt-4 text-[var(--ink)]/65 leading-relaxed max-w-lg mx-auto"
+          className="reveal mt-3 text-[var(--ink)]/65 leading-relaxed max-w-lg mx-auto"
           style={{
             fontFamily: "'DM Sans', sans-serif",
             fontSize: "clamp(0.95rem, 1.8vw, 1.1rem)",
@@ -525,15 +525,17 @@ function Hero() {
         </p>
 
         <div
-          className="reveal mt-9 flex flex-col items-center justify-center gap-4"
+          className="reveal mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap"
           style={{ animationDelay: "0.65s" }}
         >
           <a href="#contact" className="btn-ink">
             Get a Free Proposal <span aria-hidden>→</span>
-
+          </a>
+          <a href="#pricing" className="btn-ghost">
+            View Plans From $297 <span aria-hidden>↓</span>
           </a>
           <div
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--gold)]/40 bg-white/40 backdrop-blur-sm px-4 py-1.5 text-[var(--gold)]"
+            className="basis-full inline-flex items-center justify-center gap-2 rounded-full text-[var(--gold)]"
           >
             <span style={{ fontSize: "0.65rem" }}>★</span>
             <span
@@ -543,14 +545,11 @@ function Hero() {
               Custom proposal in 48 hours
             </span>
           </div>
-          <a href="#services" className="btn-ghost">
-            See how it works <span aria-hidden>↓</span>
-          </a>
         </div>
 
         {/* Stats row */}
         <div
-          className="reveal mt-10 w-full flex items-center justify-center gap-0 flex-wrap rounded-2xl py-6 px-4"
+          className="reveal mt-5 w-full grid grid-cols-3 rounded-2xl py-4 px-2"
           style={{
             animationDelay: "0.75s",
             background: "rgba(255,255,255,0.55)",
@@ -559,15 +558,14 @@ function Hero() {
           }}
         >
           {[
-            { stat: "100%", label: "Done For You" },
-            { stat: "24/7", label: "AI Automation" },
-            { stat: "90 Days", label: "To See Results" },
+            { stat: "$297", label: "Plans Start" },
+            { stat: "14 Days", label: "Founding Trial" },
+            { stat: "24/7", label: "Lead Response" },
           ].map(({ stat, label }, i) => (
-            <div key={label} className="flex items-center">
-              <div className="flex flex-col items-center gap-1 px-8">
+            <div key={label} className={`flex flex-col items-center gap-1 px-2 ${i < 2 ? "border-r border-[var(--gold)]/25" : ""}`}>
                 <span
                   className="text-[var(--rose)]"
-                  style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2rem, 5vw, 2.75rem)", fontStyle: "italic", lineHeight: 1 }}
+                  style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.6rem, 4vw, 2.4rem)", fontStyle: "italic", lineHeight: 1 }}
                 >
                   {stat}
                 </span>
@@ -577,38 +575,98 @@ function Hero() {
                 >
                   {label}
                 </span>
-              </div>
-              {i < 2 && (
-                <span className="h-8 w-px bg-[var(--gold)]/25" />
-              )}
             </div>
           ))}
         </div>
 
         <p
-          className="reveal mt-5 text-[var(--ink)]/60 italic"
+          className="reveal mt-3 text-[var(--ink)]/60 italic"
           style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1rem, 2vw, 1.2rem)", animationDelay: "0.85s" }}
         >
           $500 setup due upfront · First 14 days of monthly management free · Continue only if it feels like a fit
         </p>
       </div>
 
-      {/* Scroll hint */}
-      <a
-        href="#services"
-        aria-label="Scroll to services"
-        className="reveal-soft hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-[var(--ink)]/45 hover:text-[var(--rose)] transition-colors"
-        style={{ animationDelay: "1s" }}
-      >
-        <span
-          className="text-[9px] tracking-luxe uppercase"
-          style={{ fontFamily: "'Jost', sans-serif" }}
-        >
-          Scroll
-        </span>
-        <span className="block w-px h-10 bg-current" />
-      </a>
     </header>
+  );
+}
+
+function ChooseYourPath() {
+  const paths = [
+    {
+      eyebrow: "Managed Growth",
+      title: "I have a business. I want more booked clients.",
+      body: "Choose content, ads, AI clone, reviews, and lead follow-up managed together.",
+      href: "#pricing",
+      cta: "See Managed Plans",
+      icon: Sparkles,
+      featured: true,
+    },
+    {
+      eyebrow: "Lead System",
+      title: "I need the website and follow-up foundation first.",
+      body: "Start with the $297 website, missed-call text-back, review funnel, CRM, and SEO package.",
+      href: "#plan-foundation",
+      cta: "See The Foundation Plan",
+      icon: SquareMousePointer,
+      featured: false,
+    },
+    {
+      eyebrow: "Starting From Scratch",
+      title: "I need to build my brand and offer before marketing.",
+      body: "Use the Brand Room tools to clarify your audience, offer, visuals, content, and launch direction.",
+      href: "/brand-room",
+      cta: "Enter The Brand Room",
+      icon: DoorIcon,
+      featured: false,
+    },
+  ];
+
+  return (
+    <section className="px-6 py-16 md:py-20" style={{ background: "linear-gradient(180deg, #fff8f3 0%, var(--cream) 100%)" }}>
+      <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-2xl text-center">
+          <Eyebrow>Start Here</Eyebrow>
+          <h2 className="mt-3 text-[var(--ink)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.3rem, 5vw, 3.8rem)", fontWeight: 400, lineHeight: 1 }}>
+            Choose the support that matches where you are now.
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-[var(--ink)]/60" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.98rem", lineHeight: 1.7 }}>
+            You do not need every service at once. Start with the gap that is costing you the most time or leads.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-4 lg:grid-cols-3">
+          {paths.map(({ eyebrow, title, body, href, cta, icon: Icon, featured }) => (
+            <a
+              key={title}
+              href={href}
+              className="group flex min-h-[310px] flex-col rounded-[28px] p-7 transition-transform hover:-translate-y-1 md:p-8"
+              style={{
+                background: featured ? "var(--ink)" : "rgba(255,255,255,0.72)",
+                border: featured ? "1px solid rgba(200,168,100,0.32)" : "1px solid rgba(200,168,100,0.26)",
+                boxShadow: "0 28px 70px -52px rgba(80,38,28,0.45)",
+              }}
+            >
+              <span className="flex h-14 w-14 items-center justify-center rounded-2xl" style={{ background: featured ? "rgba(200,168,100,0.14)" : "rgba(201,122,122,0.1)", color: featured ? "var(--gold)" : "var(--rose)" }}>
+                <Icon className="h-7 w-7" />
+              </span>
+              <p className="mt-7 text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)", fontWeight: 700 }}>
+                {eyebrow}
+              </p>
+              <h3 className="mt-3" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.85rem", lineHeight: 1.05, color: featured ? "var(--cream)" : "var(--ink)" }}>
+                {title}
+              </h3>
+              <p className="mt-4 leading-7" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem", color: featured ? "rgba(253,246,240,0.66)" : "rgba(30,15,10,0.58)" }}>
+                {body}
+              </p>
+              <span className="mt-auto pt-7 text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", color: featured ? "var(--gold)" : "var(--rose)", fontWeight: 700 }}>
+                {cta} <span aria-hidden>→</span>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -668,38 +726,45 @@ function PlatformSymbol({ name }: { name: string }) {
 }
 
 function TrustBar() {
-  const logos = ["Meta", "Instagram", "TikTok"];
+  const touchpoints = [
+    { icon: Video, title: "Content", body: "Show up consistently" },
+    { icon: MessageSquare, title: "Follow-Up", body: "Reply while leads are warm" },
+    { icon: ClipboardClock, title: "Booking", body: "Move inquiries to a calendar" },
+    { icon: Star, title: "Reviews", body: "Build local trust on Google" },
+  ];
   return (
-    <section className="py-14 px-6 bg-[var(--cream)]/60 backdrop-blur-sm border-y border-[var(--gold)]/15">
+    <section className="py-12 px-6 bg-[var(--cream)]/60 backdrop-blur-sm border-y border-[var(--gold)]/15">
       <p
         className="text-center text-[10px] tracking-luxe uppercase text-[var(--gold)]"
         style={{ fontFamily: "'Jost', sans-serif" }}
       >
-        Built for the 3 platforms your clients already use
+        One connected path from visibility to booked client
       </p>
-      <div className="mt-7 flex flex-wrap justify-center items-center gap-x-12 gap-y-6 text-[var(--ink)]/60">
-        {logos.map((l) => (
+      <div className="mx-auto mt-7 grid max-w-4xl grid-cols-2 gap-5 text-[var(--ink)]/60 md:grid-cols-4">
+        {touchpoints.map(({ icon: Icon, title, body }) => (
           <div
-            key={l}
-            className="group flex min-w-24 flex-col items-center gap-3 transition-colors hover:text-[var(--rose)]"
+            key={title}
+            className="group flex flex-col items-center gap-2 text-center transition-colors hover:text-[var(--rose)]"
           >
             <span
-              className="flex h-14 w-14 items-center justify-center rounded-full border bg-white/45 text-[var(--gold)] transition-transform group-hover:-translate-y-0.5"
+              className="flex h-12 w-12 items-center justify-center rounded-full border bg-white/45 text-[var(--gold)] transition-transform group-hover:-translate-y-0.5"
               style={{
                 borderColor: "color-mix(in oklab, var(--gold) 34%, transparent)",
                 boxShadow: "0 16px 34px -28px rgba(90,45,35,0.55)",
               }}
             >
-              <PlatformSymbol name={l} />
+              <Icon size={20} strokeWidth={1.6} />
             </span>
             <span
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "1.35rem",
+                fontSize: "1.25rem",
+                color: "var(--ink)",
               }}
             >
-              {l}
+              {title}
             </span>
+            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.76rem", color: "rgba(30,15,10,0.5)" }}>{body}</span>
           </div>
         ))}
       </div>
@@ -2068,9 +2133,12 @@ function Pricing() {
         {contractTerm === "6" ? "6-month start · 14-day free trial · $500 setup due upfront" : "12-month plan · 1 month free · 14-day free trial · $500 setup due upfront"}
       </p>
 
+
       <div className="mt-12 max-w-6xl mx-auto grid md:grid-cols-3 gap-8 lg:gap-7 items-start">
         {PLANS.map((p) => (
-          <PlanCard key={p.id} plan={p} billing={contractTerm} ctaHref="#contact" />
+          <div key={p.id} id={`plan-${p.id}`} className="scroll-mt-32">
+            <PlanCard plan={p} billing={contractTerm} ctaHref="#contact" />
+          </div>
         ))}
       </div>
 
@@ -2841,6 +2909,7 @@ function Index() {
     <main className="bg-[var(--blush)] text-[var(--ink)]">
       <Nav />
       <Hero />
+      <ChooseYourPath />
       <TrustBar />
       <Services />
       <ProofSection />
