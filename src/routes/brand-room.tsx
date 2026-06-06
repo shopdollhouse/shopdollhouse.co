@@ -18,6 +18,12 @@ const CHECKOUT = {
   suite: "https://link.fastpaydirect.com/payment-link/6a23413403b17c94f5714d42",
 };
 
+const SALES_PAGES = {
+  ai: "/brand-room/ai-prompt-kit",
+  workbook: "/brand-room/workbook",
+  brandKit: "/brand-room/brand-kit",
+};
+
 const products = [
   {
     name: "Brand Kit Blueprint",
@@ -26,7 +32,7 @@ const products = [
     tagline: "For the woman who needs her brand to look like it means business.",
     body: "Your colours, fonts, and visual identity — decided, locked in, done. Interactive web app. Access forever.",
     bullets: ["Colour palette built for your brand", "Font pairings chosen and explained", "Visual identity direction locked in", "Access forever, no expiry"],
-    href: CHECKOUT.brandKit,
+    href: SALES_PAGES.brandKit,
   },
   {
     name: "Brand Workbook",
@@ -35,7 +41,7 @@ const products = [
     tagline: "For the woman who needs to get clear on what she's actually building.",
     body: "Your offer, audience, messaging, and content plan — all figured out in one sitting. Bonus PDF included.",
     bullets: ["Niche and audience clarity", "Offer and pricing direction", "Brand messaging in plain English", "Content plan built in", "Bonus PDF version included"],
-    href: CHECKOUT.workbook,
+    href: SALES_PAGES.workbook,
   },
   {
     name: "AI Prompt Kit",
@@ -44,14 +50,14 @@ const products = [
     tagline: "For the woman who knows what to post but can't find the words.",
     body: "200+ prompts across 8 brand rooms — written for women building brands online. No more blank captions.",
     bullets: ["200+ prompts organised by content type", "Social posts, emails, DMs, brand story", "Built for the Dollhouse content pillars", "Works with any AI tool", "Start using it today"],
-    href: CHECKOUT.ai,
+    href: SALES_PAGES.ai,
   },
 ];
 
 const pricing = [
-  { name: "AI Prompt Kit", price: "$17 USD", regular: "$37", label: "Best place to start", line: "200+ prompts for content that converts", href: CHECKOUT.ai, button: "Get the Prompt Kit" },
-  { name: "Brand Workbook", price: "$47 USD", regular: "$261", label: "", line: "Clarity on your offer, audience & message", href: CHECKOUT.workbook, button: "Get the Workbook" },
-  { name: "Brand Kit Blueprint", price: "$97 USD", regular: "$145", label: "", line: "Your full visual identity, built from scratch", href: CHECKOUT.brandKit, button: "Get the Brand Kit" },
+  { name: "AI Prompt Kit", price: "$17 USD", regular: "$37", label: "Best place to start", line: "200+ prompts for content that converts", href: SALES_PAGES.ai, button: "View the Prompt Kit" },
+  { name: "Brand Workbook", price: "$47 USD", regular: "$261", label: "", line: "Clarity on your offer, audience & message", href: SALES_PAGES.workbook, button: "View the Workbook" },
+  { name: "Brand Kit Blueprint", price: "$97 USD", regular: "$145", label: "", line: "Your full visual identity, built from scratch", href: SALES_PAGES.brandKit, button: "View the Brand Kit" },
 ];
 
 const faq = [
@@ -351,7 +357,7 @@ function BrandRoomPage() {
                     </li>
                   ))}
                 </ul>
-                <a href={product.href} target="_blank" rel="noopener noreferrer" className="mt-6 inline-block underline underline-offset-4" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gold)" }}>
+                <a href={product.href} className="mt-6 inline-block underline underline-offset-4" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gold)" }}>
                   Learn more →
                 </a>
               </article>
@@ -413,7 +419,7 @@ function BrandRoomPage() {
                   {item.regular && <span className="line-through" style={{ fontFamily: FONT_BODY, fontSize: "1.05rem", color: "rgba(29,15,11,0.4)" }}>{item.regular}</span>}
                 </div>
                 <p className="mt-4 min-h-[52px]" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.6, color: "rgba(29,15,11,0.65)" }}>{item.line}</p>
-                <a href={item.href} target="_blank" rel="noopener noreferrer" className="mt-6 flex min-h-12 items-center justify-center rounded-full px-5 py-3 text-center transition-opacity hover:opacity-90" style={{ border: "1px solid var(--ink)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase" }}>
+                <a href={item.href} className="mt-6 flex min-h-12 items-center justify-center rounded-full px-5 py-3 text-center transition-opacity hover:opacity-90" style={{ border: "1px solid var(--ink)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase" }}>
                   {item.button}
                 </a>
               </article>
