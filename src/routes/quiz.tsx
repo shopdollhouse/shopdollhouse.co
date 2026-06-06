@@ -321,68 +321,36 @@ function QuizPage() {
     }
   }
 
-  async function submitEmail(e: React.FormEvent) {
+  function submitEmail(e: React.FormEvent) {
     e.preventDefault();
     setSubmitting(true);
     const nextResult = getResultType(answers);
     setResult(nextResult);
 
-    // Fetch 1 — Formspree (unchanged)
-    const formspreeFetch = fetch("https://formspree.io/f/mwvrvrzj", {
+    // Split the collected name into first / last.
+    const trimmedName = name.trim();
+    const firstSpace = trimmedName.indexOf(" ");
+    const firstName = firstSpace === -1 ? trimmedName : trimmedName.slice(0, firstSpace);
+    const lastName = firstSpace === -1 ? "" : trimmedName.slice(firstSpace + 1).trim();
+
+    // POST straight to the CRM inbound webhook. Fired immediately and
+    // non-blocking — a failed or slow request must never delay the results.
+    fetch("https://services.leadconnectorhq.com/hooks/ElOoFIfV3BYE54LNg3Yw/webhook-trigger/L1o1245Pw0wy3tl4STcq", {
       method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        name,
         email,
+        firstName,
+        lastName,
         phone,
-        business,
-        source: "Brand Clarity Quiz",
-        quiz_result: RESULTS[nextResult].type,
-        quiz_recommendation: RESULTS[nextResult].productName,
-        recommended_product_url: RESULTS[nextResult].ctaUrl,
-        price: RESULTS[nextResult].price,
+        quizResult: nextResult,
+        source: "Brand Quiz",
       }),
-      headers: { Accept: "application/json", "Content-Type": "application/json" },
+    }).catch((err) => {
+      console.warn("Quiz lead webhook failed:", err);
     });
 
-    // Fetch 2 — CRM inbound webhook (parallel, optional)
-    const crmWebhookUrl = import.meta.env.VITE_CRM_WEBHOOK_URL as string | undefined;
-    const fetches: Promise<unknown>[] = [formspreeFetch];
-
-    if (crmWebhookUrl) {
-      const trimmedName = name.trim();
-      const firstSpace = trimmedName.indexOf(" ");
-      const firstName = firstSpace === -1 ? trimmedName : trimmedName.slice(0, firstSpace);
-      const lastName = firstSpace === -1 ? "" : trimmedName.slice(firstSpace + 1).trim();
-      const resultTypeCapitalized = nextResult.charAt(0).toUpperCase() + nextResult.slice(1);
-
-      const crmFetch = fetch(crmWebhookUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          firstName,
-          lastName,
-          email,
-          phone,
-          source: "Brand Clarity Quiz",
-          tags: ["Quiz Lead", "Brand Type: " + resultTypeCapitalized],
-          customFields: [
-            { key: "quiz_result", value: nextResult },
-            { key: "quiz_recommendation", value: RESULTS[nextResult].productName },
-            { key: "quiz_result_url", value: RESULTS[nextResult].ctaUrl },
-            { key: "business_name", value: business },
-          ],
-        }),
-      });
-      fetches.push(crmFetch);
-    }
-
-    const outcomes = await Promise.allSettled(fetches);
-    outcomes.forEach((outcome, i) => {
-      if (outcome.status === "rejected") {
-        console.warn(`Quiz lead submission ${i === 0 ? "(Formspree)" : "(CRM webhook)"} failed:`, outcome.reason);
-      }
-    });
-
+    // Always show the results, regardless of the webhook outcome.
     setSubmitting(false);
     setPhase("result");
   }
