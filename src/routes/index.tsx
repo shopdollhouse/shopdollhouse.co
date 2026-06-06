@@ -2410,16 +2410,10 @@ function Contact() {
     const form = e.currentTarget;
     const data = new FormData(form);
     // Convert FormData to JSON for more reliable delivery
-    const payload: Record<string, string | string[]> = {};
-    const addons: string[] = [];
+    const payload: Record<string, string> = {};
     data.forEach((value, key) => {
-      if (key === "addons") {
-        addons.push(value as string);
-      } else {
-        payload[key] = value as string;
-      }
+      payload[key] = value as string;
     });
-    if (addons.length > 0) payload["addons"] = addons.join(", ");
     try {
       const res = await fetch("https://formspree.io/f/mwvrvrzj", {
         method: "POST",
@@ -2596,15 +2590,14 @@ function Contact() {
               <option>Foundation — $297/mo</option>
               <option>Starter — $1,000/mo</option>
               <option>Growth — $2,500/mo</option>
-              <option>Appointment Booking — $500 setup</option>
-              <option>Not sure yet</option>
+              <option>Not sure yet — recommend one for me</option>
             </select>
           </div>
           <div>
             <label className={labelClass} style={labelStyle}>Preferred commitment</label>
             <select name="contract_term" className={inputClass} style={inputStyle}>
               <option>6 months</option>
-              <option>12 months — interested in 1 month free</option>
+              <option>12 months (12th month free)</option>
               <option>Not sure yet</option>
             </select>
           </div>
@@ -2629,53 +2622,6 @@ function Contact() {
               <option>Build an AI clone or brand character</option>
               <option>Not sure yet</option>
             </select>
-          </div>
-        </div>
-
-        {/* Add-ons */}
-        <div>
-          <label className={labelClass} style={labelStyle}>
-            Any add-ons? <span className="normal-case opacity-60">(optional)</span>
-          </label>
-          <p className="text-[9px] uppercase text-[var(--ink)]/38 mb-2" style={{ fontFamily: "'Jost', sans-serif", letterSpacing: "0.16em" }}>Monthly</p>
-          <div className="grid sm:grid-cols-2 gap-1.5 mb-3">
-            {[
-              "Extra AI Clone Videos",
-              "AI Voice Agent",
-              "Appointment Booking Setup",
-              "Review Management",
-              "Email & SMS Marketing",
-              "Additional Content Volume",
-              "Google Business Profile",
-              "Google Ads Management",
-            ].map((addon) => (
-              <label
-                key={addon}
-                className="flex items-center gap-3 px-3.5 py-3 rounded-xl cursor-pointer transition-all hover:bg-white/70"
-                style={{ background: "rgba(255,255,255,0.54)", border: "1px solid color-mix(in oklab, var(--gold) 25%, transparent)" }}
-              >
-                <input type="checkbox" name="addons" value={addon} className="accent-[var(--gold)] w-3.5 h-3.5 shrink-0" />
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.86rem", fontWeight: 500, letterSpacing: "0", color: "rgba(30,15,10,0.78)", lineHeight: 1.35 }}>{addon}</span>
-              </label>
-            ))}
-          </div>
-          <p className="text-[9px] uppercase text-[var(--ink)]/38 mb-2" style={{ fontFamily: "'Jost', sans-serif", letterSpacing: "0.16em" }}>One-Time</p>
-          <div className="grid sm:grid-cols-2 gap-1.5">
-            {[
-              "Website Design",
-              "AI Revenue Audit",
-              "Digital Product Build",
-              "Merch & Brand Design",
-            ].map((addon) => (
-              <label
-                key={addon}
-                className="flex items-center gap-3 px-3.5 py-3 rounded-xl cursor-pointer transition-all hover:bg-white/70"
-                style={{ background: "rgba(255,255,255,0.54)", border: "1px solid color-mix(in oklab, var(--gold) 25%, transparent)" }}
-              >
-                <input type="checkbox" name="addons" value={addon} className="accent-[var(--gold)] w-3.5 h-3.5 shrink-0" />
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.86rem", fontWeight: 500, letterSpacing: "0", color: "rgba(30,15,10,0.78)", lineHeight: 1.35 }}>{addon}</span>
-              </label>
-            ))}
           </div>
         </div>
 
