@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { usePageMeta } from "@/lib/use-page-meta";
+import { PLANS, PlanCard, type Billing } from "@/components/AgencyPlans";
 
 export const Route = createFileRoute("/services")({ component: ServicesPage });
 
@@ -11,136 +12,12 @@ const FONT_LUXE = "'Jost', sans-serif";
 
 const INK = "var(--ink)";
 const ROSE = "var(--rose)";
-const GOLD = "var(--gold)";
 const CREAM = "var(--cream)";
 const BLUSH = "var(--blush)";
 const CHARCOAL = "#1a1a1a";
-const GROWTH = "#8B6914";
 
 // Single source of truth — swap for a dedicated proposal URL if you have one.
 const PROPOSAL_URL = "/#contact";
-
-const fmt = (n: number) => n.toLocaleString("en-US");
-
-type Billing = "6" | "12";
-
-interface Plan {
-  id: string;
-  accent: string;
-  badge: { text: string; bg: string; color: string } | null;
-  eyebrow: string;
-  name: string;
-  subtitle: string;
-  monthly: number;
-  setup: number;
-  platform: number;
-  freeTrial: boolean;
-  description: string;
-  designedToCreate: string;
-  features: string[];
-  cta: string;
-}
-
-const PLANS: Plan[] = [
-  {
-    id: "foundation",
-    accent: INK,
-    badge: null,
-    eyebrow: "Website & Lead System",
-    name: "The Foundation",
-    subtitle: "For service businesses that need a website and full lead system before anything else.",
-    monthly: 297,
-    setup: 500,
-    platform: 0,
-    freeTrial: false,
-    description: "A website and automation system that turns every inquiry, missed call, and appointment into a managed conversation.",
-    designedToCreate: "A website and automation system that turns every inquiry, missed call, and appointment into a managed conversation.",
-    features: [
-      "10–20 page professional website built for lead generation",
-      "Website chat widget — visitors text you directly from your site",
-      "Quote forms, SMS confirmations, and clickable phone numbers",
-      "Automated lead follow-up — new inquiries get an instant text response",
-      "Missed call text-back — anyone who calls gets a text immediately",
-      "Voice AI receptionist — answers missed calls and books appointments 24/7",
-      "5-star review funnel with private feedback step before the public request",
-      "One-click referral campaign — happy clients send referrals automatically",
-      "Return customer campaigns — bring past clients back on autopilot",
-      "Automated appointment reminders — text and email before every booking",
-      "Full CRM setup and contact pipeline",
-      "On-site SEO basics — keywords, alt tags, schema, image optimisation, page speed",
-    ],
-    cta: "Build My Foundation",
-  },
-  {
-    id: "starter",
-    accent: ROSE,
-    badge: { text: "Best Starting Point", bg: ROSE, color: "#fff" },
-    eyebrow: "One Platform, Fully Managed",
-    name: "The Starter",
-    subtitle: "For businesses and personal brands ready to be fully active on one platform with a lead system behind every post.",
-    monthly: 1000,
-    setup: 500,
-    platform: 300,
-    freeTrial: true,
-    description: "One platform, one polished content system, and a full automation stack turning followers into booked clients.",
-    designedToCreate: "One platform, one polished content system, and a full automation stack turning followers into booked clients.",
-    features: [
-      "1 platform fully managed — Facebook, Instagram, or TikTok — nothing to post",
-      "AI Clone or custom brand mascot — built during onboarding to your look, voice & energy",
-      "3 AI Clone videos pinned — your signature content always front and centre",
-      "16 posts/month — Reels, Carousels & Static — all on-brand, all approved by you",
-      "Content approval — nothing goes live without your sign-off",
-      "Starter content strategy — offer angle, pillars, caption direction & posting rhythm",
-      "Comment-to-DM automation — every comment becomes a private lead conversation",
-      "Missed call text-back — warm leads hear from you within seconds",
-      "Voice AI receptionist — answers missed calls and books appointments 24/7",
-      "Automated appointment reminders — text and email before every booking",
-      "CRM pipeline and booking link setup",
-      "Monthly performance report — reach, growth, top posts & next steps in plain English",
-    ],
-    cta: "Launch My Brand",
-  },
-  {
-    id: "growth",
-    accent: GROWTH,
-    badge: { text: "Most Popular", bg: INK, color: "#fff" },
-    eyebrow: "Three Platforms + Paid Ads",
-    name: "The Growth",
-    subtitle: "For service businesses ready for all 3 platforms, full automation, and paid Meta ads working together every day.",
-    monthly: 2500,
-    setup: 500,
-    platform: 300,
-    freeTrial: true,
-    description: "Three platforms running, an AI Clone posting for you, leads followed up automatically, and ads bringing in new clients — while you focus on the work.",
-    designedToCreate: "Three platforms running, an AI Clone posting for you, leads followed up automatically, and ads bringing in new clients — while you focus on the work.",
-    features: [
-      "3 platforms fully managed — Facebook, Instagram & TikTok — nothing to post, nothing to manage",
-      "AI Clone or custom brand mascot — built during onboarding, active across all 3 platforms",
-      "6 AI Clone videos/month — 2 pinned per platform, always your best content front and centre",
-      "24 posts/month — 8 per platform, Reels, Carousels & Static — all on-brand",
-      "Content approval — you see and approve everything before it goes live",
-      "Dedicated content strategy — pillars, hashtags, caption writing & optimal posting times",
-      "Paid Meta ads — Facebook & Instagram campaigns built, managed & optimised for leads and bookings",
-      "Comment-to-DM + text follow-up AI bot across all 3 platforms",
-      "Voice AI receptionist — answers missed calls and books appointments 24/7",
-      "Missed call text-back — instant reply to anyone who calls",
-      "Automated appointment reminders — text and email before every booking",
-      "5-star review requests — sent automatically after every appointment",
-      "Full CRM and automation stack built during setup",
-      "Monthly strategy call — 30 minutes, real numbers, clear next steps",
-      "Monthly performance report across all 3 platforms",
-    ],
-    cta: "Scale With Everything",
-  },
-];
-
-/* totals: management × term + setup. 12-month applies the free 12th month. */
-function sixMonth(p: Plan) {
-  return p.monthly * 6 + p.setup;
-}
-function twelveMonth(p: Plan) {
-  return p.monthly * 11 + p.setup; // 12th month free
-}
 
 /* ── Atoms ───────────────────────────────────────────── */
 function Eyebrow({ children, color = ROSE }: { children: React.ReactNode; color?: string }) {
@@ -280,7 +157,7 @@ function ServicesPage() {
       <section id="plans-grid" className="px-6 pb-20 pt-10 md:pb-28" style={{ background: BLUSH }}>
         <div className="mx-auto grid max-w-6xl items-start gap-6 lg:grid-cols-3">
           {PLANS.map((p) => (
-            <PlanCard key={p.id} plan={p} billing={billing} pulse={pulseId === p.id} />
+            <PlanCard key={p.id} plan={p} billing={billing} pulse={pulseId === p.id} ctaHref={PROPOSAL_URL} ctaNewTab />
           ))}
         </div>
       </section>
@@ -360,123 +237,6 @@ function ServicesPage() {
         </p>
       </section>
     </main>
-  );
-}
-
-/* ── Plan card ───────────────────────────────────────── */
-function PlanCard({ plan, billing, pulse }: { plan: Plan; billing: Billing; pulse: boolean }) {
-  const [open, setOpen] = useState(false);
-  const total = billing === "6" ? sixMonth(plan) : twelveMonth(plan);
-  const visible = plan.features.slice(0, 5);
-  const hidden = plan.features.slice(5);
-
-  return (
-    <article id={plan.id} className={`flex h-full scroll-mt-24 flex-col overflow-hidden rounded-2xl shadow-sm ${pulse ? "plan-pulse" : ""}`} style={{ background: "#fff" }}>
-      {/* top badge */}
-      {plan.badge && (
-        <div className="px-4 py-2 text-center" style={{ background: plan.badge.bg, color: plan.badge.color, fontFamily: FONT_LUXE, fontSize: "0.66rem", fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase" }}>
-          {plan.badge.text}
-        </div>
-      )}
-
-      <div className="flex flex-1 flex-col p-8">
-        <Eyebrow>{plan.eyebrow}</Eyebrow>
-        <h3 className="mt-2" style={{ fontFamily: FONT_DISPLAY, fontWeight: 400, fontSize: "34px", lineHeight: 1.05, color: plan.accent }}>{plan.name}</h3>
-        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "14px", lineHeight: 1.5, color: "rgba(29,15,11,0.6)" }}>{plan.subtitle}</p>
-
-        {/* badges row */}
-        <div className="mt-5 flex flex-wrap gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1" style={{ background: CREAM, color: INK, fontFamily: FONT_LUXE, fontSize: "0.58rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>
-            <svg viewBox="0 0 12 10" width="10" height="9" fill={ROSE}><path d="M6 9 L0.5 3.5 a2.2 2.2 0 0 1 3.1 -3.1 L6 2.8 l2.4 -2.4 a2.2 2.2 0 0 1 3.1 3.1 Z" /></svg>
-            6-Month Agreement
-          </span>
-          {plan.freeTrial && (
-            <span className="rounded-full px-3 py-1" style={{ background: ROSE, color: "#fff", fontFamily: FONT_LUXE, fontSize: "0.58rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>
-              First 14 Days Free
-            </span>
-          )}
-        </div>
-
-        <p className="mt-4" style={{ fontFamily: FONT_BODY, fontSize: "12px", color: "rgba(29,15,11,0.5)" }}>$500 setup due upfront · 6-month contract option</p>
-
-        {/* pricing block */}
-        <div className="mt-5">
-          <p style={{ fontFamily: FONT_DISPLAY, fontSize: "52px", lineHeight: 1, color: plan.accent }}>
-            ${fmt(plan.monthly)}<span style={{ fontFamily: FONT_BODY, fontSize: "1rem", color: "rgba(29,15,11,0.5)", marginLeft: "0.3rem" }}>/mo</span>
-          </p>
-          {plan.platform > 0 && (
-            <p className="mt-3 inline-block rounded-lg px-3 py-2" style={{ background: CREAM, border: `1px solid ${ROSE}`, fontFamily: FONT_BODY, fontSize: "13px", color: INK }}>
-              + ${plan.platform}/mo platform access
-            </p>
-          )}
-          <p className="mt-2 inline-block rounded-lg px-3 py-1.5" style={{ border: "1px dashed rgba(29,15,11,0.3)", fontFamily: FONT_BODY, fontSize: "12px", color: "rgba(29,15,11,0.65)" }}>
-            + ${fmt(plan.setup)} one-time setup
-          </p>
-        </div>
-
-        {/* total box */}
-        <div className="mt-5 rounded-xl p-4" style={{ background: CREAM }}>
-          <p style={{ fontFamily: FONT_LUXE, fontSize: "10px", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(29,15,11,0.55)" }}>
-            {billing === "6" ? "6-Month Total" : "12-Month Total"}
-          </p>
-          <p className="mt-1" style={{ fontFamily: FONT_DISPLAY, fontSize: "28px", lineHeight: 1, color: plan.accent, fontWeight: 600 }}>${fmt(total)}</p>
-          <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "12px", color: "rgba(29,15,11,0.55)" }}>
-            {billing === "6"
-              ? `$${fmt(plan.monthly)}/mo × 6 + $${fmt(plan.setup)} setup`
-              : `$${fmt(plan.monthly)}/mo × 11 + $${fmt(plan.setup)} setup · 12th month free`}
-          </p>
-          {billing === "12" && (
-            <p className="mt-1.5" style={{ fontFamily: FONT_BODY, fontSize: "13px", fontWeight: 600, color: ROSE }}>You save ${fmt(plan.monthly)}</p>
-          )}
-        </div>
-
-        {/* description */}
-        <p className="mt-5" style={{ fontFamily: FONT_BODY, fontSize: "15px", lineHeight: 1.6, color: INK }}>{plan.description}</p>
-
-        {/* designed to create */}
-        <div className="mt-4 rounded-xl p-4" style={{ background: CREAM }}>
-          <p style={{ fontFamily: FONT_LUXE, fontSize: "10px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: ROSE }}>Designed to Create</p>
-          <p className="mt-1.5 italic" style={{ fontFamily: FONT_BODY, fontSize: "15px", lineHeight: 1.55, color: INK }}>{plan.designedToCreate}</p>
-        </div>
-
-        {/* features */}
-        <ul className="mt-6 space-y-3">
-          {visible.map((f) => (
-            <li key={f} className="flex gap-2.5" style={{ fontFamily: FONT_BODY, fontSize: "14px", lineHeight: 1.5, color: INK }}>
-              <Check />
-              <span>{f}</span>
-            </li>
-          ))}
-        </ul>
-        {hidden.length > 0 && (
-          <>
-            <div style={{ maxHeight: open ? 1200 : 0, overflow: "hidden", transition: "max-height 0.45s ease" }}>
-              <ul className="mt-3 space-y-3">
-                {hidden.map((f) => (
-                  <li key={f} className="flex gap-2.5" style={{ fontFamily: FONT_BODY, fontSize: "14px", lineHeight: 1.5, color: INK }}>
-                    <Check />
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <button type="button" onClick={() => setOpen((v) => !v)} className="mt-3 self-start underline underline-offset-2" style={{ fontFamily: FONT_BODY, fontSize: "13px", color: ROSE }}>
-              {open ? "Show less ↑" : `See all ${plan.features.length} features ↓`}
-            </button>
-          </>
-        )}
-
-        {/* bottom CTA */}
-        <div className="mt-auto pt-6">
-          <p className="border-t pt-4 text-center" style={{ borderColor: "rgba(29,15,11,0.1)", fontFamily: FONT_LUXE, fontSize: "11px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: INK }}>
-            Custom Launch Plan Included
-          </p>
-          <a href={PROPOSAL_URL} target="_blank" rel="noopener noreferrer" className="mt-4 flex min-h-12 items-center justify-center rounded-full px-6 py-4 text-center transition-opacity hover:opacity-90" style={{ background: plan.accent, color: "#fff", fontFamily: FONT_BODY, fontWeight: 600 }}>
-            {plan.cta}
-          </a>
-        </div>
-      </div>
-    </article>
   );
 }
 
