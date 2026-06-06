@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SoftwareRouteImport } from './routes/software'
+import { Route as ServicesRouteImport } from './routes/services'
 import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PlaybookRouteImport } from './routes/playbook'
@@ -31,6 +32,11 @@ import { Route as BrandRoomAiPromptKitRouteImport } from './routes/brand-room_.a
 const SoftwareRoute = SoftwareRouteImport.update({
   id: '/software',
   path: '/software',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
 const QuizRoute = QuizRouteImport.update({
@@ -127,6 +133,7 @@ export interface FileRoutesByFullPath {
   '/playbook': typeof PlaybookRoute
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
+  '/services': typeof ServicesRoute
   '/software': typeof SoftwareRoute
   '/brand-room/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room/brand-kit': typeof BrandRoomBrandKitRoute
@@ -147,6 +154,7 @@ export interface FileRoutesByTo {
   '/playbook': typeof PlaybookRoute
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
+  '/services': typeof ServicesRoute
   '/software': typeof SoftwareRoute
   '/brand-room/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room/brand-kit': typeof BrandRoomBrandKitRoute
@@ -168,6 +176,7 @@ export interface FileRoutesById {
   '/playbook': typeof PlaybookRoute
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
+  '/services': typeof ServicesRoute
   '/software': typeof SoftwareRoute
   '/brand-room_/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room_/brand-kit': typeof BrandRoomBrandKitRoute
@@ -190,6 +199,7 @@ export interface FileRouteTypes {
     | '/playbook'
     | '/privacy'
     | '/quiz'
+    | '/services'
     | '/software'
     | '/brand-room/ai-prompt-kit'
     | '/brand-room/brand-kit'
@@ -210,6 +220,7 @@ export interface FileRouteTypes {
     | '/playbook'
     | '/privacy'
     | '/quiz'
+    | '/services'
     | '/software'
     | '/brand-room/ai-prompt-kit'
     | '/brand-room/brand-kit'
@@ -230,6 +241,7 @@ export interface FileRouteTypes {
     | '/playbook'
     | '/privacy'
     | '/quiz'
+    | '/services'
     | '/software'
     | '/brand-room_/ai-prompt-kit'
     | '/brand-room_/brand-kit'
@@ -251,6 +263,7 @@ export interface RootRouteChildren {
   PlaybookRoute: typeof PlaybookRoute
   PrivacyRoute: typeof PrivacyRoute
   QuizRoute: typeof QuizRoute
+  ServicesRoute: typeof ServicesRoute
   SoftwareRoute: typeof SoftwareRoute
   BrandRoomAiPromptKitRoute: typeof BrandRoomAiPromptKitRoute
   BrandRoomBrandKitRoute: typeof BrandRoomBrandKitRoute
@@ -271,6 +284,13 @@ declare module '@tanstack/react-router' {
       path: '/software'
       fullPath: '/software'
       preLoaderRoute: typeof SoftwareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/quiz': {
@@ -403,6 +423,7 @@ const rootRouteChildren: RootRouteChildren = {
   PlaybookRoute: PlaybookRoute,
   PrivacyRoute: PrivacyRoute,
   QuizRoute: QuizRoute,
+  ServicesRoute: ServicesRoute,
   SoftwareRoute: SoftwareRoute,
   BrandRoomAiPromptKitRoute: BrandRoomAiPromptKitRoute,
   BrandRoomBrandKitRoute: BrandRoomBrandKitRoute,
