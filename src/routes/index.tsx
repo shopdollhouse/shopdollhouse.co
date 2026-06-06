@@ -25,7 +25,7 @@ import mandyAIClonePreview from "@/assets/mandy-ai-clone-preview.jpg";
 import { managedServiceLinks, systemServices } from "@/lib/system-services";
 import { usePageMeta } from "@/lib/use-page-meta";
 import { PLANS, PlanCard } from "@/components/AgencyPlans";
-import { FocusedSetupSection, PlanComparisonSection, ResultsStatsSection, AgencyFaqSection, FinalCtaSection } from "@/components/AgencySections";
+import { PlanFinderSection, FocusedSetupSection, PlanComparisonSection, ResultsStatsSection, AgencyFaqSection, FinalCtaSection, AgencyFooterNotes } from "@/components/AgencySections";
 
 export const Route = createFileRoute("/")({ component: Index });
 
@@ -2080,21 +2080,6 @@ function Pricing() {
         Foundation starts at $297/mo &nbsp;·&nbsp; first 14 days of monthly management free &nbsp;·&nbsp; one-time $500 setup fee due upfront
       </p>
 
-      {/* Setup fee + ad spend notes */}
-      <div className="mt-12 max-w-2xl mx-auto rounded-2xl px-8 py-6 text-center space-y-4"
-        style={{ background: "rgba(255,250,246,0.72)", border: "1px solid rgba(200,168,100,0.24)", boxShadow: "0 22px 55px -42px rgba(120,70,55,0.36)" }}>
-        <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "var(--ink)", opacity: 0.74, fontStyle: "italic", lineHeight: 1.6 }}>
-          <span style={{ color: "var(--gold)", fontStyle: "normal", fontWeight: 600 }}>$500 one-time setup fee on every contract</span> — required upfront for onboarding, system buildout, launch prep, calendar integration, automation sequences, and CRM setup.
-        </p>
-        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "rgba(30,15,10,0.55)", lineHeight: 1.6 }}>
-          Your $500 setup starts the build. Your first 14 days of monthly management are free, then monthly billing begins if you continue. Choose a 6-month start or commit annually. Annual clients receive the 12th month free, and every plan shows the exact savings before you request a proposal.
-        </p>
-        <div style={{ height: "1px", background: "rgba(200,168,100,0.2)" }} />
-        <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "var(--ink)", opacity: 0.72, fontStyle: "italic", lineHeight: 1.6 }}>
-          <span style={{ color: "var(--rose)", fontStyle: "normal", fontWeight: 600 }}>* Ad spend is not included in any package</span> — paid directly by you to Meta. Minimum $1,000/mo · We recommend starting at $1,000–$2,000/mo for best results · Never included in your package.
-        </p>
-      </div>
-
     </section>
   );
 }
@@ -2916,6 +2901,7 @@ function Index() {
       <AICloneSection />
       <About />
       <HowItWorks />
+      <PlanFinderSection />
       <Pricing />
       <FocusedSetupSection proposalHref="#contact" />
       <PlanComparisonSection />
@@ -2923,6 +2909,7 @@ function Index() {
       <AgencyFaqSection />
       <FinalCtaSection proposalHref="#contact" />
       <Contact />
+      <AgencyFooterNotes />
       <Footer />
       <BackToTop />
     </main>

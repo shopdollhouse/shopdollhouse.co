@@ -30,6 +30,51 @@ function ctaLinkProps(newTab: boolean) {
   return newTab ? { target: "_blank", rel: "noopener noreferrer" } : {};
 }
 
+const PULSE_STYLE = `@keyframes plan-pulse{0%{box-shadow:0 0 0 0 rgba(189,116,118,0)}30%{box-shadow:0 0 0 5px rgba(189,116,118,0.55)}100%{box-shadow:0 0 0 0 rgba(189,116,118,0)}}.plan-pulse{animation:plan-pulse 1.5s ease-out}`;
+
+function pulsePlan(id: string) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.scrollIntoView({ behavior: "smooth", block: "center" });
+  el.classList.remove("plan-pulse");
+  void el.offsetWidth; // restart the animation
+  el.classList.add("plan-pulse");
+  window.setTimeout(() => el.classList.remove("plan-pulse"), 1500);
+}
+
+/* ── Plan finder ─────────────────────────────────────── */
+export function PlanFinderSection() {
+  const options: [string, string][] = [
+    ["I need a website and a lead system — no social media yet", "foundation"],
+    ["I want consistent social content without doing it myself", "starter"],
+    ["I want my whole social media managed with an AI Clone", "starter"],
+    ["I want everything — content, AI, ads, and full automation", "growth"],
+  ];
+  return (
+    <section className="px-6 py-16 md:py-20" style={{ background: CREAM }}>
+      <style>{PULSE_STYLE}</style>
+      <div className="mx-auto max-w-[720px] text-center">
+        <Eyebrow>Not Sure Which Plan Is Right?</Eyebrow>
+        <h2 className="mt-4" style={{ fontFamily: FONT_DISPLAY, fontWeight: 400, color: INK, fontSize: "clamp(28px, 4vw, 36px)" }}>Answer one question.</h2>
+        <div className="mt-8 grid gap-3 md:grid-cols-2">
+          {options.map(([label, target]) => (
+            <button
+              key={label}
+              type="button"
+              onClick={() => pulsePlan(target)}
+              className="min-h-12 rounded-2xl px-6 py-4 text-left transition-opacity hover:opacity-90"
+              style={{ background: INK, color: "#fff", fontFamily: FONT_BODY, fontSize: "16px", lineHeight: 1.4 }}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+        <p className="mt-6" style={{ fontFamily: FONT_BODY, fontSize: "13px", color: "rgba(29,15,11,0.55)" }}>Or scroll to compare all plans below ↓</p>
+      </div>
+    </section>
+  );
+}
+
 /* ── Focused setup (Appointment Booking) ─────────────── */
 export function FocusedSetupSection({ proposalHref, newTab = false }: { proposalHref: string; newTab?: boolean }) {
   return (
