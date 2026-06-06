@@ -11,14 +11,14 @@ const checkoutLinks: Record<string, string> = {
   "ai-prompt-kit": "https://link.fastpaydirect.com/payment-link/6a22a43471a0aa761e46326a",
   "brand-workbook": "https://link.fastpaydirect.com/payment-link/6a22a3fe03b17c94f5714ba9",
   "brand-kit": "https://link.fastpaydirect.com/payment-link/6a22a22903b17c94f5714ba7",
-  "brand-room-suite": "mailto:hello@shopdollhouse.co?subject=Brand%20Room%20Suite%20Checkout",
+  "brand-room-suite": "https://link.fastpaydirect.com/payment-link/6a23413403b17c94f5714d42",
 };
 
 const products: Record<string, { name: string; price: string; regular?: string; tagline: string }> = {
-  "ai-prompt-kit": { name: "AI Prompt Kit", price: "$17", regular: "$37", tagline: "200+ prompts for content that converts." },
-  "brand-workbook": { name: "Brand Workbook", price: "$47", regular: "$261", tagline: "Clarity on your offer, audience & message." },
-  "brand-kit": { name: "Brand Kit Blueprint", price: "$97", regular: "$145", tagline: "Your full visual identity, built from scratch." },
-  "brand-room-suite": { name: "The Full Suite", price: "$127", regular: "$161", tagline: "All three tools. Everything you need." },
+  "ai-prompt-kit": { name: "AI Prompt Kit", price: "$17 USD", regular: "$37", tagline: "200+ prompts for content that converts." },
+  "brand-workbook": { name: "Brand Workbook", price: "$47 USD", regular: "$261", tagline: "Clarity on your offer, audience & message." },
+  "brand-kit": { name: "Brand Kit Blueprint", price: "$97 USD", regular: "$145", tagline: "Your full visual identity, built from scratch." },
+  "brand-room-suite": { name: "The Full Suite", price: "$127 USD", regular: "$161", tagline: "All three tools. Everything you need." },
 };
 
 export const Route = createFileRoute("/checkout_/$product")({
@@ -42,9 +42,9 @@ function CheckoutRedirectPage() {
   }, [checkoutUrl]);
 
   return (
-    <main className="flex min-h-screen items-center justify-center px-5 py-16 text-center text-[var(--ink)]" style={{ background: "linear-gradient(160deg, var(--blush) 0%, var(--cream) 60%)" }}>
+    <main className="flex min-h-screen items-center justify-center px-5 py-16 text-center text-[var(--ink)]" style={{ background: "radial-gradient(circle at 50% 4%, rgba(255,255,255,0.9), transparent 35%), linear-gradient(160deg, var(--blush) 0%, var(--cream) 60%)" }}>
       <div
-        className="w-full max-w-[440px] rounded-[28px] px-8 py-12"
+        className="w-full max-w-[520px] rounded-[32px] px-7 py-10 md:px-10 md:py-12"
         style={{ background: "var(--cream)", border: "1px solid rgba(200,164,100,0.3)", boxShadow: "0 34px 90px -52px rgba(40,19,15,0.5)" }}
       >
         <div className="flex justify-center" style={{ color: "var(--gold)" }}>
@@ -53,12 +53,12 @@ function CheckoutRedirectPage() {
         <p className="mt-2 leading-none" style={{ fontFamily: FONT_SCRIPT, fontStyle: "italic", color: "var(--gold)", fontSize: "1.9rem", textTransform: "lowercase" }}>
           the dollhouse
         </p>
-        <p className="mt-3" style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", fontWeight: 600, letterSpacing: "0.24em", textTransform: "uppercase", color: "var(--rose)" }}>
+        <p className="mt-3" style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", fontWeight: 700, letterSpacing: "0.24em", textTransform: "uppercase", color: "var(--rose)" }}>
           Secure Checkout
         </p>
 
         <h1 className="mt-4 text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "2.3rem", lineHeight: 1.05, fontWeight: 400 }}>
-          {known ? "Taking you to the secure payment page" : "Let's find your tool"}
+          {known ? "Your private room is almost ready." : "Let's find your tool"}
         </h1>
 
         {info && (
@@ -71,7 +71,6 @@ function CheckoutRedirectPage() {
             <div className="text-right">
               <p style={{ fontFamily: FONT_DISPLAY, fontSize: "2rem", lineHeight: 1, color: "var(--rose)" }}>
                 {info.price}
-                <span style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", fontWeight: 600, letterSpacing: "0.12em", marginLeft: "0.25rem", verticalAlign: "super", color: "var(--gold)" }}>USD</span>
               </p>
               {info.regular && <p className="mt-0.5 line-through" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(29,15,11,0.4)" }}>{info.regular}</p>}
             </div>
@@ -86,7 +85,7 @@ function CheckoutRedirectPage() {
               ))}
             </div>
             <p className="mt-4" style={{ fontFamily: FONT_BODY, fontSize: "0.86rem", lineHeight: 1.6, color: "rgba(29,15,11,0.6)" }}>
-              Redirecting you to our secure payment partner. This only takes a second.
+              Redirecting you to our secure payment partner. After checkout, your access details appear on the thank-you page and in your inbox.
             </p>
             <a
               href={checkoutUrl}

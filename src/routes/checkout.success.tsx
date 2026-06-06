@@ -36,6 +36,8 @@ const ACCESS_DETAILS: Record<ProductKey, {
 
 function normalizeProduct(value: unknown): ProductKey | null {
   if (value === "brand-kit" || value === "workbook" || value === "prompt-kit") return value;
+  if (value === "brand-workbook") return "workbook";
+  if (value === "ai-prompt-kit") return "prompt-kit";
   return null;
 }
 
