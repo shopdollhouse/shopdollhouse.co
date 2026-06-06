@@ -25,7 +25,7 @@ import mandyAIClonePreview from "@/assets/mandy-ai-clone-preview.jpg";
 import { managedServiceLinks, systemServices } from "@/lib/system-services";
 import { usePageMeta } from "@/lib/use-page-meta";
 import { PLANS, PlanCard } from "@/components/AgencyPlans";
-import { PlanComparisonSection, ResultsStatsSection, AgencyFaqSection, FinalCtaSection } from "@/components/AgencySections";
+import { FocusedSetupSection, PlanComparisonSection, ResultsStatsSection, AgencyFaqSection, FinalCtaSection } from "@/components/AgencySections";
 
 export const Route = createFileRoute("/")({ component: Index });
 
@@ -2074,51 +2074,6 @@ function Pricing() {
         ))}
       </div>
 
-      <div
-        className="mt-10 max-w-5xl mx-auto rounded-[28px] p-6 md:p-7 grid lg:grid-cols-[0.72fr_1fr] gap-6 items-center"
-        style={{
-          background: "rgba(255,250,246,0.62)",
-          border: "1px solid color-mix(in oklab, var(--gold) 30%, transparent)",
-          boxShadow: "0 26px 70px -48px rgba(120,70,55,0.45)",
-        }}
-      >
-        <div>
-          <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
-            Focused Setup
-          </p>
-          <h3
-            className="mt-2 italic text-[var(--ink)]"
-            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.85rem, 3vw, 2.7rem)", lineHeight: 1.05 }}
-          >
-            {appointmentBooking.name}
-          </h3>
-          <div className="mt-3 flex items-end gap-2">
-            <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "2.7rem", fontStyle: "italic", color: "var(--gold)", lineHeight: 1 }}>
-              {appointmentBooking.price}
-            </span>
-            <span className="mb-1 text-[var(--ink)]/42 text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
-              setup
-            </span>
-          </div>
-          <p className="mt-4 text-[var(--ink)]/62 leading-7" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.94rem" }}>
-            {appointmentBooking.summary}
-          </p>
-        </div>
-        <div className="grid sm:grid-cols-2 gap-3">
-          {appointmentBooking.features.map((feature, index) => (
-            <div
-              key={feature}
-              className="rounded-2xl px-4 py-3 flex items-center gap-3"
-              style={{ background: "rgba(255,255,255,0.5)", border: "1px solid rgba(200,168,100,0.18)" }}
-            >
-              <PlanFeatureIcon index={index} filled={false} />
-              <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.82rem", color: "rgba(30,15,10,0.72)" }}>
-                {feature}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* Pricing footnote */}
       <p className="text-center mt-6 mb-2" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.38)" }}>
@@ -2962,6 +2917,7 @@ function Index() {
       <About />
       <HowItWorks />
       <Pricing />
+      <FocusedSetupSection proposalHref="#contact" />
       <PlanComparisonSection />
       <ResultsStatsSection />
       <AgencyFaqSection />
