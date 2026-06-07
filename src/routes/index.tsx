@@ -2509,34 +2509,47 @@ function Contact() {
     document.body.appendChild(s);
   }, []);
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus("sending");
     const form = e.currentTarget;
     const data = new FormData(form);
-    // Convert FormData to JSON for more reliable delivery
-    const payload: Record<string, string> = {};
-    data.forEach((value, key) => {
-      payload[key] = value as string;
+    const get = (k: string) => (data.get(k)?.toString() ?? "").trim();
+
+    // This form has separate first/last name fields, so use them directly.
+    const payload = {
+      firstName: get("first_name"),
+      lastName: get("last_name"),
+      email: get("email"),
+      phone: get("phone"),
+      businessName: get("business_name"),
+      packageInterest: get("plan"),
+      message: get("message"),
+      source: "Proposal Form",
+    };
+
+    console.log("Proposal submitted:", payload);
+
+    // CRM inbound webhook — fire and forget; never block the confirmation.
+    fetch("https://services.leadconnectorhq.com/hooks/ElOoFIfV3BYE54LNg3Yw/webhook-trigger/714bf622-20bf-41a4-b391-4d57f6adbdde", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    }).catch((err) => {
+      console.warn("Proposal webhook failed:", err);
     });
-    try {
-      const res = await fetch("https://formspree.io/f/mwvrvrzj", {
-        method: "POST",
-        body: JSON.stringify(payload),
-        headers: { "Accept": "application/json", "Content-Type": "application/json" },
-      });
-      if (res.ok) {
-        setStatus("done");
-        form.reset();
-      } else {
-        const json = await res.json().catch(() => ({}));
-        console.error("Formspree error:", json);
-        setStatus("error");
-      }
-    } catch (err) {
-      console.error("Submit error:", err);
-      setStatus("error");
-    }
+
+    // Keep the Formspree email backup (also non-blocking).
+    const all: Record<string, string> = {};
+    data.forEach((value, key) => { all[key] = value as string; });
+    fetch("https://formspree.io/f/mwvrvrzj", {
+      method: "POST",
+      headers: { Accept: "application/json", "Content-Type": "application/json" },
+      body: JSON.stringify(all),
+    }).catch(() => {});
+
+    // Always confirm to the user, regardless of webhook outcome.
+    setStatus("done");
+    form.reset();
   }
 
   const inputClass = "w-full rounded-xl bg-white/72 border border-[var(--gold)]/30 px-5 py-3.5 text-[var(--ink)] placeholder:text-[var(--ink)]/35 focus:outline-none focus:border-[var(--rose)] focus:bg-white/90 transition";
@@ -2771,7 +2784,7 @@ function Contact() {
         {status === "done" && (
           <div className="rounded-xl px-5 py-4 text-center" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.3)" }}>
             <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.1rem", fontStyle: "italic", color: "var(--ink)", opacity: 0.8 }}>
-              Thank you — we'll be in touch within 24 hours ♡
+              Thank you! 🏹 We've received your request. Mandy will review your details and be in touch within 24–48 hours.
             </p>
           </div>
         )}
