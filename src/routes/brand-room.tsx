@@ -269,16 +269,58 @@ function BrandRoomPage() {
       </section>
 
       {/* ── PROBLEM ──────────────────────────────────────── */}
-      <section className="px-6 py-20 md:py-28" style={{ background: "linear-gradient(180deg, var(--cream) 0%, #f8e9e5 100%)" }}>
-        <div className="mx-auto max-w-[620px] text-center" style={{ color: "rgba(29,15,11,0.78)", fontFamily: FONT_BODY, fontSize: "18px", lineHeight: 1.75 }}>
-          <p className="mb-6">You have the idea. You know you want to build something.</p>
-          <p className="mb-6">But every time you sit down to work on it — you freeze.</p>
-          <p className="mb-6 italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--rose)" }}>"What do I name it? What do I post? What do I even sell?"</p>
-          <p className="mb-6">You've been Googling for months. Saving posts you never go back to. Starting things you never finish.</p>
-          <p className="mb-6">It's not because you're not ready.</p>
-          <p className="mb-8">It's because nobody gave you a clear starting point.</p>
-          <Divider />
-          <p className="mt-2 italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.9rem", color: "var(--rose)" }}>That's what the Brand Room is for.</p>
+      <section className="relative overflow-hidden px-6 py-20 md:py-28" style={{ background: "linear-gradient(180deg, var(--cream) 0%, #f8e9e5 58%, #f6ded8 100%)" }}>
+        <div aria-hidden className="absolute -left-20 top-16 h-72 w-72 rounded-full bg-[var(--rose)]/10 blur-3xl" />
+        <div aria-hidden className="absolute -right-24 bottom-8 h-80 w-80 rounded-full bg-[var(--gold)]/10 blur-3xl" />
+        <div className="relative mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+          <div>
+            <Eyebrow gold>Why this exists</Eyebrow>
+            <h2 className="mt-4" style={{ fontFamily: FONT_DISPLAY, fontWeight: 400, color: "var(--rose)", fontSize: "clamp(2.25rem, 5vw, 4rem)", lineHeight: 1.02 }}>
+              You are not confused. You are missing the order.
+            </h2>
+            <p className="mt-5 max-w-xl" style={{ fontFamily: FONT_BODY, color: "rgba(29,15,11,0.7)", fontSize: "1rem", lineHeight: 1.75 }}>
+              You have the idea. You know you want to build something. But when it is time to choose the name, offer, visuals, content, and launch plan, everything starts feeling tangled.
+            </p>
+            <div className="mt-7 rounded-[28px] border border-[var(--gold)]/25 bg-white/55 p-6 shadow-[0_24px_70px_-52px_rgba(90,45,35,0.5)]">
+              <p className="italic" style={{ fontFamily: FONT_DISPLAY, color: "var(--rose)", fontSize: "clamp(1.55rem, 3vw, 2.15rem)", lineHeight: 1.18 }}>
+                "What do I name it? What do I post? What do I even sell?"
+              </p>
+              <p className="mt-4" style={{ fontFamily: FONT_BODY, color: "rgba(29,15,11,0.62)", fontSize: "0.94rem", lineHeight: 1.65 }}>
+                That is not a motivation problem. It is a missing blueprint problem.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid gap-4">
+            {[
+              ["01", "Too many saved posts", "You keep collecting advice, but nothing turns into a finished brand."],
+              ["02", "No clear starting point", "Every decision depends on another decision, so you keep circling."],
+              ["03", "Content feels random", "You are trying to post before your offer, message, and direction are clear."],
+              ["04", "The brand never feels done", "The visuals, voice, products, and launch plan are not living in one place."],
+            ].map(([number, title, copy]) => (
+              <article key={title} className="group grid gap-4 rounded-[22px] border border-[var(--gold)]/25 bg-white/48 p-5 shadow-[0_18px_55px_-48px_rgba(90,45,35,0.55)] transition-colors hover:bg-white/68 sm:grid-cols-[auto_1fr]">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--ink)] text-[var(--cream)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.1rem", fontStyle: "italic" }}>{number}</span>
+                <div>
+                  <h3 style={{ fontFamily: FONT_DISPLAY, color: "var(--ink)", fontSize: "1.45rem", lineHeight: 1.1 }}>{title}</h3>
+                  <p className="mt-2" style={{ fontFamily: FONT_BODY, color: "rgba(29,15,11,0.62)", fontSize: "0.9rem", lineHeight: 1.6 }}>{copy}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="relative mx-auto mt-12 max-w-5xl rounded-[30px] border border-[var(--gold)]/25 bg-[var(--ink)] p-6 text-center shadow-[0_28px_80px_-54px_rgba(29,15,11,0.75)] md:p-8">
+          <div className="mx-auto flex max-w-3xl flex-col items-center gap-5 md:flex-row md:justify-between md:text-left">
+            <div>
+              <p style={{ fontFamily: FONT_LUXE, color: "var(--gold)", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase" }}>The fix</p>
+              <p className="mt-2 text-[var(--cream)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.65rem, 4vw, 2.45rem)", lineHeight: 1.08 }}>
+                A guided room that tells you what to decide first, next, and after that.
+              </p>
+            </div>
+            <a href="#inside" className="shrink-0 rounded-full bg-[var(--rose)] px-7 py-4 text-[var(--cream)] transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase" }}>
+              See the tools <span aria-hidden>→</span>
+            </a>
+          </div>
         </div>
       </section>
 
