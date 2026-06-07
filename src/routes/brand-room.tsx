@@ -392,8 +392,8 @@ function BrandRoomPage() {
                     <a href={product.checkout} target="_blank" rel="noopener noreferrer" className="flex min-h-12 w-full items-center justify-center rounded-full bg-[var(--ink)] px-5 py-3 text-center text-[var(--cream)] transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase" }}>
                       Buy Now — {product.price.replace(" USD", "")} <span className="ml-2" aria-hidden>→</span>
                     </a>
-                    <a href={product.href} className="mt-2.5 block text-center underline underline-offset-4" style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "rgba(29,15,11,0.55)" }}>
-                      See full details
+                    <a href={product.href} className="mt-2.5 flex min-h-12 w-full items-center justify-center rounded-full border border-[var(--ink)]/30 px-5 py-3 text-center transition-colors hover:border-[var(--ink)] hover:bg-[var(--ink)]/[0.05]" style={{ fontFamily: FONT_LUXE, fontSize: "0.64rem", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "var(--ink)" }}>
+                      See Full Details <span className="ml-2" aria-hidden>→</span>
                     </a>
                   </div>
                 </div>
