@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as SoftwareRouteImport } from './routes/software'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as QuizRouteImport } from './routes/quiz'
@@ -29,6 +30,11 @@ import { Route as BrandRoomBrandWorkbookRouteImport } from './routes/brand-room_
 import { Route as BrandRoomBrandKitRouteImport } from './routes/brand-room_.brand-kit'
 import { Route as BrandRoomAiPromptKitRouteImport } from './routes/brand-room_.ai-prompt-kit'
 
+const ThankYouRoute = ThankYouRouteImport.update({
+  id: '/thank-you',
+  path: '/thank-you',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SoftwareRoute = SoftwareRouteImport.update({
   id: '/software',
   path: '/software',
@@ -135,6 +141,7 @@ export interface FileRoutesByFullPath {
   '/quiz': typeof QuizRoute
   '/services': typeof ServicesRoute
   '/software': typeof SoftwareRoute
+  '/thank-you': typeof ThankYouRoute
   '/brand-room/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room/brand-kit': typeof BrandRoomBrandKitRoute
   '/brand-room/brand-workbook': typeof BrandRoomBrandWorkbookRoute
@@ -156,6 +163,7 @@ export interface FileRoutesByTo {
   '/quiz': typeof QuizRoute
   '/services': typeof ServicesRoute
   '/software': typeof SoftwareRoute
+  '/thank-you': typeof ThankYouRoute
   '/brand-room/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room/brand-kit': typeof BrandRoomBrandKitRoute
   '/brand-room/brand-workbook': typeof BrandRoomBrandWorkbookRoute
@@ -178,6 +186,7 @@ export interface FileRoutesById {
   '/quiz': typeof QuizRoute
   '/services': typeof ServicesRoute
   '/software': typeof SoftwareRoute
+  '/thank-you': typeof ThankYouRoute
   '/brand-room_/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room_/brand-kit': typeof BrandRoomBrandKitRoute
   '/brand-room_/brand-workbook': typeof BrandRoomBrandWorkbookRoute
@@ -201,6 +210,7 @@ export interface FileRouteTypes {
     | '/quiz'
     | '/services'
     | '/software'
+    | '/thank-you'
     | '/brand-room/ai-prompt-kit'
     | '/brand-room/brand-kit'
     | '/brand-room/brand-workbook'
@@ -222,6 +232,7 @@ export interface FileRouteTypes {
     | '/quiz'
     | '/services'
     | '/software'
+    | '/thank-you'
     | '/brand-room/ai-prompt-kit'
     | '/brand-room/brand-kit'
     | '/brand-room/brand-workbook'
@@ -243,6 +254,7 @@ export interface FileRouteTypes {
     | '/quiz'
     | '/services'
     | '/software'
+    | '/thank-you'
     | '/brand-room_/ai-prompt-kit'
     | '/brand-room_/brand-kit'
     | '/brand-room_/brand-workbook'
@@ -265,6 +277,7 @@ export interface RootRouteChildren {
   QuizRoute: typeof QuizRoute
   ServicesRoute: typeof ServicesRoute
   SoftwareRoute: typeof SoftwareRoute
+  ThankYouRoute: typeof ThankYouRoute
   BrandRoomAiPromptKitRoute: typeof BrandRoomAiPromptKitRoute
   BrandRoomBrandKitRoute: typeof BrandRoomBrandKitRoute
   BrandRoomBrandWorkbookRoute: typeof BrandRoomBrandWorkbookRoute
@@ -279,6 +292,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/thank-you': {
+      id: '/thank-you'
+      path: '/thank-you'
+      fullPath: '/thank-you'
+      preLoaderRoute: typeof ThankYouRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/software': {
       id: '/software'
       path: '/software'
@@ -425,6 +445,7 @@ const rootRouteChildren: RootRouteChildren = {
   QuizRoute: QuizRoute,
   ServicesRoute: ServicesRoute,
   SoftwareRoute: SoftwareRoute,
+  ThankYouRoute: ThankYouRoute,
   BrandRoomAiPromptKitRoute: BrandRoomAiPromptKitRoute,
   BrandRoomBrandKitRoute: BrandRoomBrandKitRoute,
   BrandRoomBrandWorkbookRoute: BrandRoomBrandWorkbookRoute,
