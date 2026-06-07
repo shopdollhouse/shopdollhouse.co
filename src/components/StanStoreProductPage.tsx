@@ -1,5 +1,6 @@
 import type { BrandProduct } from "@/components/BrandProductSalesPage";
 import archMark from "@/assets/arch-mark.svg";
+import { useState } from "react";
 
 type StanStoreSalesDetails = {
   hook: string;
@@ -345,6 +346,50 @@ function SectionHeader({ eyebrow, title }: { eyebrow: string; title: string }) {
   );
 }
 
+function FAQAccordion({ faqs }: { faqs: BrandProduct["faqs"] }) {
+  const [openQuestion, setOpenQuestion] = useState<number | null>(null);
+
+  return (
+    <div className="mt-8 grid gap-3">
+      {faqs.map((faq, index) => {
+        const isOpen = openQuestion === index;
+
+        return (
+          <div
+            key={faq.q}
+            className="overflow-hidden rounded-2xl bg-white/70 transition-colors"
+            style={{ border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}
+          >
+            <button
+              type="button"
+              aria-expanded={isOpen}
+              aria-controls={`product-faq-${index}`}
+              className="flex w-full items-center justify-between gap-5 px-6 py-5 text-left text-[var(--ink)] transition-colors hover:bg-[var(--blush)]/25"
+              onClick={() => setOpenQuestion(isOpen ? null : index)}
+            >
+              <span style={{ fontFamily: FONT_DISPLAY, fontSize: "1.2rem", lineHeight: 1.25 }}>{faq.q}</span>
+              <span
+                aria-hidden
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--gold)]/35 text-[var(--gold)] transition-transform"
+                style={{ fontFamily: FONT_LUXE, fontSize: "1.05rem", lineHeight: 1 }}
+              >
+                {isOpen ? "−" : "+"}
+              </span>
+            </button>
+            {isOpen && (
+              <div id={`product-faq-${index}`} className="border-t border-[var(--gold)]/15 px-6 pb-6 pt-4">
+                <p className="stan-faq-copy text-[var(--ink)]/65" style={{ fontFamily: FONT_BODY, fontSize: "0.92rem", lineHeight: 1.65 }}>
+                  {faq.a}
+                </p>
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 const salesDetails: Record<BrandProduct["accent"], StanStoreSalesDetails> = {
   brand: {
     hook: "Build the brand people understand, trust, and buy from.",
@@ -565,18 +610,18 @@ export function StanStoreProductPage({ product, showCheckout = false }: { produc
 
           <aside className="rounded-[30px] bg-[var(--ink)] p-7 text-[var(--cream)] lg:sticky lg:top-6 lg:self-start">
             <p className="stan-section-label text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase" }}>Instant Access</p>
-            <div className="mt-5 flex items-baseline gap-3">
-              <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "4.4rem", lineHeight: 1 }}>
+            <div className="mt-6 flex flex-wrap items-end gap-x-3 gap-y-2 pb-2">
+              <span className="block italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3.65rem, 5vw, 4.4rem)", lineHeight: 0.82 }}>
                 {priceAmount}
-                {currency && (
-                  <span style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", fontStyle: "normal", fontWeight: 700, letterSpacing: "0.16em", marginLeft: "0.45rem", verticalAlign: "baseline" }}>
-                    {currency}
-                  </span>
-                )}
               </span>
-              {product.regular && <span className="text-[var(--cream)]/34 line-through" style={{ fontFamily: FONT_BODY, fontSize: "1.05rem" }}>{product.regular}</span>}
+              {currency && (
+                <span className="mb-1 text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", fontWeight: 700, letterSpacing: "0.16em" }}>
+                  {currency}
+                </span>
+              )}
+              {product.regular && <span className="mb-1 text-[var(--cream)]/34 line-through" style={{ fontFamily: FONT_BODY, fontSize: "1.05rem" }}>{product.regular}</span>}
             </div>
-            {product.value && <p className="stan-section-label text-[var(--cream)]/45" style={{ fontFamily: FONT_LUXE, fontSize: "0.7rem", letterSpacing: "0.13em", textTransform: "uppercase" }}>{product.value}</p>}
+            {product.value && <p className="stan-section-label mt-3 text-[var(--cream)]/45" style={{ fontFamily: FONT_LUXE, fontSize: "0.7rem", lineHeight: 1.65, letterSpacing: "0.13em", textTransform: "uppercase" }}>{product.value}</p>}
             {showCheckout ? (
               <a href="#checkout" className="stan-button mt-7 block rounded-full px-6 py-4 text-center transition-all hover:-translate-y-0.5" style={{ background: "var(--gold)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
                 Get Instant Access →
@@ -664,16 +709,7 @@ export function StanStoreProductPage({ product, showCheckout = false }: { produc
       <section className="bg-[var(--cream)] px-5 py-16 md:px-8 md:py-24">
         <div className="mx-auto max-w-4xl">
           <SectionHeader eyebrow="Good To Know" title="Common Questions" />
-          <div className="mt-8 grid gap-3">
-            {product.faqs.map((faq) => (
-              <details key={faq.q} open className="group rounded-2xl bg-white/70 px-6 py-5 [&_summary::-webkit-details-marker]:hidden" style={{ border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}>
-                <summary className="flex list-none items-center justify-between gap-4 text-[var(--ink)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.2rem" }}>
-                  {faq.q}
-                </summary>
-                <p className="stan-faq-copy mt-3 text-[var(--ink)]/65" style={{ fontFamily: FONT_BODY, fontSize: "0.92rem", lineHeight: 1.65 }}>{faq.a}</p>
-              </details>
-            ))}
-          </div>
+          <FAQAccordion faqs={product.faqs} />
         </div>
       </section>
 
