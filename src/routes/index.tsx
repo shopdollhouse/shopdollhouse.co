@@ -28,7 +28,7 @@ import brandRoomImage from "@/assets/path-brand-room.jpg";
 import { managedServiceLinks, systemServices } from "@/lib/system-services";
 import { usePageMeta } from "@/lib/use-page-meta";
 import { PLANS, PlanCard } from "@/components/AgencyPlans";
-import { PlanFinderSection, FocusedSetupSection, PlanComparisonSection, ResultsStatsSection, AgencyFaqSection, FinalCtaSection, AgencyFooterNotes, pulsePlan } from "@/components/AgencySections";
+import { FocusedSetupSection, PlanComparisonSection, ResultsStatsSection, AgencyFaqSection, FinalCtaSection, AgencyFooterNotes, pulsePlan } from "@/components/AgencySections";
 
 export const Route = createFileRoute("/")({ component: Index });
 
@@ -610,8 +610,8 @@ function ChooseYourPath() {
     {
       eyebrow: "Lead System",
       title: "I need the website and follow-up foundation first.",
-      body: "Start with the $297 website, missed-call text-back, review funnel, CRM, and SEO package.",
-      href: "#plan-foundation",
+      body: "Start with the website, missed-call text-back, review funnel, CRM, and on-site SEO — your complete lead foundation.",
+      href: "#foundation",
       cta: "See The Foundation Plan",
       targetPlan: "foundation",
       image: leadSystemImage,
@@ -2958,7 +2958,6 @@ function Index() {
       <AICloneSection />
       <About />
       <HowItWorks />
-      <PlanFinderSection />
       <Pricing />
       <FocusedSetupSection proposalHref="#contact" />
       <PlanComparisonSection />
