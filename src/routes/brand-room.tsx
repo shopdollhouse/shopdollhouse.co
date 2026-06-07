@@ -486,16 +486,6 @@ function BrandRoomPage() {
               </div>
             </aside>
           </div>
-
-          <div className="mx-auto mt-8 max-w-3xl rounded-[28px] border border-[var(--gold)]/25 bg-white/55 p-6 text-center shadow-[0_24px_70px_-58px_rgba(90,45,35,0.55)]">
-            <p style={{ fontFamily: FONT_LUXE, color: "var(--gold)", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase" }}>Still not sure?</p>
-            <p className="mt-2" style={{ fontFamily: FONT_DISPLAY, color: "var(--rose)", fontSize: "clamp(1.8rem, 4vw, 2.45rem)", fontWeight: 400, lineHeight: 1.05 }}>
-              Take the quiz and get matched to the right first step.
-            </p>
-            <a href="/quiz" className="mt-5 inline-flex rounded-full bg-[var(--ink)] px-7 py-3.5 text-[var(--cream)] transition-all hover:-translate-y-0.5" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase" }}>
-              Take the free quiz →
-            </a>
-          </div>
             </div>
       </section>
 
