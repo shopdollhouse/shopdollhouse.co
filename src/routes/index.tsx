@@ -644,7 +644,7 @@ function ChooseYourPath() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-4 lg:grid-cols-3">
+        <div className="mt-8 grid gap-4 lg:grid-cols-3">
           {paths.map(({ eyebrow, title, body, href, cta, targetPlan, image, imageAlt, featured }) => (
             <a
               key={title}
@@ -654,14 +654,14 @@ function ChooseYourPath() {
                 event.preventDefault();
                 pulsePlan(targetPlan);
               }}
-              className="group flex min-h-[500px] flex-col overflow-hidden rounded-[24px] transition-transform hover:-translate-y-1"
+              className="group flex min-h-[410px] flex-col overflow-hidden rounded-[20px] transition-transform hover:-translate-y-1"
               style={{
                 background: featured ? "var(--ink)" : "rgba(255,255,255,0.72)",
                 border: featured ? "1px solid rgba(200,168,100,0.32)" : "1px solid rgba(200,168,100,0.26)",
                 boxShadow: "0 28px 70px -52px rgba(80,38,28,0.45)",
               }}
             >
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-[var(--blush)]">
+              <div className="relative aspect-[16/8] w-full overflow-hidden bg-[var(--blush)]">
                 <img
                   src={image}
                   alt={imageAlt}
@@ -675,17 +675,17 @@ function ChooseYourPath() {
                   style={{ background: "linear-gradient(180deg, rgba(255,248,243,0.08) 0%, rgba(255,248,243,0.28) 100%)" }}
                 />
               </div>
-              <div className="flex flex-1 flex-col p-7 md:p-8">
+              <div className="flex flex-1 flex-col p-6">
                 <p className="text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)", fontWeight: 700 }}>
                   {eyebrow}
                 </p>
-                <h3 className="mt-3" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.85rem", lineHeight: 1.05, color: featured ? "var(--cream)" : "var(--ink)" }}>
+                <h3 className="mt-2.5" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.65rem", lineHeight: 1.05, color: featured ? "var(--cream)" : "var(--ink)" }}>
                   {title}
                 </h3>
-                <p className="mt-4 leading-7" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem", color: featured ? "rgba(253,246,240,0.66)" : "rgba(30,15,10,0.58)" }}>
+                <p className="mt-3 leading-6" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.86rem", color: featured ? "rgba(253,246,240,0.66)" : "rgba(30,15,10,0.58)" }}>
                   {body}
                 </p>
-                <span className="mt-auto pt-7 text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", color: featured ? "var(--gold)" : "var(--rose)", fontWeight: 700 }}>
+                <span className="mt-auto pt-5 text-[9px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", color: featured ? "var(--gold)" : "var(--rose)", fontWeight: 700 }}>
                   {cta} <span aria-hidden>→</span>
                 </span>
               </div>

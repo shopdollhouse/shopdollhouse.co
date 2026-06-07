@@ -388,52 +388,81 @@ function CheckoutSection({ product, priceAmount, currency }: { product: BrandPro
   if (!product.checkoutUrl) return null;
 
   return (
-    <section id="checkout" className="bg-[var(--cream)] px-5 py-16 md:px-8 md:py-24">
-      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-        <div className="stan-card rounded-[30px] bg-white/70 p-7 md:p-10" style={{ border: "1px solid color-mix(in oklab, var(--gold) 30%, transparent)", boxShadow: "0 28px 70px -48px rgba(90,45,35,0.55)" }}>
-          <p className="stan-section-label text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase" }}>
-            Secure Checkout
-          </p>
-          <h2 className="stan-section-title mt-4 text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 5vw, 3.8rem)", lineHeight: 1, fontWeight: 400 }}>
-            Get instant access without leaving the page.
-          </h2>
-          <div className="mt-6 flex items-baseline gap-3">
-            <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3.2rem, 8vw, 5rem)", lineHeight: 1 }}>
-              {priceAmount}
+    <section
+      id="checkout"
+      className="px-5 py-16 md:px-8 md:py-24"
+      style={{ background: "linear-gradient(180deg, var(--cream) 0%, #f8e5df 100%)" }}
+    >
+      <div className="mx-auto max-w-5xl">
+        <div
+          className="stan-card mb-6 rounded-[26px] px-6 py-6 md:flex md:items-center md:justify-between md:gap-10 md:px-9"
+          style={{
+            background: "rgba(255,250,246,0.78)",
+            border: "1px solid color-mix(in oklab, var(--gold) 30%, transparent)",
+            boxShadow: "0 24px 60px -46px rgba(90,45,35,0.55)",
+          }}
+        >
+          <div className="flex items-start gap-4">
+            <img src={archMark} alt="" className="mt-1 h-12 w-9 shrink-0 opacity-55" />
+            <div>
+              <p className="stan-section-label text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+                Secure Checkout
+              </p>
+              <h2 className="stan-section-title mt-2 text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.9rem, 4vw, 2.8rem)", lineHeight: 1, fontWeight: 400 }}>
+                Complete your order.
+              </h2>
+              <p className="stan-body-copy mt-3 max-w-xl text-[var(--ink)]/58" style={{ fontFamily: FONT_BODY, fontSize: "0.9rem", lineHeight: 1.6 }}>
+                Secure one-time payment. Your private access details appear immediately after checkout.
+              </p>
+            </div>
+          </div>
+          <div className="mt-5 shrink-0 border-t border-[var(--gold)]/18 pt-5 md:mt-0 md:border-l md:border-t-0 md:pl-8 md:pt-0 md:text-right">
+            <div className="flex items-baseline gap-2 md:justify-end">
+              <span className="italic text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "3.2rem", lineHeight: 1 }}>
+                {priceAmount}
+              </span>
               {currency && (
-                <span style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", fontStyle: "normal", fontWeight: 700, letterSpacing: "0.16em", marginLeft: "0.45rem" }}>
+                <span className="text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", fontWeight: 700, letterSpacing: "0.14em" }}>
                   {currency}
                 </span>
               )}
-            </span>
-            {product.regular && <span className="text-[var(--ink)]/28 line-through" style={{ fontFamily: FONT_BODY, fontSize: "1.05rem" }}>{product.regular}</span>}
+              {product.regular && <span className="text-[var(--ink)]/28 line-through" style={{ fontFamily: FONT_BODY, fontSize: "0.9rem" }}>{product.regular}</span>}
+            </div>
+            <p className="mt-2 text-[var(--ink)]/42" style={{ fontFamily: FONT_BODY, fontSize: "0.76rem" }}>
+              Instant digital access · All sales final
+            </p>
           </div>
-          <p className="stan-body-copy mt-4 text-[var(--ink)]/62" style={{ fontFamily: FONT_BODY, fontSize: "0.98rem", lineHeight: 1.7 }}>
-            Finish your purchase here, then use the access details shown after checkout to enter your private workspace.
-          </p>
-          <a href={product.checkoutUrl} className="stan-button mt-7 block rounded-full bg-[var(--ink)] px-6 py-4 text-center text-[var(--cream)] transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
-            Open Secure Checkout <span aria-hidden>→</span>
-          </a>
-          <p className="stan-faq-copy mt-4 text-center text-[var(--ink)]/42" style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", lineHeight: 1.6 }}>
-            If the payment frame does not load on your device, use the secure checkout button above.
-          </p>
         </div>
 
-        <div className="stan-card overflow-hidden rounded-[30px] bg-white/74" style={{ border: "1px solid color-mix(in oklab, var(--gold) 30%, transparent)", boxShadow: "0 28px 70px -48px rgba(90,45,35,0.55)" }}>
-          <div className="border-b border-[var(--gold)]/20 bg-[var(--blush)]/45 px-5 py-4">
-            <p className="stan-section-label text-[var(--ink)]/58" style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", letterSpacing: "0.16em", textTransform: "uppercase" }}>
-              FastPay secure payment
+        <div
+          className="stan-card overflow-hidden rounded-[28px] bg-white"
+          style={{ border: "1px solid color-mix(in oklab, var(--gold) 30%, transparent)", boxShadow: "0 32px 80px -50px rgba(90,45,35,0.62)" }}
+        >
+          <div className="flex items-center justify-between gap-4 border-b border-[var(--gold)]/20 bg-[var(--blush)]/38 px-5 py-4 md:px-7">
+            <p className="stan-section-label text-[var(--ink)]/58" style={{ fontFamily: FONT_LUXE, fontSize: "0.64rem", letterSpacing: "0.16em", textTransform: "uppercase" }}>
+              Protected Payment
             </p>
+            <div className="flex items-center gap-3 text-[var(--ink)]/42" style={{ fontFamily: FONT_BODY, fontSize: "0.72rem" }}>
+              <span>Encrypted</span>
+              <span aria-hidden>·</span>
+              <span>Secure</span>
+            </div>
           </div>
           <iframe
             src={product.checkoutUrl}
             title={`${product.shortName} secure checkout`}
-            className="h-[1040px] w-full bg-white md:h-[880px]"
+            className="h-[1780px] w-full bg-white sm:h-[1640px] lg:h-[1500px]"
             loading="lazy"
-            scrolling="auto"
+            scrolling="no"
             style={{ border: 0, display: "block" }}
           />
         </div>
+        <p className="stan-faq-copy mx-auto mt-5 max-w-2xl text-center text-[var(--ink)]/42" style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", lineHeight: 1.6 }}>
+          Trouble viewing the payment form?{" "}
+          <a href={product.checkoutUrl} className="text-[var(--rose)] underline underline-offset-4">
+            Open the secure checkout in a new page.
+          </a>
+        </p>
       </div>
     </section>
   );
