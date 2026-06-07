@@ -586,7 +586,7 @@ function Hero() {
           className="reveal mt-3 text-[var(--ink)]/60 italic"
           style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1rem, 2vw, 1.2rem)", animationDelay: "0.85s" }}
         >
-          First 14 days of management free · Continue only if it feels like a fit · One-time $500 setup
+          First 14 days of management free · Done for you, every day · Continue only if it feels like a fit
         </p>
       </div>
 
