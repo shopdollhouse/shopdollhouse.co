@@ -39,6 +39,7 @@ const products = [
     body: "Your colours, fonts, and visual identity — decided, locked in, done. Interactive web app. Access forever.",
     bullets: ["Colour palette built for your brand", "Font pairings chosen and explained", "Visual identity direction locked in", "Access forever, no expiry"],
     href: SALES_PAGES.brandKit,
+    checkout: CHECKOUT.brandKit,
     image: productImage,
     imageAlt: "The Dollhouse Brand Kit Blueprint shown across desktop and tablet",
   },
@@ -52,6 +53,7 @@ const products = [
     body: "Your offer, audience, messaging, and content plan — all figured out in one sitting. Bonus PDF included.",
     bullets: ["Niche and audience clarity", "Offer and pricing direction", "Brand messaging in plain English", "Content plan built in", "Bonus PDF version included"],
     href: SALES_PAGES.workbook,
+    checkout: CHECKOUT.workbook,
     image: workbookImage,
     imageAlt: "The Dollhouse Brand Workbook shown across digital devices",
   },
@@ -65,6 +67,7 @@ const products = [
     body: "200+ prompts across 8 brand rooms — written for women building brands online. No more blank captions.",
     bullets: ["200+ prompts organised by content type", "Social posts, emails, DMs, brand story", "Built for the Dollhouse content pillars", "Works with any AI tool", "Start using it today"],
     href: SALES_PAGES.ai,
+    checkout: CHECKOUT.ai,
     image: promptKitImage,
     imageAlt: "The Dollhouse AI Prompt Kit and content prompt library",
   },
@@ -385,9 +388,14 @@ function BrandRoomPage() {
                       </li>
                     ))}
                   </ul>
-                  <a href={product.href} className="mt-6 flex min-h-12 w-full items-center justify-center rounded-full border border-[var(--ink)] px-5 py-3 text-center transition-colors hover:bg-[var(--ink)] hover:text-[var(--cream)] lg:mt-auto" style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase" }}>
-                    See {product.name} <span className="ml-2" aria-hidden>→</span>
-                  </a>
+                  <div className="mt-6 lg:mt-auto">
+                    <a href={product.checkout} target="_blank" rel="noopener noreferrer" className="flex min-h-12 w-full items-center justify-center rounded-full bg-[var(--ink)] px-5 py-3 text-center text-[var(--cream)] transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase" }}>
+                      Buy Now — {product.price.replace(" USD", "")} <span className="ml-2" aria-hidden>→</span>
+                    </a>
+                    <a href={product.href} className="mt-2.5 block text-center underline underline-offset-4" style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", color: "rgba(29,15,11,0.55)" }}>
+                      See full details
+                    </a>
+                  </div>
                 </div>
               </article>
             ))}
