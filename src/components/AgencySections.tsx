@@ -30,16 +30,16 @@ function ctaLinkProps(newTab: boolean) {
   return newTab ? { target: "_blank", rel: "noopener noreferrer" } : {};
 }
 
-const PULSE_STYLE = `@keyframes plan-pulse{0%{box-shadow:0 0 0 0 rgba(189,116,118,0)}30%{box-shadow:0 0 0 5px rgba(189,116,118,0.55)}100%{box-shadow:0 0 0 0 rgba(189,116,118,0)}}.plan-pulse{animation:plan-pulse 1.5s ease-out}`;
+const PULSE_STYLE = `@keyframes plan-pulse{0%,100%{box-shadow:0 0 0 2px rgba(189,116,118,0.2),0 18px 48px -28px rgba(189,116,118,0.4);transform:translateY(0)}45%{box-shadow:0 0 0 7px rgba(189,116,118,0.42),0 24px 54px -24px rgba(189,116,118,0.62);transform:translateY(-3px)}}.plan-pulse{animation:plan-pulse 1.6s ease-in-out 3}`;
 
-function pulsePlan(id: string) {
+export function pulsePlan(id: string) {
   const el = document.getElementById(id);
   if (!el) return;
   el.scrollIntoView({ behavior: "smooth", block: "center" });
   el.classList.remove("plan-pulse");
   void el.offsetWidth; // restart the animation
   el.classList.add("plan-pulse");
-  window.setTimeout(() => el.classList.remove("plan-pulse"), 1500);
+  window.setTimeout(() => el.classList.remove("plan-pulse"), 5000);
 }
 
 /* ── Plan finder ─────────────────────────────────────── */
@@ -170,7 +170,7 @@ export function ResultsStatsSection() {
         <div className="mt-8 grid gap-8 sm:grid-cols-3">
           {[
             ["24/7", "Voice AI answering your missed calls"],
-            ["14 days", "Until your first content goes live"],
+            ["Done for you", "Content planned, created, and managed for your business"],
             ["3 platforms", "Fully managed — nothing to post"],
           ].map(([n, l]) => (
             <div key={l}>
@@ -195,6 +195,12 @@ export function AgencyFaqSection() {
     ["Can I upgrade my plan later?", "Yes. Many clients start with Foundation or Starter and move into Growth when the timing is right. We will recommend the upgrade when your results support it."],
     ["What happens after the 14-day free trial?", "Monthly billing begins automatically. You are on a 6-month agreement from that point. Annual clients receive their 12th month completely free."],
     ["How do I get started?", "Click “Get a Free Proposal” on any plan. We review your business, recommend the right plan, and send a full proposal before you commit anything. No pressure, no obligation."],
+    ["Do I have to sign a contract?", "Yes. All clients sign a service agreement before work begins. You can choose a 6-month or 12-month term — whichever works best for you. Clients who commit to 12 months get one month free (you pay for 11, we work all 12). The contract outlines your deliverables, payment terms, and everything we’ve agreed to. It’s written in plain language — no legalese."],
+    ["When do I pay?", "A one-time setup fee of $500 is due when you sign. Your first monthly retainer payment starts on Day 15 — after your 14-day onboarding period. After that, you’re billed every 30 days on the same date."],
+    ["Is the 14-day trial really free?", "The trial period is your onboarding window — we spend those 14 days setting up your accounts, strategy, and systems. You don’t pay the monthly retainer during that time, but the $500 setup fee is due upfront to reserve your spot and cover onboarding work."],
+    ["What if I want to cancel before my term is up?", "We require 30 days written notice to cancel. If you cancel before your term is complete, an early termination fee equal to 2 months of your retainer is due. The setup fee is non-refundable. We’re upfront about this from day one so there are no surprises."],
+    ["What happens after my term ends?", "Your agreement automatically moves to month-to-month. You can cancel anytime with 30 days notice — no new long-term commitment required."],
+    ["Is ad spend included in the price?", "No. Ad spend is paid directly by you to Meta and is separate from our fees. We recommend a minimum of $1,000–2,000/mo in ad budget for best results. We manage the ads — you control the budget."],
   ];
 
   return (

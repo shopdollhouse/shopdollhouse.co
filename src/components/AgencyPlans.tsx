@@ -29,7 +29,7 @@ export interface Plan {
 }
 
 const ROSE_HEX = "#c97a7a";
-const GROWTH = "#8B6914";
+const GROWTH = INK;
 
 export const PLANS: Plan[] = [
   {
@@ -172,7 +172,7 @@ export function PlanCard({
         <div className="mt-5 flex flex-wrap gap-2">
           <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1" style={{ background: CREAM, color: INK, fontFamily: FONT_LUXE, fontSize: "0.58rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>
             <svg viewBox="0 0 12 10" width="10" height="9" fill={ROSE}><path d="M6 9 L0.5 3.5 a2.2 2.2 0 0 1 3.1 -3.1 L6 2.8 l2.4 -2.4 a2.2 2.2 0 0 1 3.1 3.1 Z" /></svg>
-            6-Month Agreement
+            {billing === "6" ? "6-Month Agreement" : "12-Month Agreement"}
           </span>
           {plan.freeTrial && (
             <span className="rounded-full px-3 py-1" style={{ background: ROSE, color: "#fff", fontFamily: FONT_LUXE, fontSize: "0.58rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>

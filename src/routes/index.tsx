@@ -22,10 +22,13 @@ import signatureBrandingBg from "@/assets/signature-branding-bg.jpg";
 import archMark from "@/assets/arch-mark.svg";
 import mandyPhoto from "@/assets/mandy-photo.jpg";
 import mandyAIClonePreview from "@/assets/mandy-ai-clone-preview.jpg";
+import managedGrowthImage from "@/assets/path-managed-growth.jpg";
+import leadSystemImage from "@/assets/path-lead-system.jpg";
+import brandRoomImage from "@/assets/path-brand-room.jpg";
 import { managedServiceLinks, systemServices } from "@/lib/system-services";
 import { usePageMeta } from "@/lib/use-page-meta";
 import { PLANS, PlanCard } from "@/components/AgencyPlans";
-import { PlanFinderSection, FocusedSetupSection, PlanComparisonSection, ResultsStatsSection, AgencyFaqSection, FinalCtaSection, AgencyFooterNotes } from "@/components/AgencySections";
+import { PlanFinderSection, FocusedSetupSection, PlanComparisonSection, ResultsStatsSection, AgencyFaqSection, FinalCtaSection, AgencyFooterNotes, pulsePlan } from "@/components/AgencySections";
 
 export const Route = createFileRoute("/")({ component: Index });
 
@@ -599,7 +602,9 @@ function ChooseYourPath() {
       body: "Choose content, ads, AI clone, reviews, and lead follow-up managed together.",
       href: "#pricing",
       cta: "See Managed Plans",
-      icon: Sparkles,
+      targetPlan: "growth",
+      image: managedGrowthImage,
+      imageAlt: "A booked client calendar and business growth dashboard",
       featured: true,
     },
     {
@@ -608,7 +613,9 @@ function ChooseYourPath() {
       body: "Start with the $297 website, missed-call text-back, review funnel, CRM, and SEO package.",
       href: "#plan-foundation",
       cta: "See The Foundation Plan",
-      icon: SquareMousePointer,
+      targetPlan: "foundation",
+      image: leadSystemImage,
+      imageAlt: "A website connected to an automated lead follow-up and booking system",
       featured: false,
     },
     {
@@ -617,7 +624,9 @@ function ChooseYourPath() {
       body: "Use the Brand Room tools to clarify your audience, offer, visuals, content, and launch direction.",
       href: "/brand-room",
       cta: "Enter The Brand Room",
-      icon: DoorIcon,
+      targetPlan: null,
+      image: brandRoomImage,
+      imageAlt: "A brand strategy workspace with a workbook, moodboard, and planning tools",
       featured: false,
     },
   ];
@@ -636,32 +645,50 @@ function ChooseYourPath() {
         </div>
 
         <div className="mt-10 grid gap-4 lg:grid-cols-3">
-          {paths.map(({ eyebrow, title, body, href, cta, icon: Icon, featured }) => (
+          {paths.map(({ eyebrow, title, body, href, cta, targetPlan, image, imageAlt, featured }) => (
             <a
               key={title}
               href={href}
-              className="group flex min-h-[310px] flex-col rounded-[28px] p-7 transition-transform hover:-translate-y-1 md:p-8"
+              onClick={(event) => {
+                if (!targetPlan) return;
+                event.preventDefault();
+                pulsePlan(targetPlan);
+              }}
+              className="group flex min-h-[500px] flex-col overflow-hidden rounded-[24px] transition-transform hover:-translate-y-1"
               style={{
                 background: featured ? "var(--ink)" : "rgba(255,255,255,0.72)",
                 border: featured ? "1px solid rgba(200,168,100,0.32)" : "1px solid rgba(200,168,100,0.26)",
                 boxShadow: "0 28px 70px -52px rgba(80,38,28,0.45)",
               }}
             >
-              <span className="flex h-14 w-14 items-center justify-center rounded-2xl" style={{ background: featured ? "rgba(200,168,100,0.14)" : "rgba(201,122,122,0.1)", color: featured ? "var(--gold)" : "var(--rose)" }}>
-                <Icon className="h-7 w-7" />
-              </span>
-              <p className="mt-7 text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)", fontWeight: 700 }}>
-                {eyebrow}
-              </p>
-              <h3 className="mt-3" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.85rem", lineHeight: 1.05, color: featured ? "var(--cream)" : "var(--ink)" }}>
-                {title}
-              </h3>
-              <p className="mt-4 leading-7" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem", color: featured ? "rgba(253,246,240,0.66)" : "rgba(30,15,10,0.58)" }}>
-                {body}
-              </p>
-              <span className="mt-auto pt-7 text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", color: featured ? "var(--gold)" : "var(--rose)", fontWeight: 700 }}>
-                {cta} <span aria-hidden>→</span>
-              </span>
+              <div className="relative aspect-[16/10] w-full overflow-hidden bg-[var(--blush)]">
+                <img
+                  src={image}
+                  alt={imageAlt}
+                  className="h-full w-full object-cover opacity-[0.82] transition-all duration-700 group-hover:scale-[1.025] group-hover:opacity-90"
+                  style={{ filter: "saturate(0.7) contrast(0.9) brightness(1.04)" }}
+                  loading="lazy"
+                />
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0"
+                  style={{ background: "linear-gradient(180deg, rgba(255,248,243,0.08) 0%, rgba(255,248,243,0.28) 100%)" }}
+                />
+              </div>
+              <div className="flex flex-1 flex-col p-7 md:p-8">
+                <p className="text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)", fontWeight: 700 }}>
+                  {eyebrow}
+                </p>
+                <h3 className="mt-3" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.85rem", lineHeight: 1.05, color: featured ? "var(--cream)" : "var(--ink)" }}>
+                  {title}
+                </h3>
+                <p className="mt-4 leading-7" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem", color: featured ? "rgba(253,246,240,0.66)" : "rgba(30,15,10,0.58)" }}>
+                  {body}
+                </p>
+                <span className="mt-auto pt-7 text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", color: featured ? "var(--gold)" : "var(--rose)", fontWeight: 700 }}>
+                  {cta} <span aria-hidden>→</span>
+                </span>
+              </div>
             </a>
           ))}
         </div>
@@ -2555,42 +2582,57 @@ function Contact() {
             ))}
           </div>
           <div
-            className="mt-8 rounded-2xl p-6"
+            className="mt-8 overflow-hidden rounded-[24px] border p-5 sm:p-6"
             style={{
-              background: "linear-gradient(135deg, rgba(30,15,10,0.96), rgba(48,24,18,0.92))",
-              boxShadow: "0 28px 58px -34px rgba(30,15,10,0.75)",
+              background: "linear-gradient(145deg, rgba(255,250,246,0.9), rgba(248,229,225,0.78))",
+              borderColor: "rgba(200,168,100,0.3)",
+              boxShadow: "0 24px 58px -40px rgba(90,45,35,0.42), inset 0 1px 0 rgba(255,255,255,0.78)",
             }}
           >
-            <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
-              Best fit for
-            </p>
+            <div className="flex items-center gap-3">
+              <span className="h-px w-8 bg-[var(--gold)]/55" aria-hidden />
+              <p className="text-[var(--rose)] text-[10px] tracking-luxe uppercase font-semibold" style={{ fontFamily: "'Jost', sans-serif" }}>
+                Best fit for
+              </p>
+              <span className="h-px flex-1 bg-[var(--gold)]/32" aria-hidden />
+            </div>
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
               {[
-                "Roofing contractors",
-                "HVAC companies",
-                "Plumbers & electricians",
-                "Med spas & aesthetic clinics",
-                "Chiropractors",
-                "Physical therapists",
-                "Local law firms",
+                "Contractors & home services",
+                "Coaches & consultants",
+                "Med spas & aesthetics",
+                "Real estate agents",
+                "Salons & beauty pros",
+                "Restaurants & food brands",
+                "Fitness studios & gyms",
+                "Law firms & professionals",
+                "Retail & boutique brands",
+                "E-commerce businesses",
+                "Photographers & creatives",
+                "Mortgage & insurance pros",
               ].map((industry) => (
                 <div
                   key={industry}
-                  className="rounded-full px-3 py-2 text-[var(--cream)]/82"
+                  className="flex min-h-10 items-center gap-2.5 rounded-full px-3.5 py-2 text-[var(--ink)]/72"
                   style={{
-                    border: "1px solid rgba(200,168,100,0.24)",
-                    background: "rgba(255,250,246,0.06)",
+                    border: "1px solid rgba(200,168,100,0.26)",
+                    background: "rgba(255,255,255,0.62)",
                     fontFamily: "'DM Sans', sans-serif",
                     fontSize: "0.78rem",
                     lineHeight: 1.25,
+                    boxShadow: "0 8px 20px -18px rgba(90,45,35,0.5)",
                   }}
                 >
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--rose)]/72" aria-hidden />
                   {industry}
                 </div>
               ))}
             </div>
-            <p className="mt-4 text-[var(--cream)]/62 leading-6" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem" }}>
-              Built for service businesses that need more calls, booked appointments, reviews, and follow-up without managing a marketing team.
+            <p
+              className="mt-5 border-t border-[var(--gold)]/20 pt-4 text-[var(--ink)]/62 leading-6"
+              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem" }}
+            >
+              Built for business owners who are ready to stop guessing at their marketing — and start showing up everywhere online, every single day, with content, systems, and strategy fully handled for them.
             </p>
           </div>
         </div>
