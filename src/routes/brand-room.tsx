@@ -388,7 +388,7 @@ function BrandRoomPage() {
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-6 lg:mt-auto">
+                  <div className="mt-6 lg:mt-auto lg:pt-5">
                     <a href={product.checkout} target="_blank" rel="noopener noreferrer" className="flex min-h-12 w-full items-center justify-center rounded-full bg-[var(--ink)] px-5 py-3 text-center text-[var(--cream)] transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase" }}>
                       Buy Now — {product.price.replace(" USD", "")} <span className="ml-2" aria-hidden>→</span>
                     </a>
