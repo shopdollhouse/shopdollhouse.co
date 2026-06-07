@@ -390,7 +390,7 @@ function BrandRoomPage() {
             ))}
           </div>
 
-          <div className="mt-8 grid overflow-hidden rounded-[26px] border border-[var(--gold)]/35 bg-[#241512] shadow-[0_30px_80px_-52px_rgba(0,0,0,0.9)] md:grid-cols-[1.35fr_0.65fr]">
+          <div className="mt-8 grid overflow-hidden rounded-[26px] border border-[var(--gold)]/35 bg-[#170c08] shadow-[0_30px_80px_-52px_rgba(0,0,0,0.9)] md:grid-cols-[1.35fr_0.65fr]">
             <div className="p-7 md:p-10">
               <div className="flex flex-wrap items-center gap-3">
                 <span className="rounded-full bg-[var(--rose)] px-4 py-2 text-[var(--cream)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase" }}>
