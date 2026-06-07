@@ -252,7 +252,11 @@ export default function ExitIntentPopup() {
             <div
               style={{
                 minHeight: "100%",
-                background: "rgba(30,15,11,0.94)",
+                background:
+                  "linear-gradient(150deg, rgba(201,128,131,0.82) 0%, rgba(168,96,103,0.84) 100%)",
+                backdropFilter: "blur(18px) saturate(1.25)",
+                WebkitBackdropFilter: "blur(18px) saturate(1.25)",
+                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.18)",
                 padding: "34px 28px",
                 color: "var(--cream)",
               }}
