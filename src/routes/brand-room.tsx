@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import archMark from "@/assets/arch-mark.svg";
 import heroBg from "@/assets/password-bg.jpg";
 import productImage from "@/assets/product-brand-kit.jpg";
+import workbookImage from "@/assets/product-workbook.jpg";
+import promptKitImage from "@/assets/product-ai-prompt-kit.jpg";
 import { usePageMeta } from "@/lib/use-page-meta";
 
 export const Route = createFileRoute("/brand-room")({ component: BrandRoomPage });
@@ -28,31 +30,43 @@ const SALES_PAGES = {
 
 const products = [
   {
+    number: "01",
     name: "Brand Kit Blueprint",
     price: "$97 USD",
     regular: "$145",
+    label: "Build the visual brand",
     tagline: "For the woman who needs her brand to look like it means business.",
     body: "Your colours, fonts, and visual identity — decided, locked in, done. Interactive web app. Access forever.",
     bullets: ["Colour palette built for your brand", "Font pairings chosen and explained", "Visual identity direction locked in", "Access forever, no expiry"],
     href: SALES_PAGES.brandKit,
+    image: productImage,
+    imageAlt: "The Dollhouse Brand Kit Blueprint shown across desktop and tablet",
   },
   {
+    number: "02",
     name: "Brand Workbook",
     price: "$47 USD",
     regular: "$261",
+    label: "Clarify the business",
     tagline: "For the woman who needs to get clear on what she's actually building.",
     body: "Your offer, audience, messaging, and content plan — all figured out in one sitting. Bonus PDF included.",
     bullets: ["Niche and audience clarity", "Offer and pricing direction", "Brand messaging in plain English", "Content plan built in", "Bonus PDF version included"],
     href: SALES_PAGES.workbook,
+    image: workbookImage,
+    imageAlt: "The Dollhouse Brand Workbook shown across digital devices",
   },
   {
+    number: "03",
     name: "AI Prompt Kit",
     price: "$17 USD",
     regular: "$37",
+    label: "Create the content",
     tagline: "For the woman who knows what to post but can't find the words.",
     body: "200+ prompts across 8 brand rooms — written for women building brands online. No more blank captions.",
     bullets: ["200+ prompts organised by content type", "Social posts, emails, DMs, brand story", "Built for the Dollhouse content pillars", "Works with any AI tool", "Start using it today"],
     href: SALES_PAGES.ai,
+    image: promptKitImage,
+    imageAlt: "The Dollhouse AI Prompt Kit and content prompt library",
   },
 ];
 
@@ -295,36 +309,81 @@ function BrandRoomPage() {
           <div className="text-center">
             <Eyebrow gold>What's Inside</Eyebrow>
             <h2 className="mt-4" style={{ fontFamily: FONT_DISPLAY, fontWeight: 400, color: "var(--cream)", fontSize: "clamp(2.2rem, 4vw, 3rem)", lineHeight: 1.08 }}>
-              The Strategy Suite
+              Three tools. One clear path.
             </h2>
+            <p className="mx-auto mt-4 max-w-2xl" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.7, color: "rgba(253,246,240,0.62)" }}>
+              Start where you are today, or choose the complete suite and move from business idea to polished brand to ready-to-publish content.
+            </p>
             <Divider />
           </div>
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {products.map((product) => (
-              <article key={product.name} className="rounded-3xl p-8" style={{ border: "1px solid rgba(200,168,100,0.28)", background: "rgba(255,255,255,0.03)" }}>
-                <p className="flex items-baseline gap-2" style={{ fontFamily: FONT_LUXE, fontSize: "0.78rem", fontWeight: 600, letterSpacing: "0.1em", color: "var(--gold)" }}>
-                  <span>{product.price}</span>
-                  {product.regular && <span className="line-through" style={{ color: "rgba(253,246,240,0.4)", fontWeight: 500 }}>{product.regular}</span>}
-                </p>
-                <h3 className="mt-4" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.9rem", lineHeight: 1.1, color: "var(--cream)" }}>{product.name}</h3>
-                <p className="mt-3 italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.2rem", lineHeight: 1.3, color: "var(--rose)" }}>{product.tagline}</p>
-                <p className="mt-4" style={{ fontFamily: FONT_BODY, fontSize: "0.95rem", lineHeight: 1.65, color: "rgba(253,246,240,0.74)" }}>{product.body}</p>
-                <ul className="mt-5 space-y-2.5">
-                  {product.bullets.map((bullet) => (
-                    <li key={bullet} className="flex gap-2.5" style={{ fontFamily: FONT_BODY, fontSize: "0.9rem", lineHeight: 1.5, color: "rgba(253,246,240,0.8)" }}>
-                      <CheckIcon />
-                      <span>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-                <a href={product.href} className="mt-6 inline-block underline underline-offset-4" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gold)" }}>
-                  Learn more →
-                </a>
+              <article key={product.name} className="flex flex-col overflow-hidden rounded-[26px] border border-[var(--gold)]/30 bg-[var(--cream)] text-[var(--ink)] shadow-[0_30px_70px_-50px_rgba(0,0,0,0.9)] sm:flex-row lg:flex-col">
+                <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-[var(--blush)] sm:aspect-auto sm:min-h-64 sm:w-[42%] lg:aspect-[4/3] lg:min-h-0 lg:w-full">
+                  <img src={product.image} alt={product.imageAlt} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.025]" />
+                  <span className="absolute left-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/50 bg-[var(--ink)]/82 text-[var(--cream)] backdrop-blur-sm" style={{ fontFamily: FONT_DISPLAY, fontSize: "1rem", fontStyle: "italic" }}>
+                    {product.number}
+                  </span>
+                </div>
+                <div className="flex min-w-0 flex-1 flex-col p-5 md:p-7">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <p style={{ fontFamily: FONT_LUXE, fontSize: "0.61rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>
+                      {product.label}
+                    </p>
+                    <p className="flex items-baseline gap-2" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.08em", color: "var(--rose)" }}>
+                      <span>{product.price}</span>
+                      {product.regular && <span className="line-through" style={{ color: "rgba(29,15,11,0.3)", fontWeight: 500 }}>{product.regular}</span>}
+                    </p>
+                  </div>
+                  <h3 className="mt-4" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.65rem, 3vw, 2rem)", lineHeight: 1.05, color: "var(--ink)" }}>{product.name}</h3>
+                  <p className="mt-3 italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.12rem", lineHeight: 1.35, color: "var(--rose)" }}>{product.tagline}</p>
+                  <p className="mt-4" style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", lineHeight: 1.65, color: "rgba(29,15,11,0.63)" }}>{product.body}</p>
+                  <ul className="mt-5 space-y-2.5">
+                    {product.bullets.slice(0, 3).map((bullet) => (
+                      <li key={bullet} className="flex gap-2.5" style={{ fontFamily: FONT_BODY, fontSize: "0.84rem", lineHeight: 1.45, color: "rgba(29,15,11,0.72)" }}>
+                        <CheckIcon />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <a href={product.href} className="mt-6 flex min-h-12 w-full items-center justify-center rounded-full border border-[var(--ink)] px-5 py-3 text-center transition-colors hover:bg-[var(--ink)] hover:text-[var(--cream)] lg:mt-auto" style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase" }}>
+                    See {product.name} <span className="ml-2" aria-hidden>→</span>
+                  </a>
+                </div>
               </article>
             ))}
           </div>
-          <div className="mt-10 text-center">
-            <Button href="#pricing" rose>Choose My Tool</Button>
+
+          <div className="mt-8 grid overflow-hidden rounded-[26px] border border-[var(--gold)]/35 bg-[#241512] shadow-[0_30px_80px_-52px_rgba(0,0,0,0.9)] md:grid-cols-[1.35fr_0.65fr]">
+            <div className="p-7 md:p-10">
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="rounded-full bg-[var(--rose)] px-4 py-2 text-[var(--cream)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase" }}>
+                  Best Value
+                </span>
+                <span style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold)" }}>Save $34</span>
+              </div>
+              <h3 className="mt-5 text-[var(--cream)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.15rem, 5vw, 3.35rem)", fontWeight: 400, lineHeight: 1 }}>
+                Get the complete Brand Room.
+              </h3>
+              <p className="mt-4 max-w-2xl" style={{ fontFamily: FONT_BODY, fontSize: "0.95rem", lineHeight: 1.7, color: "rgba(253,246,240,0.67)" }}>
+                Build the business foundation, create the visual identity, then turn both into content. All three tools work together, and you keep access forever.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {["Brand Workbook", "Brand Kit Blueprint", "AI Prompt Kit"].map((item) => (
+                  <span key={item} className="rounded-full border border-[var(--gold)]/28 px-4 py-2" style={{ fontFamily: FONT_BODY, fontSize: "0.76rem", color: "rgba(253,246,240,0.72)" }}>{item}</span>
+                ))}
+              </div>
+            </div>
+            <div className="flex flex-col justify-center border-t border-[var(--gold)]/20 bg-white/[0.035] p-7 md:border-l md:border-t-0 md:p-10">
+              <p className="line-through" style={{ fontFamily: FONT_BODY, fontSize: "0.9rem", color: "rgba(253,246,240,0.35)" }}>$161 USD</p>
+              <p className="mt-1 text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "3.5rem", lineHeight: 1 }}>$127 <span style={{ fontFamily: FONT_LUXE, fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.12em" }}>USD</span></p>
+              <a href={CHECKOUT.suite} target="_blank" rel="noopener noreferrer" className="mt-5 flex min-h-12 items-center justify-center rounded-full bg-[var(--rose)] px-6 py-4 text-center text-[var(--cream)] transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ fontFamily: FONT_LUXE, fontSize: "0.67rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase" }}>
+                Get the Full Suite <span className="ml-2" aria-hidden>→</span>
+              </a>
+              <a href="#pricing" className="mt-4 text-center text-[var(--cream)]/55 underline underline-offset-4" style={{ fontFamily: FONT_BODY, fontSize: "0.76rem" }}>
+                Compare every option
+              </a>
+            </div>
           </div>
         </div>
       </section>
