@@ -425,33 +425,78 @@ function BrandRoomPage() {
       </section>
 
       {/* ── THIS IS FOR YOU IF ───────────────────────────── */}
-      <section className="px-6 py-20 md:py-28" style={{ background: "linear-gradient(180deg, var(--cream) 0%, #f8e7e2 100%)" }}>
-        <div className="mx-auto max-w-6xl">
+      <section className="relative overflow-hidden px-6 py-20 md:py-28" style={{ background: "linear-gradient(180deg, var(--cream) 0%, #f8e7e2 100%)" }}>
+        <div aria-hidden className="absolute -left-24 top-24 h-72 w-72 rounded-full bg-[var(--rose)]/10 blur-3xl" />
+        <div aria-hidden className="absolute -right-28 bottom-10 h-80 w-80 rounded-full bg-[var(--gold)]/10 blur-3xl" />
+        <div className="relative mx-auto max-w-6xl">
           <div className="text-center">
             <Eyebrow gold>Is this you?</Eyebrow>
             <h2 className="mt-4" style={{ fontFamily: FONT_DISPLAY, fontWeight: 400, color: "var(--rose)", fontSize: "clamp(2.2rem, 4vw, 3rem)", lineHeight: 1.08 }}>
-              This is for you if...
+              The Brand Room is your starting point if...
             </h2>
             <Divider />
+            <p className="mx-auto mt-4 max-w-2xl" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.75, color: "rgba(29,15,11,0.62)" }}>
+              You have the idea, the taste, and the ambition. What you need now is structure: one place to clarify the brand, shape the offer, and know what to create next.
+            </p>
           </div>
-          <div className="mt-8 grid gap-5 md:grid-cols-2">
-            <div className="rounded-3xl p-8" style={{ background: "var(--cream)", border: "1px solid rgba(200,168,100,0.3)" }}>
-              <Eyebrow>Yes, if:</Eyebrow>
-              {["You're starting your business and have no idea where to begin", "You've been working on your brand for months with nothing to show for it", "Your content feels random and you don't know what to post", "You want a professional brand without hiring a designer", "You're ready to stop planning and start building"].map((item) => (
-                <p key={item} className="mt-4 flex gap-3" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.55, color: "rgba(29,15,11,0.74)" }}><CheckIcon />{item}</p>
-              ))}
+
+          <div className="mt-10 grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="rounded-[30px] p-5 md:p-6" style={{ background: "rgba(255,250,246,0.78)", border: "1px solid rgba(200,168,100,0.32)", boxShadow: "0 28px 80px -60px rgba(90,45,35,0.55)" }}>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {[
+                  ["Brand new", "You are starting your business and need a clear first step."],
+                  ["Stuck in planning", "You have been saving ideas for months, but nothing feels finished."],
+                  ["Random content", "You know you should post, but you do not have a message system."],
+                  ["Ready to build", "You want a polished brand without hiring a full design team yet."],
+                ].map(([title, body]) => (
+                  <article key={title} className="rounded-[22px] border border-[var(--gold)]/22 bg-white/58 p-5">
+                    <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-[var(--gold)]/10 text-[var(--gold)]">
+                      <CheckIcon />
+                    </span>
+                    <h3 style={{ fontFamily: FONT_DISPLAY, color: "var(--ink)", fontSize: "1.45rem", fontWeight: 500, lineHeight: 1 }}>{title}</h3>
+                    <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", lineHeight: 1.6, color: "rgba(29,15,11,0.62)" }}>{body}</p>
+                  </article>
+                ))}
+              </div>
+
+              <div className="mt-4 rounded-[24px] border border-[var(--rose)]/22 bg-[var(--blush)]/55 p-5 text-center">
+                <p style={{ fontFamily: FONT_DISPLAY, color: "var(--rose)", fontSize: "1.55rem", fontStyle: "italic", lineHeight: 1.15 }}>
+                  Best for the person who wants guidance, but still wants to build her own foundation.
+                </p>
+              </div>
             </div>
-            <div className="rounded-3xl p-8" style={{ background: "var(--ink)", color: "var(--cream)" }}>
-              <Eyebrow gold>Not for you if:</Eyebrow>
-              {["You want someone to do everything for you", "You're not ready to show up and do the work", "You're looking for done-for-you marketing management"].map((item) => (
-                <p key={item} className="mt-4 flex gap-3" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.55, color: "rgba(253,246,240,0.8)" }}><CrossIcon color="var(--rose)" />{item}</p>
-              ))}
-              <a href="/services" className="mt-6 inline-block italic underline underline-offset-4" style={{ fontFamily: FONT_BODY, fontSize: "0.9rem", color: "var(--cream)" }}>
-                Looking for done-for-you? See our agency plans →
-              </a>
-            </div>
+
+            <aside className="grid gap-5">
+              <div className="overflow-hidden rounded-[30px] border border-[var(--gold)]/26 bg-white/62 p-3 shadow-[0_28px_80px_-62px_rgba(90,45,35,0.55)]">
+                <img src={productImage} alt="The Dollhouse Brand Room preview" loading="lazy" className="aspect-[4/3] w-full rounded-[24px] object-cover" style={{ objectPosition: "center", filter: "saturate(0.9) contrast(1.02)" }} />
+              </div>
+
+              <div className="rounded-[30px] p-7" style={{ background: "var(--ink)", color: "var(--cream)", boxShadow: "0 28px 80px -58px rgba(0,0,0,0.8)" }}>
+                <Eyebrow gold>Choose another path if:</Eyebrow>
+                {[
+                  "You want someone to do everything for you right now",
+                  "You are not ready to make decisions about your brand",
+                  "You already need done-for-you marketing management",
+                ].map((item) => (
+                  <p key={item} className="mt-4 flex gap-3" style={{ fontFamily: FONT_BODY, fontSize: "0.96rem", lineHeight: 1.55, color: "rgba(253,246,240,0.78)" }}><CrossIcon color="var(--rose)" />{item}</p>
+                ))}
+                <a href="/services" className="mt-6 inline-flex rounded-full border border-[var(--gold)]/35 px-5 py-3 text-center transition-all hover:-translate-y-0.5 hover:bg-white/10" style={{ fontFamily: FONT_LUXE, fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "var(--cream)" }}>
+                  Explore done-for-you services →
+                </a>
+              </div>
+            </aside>
           </div>
-        </div>
+
+          <div className="mx-auto mt-8 max-w-3xl rounded-[28px] border border-[var(--gold)]/25 bg-white/55 p-6 text-center shadow-[0_24px_70px_-58px_rgba(90,45,35,0.55)]">
+            <p style={{ fontFamily: FONT_LUXE, color: "var(--gold)", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase" }}>Still not sure?</p>
+            <p className="mt-2" style={{ fontFamily: FONT_DISPLAY, color: "var(--rose)", fontSize: "clamp(1.8rem, 4vw, 2.45rem)", fontWeight: 400, lineHeight: 1.05 }}>
+              Take the quiz and get matched to the right first step.
+            </p>
+            <a href="/quiz" className="mt-5 inline-flex rounded-full bg-[var(--ink)] px-7 py-3.5 text-[var(--cream)] transition-all hover:-translate-y-0.5" style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase" }}>
+              Take the free quiz →
+            </a>
+          </div>
+            </div>
       </section>
 
       {/* ── QUIZ DECISION ───────────────────────────────── */}
