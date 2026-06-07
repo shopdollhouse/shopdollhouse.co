@@ -2499,6 +2499,16 @@ function FAQ() {
 function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
 
+  // Load the GoHighLevel booking-widget script once (auto-resizes the embedded calendar).
+  useEffect(() => {
+    const SRC = "https://link.msgsndr.com/js/form_embed.js";
+    if (document.querySelector(`script[src="${SRC}"]`)) return;
+    const s = document.createElement("script");
+    s.src = SRC;
+    s.async = true;
+    document.body.appendChild(s);
+  }, []);
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("sending");
@@ -2782,9 +2792,7 @@ function Contact() {
         </div>
 
         <a
-          href="https://api.leadconnectorhq.com/widget/booking/9mOtVmE8ihxgAX2AMzge"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="#book"
           className="w-full flex items-center justify-center gap-2 rounded-xl py-3.5 text-[11px] tracking-luxe uppercase transition-all hover:border-[var(--ink)]/40 hover:text-[var(--ink)]"
           style={{
             fontFamily: "'Jost', sans-serif",
@@ -2810,6 +2818,25 @@ function Contact() {
           Or call (289) 301-4567
         </a>
       </form>
+      </div>
+
+      <div id="book" className="mx-auto mt-16 max-w-4xl scroll-mt-28 text-center">
+        <Eyebrow>Prefer to book a call?</Eyebrow>
+        <h3 className="mt-4 text-[var(--rose)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 400, lineHeight: 1.05 }}>
+          Book a free discovery call.
+        </h3>
+        <p className="mx-auto mt-4 max-w-lg text-[var(--ink)]/62 leading-7" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem" }}>
+          Pick a time that works for you. We'll look at your business, answer your questions, and recommend the right plan — no pressure.
+        </p>
+        <div className="mt-8 overflow-hidden rounded-[28px] bg-white/70 p-2 md:p-4" style={{ border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)", boxShadow: "0 30px 70px -45px rgba(120,70,60,0.4)" }}>
+          <iframe
+            src="https://api.leadconnectorhq.com/widget/booking/9mOtVmE8ihxgAX2AMzge"
+            title="Book a free discovery call"
+            scrolling="no"
+            id="ghl-booking-9mOtVmE8ihxgAX2AMzge"
+            style={{ width: "100%", border: "none", minHeight: "720px", display: "block" }}
+          />
+        </div>
       </div>
     </section>
   );
