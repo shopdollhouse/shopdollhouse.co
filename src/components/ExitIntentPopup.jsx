@@ -253,10 +253,10 @@ export default function ExitIntentPopup() {
               style={{
                 minHeight: "100%",
                 background:
-                  "linear-gradient(150deg, rgba(201,128,131,0.82) 0%, rgba(168,96,103,0.84) 100%)",
-                backdropFilter: "blur(18px) saturate(1.25)",
-                WebkitBackdropFilter: "blur(18px) saturate(1.25)",
-                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.18)",
+                  "linear-gradient(150deg, rgba(170,84,92,0.94) 0%, rgba(140,66,74,0.95) 100%)",
+                backdropFilter: "blur(16px) saturate(1.2)",
+                WebkitBackdropFilter: "blur(16px) saturate(1.2)",
+                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.2)",
                 padding: "34px 28px",
                 color: "var(--cream)",
               }}
@@ -267,12 +267,12 @@ export default function ExitIntentPopup() {
                   width: "54px",
                   height: "54px",
                   borderRadius: "20px",
-                  border: "1px solid rgba(200,164,100,0.32)",
-                  background: "rgba(255,255,255,0.05)",
+                  border: "1px solid rgba(255,255,255,0.3)",
+                  background: "rgba(255,255,255,0.14)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: "var(--gold)",
+                  color: "rgba(249,229,186,0.95)",
                 }}
               >
                 <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" strokeWidth="1.45" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -288,7 +288,7 @@ export default function ExitIntentPopup() {
                   fontSize: "9px",
                   letterSpacing: "0.2em",
                   textTransform: "uppercase",
-                  color: "var(--gold)",
+                  color: "rgba(249,229,186,0.96)",
                   margin: "28px 0 0",
                   fontWeight: 700,
                 }}
@@ -328,14 +328,14 @@ export default function ExitIntentPopup() {
                       display: "flex",
                       alignItems: "center",
                       gap: "12px",
-                      border: "1px solid rgba(200,164,100,0.22)",
+                      border: "1px solid rgba(255,255,255,0.24)",
                       borderRadius: "16px",
                       padding: "10px 12px",
-                      background: "rgba(255,255,255,0.045)",
+                      background: "rgba(255,255,255,0.12)",
                     }}
                   >
-                    <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "var(--gold)", fontStyle: "italic", fontSize: "1.2rem" }}>{number}</span>
-                    <span style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(253,246,240,0.74)", fontSize: "0.82rem" }}>{label}</span>
+                    <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "rgba(249,229,186,0.95)", fontStyle: "italic", fontSize: "1.2rem" }}>{number}</span>
+                    <span style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(253,246,240,0.95)", fontSize: "0.82rem" }}>{label}</span>
                   </div>
                 ))}
               </div>
