@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import archMark from "@/assets/arch-mark.svg";
 import brandKitImage from "@/assets/product-brand-kit.jpg";
 import workbookImage from "@/assets/product-workbook.jpg";
@@ -182,6 +182,124 @@ function AccessCard({ item, index, total }: { item: AccessItem; index: number; t
   );
 }
 
+function LaptopIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 text-[var(--gold)]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="4" y="5" width="16" height="11" rx="2" />
+      <path d="M2.8 19h18.4" />
+      <path d="M9 16h6" />
+    </svg>
+  );
+}
+
+function BookmarkIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 text-[var(--gold)]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M7 4.5h10a1.5 1.5 0 0 1 1.5 1.5v14l-6.5-3.6L5.5 20V6A1.5 1.5 0 0 1 7 4.5Z" />
+      <path d="m10 9 1.2 1.1L14 7.4" />
+    </svg>
+  );
+}
+
+function EnvelopeIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 text-[var(--gold)]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3.5" y="5.5" width="17" height="13" rx="2.2" />
+      <path d="m5 8 7 5 7-5" />
+    </svg>
+  );
+}
+
+function PeopleIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 text-[var(--gold)]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M8.5 11.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+      <path d="M15.5 12a2.6 2.6 0 1 0 0-5.2" />
+      <path d="M3.5 19c.8-3.2 2.8-4.8 5-4.8s4.2 1.6 5 4.8" />
+      <path d="M14 15c2.6.2 4.6 1.6 5.4 4" />
+    </svg>
+  );
+}
+
+function SparkleIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 text-[var(--gold)]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 3.5 13.7 9l5.3 1.8-5.3 1.8L12 18l-1.7-5.4L5 10.8 10.3 9 12 3.5Z" />
+      <path d="M19 16.5 19.8 19l2.2.8-2.2.8L19 23l-.8-2.4-2.2-.8 2.2-.8.8-2.5Z" />
+    </svg>
+  );
+}
+
+function DeviceNote() {
+  return (
+    <div className="mx-auto flex max-w-[520px] items-center gap-3 rounded-full border border-[var(--gold)]/30 bg-[var(--cream)] px-5 py-3 shadow-[0_18px_45px_-38px_rgba(62,31,25,0.7)]">
+      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/70">
+        <LaptopIcon />
+      </span>
+      <p className="text-[var(--ink)]/68" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", lineHeight: 1.45 }}>
+        Best viewed on laptop, desktop, or iPad. Your product isn't optimised for phone or mobile screens.
+      </p>
+    </div>
+  );
+}
+
+function NoticeCard({
+  eyebrow,
+  title,
+  icon,
+  children,
+  button,
+  note,
+}: {
+  eyebrow?: string;
+  title: string;
+  icon: ReactNode;
+  children: ReactNode;
+  button?: { label: string; href: string; external?: boolean; variant?: "primary" | "accent" };
+  note?: string;
+}) {
+  const isAccent = button?.variant === "accent";
+
+  return (
+    <article className="mx-auto max-w-[520px] rounded-[24px] border border-[rgba(200,164,100,0.3)] bg-[var(--cream)] p-6 shadow-[0_22px_60px_-48px_rgba(62,31,25,0.78)]">
+      <div className="flex items-start gap-4">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[var(--gold)]/20 bg-white/72">
+          {icon}
+        </span>
+        <div className="min-w-0 flex-1">
+          {eyebrow ? (
+            <p className="text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase" }}>
+              {eyebrow}
+            </p>
+          ) : null}
+          <h3 className={eyebrow ? "mt-1 text-[var(--rose)]" : "text-[var(--rose)]"} style={{ fontFamily: FONT_DISPLAY, fontSize: "1.6rem", fontWeight: 500, lineHeight: 1.08 }}>
+            {title}
+          </h3>
+        </div>
+      </div>
+      <div className="mt-4 space-y-3 text-[var(--ink)]/70" style={{ fontFamily: FONT_BODY, fontSize: "0.9rem", lineHeight: 1.65 }}>
+        {children}
+      </div>
+      {button ? (
+        <a
+          href={button.href}
+          target={button.external ? "_blank" : undefined}
+          rel={button.external ? "noopener noreferrer" : undefined}
+          className={`mt-5 flex w-full items-center justify-center rounded-full px-5 py-3.5 text-center transition-all hover:-translate-y-0.5 hover:opacity-90 ${isAccent ? "bg-[var(--rose)] text-white" : "bg-[var(--ink)] text-[var(--cream)]"}`}
+          style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase" }}
+        >
+          {button.label}
+        </a>
+      ) : null}
+      {note ? (
+        <p className="mt-3 text-center text-[var(--ink)]/50" style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", lineHeight: 1.55 }}>
+          {note}
+        </p>
+      ) : null}
+    </article>
+  );
+}
+
 function MissingProduct() {
   return (
     <section className="mx-auto flex min-h-screen max-w-xl items-center px-5 py-16 text-center">
@@ -245,18 +363,67 @@ export default function ProductThankYouPage({ productKey }: { productKey: ThankY
 
       <section className="px-5 py-12 md:px-8 md:py-16">
         <div className="mx-auto max-w-5xl">
-          <div className="grid gap-3 md:grid-cols-3">
-            {[
-              ["01", "Save this page", "Bookmark this page or save your passwords somewhere private."],
-              ["02", "Begin at the start", productKey === "full-suite" ? "Workbook first, Brand Kit second, AI Prompt Kit third." : "Follow the guided order inside your workspace for the clearest result."],
-              ["03", "Need support?", "Email us if you have trouble opening your workspace or using your access details."],
-            ].map(([number, title, copy]) => (
-              <article key={number} className="rounded-[20px] border border-[var(--gold)]/20 bg-white/45 p-5">
-                <p className="text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.35rem", fontStyle: "italic" }}>{number}</p>
-                <h3 className="mt-2 text-[var(--ink)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", fontWeight: 500 }}>{title}</h3>
-                <p className="mt-2 text-[var(--ink)]/55" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", lineHeight: 1.6 }}>{copy}</p>
-              </article>
-            ))}
+          <DeviceNote />
+
+          <div className="mt-5 space-y-4">
+            <NoticeCard title="Save this page" icon={<BookmarkIcon />}>
+              <p>
+                Bookmark this page or add it to your favourites now. It's your private home for your access link and password — so you can come back any time and never lose access, even if you misplace the email.
+              </p>
+            </NoticeCard>
+
+            <NoticeCard title="Check your inbox" icon={<EnvelopeIcon />}>
+              <p>
+                We've also emailed your access details to you — your website link and password (if your product needs one) are saved inside, so you'll always have them.
+              </p>
+              <p>
+                Important: if it's not in your inbox within a few minutes, check your spam or junk folder. If you find it there, open it and mark it as 'Not spam' / 'Safe' so you never miss future emails from The Dollhouse — including updates, bonuses, and account info.
+              </p>
+            </NoticeCard>
+
+            <NoticeCard
+              eyebrow="The Insider Privilege"
+              title="Join The Dollhouse Society"
+              icon={<PeopleIcon />}
+              button={{
+                label: "Request Entry Here →",
+                href: "https://www.facebook.com/groups/dollhousesociety/",
+                external: true,
+                variant: "accent",
+              }}
+              note="Please provide your purchase email in the entry questions so we can verify your membership."
+            >
+              <p>
+                As a Dollhouse customer, you're invited to join our private inner circle: The Dollhouse Society (Members Only).
+              </p>
+              <p>
+                We're currently building the foundation for our upcoming physical product launches. Join now to secure your spot as a founding member and get first access to our luxury collections.
+              </p>
+            </NoticeCard>
+
+            <NoticeCard
+              eyebrow="When you're ready for more"
+              title="Want it all done for you?"
+              icon={<SparkleIcon />}
+              button={{
+                label: "Explore Done-For-You Marketing →",
+                href: "/services",
+              }}
+            >
+              <p>
+                Once your brand foundation is set — or if you already have a business up and running — The Dollhouse can take it from here. Done-for-you content, AI Clone videos, ads, automations, and lead follow-up, all handled for you.
+              </p>
+            </NoticeCard>
+          </div>
+
+          <div className="mx-auto mt-7 max-w-[520px] text-center text-[var(--ink)]/55" style={{ fontFamily: FONT_BODY, fontSize: "0.86rem", lineHeight: 1.7 }}>
+            <p>Your access is yours forever. I'm so excited for you to see what's inside.</p>
+            <p className="mt-1">
+              Need help getting in? Email{" "}
+              <a href="mailto:hello@shopdollhouse.co" className="text-[var(--rose)] underline underline-offset-4">
+                hello@shopdollhouse.co
+              </a>.
+            </p>
           </div>
           <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-[var(--gold)]/20 pt-7 text-center sm:flex-row sm:text-left">
             <div>
