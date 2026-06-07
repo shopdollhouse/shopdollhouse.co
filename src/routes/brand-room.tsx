@@ -190,7 +190,7 @@ function BrandRoomPage() {
   return (
     <main className="min-h-screen overflow-x-hidden text-[var(--ink)]" style={{ background: "var(--cream)" }}>
       {/* Mobile sticky CTA */}
-      <a href="#pricing" className="fixed inset-x-0 top-0 z-50 block px-4 py-3 text-center md:hidden" style={{ background: "var(--ink)", color: "var(--cream)", fontFamily: FONT_LUXE, fontSize: "0.7rem", letterSpacing: "0.12em", textTransform: "uppercase" }}>
+      <a href="#inside" className="fixed inset-x-0 top-0 z-50 block px-4 py-3 text-center md:hidden" style={{ background: "var(--ink)", color: "var(--cream)", fontFamily: FONT_LUXE, fontSize: "0.7rem", letterSpacing: "0.12em", textTransform: "uppercase" }}>
         Starting at $17 — Enter the Brand Room
       </a>
 
@@ -248,7 +248,7 @@ function BrandRoomPage() {
             ))}
           </div>
           <div className="mt-7 flex flex-col items-center gap-4">
-            <Button href="#pricing">Enter the Brand Room — From $17</Button>
+            <Button href="#inside">Enter the Brand Room — From $17</Button>
             <a href="#inside" className="btn-ghost">See what's inside ↓</a>
           </div>
         </div>
@@ -419,8 +419,8 @@ function BrandRoomPage() {
               <a href={CHECKOUT.suite} target="_blank" rel="noopener noreferrer" className="mt-5 flex min-h-12 items-center justify-center rounded-full bg-[var(--rose)] px-6 py-4 text-center text-[var(--cream)] transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ fontFamily: FONT_LUXE, fontSize: "0.67rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase" }}>
                 Get the Full Suite <span className="ml-2" aria-hidden>→</span>
               </a>
-              <a href="#pricing" className="mt-4 text-center text-[var(--cream)]/55 underline underline-offset-4" style={{ fontFamily: FONT_BODY, fontSize: "0.76rem" }}>
-                Compare every option
+              <a href="#inside" className="mt-4 text-center text-[var(--cream)]/55 underline underline-offset-4" style={{ fontFamily: FONT_BODY, fontSize: "0.76rem" }}>
+                See all three tools →
               </a>
             </div>
           </div>
@@ -600,7 +600,7 @@ function BrandRoomPage() {
             Once your foundation is set — or if you already have a business — The Dollhouse becomes your full marketing team. Done-for-you content, ads, websites, and lead follow-up that bring you booked clients.
           </p>
           <div className="mt-8">
-            <Button href="/">Explore Our Marketing Services →</Button>
+            <Button href="/services">Explore Our Marketing Services →</Button>
           </div>
           <p className="mt-5" style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(29,15,11,0.5)" }}>
             Managed content · Ads · Websites · Lead follow-up
