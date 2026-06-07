@@ -72,10 +72,13 @@ const products = [
 
 const faq = [
   ["Do I get instant access?", "Yes. The moment you purchase, your access link and password arrive in your inbox. It takes less than 5 minutes to get started."],
+  ["How do I log in, and where's my password?", "After you purchase, your private access link and password are emailed to you and shown on your confirmation page. Save them somewhere safe — you'll use them every time you log in. Lost them? Email hello@shopdollhouse.co and we'll resend them right away."],
   ["Are these apps or PDFs?", "The Brand Kit and Workbook are interactive web apps — you fill them out right in your browser, no downloads needed. The AI Prompt Kit is a digital file you can start using immediately."],
+  ["What device should I use? Can I do this on my phone?", "The Brand Kit and Workbook are built for laptop or desktop — you'll want the bigger screen to think, build, and see everything clearly, so we don't recommend filling them out on a phone. The AI Prompt Kit works anywhere."],
+  ["Is this a one-time purchase or a subscription?", "One-time. Every tool is a single purchase with lifetime access — pay once, come back whenever you like, no monthly fees, ever."],
   ["What if I buy one now and want the others later?", "No problem. Each tool is sold separately so you can come back for the next one when you're ready."],
-  ["Do you offer refunds?", "All sales are final. These are digital products with instant access — please review everything before purchasing. If you have a question before buying, use the chat on this page."],
   ["I'm not tech-savvy. Will I be able to use these?", "Yes. Everything is built for women who are just starting out. If you can use Instagram, you can use the Brand Room."],
+  ["Do you offer refunds?", "All sales are final. These are digital products with instant access — please review everything before purchasing. If you have a question before buying, use the chat on this page."],
 ];
 
 const quickFacts = [
