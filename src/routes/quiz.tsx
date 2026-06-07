@@ -178,6 +178,9 @@ const RESULTS: Record<ResultKey, {
   type: string;
   tagline: string;
   body: string;
+  diagnosis: string;
+  focus: string;
+  quickWins: string[];
   productName: string;
   price: string;
   ctaLabel: string;
@@ -187,6 +190,9 @@ const RESULTS: Record<ResultKey, {
     type: "The Brand Foundation Builder",
     tagline: "Your vibe is there. It just needs a home.",
     body: "You know what you like. You have an aesthetic — somewhere in your head, your saved folders, your Pinterest board. But your brand doesn't look like you yet. And when things don't look consistent, people scroll past. Not because your offer is bad. Because their brain can't process what you do fast enough to stop. The Brand Kit Blueprint walks you through your colours, fonts, visual identity, and brand direction from scratch. One purchase. One place. A brand that finally looks as good on the outside as it feels on the inside.",
+    diagnosis: "Your audience may not understand your brand fast enough yet.",
+    focus: "Build the visual foundation before you try to sell harder.",
+    quickWins: ["Choose your colour story", "Lock in your font direction", "Create one clear brand look"],
     productName: "The Brand Kit Blueprint",
     price: "$97",
     ctaLabel: "Get the Brand Kit — $97 →",
@@ -196,6 +202,9 @@ const RESULTS: Record<ResultKey, {
     type: "The Offer Architect",
     tagline: "You're not confused. You just haven't written it down yet.",
     body: "You have something real to offer. You know it. But when someone asks what you do, the words come out wrong. The price doesn't feel right. The audience feels fuzzy. That's not a talent problem. That's a clarity problem — and it's fixable. The Brand Workbook walks you through your audience, your offer, your messaging, and your content plan in one place. So your brand stops being a beautiful secret and starts making sales.",
+    diagnosis: "Your offer needs clearer words, clearer pricing, and a clearer buyer.",
+    focus: "Turn the idea in your head into a simple offer people can understand.",
+    quickWins: ["Name who it is for", "Write the promise in plain English", "Map what they buy next"],
     productName: "The Brand Workbook",
     price: "$47",
     ctaLabel: "Get the Brand Workbook — $47 →",
@@ -205,6 +214,9 @@ const RESULTS: Record<ResultKey, {
     type: "The Visibility Planner",
     tagline: "You have more to say than you think.",
     body: "You're not out of ideas. You're out of a system. The blank caption box is killing your momentum because you're starting from nothing every single time. That's not a creativity problem. That's a process problem. The AI Prompt Kit gives you 200+ prompts written specifically for women building brands online. Stop waiting to feel inspired. Start posting with a plan that actually points to something.",
+    diagnosis: "Your content problem is not a lack of ideas. It is a lack of repeatable prompts.",
+    focus: "Create a content system so every post points back to the offer.",
+    quickWins: ["Pick your content pillars", "Use hooks that start conversations", "Turn one idea into multiple posts"],
     productName: "The AI Prompt Kit",
     price: "$17",
     ctaLabel: "Get the AI Prompt Kit — $17 →",
@@ -214,6 +226,9 @@ const RESULTS: Record<ResultKey, {
     type: "The Ready-to-Launch",
     tagline: "You're not behind. You're one clear plan away.",
     body: "You have the idea. You have the drive. What you're missing is a private space where your brand, offer, content, and launch steps all live together — so you can stop holding it in your head and start moving. The Dollhouse Brand Room is a private strategy suite with 17 guided rooms built for women who are ready to stop preparing forever and start selling for real.",
+    diagnosis: "You are carrying too many loose pieces instead of following one clean roadmap.",
+    focus: "Organize your brand, offer, content, and launch steps in one place.",
+    quickWins: ["Choose the first room to complete", "Set your launch direction", "Stop rebuilding the plan every week"],
     productName: "The Dollhouse Brand Room",
     price: "$97",
     ctaLabel: "Enter the Brand Room →",
@@ -486,37 +501,82 @@ function QuizPage() {
         )}
 
         {phase === "result" && (
-          <section className="relative mx-auto max-w-2xl">
-            <div className="rounded-[32px] p-8 md:p-12 text-center" style={{ background: "linear-gradient(180deg, #fbeae6 0%, #f6dcd6 55%, #f1cfca 100%)", border: "2px solid color-mix(in oklab, var(--gold) 45%, transparent)", boxShadow: "0 40px 80px -28px rgba(160,90,80,0.4), inset 0 1px 0 rgba(255,255,255,0.7)" }}>
-              <div className="flex justify-center"><ResultTypeSymbol result={result} /></div>
-              <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Your Result</p>
-              <h2 className="mt-3 text-[var(--rose)] leading-tight italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 5vw, 3.6rem)", fontWeight: 400 }}>
-                {res.type}
-              </h2>
-              <p className="mt-4 italic text-[var(--ink)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", lineHeight: 1.35 }}>{res.tagline}</p>
-              <p className="mt-6 mx-auto max-w-lg text-[var(--ink)]/70 leading-8" style={{ fontFamily: FONT_BODY, fontSize: "1rem" }}>{res.body}</p>
+          <section className="relative mx-auto max-w-5xl">
+            <div className="overflow-hidden rounded-[34px]" style={{ background: "linear-gradient(135deg, rgba(255,250,246,0.9), rgba(246,220,214,0.9))", border: "1px solid rgba(200,168,100,0.35)", boxShadow: "0 40px 90px -48px rgba(90,45,35,0.55), inset 0 1px 0 rgba(255,255,255,0.75)" }}>
+              <div className="grid lg:grid-cols-[0.92fr_1.08fr]">
+                <aside className="relative min-h-full border-b border-[var(--gold)]/20 bg-[rgba(255,250,246,0.58)] p-6 lg:border-b-0 lg:border-r lg:p-8">
+                  <div aria-hidden className="absolute inset-0 opacity-60" style={{ background: "radial-gradient(circle at 18% 12%, rgba(201,122,122,0.18), transparent 34%), radial-gradient(circle at 85% 78%, rgba(200,168,100,0.14), transparent 30%)" }} />
+                  <div className="relative">
+                    <div className="flex items-center justify-between gap-4">
+                      <div>
+                        <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Your result report</p>
+                        <p className="mt-1 text-[var(--ink)]/45" style={{ fontFamily: FONT_BODY, fontSize: "0.84rem" }}>Based on your quiz answers</p>
+                      </div>
+                      <ResultTypeSymbol result={result} />
+                    </div>
 
-              <div className="mt-9 rounded-3xl p-6" style={{ background: "rgba(255,250,246,0.7)", border: "1px solid rgba(200,168,100,0.3)" }}>
-                <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Your next step</p>
-                <p className="mt-2 italic text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.6rem", lineHeight: 1.2 }}>{res.productName}</p>
-                <a href={res.ctaUrl} className="mt-5 inline-flex rounded-full px-9 py-4 transition-all hover:-translate-y-0.5" style={{ background: "var(--ink)", color: "var(--cream)", fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700, boxShadow: "0 18px 38px -16px rgba(30,15,10,0.55)" }}>
-                  {res.ctaLabel}
-                </a>
+                    <div className="mt-7 overflow-hidden rounded-[26px] border border-[var(--gold)]/22 bg-white/68 p-3 shadow-[0_28px_70px_-48px_rgba(90,45,35,0.55)]">
+                      <img
+                        src={productBrandKit}
+                        alt="The Dollhouse product preview"
+                        className="aspect-[4/3] w-full rounded-[20px] object-cover"
+                        style={{ objectPosition: "center", filter: "saturate(0.9) contrast(1.02)" }}
+                      />
+                    </div>
+
+                    <div className="mt-5 rounded-[22px] border border-[var(--gold)]/24 bg-white/58 p-5 text-left">
+                      <p className="text-[var(--gold)] tracking-[0.18em] uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "9px", fontWeight: 700 }}>What this means</p>
+                      <p className="mt-2 text-[var(--ink)]/72" style={{ fontFamily: FONT_BODY, fontSize: "0.95rem", lineHeight: 1.65 }}>{res.diagnosis}</p>
+                    </div>
+
+                    <div className="mt-4 rounded-[22px] border border-[var(--gold)]/24 bg-white/58 p-5 text-left">
+                      <p className="text-[var(--gold)] tracking-[0.18em] uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "9px", fontWeight: 700 }}>Fix first</p>
+                      <p className="mt-2 text-[var(--ink)]/72" style={{ fontFamily: FONT_BODY, fontSize: "0.95rem", lineHeight: 1.65 }}>{res.focus}</p>
+                    </div>
+                  </div>
+                </aside>
+
+                <div className="p-7 text-center md:p-10 lg:p-12">
+                  <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Your Result</p>
+                  <h2 className="mt-3 text-[var(--rose)] leading-tight italic" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.4rem, 5vw, 4.4rem)", fontWeight: 400 }}>
+                    {res.type}
+                  </h2>
+                  <p className="mx-auto mt-4 max-w-xl italic text-[var(--ink)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.35rem, 2.5vw, 1.8rem)", lineHeight: 1.35 }}>{res.tagline}</p>
+                  <p className="mx-auto mt-6 max-w-xl text-[var(--ink)]/70" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.85 }}>{res.body}</p>
+
+                  <div className="mx-auto mt-8 grid max-w-xl gap-3 sm:grid-cols-3">
+                    {res.quickWins.map((win, index) => (
+                      <div key={win} className="rounded-2xl border border-[var(--gold)]/24 bg-white/55 px-4 py-4">
+                        <p className="text-[var(--gold)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.2rem", fontStyle: "italic" }}>0{index + 1}</p>
+                        <p className="mt-1 text-[var(--ink)]/68" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", lineHeight: 1.45 }}>{win}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mx-auto mt-9 max-w-xl rounded-[28px] p-6" style={{ background: "rgba(255,250,246,0.78)", border: "1px solid rgba(200,168,100,0.3)", boxShadow: "0 24px 60px -46px rgba(90,45,35,0.55)" }}>
+                    <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Your best next step</p>
+                    <p className="mt-2 italic text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.8rem", lineHeight: 1.2 }}>{res.productName}</p>
+                    <a href={res.ctaUrl} className="mt-5 flex w-full items-center justify-center rounded-full px-7 py-4 transition-all hover:-translate-y-0.5" style={{ background: "var(--ink)", color: "var(--cream)", fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700, boxShadow: "0 18px 38px -16px rgba(30,15,10,0.55)" }}>
+                      {res.ctaLabel}
+                    </a>
+                    <p className="mt-3 text-[var(--ink)]/46" style={{ fontFamily: FONT_BODY, fontSize: "0.78rem", lineHeight: 1.5 }}>This is the cleanest next step for where your brand is right now.</p>
+                  </div>
+
+                  <div className="mx-auto mt-5 max-w-xl rounded-[24px] p-5" style={{ background: "rgba(30,15,10,0.88)", border: "1px solid rgba(200,168,100,0.24)" }}>
+                    <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Already have a business?</p>
+                    <p className="mt-2 text-[var(--cream)]/72 leading-7" style={{ fontFamily: FONT_BODY, fontSize: "0.92rem" }}>
+                      If your offer is already live, we can handle the content, AI clone videos, ads, automations, and lead follow-up for you.
+                    </p>
+                    <Link to="/#contact" className="mt-4 inline-flex rounded-full px-6 py-3 transition-all hover:-translate-y-0.5" style={{ background: "var(--rose)", color: "white", fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.14em", textTransform: "uppercase" }}>
+                      Get a free proposal →
+                    </Link>
+                  </div>
+
+                  <button onClick={restart} className="mt-8 text-[var(--ink)]/40 hover:text-[var(--rose)] transition-colors" style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase" }}>
+                    Retake the quiz
+                  </button>
+                </div>
               </div>
-
-              <div className="mt-6 rounded-2xl p-5" style={{ background: "rgba(255,255,255,0.45)", border: "1px solid rgba(201,122,122,0.25)" }}>
-                <p className="text-[var(--gold)] tracking-luxe uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "10px" }}>Already have a business?</p>
-                <p className="mt-2 text-[var(--ink)]/65 leading-7" style={{ fontFamily: FONT_BODY, fontSize: "0.92rem" }}>
-                  If your offer is already live, the next step is our done-for-you marketing service — content, AI clone videos, ads, automations, and lead follow-up all handled for you.
-                </p>
-                <Link to="/#contact" className="mt-4 inline-flex rounded-full px-6 py-3 transition-all hover:-translate-y-0.5" style={{ background: "var(--rose)", color: "var(--cream)", fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.14em", textTransform: "uppercase" }}>
-                  Get a free proposal →
-                </Link>
-              </div>
-
-              <button onClick={restart} className="mt-8 text-[var(--ink)]/40 hover:text-[var(--rose)] transition-colors" style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase" }}>
-                Retake the quiz
-              </button>
             </div>
           </section>
         )}
