@@ -2522,8 +2522,13 @@ function Contact() {
       email: get("email"),
       phone: get("phone"),
       businessName: get("business_name"),
-      packageInterest: get("plan"),
-      message: get("message"),
+      industry: get("industry"),
+      website: get("website"),
+      plan: get("plan"),
+      commitment: get("contract_term"),
+      setupReadiness: get("setup_readiness"),
+      mainGoal: get("main_goal"),
+      winDescription: get("message"),
       source: "Proposal Form",
     };
 
