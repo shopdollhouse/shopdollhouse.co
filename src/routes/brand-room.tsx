@@ -579,9 +579,13 @@ function BrandRoomPage() {
             <Divider />
           </div>
           <div className="mt-6 space-y-3">
+            <style>{`.dh-faq-chevron{transition:transform .3s ease}.dh-faq[open] .dh-faq-chevron{transform:rotate(180deg)}`}</style>
             {faq.map(([question, answer]) => (
-              <details key={question} className="rounded-2xl p-5" style={{ background: "var(--cream)", border: "1px solid rgba(200,168,100,0.28)" }}>
-                <summary className="cursor-pointer list-none" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>{question}</summary>
+              <details key={question} className="dh-faq rounded-2xl p-5" style={{ background: "var(--cream)", border: "1px solid rgba(200,168,100,0.28)" }}>
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: "var(--ink)" }}>
+                  <span>{question}</span>
+                  <svg className="dh-faq-chevron shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+                </summary>
                 <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.65, color: "rgba(29,15,11,0.65)" }}>{answer}</p>
               </details>
             ))}
