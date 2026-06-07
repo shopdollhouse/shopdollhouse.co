@@ -70,12 +70,6 @@ const products = [
   },
 ];
 
-const pricing = [
-  { name: "Brand Kit Blueprint", price: "$97 USD", regular: "$145", label: "Most popular", line: "Your full visual identity, built from scratch", href: CHECKOUT.brandKit, button: "Get the Brand Kit" },
-  { name: "Brand Workbook", price: "$47 USD", regular: "$261", label: "", line: "Clarity on your offer, audience & message", href: CHECKOUT.workbook, button: "Get the Workbook" },
-  { name: "AI Prompt Kit", price: "$17 USD", regular: "$37", label: "Best place to start", line: "200+ prompts for content that converts", href: CHECKOUT.ai, button: "Get the Prompt Kit" },
-];
-
 const faq = [
   ["Do I get instant access?", "Yes. The moment you purchase, your access link and password arrive in your inbox. It takes less than 5 minutes to get started."],
   ["Are these apps or PDFs?", "The Brand Kit and Workbook are interactive web apps — you fill them out right in your browser, no downloads needed. The AI Prompt Kit is a digital file you can start using immediately."],
@@ -460,48 +454,48 @@ function BrandRoomPage() {
         </div>
       </section>
 
-      {/* ── PRICING ──────────────────────────────────────── */}
-      <section id="pricing" className="px-6 py-20 md:py-28" style={{ background: "linear-gradient(180deg, var(--blush) 0%, var(--cream) 100%)" }}>
-        <div className="mx-auto max-w-6xl">
-          <div className="text-center">
-            <Eyebrow gold>The Investment</Eyebrow>
-            <h2 className="mt-4" style={{ fontFamily: FONT_DISPLAY, fontWeight: 400, color: "var(--rose)", fontSize: "clamp(2.4rem, 5vw, 3.4rem)", lineHeight: 1.05 }}>
-              Start with one. Own them all.
-            </h2>
-            <Divider />
-          </div>
-          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {pricing.map((item) => (
-              <article key={item.name} className="rounded-3xl p-7" style={{ background: "var(--cream)", border: "1px solid rgba(200,168,100,0.3)", boxShadow: "0 22px 60px -48px rgba(90,45,35,0.4)" }}>
-                {item.label && <p style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--gold)" }}>{item.label}</p>}
-                <h3 className="mt-3" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.7rem", lineHeight: 1.1, color: "var(--ink)" }}>{item.name}</h3>
-                <div className="mt-5 flex items-baseline gap-2.5">
-                  <p style={{ fontFamily: FONT_DISPLAY, fontSize: "2.7rem", lineHeight: 1, color: "var(--rose)" }}><Price value={item.price} /></p>
-                  {item.regular && <span className="line-through" style={{ fontFamily: FONT_BODY, fontSize: "1.05rem", color: "rgba(29,15,11,0.4)" }}>{item.regular}</span>}
-                </div>
-                <p className="mt-4 min-h-[52px]" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.6, color: "rgba(29,15,11,0.65)" }}>{item.line}</p>
-                <a href={item.href} target="_blank" rel="noopener noreferrer" className="mt-6 flex min-h-12 items-center justify-center rounded-full px-5 py-3 text-center transition-opacity hover:opacity-90" style={{ border: "1px solid var(--ink)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase" }}>
-                  {item.button}
-                </a>
-              </article>
-            ))}
-            <article className="relative rounded-3xl p-7" style={{ background: "var(--ink)", color: "var(--cream)", boxShadow: "0 26px 70px -44px rgba(29,15,11,0.75)" }}>
-              <span className="inline-block rounded-full px-4 py-1" style={{ background: "var(--rose)", color: "var(--cream)", fontFamily: FONT_LUXE, fontSize: "0.66rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase" }}>Best Value</span>
-              <h3 className="mt-5" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.9rem", lineHeight: 1.05 }}>The Full Suite</h3>
-              <p className="mt-4 line-through" style={{ fontFamily: FONT_BODY, color: "rgba(253,246,240,0.45)" }}>$161</p>
-              <p className="mt-1" style={{ fontFamily: FONT_DISPLAY, fontSize: "3rem", lineHeight: 1, color: "var(--gold)" }}><Price value="$127 USD" /></p>
-              <p className="mt-2" style={{ fontFamily: FONT_LUXE, fontSize: "0.74rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--rose)" }}>Save $34</p>
-              <p className="mt-4 min-h-[52px]" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.6, color: "rgba(253,246,240,0.74)" }}>All three tools. Everything you need.</p>
-              <a href={CHECKOUT.suite} target="_blank" rel="noopener noreferrer" className="mt-6 flex min-h-12 items-center justify-center rounded-full px-5 py-3 text-center transition-opacity hover:opacity-90" style={{ background: "var(--rose)", color: "var(--cream)", fontFamily: FONT_LUXE, fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase" }}>
-                Get Everything — $127
-              </a>
-            </article>
-          </div>
-          <div className="mx-auto mt-10 max-w-2xl rounded-3xl p-8 text-center" style={{ background: "var(--cream)", border: "1px solid rgba(200,168,100,0.3)" }}>
-            <h3 style={{ fontFamily: FONT_DISPLAY, fontSize: "2rem", color: "var(--rose)" }}>Not sure where to start?</h3>
-            <p className="mx-auto mt-3 max-w-lg" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.6, color: "rgba(29,15,11,0.65)" }}>Take the free Brand Quiz — 4 questions and you'll know exactly which tool your brand needs first.</p>
-            <div className="mt-6">
-              <Button href="/quiz" rose>Take the Free Quiz →</Button>
+      {/* ── QUIZ DECISION ───────────────────────────────── */}
+      <section id="pricing" className="relative overflow-hidden px-6 py-20 md:py-28" style={{ background: "linear-gradient(180deg, var(--blush) 0%, #fff8f3 52%, var(--cream) 100%)" }}>
+        <div aria-hidden className="absolute -left-24 top-10 h-80 w-80 rounded-full bg-[var(--rose)]/10 blur-3xl" />
+        <div aria-hidden className="absolute -right-20 bottom-16 h-72 w-72 rounded-full bg-[var(--gold)]/10 blur-3xl" />
+        <div className="relative mx-auto max-w-6xl">
+          <div className="grid overflow-hidden rounded-[34px] border border-[var(--gold)]/28 bg-white/58 shadow-[0_28px_80px_-56px_rgba(90,45,35,0.55)] lg:grid-cols-[0.95fr_1.05fr]">
+            <div className="relative min-h-[320px] overflow-hidden bg-[var(--blush)] lg:min-h-full">
+              <img src={productImage} alt="The Dollhouse Brand Room quiz and product match preview" loading="lazy" className="h-full min-h-[320px] w-full object-cover opacity-90" />
+              <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-[var(--ink)]/55 via-transparent to-white/10" />
+              <div className="absolute bottom-5 left-5 right-5 rounded-[24px] border border-white/35 bg-white/76 p-5 backdrop-blur-md">
+                <p style={{ fontFamily: FONT_LUXE, color: "var(--gold)", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase" }}>Instant match</p>
+                <p className="mt-2" style={{ fontFamily: FONT_DISPLAY, color: "var(--rose)", fontSize: "1.65rem", lineHeight: 1.08 }}>Quiz → Plan → Product</p>
+              </div>
+            </div>
+
+            <div className="p-7 md:p-10 lg:p-12">
+              <Eyebrow gold>Not sure where to start?</Eyebrow>
+              <h2 className="mt-4" style={{ fontFamily: FONT_DISPLAY, fontWeight: 400, color: "var(--rose)", fontSize: "clamp(2.45rem, 5vw, 4.2rem)", lineHeight: 1.02 }}>
+                Take the free Brand Quiz.
+              </h2>
+              <p className="mt-5 max-w-2xl" style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.75, color: "rgba(29,15,11,0.66)" }}>
+                Answer a few simple questions and get matched with the first tool your brand needs: clarity, visuals, content prompts, or the complete suite.
+              </p>
+
+              <div className="mt-7 grid gap-3 sm:grid-cols-2">
+                {[
+                  ["Brand type", "See what stage you are really in."],
+                  ["3 mistakes", "Spot what is keeping you stuck."],
+                  ["7-day fix plan", "Know what to do first this week."],
+                  ["Next best offer", "Get matched to the right tool."],
+                ].map(([title, copy]) => (
+                  <div key={title} className="rounded-[20px] border border-[var(--gold)]/25 bg-[var(--cream)]/70 p-4">
+                    <p style={{ fontFamily: FONT_DISPLAY, color: "var(--ink)", fontSize: "1.25rem", lineHeight: 1.1 }}>{title}</p>
+                    <p className="mt-2" style={{ fontFamily: FONT_BODY, color: "rgba(29,15,11,0.55)", fontSize: "0.8rem", lineHeight: 1.55 }}>{copy}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <Button href="/quiz" rose>Take the Free Quiz →</Button>
+                <p style={{ fontFamily: FONT_LUXE, color: "rgba(29,15,11,0.42)", fontSize: "0.66rem", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase" }}>Less than 60 seconds</p>
+              </div>
             </div>
           </div>
         </div>
