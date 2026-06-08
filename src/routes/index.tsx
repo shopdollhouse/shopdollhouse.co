@@ -2609,10 +2609,34 @@ function Contact() {
           </div>
         </div>
 
-        <form
-          onSubmit={handleSubmit}
-          className="rounded-[28px] bg-white/76 backdrop-blur-md border border-white/85 shadow-[0_30px_70px_-35px_rgba(120,70,60,0.42)] p-6 md:p-9 space-y-5"
-        >
+        <div className="rounded-[28px] bg-white/76 backdrop-blur-md border border-white/85 shadow-[0_30px_70px_-35px_rgba(120,70,60,0.42)] p-6 md:p-9">
+        {showCalendar ? (
+          <div className="space-y-5">
+            <button
+              type="button"
+              onClick={() => setShowCalendar(false)}
+              className="flex items-center gap-2 text-[11px] tracking-luxe uppercase text-[var(--ink)]/70 transition-colors hover:text-[var(--rose)]"
+              style={{ fontFamily: "'Jost', sans-serif" }}
+            >
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" style={{ width: "13px", height: "13px" }}><path d="M10 3 5 8l5 5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              Back to the proposal
+            </button>
+            <div>
+              <p className="text-[10px] tracking-luxe uppercase text-[var(--gold)]" style={{ fontFamily: "'Jost', sans-serif" }}>Book a free discovery call</p>
+              <h3 className="mt-2 text-[var(--rose)] italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.8rem, 3vw, 2.45rem)", lineHeight: 1.05 }}>Pick a time that works for you.</h3>
+            </div>
+            <div className="overflow-hidden rounded-2xl bg-white/60 p-1.5" style={{ border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}>
+              <iframe
+                src="https://api.leadconnectorhq.com/widget/booking/9mOtVmE8ihxgAX2AMzge"
+                title="Book a free discovery call"
+                scrolling="no"
+                id="ghl-booking-9mOtVmE8ihxgAX2AMzge"
+                style={{ width: "100%", border: "none", minHeight: "700px", display: "block", borderRadius: "12px" }}
+              />
+            </div>
+          </div>
+        ) : (
+        <form onSubmit={handleSubmit} className="space-y-5">
         <div className="flex flex-col gap-3 border-b border-[var(--gold)]/18 pb-6 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-[10px] tracking-luxe uppercase text-[var(--gold)]" style={{ fontFamily: "'Jost', sans-serif" }}>
@@ -2755,8 +2779,7 @@ function Contact() {
 
         <button
           type="button"
-          onClick={() => setShowCalendar((v) => !v)}
-          aria-expanded={showCalendar}
+          onClick={() => setShowCalendar(true)}
           className="w-full flex items-center justify-center gap-2 rounded-xl py-3.5 text-[11px] tracking-luxe uppercase transition-all hover:border-[var(--ink)]/40 hover:text-[var(--ink)]"
           style={{
             fontFamily: "'Jost', sans-serif",
@@ -2768,20 +2791,8 @@ function Contact() {
             <rect x="2" y="3" width="12" height="11" rx="1.5" />
             <path d="M5 1.5v3M11 1.5v3M2 7h12" strokeLinecap="round" />
           </svg>
-          {showCalendar ? "Hide the calendar" : "Book a free discovery call"}
+          Book a free discovery call
         </button>
-
-        {showCalendar && (
-          <div className="overflow-hidden rounded-2xl bg-white/60 p-1.5" style={{ border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}>
-            <iframe
-              src="https://api.leadconnectorhq.com/widget/booking/9mOtVmE8ihxgAX2AMzge"
-              title="Book a free discovery call"
-              scrolling="no"
-              id="ghl-booking-9mOtVmE8ihxgAX2AMzge"
-              style={{ width: "100%", border: "none", minHeight: "700px", display: "block", borderRadius: "12px" }}
-            />
-          </div>
-        )}
 
         <a
           href="tel:+12893014567"
@@ -2793,7 +2804,9 @@ function Contact() {
           </svg>
           Or call (289) 301-4567
         </a>
-      </form>
+        </form>
+        )}
+        </div>
       </div>
     </section>
   );
