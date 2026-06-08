@@ -209,8 +209,11 @@ export function AgencyFaqSection() {
         <h2 className="text-center" style={{ fontFamily: FONT_DISPLAY, fontWeight: 400, color: INK, fontSize: "clamp(32px, 5vw, 42px)" }}>Good to know.</h2>
         <div className="mt-8 space-y-3">
           {items.map(([q, a]) => (
-            <details key={q} className="rounded-2xl p-5" style={{ background: "#fff", border: "1px solid rgba(200,164,100,0.25)" }}>
-              <summary className="cursor-pointer list-none" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: INK }}>{q}</summary>
+            <details key={q} className="dh-faq rounded-2xl p-5" style={{ background: "#fff", border: "1px solid rgba(200,164,100,0.25)" }}>
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.3rem", color: INK }}>
+                <span>{q}</span>
+                <svg className="dh-faq-chevron shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+              </summary>
               <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "15px", lineHeight: 1.65, color: "rgba(29,15,11,0.7)" }}>{a}</p>
             </details>
           ))}

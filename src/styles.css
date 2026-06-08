@@ -216,3 +216,7 @@
   45% { box-shadow: 0 0 0 7px rgba(189,116,118,0.42), 0 24px 54px -24px rgba(189,116,118,0.62); transform: translateY(-3px); }
 }
 .plan-pulse { animation: plan-pulse 1.6s ease-in-out 3; }
+
+/* FAQ chevron rotate-on-open (shared FAQ accordions) */
+.dh-faq-chevron { transition: transform 0.3s ease; }
+.dh-faq[open] .dh-faq-chevron { transform: rotate(180deg); }
