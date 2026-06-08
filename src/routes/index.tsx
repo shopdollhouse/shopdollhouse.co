@@ -2438,63 +2438,6 @@ function ComparisonTable() {
   );
 }
 
-function FAQ() {
-  const faqs: [string, string][] = [
-    ["What does 'done-for-you' actually mean?", "We do the setup and the monthly work for you. Depending on your plan, that can include your website, content, posting, ads, AI clone, booking links, CRM, text follow-up, missed-call text-back, reminders, and reporting."],
-    ["Which plan should I start with?", "Foundation is for your website and lead follow-up system. Starter is for one managed platform with AI Clone support. Growth is the most complete option for content, ads, AI voice/chat, reviews, booking, and follow-up working together."],
-    ["What is the AI clone or brand character?", "We create either an AI version of you or a custom brand character for your business. It helps your brand show up with polished content without you having to film every week."],
-    ["How does the 14-day trial work?", "Every monthly package can begin with 14 free days of monthly management. The one-time $500 setup fee is due upfront because we are building your audit, strategy, sample direction, CRM, automation map, and launch setup. Monthly billing begins after the trial if you continue."],
-    ["What's included in the $500 setup fee?", "Every contract has a one-time $500 setup fee. It covers onboarding, system buildout, launch prep, calendar or booking setup, CRM setup, automation mapping, and the assets needed to start the plan cleanly."],
-    ["What contract options do you offer?", "For now, you can choose 6 months or 12 months. Annual clients receive the 12th month free, and each plan shows the exact dollar savings."],
-    ["What is the $500 Appointment Booking setup?", "It is a focused setup for businesses that mainly need a cleaner way for leads to book. It can include the calendar connection, booking flow, confirmation messages, reminders, and simple lead handoff."],
-    ["What kinds of businesses do you work with?", "Local service businesses, beauty and wellness brands, clinics, consultants, coaches, boutiques, and online brands that want stronger content, lead follow-up, and booking systems without managing it themselves."],
-    ["What is your refund policy?", "All sales are final once setup or monthly work begins because strategy, buildout, and implementation time are reserved for your business. If there is a concern, reach out and we will work through the next best step."],
-  ];
-  return (
-    <section id="faq" className="scroll-mt-32 py-24 md:py-32 px-6" style={{ background: "linear-gradient(180deg, var(--cream) 0%, var(--blush) 100%)" }}>
-      <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.75fr_1.25fr] gap-10 items-start">
-        <div className="lg:sticky lg:top-36">
-          <Eyebrow>Common Questions</Eyebrow>
-          <h2 className="mt-4 text-[var(--rose)] leading-[1.02]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(3rem, 6vw, 5rem)", fontWeight: 400 }}>
-            Clear answers before you apply.
-          </h2>
-          <p className="mt-5 text-[var(--ink)]/60 leading-8" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.98rem" }}>
-            The proposal will map the exact recommendation for your business, but these are the details most people ask before taking the next step.
-          </p>
-          <a href="#contact" className="btn-ink mt-8 inline-flex">
-            Ask for a proposal <span aria-hidden>→</span>
-          </a>
-        </div>
-
-        <div className="space-y-3">
-          {faqs.map(([q, a]) => (
-            <details
-              key={q}
-              className="group rounded-2xl bg-white/68 backdrop-blur-sm border border-white/85 overflow-hidden shadow-[0_18px_42px_-34px_rgba(90,45,35,0.42)]"
-            >
-              <summary className="cursor-pointer list-none px-6 py-5 flex justify-between items-center gap-6">
-                <span
-                  className="text-[var(--ink)]"
-                  style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.18rem", lineHeight: 1.25 }}
-                >
-                  {q}
-                </span>
-                <span className="shrink-0 text-[var(--rose)] text-2xl transition-transform group-open:rotate-45">+</span>
-              </summary>
-              <p
-                className="px-6 pb-6 text-[var(--ink)]/70 leading-relaxed"
-                style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem" }}
-              >
-                {a}
-              </p>
-            </details>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ─── Contact ─────────────────────────────────────────── */
 function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
