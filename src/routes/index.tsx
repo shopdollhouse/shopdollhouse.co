@@ -2803,8 +2803,38 @@ function Contact() {
                     <input type="text" value={fd.business_name} onChange={set("business_name")} placeholder="Bloom Med Spa" required className={ic} style={is} />
                   </div>
                   <div>
-                    <label className={lc} style={ls}>Industry / Niche</label>
-                    <input type="text" value={fd.industry} onChange={set("industry")} placeholder="e.g. Medical Aesthetics" className={ic} style={is} />
+                    <label className={lc} style={ls}>What type of business do you have?</label>
+                    <div className="grid grid-cols-2 gap-2 mt-1">
+                      {[
+                        "Contractors & home services","Coaches & consultants",
+                        "Med spas & aesthetics","Real estate agents",
+                        "Salons & beauty pros","Restaurants & food brands",
+                        "Fitness studios & gyms","Law firms & professionals",
+                        "Retail & boutique brands","E-commerce businesses",
+                        "Photographers & creatives","Mortgage & insurance pros",
+                      ].map((opt) => {
+                        const selected = fd.industry === opt;
+                        return (
+                          <button
+                            key={opt}
+                            type="button"
+                            onClick={() => setFd(prev => ({ ...prev, industry: opt }))}
+                            className="rounded-full px-3 py-2.5 text-left transition-all"
+                            style={{
+                              fontFamily: "'DM Sans', sans-serif",
+                              fontSize: "0.78rem",
+                              lineHeight: 1.25,
+                              background: selected ? "#bd7476" : "rgba(255,255,255,0.72)",
+                              color: selected ? "#fff" : "var(--ink)",
+                              border: selected ? "1px solid #bd7476" : "1px solid rgba(200,168,100,0.3)",
+                              boxShadow: selected ? "0 4px 14px -6px rgba(189,116,118,0.45)" : "none",
+                            }}
+                          >
+                            {opt}
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
                   <div>
                     <label className={lc} style={ls}>Website <span className="normal-case opacity-60">(optional)</span></label>
