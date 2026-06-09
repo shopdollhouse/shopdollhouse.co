@@ -2748,7 +2748,7 @@ function Contact() {
 
           ) : step === 0 ? (
             /* ── PATH SELECTOR ── */
-            <div className="space-y-7">
+            <div className="space-y-5">
               {/* Intro */}
               <div className="pb-5 border-b border-[var(--gold)]/18">
                 <p className="text-[10px] tracking-luxe uppercase font-semibold" style={{ fontFamily: "'Jost', sans-serif", color: "#bd7476" }}>
@@ -2766,12 +2766,12 @@ function Contact() {
               </div>
 
               {/* Cards */}
-              <div className="grid sm:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-2 gap-4 items-stretch">
                 {/* Option A — Proposal Form */}
                 <button
                   type="button"
                   onClick={() => setStep(1)}
-                  className="group text-left rounded-[20px] p-7 flex flex-col transition-all duration-300 hover:-translate-y-1"
+                  className="group text-left rounded-[20px] p-6 flex flex-col justify-between h-full transition-all duration-300 hover:-translate-y-1"
                   style={{
                     background: "linear-gradient(145deg, rgba(189,116,118,0.08) 0%, rgba(255,248,246,0.92) 100%)",
                     border: "1.5px solid rgba(189,116,118,0.28)",
@@ -2786,16 +2786,18 @@ function Contact() {
                     (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 10px 32px -16px rgba(189,116,118,0.25)";
                   }}
                 >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full mb-4" style={{ background: "rgba(189,116,118,0.14)" }}>
-                    <svg viewBox="0 0 18 18" fill="none" stroke="#bd7476" strokeWidth="1.5" style={{ width: "17px", height: "17px" }}><path d="M3 5h12M3 9h8M3 13h6" strokeLinecap="round" /></svg>
-                  </span>
-                  <p className="text-[10px] tracking-luxe uppercase mb-2" style={{ fontFamily: "'Jost', sans-serif", color: "#bd7476", fontWeight: 600 }}>Proposal Request</p>
-                  <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.35rem, 2.2vw, 1.65rem)", color: "var(--ink)", lineHeight: 1.15, fontWeight: 400 }}>
-                    Send a Private Proposal Request
-                  </p>
-                  <p className="mt-3 text-[var(--ink)]/55 leading-6 flex-1" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.86rem" }}>
-                    Answer a few questions and receive a private plan recommendation, pricing, and setup timeline within 24 hours.
-                  </p>
+                  <div>
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full mb-4" style={{ background: "rgba(189,116,118,0.14)" }}>
+                      <svg viewBox="0 0 18 18" fill="none" stroke="#bd7476" strokeWidth="1.5" style={{ width: "17px", height: "17px" }}><path d="M3 5h12M3 9h8M3 13h6" strokeLinecap="round" /></svg>
+                    </span>
+                    <p className="text-[10px] tracking-luxe uppercase mb-2" style={{ fontFamily: "'Jost', sans-serif", color: "#bd7476", fontWeight: 600 }}>Proposal Request</p>
+                    <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.35rem, 2.2vw, 1.65rem)", color: "var(--ink)", lineHeight: 1.15, fontWeight: 400 }}>
+                      Send a Private Proposal Request
+                    </p>
+                    <p className="mt-3 text-[var(--ink)]/55 leading-[1.65]" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.86rem" }}>
+                      Answer a few questions and receive a private plan recommendation, pricing, and setup timeline within 24 hours.
+                    </p>
+                  </div>
                   <div className="mt-5 flex items-center justify-between">
                     <span className="text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", color: "#bd7476" }}>Get started</span>
                     <span style={{ color: "#bd7476", fontSize: "1.1rem", lineHeight: 1 }}>→</span>
@@ -2806,7 +2808,7 @@ function Contact() {
                 <button
                   type="button"
                   onClick={() => setShowCalendar(true)}
-                  className="group text-left rounded-[20px] p-7 flex flex-col transition-all duration-300 hover:-translate-y-1"
+                  className="group text-left rounded-[20px] p-6 flex flex-col justify-between h-full transition-all duration-300 hover:-translate-y-1"
                   style={{
                     background: "linear-gradient(145deg, rgba(200,168,100,0.09) 0%, rgba(255,252,244,0.92) 100%)",
                     border: "1.5px solid rgba(200,168,100,0.3)",
@@ -2821,16 +2823,18 @@ function Contact() {
                     (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 10px 32px -16px rgba(160,120,60,0.2)";
                   }}
                 >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full mb-4" style={{ background: "rgba(200,168,100,0.14)" }}>
-                    <svg viewBox="0 0 18 18" fill="none" stroke="var(--gold)" strokeWidth="1.5" style={{ width: "17px", height: "17px" }}><rect x="2" y="3" width="14" height="12" rx="2" /><path d="M6 1.5v3M12 1.5v3M2 8h14" strokeLinecap="round" /></svg>
-                  </span>
-                  <p className="text-[10px] tracking-luxe uppercase mb-2" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)", fontWeight: 600 }}>Discovery Call</p>
-                  <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.35rem, 2.2vw, 1.65rem)", color: "var(--ink)", lineHeight: 1.15, fontWeight: 400 }}>
-                    Book a Free Discovery Call
-                  </p>
-                  <p className="mt-3 text-[var(--ink)]/55 leading-6 flex-1" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.86rem" }}>
-                    Skip the form and jump straight into a free 20-minute call with Mandy — no pressure, just clarity.
-                  </p>
+                  <div>
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full mb-4" style={{ background: "rgba(200,168,100,0.14)" }}>
+                      <svg viewBox="0 0 18 18" fill="none" stroke="var(--gold)" strokeWidth="1.5" style={{ width: "17px", height: "17px" }}><rect x="2" y="3" width="14" height="12" rx="2" /><path d="M6 1.5v3M12 1.5v3M2 8h14" strokeLinecap="round" /></svg>
+                    </span>
+                    <p className="text-[10px] tracking-luxe uppercase mb-2" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)", fontWeight: 600 }}>Discovery Call</p>
+                    <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.35rem, 2.2vw, 1.65rem)", color: "var(--ink)", lineHeight: 1.15, fontWeight: 400 }}>
+                      Book a Free Discovery Call
+                    </p>
+                    <p className="mt-3 text-[var(--ink)]/55 leading-[1.65]" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.86rem" }}>
+                      Skip the form and jump straight into a free 20-minute call with Mandy — no pressure, just clarity.
+                    </p>
+                  </div>
                   <div className="mt-5 flex items-center justify-between">
                     <span className="text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>Book now</span>
                     <span style={{ color: "#bd7476", fontSize: "1.1rem", lineHeight: 1 }}>→</span>
