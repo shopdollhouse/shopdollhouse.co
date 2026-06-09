@@ -2943,18 +2943,19 @@ function Contact() {
                           key="Something else"
                           type="button"
                           onClick={() => setFd(prev => ({ ...prev, industry: "Something else" }))}
-                          className="col-span-2 flex min-h-10 items-center gap-2.5 rounded-full px-3.5 py-2 text-left transition-all hover:-translate-y-0.5"
+                          className="col-span-2 flex min-h-10 items-center justify-center gap-2.5 rounded-full px-3.5 py-2.5 text-center transition-all hover:-translate-y-0.5"
                           style={{
                             fontFamily: "'DM Sans', sans-serif",
                             fontSize: "0.78rem",
                             lineHeight: 1.25,
-                            background: selected ? "#bd7476" : "rgba(255,255,255,0.62)",
-                            color: selected ? "#fff" : "var(--ink)",
-                            border: selected ? "1px solid #bd7476" : "1px solid rgba(200,168,100,0.26)",
-                            boxShadow: selected ? "0 4px 14px -6px rgba(189,116,118,0.45)" : "0 8px 20px -18px rgba(90,45,35,0.5)",
+                            background: selected ? "#bd7476" : "rgba(189,116,118,0.07)",
+                            color: selected ? "#fff" : "#bd7476",
+                            border: selected ? "1px solid #bd7476" : "1px dashed rgba(189,116,118,0.5)",
+                            boxShadow: selected ? "0 4px 14px -6px rgba(189,116,118,0.45)" : "none",
+                            fontWeight: 500,
                           }}
                         >
-                          <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: selected ? "rgba(255,255,255,0.7)" : "var(--rose)" }} aria-hidden />
+                          <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: selected ? "rgba(255,255,255,0.7)" : "#bd7476" }} aria-hidden />
                           Something else
                         </button>
                       );
