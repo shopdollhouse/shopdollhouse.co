@@ -141,17 +141,12 @@ export default function ExitIntentPopup() {
     <>
       <style>{`
         @keyframes dollhousePopupEnter {
-          from {
-            opacity: 0;
-            transform: translate(-50%, calc(-50% + 20px));
-          }
-          to {
-            opacity: 1;
-            transform: translate(-50%, -50%);
-          }
+          from { opacity: 0; transform: translate(-50%, calc(-50% + 16px)); }
+          to   { opacity: 1; transform: translate(-50%, -50%); }
         }
       `}</style>
 
+      {/* Backdrop */}
       <div
         aria-hidden="true"
         onClick={closePopup}
@@ -163,29 +158,33 @@ export default function ExitIntentPopup() {
         }}
       />
 
+      {/* Popup */}
       <div
         ref={popupRef}
         role="dialog"
         aria-modal="true"
         aria-label="Brand quiz offer"
-        onClick={(event) => event.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}
         style={{
           position: "fixed",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
           zIndex: 9999,
-          width: "min(92vw, 680px)",
+          width: "min(90vw, 480px)",
           maxHeight: "90vh",
-          overflow: "auto",
-          padding: 0,
-          background: "linear-gradient(135deg, var(--cream) 0%, #f8e6e1 100%)",
-          border: "1px solid rgba(200, 164, 100, 0.3)",
-          borderRadius: "30px",
-          boxShadow: "0 40px 100px -30px rgba(30, 15, 11, 0.45)",
-          animation: "dollhousePopupEnter 0.4s ease-out both",
+          overflowY: "auto",
+          background: "#FCF4EE",
+          borderRadius: "20px",
+          borderTop: "4px solid #bd7476",
+          boxShadow: "0 32px 80px -24px rgba(30,15,11,0.40)",
+          animation: "dollhousePopupEnter 0.35s ease-out both",
+          padding: "40px 32px 32px",
+          boxSizing: "border-box",
+          textAlign: "center",
         }}
       >
+        {/* Close button */}
         <button
           ref={closeButtonRef}
           type="button"
@@ -193,317 +192,127 @@ export default function ExitIntentPopup() {
           onClick={closePopup}
           style={{
             position: "absolute",
-            top: "18px",
-            right: "18px",
+            top: "16px",
+            right: "16px",
             display: "inline-flex",
             width: "32px",
             height: "32px",
             alignItems: "center",
             justifyContent: "center",
-            border: 0,
-            background: "transparent",
-            color: "var(--ink)",
-            opacity: 0.4,
+            border: "1px solid rgba(30,15,11,0.15)",
+            borderRadius: "50%",
+            background: "rgba(30,15,11,0.06)",
+            color: "rgba(30,15,11,0.6)",
             cursor: "pointer",
-            transition: "opacity 160ms ease",
+            transition: "background 160ms ease, color 160ms ease",
             zIndex: 2,
           }}
-          onMouseEnter={(event) => {
-            event.currentTarget.style.opacity = "1";
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = "rgba(30,15,11,0.12)";
+            e.currentTarget.style.color = "rgba(30,15,11,0.9)";
           }}
-          onMouseLeave={(event) => {
-            event.currentTarget.style.opacity = "0.4";
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = "rgba(30,15,11,0.06)";
+            e.currentTarget.style.color = "rgba(30,15,11,0.6)";
           }}
         >
-          <svg
-            viewBox="0 0 16 16"
-            width="16"
-            height="16"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.7"
-            strokeLinecap="round"
-          >
+          <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
             <path d="M4 4l8 8M12 4l-8 8" />
           </svg>
         </button>
 
-        <div>
-          <div
-            aria-hidden="true"
-            style={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "radial-gradient(circle at 16% 18%, rgba(201,122,122,0.18), transparent 28%), radial-gradient(circle at 88% 72%, rgba(200,164,100,0.14), transparent 32%)",
-              pointerEvents: "none",
-            }}
-          />
+        {/* Label */}
+        <p style={{
+          fontFamily: "'Jost', sans-serif",
+          fontSize: "9px",
+          fontWeight: 700,
+          letterSpacing: "0.22em",
+          textTransform: "uppercase",
+          color: "#bd7476",
+          margin: "0 0 16px",
+        }}>
+          Free Brand Clarity Quiz
+        </p>
 
-          <div
-            style={{
-              position: "relative",
-              display: "grid",
-              gridTemplateColumns: "minmax(0, 0.9fr) minmax(0, 1.1fr)",
-              gap: 0,
-            }}
-            className="dollhouse-popup-grid"
-          >
-            <div
-              style={{
-                minHeight: "100%",
-                background:
-                  "linear-gradient(150deg, rgba(170,84,92,0.94) 0%, rgba(140,66,74,0.95) 100%)",
-                backdropFilter: "blur(16px) saturate(1.2)",
-                WebkitBackdropFilter: "blur(16px) saturate(1.2)",
-                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.2)",
-                padding: "34px 28px",
-                color: "var(--cream)",
-              }}
-              className="dollhouse-popup-side"
-            >
-              <div
-                style={{
-                  width: "54px",
-                  height: "54px",
-                  borderRadius: "20px",
-                  border: "1px solid rgba(255,255,255,0.3)",
-                  background: "rgba(255,255,255,0.14)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "rgba(249,229,186,0.95)",
-                }}
-              >
-                <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" strokeWidth="1.45" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M7 20V8.6L12 4l5 4.6V20" />
-                  <path d="M10 20v-6h4v6" />
-                  <path d="M9 10.5h.01M15 10.5h.01" />
-                </svg>
-              </div>
+        {/* Heading */}
+        <h2 style={{
+          fontFamily: "'Cormorant Garamond', serif",
+          fontStyle: "italic",
+          fontWeight: 400,
+          fontSize: "clamp(2.2rem, 8vw, 3rem)",
+          lineHeight: 1,
+          color: "var(--ink)",
+          margin: "0 0 16px",
+        }}>
+          Find your next brand move.
+        </h2>
 
-              <p
-                style={{
-                  fontFamily: "'Jost', sans-serif",
-                  fontSize: "9px",
-                  letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                  color: "rgba(249,229,186,0.96)",
-                  margin: "28px 0 0",
-                  fontWeight: 700,
-                }}
-              >
-                Free Brand Clarity Quiz
-              </p>
+        {/* Subtext */}
+        <p style={{
+          fontFamily: "'DM Sans', sans-serif",
+          fontSize: "0.93rem",
+          lineHeight: 1.65,
+          color: "rgba(30,15,11,0.62)",
+          margin: "0 0 28px",
+        }}>
+          Answer 4 honest questions — get matched to your clearest next step in under 60 seconds.
+        </p>
 
-              <h2
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontStyle: "italic",
-                  fontSize: "clamp(2.15rem, 5vw, 3rem)",
-                  color: "var(--cream)",
-                  lineHeight: 0.98,
-                  margin: "14px 0 0",
-                  fontWeight: 400,
-                }}
-              >
-                Find your next best brand move.
-              </h2>
+        {/* CTA */}
+        <button
+          type="button"
+          onClick={takeQuiz}
+          style={{
+            display: "block",
+            width: "100%",
+            padding: "16px 24px",
+            border: 0,
+            borderRadius: "10px",
+            background: "var(--ink)",
+            color: "#FCF4EE",
+            fontFamily: "'Jost', sans-serif",
+            fontSize: "11px",
+            fontWeight: 700,
+            textTransform: "uppercase",
+            letterSpacing: "0.2em",
+            cursor: "pointer",
+            transition: "filter 160ms ease, transform 160ms ease",
+            boxShadow: "0 12px 32px -12px rgba(30,15,11,0.45)",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.filter = "brightness(0.9)";
+            e.currentTarget.style.transform = "translateY(-1px)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.filter = "none";
+            e.currentTarget.style.transform = "none";
+          }}
+        >
+          Take the free quiz →
+        </button>
 
-              <div
-                style={{
-                  marginTop: "26px",
-                  display: "grid",
-                  gap: "10px",
-                }}
-              >
-                {[
-                  ["01", "Your brand type"],
-                  ["02", "The block slowing you down"],
-                  ["03", "The product that fits next"],
-                ].map(([number, label]) => (
-                  <div
-                    key={number}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "12px",
-                      border: "1px solid rgba(255,255,255,0.24)",
-                      borderRadius: "16px",
-                      padding: "10px 12px",
-                      background: "rgba(255,255,255,0.12)",
-                    }}
-                  >
-                    <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "rgba(249,229,186,0.95)", fontStyle: "italic", fontSize: "1.2rem" }}>{number}</span>
-                    <span style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(253,246,240,0.95)", fontSize: "0.82rem" }}>{label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div
-              style={{
-                padding: "42px 34px 34px",
-                textAlign: "center",
-                position: "relative",
-              }}
-              className="dollhouse-popup-main"
-            >
-              <p
-                style={{
-                  fontFamily: "'Jost', sans-serif",
-                  fontSize: "9px",
-                  letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                  color: "var(--gold)",
-                  margin: 0,
-                  fontWeight: 700,
-                }}
-              >
-                Less than 60 seconds
-              </p>
-
-              <h3
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontStyle: "italic",
-                  fontSize: "clamp(1.9rem, 4.5vw, 2.75rem)",
-                  color: "var(--rose)",
-                  lineHeight: 1.03,
-                  margin: "14px 0 0",
-                  fontWeight: 400,
-                }}
-              >
-                Stop guessing what your brand needs first.
-              </h3>
-
-              <p
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "0.94rem",
-                  lineHeight: 1.65,
-                  color: "rgba(30,15,11,0.68)",
-                  margin: "16px 0 0",
-                }}
-              >
-                Answer 4 honest questions and get matched to the clearest next step: foundation, offer, content, or launch.
-              </p>
-
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-                  gap: "10px",
-                  marginTop: "22px",
-                }}
-              >
-                {[
-                  ["Brand type", "See where you are"],
-                  ["3 quick wins", "Know what to fix"],
-                  ["Product match", "Choose the right tool"],
-                  ["No fluff", "Plain next step"],
-                ].map(([title, body]) => (
-                  <div
-                    key={title}
-                    style={{
-                      background: "rgba(255,255,255,0.62)",
-                      border: "1px solid rgba(200,164,100,0.24)",
-                      borderRadius: "17px",
-                      padding: "12px",
-                      textAlign: "left",
-                    }}
-                  >
-                    <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "8px", textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--gold)", margin: 0, fontWeight: 700 }}>{title}</p>
-                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.76rem", color: "rgba(30,15,11,0.58)", margin: "5px 0 0", lineHeight: 1.35 }}>{body}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div
-                aria-hidden="true"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "12px",
-                  margin: "24px 0",
-                  color: "rgba(200,164,100,0.42)",
-                }}
-              >
-                <span style={{ flex: 1, height: "1px", background: "currentColor" }} />
-                <span style={{ fontSize: "11px", lineHeight: 1 }}>◆</span>
-                <span style={{ flex: 1, height: "1px", background: "currentColor" }} />
-              </div>
-
-              <button
-                type="button"
-                onClick={takeQuiz}
-                style={{
-                  width: "100%",
-                  padding: "16px 28px",
-                  border: 0,
-                  borderRadius: "999px",
-                  background: "var(--ink)",
-                  color: "var(--cream)",
-                  fontFamily: "'Jost', sans-serif",
-                  fontSize: "11px",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.18em",
-                  fontWeight: 700,
-                  cursor: "pointer",
-                  transition: "filter 160ms ease, transform 160ms ease",
-                  boxShadow: "0 18px 38px -18px rgba(30,15,11,0.55)",
-                }}
-                onMouseEnter={(event) => {
-                  event.currentTarget.style.filter = "brightness(0.93)";
-                  event.currentTarget.style.transform = "translateY(-1px)";
-                }}
-                onMouseLeave={(event) => {
-                  event.currentTarget.style.filter = "none";
-                  event.currentTarget.style.transform = "none";
-                }}
-              >
-                Take the free quiz →
-              </button>
-
-              <button
-                type="button"
-                onClick={closePopup}
-                style={{
-                  marginTop: "15px",
-                  border: 0,
-                  background: "transparent",
-                  color: "rgba(30,15,11,0.42)",
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "0.78rem",
-                  cursor: "pointer",
-                  padding: 0,
-                }}
-                onMouseEnter={(event) => {
-                  event.currentTarget.style.textDecoration = "underline";
-                }}
-                onMouseLeave={(event) => {
-                  event.currentTarget.style.textDecoration = "none";
-                }}
-              >
-                No thanks, I already know my next step.
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <style>{`
-          @media (max-width: 720px) {
-            .dollhouse-popup-grid {
-              grid-template-columns: 1fr !important;
-            }
-            .dollhouse-popup-side {
-              padding: 28px 24px !important;
-            }
-            .dollhouse-popup-main {
-              padding: 30px 24px 28px !important;
-            }
-          }
-        `}</style>
+        {/* Dismiss */}
+        <button
+          type="button"
+          onClick={closePopup}
+          style={{
+            marginTop: "14px",
+            border: 0,
+            background: "transparent",
+            color: "rgba(30,15,11,0.38)",
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: "0.78rem",
+            cursor: "pointer",
+            padding: "4px 0",
+            display: "block",
+            width: "100%",
+            textAlign: "center",
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.textDecoration = "underline"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.textDecoration = "none"; }}
+        >
+          No thanks, I already know my next step.
+        </button>
       </div>
     </>
   );
