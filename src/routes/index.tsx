@@ -2287,11 +2287,6 @@ function Pricing() {
         </div>
       </div>
 
-      {/* Pricing footnote */}
-      <p className="text-center mt-6 mb-2" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.38)" }}>
-        Foundation starts at $297/mo &nbsp;·&nbsp; first 14 days of monthly management free &nbsp;·&nbsp; one-time $500 setup fee due upfront
-      </p>
-
     </section>
   );
 }
@@ -3244,12 +3239,12 @@ function Index() {
       <About />
       <HowItWorks />
       <Pricing />
+      <AgencyFooterNotes />
       <PlanComparisonSection />
       <ResultsStatsSection />
       <AgencyFaqSection />
       <FinalCtaSection proposalHref="#contact" />
       <Contact />
-      <AgencyFooterNotes />
       <Footer />
       <BackToTop />
     </main>

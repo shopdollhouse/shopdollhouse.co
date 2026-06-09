@@ -242,9 +242,18 @@ export function FinalCtaSection({ proposalHref, newTab = false }: { proposalHref
 /* ── Legal footer notes ──────────────────────────────── */
 export function AgencyFooterNotes() {
   return (
-    <section className="px-6 py-10" style={{ background: CREAM }}>
-      <p className="mx-auto max-w-3xl text-center" style={{ fontFamily: FONT_BODY, fontSize: "12px", lineHeight: 1.7, color: "rgba(29,15,11,0.5)" }}>
-        $500 one-time setup fee required upfront on every plan · First 14 days of monthly management free on Starter and Growth · Ad spend is not included in any package — paid directly by you to Meta · Minimum $1,000/mo ad spend recommended
+    <section
+      className="px-6"
+      style={{
+        background: CREAM,
+        borderTop: "1px solid rgba(29,15,11,0.08)",
+        borderBottom: "1px solid rgba(29,15,11,0.08)",
+        paddingTop: "28px",
+        paddingBottom: "28px",
+      }}
+    >
+      <p className="mx-auto max-w-2xl text-center" style={{ fontFamily: FONT_BODY, fontSize: "11px", lineHeight: 1.8, color: "rgba(29,15,11,0.42)" }}>
+        $500 one-time setup fee required upfront on every plan · First 14 days of monthly management free on Starter and Growth plans · Ad spend is not included in any package and is paid directly by you to Meta · Minimum $1,000–$2,000/mo ad spend recommended
       </p>
     </section>
   );
