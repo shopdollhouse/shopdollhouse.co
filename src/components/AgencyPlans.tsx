@@ -276,22 +276,19 @@ export function PlanCard({
                     type="button"
                     onClick={() => setSelectedTierIdx(idx)}
                     className="rounded-xl text-left transition-all flex flex-col overflow-hidden"
-                    style={{
-                      border: idx === 0 ? "2px solid transparent" : active ? `2px solid ${plan.accent}` : "2px solid transparent",
-                      boxShadow: active ? "0 4px 14px -6px rgba(29,15,11,0.35)" : "none",
-                    }}
+                    style={{ border: "2px solid transparent" }}
                   >
-                    {/* Price tile */}
-                    <div className="p-3" style={{ background: idx === 0 ? "#bd7476" : active ? plan.accent : CREAM }}>
-                      <p style={{ fontFamily: FONT_LUXE, fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: idx === 0 ? "rgba(255,255,255,0.8)" : active ? "rgba(255,255,255,0.7)" : "rgba(29,15,11,0.5)" }}>
+                    {/* Price tile — idx 0 always pink, idx 1 always cream */}
+                    <div className="p-3" style={{ background: idx === 0 ? "#bd7476" : CREAM }}>
+                      <p style={{ fontFamily: FONT_LUXE, fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: idx === 0 ? "rgba(255,255,255,0.8)" : "rgba(29,15,11,0.5)" }}>
                         {tier.label}
                       </p>
-                      <p style={{ fontFamily: FONT_DISPLAY, fontSize: "28px", lineHeight: 1, color: idx === 0 ? "#fff" : active ? "#fff" : plan.accent, marginTop: "4px" }}>
-                        ${fmt(tier.monthly)}<span style={{ fontFamily: FONT_BODY, fontSize: "0.7rem", marginLeft: "2px", color: idx === 0 ? "rgba(255,255,255,0.7)" : active ? "rgba(255,255,255,0.6)" : "rgba(29,15,11,0.45)" }}>/mo</span>
+                      <p style={{ fontFamily: FONT_DISPLAY, fontSize: "28px", lineHeight: 1, color: idx === 0 ? "#fff" : plan.accent, marginTop: "4px" }}>
+                        ${fmt(tier.monthly)}<span style={{ fontFamily: FONT_BODY, fontSize: "0.7rem", marginLeft: "2px", color: idx === 0 ? "rgba(255,255,255,0.7)" : "rgba(29,15,11,0.45)" }}>/mo</span>
                       </p>
                     </div>
                     {/* Calculator box directly beneath */}
-                    <div className="p-3 flex-1" style={{ background: CREAM, borderTop: active ? `1px solid rgba(29,15,11,0.08)` : "1px solid rgba(29,15,11,0.06)" }}>
+                    <div className="p-3 flex-1" style={{ background: CREAM, borderTop: "1px solid rgba(29,15,11,0.06)" }}>
                       <p style={{ fontFamily: FONT_LUXE, fontSize: "0.52rem", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(29,15,11,0.5)" }}>
                         {localMonths}-Month Total
                       </p>
