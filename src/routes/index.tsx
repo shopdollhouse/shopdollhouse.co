@@ -2464,7 +2464,6 @@ function Contact() {
       firstName: get("first_name"),
       lastName: get("last_name"),
       email: get("email"),
-      phone: get("phone"),
       businessName: get("business_name"),
       industry: get("industry"),
       website: get("website"),
@@ -2787,17 +2786,6 @@ function Contact() {
           </svg>
           Book a free discovery call
         </button>
-
-        <a
-          href="tel:+12893014567"
-          className="w-full flex items-center justify-center gap-2 text-[11px] tracking-luxe uppercase transition-colors hover:text-[var(--rose)]"
-          style={{ fontFamily: "'Jost', sans-serif", color: "var(--ink)", opacity: 0.7 }}
-        >
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: "12px", height: "12px" }}>
-            <path d="M5.1 2.9l1.2 2.5-1.1 1.1c.9 1.8 2.4 3.2 4.2 4.2l1.1-1.1 2.5 1.2-.7 2.2c-.2.5-.7.8-1.2.7C6 13 2.9 9.9 2.3 4.9c-.1-.5.2-1 .7-1.2l2.1-.8Z" strokeLinejoin="round" />
-          </svg>
-          Or call (289) 301-4567
-        </a>
         </form>
         )}
         </div>
