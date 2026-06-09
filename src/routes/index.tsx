@@ -2618,7 +2618,7 @@ function Contact() {
 
   return (
     <section id="contact" className="scroll-mt-32 py-24 md:py-32 px-6">
-      <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.88fr_1.12fr] gap-8 lg:gap-12 items-stretch">
+      <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.88fr_1.12fr] gap-8 lg:gap-12 items-start">
         {/* ── LEFT COLUMN (unchanged) ── */}
         <div className="lg:sticky lg:top-36">
           <Eyebrow>Private Proposal Request</Eyebrow>
@@ -2663,6 +2663,7 @@ function Contact() {
         </div>
 
         {/* ── RIGHT COLUMN ── */}
+        <div className="flex flex-col gap-4 items-stretch">
         <div className="rounded-[28px] bg-white/76 backdrop-blur-md border border-white/85 shadow-[0_30px_70px_-35px_rgba(120,70,60,0.42)] p-6 md:p-9">
 
           {/* ── CALENDAR VIEW ── */}
@@ -2701,6 +2702,47 @@ function Contact() {
               <p className="max-w-sm text-[var(--ink)]/62 leading-7" style={{ fontFamily: "'DM Sans', sans-serif" }}>
                 Expect a private reply within 24 hours.
               </p>
+            </div>
+
+          ) : step === 0 ? (
+            /* ── PATH SELECTOR ── */
+            <div className="space-y-6">
+              <div className="border-b border-[var(--gold)]/18 pb-5">
+                <p className="text-[10px] tracking-luxe uppercase text-[var(--gold)]" style={{ fontFamily: "'Jost', sans-serif" }}>Get started</p>
+                <h3 className="mt-2 italic text-[var(--ink)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.8rem, 3vw, 2.45rem)", lineHeight: 1.05 }}>
+                  How would you like to get started?
+                </h3>
+              </div>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {/* Option A — Proposal Form */}
+                <button
+                  type="button"
+                  onClick={() => setStep(1)}
+                  className="text-left rounded-2xl p-5 transition-all hover:-translate-y-0.5"
+                  style={{ background: "rgba(255,250,246,0.8)", border: "1.5px solid rgba(189,116,118,0.35)", boxShadow: "0 8px 24px -14px rgba(189,116,118,0.3)" }}
+                >
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full mb-3" style={{ background: "rgba(189,116,118,0.12)" }}>
+                    <svg viewBox="0 0 18 18" fill="none" stroke="#bd7476" strokeWidth="1.5" style={{ width: "16px", height: "16px" }}><path d="M3 5h12M3 9h8M3 13h6" strokeLinecap="round" /></svg>
+                  </span>
+                  <p className="text-[10px] tracking-luxe uppercase mb-1.5" style={{ fontFamily: "'Jost', sans-serif", color: "#bd7476" }}>Proposal Request</p>
+                  <p className="font-medium" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.25rem", color: "var(--ink)", lineHeight: 1.2 }}>Send a Proposal Request</p>
+                  <p className="mt-2 text-[var(--ink)]/55 leading-5" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem" }}>Answer a few quick questions and receive a private recommendation within 24 hours.</p>
+                </button>
+                {/* Option B — Discovery Call */}
+                <button
+                  type="button"
+                  onClick={() => setShowCalendar(true)}
+                  className="text-left rounded-2xl p-5 transition-all hover:-translate-y-0.5"
+                  style={{ background: "rgba(255,250,246,0.8)", border: "1.5px solid rgba(200,168,100,0.3)", boxShadow: "0 8px 24px -14px rgba(120,70,55,0.18)" }}
+                >
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full mb-3" style={{ background: "rgba(200,168,100,0.12)" }}>
+                    <svg viewBox="0 0 18 18" fill="none" stroke="var(--gold)" strokeWidth="1.5" style={{ width: "16px", height: "16px" }}><rect x="2" y="3" width="14" height="12" rx="2" /><path d="M6 1.5v3M12 1.5v3M2 8h14" strokeLinecap="round" /></svg>
+                  </span>
+                  <p className="text-[10px] tracking-luxe uppercase mb-1.5" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>Discovery Call</p>
+                  <p className="font-medium" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.25rem", color: "var(--ink)", lineHeight: 1.2 }}>Book a Discovery Call</p>
+                  <p className="mt-2 text-[var(--ink)]/55 leading-5" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem" }}>Skip the form and jump straight into a free 20-minute call with Mandy.</p>
+                </button>
+              </div>
             </div>
 
           ) : (
@@ -2857,25 +2899,9 @@ function Contact() {
                     >
                       {status === "sending" ? "Sending..." : "Send My Free Proposal Request →"}
                     </button>
-                    <div className="flex items-center gap-3 my-1">
-                      <span className="flex-1 h-px bg-[var(--gold)]/20" />
-                      <span className="text-[var(--ink)]/30 text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>or</span>
-                      <span className="flex-1 h-px bg-[var(--gold)]/20" />
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => setShowCalendar(true)}
-                      className="w-full flex items-center justify-center gap-2 rounded-xl py-3.5 text-[11px] tracking-luxe uppercase transition-all hover:border-[var(--ink)]/40 hover:text-[var(--ink)]"
-                      style={{ fontFamily: "'Jost', sans-serif", color: "var(--ink)", border: "1px solid color-mix(in oklab, var(--ink) 22%, transparent)" }}
-                    >
-                      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: "13px", height: "13px" }}>
-                        <rect x="2" y="3" width="12" height="11" rx="1.5" /><path d="M5 1.5v3M11 1.5v3M2 7h12" strokeLinecap="round" />
-                      </svg>
-                      Book a Free Discovery Call
-                    </button>
                   </>
                 )}
-                {step > 1 && (
+                {step >= 1 && (
                   <button
                     type="button"
                     onClick={() => setStep(s => s - 1)}
@@ -2889,6 +2915,13 @@ function Contact() {
               </div>
             </div>
           )}
+        </div>
+        {/* Decorative closer — only visible when form is short */}
+        {!showCalendar && status !== "done" && (
+          <p className="text-center" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(189,116,118,0.55)" }}>
+            Private reply within 24 hours ✦
+          </p>
+        )}
         </div>
       </div>
     </section>
