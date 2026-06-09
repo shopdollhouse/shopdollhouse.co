@@ -2576,7 +2576,7 @@ function Contact() {
     document.body.appendChild(s);
   }, []);
   const [status, setStatus] = useState<"idle" | "sending" | "done">("idle");
-  const TOTAL_STEPS = 5;
+  const TOTAL_STEPS = 6;
 
   const [fd, setFd] = useState({
     first_name: "", last_name: "", email: "", phone: "",
@@ -2614,7 +2614,7 @@ function Contact() {
   const lc = "block text-[10px] tracking-luxe uppercase text-[var(--gold)] mb-2";
   const ls = { fontFamily: "'Jost', sans-serif" } as React.CSSProperties;
 
-  const stepTitles = ["Let's start with you", "Tell us about your business", "What are you looking for?", "Where are you right now?", "Almost done"];
+  const stepTitles = ["Let's start with you", "What type of business do you have?", "Tell us about your business", "What are you looking for?", "Where are you right now?", "Almost done"];
 
   return (
     <section id="contact" className="scroll-mt-32 py-24 md:py-32 px-6">
@@ -2815,46 +2815,50 @@ function Contact() {
                 </div>
               )}
 
-              {/* ── STEP 2 ── */}
+              {/* ── STEP 2 ── Business type */}
               {step === 2 && (
+                <div className="space-y-4">
+                  <div className="grid grid-cols-2 gap-x-3 gap-y-1.5">
+                    {[
+                      "Contractors & home services","Coaches & consultants",
+                      "Med spas & aesthetics","Real estate agents",
+                      "Salons & beauty pros","Restaurants & food brands",
+                      "Fitness studios & gyms","Law firms & professionals",
+                      "Retail & boutique brands","E-commerce businesses",
+                      "Photographers & creatives","Mortgage & insurance pros",
+                    ].map((opt) => {
+                      const selected = fd.industry === opt;
+                      return (
+                        <button
+                          key={opt}
+                          type="button"
+                          onClick={() => setFd(prev => ({ ...prev, industry: opt }))}
+                          className="flex min-h-10 items-center gap-2.5 rounded-full px-3.5 py-2 text-left transition-all hover:-translate-y-0.5"
+                          style={{
+                            fontFamily: "'DM Sans', sans-serif",
+                            fontSize: "0.78rem",
+                            lineHeight: 1.25,
+                            background: selected ? "#bd7476" : "rgba(255,255,255,0.62)",
+                            color: selected ? "#fff" : "var(--ink)",
+                            border: selected ? "1px solid #bd7476" : "1px solid rgba(200,168,100,0.26)",
+                            boxShadow: selected ? "0 4px 14px -6px rgba(189,116,118,0.45)" : "0 8px 20px -18px rgba(90,45,35,0.5)",
+                          }}
+                        >
+                          <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: selected ? "rgba(255,255,255,0.7)" : "var(--rose)" }} aria-hidden />
+                          {opt}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* ── STEP 3 ── Tell us about your business */}
+              {step === 3 && (
                 <div className="space-y-4">
                   <div>
                     <label className={lc} style={ls}>Business Name *</label>
                     <input type="text" value={fd.business_name} onChange={set("business_name")} placeholder="Bloom Med Spa" required className={ic} style={is} />
-                  </div>
-                  <div>
-                    <label className={lc} style={ls}>What type of business do you have?</label>
-                    <div className="grid grid-cols-2 gap-2 mt-1">
-                      {[
-                        "Contractors & home services","Coaches & consultants",
-                        "Med spas & aesthetics","Real estate agents",
-                        "Salons & beauty pros","Restaurants & food brands",
-                        "Fitness studios & gyms","Law firms & professionals",
-                        "Retail & boutique brands","E-commerce businesses",
-                        "Photographers & creatives","Mortgage & insurance pros",
-                      ].map((opt) => {
-                        const selected = fd.industry === opt;
-                        return (
-                          <button
-                            key={opt}
-                            type="button"
-                            onClick={() => setFd(prev => ({ ...prev, industry: opt }))}
-                            className="rounded-full px-3 py-2.5 text-left transition-all"
-                            style={{
-                              fontFamily: "'DM Sans', sans-serif",
-                              fontSize: "0.78rem",
-                              lineHeight: 1.25,
-                              background: selected ? "#bd7476" : "rgba(255,255,255,0.72)",
-                              color: selected ? "#fff" : "var(--ink)",
-                              border: selected ? "1px solid #bd7476" : "1px solid rgba(200,168,100,0.3)",
-                              boxShadow: selected ? "0 4px 14px -6px rgba(189,116,118,0.45)" : "none",
-                            }}
-                          >
-                            {opt}
-                          </button>
-                        );
-                      })}
-                    </div>
                   </div>
                   <div>
                     <label className={lc} style={ls}>Website <span className="normal-case opacity-60">(optional)</span></label>
@@ -2863,8 +2867,8 @@ function Contact() {
                 </div>
               )}
 
-              {/* ── STEP 3 ── */}
-              {step === 3 && (
+              {/* ── STEP 4 ── What are you looking for? */}
+              {step === 4 && (
                 <div className="space-y-4">
                   <div>
                     <label className={lc} style={ls}>Which plan interests you?</label>
@@ -2889,8 +2893,8 @@ function Contact() {
                 </div>
               )}
 
-              {/* ── STEP 4 ── */}
-              {step === 4 && (
+              {/* ── STEP 5 ── Where are you right now? */}
+              {step === 5 && (
                 <div className="space-y-4">
                   <div>
                     <label className={lc} style={ls}>Tell us about your business</label>
@@ -2906,8 +2910,8 @@ function Contact() {
                 </div>
               )}
 
-              {/* ── STEP 5 ── */}
-              {step === 5 && (
+              {/* ── STEP 6 ── Almost done */}
+              {step === 6 && (
                 <div className="space-y-4">
                   <div>
                     <label className={lc} style={ls}>Preferred commitment</label>
