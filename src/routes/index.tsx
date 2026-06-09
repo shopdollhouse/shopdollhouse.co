@@ -28,7 +28,7 @@ import brandRoomImage from "@/assets/path-brand-room.jpg";
 import { managedServiceLinks, systemServices } from "@/lib/system-services";
 import { usePageMeta } from "@/lib/use-page-meta";
 import { PLANS, PlanCard } from "@/components/AgencyPlans";
-import { FocusedSetupSection, PlanComparisonSection, ResultsStatsSection, AgencyFaqSection, FinalCtaSection, AgencyFooterNotes, pulsePlan } from "@/components/AgencySections";
+import { PlanComparisonSection, ResultsStatsSection, AgencyFaqSection, FinalCtaSection, AgencyFooterNotes, pulsePlan } from "@/components/AgencySections";
 
 export const Route = createFileRoute("/")({ component: Index });
 
@@ -2057,13 +2057,6 @@ function Pricing() {
       ],
     },
   ];
-  const appointmentBooking = {
-    name: "Appointment Booking",
-    price: "$500",
-    summary:
-      "A focused setup for businesses that need leads to book faster: calendar connection, booking flow, confirmations, and appointment reminders.",
-    features: ["Booking calendar setup", "Confirmation text/email flow", "Reminder sequence", "Simple lead handoff"],
-  };
   const getPlanMath = (tier: (typeof tiers)[number]) => {
     const regularTotal = tier.monthlyPrice * contractMonths + setupFee;
     const bonusMonths = contractTerm === "12" ? 1 : 0;
@@ -3251,7 +3244,6 @@ function Index() {
       <About />
       <HowItWorks />
       <Pricing />
-      <FocusedSetupSection proposalHref="#contact" />
       <PlanComparisonSection />
       <ResultsStatsSection />
       <AgencyFaqSection />
