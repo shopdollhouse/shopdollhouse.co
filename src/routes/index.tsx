@@ -2170,6 +2170,119 @@ function Pricing() {
       </div>
 
 
+      {/* Google Local Service Ads Upsell */}
+      <div className="mt-10 max-w-5xl mx-auto">
+        <div className="text-center mb-6">
+          <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
+            Foundation Plan Add-On
+          </p>
+          <h3
+            className="mt-2 italic text-[var(--ink)]"
+            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.75rem, 3vw, 2.4rem)", lineHeight: 1.05 }}
+          >
+            Google Local Service Ads
+          </h3>
+          <p
+            className="mt-3 text-[var(--ink)]/60 leading-7 max-w-xl mx-auto"
+            style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem", fontStyle: "italic" }}
+          >
+            Your business shows as sponsored with a top rating on Google. You only pay per result, not per click.
+          </p>
+          <div className="mt-4 flex items-center gap-3 max-w-xs mx-auto">
+            <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 45%, transparent), transparent)" }} />
+            <span style={{ color: "var(--gold)", fontSize: "0.7rem" }}>♥</span>
+            <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 45%, transparent), transparent)" }} />
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* Card 1 — Basic $297 */}
+          <article
+            className="rounded-[28px] p-8 flex flex-col"
+            style={{
+              background: "linear-gradient(180deg, #fbf3ee 0%, #f6e8e1 100%)",
+              border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)",
+              boxShadow: "0 30px 60px -30px rgba(160,110,95,0.35), inset 0 1px 0 rgba(255,255,255,0.6)",
+            }}
+          >
+            <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
+              Google LSA · Basic Management
+            </p>
+            <h4 className="mt-3 italic text-[var(--ink)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.55rem, 2.2vw, 2rem)", lineHeight: 1.1 }}>
+              Basic Management
+            </h4>
+            <div className="mt-5 flex items-end gap-1.5">
+              <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.5rem, 3.8vw, 3.25rem)", fontStyle: "italic", color: "var(--gold)", lineHeight: 1 }}>$297</span>
+              <span className="mb-1.5" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.5rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(30,15,10,0.45)" }}>/mo</span>
+            </div>
+            <div className="my-5 flex items-center gap-3">
+              <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 40%, transparent), transparent)" }} />
+              <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>✦</span>
+              <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 40%, transparent), transparent)" }} />
+            </div>
+            <ul className="space-y-3 flex-1">
+              {["Your business listed as a Google Sponsored result", "Top-rated badge displayed on your listing", "Pay per lead — not per click", "Ad setup, optimization, and monthly management", "Budget monitoring and performance reporting"].map((f, i) => (
+                <li key={i} className="flex items-start gap-3" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.88rem", color: "rgba(30,15,10,0.82)" }}>
+                  <PlanFeatureIcon index={i} filled={false} />
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-7 flex items-center gap-3 rounded-xl px-4 py-3" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.3)" }}>
+              <span style={{ color: "var(--gold)", fontSize: "0.75rem", flexShrink: 0 }}>✦</span>
+              <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.78rem", color: "var(--ink)", opacity: 0.75 }}>Pay 3 months upfront — your 4th month is free.</p>
+            </div>
+            <a href="#contact" className="mt-5 w-full block rounded-2xl px-5 py-4 text-center transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ backgroundColor: "var(--gold)", boxShadow: "0 12px 28px -10px rgba(160,110,60,0.5)" }}>
+              <p className="text-[var(--ink)] leading-tight" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.1rem", fontStyle: "italic", fontWeight: 700 }}>Ask About Google LSA →</p>
+            </a>
+          </article>
+
+          {/* Card 2 — With AI Conversations $497 */}
+          <article
+            className="rounded-[28px] p-8 flex flex-col relative"
+            style={{
+              background: "linear-gradient(180deg, #fbf3ee 0%, #f6e8e1 100%)",
+              border: "2px solid color-mix(in oklab, var(--gold) 55%, transparent)",
+              boxShadow: "0 40px 80px -24px rgba(160,90,80,0.4), 0 0 0 1px rgba(200,168,100,0.2), inset 0 1px 0 rgba(255,255,255,0.7)",
+            }}
+          >
+            <span className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-2 rounded-full text-[10px] tracking-luxe uppercase whitespace-nowrap" style={{ fontFamily: "'Jost', sans-serif", backgroundColor: "var(--gold)", color: "var(--ink)", fontWeight: 700, boxShadow: "0 8px 20px -10px rgba(120,80,60,0.5)" }}>
+              Most Popular
+            </span>
+            <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
+              Google LSA · With AI Conversations
+            </p>
+            <h4 className="mt-3 italic text-[var(--ink)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.55rem, 2.2vw, 2rem)", lineHeight: 1.1 }}>
+              Google LSA + AI Conversations
+            </h4>
+            <div className="mt-5 flex items-end gap-1.5">
+              <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.5rem, 3.8vw, 3.25rem)", fontStyle: "italic", color: "var(--gold)", lineHeight: 1 }}>$497</span>
+              <span className="mb-1.5" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.5rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(30,15,10,0.45)" }}>/mo</span>
+            </div>
+            <div className="my-5 flex items-center gap-3">
+              <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 40%, transparent), transparent)" }} />
+              <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>✦</span>
+              <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 40%, transparent), transparent)" }} />
+            </div>
+            <ul className="space-y-3 flex-1">
+              {["Everything in the Basic plan", "AI-powered conversations that respond to every lead instantly", "Automatic lead follow-up so no inquiry goes unanswered", "Smart qualification — AI captures name, need, and contact details", "Seamlessly hands off hot leads to your team or booking system"].map((f, i) => (
+                <li key={i} className="flex items-start gap-3" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.88rem", color: "rgba(30,15,10,0.82)" }}>
+                  <PlanFeatureIcon index={i} filled={false} />
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-7 flex items-center gap-3 rounded-xl px-4 py-3" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.3)" }}>
+              <span style={{ color: "var(--gold)", fontSize: "0.75rem", flexShrink: 0 }}>✦</span>
+              <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.78rem", color: "var(--ink)", opacity: 0.75 }}>Pay 3 months upfront — your 4th month is free.</p>
+            </div>
+            <a href="#contact" className="mt-5 w-full block rounded-2xl px-5 py-4 text-center transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ backgroundColor: "var(--gold)", boxShadow: "0 12px 28px -10px rgba(160,110,60,0.5)" }}>
+              <p className="text-[var(--ink)] leading-tight" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.1rem", fontStyle: "italic", fontWeight: 700 }}>Ask About Google LSA + AI →</p>
+            </a>
+          </article>
+        </div>
+      </div>
+
       {/* Pricing footnote */}
       <p className="text-center mt-6 mb-2" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.38)" }}>
         Foundation starts at $297/mo &nbsp;·&nbsp; first 14 days of monthly management free &nbsp;·&nbsp; one-time $500 setup fee due upfront
