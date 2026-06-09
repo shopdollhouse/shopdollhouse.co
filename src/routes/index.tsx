@@ -2618,7 +2618,7 @@ function Contact() {
 
   return (
     <section id="contact" className="scroll-mt-32 py-24 md:py-32 px-6">
-      <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.88fr_1.12fr] gap-8 lg:gap-12 items-start">
+      <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.88fr_1.12fr] gap-8 lg:gap-12 items-stretch">
         {/* ── LEFT COLUMN (unchanged) ── */}
         <div className="lg:sticky lg:top-36">
           <Eyebrow>Private Proposal Request</Eyebrow>
@@ -2649,7 +2649,7 @@ function Contact() {
               <p className="text-[var(--rose)] text-[10px] tracking-luxe uppercase font-semibold" style={{ fontFamily: "'Jost', sans-serif" }}>Best fit for</p>
               <span className="h-px flex-1 bg-[var(--gold)]/32" aria-hidden />
             </div>
-            <div className="mt-4 grid gap-2 sm:grid-cols-2">
+            <div className="mt-4 grid gap-1.5 sm:grid-cols-2 sm:gap-x-3 sm:gap-y-1.5">
               {["Contractors & home services","Coaches & consultants","Med spas & aesthetics","Real estate agents","Salons & beauty pros","Restaurants & food brands","Fitness studios & gyms","Law firms & professionals","Retail & boutique brands","E-commerce businesses","Photographers & creatives","Mortgage & insurance pros"].map((ind) => (
                 <div key={ind} className="flex min-h-10 items-center gap-2.5 rounded-full px-3.5 py-2 text-[var(--ink)]/72" style={{ border: "1px solid rgba(200,168,100,0.26)", background: "rgba(255,255,255,0.62)", fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", lineHeight: 1.25, boxShadow: "0 8px 20px -18px rgba(90,45,35,0.5)" }}>
                   <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--rose)]/72" aria-hidden />{ind}
@@ -2712,8 +2712,8 @@ function Contact() {
                   {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
                     <div
                       key={i}
-                      className="h-1 flex-1 rounded-full transition-all duration-300"
-                      style={{ background: i < step ? "var(--rose)" : "rgba(200,168,100,0.2)" }}
+                      className="h-1.5 flex-1 rounded-full transition-all duration-300"
+                      style={{ background: i < step ? "#bd7476" : "rgba(200,168,100,0.2)" }}
                     />
                   ))}
                 </div>
@@ -2732,7 +2732,7 @@ function Contact() {
               {/* ── STEP 1 ── */}
               {step === 1 && (
                 <div className="space-y-4">
-                  <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="grid sm:grid-cols-2 gap-6">
                     <div>
                       <label className={lc} style={ls}>First Name *</label>
                       <input type="text" value={fd.first_name} onChange={set("first_name")} placeholder="Jane" required className={ic} style={is} />
@@ -2836,13 +2836,13 @@ function Contact() {
               )}
 
               {/* Navigation buttons */}
-              <div className="space-y-3 pt-2">
+              <div className="space-y-3 pt-0">
                 {step < TOTAL_STEPS ? (
                   <button
                     type="button"
                     onClick={() => setStep(s => s + 1)}
-                    className="w-full rounded-2xl bg-[var(--ink)] text-[var(--cream)] py-4 text-[11px] tracking-luxe uppercase hover:-translate-y-0.5 hover:opacity-95 transition"
-                    style={{ fontFamily: "'Jost', sans-serif", boxShadow: "0 18px 36px -22px rgba(30,15,10,0.7)" }}
+                    className="w-full rounded-2xl py-4 text-[11px] tracking-luxe uppercase hover:-translate-y-0.5 hover:opacity-90 transition"
+                    style={{ fontFamily: "'Jost', sans-serif", background: "#bd7476", color: "#fff", boxShadow: "0 18px 36px -22px rgba(189,116,118,0.55)" }}
                   >
                     Next →
                   </button>
@@ -2852,8 +2852,8 @@ function Contact() {
                       type="button"
                       onClick={handleSubmit}
                       disabled={status === "sending"}
-                      className="w-full rounded-2xl bg-[var(--ink)] text-[var(--cream)] py-4 text-[11px] tracking-luxe uppercase hover:-translate-y-0.5 hover:opacity-95 transition disabled:opacity-60"
-                      style={{ fontFamily: "'Jost', sans-serif", boxShadow: "0 18px 36px -22px rgba(30,15,10,0.7)" }}
+                      className="w-full rounded-2xl py-4 text-[11px] tracking-luxe uppercase hover:-translate-y-0.5 hover:opacity-90 transition disabled:opacity-60"
+                      style={{ fontFamily: "'Jost', sans-serif", background: "#bd7476", color: "#fff", boxShadow: "0 18px 36px -22px rgba(189,116,118,0.55)" }}
                     >
                       {status === "sending" ? "Sending..." : "Send My Free Proposal Request →"}
                     </button>
@@ -2879,8 +2879,8 @@ function Contact() {
                   <button
                     type="button"
                     onClick={() => setStep(s => s - 1)}
-                    className="w-full flex items-center justify-center gap-2 rounded-xl py-3 text-[11px] tracking-luxe uppercase text-[var(--ink)]/55 transition-colors hover:text-[var(--ink)]"
-                    style={{ fontFamily: "'Jost', sans-serif" }}
+                    className="w-full flex items-center justify-center gap-2 rounded-xl py-3 text-[11px] tracking-luxe uppercase transition-opacity hover:opacity-80"
+                    style={{ fontFamily: "'Jost', sans-serif", color: "#bd7476", border: "1px solid rgba(189,116,118,0.35)" }}
                   >
                     <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" style={{ width: "12px", height: "12px" }}><path d="M10 3 5 8l5 5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                     Back
