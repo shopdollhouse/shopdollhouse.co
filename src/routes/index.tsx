@@ -2562,6 +2562,75 @@ function ComparisonTable() {
   );
 }
 
+/* ─── FormSelect ───────────────────────────────────────── */
+function FormSelect({
+  value, onChange, options,
+}: { value: string; onChange: (v: string) => void; options: string[] }) {
+  const [open, setOpen] = useState(false);
+  const ROSE = "#bd7476";
+  const ic = "w-full rounded-xl bg-white/72 border px-5 py-3.5 text-[var(--ink)] focus:outline-none transition";
+  return (
+    <div className="relative">
+      {/* Invisible overlay to close on outside click */}
+      {open && (
+        <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
+      )}
+      <button
+        type="button"
+        onClick={() => setOpen(o => !o)}
+        className={`${ic} flex items-center justify-between gap-2`}
+        style={{
+          borderColor: open ? ROSE : "rgba(200,168,100,0.3)",
+          boxShadow: open ? `0 0 0 2px rgba(189,116,118,0.18)` : "none",
+          fontFamily: "'Cormorant Garamond', serif",
+          fontSize: "1rem",
+        }}
+      >
+        <span style={{ color: ROSE }}>{value}</span>
+        <svg
+          viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6"
+          style={{ width: "13px", height: "13px", color: ROSE, flexShrink: 0,
+            transform: open ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.2s ease" }}
+        >
+          <path d="M3 6l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+      {open && (
+        <div
+          className="absolute z-50 w-full mt-1 rounded-xl overflow-hidden"
+          style={{
+            background: "rgba(255,252,249,0.98)",
+            border: `1px solid rgba(189,116,118,0.35)`,
+            boxShadow: "0 16px 40px -16px rgba(120,60,55,0.35)",
+            backdropFilter: "blur(12px)",
+          }}
+        >
+          {options.map((opt) => {
+            const selected = opt === value;
+            return (
+              <button
+                key={opt}
+                type="button"
+                onClick={() => { onChange(opt); setOpen(false); }}
+                className="w-full px-5 py-3 text-left transition-colors"
+                style={{
+                  background: selected ? ROSE : "transparent",
+                  color: selected ? "#fff" : "var(--ink)",
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "1rem",
+                  borderBottom: "1px solid rgba(200,168,100,0.12)",
+                }}
+              >
+                {opt}
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 /* ─── Contact ─────────────────────────────────────────── */
 function Contact() {
   const [showCalendar, setShowCalendar] = useState(false);
@@ -2875,23 +2944,19 @@ function Contact() {
                 <div className="space-y-4">
                   <div>
                     <label className={lc} style={ls}>Which plan interests you?</label>
-                    <select value={fd.plan} onChange={set("plan")} className={ic} style={is}>
-                      <option>Foundation — $297/mo</option>
-                      <option>Foundation + Google LSA — $497/mo</option>
-                      <option>Starter — $1,000/mo</option>
-                      <option>Growth — $2,500/mo</option>
-                      <option>Not sure yet</option>
-                    </select>
+                    <FormSelect
+                      value={fd.plan}
+                      onChange={v => setFd(prev => ({ ...prev, plan: v }))}
+                      options={["Foundation — $297/mo","Foundation + Google LSA — $497/mo","Starter — $1,000/mo","Growth — $2,500/mo","Not sure yet"]}
+                    />
                   </div>
                   <div>
                     <label className={lc} style={ls}>What's your main goal?</label>
-                    <select value={fd.main_goal} onChange={set("main_goal")} className={ic} style={is}>
-                      <option>Get more booked leads</option>
-                      <option>Build my online presence</option>
-                      <option>Run paid ads</option>
-                      <option>Automate my follow-up</option>
-                      <option>All of the above</option>
-                    </select>
+                    <FormSelect
+                      value={fd.main_goal}
+                      onChange={v => setFd(prev => ({ ...prev, main_goal: v }))}
+                      options={["Get more booked leads","Build my online presence","Run paid ads","Automate my follow-up","All of the above"]}
+                    />
                   </div>
                 </div>
               )}
@@ -2918,18 +2983,19 @@ function Contact() {
                 <div className="space-y-4">
                   <div>
                     <label className={lc} style={ls}>Preferred commitment</label>
-                    <select value={fd.contract_term} onChange={set("contract_term")} className={ic} style={is}>
-                      <option>3 months</option>
-                      <option>6 months</option>
-                      <option>Not sure yet</option>
-                    </select>
+                    <FormSelect
+                      value={fd.contract_term}
+                      onChange={v => setFd(prev => ({ ...prev, contract_term: v }))}
+                      options={["3 months","6 months","Not sure yet"]}
+                    />
                   </div>
                   <div>
                     <label className={lc} style={ls}>Setup readiness</label>
-                    <select value={fd.setup_readiness} onChange={set("setup_readiness")} className={ic} style={is}>
-                      <option>I understand there is a one-time $500 setup fee</option>
-                      <option>I need more information about setup costs</option>
-                    </select>
+                    <FormSelect
+                      value={fd.setup_readiness}
+                      onChange={v => setFd(prev => ({ ...prev, setup_readiness: v }))}
+                      options={["I understand there is a one-time $500 setup fee","I need more information about setup costs"]}
+                    />
                   </div>
                 </div>
               )}
