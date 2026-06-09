@@ -265,12 +265,12 @@ export function PlanCard({
                     }}
                   >
                     {/* Price tile */}
-                    <div className="p-3" style={{ background: active ? plan.accent : CREAM }}>
-                      <p style={{ fontFamily: FONT_LUXE, fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: active ? "rgba(255,255,255,0.7)" : "rgba(29,15,11,0.5)" }}>
+                    <div className="p-3" style={{ background: idx === 0 ? "#bd7476" : active ? plan.accent : CREAM }}>
+                      <p style={{ fontFamily: FONT_LUXE, fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: idx === 0 ? "rgba(255,255,255,0.8)" : active ? "rgba(255,255,255,0.7)" : "rgba(29,15,11,0.5)" }}>
                         {tier.label}
                       </p>
-                      <p style={{ fontFamily: FONT_DISPLAY, fontSize: "28px", lineHeight: 1, color: active ? "#fff" : plan.accent, marginTop: "4px" }}>
-                        ${fmt(tier.monthly)}<span style={{ fontFamily: FONT_BODY, fontSize: "0.7rem", marginLeft: "2px", color: active ? "rgba(255,255,255,0.6)" : "rgba(29,15,11,0.45)" }}>/mo</span>
+                      <p style={{ fontFamily: FONT_DISPLAY, fontSize: "28px", lineHeight: 1, color: idx === 0 ? "#fff" : active ? "#fff" : plan.accent, marginTop: "4px" }}>
+                        ${fmt(tier.monthly)}<span style={{ fontFamily: FONT_BODY, fontSize: "0.7rem", marginLeft: "2px", color: idx === 0 ? "rgba(255,255,255,0.7)" : active ? "rgba(255,255,255,0.6)" : "rgba(29,15,11,0.45)" }}>/mo</span>
                       </p>
                     </div>
                     {/* Calculator box directly beneath */}
@@ -292,15 +292,15 @@ export function PlanCard({
             <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "13px", lineHeight: 1.55, color: "rgba(29,15,11,0.65)" }}>
               {activeTier?.description}
             </p>
-            {/* Promo strip */}
-            <div className="mt-3 flex items-center gap-2 rounded-lg px-3 py-2.5" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.3)" }}>
-              <span style={{ color: "var(--gold)", fontSize: "0.7rem", flexShrink: 0 }}>✦</span>
-              <p style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.04em", color: INK, opacity: 0.75 }}>
-                {localMonths === 3
-                  ? "Pay 3 months upfront — your 4th month is free."
-                  : "Pay 6 months upfront — your 7th month is free."}
-              </p>
-            </div>
+            {/* Promo strip — only shown on 3-month */}
+            {localMonths === 3 && (
+              <div className="mt-3 flex items-center gap-2 rounded-lg px-3 py-2.5" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.3)" }}>
+                <span style={{ color: "var(--gold)", fontSize: "0.7rem", flexShrink: 0 }}>✦</span>
+                <p style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.04em", color: INK, opacity: 0.75 }}>
+                  Pay 3 months upfront — your 4th month is free.
+                </p>
+              </div>
+            )}
           </div>
         ) : (
           /* Default single pricing block */
