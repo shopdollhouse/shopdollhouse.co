@@ -276,7 +276,7 @@ export function PlanCard({
                     type="button"
                     onClick={() => setSelectedTierIdx(idx)}
                     className="rounded-xl text-left transition-all flex flex-col overflow-hidden"
-                    style={{ border: "2px solid transparent" }}
+                    style={{ border: active ? "2px solid #bd7476" : "2px solid transparent" }}
                   >
                     {/* Price tile — active = pink, inactive = cream */}
                     <div className="p-3" style={{ background: active ? "#bd7476" : CREAM }}>
