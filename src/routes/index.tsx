@@ -2634,7 +2634,7 @@ function FormSelect({
 /* ─── Contact ─────────────────────────────────────────── */
 function Contact() {
   const [showCalendar, setShowCalendar] = useState(false);
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
 
   // Load the GoHighLevel booking-widget script once (auto-resizes the embedded calendar).
   useEffect(() => {
