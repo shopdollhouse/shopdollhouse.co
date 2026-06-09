@@ -284,7 +284,7 @@ export function PlanCard({
                         {tier.label}
                       </p>
                       <p style={{ fontFamily: FONT_DISPLAY, fontSize: "28px", lineHeight: 1, color: active ? "#fff" : plan.accent, marginTop: "4px" }}>
-                        ${fmt(tier.monthly)}<span style={{ fontFamily: FONT_BODY, fontSize: "0.7rem", marginLeft: "2px", color: active ? "rgba(255,255,255,0.7)" : "rgba(29,15,11,0.45)" }}>/mo</span>
+                        ${fmt(tier.monthly)}<span style={{ fontFamily: FONT_BODY, fontSize: "0.7rem", marginLeft: "2px", color: active ? "rgba(255,255,255,0.7)" : "rgba(29,15,11,0.45)" }}>USD /mo</span>
                       </p>
                     </div>
                     {/* Calculator box directly beneath */}
@@ -320,7 +320,7 @@ export function PlanCard({
           /* Default single pricing block */
           <div className="mt-5">
             <p style={{ fontFamily: FONT_DISPLAY, fontSize: "52px", lineHeight: 1, color: plan.accent }}>
-              ${fmt(plan.monthly)}<span style={{ fontFamily: FONT_BODY, fontSize: "1rem", color: "rgba(29,15,11,0.5)", marginLeft: "0.3rem" }}>/mo</span>
+              ${fmt(plan.monthly)}<span style={{ fontFamily: FONT_BODY, fontSize: "1rem", color: "rgba(29,15,11,0.5)", marginLeft: "0.3rem" }}>USD /mo</span>
             </p>
             {plan.platform > 0 && (
               <p className="mt-3 inline-block rounded-lg px-3 py-2" style={{ background: CREAM, border: `1px solid ${ROSE}`, fontFamily: FONT_BODY, fontSize: "13px", color: INK }}>
