@@ -278,13 +278,13 @@ export function PlanCard({
                     className="rounded-xl text-left transition-all flex flex-col overflow-hidden"
                     style={{ border: "2px solid transparent" }}
                   >
-                    {/* Price tile — idx 0 always pink, idx 1 always cream */}
-                    <div className="p-3" style={{ background: idx === 0 ? "#bd7476" : CREAM }}>
-                      <p style={{ fontFamily: FONT_LUXE, fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: idx === 0 ? "rgba(255,255,255,0.8)" : "rgba(29,15,11,0.5)" }}>
+                    {/* Price tile — active = pink, inactive = cream */}
+                    <div className="p-3" style={{ background: active ? "#bd7476" : CREAM }}>
+                      <p style={{ fontFamily: FONT_LUXE, fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: active ? "rgba(255,255,255,0.8)" : "rgba(29,15,11,0.5)" }}>
                         {tier.label}
                       </p>
-                      <p style={{ fontFamily: FONT_DISPLAY, fontSize: "28px", lineHeight: 1, color: idx === 0 ? "#fff" : plan.accent, marginTop: "4px" }}>
-                        ${fmt(tier.monthly)}<span style={{ fontFamily: FONT_BODY, fontSize: "0.7rem", marginLeft: "2px", color: idx === 0 ? "rgba(255,255,255,0.7)" : "rgba(29,15,11,0.45)" }}>/mo</span>
+                      <p style={{ fontFamily: FONT_DISPLAY, fontSize: "28px", lineHeight: 1, color: active ? "#fff" : plan.accent, marginTop: "4px" }}>
+                        ${fmt(tier.monthly)}<span style={{ fontFamily: FONT_BODY, fontSize: "0.7rem", marginLeft: "2px", color: active ? "rgba(255,255,255,0.7)" : "rgba(29,15,11,0.45)" }}>/mo</span>
                       </p>
                     </div>
                     {/* Calculator box directly beneath */}
