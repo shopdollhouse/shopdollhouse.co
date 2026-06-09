@@ -15,6 +15,7 @@ export interface PricingTier {
   label: string;
   monthly: number;
   description: string;
+  features?: string[];
 }
 
 export interface Plan {
@@ -53,18 +54,10 @@ export const PLANS: Plan[] = [
     description: "A website and automation system that turns every inquiry, missed call, and appointment into a managed conversation.",
     designedToCreate: "A website and automation system that turns every inquiry, missed call, and appointment into a managed conversation.",
     features: [
-      "10–20 page professional website built for lead generation",
-      "Website chat widget — visitors text you directly from your site",
-      "Quote forms, SMS confirmations, and clickable phone numbers",
-      "Automated lead follow-up — new inquiries get an instant text response",
+      "Professional website built for lead generation",
       "Missed call text-back — anyone who calls gets a text immediately",
-      "Voice AI receptionist — answers missed calls and books appointments 24/7",
+      "Instant lead follow-up — new inquiries get an automatic text response",
       "5-star review funnel with private feedback step before the public request",
-      "One-click referral campaign — happy clients send referrals automatically",
-      "Return customer campaigns — bring past clients back on autopilot",
-      "Automated appointment reminders — text and email before every booking",
-      "Full CRM setup and contact pipeline",
-      "On-site SEO basics — keywords, alt tags, schema, image optimisation, page speed",
     ],
     cta: "Build My Foundation",
     pricingTiers: [
@@ -72,11 +65,24 @@ export const PLANS: Plan[] = [
         label: "Foundation",
         monthly: 297,
         description: "Everything in the Foundation plan — website, follow-up, missed-call, reviews, and SEO.",
+        features: [
+          "Professional website built for lead generation",
+          "Missed call text-back — anyone who calls gets a text immediately",
+          "Instant lead follow-up — new inquiries get an automatic text response",
+          "5-star review funnel with private feedback step before the public request",
+        ],
       },
       {
         label: "Foundation + Google LSA",
         monthly: 497,
         description: "Everything in Foundation, plus your business shows as sponsored with a top rating on Google. You only pay per result, not per click.",
+        features: [
+          "Professional website built for lead generation",
+          "Missed call text-back — anyone who calls gets a text immediately",
+          "Instant lead follow-up — new inquiries get an automatic text response",
+          "5-star review funnel with private feedback step before the public request",
+          "Google Local Service Ads management — your business shows as sponsored with a top rating on Google, pay per result not per click",
+        ],
       },
     ],
   },
@@ -176,8 +182,9 @@ export function PlanCard({
   const activeTier = plan.pricingTiers?.[selectedTierIdx];
   const activeMonthly = activeTier ? activeTier.monthly : plan.monthly;
   const total = billing === "6" ? activeMonthly * 6 + plan.setup : activeMonthly * 11 + plan.setup;
-  const visible = plan.features.slice(0, 5);
-  const hidden = plan.features.slice(5);
+  const activeFeatures = activeTier?.features ?? plan.features;
+  const visible = activeFeatures.slice(0, 5);
+  const hidden = activeFeatures.slice(5);
   const linkProps = ctaNewTab ? { target: "_blank", rel: "noopener noreferrer" } : {};
 
   return (
@@ -361,7 +368,7 @@ export function PlanCard({
               </ul>
             </div>
             <button type="button" onClick={() => setOpen((v) => !v)} className="mt-3 self-start underline underline-offset-2" style={{ fontFamily: FONT_BODY, fontSize: "13px", color: ROSE }}>
-              {open ? "Show less ↑" : `See all ${plan.features.length} features ↓`}
+              {open ? "Show less ↑" : `See all ${activeFeatures.length} features ↓`}
             </button>
           </>
         )}
