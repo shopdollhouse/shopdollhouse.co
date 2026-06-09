@@ -212,7 +212,7 @@ export function PlanCard({
                     key={mo}
                     type="button"
                     onClick={() => setLocalMonths(mo)}
-                    className="rounded-full px-4 py-1.5 transition-all"
+                    className="inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 transition-all"
                     style={{
                       fontFamily: FONT_LUXE,
                       fontSize: "0.58rem",
@@ -225,6 +225,23 @@ export function PlanCard({
                     }}
                   >
                     {mo}-Month
+                    {mo === 3 && (
+                      <span
+                        className="rounded-full px-1.5 py-0.5"
+                        style={{
+                          background: "var(--gold)",
+                          color: INK,
+                          fontFamily: FONT_LUXE,
+                          fontSize: "0.46rem",
+                          letterSpacing: "0.07em",
+                          textTransform: "uppercase",
+                          whiteSpace: "nowrap",
+                          fontWeight: 800,
+                        }}
+                      >
+                        4th Month Free
+                      </span>
+                    )}
                   </button>
                 );
               })}
