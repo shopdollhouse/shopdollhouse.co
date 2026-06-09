@@ -2614,7 +2614,8 @@ function Contact() {
   const lc = "block text-[10px] tracking-luxe uppercase text-[var(--gold)] mb-2";
   const ls = { fontFamily: "'Jost', sans-serif" } as React.CSSProperties;
 
-  const stepTitles = ["Let's start with you", "What type of business do you have?", "Tell us about your business", "What are you looking for?", "Where are you right now?", "Almost done"];
+  const stepTitles = ["Let's start with you", "Best Fit For", "Tell us about your business", "What are you looking for?", "Where are you right now?", "Almost done"];
+  const stepHeadings = ["Let's start with you", "Which best describes your business?", "Tell us about your business", "What are you looking for?", "Where are you right now?", "Almost done"];
 
   return (
     <section id="contact" className="scroll-mt-32 py-24 md:py-32 px-6">
@@ -2750,7 +2751,7 @@ function Contact() {
               {/* Step heading */}
               <div className="border-b border-[var(--gold)]/18 pb-5">
                 <h3 className="italic text-[var(--ink)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.8rem, 3vw, 2.45rem)", lineHeight: 1.05 }}>
-                  {stepTitles[step - 1]}
+                  {stepHeadings[step - 1]}
                 </h3>
               </div>
 
