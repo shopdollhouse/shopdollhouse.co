@@ -2564,90 +2564,71 @@ function ComparisonTable() {
 
 /* ─── Contact ─────────────────────────────────────────── */
 function Contact() {
-  const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [showCalendar, setShowCalendar] = useState(false);
+  const [step, setStep] = useState(1);
 
   // Load the GoHighLevel booking-widget script once (auto-resizes the embedded calendar).
   useEffect(() => {
     const SRC = "https://link.msgsndr.com/js/form_embed.js";
     if (document.querySelector(`script[src="${SRC}"]`)) return;
     const s = document.createElement("script");
-    s.src = SRC;
-    s.async = true;
+    s.src = SRC; s.async = true;
     document.body.appendChild(s);
   }, []);
+  const [status, setStatus] = useState<"idle" | "sending" | "done">("idle");
+  const TOTAL_STEPS = 5;
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    const get = (k: string) => (data.get(k)?.toString() ?? "").trim();
+  const [fd, setFd] = useState({
+    first_name: "", last_name: "", email: "", phone: "",
+    business_name: "", industry: "", website: "",
+    plan: "Foundation — $297/mo", main_goal: "Get more booked leads",
+    message: "",
+    contract_term: "3 months", setup_readiness: "I understand there is a one-time $500 setup fee",
+  });
 
-    // This form has separate first/last name fields, so use them directly.
+  const set = (k: keyof typeof fd) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+    setFd(prev => ({ ...prev, [k]: e.target.value }));
+
+  function handleSubmit() {
+    setStatus("sending");
     const payload = {
-      firstName: get("first_name"),
-      lastName: get("last_name"),
-      email: get("email"),
-      businessName: get("business_name"),
-      industry: get("industry"),
-      website: get("website"),
-      plan: get("plan"),
-      commitment: get("contract_term"),
-      setupReadiness: get("setup_readiness"),
-      mainGoal: get("main_goal"),
-      winDescription: get("message"),
+      firstName: fd.first_name, lastName: fd.last_name,
+      email: fd.email, phone: fd.phone,
+      businessName: fd.business_name, industry: fd.industry, website: fd.website,
+      plan: fd.plan, mainGoal: fd.main_goal,
+      winDescription: fd.message,
+      commitment: fd.contract_term, setupReadiness: fd.setup_readiness,
       source: "Proposal Form",
     };
-
-    console.log("Proposal submitted:", payload);
-
-    // CRM inbound webhook — fire and forget; never block the confirmation.
     fetch("https://services.leadconnectorhq.com/hooks/ElOoFIfV3BYE54LNg3Yw/webhook-trigger/00b38935-1381-43b0-99c7-c0c33be9f456", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    }).catch((err) => {
-      console.warn("Proposal webhook failed:", err);
-    });
-
-    // Keep the Formspree email backup (also non-blocking).
-    const all: Record<string, string> = {};
-    data.forEach((value, key) => { all[key] = value as string; });
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload),
+    }).catch((err) => console.warn("Proposal webhook failed:", err));
     fetch("https://formspree.io/f/mwvrvrzj", {
-      method: "POST",
-      headers: { Accept: "application/json", "Content-Type": "application/json" },
-      body: JSON.stringify(all),
+      method: "POST", headers: { Accept: "application/json", "Content-Type": "application/json" }, body: JSON.stringify(payload),
     }).catch(() => {});
-
-    // Always confirm to the user, regardless of webhook outcome.
     setStatus("done");
-    form.reset();
   }
 
-  const inputClass = "w-full rounded-xl bg-white/72 border border-[var(--gold)]/30 px-5 py-3.5 text-[var(--ink)] placeholder:text-[var(--ink)]/35 focus:outline-none focus:border-[var(--rose)] focus:bg-white/90 transition";
-  const inputStyle = { fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem" };
-  const labelClass = "block text-[10px] tracking-luxe uppercase text-[var(--gold)] mb-2";
-  const labelStyle = { fontFamily: "'Jost', sans-serif" };
+  const ic = "w-full rounded-xl bg-white/72 border border-[var(--gold)]/30 px-5 py-3.5 text-[var(--ink)] placeholder:text-[var(--ink)]/35 focus:outline-none focus:border-[var(--rose)] focus:bg-white/90 transition";
+  const is = { fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem" } as React.CSSProperties;
+  const lc = "block text-[10px] tracking-luxe uppercase text-[var(--gold)] mb-2";
+  const ls = { fontFamily: "'Jost', sans-serif" } as React.CSSProperties;
+
+  const stepTitles = ["Let's start with you", "Tell us about your business", "What are you looking for?", "Where are you right now?", "Almost done"];
 
   return (
     <section id="contact" className="scroll-mt-32 py-24 md:py-32 px-6">
       <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.88fr_1.12fr] gap-8 lg:gap-12 items-start">
+        {/* ── LEFT COLUMN (unchanged) ── */}
         <div className="lg:sticky lg:top-36">
           <Eyebrow>Private Proposal Request</Eyebrow>
           <h2
             className="mt-4 text-[var(--rose)] leading-[0.98]"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(3rem, 6vw, 5.8rem)",
-              fontWeight: 400,
-            }}
+            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(3rem, 6vw, 5.8rem)", fontWeight: 400 }}
           >
             Apply for your private growth plan.
           </h2>
-          <p
-            className="mt-6 max-w-lg text-[var(--ink)]/62 leading-8"
-            style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem" }}
-          >
+          <p className="mt-6 max-w-lg text-[var(--ink)]/62 leading-8" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem" }}>
             Share what you sell, what is getting stuck, and which level of support feels realistic. We will recommend the right plan, contract term, setup path, add-ons, and free-trial timeline before you commit.
           </p>
           <div className="mt-8 grid gap-3">
@@ -2655,263 +2636,259 @@ function Contact() {
               ["1", "We review your business, offer, current online presence, and lead flow."],
               ["2", "You receive a private recommendation for the plan, term, setup fee, free-trial window, and add-ons."],
               ["3", "If it is a fit, we book your strategy call and map the build timeline."],
-            ].map(([step, copy]) => (
-              <div
-                key={step}
-                className="flex gap-4 rounded-2xl px-5 py-4"
-                style={{
-                  background: "rgba(255,250,246,0.62)",
-                  border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",
-                }}
-              >
-                <span
-                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
-                  style={{ background: "rgba(200,168,100,0.14)", color: "var(--gold)", fontFamily: "'Jost', sans-serif", fontSize: "0.7rem", letterSpacing: "0.12em" }}
-                >
-                  {step}
-                </span>
-                <p className="m-0 text-sm leading-6 text-[var(--ink)]/64" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                  {copy}
-                </p>
+            ].map(([n, copy]) => (
+              <div key={n} className="flex gap-4 rounded-2xl px-5 py-4" style={{ background: "rgba(255,250,246,0.62)", border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}>
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full" style={{ background: "rgba(200,168,100,0.14)", color: "var(--gold)", fontFamily: "'Jost', sans-serif", fontSize: "0.7rem", letterSpacing: "0.12em" }}>{n}</span>
+                <p className="m-0 text-sm leading-6 text-[var(--ink)]/64" style={{ fontFamily: "'DM Sans', sans-serif" }}>{copy}</p>
               </div>
             ))}
           </div>
-          <div
-            className="mt-8 overflow-hidden rounded-[24px] border p-5 sm:p-6"
-            style={{
-              background: "linear-gradient(145deg, rgba(255,250,246,0.9), rgba(248,229,225,0.78))",
-              borderColor: "rgba(200,168,100,0.3)",
-              boxShadow: "0 24px 58px -40px rgba(90,45,35,0.42), inset 0 1px 0 rgba(255,255,255,0.78)",
-            }}
-          >
+          <div className="mt-8 overflow-hidden rounded-[24px] border p-5 sm:p-6" style={{ background: "linear-gradient(145deg, rgba(255,250,246,0.9), rgba(248,229,225,0.78))", borderColor: "rgba(200,168,100,0.3)", boxShadow: "0 24px 58px -40px rgba(90,45,35,0.42), inset 0 1px 0 rgba(255,255,255,0.78)" }}>
             <div className="flex items-center gap-3">
               <span className="h-px w-8 bg-[var(--gold)]/55" aria-hidden />
-              <p className="text-[var(--rose)] text-[10px] tracking-luxe uppercase font-semibold" style={{ fontFamily: "'Jost', sans-serif" }}>
-                Best fit for
-              </p>
+              <p className="text-[var(--rose)] text-[10px] tracking-luxe uppercase font-semibold" style={{ fontFamily: "'Jost', sans-serif" }}>Best fit for</p>
               <span className="h-px flex-1 bg-[var(--gold)]/32" aria-hidden />
             </div>
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
-              {[
-                "Contractors & home services",
-                "Coaches & consultants",
-                "Med spas & aesthetics",
-                "Real estate agents",
-                "Salons & beauty pros",
-                "Restaurants & food brands",
-                "Fitness studios & gyms",
-                "Law firms & professionals",
-                "Retail & boutique brands",
-                "E-commerce businesses",
-                "Photographers & creatives",
-                "Mortgage & insurance pros",
-              ].map((industry) => (
-                <div
-                  key={industry}
-                  className="flex min-h-10 items-center gap-2.5 rounded-full px-3.5 py-2 text-[var(--ink)]/72"
-                  style={{
-                    border: "1px solid rgba(200,168,100,0.26)",
-                    background: "rgba(255,255,255,0.62)",
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: "0.78rem",
-                    lineHeight: 1.25,
-                    boxShadow: "0 8px 20px -18px rgba(90,45,35,0.5)",
-                  }}
-                >
-                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--rose)]/72" aria-hidden />
-                  {industry}
+              {["Contractors & home services","Coaches & consultants","Med spas & aesthetics","Real estate agents","Salons & beauty pros","Restaurants & food brands","Fitness studios & gyms","Law firms & professionals","Retail & boutique brands","E-commerce businesses","Photographers & creatives","Mortgage & insurance pros"].map((ind) => (
+                <div key={ind} className="flex min-h-10 items-center gap-2.5 rounded-full px-3.5 py-2 text-[var(--ink)]/72" style={{ border: "1px solid rgba(200,168,100,0.26)", background: "rgba(255,255,255,0.62)", fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", lineHeight: 1.25, boxShadow: "0 8px 20px -18px rgba(90,45,35,0.5)" }}>
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--rose)]/72" aria-hidden />{ind}
                 </div>
               ))}
             </div>
-            <p
-              className="mt-5 border-t border-[var(--gold)]/20 pt-4 text-[var(--ink)]/62 leading-6"
-              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem" }}
-            >
+            <p className="mt-5 border-t border-[var(--gold)]/20 pt-4 text-[var(--ink)]/62 leading-6" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem" }}>
               Built for business owners who are ready to stop guessing at their marketing — and start showing up everywhere online, every single day, with content, systems, and strategy fully handled for them.
             </p>
           </div>
         </div>
 
+        {/* ── RIGHT COLUMN ── */}
         <div className="rounded-[28px] bg-white/76 backdrop-blur-md border border-white/85 shadow-[0_30px_70px_-35px_rgba(120,70,60,0.42)] p-6 md:p-9">
-        {showCalendar ? (
-          <div className="space-y-5">
-            <button
-              type="button"
-              onClick={() => setShowCalendar(false)}
-              className="flex items-center gap-2 text-[11px] tracking-luxe uppercase text-[var(--ink)]/70 transition-colors hover:text-[var(--rose)]"
-              style={{ fontFamily: "'Jost', sans-serif" }}
-            >
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" style={{ width: "13px", height: "13px" }}><path d="M10 3 5 8l5 5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-              Back to the proposal
-            </button>
-            <div>
-              <p className="text-[10px] tracking-luxe uppercase text-[var(--gold)]" style={{ fontFamily: "'Jost', sans-serif" }}>Book a free discovery call</p>
-              <h3 className="mt-2 text-[var(--rose)] italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.8rem, 3vw, 2.45rem)", lineHeight: 1.05 }}>Pick a time that works for you.</h3>
+
+          {/* ── CALENDAR VIEW ── */}
+          {showCalendar ? (
+            <div className="space-y-5">
+              <button
+                type="button"
+                onClick={() => setShowCalendar(false)}
+                className="flex items-center gap-2 text-[11px] tracking-luxe uppercase transition-colors hover:text-[var(--rose)]"
+                style={{ fontFamily: "'Jost', sans-serif", color: "var(--ink)" }}
+              >
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" style={{ width: "13px", height: "13px" }}><path d="M10 3 5 8l5 5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                Back to the Proposal
+              </button>
+              <div>
+                <p className="text-[10px] tracking-luxe uppercase font-semibold" style={{ fontFamily: "'Jost', sans-serif", color: "#bd7476" }}>Book a free discovery call</p>
+                <h3 className="mt-2 italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.8rem, 3vw, 2.45rem)", lineHeight: 1.05, color: "var(--ink)" }}>Pick a time that works for you.</h3>
+                <p className="mt-2 text-[var(--ink)]/58 leading-6" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem" }}>20 minutes with Mandy. No pitch, no pressure — just clarity on what's possible for your business.</p>
+              </div>
+              <div className="overflow-hidden rounded-2xl p-1.5" style={{ background: "#FCF4EE", border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}>
+                <iframe
+                  src="https://api.leadconnectorhq.com/widget/booking/9mOtVmE8ihxgAX2AMzge"
+                  title="Book a free discovery call"
+                  scrolling="no"
+                  id="ghl-booking-9mOtVmE8ihxgAX2AMzge"
+                  style={{ width: "100%", border: "none", minHeight: "700px", display: "block", borderRadius: "12px" }}
+                />
+              </div>
             </div>
-            <div className="overflow-hidden rounded-2xl bg-white/60 p-1.5" style={{ border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}>
-              <iframe
-                src="https://api.leadconnectorhq.com/widget/booking/9mOtVmE8ihxgAX2AMzge"
-                title="Book a free discovery call"
-                scrolling="no"
-                id="ghl-booking-9mOtVmE8ihxgAX2AMzge"
-                style={{ width: "100%", border: "none", minHeight: "700px", display: "block", borderRadius: "12px" }}
-              />
+
+          ) : status === "done" ? (
+            /* ── THANK YOU ── */
+            <div className="flex flex-col items-center justify-center gap-5 py-12 text-center">
+              <span style={{ fontSize: "2rem" }}>✦</span>
+              <h3 className="italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.8rem, 3vw, 2.4rem)", lineHeight: 1.1, color: "var(--rose)" }}>You're in.</h3>
+              <p className="max-w-sm text-[var(--ink)]/62 leading-7" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                Expect a private reply within 24 hours.
+              </p>
             </div>
-          </div>
-        ) : (
-        <form onSubmit={handleSubmit} className="space-y-5">
-        <div className="flex flex-col gap-3 border-b border-[var(--gold)]/18 pb-6 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="text-[10px] tracking-luxe uppercase text-[var(--gold)]" style={{ fontFamily: "'Jost', sans-serif" }}>
-              Application Details
-            </p>
-            <h3 className="mt-2 text-[var(--ink)] italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.8rem, 3vw, 2.45rem)", lineHeight: 1.05 }}>
-              Tell us what you need built.
-            </h3>
-          </div>
-          <p className="text-[var(--ink)]/45 text-sm md:text-right" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-            Private reply within 24 hours.
-          </p>
-        </div>
-        {/* First / Last */}
-        <div className="grid sm:grid-cols-2 gap-4">
-          {([["First Name", "first_name", "Jane"], ["Last Name", "last_name", "Doe"]] as const).map(([label, name, ph]) => (
-            <div key={name}>
-              <label className={labelClass} style={labelStyle}>{label} *</label>
-              <input type="text" name={name} placeholder={ph} required className={inputClass} style={inputStyle} />
+
+          ) : (
+            /* ── MULTI-STEP FORM ── */
+            <div className="space-y-6">
+              {/* Progress bar */}
+              <div className="space-y-2">
+                <div className="flex gap-1.5">
+                  {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
+                    <div
+                      key={i}
+                      className="h-1 flex-1 rounded-full transition-all duration-300"
+                      style={{ background: i < step ? "var(--rose)" : "rgba(200,168,100,0.2)" }}
+                    />
+                  ))}
+                </div>
+                <p className="text-[10px] tracking-luxe uppercase text-[var(--gold)]" style={{ fontFamily: "'Jost', sans-serif" }}>
+                  Step {step} of {TOTAL_STEPS} — {stepTitles[step - 1]}
+                </p>
+              </div>
+
+              {/* Step heading */}
+              <div className="border-b border-[var(--gold)]/18 pb-5">
+                <h3 className="italic text-[var(--ink)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.8rem, 3vw, 2.45rem)", lineHeight: 1.05 }}>
+                  {stepTitles[step - 1]}
+                </h3>
+              </div>
+
+              {/* ── STEP 1 ── */}
+              {step === 1 && (
+                <div className="space-y-4">
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className={lc} style={ls}>First Name *</label>
+                      <input type="text" value={fd.first_name} onChange={set("first_name")} placeholder="Jane" required className={ic} style={is} />
+                    </div>
+                    <div>
+                      <label className={lc} style={ls}>Last Name *</label>
+                      <input type="text" value={fd.last_name} onChange={set("last_name")} placeholder="Doe" required className={ic} style={is} />
+                    </div>
+                  </div>
+                  <div>
+                    <label className={lc} style={ls}>Email *</label>
+                    <input type="email" value={fd.email} onChange={set("email")} placeholder="you@brand.co" required className={ic} style={is} />
+                  </div>
+                  <div>
+                    <label className={lc} style={ls}>Phone Number *</label>
+                    <input type="tel" value={fd.phone} onChange={set("phone")} placeholder="+1 (555) 000-0000" required className={ic} style={is} />
+                  </div>
+                </div>
+              )}
+
+              {/* ── STEP 2 ── */}
+              {step === 2 && (
+                <div className="space-y-4">
+                  <div>
+                    <label className={lc} style={ls}>Business Name *</label>
+                    <input type="text" value={fd.business_name} onChange={set("business_name")} placeholder="Bloom Med Spa" required className={ic} style={is} />
+                  </div>
+                  <div>
+                    <label className={lc} style={ls}>Industry / Niche</label>
+                    <input type="text" value={fd.industry} onChange={set("industry")} placeholder="e.g. Medical Aesthetics" className={ic} style={is} />
+                  </div>
+                  <div>
+                    <label className={lc} style={ls}>Website <span className="normal-case opacity-60">(optional)</span></label>
+                    <input type="url" value={fd.website} onChange={set("website")} placeholder="e.g. yourbusiness.com" className={ic} style={is} />
+                  </div>
+                </div>
+              )}
+
+              {/* ── STEP 3 ── */}
+              {step === 3 && (
+                <div className="space-y-4">
+                  <div>
+                    <label className={lc} style={ls}>Which plan interests you?</label>
+                    <select value={fd.plan} onChange={set("plan")} className={ic} style={is}>
+                      <option>Foundation — $297/mo</option>
+                      <option>Foundation + Google LSA — $497/mo</option>
+                      <option>Starter — $1,000/mo</option>
+                      <option>Growth — $2,500/mo</option>
+                      <option>Not sure yet</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className={lc} style={ls}>What's your main goal?</label>
+                    <select value={fd.main_goal} onChange={set("main_goal")} className={ic} style={is}>
+                      <option>Get more booked leads</option>
+                      <option>Build my online presence</option>
+                      <option>Run paid ads</option>
+                      <option>Automate my follow-up</option>
+                      <option>All of the above</option>
+                    </select>
+                  </div>
+                </div>
+              )}
+
+              {/* ── STEP 4 ── */}
+              {step === 4 && (
+                <div className="space-y-4">
+                  <div>
+                    <label className={lc} style={ls}>Tell us about your business</label>
+                    <textarea
+                      value={fd.message}
+                      onChange={set("message")}
+                      rows={6}
+                      placeholder="Tell us what you sell, where leads are getting stuck, and what you want your system to handle every day."
+                      className={`${ic} resize-none`}
+                      style={is}
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* ── STEP 5 ── */}
+              {step === 5 && (
+                <div className="space-y-4">
+                  <div>
+                    <label className={lc} style={ls}>Preferred commitment</label>
+                    <select value={fd.contract_term} onChange={set("contract_term")} className={ic} style={is}>
+                      <option>3 months</option>
+                      <option>6 months</option>
+                      <option>Not sure yet</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className={lc} style={ls}>Setup readiness</label>
+                    <select value={fd.setup_readiness} onChange={set("setup_readiness")} className={ic} style={is}>
+                      <option>I understand there is a one-time $500 setup fee</option>
+                      <option>I need more information about setup costs</option>
+                    </select>
+                  </div>
+                </div>
+              )}
+
+              {/* Navigation buttons */}
+              <div className="space-y-3 pt-2">
+                {step < TOTAL_STEPS ? (
+                  <button
+                    type="button"
+                    onClick={() => setStep(s => s + 1)}
+                    className="w-full rounded-2xl bg-[var(--ink)] text-[var(--cream)] py-4 text-[11px] tracking-luxe uppercase hover:-translate-y-0.5 hover:opacity-95 transition"
+                    style={{ fontFamily: "'Jost', sans-serif", boxShadow: "0 18px 36px -22px rgba(30,15,10,0.7)" }}
+                  >
+                    Next →
+                  </button>
+                ) : (
+                  <>
+                    <button
+                      type="button"
+                      onClick={handleSubmit}
+                      disabled={status === "sending"}
+                      className="w-full rounded-2xl bg-[var(--ink)] text-[var(--cream)] py-4 text-[11px] tracking-luxe uppercase hover:-translate-y-0.5 hover:opacity-95 transition disabled:opacity-60"
+                      style={{ fontFamily: "'Jost', sans-serif", boxShadow: "0 18px 36px -22px rgba(30,15,10,0.7)" }}
+                    >
+                      {status === "sending" ? "Sending..." : "Send My Free Proposal Request →"}
+                    </button>
+                    <div className="flex items-center gap-3 my-1">
+                      <span className="flex-1 h-px bg-[var(--gold)]/20" />
+                      <span className="text-[var(--ink)]/30 text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>or</span>
+                      <span className="flex-1 h-px bg-[var(--gold)]/20" />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setShowCalendar(true)}
+                      className="w-full flex items-center justify-center gap-2 rounded-xl py-3.5 text-[11px] tracking-luxe uppercase transition-all hover:border-[var(--ink)]/40 hover:text-[var(--ink)]"
+                      style={{ fontFamily: "'Jost', sans-serif", color: "var(--ink)", border: "1px solid color-mix(in oklab, var(--ink) 22%, transparent)" }}
+                    >
+                      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: "13px", height: "13px" }}>
+                        <rect x="2" y="3" width="12" height="11" rx="1.5" /><path d="M5 1.5v3M11 1.5v3M2 7h12" strokeLinecap="round" />
+                      </svg>
+                      Book a Free Discovery Call
+                    </button>
+                  </>
+                )}
+                {step > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => setStep(s => s - 1)}
+                    className="w-full flex items-center justify-center gap-2 rounded-xl py-3 text-[11px] tracking-luxe uppercase text-[var(--ink)]/55 transition-colors hover:text-[var(--ink)]"
+                    style={{ fontFamily: "'Jost', sans-serif" }}
+                  >
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" style={{ width: "12px", height: "12px" }}><path d="M10 3 5 8l5 5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    Back
+                  </button>
+                )}
+              </div>
             </div>
-          ))}
-        </div>
-
-        {/* Email */}
-        <div>
-          <label className={labelClass} style={labelStyle}>Email *</label>
-          <input type="email" name="email" placeholder="you@brand.co" required className={inputClass} style={inputStyle} />
-        </div>
-
-        {/* Business / Industry / Website */}
-        <div className="grid sm:grid-cols-2 gap-4">
-          <div>
-            <label className={labelClass} style={labelStyle}>Business Name</label>
-            <input type="text" name="business_name" placeholder="Bloom Med Spa" className={inputClass} style={inputStyle} />
-          </div>
-          <div>
-            <label className={labelClass} style={labelStyle}>Industry / Niche</label>
-            <input type="text" name="industry" placeholder="e.g. Medical Aesthetics" className={inputClass} style={inputStyle} />
-          </div>
-        </div>
-        <div>
-          <label className={labelClass} style={labelStyle}>Website <span className="normal-case opacity-60">(optional)</span></label>
-          <input type="url" name="website" placeholder="e.g. yourbusiness.com" className={inputClass} style={inputStyle} />
-        </div>
-
-        {/* Plan */}
-        <div className="grid sm:grid-cols-2 gap-4">
-          <div>
-            <label className={labelClass} style={labelStyle}>Which plan interests you?</label>
-            <select name="plan" className={inputClass} style={inputStyle}>
-              <option>Foundation — $297/mo</option>
-              <option>Starter — $1,000/mo</option>
-              <option>Growth — $2,500/mo</option>
-              <option>Not sure yet — recommend one for me</option>
-            </select>
-          </div>
-          <div>
-            <label className={labelClass} style={labelStyle}>Preferred commitment</label>
-            <select name="contract_term" className={inputClass} style={inputStyle}>
-              <option>6 months</option>
-              <option>12 months (12th month free)</option>
-              <option>Not sure yet</option>
-            </select>
-          </div>
-        </div>
-
-        <div className="grid sm:grid-cols-2 gap-4">
-          <div>
-            <label className={labelClass} style={labelStyle}>Setup readiness</label>
-            <select name="setup_readiness" className={inputClass} style={inputStyle}>
-              <option>I understand there is a one-time $500 setup fee</option>
-              <option>I have questions about the setup fee</option>
-              <option>I am only browsing right now</option>
-            </select>
-          </div>
-          <div>
-            <label className={labelClass} style={labelStyle}>Main goal</label>
-            <select name="main_goal" className={inputClass} style={inputStyle}>
-              <option>Get more booked leads</option>
-              <option>Improve my website and follow-up</option>
-              <option>Post more consistently</option>
-              <option>Run ads and scale lead flow</option>
-              <option>Build an AI clone or brand character</option>
-              <option>Not sure yet</option>
-            </select>
-          </div>
-        </div>
-
-        {/* Message */}
-        <div>
-          <label className={labelClass} style={labelStyle}>What would make this a win?</label>
-          <textarea
-            name="message"
-            rows={4}
-            placeholder="Tell us what you sell, where leads are getting stuck, and what you want your monthly system to handle..."
-            className={`${inputClass} resize-none`}
-            style={inputStyle}
-          />
-        </div>
-
-        {status === "error" && (
-          <div className="rounded-xl px-5 py-4 text-center" style={{ background: "rgba(180,60,60,0.08)", border: "1px solid rgba(180,60,60,0.25)" }}>
-            <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.75rem", color: "#b43c3c", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-              Something went wrong — please email us directly at{" "}
-              <a href="mailto:hello@shopdollhouse.co" style={{ textDecoration: "underline", color: "#b43c3c" }}>
-                hello@shopdollhouse.co
-              </a>
-            </p>
-          </div>
-        )}
-
-        {status === "done" && (
-          <div className="rounded-xl px-5 py-4 text-center" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.3)" }}>
-            <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.1rem", fontStyle: "italic", color: "var(--ink)", opacity: 0.8 }}>
-              Thank you! 🏹 We've received your request. Mandy will review your details and be in touch within 24–48 hours.
-            </p>
-          </div>
-        )}
-
-        <button
-          type="submit"
-          disabled={status === "sending" || status === "done"}
-          className="w-full rounded-2xl bg-[var(--ink)] text-[var(--cream)] py-4 text-[11px] tracking-luxe uppercase hover:-translate-y-0.5 hover:opacity-95 transition disabled:opacity-60 disabled:hover:translate-y-0"
-          style={{ fontFamily: "'Jost', sans-serif", boxShadow: "0 18px 36px -22px rgba(30,15,10,0.7)" }}
-        >
-          {status === "sending" ? "Sending..." : "Send my free proposal request →"}
-        </button>
-
-        <div className="flex items-center gap-3 my-1">
-          <span className="flex-1 h-px bg-[var(--gold)]/20" />
-          <span className="text-[var(--ink)]/30 text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>or</span>
-          <span className="flex-1 h-px bg-[var(--gold)]/20" />
-        </div>
-
-        <button
-          type="button"
-          onClick={() => setShowCalendar(true)}
-          className="w-full flex items-center justify-center gap-2 rounded-xl py-3.5 text-[11px] tracking-luxe uppercase transition-all hover:border-[var(--ink)]/40 hover:text-[var(--ink)]"
-          style={{
-            fontFamily: "'Jost', sans-serif",
-            color: "var(--ink)",
-            border: "1px solid color-mix(in oklab, var(--ink) 22%, transparent)",
-          }}
-        >
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: "13px", height: "13px" }}>
-            <rect x="2" y="3" width="12" height="11" rx="1.5" />
-            <path d="M5 1.5v3M11 1.5v3M2 7h12" strokeLinecap="round" />
-          </svg>
-          Book a free discovery call
-        </button>
-        </form>
-        )}
+          )}
         </div>
       </div>
     </section>
