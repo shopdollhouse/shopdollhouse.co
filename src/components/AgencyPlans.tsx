@@ -306,8 +306,8 @@ export function PlanCard({
             <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "13px", lineHeight: 1.55, color: "rgba(29,15,11,0.65)" }}>
               {activeTier?.description}
             </p>
-            {/* Promo strip — only shown on 3-month */}
-            {localMonths === 3 && (
+            {/* Promo strip — shown on 6-month as incentive to switch */}
+            {localMonths === 6 && (
               <div className="mt-3 flex items-center gap-2 rounded-lg px-3 py-2.5" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.3)" }}>
                 <span style={{ color: "var(--gold)", fontSize: "0.7rem", flexShrink: 0 }}>♥</span>
                 <p style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.04em", color: INK, opacity: 0.75 }}>
