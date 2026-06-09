@@ -2986,7 +2986,7 @@ function Contact() {
                     <FormSelect
                       value={fd.contract_term}
                       onChange={v => setFd(prev => ({ ...prev, contract_term: v }))}
-                      options={["3 months","6 months","Not sure yet"]}
+                      options={["3 months","6 months","1 year","Not sure yet"]}
                     />
                   </div>
                   <div>
