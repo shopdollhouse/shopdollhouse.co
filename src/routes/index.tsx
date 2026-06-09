@@ -2679,7 +2679,7 @@ function Contact() {
     <section id="contact" className="scroll-mt-32 py-24 md:py-32 px-6">
       <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.88fr_1.12fr] gap-8 lg:gap-12 items-stretch">
         {/* ── LEFT COLUMN (unchanged) ── */}
-        <div className="lg:sticky lg:top-36 flex flex-col">
+        <div className="lg:sticky lg:top-36">
           <Eyebrow>Private Proposal Request</Eyebrow>
           <h2
             className="mt-4 text-[var(--rose)] leading-[0.98]"
@@ -2702,14 +2702,11 @@ function Contact() {
               </div>
             ))}
           </div>
-          <p className="mt-auto pt-8 text-center lg:text-left" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(189,116,118,0.55)", lineHeight: 1.8 }}>
-            ✦ Private reply within 24 hours · No commitment required · Built for your business specifically
-          </p>
         </div>
 
         {/* ── RIGHT COLUMN ── */}
-        <div className="flex flex-col gap-4 items-stretch">
-        <div className="rounded-[28px] bg-white/76 backdrop-blur-md border border-white/85 shadow-[0_30px_70px_-35px_rgba(120,70,60,0.42)] p-6 md:p-9">
+        <div className="flex flex-col gap-4 items-stretch h-full">
+        <div className="flex-1 rounded-[28px] bg-white/76 backdrop-blur-md border border-white/85 shadow-[0_30px_70px_-35px_rgba(120,70,60,0.42)] p-6 md:p-9 flex flex-col">
 
           {/* ── CALENDAR VIEW ── */}
           {showCalendar ? (
@@ -2751,7 +2748,7 @@ function Contact() {
 
           ) : step === 0 ? (
             /* ── PATH SELECTOR ── */
-            <div className="space-y-5">
+            <div className="flex flex-col flex-1 space-y-5">
               {/* Intro */}
               <div className="pb-5 border-b border-[var(--gold)]/18">
                 <p className="text-[10px] tracking-luxe uppercase font-semibold" style={{ fontFamily: "'Jost', sans-serif", color: "#bd7476" }}>
@@ -2769,7 +2766,7 @@ function Contact() {
               </div>
 
               {/* Cards */}
-              <div className="grid sm:grid-cols-2 gap-4 items-stretch">
+              <div className="grid sm:grid-cols-2 gap-4 items-stretch flex-1">
                 {/* Option A — Proposal Form */}
                 <button
                   type="button"
@@ -3087,6 +3084,10 @@ function Contact() {
             </div>
           )}
         </div>
+        {/* Decorative closer */}
+        <p className="text-center" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(189,116,118,0.55)", lineHeight: 1.8 }}>
+          ✦ Private reply within 24 hours · No commitment required · Built for your business specifically
+        </p>
         </div>
       </div>
     </section>
