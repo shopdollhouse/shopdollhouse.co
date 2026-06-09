@@ -11,6 +11,12 @@ const CREAM = "var(--cream)";
 
 export type Billing = "6" | "12";
 
+export interface PricingTier {
+  label: string;
+  monthly: number;
+  description: string;
+}
+
 export interface Plan {
   id: string;
   accent: string;
@@ -26,6 +32,7 @@ export interface Plan {
   designedToCreate: string;
   features: string[];
   cta: string;
+  pricingTiers?: PricingTier[];
 }
 
 const ROSE_HEX = "#c97a7a";
@@ -60,6 +67,18 @@ export const PLANS: Plan[] = [
       "On-site SEO basics — keywords, alt tags, schema, image optimisation, page speed",
     ],
     cta: "Build My Foundation",
+    pricingTiers: [
+      {
+        label: "Foundation",
+        monthly: 297,
+        description: "Everything in the Foundation plan — website, follow-up, missed-call, reviews, and SEO.",
+      },
+      {
+        label: "Foundation + Google LSA",
+        monthly: 497,
+        description: "Everything in Foundation, plus your business shows as sponsored with a top rating on Google. You only pay per result, not per click.",
+      },
+    ],
   },
   {
     id: "starter",
@@ -150,7 +169,10 @@ export function PlanCard({
   pulse?: boolean;
 }) {
   const [open, setOpen] = useState(false);
-  const total = billing === "6" ? sixMonth(plan) : twelveMonth(plan);
+  const [selectedTierIdx, setSelectedTierIdx] = useState(0);
+  const activeTier = plan.pricingTiers?.[selectedTierIdx];
+  const activeMonthly = activeTier ? activeTier.monthly : plan.monthly;
+  const total = billing === "6" ? activeMonthly * 6 + plan.setup : activeMonthly * 11 + plan.setup;
   const visible = plan.features.slice(0, 5);
   const hidden = plan.features.slice(5);
   const linkProps = ctaNewTab ? { target: "_blank", rel: "noopener noreferrer" } : {};
@@ -183,20 +205,64 @@ export function PlanCard({
 
         <p className="mt-4" style={{ fontFamily: FONT_BODY, fontSize: "12px", color: "rgba(29,15,11,0.5)" }}>$500 setup due upfront · 6-month contract option</p>
 
-        {/* pricing block */}
-        <div className="mt-5">
-          <p style={{ fontFamily: FONT_DISPLAY, fontSize: "52px", lineHeight: 1, color: plan.accent }}>
-            ${fmt(plan.monthly)}<span style={{ fontFamily: FONT_BODY, fontSize: "1rem", color: "rgba(29,15,11,0.5)", marginLeft: "0.3rem" }}>/mo</span>
-          </p>
-          {plan.platform > 0 && (
-            <p className="mt-3 inline-block rounded-lg px-3 py-2" style={{ background: CREAM, border: `1px solid ${ROSE}`, fontFamily: FONT_BODY, fontSize: "13px", color: INK }}>
-              + ${plan.platform}/mo platform access
+        {/* Pricing tiers selector — shown only for plans with pricingTiers */}
+        {plan.pricingTiers ? (
+          <div className="mt-5">
+            <div className="grid grid-cols-2 gap-2">
+              {plan.pricingTiers.map((tier, idx) => {
+                const active = idx === selectedTierIdx;
+                return (
+                  <button
+                    key={tier.label}
+                    type="button"
+                    onClick={() => setSelectedTierIdx(idx)}
+                    className="rounded-xl p-3 text-left transition-all"
+                    style={{
+                      background: active ? plan.accent : CREAM,
+                      border: active ? `2px solid ${plan.accent}` : "2px solid transparent",
+                      boxShadow: active ? "0 4px 14px -6px rgba(29,15,11,0.35)" : "none",
+                    }}
+                  >
+                    <p style={{ fontFamily: FONT_LUXE, fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: active ? "rgba(255,255,255,0.7)" : "rgba(29,15,11,0.5)" }}>
+                      {tier.label}
+                    </p>
+                    <p style={{ fontFamily: FONT_DISPLAY, fontSize: "28px", lineHeight: 1, color: active ? "#fff" : plan.accent, marginTop: "4px" }}>
+                      ${fmt(tier.monthly)}<span style={{ fontFamily: FONT_BODY, fontSize: "0.7rem", marginLeft: "2px", color: active ? "rgba(255,255,255,0.6)" : "rgba(29,15,11,0.45)" }}>/mo</span>
+                    </p>
+                  </button>
+                );
+              })}
+            </div>
+            <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "13px", lineHeight: 1.55, color: "rgba(29,15,11,0.65)" }}>
+              {activeTier?.description}
             </p>
-          )}
-          <p className="mt-2 inline-block rounded-lg px-3 py-1.5" style={{ border: "1px dashed rgba(29,15,11,0.3)", fontFamily: FONT_BODY, fontSize: "12px", color: "rgba(29,15,11,0.65)" }}>
-            + ${fmt(plan.setup)} one-time setup
-          </p>
-        </div>
+            {/* Promo strip */}
+            <div className="mt-3 flex items-center gap-2 rounded-lg px-3 py-2.5" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.3)" }}>
+              <span style={{ color: "var(--gold)", fontSize: "0.7rem", flexShrink: 0 }}>✦</span>
+              <p style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.04em", color: INK, opacity: 0.75 }}>
+                Pay 3 months upfront — your 4th month is free.
+              </p>
+            </div>
+            <p className="mt-2 inline-block rounded-lg px-3 py-1.5" style={{ border: "1px dashed rgba(29,15,11,0.3)", fontFamily: FONT_BODY, fontSize: "12px", color: "rgba(29,15,11,0.65)" }}>
+              + ${fmt(plan.setup)} one-time setup
+            </p>
+          </div>
+        ) : (
+          /* Default single pricing block */
+          <div className="mt-5">
+            <p style={{ fontFamily: FONT_DISPLAY, fontSize: "52px", lineHeight: 1, color: plan.accent }}>
+              ${fmt(plan.monthly)}<span style={{ fontFamily: FONT_BODY, fontSize: "1rem", color: "rgba(29,15,11,0.5)", marginLeft: "0.3rem" }}>/mo</span>
+            </p>
+            {plan.platform > 0 && (
+              <p className="mt-3 inline-block rounded-lg px-3 py-2" style={{ background: CREAM, border: `1px solid ${ROSE}`, fontFamily: FONT_BODY, fontSize: "13px", color: INK }}>
+                + ${plan.platform}/mo platform access
+              </p>
+            )}
+            <p className="mt-2 inline-block rounded-lg px-3 py-1.5" style={{ border: "1px dashed rgba(29,15,11,0.3)", fontFamily: FONT_BODY, fontSize: "12px", color: "rgba(29,15,11,0.65)" }}>
+              + ${fmt(plan.setup)} one-time setup
+            </p>
+          </div>
+        )}
 
         {/* total box */}
         <div className="mt-5 rounded-xl p-4" style={{ background: CREAM }}>
@@ -206,11 +272,11 @@ export function PlanCard({
           <p className="mt-1" style={{ fontFamily: FONT_DISPLAY, fontSize: "28px", lineHeight: 1, color: plan.accent, fontWeight: 600 }}>${fmt(total)}</p>
           <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "12px", color: "rgba(29,15,11,0.55)" }}>
             {billing === "6"
-              ? `$${fmt(plan.monthly)}/mo × 6 + $${fmt(plan.setup)} setup`
-              : `$${fmt(plan.monthly)}/mo × 11 + $${fmt(plan.setup)} setup · 12th month free`}
+              ? `$${fmt(activeMonthly)}/mo × 6 + $${fmt(plan.setup)} setup`
+              : `$${fmt(activeMonthly)}/mo × 11 + $${fmt(plan.setup)} setup · 12th month free`}
           </p>
           {billing === "12" && (
-            <p className="mt-1.5" style={{ fontFamily: FONT_BODY, fontSize: "13px", fontWeight: 600, color: ROSE }}>You save ${fmt(plan.monthly)}</p>
+            <p className="mt-1.5" style={{ fontFamily: FONT_BODY, fontSize: "13px", fontWeight: 600, color: ROSE }}>You save ${fmt(activeMonthly)}</p>
           )}
         </div>
 

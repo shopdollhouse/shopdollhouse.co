@@ -2170,8 +2170,8 @@ function Pricing() {
       </div>
 
 
-      {/* Google Local Service Ads Upsell */}
-      <div className="mt-10 max-w-5xl mx-auto">
+      {/* [LSA upsell removed — now integrated into Foundation card] */}
+      <div className="mt-10 max-w-5xl mx-auto hidden">
         <div className="text-center mb-6">
           <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
             Foundation Plan Add-On
