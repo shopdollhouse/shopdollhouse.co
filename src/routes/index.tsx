@@ -2660,16 +2660,10 @@ function Contact() {
           ))}
         </div>
 
-        {/* Phone / Email */}
-        <div className="grid sm:grid-cols-2 gap-4">
-          <div>
-            <label className={labelClass} style={labelStyle}>Phone *</label>
-            <input type="tel" name="phone" placeholder="(555) 000-0000" required className={inputClass} style={inputStyle} />
-          </div>
-          <div>
-            <label className={labelClass} style={labelStyle}>Email *</label>
-            <input type="email" name="email" placeholder="you@brand.co" required className={inputClass} style={inputStyle} />
-          </div>
+        {/* Email */}
+        <div>
+          <label className={labelClass} style={labelStyle}>Email *</label>
+          <input type="email" name="email" placeholder="you@brand.co" required className={inputClass} style={inputStyle} />
         </div>
 
         {/* Business / Industry / Website */}
@@ -2898,6 +2892,9 @@ function Footer() {
         <div className="flex items-center justify-center gap-5">
           <Link to="/privacy" className="text-[var(--ink)]/35 hover:text-[var(--ink)]/58 transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase" }}>
             Privacy Policy
+          </Link>
+          <Link to="/terms" className="text-[var(--ink)]/35 hover:text-[var(--ink)]/58 transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase" }}>
+            Terms of Service
           </Link>
           <Link to="/playbook" className="text-[var(--ink)]/45 hover:text-[var(--ink)]/70 transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase" }}>
             Admin

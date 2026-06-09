@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SoftwareRouteImport } from './routes/software'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as QuizRouteImport } from './routes/quiz'
@@ -33,6 +34,11 @@ import { Route as BrandRoomAiPromptKitRouteImport } from './routes/brand-room_.a
 const ThankYouRoute = ThankYouRouteImport.update({
   id: '/thank-you',
   path: '/thank-you',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SoftwareRoute = SoftwareRouteImport.update({
@@ -141,6 +147,7 @@ export interface FileRoutesByFullPath {
   '/quiz': typeof QuizRoute
   '/services': typeof ServicesRoute
   '/software': typeof SoftwareRoute
+  '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/brand-room/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room/brand-kit': typeof BrandRoomBrandKitRoute
@@ -163,6 +170,7 @@ export interface FileRoutesByTo {
   '/quiz': typeof QuizRoute
   '/services': typeof ServicesRoute
   '/software': typeof SoftwareRoute
+  '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/brand-room/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room/brand-kit': typeof BrandRoomBrandKitRoute
@@ -186,6 +194,7 @@ export interface FileRoutesById {
   '/quiz': typeof QuizRoute
   '/services': typeof ServicesRoute
   '/software': typeof SoftwareRoute
+  '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/brand-room_/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room_/brand-kit': typeof BrandRoomBrandKitRoute
@@ -210,6 +219,7 @@ export interface FileRouteTypes {
     | '/quiz'
     | '/services'
     | '/software'
+    | '/terms'
     | '/thank-you'
     | '/brand-room/ai-prompt-kit'
     | '/brand-room/brand-kit'
@@ -232,6 +242,7 @@ export interface FileRouteTypes {
     | '/quiz'
     | '/services'
     | '/software'
+    | '/terms'
     | '/thank-you'
     | '/brand-room/ai-prompt-kit'
     | '/brand-room/brand-kit'
@@ -254,6 +265,7 @@ export interface FileRouteTypes {
     | '/quiz'
     | '/services'
     | '/software'
+    | '/terms'
     | '/thank-you'
     | '/brand-room_/ai-prompt-kit'
     | '/brand-room_/brand-kit'
@@ -277,6 +289,7 @@ export interface RootRouteChildren {
   QuizRoute: typeof QuizRoute
   ServicesRoute: typeof ServicesRoute
   SoftwareRoute: typeof SoftwareRoute
+  TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
   BrandRoomAiPromptKitRoute: typeof BrandRoomAiPromptKitRoute
   BrandRoomBrandKitRoute: typeof BrandRoomBrandKitRoute
@@ -297,6 +310,13 @@ declare module '@tanstack/react-router' {
       path: '/thank-you'
       fullPath: '/thank-you'
       preLoaderRoute: typeof ThankYouRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/software': {
@@ -445,6 +465,7 @@ const rootRouteChildren: RootRouteChildren = {
   QuizRoute: QuizRoute,
   ServicesRoute: ServicesRoute,
   SoftwareRoute: SoftwareRoute,
+  TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
   BrandRoomAiPromptKitRoute: BrandRoomAiPromptKitRoute,
   BrandRoomBrandKitRoute: BrandRoomBrandKitRoute,
