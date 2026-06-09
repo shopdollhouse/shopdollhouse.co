@@ -2464,6 +2464,7 @@ function Contact() {
       firstName: get("first_name"),
       lastName: get("last_name"),
       email: get("email"),
+      phone: get("phone"),
       businessName: get("business_name"),
       industry: get("industry"),
       website: get("website"),
@@ -2659,10 +2660,16 @@ function Contact() {
           ))}
         </div>
 
-        {/* Email */}
-        <div>
-          <label className={labelClass} style={labelStyle}>Email *</label>
-          <input type="email" name="email" placeholder="you@brand.co" required className={inputClass} style={inputStyle} />
+        {/* Phone / Email */}
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label className={labelClass} style={labelStyle}>Phone *</label>
+            <input type="tel" name="phone" placeholder="(555) 000-0000" required className={inputClass} style={inputStyle} />
+          </div>
+          <div>
+            <label className={labelClass} style={labelStyle}>Email *</label>
+            <input type="email" name="email" placeholder="you@brand.co" required className={inputClass} style={inputStyle} />
+          </div>
         </div>
 
         {/* Business / Industry / Website */}
