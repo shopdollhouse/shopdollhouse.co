@@ -170,6 +170,9 @@ export function PlanCard({
 }) {
   const [open, setOpen] = useState(false);
   const [selectedTierIdx, setSelectedTierIdx] = useState(0);
+  // Foundation cards with pricingTiers get their own 3/6-month toggle, defaulting to 3
+  const [localMonths, setLocalMonths] = useState<3 | 6>(3);
+  const hasTiers = !!plan.pricingTiers;
   const activeTier = plan.pricingTiers?.[selectedTierIdx];
   const activeMonthly = activeTier ? activeTier.monthly : plan.monthly;
   const total = billing === "6" ? activeMonthly * 6 + plan.setup : activeMonthly * 11 + plan.setup;
@@ -192,10 +195,39 @@ export function PlanCard({
 
         {/* badges row */}
         <div className="mt-5 flex flex-wrap gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1" style={{ background: CREAM, color: INK, fontFamily: FONT_LUXE, fontSize: "0.58rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>
-            <svg viewBox="0 0 12 10" width="10" height="9" fill={ROSE}><path d="M6 9 L0.5 3.5 a2.2 2.2 0 0 1 3.1 -3.1 L6 2.8 l2.4 -2.4 a2.2 2.2 0 0 1 3.1 3.1 Z" /></svg>
-            {billing === "6" ? "6-Month Agreement" : "12-Month Agreement"}
-          </span>
+          {hasTiers ? (
+            /* 3-month / 6-month toggle for Foundation */
+            <div className="inline-flex rounded-full p-0.5" style={{ background: CREAM, border: "1px solid rgba(29,15,11,0.1)" }}>
+              {([3, 6] as const).map((mo) => {
+                const active = localMonths === mo;
+                return (
+                  <button
+                    key={mo}
+                    type="button"
+                    onClick={() => setLocalMonths(mo)}
+                    className="rounded-full px-4 py-1.5 transition-all"
+                    style={{
+                      fontFamily: FONT_LUXE,
+                      fontSize: "0.58rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                      background: active ? INK : "transparent",
+                      color: active ? "#fff" : "rgba(29,15,11,0.55)",
+                      boxShadow: active ? "0 2px 8px -4px rgba(29,15,11,0.5)" : "none",
+                    }}
+                  >
+                    {mo}-Month
+                  </button>
+                );
+              })}
+            </div>
+          ) : (
+            <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1" style={{ background: CREAM, color: INK, fontFamily: FONT_LUXE, fontSize: "0.58rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>
+              <svg viewBox="0 0 12 10" width="10" height="9" fill={ROSE}><path d="M6 9 L0.5 3.5 a2.2 2.2 0 0 1 3.1 -3.1 L6 2.8 l2.4 -2.4 a2.2 2.2 0 0 1 3.1 3.1 Z" /></svg>
+              {billing === "6" ? "6-Month Agreement" : "12-Month Agreement"}
+            </span>
+          )}
           {plan.freeTrial && (
             <span className="rounded-full px-3 py-1" style={{ background: ROSE, color: "#fff", fontFamily: FONT_LUXE, fontSize: "0.58rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>
               First 14 Days Free
@@ -203,7 +235,9 @@ export function PlanCard({
           )}
         </div>
 
-        <p className="mt-4" style={{ fontFamily: FONT_BODY, fontSize: "12px", color: "rgba(29,15,11,0.5)" }}>$500 setup due upfront · 6-month contract option</p>
+        <p className="mt-4" style={{ fontFamily: FONT_BODY, fontSize: "12px", color: "rgba(29,15,11,0.5)" }}>
+          {hasTiers ? `$500 setup due upfront · ${localMonths}-month contract` : "$500 setup due upfront · 6-month contract option"}
+        </p>
 
         {/* Pricing tiers selector — shown only for plans with pricingTiers */}
         {plan.pricingTiers ? (
@@ -211,7 +245,7 @@ export function PlanCard({
             <div className="grid grid-cols-2 gap-2">
               {plan.pricingTiers.map((tier, idx) => {
                 const active = idx === selectedTierIdx;
-                const tierTotal = billing === "6" ? tier.monthly * 6 + plan.setup : tier.monthly * 11 + plan.setup;
+                const tierTotal = tier.monthly * localMonths + plan.setup;
                 return (
                   <button
                     key={tier.label}
@@ -235,15 +269,13 @@ export function PlanCard({
                     {/* Calculator box directly beneath */}
                     <div className="p-3 flex-1" style={{ background: CREAM, borderTop: active ? `1px solid rgba(29,15,11,0.08)` : "1px solid rgba(29,15,11,0.06)" }}>
                       <p style={{ fontFamily: FONT_LUXE, fontSize: "0.52rem", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(29,15,11,0.5)" }}>
-                        {billing === "6" ? "6-Month Total" : "12-Month Total"}
+                        {localMonths}-Month Total
                       </p>
                       <p className="mt-0.5" style={{ fontFamily: FONT_DISPLAY, fontSize: "20px", lineHeight: 1, color: plan.accent, fontWeight: 600 }}>
                         ${fmt(tierTotal)}
                       </p>
                       <p className="mt-0.5" style={{ fontFamily: FONT_BODY, fontSize: "10px", color: "rgba(29,15,11,0.5)", lineHeight: 1.4 }}>
-                        {billing === "6"
-                          ? `$${fmt(tier.monthly)}/mo × 6 + $${fmt(plan.setup)} setup`
-                          : `$${fmt(tier.monthly)}/mo × 11 + $${fmt(plan.setup)} setup · 12th mo free`}
+                        ${fmt(tier.monthly)}/mo × {localMonths} + ${fmt(plan.setup)} setup
                       </p>
                     </div>
                   </button>
@@ -257,7 +289,9 @@ export function PlanCard({
             <div className="mt-3 flex items-center gap-2 rounded-lg px-3 py-2.5" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.3)" }}>
               <span style={{ color: "var(--gold)", fontSize: "0.7rem", flexShrink: 0 }}>✦</span>
               <p style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.04em", color: INK, opacity: 0.75 }}>
-                Pay 3 months upfront — your 4th month is free.
+                {localMonths === 3
+                  ? "Pay 3 months upfront — your 4th month is free."
+                  : "Pay 6 months upfront — your 7th month is free."}
               </p>
             </div>
           </div>
