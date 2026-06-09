@@ -2677,9 +2677,9 @@ function Contact() {
 
   return (
     <section id="contact" className="scroll-mt-32 py-24 md:py-32 px-6">
-      <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.88fr_1.12fr] gap-8 lg:gap-12 items-start">
+      <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.88fr_1.12fr] gap-8 lg:gap-12 items-stretch">
         {/* ── LEFT COLUMN (unchanged) ── */}
-        <div className="lg:sticky lg:top-36">
+        <div className="lg:sticky lg:top-36 flex flex-col">
           <Eyebrow>Private Proposal Request</Eyebrow>
           <h2
             className="mt-4 text-[var(--rose)] leading-[0.98]"
@@ -2702,6 +2702,9 @@ function Contact() {
               </div>
             ))}
           </div>
+          <p className="mt-auto pt-8 text-center lg:text-left" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(189,116,118,0.55)", lineHeight: 1.8 }}>
+            ✦ Private reply within 24 hours · No commitment required · Built for your business specifically
+          </p>
         </div>
 
         {/* ── RIGHT COLUMN ── */}
@@ -3084,12 +3087,6 @@ function Contact() {
             </div>
           )}
         </div>
-        {/* Decorative closer */}
-        {!showCalendar && status !== "done" && (
-          <p className="text-center" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(189,116,118,0.55)", lineHeight: 1.8 }}>
-            ✦ Private reply within 24 hours · No commitment required · Built for your business specifically
-          </p>
-        )}
         </div>
       </div>
     </section>
