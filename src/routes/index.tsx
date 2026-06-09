@@ -2101,7 +2101,7 @@ function Pricing() {
       </div>
 
       <p className="mt-6 text-center text-[11px] tracking-[0.14em]" style={{ fontFamily: "'Jost', sans-serif", color: "rgba(189,116,118,0.52)", letterSpacing: "0.14em" }}>
-        All prices in USD · Favourable rate for Canadian clients
+        All prices in USD
       </p>
 
       <div className="mt-10 max-w-6xl mx-auto grid md:grid-cols-3 gap-8 lg:gap-7 items-start">
