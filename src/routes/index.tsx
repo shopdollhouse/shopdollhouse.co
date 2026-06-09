@@ -2584,6 +2584,7 @@ function Contact() {
     plan: "Foundation — $297/mo", main_goal: "Get more booked leads",
     message: "",
     contract_term: "3 months", setup_readiness: "I understand there is a one-time $500 setup fee",
+    industry_other: "",
   });
 
   const set = (k: keyof typeof fd) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
@@ -2594,7 +2595,7 @@ function Contact() {
     const payload = {
       firstName: fd.first_name, lastName: fd.last_name,
       email: fd.email, phone: fd.phone,
-      businessName: fd.business_name, industry: fd.industry, website: fd.website,
+      businessName: fd.business_name, industry: fd.industry === "Something else" && fd.industry_other ? fd.industry_other : fd.industry, website: fd.website,
       plan: fd.plan, mainGoal: fd.main_goal,
       winDescription: fd.message,
       commitment: fd.contract_term, setupReadiness: fd.setup_readiness,
@@ -2781,7 +2782,7 @@ function Contact() {
 
               {/* ── STEP 2 ── Business type */}
               {step === 2 && (
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <div className="grid grid-cols-2 gap-x-3 gap-y-1.5">
                     {[
                       "Contractors & home services","Coaches & consultants",
@@ -2813,7 +2814,45 @@ function Contact() {
                         </button>
                       );
                     })}
+                    {/* Full-width "Something else" pill */}
+                    {(() => {
+                      const selected = fd.industry === "Something else";
+                      return (
+                        <button
+                          key="Something else"
+                          type="button"
+                          onClick={() => setFd(prev => ({ ...prev, industry: "Something else" }))}
+                          className="col-span-2 flex min-h-10 items-center gap-2.5 rounded-full px-3.5 py-2 text-left transition-all hover:-translate-y-0.5"
+                          style={{
+                            fontFamily: "'DM Sans', sans-serif",
+                            fontSize: "0.78rem",
+                            lineHeight: 1.25,
+                            background: selected ? "#bd7476" : "rgba(255,255,255,0.62)",
+                            color: selected ? "#fff" : "var(--ink)",
+                            border: selected ? "1px solid #bd7476" : "1px solid rgba(200,168,100,0.26)",
+                            boxShadow: selected ? "0 4px 14px -6px rgba(189,116,118,0.45)" : "0 8px 20px -18px rgba(90,45,35,0.5)",
+                          }}
+                        >
+                          <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: selected ? "rgba(255,255,255,0.7)" : "var(--rose)" }} aria-hidden />
+                          Something else
+                        </button>
+                      );
+                    })()}
                   </div>
+                  {/* Reveal text input when "Something else" is selected */}
+                  {fd.industry === "Something else" && (
+                    <div>
+                      <label className={lc} style={ls}>Tell us about your business</label>
+                      <input
+                        type="text"
+                        value={fd.industry_other}
+                        onChange={e => setFd(prev => ({ ...prev, industry_other: e.target.value }))}
+                        placeholder="e.g. Event planning, Non-profit, Tech startup..."
+                        className={ic}
+                        style={is}
+                      />
+                    </div>
+                  )}
                 </div>
               )}
 
