@@ -2100,73 +2100,84 @@ function Pricing() {
         </p>
       </div>
 
-      <div className="mt-8 flex justify-center px-1">
-        <div
-          className="grid w-full max-w-[430px] grid-cols-2 gap-1 rounded-full p-1"
-          style={{
-            background: "rgba(255,250,246,0.72)",
-            border: "1px solid rgba(200,168,100,0.28)",
-            boxShadow: "0 18px 40px -28px rgba(120,70,55,0.42), inset 0 1px 0 rgba(255,255,255,0.68)",
-          }}
-        >
-          {[
-            { value: "6", label: "6 Months", badge: "" },
-            { value: "12", label: "12 Months", badge: "1 Month Free" },
-          ].map((option) => {
-            const active = contractTerm === option.value;
-            return (
-              <button
-                key={option.value}
-                type="button"
-                aria-label={option.badge ? `${option.label}, ${option.badge}` : option.label}
-                onClick={() => setContractTerm(option.value as "6" | "12")}
-                className="flex min-h-[34px] items-center justify-center gap-1 rounded-full px-2 py-2 transition-all sm:min-h-[38px] sm:gap-1.5 sm:px-2.5"
-                style={{
-                  background: active ? "var(--ink)" : "transparent",
-                  color: active ? "var(--cream)" : "rgba(30,15,10,0.58)",
-                  fontFamily: "'Jost', sans-serif",
-                  fontSize: "clamp(0.5rem, 0.9vw, 0.58rem)",
-                  letterSpacing: "0.14em",
-                  textTransform: "uppercase",
-                  fontWeight: 800,
-                  boxShadow: active ? "0 10px 22px -14px rgba(30,15,10,0.55)" : "none",
-                }}
-              >
-                <span>{option.label}</span>
-                {option.badge && (
-                  <span
-                    aria-hidden="true"
-                    className="rounded-full px-1.5 py-0.5 sm:px-2"
+      <div className="mt-12 max-w-6xl mx-auto grid md:grid-cols-3 gap-8 lg:gap-7 items-start">
+        {/* Foundation — has its own independent 3/6-month toggle inside the card */}
+        <div id={`plan-${PLANS[0].id}`} className="scroll-mt-32">
+          <PlanCard plan={PLANS[0]} billing="6" ctaHref="#contact" />
+        </div>
+
+        {/* Starter + Growth — controlled by the shared 6/12-month toggle below */}
+        <div className="md:col-span-2 flex flex-col gap-6">
+          {/* 6-Month / 12-Month toggle — applies to Starter & Growth only */}
+          <div className="flex flex-col items-center gap-3">
+            <div
+              className="grid w-full max-w-[430px] grid-cols-2 gap-1 rounded-full p-1"
+              style={{
+                background: "rgba(255,250,246,0.72)",
+                border: "1px solid rgba(200,168,100,0.28)",
+                boxShadow: "0 18px 40px -28px rgba(120,70,55,0.42), inset 0 1px 0 rgba(255,255,255,0.68)",
+              }}
+            >
+              {[
+                { value: "6", label: "6 Months", badge: "" },
+                { value: "12", label: "12 Months", badge: "1 Month Free" },
+              ].map((option) => {
+                const active = contractTerm === option.value;
+                return (
+                  <button
+                    key={option.value}
+                    type="button"
+                    aria-label={option.badge ? `${option.label}, ${option.badge}` : option.label}
+                    onClick={() => setContractTerm(option.value as "6" | "12")}
+                    className="flex min-h-[34px] items-center justify-center gap-1 rounded-full px-2 py-2 transition-all sm:min-h-[38px] sm:gap-1.5 sm:px-2.5"
                     style={{
-                      background: "var(--gold)",
-                      color: "var(--ink)",
+                      background: active ? "var(--ink)" : "transparent",
+                      color: active ? "var(--cream)" : "rgba(30,15,10,0.58)",
                       fontFamily: "'Jost', sans-serif",
-                      fontSize: "clamp(0.38rem, 0.7vw, 0.46rem)",
-                      letterSpacing: "0.07em",
+                      fontSize: "clamp(0.5rem, 0.9vw, 0.58rem)",
+                      letterSpacing: "0.14em",
                       textTransform: "uppercase",
-                      whiteSpace: "nowrap",
                       fontWeight: 800,
+                      boxShadow: active ? "0 10px 22px -14px rgba(30,15,10,0.55)" : "none",
                     }}
                   >
-                    {option.badge}
-                  </span>
-                )}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-      <p className="mt-4 text-center text-[var(--ink)]/48" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem" }}>
-        {contractTerm === "6" ? "6-month start · 14-day free trial · $500 setup due upfront" : "12-month plan · 1 month free · 14-day free trial · $500 setup due upfront"}
-      </p>
-
-
-      <div className="mt-12 max-w-6xl mx-auto grid md:grid-cols-3 gap-8 lg:gap-7 items-start">
-        {PLANS.map((p) => (
-          <div key={p.id} id={`plan-${p.id}`} className="scroll-mt-32">
-            <PlanCard plan={p} billing={contractTerm} ctaHref="#contact" />
+                    <span>{option.label}</span>
+                    {option.badge && (
+                      <span
+                        aria-hidden="true"
+                        className="rounded-full px-1.5 py-0.5 sm:px-2"
+                        style={{
+                          background: "var(--gold)",
+                          color: "var(--ink)",
+                          fontFamily: "'Jost', sans-serif",
+                          fontSize: "clamp(0.38rem, 0.7vw, 0.46rem)",
+                          letterSpacing: "0.07em",
+                          textTransform: "uppercase",
+                          whiteSpace: "nowrap",
+                          fontWeight: 800,
+                        }}
+                      >
+                        {option.badge}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+            <p className="text-center text-[var(--ink)]/48" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem" }}>
+              {contractTerm === "6" ? "6-month start · 14-day free trial · $500 setup due upfront" : "12-month plan · 1 month free · 14-day free trial · $500 setup due upfront"}
+            </p>
           </div>
-        ))}
+
+          {/* Starter & Growth side by side */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-7 items-start">
+            {PLANS.slice(1).map((p) => (
+              <div key={p.id} id={`plan-${p.id}`} className="scroll-mt-32">
+                <PlanCard plan={p} billing={contractTerm} ctaHref="#contact" />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
 
