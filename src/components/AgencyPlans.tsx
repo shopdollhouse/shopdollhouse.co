@@ -309,7 +309,7 @@ export function PlanCard({
             {/* Promo strip — only shown on 3-month */}
             {localMonths === 3 && (
               <div className="mt-3 flex items-center gap-2 rounded-lg px-3 py-2.5" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.3)" }}>
-                <span style={{ color: "var(--gold)", fontSize: "0.7rem", flexShrink: 0 }}>✦</span>
+                <span style={{ color: "var(--gold)", fontSize: "0.7rem", flexShrink: 0 }}>♥</span>
                 <p style={{ fontFamily: FONT_LUXE, fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.04em", color: INK, opacity: 0.75 }}>
                   Pay 3 months upfront — your 4th month is free.
                 </p>
