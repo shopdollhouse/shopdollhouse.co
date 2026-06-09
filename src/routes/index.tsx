@@ -2760,41 +2760,93 @@ function Contact() {
 
           ) : step === 0 ? (
             /* ── PATH SELECTOR ── */
-            <div className="space-y-6">
-              <div className="border-b border-[var(--gold)]/18 pb-5">
-                <p className="text-[10px] tracking-luxe uppercase text-[var(--gold)]" style={{ fontFamily: "'Jost', sans-serif" }}>Get started</p>
-                <h3 className="mt-2 italic text-[var(--ink)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.8rem, 3vw, 2.45rem)", lineHeight: 1.05 }}>
-                  How would you like to get started?
+            <div className="space-y-7">
+              {/* Intro */}
+              <div className="pb-5 border-b border-[var(--gold)]/18">
+                <p className="text-[10px] tracking-luxe uppercase font-semibold" style={{ fontFamily: "'Jost', sans-serif", color: "#bd7476" }}>
+                  Ready to work together?
+                </p>
+                <h3
+                  className="mt-3 italic text-[var(--ink)] leading-[1.05]"
+                  style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2rem, 3.5vw, 2.8rem)" }}
+                >
+                  Let's build something that actually works.
                 </h3>
+                <p className="mt-2.5 text-[var(--ink)]/55 leading-6" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem" }}>
+                  Choose how you'd like to connect — we'll take it from there.
+                </p>
               </div>
+
+              {/* Cards */}
               <div className="grid sm:grid-cols-2 gap-4">
                 {/* Option A — Proposal Form */}
                 <button
                   type="button"
                   onClick={() => setStep(1)}
-                  className="text-left rounded-2xl p-5 transition-all hover:-translate-y-0.5"
-                  style={{ background: "rgba(255,250,246,0.8)", border: "1.5px solid rgba(189,116,118,0.35)", boxShadow: "0 8px 24px -14px rgba(189,116,118,0.3)" }}
+                  className="group text-left rounded-[20px] p-7 flex flex-col transition-all duration-300 hover:-translate-y-1"
+                  style={{
+                    background: "linear-gradient(145deg, rgba(189,116,118,0.08) 0%, rgba(255,248,246,0.92) 100%)",
+                    border: "1.5px solid rgba(189,116,118,0.28)",
+                    boxShadow: "0 10px 32px -16px rgba(189,116,118,0.25)",
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLButtonElement).style.borderColor = "#bd7476";
+                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 22px 48px -18px rgba(189,116,118,0.45)";
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(189,116,118,0.28)";
+                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 10px 32px -16px rgba(189,116,118,0.25)";
+                  }}
                 >
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full mb-3" style={{ background: "rgba(189,116,118,0.12)" }}>
-                    <svg viewBox="0 0 18 18" fill="none" stroke="#bd7476" strokeWidth="1.5" style={{ width: "16px", height: "16px" }}><path d="M3 5h12M3 9h8M3 13h6" strokeLinecap="round" /></svg>
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full mb-4" style={{ background: "rgba(189,116,118,0.14)" }}>
+                    <svg viewBox="0 0 18 18" fill="none" stroke="#bd7476" strokeWidth="1.5" style={{ width: "17px", height: "17px" }}><path d="M3 5h12M3 9h8M3 13h6" strokeLinecap="round" /></svg>
                   </span>
-                  <p className="text-[10px] tracking-luxe uppercase mb-1.5" style={{ fontFamily: "'Jost', sans-serif", color: "#bd7476" }}>Proposal Request</p>
-                  <p className="font-medium" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.25rem", color: "var(--ink)", lineHeight: 1.2 }}>Send a Proposal Request</p>
-                  <p className="mt-2 text-[var(--ink)]/55 leading-5" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem" }}>Answer a few quick questions and receive a private recommendation within 24 hours.</p>
+                  <p className="text-[10px] tracking-luxe uppercase mb-2" style={{ fontFamily: "'Jost', sans-serif", color: "#bd7476", fontWeight: 600 }}>Proposal Request</p>
+                  <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.35rem, 2.2vw, 1.65rem)", color: "var(--ink)", lineHeight: 1.15, fontWeight: 400 }}>
+                    Send a Private Proposal Request
+                  </p>
+                  <p className="mt-3 text-[var(--ink)]/55 leading-6 flex-1" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.86rem" }}>
+                    Answer a few questions and receive a private plan recommendation, pricing, and setup timeline within 24 hours.
+                  </p>
+                  <div className="mt-5 flex items-center justify-between">
+                    <span className="text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", color: "#bd7476" }}>Get started</span>
+                    <span style={{ color: "#bd7476", fontSize: "1.1rem", lineHeight: 1 }}>→</span>
+                  </div>
                 </button>
+
                 {/* Option B — Discovery Call */}
                 <button
                   type="button"
                   onClick={() => setShowCalendar(true)}
-                  className="text-left rounded-2xl p-5 transition-all hover:-translate-y-0.5"
-                  style={{ background: "rgba(255,250,246,0.8)", border: "1.5px solid rgba(200,168,100,0.3)", boxShadow: "0 8px 24px -14px rgba(120,70,55,0.18)" }}
+                  className="group text-left rounded-[20px] p-7 flex flex-col transition-all duration-300 hover:-translate-y-1"
+                  style={{
+                    background: "linear-gradient(145deg, rgba(200,168,100,0.09) 0%, rgba(255,252,244,0.92) 100%)",
+                    border: "1.5px solid rgba(200,168,100,0.3)",
+                    boxShadow: "0 10px 32px -16px rgba(160,120,60,0.2)",
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLButtonElement).style.borderColor = "#bd7476";
+                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 22px 48px -18px rgba(189,116,118,0.38)";
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(200,168,100,0.3)";
+                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 10px 32px -16px rgba(160,120,60,0.2)";
+                  }}
                 >
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full mb-3" style={{ background: "rgba(200,168,100,0.12)" }}>
-                    <svg viewBox="0 0 18 18" fill="none" stroke="var(--gold)" strokeWidth="1.5" style={{ width: "16px", height: "16px" }}><rect x="2" y="3" width="14" height="12" rx="2" /><path d="M6 1.5v3M12 1.5v3M2 8h14" strokeLinecap="round" /></svg>
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full mb-4" style={{ background: "rgba(200,168,100,0.14)" }}>
+                    <svg viewBox="0 0 18 18" fill="none" stroke="var(--gold)" strokeWidth="1.5" style={{ width: "17px", height: "17px" }}><rect x="2" y="3" width="14" height="12" rx="2" /><path d="M6 1.5v3M12 1.5v3M2 8h14" strokeLinecap="round" /></svg>
                   </span>
-                  <p className="text-[10px] tracking-luxe uppercase mb-1.5" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>Discovery Call</p>
-                  <p className="font-medium" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.25rem", color: "var(--ink)", lineHeight: 1.2 }}>Book a Discovery Call</p>
-                  <p className="mt-2 text-[var(--ink)]/55 leading-5" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem" }}>Skip the form and jump straight into a free 20-minute call with Mandy.</p>
+                  <p className="text-[10px] tracking-luxe uppercase mb-2" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)", fontWeight: 600 }}>Discovery Call</p>
+                  <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.35rem, 2.2vw, 1.65rem)", color: "var(--ink)", lineHeight: 1.15, fontWeight: 400 }}>
+                    Book a Free Discovery Call
+                  </p>
+                  <p className="mt-3 text-[var(--ink)]/55 leading-6 flex-1" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.86rem" }}>
+                    Skip the form and jump straight into a free 20-minute call with Mandy — no pressure, just clarity.
+                  </p>
+                  <div className="mt-5 flex items-center justify-between">
+                    <span className="text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>Book now</span>
+                    <span style={{ color: "#bd7476", fontSize: "1.1rem", lineHeight: 1 }}>→</span>
+                  </div>
                 </button>
               </div>
             </div>
@@ -3039,10 +3091,10 @@ function Contact() {
             </div>
           )}
         </div>
-        {/* Decorative closer — only visible when form is short */}
+        {/* Decorative closer */}
         {!showCalendar && status !== "done" && (
-          <p className="text-center" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(189,116,118,0.55)" }}>
-            Private reply within 24 hours ✦
+          <p className="text-center" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(189,116,118,0.55)", lineHeight: 1.8 }}>
+            ✦ Private reply within 24 hours · No commitment required · Built for your business specifically
           </p>
         )}
         </div>
