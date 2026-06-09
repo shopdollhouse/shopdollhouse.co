@@ -2643,22 +2643,42 @@ function Contact() {
               </div>
             ))}
           </div>
-          <div className="mt-8 overflow-hidden rounded-[24px] border p-5 sm:p-6" style={{ background: "linear-gradient(145deg, rgba(255,250,246,0.9), rgba(248,229,225,0.78))", borderColor: "rgba(200,168,100,0.3)", boxShadow: "0 24px 58px -40px rgba(90,45,35,0.42), inset 0 1px 0 rgba(255,255,255,0.78)" }}>
-            <div className="flex items-center gap-3">
+          {/* Interactive Best Fit For — clicking pre-fills industry + jumps to Step 1 */}
+          <div className="mt-6">
+            <div className="flex items-center gap-3 mb-3">
               <span className="h-px w-8 bg-[var(--gold)]/55" aria-hidden />
               <p className="text-[var(--rose)] text-[10px] tracking-luxe uppercase font-semibold" style={{ fontFamily: "'Jost', sans-serif" }}>Best fit for</p>
               <span className="h-px flex-1 bg-[var(--gold)]/32" aria-hidden />
             </div>
-            <div className="mt-4 grid gap-1.5 sm:grid-cols-2 sm:gap-x-3 sm:gap-y-1.5">
-              {["Contractors & home services","Coaches & consultants","Med spas & aesthetics","Real estate agents","Salons & beauty pros","Restaurants & food brands","Fitness studios & gyms","Law firms & professionals","Retail & boutique brands","E-commerce businesses","Photographers & creatives","Mortgage & insurance pros"].map((ind) => (
-                <div key={ind} className="flex min-h-10 items-center gap-2.5 rounded-full px-3.5 py-2 text-[var(--ink)]/72" style={{ border: "1px solid rgba(200,168,100,0.26)", background: "rgba(255,255,255,0.62)", fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", lineHeight: 1.25, boxShadow: "0 8px 20px -18px rgba(90,45,35,0.5)" }}>
-                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--rose)]/72" aria-hidden />{ind}
-                </div>
-              ))}
+            <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-x-3 sm:gap-y-1.5">
+              {["Contractors & home services","Coaches & consultants","Med spas & aesthetics","Real estate agents","Salons & beauty pros","Restaurants & food brands","Fitness studios & gyms","Law firms & professionals","Retail & boutique brands","E-commerce businesses","Photographers & creatives","Mortgage & insurance pros"].map((ind) => {
+                const active = fd.industry === ind;
+                return (
+                  <button
+                    key={ind}
+                    type="button"
+                    onClick={() => {
+                      setFd(prev => ({ ...prev, industry: ind }));
+                      setShowCalendar(false);
+                      setStep(1);
+                    }}
+                    className="flex min-h-10 items-center gap-2.5 rounded-full px-3.5 py-2 text-left transition-all hover:-translate-y-0.5"
+                    style={{
+                      border: active ? "1px solid #bd7476" : "1px solid rgba(200,168,100,0.26)",
+                      background: active ? "#bd7476" : "rgba(255,255,255,0.62)",
+                      color: active ? "#fff" : "var(--ink)",
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: "0.78rem",
+                      lineHeight: 1.25,
+                      boxShadow: active ? "0 4px 14px -6px rgba(189,116,118,0.45)" : "0 8px 20px -18px rgba(90,45,35,0.5)",
+                    }}
+                  >
+                    <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: active ? "rgba(255,255,255,0.7)" : "var(--rose)" }} aria-hidden />
+                    {ind}
+                  </button>
+                );
+              })}
             </div>
-            <p className="mt-5 border-t border-[var(--gold)]/20 pt-4 text-[var(--ink)]/62 leading-6" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem" }}>
-              Built for business owners who are ready to stop guessing at their marketing — and start showing up everywhere online, every single day, with content, systems, and strategy fully handled for them.
-            </p>
           </div>
         </div>
 
