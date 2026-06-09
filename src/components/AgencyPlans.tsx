@@ -260,7 +260,7 @@ export function PlanCard({
                     onClick={() => setSelectedTierIdx(idx)}
                     className="rounded-xl text-left transition-all flex flex-col overflow-hidden"
                     style={{
-                      border: active ? `2px solid ${plan.accent}` : "2px solid transparent",
+                      border: idx === 0 ? "2px solid transparent" : active ? `2px solid ${plan.accent}` : "2px solid transparent",
                       boxShadow: active ? "0 4px 14px -6px rgba(29,15,11,0.35)" : "none",
                     }}
                   >
