@@ -211,24 +211,41 @@ export function PlanCard({
             <div className="grid grid-cols-2 gap-2">
               {plan.pricingTiers.map((tier, idx) => {
                 const active = idx === selectedTierIdx;
+                const tierTotal = billing === "6" ? tier.monthly * 6 + plan.setup : tier.monthly * 11 + plan.setup;
                 return (
                   <button
                     key={tier.label}
                     type="button"
                     onClick={() => setSelectedTierIdx(idx)}
-                    className="rounded-xl p-3 text-left transition-all"
+                    className="rounded-xl text-left transition-all flex flex-col overflow-hidden"
                     style={{
-                      background: active ? plan.accent : CREAM,
                       border: active ? `2px solid ${plan.accent}` : "2px solid transparent",
                       boxShadow: active ? "0 4px 14px -6px rgba(29,15,11,0.35)" : "none",
                     }}
                   >
-                    <p style={{ fontFamily: FONT_LUXE, fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: active ? "rgba(255,255,255,0.7)" : "rgba(29,15,11,0.5)" }}>
-                      {tier.label}
-                    </p>
-                    <p style={{ fontFamily: FONT_DISPLAY, fontSize: "28px", lineHeight: 1, color: active ? "#fff" : plan.accent, marginTop: "4px" }}>
-                      ${fmt(tier.monthly)}<span style={{ fontFamily: FONT_BODY, fontSize: "0.7rem", marginLeft: "2px", color: active ? "rgba(255,255,255,0.6)" : "rgba(29,15,11,0.45)" }}>/mo</span>
-                    </p>
+                    {/* Price tile */}
+                    <div className="p-3" style={{ background: active ? plan.accent : CREAM }}>
+                      <p style={{ fontFamily: FONT_LUXE, fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: active ? "rgba(255,255,255,0.7)" : "rgba(29,15,11,0.5)" }}>
+                        {tier.label}
+                      </p>
+                      <p style={{ fontFamily: FONT_DISPLAY, fontSize: "28px", lineHeight: 1, color: active ? "#fff" : plan.accent, marginTop: "4px" }}>
+                        ${fmt(tier.monthly)}<span style={{ fontFamily: FONT_BODY, fontSize: "0.7rem", marginLeft: "2px", color: active ? "rgba(255,255,255,0.6)" : "rgba(29,15,11,0.45)" }}>/mo</span>
+                      </p>
+                    </div>
+                    {/* Calculator box directly beneath */}
+                    <div className="p-3 flex-1" style={{ background: CREAM, borderTop: active ? `1px solid rgba(29,15,11,0.08)` : "1px solid rgba(29,15,11,0.06)" }}>
+                      <p style={{ fontFamily: FONT_LUXE, fontSize: "0.52rem", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(29,15,11,0.5)" }}>
+                        {billing === "6" ? "6-Month Total" : "12-Month Total"}
+                      </p>
+                      <p className="mt-0.5" style={{ fontFamily: FONT_DISPLAY, fontSize: "20px", lineHeight: 1, color: plan.accent, fontWeight: 600 }}>
+                        ${fmt(tierTotal)}
+                      </p>
+                      <p className="mt-0.5" style={{ fontFamily: FONT_BODY, fontSize: "10px", color: "rgba(29,15,11,0.5)", lineHeight: 1.4 }}>
+                        {billing === "6"
+                          ? `$${fmt(tier.monthly)}/mo × 6 + $${fmt(plan.setup)} setup`
+                          : `$${fmt(tier.monthly)}/mo × 11 + $${fmt(plan.setup)} setup · 12th mo free`}
+                      </p>
+                    </div>
                   </button>
                 );
               })}
@@ -243,9 +260,6 @@ export function PlanCard({
                 Pay 3 months upfront — your 4th month is free.
               </p>
             </div>
-            <p className="mt-2 inline-block rounded-lg px-3 py-1.5" style={{ border: "1px dashed rgba(29,15,11,0.3)", fontFamily: FONT_BODY, fontSize: "12px", color: "rgba(29,15,11,0.65)" }}>
-              + ${fmt(plan.setup)} one-time setup
-            </p>
           </div>
         ) : (
           /* Default single pricing block */
@@ -264,21 +278,23 @@ export function PlanCard({
           </div>
         )}
 
-        {/* total box */}
-        <div className="mt-5 rounded-xl p-4" style={{ background: CREAM }}>
-          <p style={{ fontFamily: FONT_LUXE, fontSize: "10px", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(29,15,11,0.55)" }}>
-            {billing === "6" ? "6-Month Total" : "12-Month Total"}
-          </p>
-          <p className="mt-1" style={{ fontFamily: FONT_DISPLAY, fontSize: "28px", lineHeight: 1, color: plan.accent, fontWeight: 600 }}>${fmt(total)}</p>
-          <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "12px", color: "rgba(29,15,11,0.55)" }}>
-            {billing === "6"
-              ? `$${fmt(activeMonthly)}/mo × 6 + $${fmt(plan.setup)} setup`
-              : `$${fmt(activeMonthly)}/mo × 11 + $${fmt(plan.setup)} setup · 12th month free`}
-          </p>
-          {billing === "12" && (
-            <p className="mt-1.5" style={{ fontFamily: FONT_BODY, fontSize: "13px", fontWeight: 600, color: ROSE }}>You save ${fmt(activeMonthly)}</p>
-          )}
-        </div>
+        {/* total box — only shown for single-price plans */}
+        {!plan.pricingTiers && (
+          <div className="mt-5 rounded-xl p-4" style={{ background: CREAM }}>
+            <p style={{ fontFamily: FONT_LUXE, fontSize: "10px", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(29,15,11,0.55)" }}>
+              {billing === "6" ? "6-Month Total" : "12-Month Total"}
+            </p>
+            <p className="mt-1" style={{ fontFamily: FONT_DISPLAY, fontSize: "28px", lineHeight: 1, color: plan.accent, fontWeight: 600 }}>${fmt(total)}</p>
+            <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "12px", color: "rgba(29,15,11,0.55)" }}>
+              {billing === "6"
+                ? `$${fmt(activeMonthly)}/mo × 6 + $${fmt(plan.setup)} setup`
+                : `$${fmt(activeMonthly)}/mo × 11 + $${fmt(plan.setup)} setup · 12th month free`}
+            </p>
+            {billing === "12" && (
+              <p className="mt-1.5" style={{ fontFamily: FONT_BODY, fontSize: "13px", fontWeight: 600, color: ROSE }}>You save ${fmt(activeMonthly)}</p>
+            )}
+          </div>
+        )}
 
         {/* description */}
         <p className="mt-5" style={{ fontFamily: FONT_BODY, fontSize: "15px", lineHeight: 1.6, color: INK }}>{plan.description}</p>
