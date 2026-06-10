@@ -1967,7 +1967,155 @@ function AICloneSection() {
   );
 }
 
+/* ─── Live Setup Payment Modal ───────────────────────────
+   For TikTok Live viewers: pick a plan, leave contact info,
+   and head straight to the $500 setup fee payment link so
+   they can be onboarded right away.
+   TODO: replace SETUP_FEE_PAYMENT_URL with the real FastPayDirect
+   $500 one-time payment link once it's created in GoHighLevel. */
+const SETUP_FEE_PAYMENT_URL = "https://link.fastpaydirect.com/payment-link/REPLACE_WITH_500_SETUP_FEE_LINK";
+
+function LiveSetupModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const [plan, setPlan] = useState("Foundation — $297/mo");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending">("idle");
+
+  if (!open) return null;
+
+  const planOptions = [
+    { label: "Foundation", value: "Foundation — $297/mo", desc: "Website & lead system" },
+    { label: "Starter", value: "Starter — $1,000/mo", desc: "One platform, fully managed" },
+    { label: "Growth", value: "Growth — $2,500/mo", desc: "Full social, AI clone & ads" },
+  ];
+
+  function handleGo() {
+    setStatus("sending");
+    const payload = {
+      firstName: name, email, phone,
+      plan,
+      source: "Live $500 Setup Fee — Main Page",
+    };
+    fetch("https://services.leadconnectorhq.com/hooks/ElOoFIfV3BYE54LNg3Yw/webhook-trigger/00b38935-1381-43b0-99c7-c0c33be9f456", {
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload),
+    }).catch((err) => console.warn("Live setup webhook failed:", err));
+    fetch("https://formspree.io/f/mwvrvrzj", {
+      method: "POST", headers: { Accept: "application/json", "Content-Type": "application/json" }, body: JSON.stringify(payload),
+    }).catch(() => {});
+    window.open(SETUP_FEE_PAYMENT_URL, "_blank", "noopener,noreferrer");
+    setStatus("idle");
+    onClose();
+  }
+
+  return (
+    <>
+      {/* Backdrop */}
+      <div
+        aria-hidden="true"
+        onClick={onClose}
+        style={{ position: "fixed", inset: 0, zIndex: 9998, background: "rgba(30,15,11,0.45)" }}
+      />
+      {/* Modal */}
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Secure your spot for $500"
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)",
+          zIndex: 9999, width: "min(92vw, 480px)", maxHeight: "90vh", overflowY: "auto",
+          background: "#FCF4EE", borderRadius: "20px", borderTop: "4px solid #bd7476",
+          boxShadow: "0 32px 80px -24px rgba(30,15,11,0.40)",
+          padding: "32px 28px", boxSizing: "border-box",
+        }}
+      >
+        <button
+          type="button"
+          aria-label="Close"
+          onClick={onClose}
+          style={{
+            position: "absolute", top: "16px", right: "16px",
+            display: "inline-flex", width: "32px", height: "32px",
+            alignItems: "center", justifyContent: "center",
+            border: "1px solid rgba(30,15,11,0.15)", borderRadius: "50%",
+            background: "rgba(30,15,11,0.06)", color: "rgba(30,15,11,0.6)", cursor: "pointer",
+          }}
+        >
+          <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+            <path d="M4 4l8 8M12 4l-8 8" />
+          </svg>
+        </button>
+
+        <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "9px", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "#bd7476", margin: "0 0 12px" }}>
+          Secure Your Spot
+        </p>
+        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(1.8rem, 6vw, 2.4rem)", lineHeight: 1.05, color: "var(--ink)", margin: "0 0 10px" }}>
+          Pay your $500 setup fee and let's get started.
+        </h2>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", lineHeight: 1.6, color: "rgba(30,15,11,0.62)", margin: "0 0 20px" }}>
+          Pick the plan you want, leave your info, and we'll onboard you right away.
+        </p>
+
+        <div className="space-y-2 mb-4">
+          {planOptions.map((p) => {
+            const active = plan === p.value;
+            return (
+              <button
+                key={p.value}
+                type="button"
+                onClick={() => setPlan(p.value)}
+                className="w-full text-left rounded-xl px-4 py-3 transition"
+                style={{
+                  border: active ? "2px solid #bd7476" : "1px solid rgba(30,15,11,0.12)",
+                  background: active ? "rgba(189,116,118,0.08)" : "rgba(255,255,255,0.6)",
+                }}
+              >
+                <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.15rem", color: "var(--ink)" }}>{p.label}</span>
+                <span style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: "rgba(30,15,11,0.55)" }}>{p.desc}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="space-y-3">
+          <input
+            type="text" placeholder="Your name" value={name} onChange={(e) => setName(e.target.value)}
+            className="w-full rounded-xl bg-white/72 border border-[var(--gold)]/30 px-4 py-3 text-[var(--ink)] placeholder:text-[var(--ink)]/35 focus:outline-none focus:border-[var(--rose)]"
+            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem" }}
+          />
+          <input
+            type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}
+            className="w-full rounded-xl bg-white/72 border border-[var(--gold)]/30 px-4 py-3 text-[var(--ink)] placeholder:text-[var(--ink)]/35 focus:outline-none focus:border-[var(--rose)]"
+            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem" }}
+          />
+          <input
+            type="tel" placeholder="Phone" value={phone} onChange={(e) => setPhone(e.target.value)}
+            className="w-full rounded-xl bg-white/72 border border-[var(--gold)]/30 px-4 py-3 text-[var(--ink)] placeholder:text-[var(--ink)]/35 focus:outline-none focus:border-[var(--rose)]"
+            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem" }}
+          />
+        </div>
+
+        <button
+          type="button"
+          onClick={handleGo}
+          disabled={!name || !email || status === "sending"}
+          className="mt-5 w-full rounded-full px-8 py-4 transition-opacity hover:opacity-90 disabled:opacity-50"
+          style={{ background: "var(--ink)", color: "#FCF4EE", fontFamily: "'Jost', sans-serif", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase" }}
+        >
+          {status === "sending" ? "One moment…" : "Continue to secure payment →"}
+        </button>
+        <p className="mt-3 text-center" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", color: "rgba(30,15,11,0.45)" }}>
+          $500 one-time setup fee · We'll reach out within 24 hours to kick things off.
+        </p>
+      </div>
+    </>
+  );
+}
+
 function Pricing() {
+  const [liveModalOpen, setLiveModalOpen] = useState(false);
+  const [showComingSoon, setShowComingSoon] = useState(false);
   const [contractTerm, setContractTerm] = useState<"6" | "12">("6");
   const contractMonths = Number(contractTerm);
   const setupFee = 500;
@@ -2091,7 +2239,31 @@ function Pricing() {
         <p className="mx-auto mt-5 max-w-2xl text-[var(--ink)]/58 leading-7" style={{ fontFamily: "'DM Sans', sans-serif" }}>
           Start with the foundation, then scale into the managed growth system when you are ready.
         </p>
+
+        <div
+          className="mx-auto mt-7 flex max-w-xl flex-col items-center gap-2 rounded-2xl px-6 py-5"
+          style={{ background: "rgba(189,116,118,0.08)", border: "1px solid rgba(189,116,118,0.28)" }}
+        >
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem", lineHeight: 1.6, color: "var(--ink)" }}>
+            Watching live? Secure your spot now and we'll get you started right away.
+          </p>
+          <button
+            type="button"
+            onClick={() => setShowComingSoon(true)}
+            className="rounded-full px-7 py-3 transition-opacity hover:opacity-90"
+            style={{ background: "#bd7476", color: "#fff", fontFamily: "'Jost', sans-serif", fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase" }}
+          >
+            Pay $500 setup fee now →
+          </button>
+          {showComingSoon && (
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", color: "#bd7476" }}>
+              Coming soon — check back shortly!
+            </p>
+          )}
+        </div>
       </div>
+
+      <LiveSetupModal open={liveModalOpen} onClose={() => setLiveModalOpen(false)} />
 
       <div className="mt-10 max-w-6xl mx-auto grid md:grid-cols-3 gap-8 lg:gap-7 items-start">
         {/* Foundation — has its own independent 3/6-month toggle inside the card */}
