@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import archMark from "@/assets/arch-mark.svg";
 import heroBg from "@/assets/password-bg.jpg";
@@ -184,6 +185,34 @@ function Button({ href, children, rose = false, ghost = false }: { href: string;
   );
 }
 
+function LiveSetupCta() {
+  const [showComingSoon, setShowComingSoon] = useState(false);
+
+  return (
+    <div
+      className="mx-auto mt-7 flex max-w-xl flex-col items-center gap-2 rounded-2xl px-6 py-5"
+      style={{ background: "rgba(189,116,118,0.08)", border: "1px solid rgba(189,116,118,0.28)" }}
+    >
+      <p style={{ fontFamily: FONT_BODY, fontSize: "0.92rem", lineHeight: 1.6, color: "var(--ink)" }}>
+        Watching live? Secure your spot now and we'll get you started right away.
+      </p>
+      <button
+        type="button"
+        onClick={() => setShowComingSoon(true)}
+        className="rounded-full px-7 py-3 transition-opacity hover:opacity-90"
+        style={{ background: "#bd7476", color: "#fff", fontFamily: FONT_LUXE, fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase" }}
+      >
+        Pay $500 setup fee now →
+      </button>
+      {showComingSoon && (
+        <p style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "#bd7476" }}>
+          Coming soon — check back shortly!
+        </p>
+      )}
+    </div>
+  );
+}
+
 function BrandRoomPage() {
   usePageMeta(
     "The Dollhouse Brand Room | The Dollhouse Brand Studio",
@@ -254,6 +283,8 @@ function BrandRoomPage() {
             <Button href="#inside">Enter the Brand Room — From $17</Button>
             <a href="#inside" className="btn-ghost">See what's inside ↓</a>
           </div>
+
+          <LiveSetupCta />
         </div>
       </header>
 
