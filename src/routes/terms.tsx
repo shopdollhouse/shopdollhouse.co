@@ -60,49 +60,90 @@ function TermsPage() {
           style={{ background: "color-mix(in oklab, var(--gold) 50%, transparent)" }}
         />
 
-        <Section title="1. Acceptance">
+        <Section title="1. Agreement to Terms">
           <p>
-            By accessing shopdollhouse.co or purchasing any product or service, you agree to these Terms of Service.
+            By accessing shopdollhouse.co, purchasing any product, or using our services, you confirm you are at least 18 years old and agree to be bound by these Terms of Service and our Privacy Policy. If you do not agree, please do not use our website or services.
           </p>
         </Section>
 
-        <Section title="2. Services">
+        <Section title="2. Description of Services">
           <p>
-            The Dollhouse Brand Studio offers done-for-you social media marketing, AI-powered content creation, lead generation systems, and digital brand products. Service details, pricing, and deliverables are outlined in your service agreement or product description.
+            The Dollhouse Brand Studio offers done-for-you social media management, AI Clone content creation, marketing automation, lead generation systems, website design, paid advertising management, and digital products (the Brand Room). Service details, pricing, and deliverables are outlined in your individual proposal, service agreement, or product description.
           </p>
         </Section>
 
-        <Section title="3. Digital Products">
+        <Section title="3. SMS Messaging Terms">
           <p>
-            All digital product sales are final. No refunds are issued after purchase and access has been granted. Products are for personal use only and may not be resold or redistributed.
+            By opting in to receive text messages from The Dollhouse Brand Studio, you agree to the following:
+          </p>
+          <p>
+            <strong>Message Types:</strong> You may receive appointment reminders, lead and customer follow-ups, onboarding and account notifications, customer support messages, and promotional or marketing messages.
+          </p>
+          <p>
+            <strong>Opt-Out:</strong> You can opt out at any time by replying STOP to any message. After replying STOP, you will receive one confirmation message and no further SMS messages.
+          </p>
+          <p>
+            <strong>Help:</strong> For assistance, reply HELP to any message or email{" "}
+            <a href="mailto:hello@shopdollhouse.co" style={{ color: "var(--rose)", textDecoration: "underline" }}>hello@shopdollhouse.co</a>.
+          </p>
+          <p>
+            <strong>Carrier Liability:</strong> Carriers are not liable for delayed or undelivered messages.
+          </p>
+          <p>
+            <strong>Message &amp; Data Rates:</strong> Message and data rates may apply, depending on your mobile plan.
+          </p>
+          <p>
+            <strong>Message Frequency:</strong> Message frequency varies based on your interactions with us.
+          </p>
+          <p>
+            Your information is handled in accordance with our{" "}
+            <Link to="/privacy" style={{ color: "var(--rose)", textDecoration: "underline" }}>Privacy Policy</Link>. Consent to receive SMS messages is not a condition of purchasing any goods or services.
           </p>
         </Section>
 
-        <Section title="4. Service Agreements">
+        <Section title="4. User Responsibilities">
           <p>
-            Managed marketing services require a signed agreement. Terms, payment schedules, and cancellation policies are outlined in that agreement.
+            You agree to provide accurate and complete information, keep your account information secure, and use our services only for lawful purposes. You are responsible for any activity that occurs through your use of our services.
           </p>
         </Section>
 
-        <Section title="5. Communications">
+        <Section title="5. Acceptable Use">
           <p>
-            By providing your contact information, you consent to receive communications from The Dollhouse Brand Studio related to your inquiry, purchase, or service. You may opt out at any time.
+            You agree not to use our website or services for any unlawful, harmful, or fraudulent purpose; attempt to gain unauthorized access to our systems; copy, resell, or redistribute our content, tools, or digital products without authorization; or submit false information or impersonate any person or entity.
           </p>
         </Section>
 
-        <Section title="6. Intellectual Property">
+        <Section title="6. Payments & Refunds">
           <p>
-            All content, branding, and materials created by The Dollhouse Brand Studio remain our intellectual property unless otherwise agreed in writing.
+            All purchases, setup fees, and digital products are final and non-refundable. Managed plans operate on the term agreement (3, 6, or 12 months) confirmed at enrollment and cannot be cancelled partway through the agreed term. The one-time $500 setup fee is required upfront and is non-refundable. Digital products are for personal or business use only and may not be resold or redistributed.
           </p>
         </Section>
 
-        <Section title="7. Limitation of Liability">
+        <Section title="7. Intellectual Property">
           <p>
-            Results may vary. We do not guarantee specific follower counts, leads, or revenue outcomes.
+            All content, branding, designs, tools, and materials created by The Dollhouse Brand Studio remain our intellectual property unless otherwise agreed in writing. Digital products are licensed to you for your own use only.
           </p>
         </Section>
 
-        <Section title="8. Contact">
+        <Section title="8. Disclaimers">
+          <p>
+            Our services and products are provided "as is" and "as available," without warranties of any kind. We do not guarantee specific results, revenue, leads, follower counts, or outcomes from the use of our services. Any results referenced are illustrative and not a promise of future performance.
+          </p>
+        </Section>
+
+        <Section title="9. Limitation of Liability">
+          <p>
+            To the fullest extent permitted by law, The Dollhouse Brand Studio shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenue, arising from your use of our website or services. Our total liability for any claim shall not exceed the amount you paid to us for the service giving rise to the claim.
+          </p>
+        </Section>
+
+        <Section title="10. Governing Law">
+          <p>
+            These Terms are governed by and construed in accordance with the laws of the Province of Ontario, Canada, without regard to its conflict of law principles. Any disputes shall be subject to the exclusive jurisdiction of the courts located in Ontario, Canada.
+          </p>
+        </Section>
+
+        <Section title="11. Contact Information">
           <p>
             <a href="mailto:hello@shopdollhouse.co" style={{ color: "var(--rose)", textDecoration: "underline" }}>hello@shopdollhouse.co</a>
             {"  |  "}
