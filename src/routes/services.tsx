@@ -8,6 +8,7 @@ import {
   AgencyFaqSection,
   FinalCtaSection,
   AgencyFooterNotes,
+  PULSE_STYLE,
 } from "@/components/AgencySections";
 
 export const Route = createFileRoute("/services")({ component: ServicesPage });
@@ -49,13 +50,13 @@ function ServicesPage() {
     setPulseId(null);
     window.requestAnimationFrame(() => {
       setPulseId(id);
-      window.setTimeout(() => setPulseId(null), 1500);
+      window.setTimeout(() => setPulseId(null), 5000);
     });
   }
 
   return (
     <main className="overflow-x-hidden text-[var(--ink)]" style={{ background: CREAM }}>
-      <style>{`@keyframes plan-pulse{0%{box-shadow:0 0 0 0 rgba(189,116,118,0)}30%{box-shadow:0 0 0 5px rgba(189,116,118,0.55)}100%{box-shadow:0 0 0 0 rgba(189,116,118,0)}}.plan-pulse{animation:plan-pulse 1.5s ease-out}`}</style>
+      <style>{PULSE_STYLE}</style>
 
       {/* ── 1 · STICKY MOBILE TOP BAR ─────────────────── */}
       <a href="#plans" className="fixed inset-x-0 top-0 z-50 block px-4 py-2.5 text-center md:hidden" style={{ background: INK, color: "#fff", fontFamily: FONT_BODY, fontSize: "0.78rem" }}>

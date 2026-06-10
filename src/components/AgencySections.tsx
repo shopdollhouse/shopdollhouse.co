@@ -30,7 +30,7 @@ function ctaLinkProps(newTab: boolean) {
   return newTab ? { target: "_blank", rel: "noopener noreferrer" } : {};
 }
 
-const PULSE_STYLE = `@keyframes plan-pulse{0%,100%{box-shadow:0 0 0 2px rgba(189,116,118,0.2),0 18px 48px -28px rgba(189,116,118,0.4);transform:translateY(0)}45%{box-shadow:0 0 0 7px rgba(189,116,118,0.42),0 24px 54px -24px rgba(189,116,118,0.62);transform:translateY(-3px)}}.plan-pulse{animation:plan-pulse 1.6s ease-in-out 3}`;
+export const PULSE_STYLE = `@keyframes plan-pulse{0%,100%{box-shadow:0 0 0 2px rgba(189,116,118,0.2),0 18px 48px -28px rgba(189,116,118,0.4);transform:translateY(0)}45%{box-shadow:0 0 0 7px rgba(189,116,118,0.42),0 24px 54px -24px rgba(189,116,118,0.62);transform:translateY(-3px)}}.plan-pulse{animation:plan-pulse 1.6s ease-in-out 3}`;
 
 export function pulsePlan(id: string) {
   const el = document.getElementById(id);
