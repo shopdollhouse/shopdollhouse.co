@@ -1971,9 +1971,8 @@ function AICloneSection() {
    For TikTok Live viewers: pick a plan, leave contact info,
    and head straight to the $500 setup fee payment link so
    they can be onboarded right away.
-   TODO: replace SETUP_FEE_PAYMENT_URL with the real FastPayDirect
-   $500 one-time payment link once it's created in GoHighLevel. */
-const SETUP_FEE_PAYMENT_URL = "https://link.fastpaydirect.com/payment-link/REPLACE_WITH_500_SETUP_FEE_LINK";
+   Live $500 one-time setup fee payment link (FastPayDirect / GoHighLevel). */
+const SETUP_FEE_PAYMENT_URL = "https://link.shopdollhouse.co/payment-link/6a29d96671a0aa761e4641ba";
 
 function LiveSetupModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [plan, setPlan] = useState("Foundation — $297/mo");
@@ -2115,7 +2114,6 @@ function LiveSetupModal({ open, onClose }: { open: boolean; onClose: () => void 
 
 function Pricing() {
   const [liveModalOpen, setLiveModalOpen] = useState(false);
-  const [showComingSoon, setShowComingSoon] = useState(false);
   const [contractTerm, setContractTerm] = useState<"6" | "12">("6");
   const contractMonths = Number(contractTerm);
   const setupFee = 500;
@@ -2245,21 +2243,16 @@ function Pricing() {
           style={{ background: "rgba(189,116,118,0.08)", border: "1px solid rgba(189,116,118,0.28)" }}
         >
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem", lineHeight: 1.6, color: "var(--ink)" }}>
-            Watching live? Secure your spot now and we'll get you started right away.
+            Ready to get started? Secure your spot with your $500 setup fee and we'll begin onboarding right away.
           </p>
           <button
             type="button"
-            onClick={() => setShowComingSoon(true)}
+            onClick={() => setLiveModalOpen(true)}
             className="rounded-full px-7 py-3 transition-opacity hover:opacity-90"
             style={{ background: "#bd7476", color: "#fff", fontFamily: "'Jost', sans-serif", fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase" }}
           >
             Pay $500 setup fee now →
           </button>
-          {showComingSoon && (
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", color: "#bd7476" }}>
-              Coming soon — check back shortly!
-            </p>
-          )}
         </div>
       </div>
 
