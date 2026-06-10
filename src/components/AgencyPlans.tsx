@@ -108,7 +108,6 @@ export const PLANS: Plan[] = [
       "Starter content strategy — offer angle, pillars, caption direction & posting rhythm",
       "Comment-to-DM automation — every comment becomes a private lead conversation",
       "Missed call text-back — warm leads hear from you within seconds",
-      "Voice AI receptionist — answers missed calls and books appointments 24/7",
       "Automated appointment reminders — text and email before every booking",
       "CRM pipeline and booking link setup",
       "Monthly performance report — reach, growth, top posts & next steps in plain English",

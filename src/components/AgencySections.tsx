@@ -114,7 +114,7 @@ export function PlanComparisonSection() {
     ["Platform managed", "-", "1 platform", "3 platforms"],
     ["Posts per month", "-", "16", "24"],
     ["Comment-to-DM automation", "-", "y", "y"],
-    ["Voice AI receptionist", "y", "y", "y"],
+    ["Voice AI receptionist", "y", "-", "y"],
     ["Missed call text-back", "y", "y", "y"],
     ["Appointment reminders", "y", "y", "y"],
     ["Review management", "y", "-", "y"],
