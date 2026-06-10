@@ -124,6 +124,7 @@ function PrivacyPage() {
 
         <Section title="Contact Information">
           <p>The Dollhouse Brand Studio</p>
+          <p>Markham, ON, Canada</p>
           <p>
             <a href="mailto:hello@shopdollhouse.co" style={{ color: "var(--rose)", textDecoration: "underline" }}>
               hello@shopdollhouse.co

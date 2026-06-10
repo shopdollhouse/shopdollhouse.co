@@ -144,6 +144,7 @@ function TermsPage() {
         </Section>
 
         <Section title="11. Contact Information">
+          <p>The Dollhouse Brand Studio · Markham, ON, Canada</p>
           <p>
             <a href="mailto:hello@shopdollhouse.co" style={{ color: "var(--rose)", textDecoration: "underline" }}>hello@shopdollhouse.co</a>
             {"  |  "}
