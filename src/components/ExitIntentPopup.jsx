@@ -171,15 +171,15 @@ export default function ExitIntentPopup() {
           left: "50%",
           transform: "translate(-50%, -50%)",
           zIndex: 9999,
-          width: "min(90vw, 480px)",
+          width: "min(92vw, 460px)",
           maxHeight: "90vh",
           overflowY: "auto",
           background: "#FCF4EE",
-          borderRadius: "20px",
+          borderRadius: "22px",
           borderTop: "4px solid #bd7476",
           boxShadow: "0 32px 80px -24px rgba(30,15,11,0.40)",
           animation: "dollhousePopupEnter 0.35s ease-out both",
-          padding: "40px 32px 32px",
+          padding: "56px 36px 40px",
           boxSizing: "border-box",
           textAlign: "center",
         }}
@@ -192,31 +192,31 @@ export default function ExitIntentPopup() {
           onClick={closePopup}
           style={{
             position: "absolute",
-            top: "16px",
-            right: "16px",
+            top: "18px",
+            right: "18px",
             display: "inline-flex",
-            width: "32px",
-            height: "32px",
+            width: "44px",
+            height: "44px",
             alignItems: "center",
             justifyContent: "center",
-            border: "1px solid rgba(30,15,11,0.15)",
+            border: "1.5px solid rgba(189,116,118,0.5)",
             borderRadius: "50%",
-            background: "rgba(30,15,11,0.06)",
-            color: "rgba(30,15,11,0.6)",
+            background: "rgba(189,116,118,0.1)",
+            color: "#bd7476",
             cursor: "pointer",
             transition: "background 160ms ease, color 160ms ease",
             zIndex: 2,
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = "rgba(30,15,11,0.12)";
-            e.currentTarget.style.color = "rgba(30,15,11,0.9)";
+            e.currentTarget.style.background = "#bd7476";
+            e.currentTarget.style.color = "#FCF4EE";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.background = "rgba(30,15,11,0.06)";
-            e.currentTarget.style.color = "rgba(30,15,11,0.6)";
+            e.currentTarget.style.background = "rgba(189,116,118,0.1)";
+            e.currentTarget.style.color = "#bd7476";
           }}
         >
-          <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+          <svg viewBox="0 0 16 16" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
             <path d="M4 4l8 8M12 4l-8 8" />
           </svg>
         </button>
@@ -240,23 +240,40 @@ export default function ExitIntentPopup() {
           fontStyle: "italic",
           fontWeight: 400,
           fontSize: "clamp(2.2rem, 8vw, 3rem)",
-          lineHeight: 1,
-          color: "var(--ink)",
-          margin: "0 0 16px",
+          lineHeight: 1.05,
+          color: "#bd7476",
+          margin: "0 0 24px",
         }}>
           Find your next brand move.
         </h2>
 
-        {/* Subtext */}
-        <p style={{
-          fontFamily: "'DM Sans', sans-serif",
-          fontSize: "0.93rem",
-          lineHeight: 1.65,
-          color: "rgba(30,15,11,0.62)",
-          margin: "0 0 28px",
+        {/* Bullets */}
+        <ul style={{
+          listStyle: "none",
+          margin: "0 0 32px",
+          padding: 0,
+          textAlign: "left",
         }}>
-          Answer 4 honest questions — get matched to your clearest next step in under 60 seconds.
-        </p>
+          {[
+            "Answer 4 honest questions",
+            "Get matched to your clearest next step",
+            "Takes under 60 seconds",
+          ].map((point) => (
+            <li key={point} style={{
+              display: "flex",
+              alignItems: "flex-start",
+              gap: "10px",
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: "0.95rem",
+              lineHeight: 1.5,
+              color: "rgba(30,15,11,0.7)",
+              marginBottom: "12px",
+            }}>
+              <span style={{ color: "#bd7476", flexShrink: 0, fontSize: "0.8rem", marginTop: "3px" }}>♥</span>
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
 
         {/* CTA */}
         <button
@@ -265,13 +282,13 @@ export default function ExitIntentPopup() {
           style={{
             display: "block",
             width: "100%",
-            padding: "16px 24px",
+            padding: "20px 24px",
             border: 0,
-            borderRadius: "10px",
+            borderRadius: "12px",
             background: "var(--ink)",
             color: "#FCF4EE",
             fontFamily: "'Jost', sans-serif",
-            fontSize: "11px",
+            fontSize: "12px",
             fontWeight: 700,
             textTransform: "uppercase",
             letterSpacing: "0.2em",
@@ -296,20 +313,22 @@ export default function ExitIntentPopup() {
           type="button"
           onClick={closePopup}
           style={{
-            marginTop: "14px",
+            marginTop: "20px",
             border: 0,
             background: "transparent",
-            color: "rgba(30,15,11,0.38)",
+            color: "rgba(30,15,11,0.62)",
             fontFamily: "'DM Sans', sans-serif",
-            fontSize: "0.78rem",
+            fontSize: "0.88rem",
+            textDecoration: "underline",
+            textUnderlineOffset: "3px",
             cursor: "pointer",
-            padding: "4px 0",
+            padding: "6px 0",
             display: "block",
             width: "100%",
             textAlign: "center",
           }}
-          onMouseEnter={(e) => { e.currentTarget.style.textDecoration = "underline"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.textDecoration = "none"; }}
+          onMouseEnter={(e) => { e.currentTarget.style.color = "rgba(30,15,11,0.85)"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(30,15,11,0.62)"; }}
         >
           No thanks, I already know my next step.
         </button>
