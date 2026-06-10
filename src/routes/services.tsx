@@ -3,7 +3,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { usePageMeta } from "@/lib/use-page-meta";
 import { PLANS, PlanCard, type Billing } from "@/components/AgencyPlans";
 import {
-  FocusedSetupSection,
   PlanComparisonSection,
   ResultsStatsSection,
   AgencyFaqSection,
@@ -160,12 +159,11 @@ function ServicesPage() {
       </section>
 
       {/* ── 6–10 · shared sections ────────────────────── */}
-      <FocusedSetupSection proposalHref={PROPOSAL_URL} newTab />
+      <AgencyFooterNotes />
       <PlanComparisonSection />
       <ResultsStatsSection />
       <AgencyFaqSection />
       <FinalCtaSection proposalHref={PROPOSAL_URL} newTab />
-      <AgencyFooterNotes />
     </main>
   );
 }
