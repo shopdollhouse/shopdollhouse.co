@@ -102,7 +102,7 @@ export const PLANS: Plan[] = [
     features: [
       "1 platform fully managed — Facebook, Instagram, or TikTok — nothing to post",
       "AI Clone or custom brand mascot — built during onboarding to your look, voice & energy",
-      "3 AI Clone videos pinned — your signature content always front and centre",
+      "3 AI Clone videos built at launch, pinned to the top of your profile as signature content, refreshed whenever your offer or season changes",
       "16 posts/month — Reels, Carousels & Static — all on-brand, all approved by you",
       "Content approval — nothing goes live without your sign-off",
       "Starter content strategy — offer angle, pillars, caption direction & posting rhythm",
@@ -130,7 +130,7 @@ export const PLANS: Plan[] = [
     features: [
       "3 platforms fully managed — Facebook, Instagram & TikTok — nothing to post, nothing to manage",
       "AI Clone or custom brand mascot — built during onboarding, active across all 3 platforms",
-      "6 AI Clone videos/month — 2 pinned per platform, always your best content front and centre",
+      "6 AI Clone videos built at launch, with 2 pinned per platform as your evergreen signature content, plus 1 fresh AI Clone video added every month",
       "24 posts/month — 8 per platform, Reels, Carousels & Static — all on-brand",
       "Content approval — you see and approve everything before it goes live",
       "Dedicated content strategy — pillars, hashtags, caption writing & optimal posting times",
