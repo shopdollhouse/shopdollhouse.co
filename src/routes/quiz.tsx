@@ -321,8 +321,6 @@ function QuizPage() {
   const [answers, setAnswers] = useState<ResultKey[]>([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [smsConsent, setSmsConsent] = useState(false);
   const [business, setBusiness] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<ResultKey>("foundation");
@@ -353,8 +351,6 @@ function QuizPage() {
       email,
       firstName,
       lastName,
-      phone,
-      smsConsent: phone && smsConsent ? "Yes — opted in to SMS" : "No",
       business,
       quizResult: nextResult,
       source: "Brand Quiz",
@@ -383,7 +379,6 @@ function QuizPage() {
     setAnswers([]);
     setName("");
     setEmail("");
-    setPhone("");
     setBusiness("");
     setResult("foundation");
   }
@@ -492,24 +487,7 @@ function QuizPage() {
                 <input required placeholder="Your first name" value={name} onChange={(e) => setName(e.target.value)} className="rounded-xl px-5 py-3.5 focus:outline-none" style={{ fontFamily: FONT_BODY, background: "rgba(255,255,255,0.86)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }} />
                 <input required type="email" placeholder="Your email address" value={email} onChange={(e) => setEmail(e.target.value)} className="rounded-xl px-5 py-3.5 focus:outline-none" style={{ fontFamily: FONT_BODY, background: "rgba(255,255,255,0.86)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }} />
                 <input placeholder="What kind of brand are you building? (optional)" value={business} onChange={(e) => setBusiness(e.target.value)} className="rounded-xl px-5 py-3.5 focus:outline-none" style={{ fontFamily: FONT_BODY, background: "rgba(255,255,255,0.86)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }} />
-                <input type="tel" placeholder="Phone number (optional)" value={phone} onChange={(e) => setPhone(e.target.value)} className="rounded-xl px-5 py-3.5 focus:outline-none" style={{ fontFamily: FONT_BODY, background: "rgba(255,255,255,0.86)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }} />
-                {phone && (
-                  <label className="flex items-start gap-2.5 px-1 text-left cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={smsConsent}
-                      onChange={(e) => setSmsConsent(e.target.checked)}
-                      className="mt-0.5 h-4 w-4 shrink-0"
-                      style={{ accentColor: "#bd7476" }}
-                    />
-                    <span style={{ fontFamily: FONT_BODY, fontSize: "0.7rem", lineHeight: 1.5, color: "rgba(30,15,10,0.6)" }}>
-                      I consent to receive marketing and informational text messages from The Dollhouse Brand Studio at the number provided. Message frequency may vary. Message &amp; data rates may apply. Text HELP for help, reply STOP to opt out. See our{" "}
-                      <Link to="/privacy" style={{ color: "#bd7476", textDecoration: "underline" }}>Privacy Policy</Link> and{" "}
-                      <Link to="/terms" style={{ color: "#bd7476", textDecoration: "underline" }}>Terms</Link>.
-                    </span>
-                  </label>
-                )}
-                <button disabled={submitting || (!!phone && !smsConsent)} className="mt-2 rounded-full px-6 py-4 transition-all hover:-translate-y-0.5 disabled:opacity-60" style={{ background: "var(--gold)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
+                <button disabled={submitting} className="mt-2 rounded-full px-6 py-4 transition-all hover:-translate-y-0.5 disabled:opacity-60" style={{ background: "var(--gold)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
                   {submitting ? "Preparing your result..." : "Show me my result →"}
                 </button>
                 <p className="text-center text-[rgba(30,15,10,0.36)] tracking-[0.12em] uppercase" style={{ fontFamily: FONT_LUXE, fontSize: "9px" }}>No spam · Just your result + one honest recommendation</p>

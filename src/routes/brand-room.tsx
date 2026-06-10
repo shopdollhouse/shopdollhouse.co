@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import archMark from "@/assets/arch-mark.svg";
 import heroBg from "@/assets/password-bg.jpg";
 import productImage from "@/assets/product-brand-kit.jpg";
@@ -192,8 +192,6 @@ function LiveSetupModal({ open, onClose }) {
   const [plan, setPlan] = useState("Foundation — $297/mo");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [smsConsent, setSmsConsent] = useState(false);
   const [status, setStatus] = useState("idle");
 
   if (!open) return null;
@@ -207,9 +205,8 @@ function LiveSetupModal({ open, onClose }) {
   function handleGo() {
     setStatus("sending");
     const payload = {
-      firstName: name, email, phone,
+      firstName: name, email,
       plan,
-      smsConsent: smsConsent ? "Yes — opted in to SMS" : "No",
       source: "Live $500 Setup Fee — Brand Room",
     };
     fetch("https://services.leadconnectorhq.com/hooks/ElOoFIfV3BYE54LNg3Yw/webhook-trigger/00b38935-1381-43b0-99c7-c0c33be9f456", {
@@ -291,29 +288,12 @@ function LiveSetupModal({ open, onClose }) {
         <div className="space-y-3">
           <input type="text" placeholder="Your name" value={name} onChange={(e) => setName(e.target.value)} className={inputCls} style={inputStyle} />
           <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className={inputCls} style={inputStyle} />
-          <input type="tel" placeholder="Phone" value={phone} onChange={(e) => setPhone(e.target.value)} className={inputCls} style={inputStyle} />
         </div>
-
-        {/* SMS consent — required for A2P compliance */}
-        <label className="mt-4 flex items-start gap-2.5 cursor-pointer">
-          <input
-            type="checkbox"
-            checked={smsConsent}
-            onChange={(e) => setSmsConsent(e.target.checked)}
-            className="mt-0.5 h-4 w-4 shrink-0"
-            style={{ accentColor: "#bd7476" }}
-          />
-          <span style={{ fontFamily: FONT_BODY, fontSize: "0.7rem", lineHeight: 1.5, color: "rgba(30,15,11,0.6)" }}>
-            I consent to receive marketing and informational text messages from The Dollhouse Brand Studio at the number provided. Message frequency may vary. Message &amp; data rates may apply. Text HELP for help, reply STOP to opt out. See our{" "}
-            <Link to="/privacy" style={{ color: "#bd7476", textDecoration: "underline" }}>Privacy Policy</Link> and{" "}
-            <Link to="/terms" style={{ color: "#bd7476", textDecoration: "underline" }}>Terms</Link>.
-          </span>
-        </label>
 
         <button
           type="button"
           onClick={handleGo}
-          disabled={!name || !email || !smsConsent || status === "sending"}
+          disabled={!name || !email || status === "sending"}
           className="mt-5 w-full rounded-full px-8 py-4 transition-opacity hover:opacity-90 disabled:opacity-50"
           style={{ background: "var(--ink)", color: "#FCF4EE", fontFamily: FONT_LUXE, fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase" }}
         >
