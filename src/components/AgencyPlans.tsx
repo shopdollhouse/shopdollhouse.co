@@ -121,7 +121,7 @@ export const PLANS: Plan[] = [
     eyebrow: "Three Platforms + Paid Ads",
     name: "The Growth",
     subtitle: "For service businesses ready for all 3 platforms, full automation, and paid Meta ads working together every day.",
-    monthly: 2500,
+    monthly: 2497,
     setup: 500,
     platform: 300,
     freeTrial: true,
@@ -130,7 +130,7 @@ export const PLANS: Plan[] = [
     features: [
       "3 platforms fully managed — Facebook, Instagram & TikTok — nothing to post, nothing to manage",
       "AI Clone or custom brand mascot — built during onboarding, active across all 3 platforms",
-      "6 AI Clone videos built at launch, with 2 pinned per platform as your evergreen signature content, plus 1 fresh AI Clone video added every month",
+      "Your AI Clone shows up consistently on all three platforms on your behalf, so your audience sees you every day without you ever picking up a camera",
       "24 posts/month — 8 per platform, Reels, Carousels & Static — all on-brand",
       "Content approval — you see and approve everything before it goes live",
       "Dedicated content strategy — pillars, hashtags, caption writing & optimal posting times",
@@ -404,7 +404,7 @@ export function PlanCard({
         {plan.id === "growth" && (
           <div className="mt-4 rounded-xl p-4" style={{ background: "rgba(189,116,118,0.06)", border: "1px solid rgba(189,116,118,0.22)" }}>
             <p style={{ fontFamily: FONT_BODY, fontSize: "12.5px", lineHeight: 1.65, color: "rgba(29,15,11,0.62)" }}>
-              The Growth Plan covers full strategy, creative production, audience targeting, optimisation, and day-to-day campaign management. Ad spend is not included in the $2,500/mo service fee and is billed directly to your Meta Ads account. We recommend a minimum of $1,000 to $2,000/mo in ad spend to see meaningful, consistent results. This keeps your budget transparent and fully in your control, while we handle everything that makes it perform.
+              The Growth Plan covers full strategy, creative production, audience targeting, optimisation, and day-to-day campaign management. Ad spend is not included in the $2,497/mo service fee and is billed directly to your Meta Ads account. We recommend a minimum of $1,000 to $2,000/mo in ad spend to see meaningful, consistent results. This keeps your budget transparent and fully in your control, while we handle everything that makes it perform.
             </p>
           </div>
         )}

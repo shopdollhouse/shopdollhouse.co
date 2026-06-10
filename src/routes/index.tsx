@@ -1987,7 +1987,7 @@ function LiveSetupModal({ open, onClose }: { open: boolean; onClose: () => void 
   const planOptions = [
     { label: "Foundation", value: "Foundation — $297/mo", desc: "Website & lead system" },
     { label: "Starter", value: "Starter — $1,000/mo", desc: "One platform, fully managed" },
-    { label: "Growth", value: "Growth — $2,500/mo", desc: "Full social, AI clone & ads" },
+    { label: "Growth", value: "Growth — $2,497/mo", desc: "Full social, AI clone & ads" },
   ];
 
   function handleGo() {
@@ -2176,8 +2176,8 @@ function Pricing() {
     },
     {
       name: "Growth",
-      price: "$2,500",
-      monthlyPrice: 2500,
+      price: "$2,497",
+      monthlyPrice: 2497,
       platformFee: 300,
       fit: "Featured for steady booked leads",
       outcome: "Three platforms running, an AI Clone posting for you, leads followed up automatically, and ads bringing in new clients — while you focus on the work.",
@@ -2189,7 +2189,7 @@ function Pricing() {
       features: [
         "3 platforms fully managed — Facebook, Instagram & TikTok — nothing to post, nothing to manage",
         "AI Clone or custom brand mascot — built during onboarding, active across all 3 platforms",
-        "6 AI Clone videos/month — 2 pinned per platform, always your best content front and centre",
+        "Your AI Clone shows up consistently on all three platforms on your behalf, so your audience sees you every day without you ever picking up a camera",
         "24 posts/month — 8 per platform, Reels, Carousels & Static — all on-brand",
         "Content approval — you see and approve everything before it goes live",
         "Dedicated content strategy — pillars, hashtags, caption writing & optimal posting times",
@@ -3169,7 +3169,7 @@ function Contact() {
                     <FormSelect
                       value={fd.plan}
                       onChange={v => setFd(prev => ({ ...prev, plan: v }))}
-                      options={["Foundation — $297/mo","Foundation + Google LSA — $497/mo","Starter — $1,000/mo","Growth — $2,500/mo","Not sure yet"]}
+                      options={["Foundation — $297/mo","Foundation + Google LSA — $497/mo","Starter — $1,000/mo","Growth — $2,497/mo","Not sure yet"]}
                     />
                   </div>
                   <div>
