@@ -577,21 +577,9 @@ export default function ProductThankYouPage({ productKey }: { productKey: ThankY
 
           <div className="mx-auto mt-7 max-w-[520px] text-center text-[var(--ink)]/55" style={{ fontFamily: FONT_BODY, fontSize: "0.86rem", lineHeight: 1.7 }}>
             {isService ? (
-              <>
-                <p>We're so excited to build this for you. You'll hear from us within 24 hours.</p>
-                <p className="mt-1">
-                  Questions? Email{" "}
-                  <a href="mailto:hello@shopdollhouse.co" className="text-[var(--rose)] underline underline-offset-4">hello@shopdollhouse.co</a>.
-                </p>
-              </>
+              <p>We're so excited to build this for you. You'll hear from us within 24 hours.</p>
             ) : (
-              <>
-                <p>Your access is yours forever. I'm so excited for you to see what's inside.</p>
-                <p className="mt-1">
-                  Need help getting in? Email{" "}
-                  <a href="mailto:hello@shopdollhouse.co" className="text-[var(--rose)] underline underline-offset-4">hello@shopdollhouse.co</a>.
-                </p>
-              </>
+              <p>Your access is yours forever. I'm so excited for you to see what's inside.</p>
             )}
           </div>
           <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-[var(--gold)]/20 pt-7 text-center sm:flex-row sm:text-left">
