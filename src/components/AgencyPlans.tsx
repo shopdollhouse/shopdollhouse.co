@@ -257,12 +257,12 @@ export function PlanCard({
               })}
             </div>
           ) : (
-            <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1" style={{ background: CREAM, color: INK, fontFamily: FONT_LUXE, fontSize: "0.58rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>
-              <svg viewBox="0 0 12 10" width="10" height="9" fill={ROSE}><path d="M6 9 L0.5 3.5 a2.2 2.2 0 0 1 3.1 -3.1 L6 2.8 l2.4 -2.4 a2.2 2.2 0 0 1 3.1 3.1 Z" /></svg>
+            <span className="inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-1" style={{ background: CREAM, color: INK, fontFamily: FONT_LUXE, fontSize: "0.5rem", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase" }}>
+              <svg viewBox="0 0 12 10" width="9" height="8" fill={ROSE}><path d="M6 9 L0.5 3.5 a2.2 2.2 0 0 1 3.1 -3.1 L6 2.8 l2.4 -2.4 a2.2 2.2 0 0 1 3.1 3.1 Z" /></svg>
               {billing === "6" ? "6-Month Agreement" : "12-Month Agreement"}
             </span>
           )}
-          <span className="rounded-full px-3 py-1" style={{ background: ROSE, color: "#fff", fontFamily: FONT_LUXE, fontSize: "0.58rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>
+          <span className="whitespace-nowrap rounded-full px-2.5 py-1" style={{ background: ROSE, color: "#fff", fontFamily: FONT_LUXE, fontSize: "0.5rem", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase" }}>
             ${fmt(plan.setup)} One-Time Setup
           </span>
         </div>
@@ -325,10 +325,7 @@ export function PlanCard({
           /* Default single pricing block */
           <div className="mt-5">
             <p style={{ fontFamily: FONT_DISPLAY, fontSize: "52px", lineHeight: 1, color: plan.accent }}>
-              ${fmt(plan.monthly)}
-            </p>
-            <p style={{ fontFamily: FONT_BODY, fontSize: "0.72rem", fontWeight: 400, letterSpacing: "0.1em", color: "rgba(29,15,11,0.42)", marginTop: "5px" }}>
-              USD / mo
+              ${fmt(plan.monthly)}<span style={{ fontFamily: FONT_BODY, fontSize: "0.72rem", fontWeight: 400, letterSpacing: "0.08em", color: "rgba(29,15,11,0.42)", marginLeft: "0.45rem" }}>USD / mo</span>
             </p>
             {plan.platform > 0 && (
               <p className="mt-3 inline-block rounded-lg px-3 py-2" style={{ background: CREAM, border: `1px solid ${ROSE}`, fontFamily: FONT_BODY, fontSize: "13px", color: INK }}>
