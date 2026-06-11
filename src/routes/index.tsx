@@ -2317,7 +2317,7 @@ function Pricing() {
               })}
             </div>
             <p className="text-center text-[var(--ink)]/48" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem" }}>
-              {contractTerm === "6" ? "6-month start · 14-day free trial · $500 setup due upfront" : "12-month plan · 1 month free · 14-day free trial · $500 setup due upfront"}
+              {contractTerm === "6" ? "6-month start · 14-day free trial · Setup fee due upfront" : "12-month plan · 1 month free · 14-day free trial · Setup fee due upfront"}
             </p>
           </div>
 
@@ -2799,7 +2799,7 @@ function Contact() {
     business_name: "", industry: "", website: "",
     plan: "Foundation — $297/mo", main_goal: "Get more booked leads",
     message: "",
-    contract_term: "3 months", setup_readiness: "I understand there is a one-time $500 setup fee",
+    contract_term: "3 months", setup_readiness: "I understand there is a one-time setup fee",
     industry_other: "",
   });
 
@@ -3199,7 +3199,7 @@ function Contact() {
                     <FormSelect
                       value={fd.setup_readiness}
                       onChange={v => setFd(prev => ({ ...prev, setup_readiness: v }))}
-                      options={["I understand there is a one-time $500 setup fee","I need more information about setup costs"]}
+                      options={["I understand there is a one-time setup fee","I need more information about setup costs"]}
                     />
                   </div>
 

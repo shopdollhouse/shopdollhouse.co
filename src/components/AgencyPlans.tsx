@@ -48,7 +48,7 @@ export const PLANS: Plan[] = [
     name: "The Foundation",
     subtitle: "For service businesses that need a website and full lead system before anything else.",
     monthly: 297,
-    setup: 500,
+    setup: 1000,
     platform: 0,
     freeTrial: false,
     description: "A website and automation system that turns every inquiry, missed call, and appointment into a managed conversation.",
@@ -259,7 +259,7 @@ export function PlanCard({
         </div>
 
         <p className="mt-4" style={{ fontFamily: FONT_BODY, fontSize: "12px", color: "rgba(29,15,11,0.5)" }}>
-          {hasTiers ? `$500 setup due upfront · ${localMonths}-month contract` : `$500 setup due upfront · ${billing}-month contract`}
+          {hasTiers ? `$${fmt(plan.setup)} setup due upfront · ${localMonths}-month contract` : `$${fmt(plan.setup)} setup due upfront · ${billing}-month contract`}
         </p>
 
         {/* Pricing tiers selector — shown only for plans with pricingTiers */}

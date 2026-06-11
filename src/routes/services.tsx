@@ -82,7 +82,7 @@ function ServicesPage() {
           <div className="mx-auto mt-9 flex max-w-md flex-wrap items-center justify-center gap-x-3 gap-y-1" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: INK }}>
             <span>First 14 days free</span>
             <span style={{ color: ROSE }}>·</span>
-            <span>$500 setup due upfront</span>
+            <span>Setup fee due upfront</span>
             <span style={{ color: ROSE }}>·</span>
             <span>6-month agreement</span>
           </div>
@@ -145,7 +145,7 @@ function ServicesPage() {
             </button>
           </div>
           <p className="mt-4" style={{ fontFamily: FONT_BODY, fontSize: "13px", color: "rgba(29,15,11,0.6)" }}>
-            6-month start · 14-day free trial · $500 setup due upfront
+            6-month start · 14-day free trial · Setup fee due upfront
           </p>
         </div>
       </section>
