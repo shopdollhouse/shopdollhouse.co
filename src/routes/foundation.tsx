@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { usePageMeta } from "@/lib/use-page-meta";
 
-type Billing = "6" | "12";
+type Billing = "3" | "6";
 
 export const Route = createFileRoute("/foundation")({ component: FoundationLandingPage });
 
@@ -133,7 +133,7 @@ function OptionCard({ plan, billing }: { plan: FoundationOption; billing: Billin
         <div className="mt-5 flex flex-nowrap items-center gap-1.5">
           <span className="inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-1.5" style={{ background: CREAM, color: INK, fontFamily: FONT_LUXE, fontSize: "0.54rem", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase" }}>
             <svg viewBox="0 0 12 10" width="9" height="8" fill={ROSE}><path d="M6 9 L0.5 3.5 a2.2 2.2 0 0 1 3.1 -3.1 L6 2.8 l2.4 -2.4 a2.2 2.2 0 0 1 3.1 3.1 Z" /></svg>
-            {billing === "6" ? "6-Month Agreement" : "12-Month Agreement"}
+            {billing === "3" ? "3-Month Agreement" : "6-Month Agreement"}
           </span>
           <span className="whitespace-nowrap rounded-full px-3 py-1.5" style={{ background: ROSE, color: "#fff", fontFamily: FONT_LUXE, fontSize: "0.54rem", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase" }}>
             ${fmt(plan.setup)} One-Time Setup
@@ -189,7 +189,7 @@ function FoundationLandingPage() {
     "A professional website, booking calendar, and lead system for local businesses — built, hosted, and managed for you. Plans from $97/mo.",
   );
 
-  const [billing, setBilling] = useState<Billing>("6");
+  const [billing, setBilling] = useState<Billing>("3");
 
   return (
     <main className="overflow-x-hidden text-[var(--ink)]" style={{ background: CREAM }}>
@@ -222,8 +222,8 @@ function FoundationLandingPage() {
             style={{ background: "rgba(255,250,246,0.72)", border: "1px solid rgba(200,168,100,0.3)", boxShadow: "0 18px 40px -28px rgba(120,70,55,0.42), inset 0 1px 0 rgba(255,255,255,0.68)" }}
           >
             {([
+              { value: "3" as Billing, label: "3 Months", badge: "4th Month Free" },
               { value: "6" as Billing, label: "6 Months", badge: "" },
-              { value: "12" as Billing, label: "12 Months", badge: "1 Month Free" },
             ]).map((option) => {
               const active = billing === option.value;
               return (
@@ -245,7 +245,7 @@ function FoundationLandingPage() {
             })}
           </div>
           <p style={{ fontFamily: FONT_BODY, fontSize: "13px", color: "rgba(29,15,11,0.6)" }}>
-            Choose 12 months and your last month is on us.
+            Pay 3 months upfront and your 4th month is on us.
           </p>
         </div>
 
