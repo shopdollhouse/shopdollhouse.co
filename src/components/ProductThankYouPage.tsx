@@ -531,25 +531,27 @@ export default function ProductThankYouPage({ productKey }: { productKey: ThankY
               )}
             </NoticeCard>
 
-            <NoticeCard
-              eyebrow="The Insider Privilege"
-              title="Join The Dollhouse Society"
-              icon={<PeopleIcon />}
-              button={{
-                label: "Request Entry Here →",
-                href: "https://www.facebook.com/groups/dollhousesociety/",
-                external: true,
-                variant: "accent",
-              }}
-              note="Please provide your purchase email in the entry questions so we can verify your membership."
-            >
-              <p>
-                As a Dollhouse customer, you're invited to join our private inner circle: The Dollhouse Society (Members Only).
-              </p>
-              <p>
-                We're currently building the foundation for our upcoming physical product launches. Join now to secure your spot as a founding member and get first access to our luxury collections.
-              </p>
-            </NoticeCard>
+            {!isService && (
+              <NoticeCard
+                eyebrow="The Insider Privilege"
+                title="Join The Dollhouse Society"
+                icon={<PeopleIcon />}
+                button={{
+                  label: "Request Entry Here →",
+                  href: "https://www.facebook.com/groups/dollhousesociety/",
+                  external: true,
+                  variant: "accent",
+                }}
+                note="Please provide your purchase email in the entry questions so we can verify your membership."
+              >
+                <p>
+                  As a Dollhouse customer, you're invited to join our private inner circle: The Dollhouse Society (Members Only).
+                </p>
+                <p>
+                  We're currently building the foundation for our upcoming physical product launches. Join now to secure your spot as a founding member and get first access to our luxury collections.
+                </p>
+              </NoticeCard>
+            )}
 
             {!isService && (
               <NoticeCard
