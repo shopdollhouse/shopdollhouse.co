@@ -2882,7 +2882,7 @@ function Contact() {
               <div>
                 <p className="text-[10px] tracking-luxe uppercase font-semibold" style={{ fontFamily: "'Jost', sans-serif", color: "#bd7476" }}>Book a free discovery call</p>
                 <h3 className="mt-2 italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.8rem, 3vw, 2.45rem)", lineHeight: 1.05, color: "var(--ink)" }}>Pick a time that works for you.</h3>
-                <p className="mt-2 text-[var(--ink)]/58 leading-6" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem" }}>20 minutes with Mandy. No pitch, no pressure — just clarity on what's possible for your business.</p>
+                <p className="mt-2 text-[var(--ink)]/58 leading-6" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem" }}>45 minutes with Mandy. No pitch, no pressure — just clarity on what's possible for your business.</p>
               </div>
               <div className="overflow-hidden rounded-2xl p-1.5" style={{ background: "#FCF4EE", border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}>
                 <iframe
@@ -2991,7 +2991,7 @@ function Contact() {
                       Book a Free Discovery Call
                     </p>
                     <p className="mt-3 text-[var(--ink)]/55 leading-[1.65]" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.86rem" }}>
-                      Skip the form and jump straight into a free 20-minute call with Mandy — no pressure, just clarity.
+                      Skip the form and jump straight into a free 45-minute call with Mandy — no pressure, just clarity.
                     </p>
                   </div>
                   <div className="mt-5 flex items-center justify-between">

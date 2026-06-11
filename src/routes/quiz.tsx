@@ -393,7 +393,7 @@ function QuizPage() {
         <BrandMark />
         <div className="hidden md:flex items-center gap-8" style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.52)" }}>
           <Link to="/brand-room" className="hover:text-[var(--rose)] transition-colors">Brand Room</Link>
-          <a href={BRAND_KIT_URL} className="hover:text-[var(--rose)] transition-colors">Brand Kit</a>
+          <Link to="/services" className="hover:text-[var(--rose)] transition-colors">Social Media Marketing</Link>
         </div>
         <a href={BRAND_KIT_URL} className="rounded-full px-4 py-2.5 bg-[var(--ink)] text-[var(--cream)] text-[10px] tracking-[0.16em] uppercase" style={{ fontFamily: FONT_LUXE }}>
           View Brand Kit
