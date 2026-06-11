@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import archMark from "@/assets/arch-mark.svg";
 import brandKitImage from "@/assets/product-brand-kit.jpg";
 import workbookImage from "@/assets/product-workbook.jpg";
@@ -274,6 +274,32 @@ function AccessCard({ item, index, total }: { item: AccessItem; index: number; t
   );
 }
 
+function OnboardingForm() {
+  useEffect(() => {
+    const SRC = "https://link.shopdollhouse.co/js/form_embed.js";
+    if (document.querySelector(`script[src="${SRC}"]`)) return;
+    const s = document.createElement("script");
+    s.src = SRC;
+    s.async = true;
+    document.body.appendChild(s);
+  }, []);
+
+  return (
+    <div className="overflow-hidden rounded-[22px] border border-[var(--gold)]/25 bg-white/76 p-2 md:p-3">
+      <iframe
+        src="https://link.shopdollhouse.co/widget/form/19McEhld3zciiZ48sQvc"
+        id="inline-19McEhld3zciiZ48sQvc"
+        title="New Client Onboarding Form / Questionnaire"
+        data-form-id="19McEhld3zciiZ48sQvc"
+        data-layout-iframe-id="inline-19McEhld3zciiZ48sQvc"
+        data-height="4453"
+        scrolling="no"
+        style={{ width: "100%", minHeight: "1100px", border: "none", borderRadius: "12px", display: "block" }}
+      />
+    </div>
+  );
+}
+
 function StepCard({ step, index, total }: { step: NextStep; index: number; total: number }) {
   return (
     <article className="rounded-[22px] border border-[var(--gold)]/25 bg-white/76 p-5 md:p-6">
@@ -483,6 +509,19 @@ export default function ProductThankYouPage({ productKey }: { productKey: ThankY
               >
                 Book Your Onboarding Call →
               </a>
+
+              <div className="mx-auto mt-12 max-w-3xl">
+                <div className="text-center">
+                  <p className="text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase" }}>One Quick Thing</p>
+                  <h3 className="mt-3 text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2rem, 5vw, 3rem)", fontWeight: 400, lineHeight: 1.05 }}>Fill out your onboarding questionnaire.</h3>
+                  <p className="mx-auto mt-3 max-w-xl text-[var(--ink)]/58" style={{ fontFamily: FONT_BODY, fontSize: "0.92rem", lineHeight: 1.65 }}>
+                    Tell us about your business so we can start building right away. This takes a few minutes and gives us everything we need.
+                  </p>
+                </div>
+                <div className="mt-6">
+                  <OnboardingForm />
+                </div>
+              </div>
             </>
           ) : (
             <>
