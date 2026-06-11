@@ -440,6 +440,15 @@ export function PlanCard({
               Not ready? Book a free call →
             </a>
           )}
+          {plan.id === "foundation" && (
+            <a
+              href="https://www.shopdollhouse.co/foundation"
+              className="mt-2 block text-center transition-opacity hover:opacity-70"
+              style={{ fontFamily: FONT_BODY, fontSize: "12.5px", fontWeight: 600, color: "#bd7476", textDecoration: "underline", textUnderlineOffset: "2px" }}
+            >
+              Just need a website? See all 3 options →
+            </a>
+          )}
         </div>
       </div>
     </article>
