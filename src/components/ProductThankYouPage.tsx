@@ -71,7 +71,7 @@ function serviceSteps(termOptions: string): NextStep[] {
     { title: "Your setup fee is confirmed", body: `Your payment came through and your spot is officially secured. To complete your enrollment, we'll send you an invoice for the plan term you choose — ${termOptions}.` },
     { title: "Watch for your welcome email", body: "Within 24 hours you'll get a welcome email with your onboarding details and the few things we need from you to begin." },
     { title: "Book your onboarding call", body: "Pick a time below so we can kick things off, learn about your business, and map out your build." },
-    { title: "We build it for you", body: "From there, we get to work. Your system goes live and your monthly plan begins once everything is built and ready." },
+    { title: "We build it for you", body: "Your monthly plan begins as soon as you complete your plan invoice. From there, we get to work and your system goes live and running for you." },
   ];
 }
 
