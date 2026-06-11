@@ -421,7 +421,7 @@ export function PlanCard({
             {isPaymentLink ? (
               <>
                 <span style={{ fontWeight: 700, fontSize: "0.9rem", letterSpacing: "0.06em" }}>Get {shortName}</span>
-                <span style={{ fontWeight: 400, fontSize: "0.68rem", letterSpacing: "0.08em", opacity: 0.9, marginTop: "2px" }}>Just ${fmt(activeMonthly)} USD/mo</span>
+                <span style={{ fontWeight: 400, fontSize: "0.68rem", letterSpacing: "0.08em", opacity: 0.9, marginTop: "2px" }}>${fmt(plan.setup)} setup today</span>
               </>
             ) : (
               <span style={{ fontWeight: 600, letterSpacing: "0.06em" }}>{plan.cta}</span>
