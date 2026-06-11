@@ -514,10 +514,37 @@ export default function ProductThankYouPage({ productKey }: { productKey: ThankY
                 <div className="text-center">
                   <p className="text-[var(--gold)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase" }}>One Quick Thing</p>
                   <h3 className="mt-3 text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2rem, 5vw, 3rem)", fontWeight: 400, lineHeight: 1.05 }}>Fill out your onboarding questionnaire.</h3>
-                  <p className="mx-auto mt-3 max-w-xl text-[var(--ink)]/58" style={{ fontFamily: FONT_BODY, fontSize: "0.92rem", lineHeight: 1.65 }}>
-                    Tell us about your business so we can start building right away. This takes a few minutes and gives us everything we need.
+                  <p className="mx-auto mt-3 max-w-xl text-[var(--ink)]/62" style={{ fontFamily: FONT_BODY, fontSize: "0.92rem", lineHeight: 1.65 }}>
+                    Please complete every section as fully as you can. The more detail you give us, the better and faster your results — this is what we build everything from.
                   </p>
                 </div>
+
+                <div className="mx-auto mt-6 max-w-xl rounded-[22px] border border-[var(--gold)]/25 bg-white/76 p-6 text-left">
+                  <p className="text-[var(--rose)]" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.35rem", fontWeight: 500 }}>Before you begin, have these ready</p>
+                  <ul className="mt-4 space-y-2.5 text-[var(--ink)]/72" style={{ fontFamily: FONT_BODY, fontSize: "0.9rem", lineHeight: 1.5 }}>
+                    {[
+                      "Your logo and any brand files you already have",
+                      "Your brand colours and fonts (if you have them)",
+                      "A few photos of you, your team, and your work or products",
+                      "Login details for the social platforms you want managed",
+                      "Your website or domain login (if you already have a site)",
+                      "Your main services, offers, and pricing",
+                      "Your business hours, address, and contact details",
+                      "A couple of brands or accounts whose style you love",
+                    ].map((item) => (
+                      <li key={item} className="flex gap-2.5">
+                        <span className="mt-0.5 inline-flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full" style={{ background: "#bd7476" }}>
+                          <svg viewBox="0 0 16 16" width="9" height="9" fill="none" stroke="#fff" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M3 8.5 6.2 11.5 13 4.5" /></svg>
+                        </span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-5 border-t border-[var(--gold)]/20 pt-4 text-[var(--ink)]/62" style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", lineHeight: 1.6 }}>
+                    ⏱ Set aside about <strong className="text-[var(--rose)]">20–30 minutes</strong> to complete it in one sitting. Gathering the items above first makes it quick and easy — and the more complete it is, the sooner we can launch.
+                  </p>
+                </div>
+
                 <div className="mt-6">
                   <OnboardingForm />
                 </div>
