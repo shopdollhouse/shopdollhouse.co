@@ -16,6 +16,7 @@ export interface PricingTier {
   monthly: number;
   description: string;
   features?: string[];
+  paymentUrl?: string;
 }
 
 export interface Plan {
@@ -33,6 +34,7 @@ export interface Plan {
   designedToCreate: string;
   features: string[];
   cta: string;
+  paymentUrl?: string;
   pricingTiers?: PricingTier[];
 }
 
@@ -60,10 +62,12 @@ export const PLANS: Plan[] = [
       "5-star review funnel with private feedback step before the public request",
     ],
     cta: "Build My Foundation",
+    paymentUrl: "https://link.shopdollhouse.co/payment-link/6a2a88f671a0aa761e46432b",
     pricingTiers: [
       {
         label: "Foundation",
         monthly: 297,
+        paymentUrl: "https://link.shopdollhouse.co/payment-link/6a2a88f671a0aa761e46432b",
         description: "Everything in the Foundation plan — website, follow-up, missed-call, reviews, and SEO.",
         features: [
           "Professional website built for lead generation",
@@ -75,6 +79,7 @@ export const PLANS: Plan[] = [
       {
         label: "Foundation + Google LSA",
         monthly: 497,
+        paymentUrl: "https://link.shopdollhouse.co/payment-link/6a2a89a303b17c94f5715c0d",
         description: "Everything in Foundation, plus your business shows as sponsored with a top rating on Google. You only pay per result, not per click.",
         features: [
           "Professional website built for lead generation",
@@ -96,7 +101,7 @@ export const PLANS: Plan[] = [
     monthly: 1000,
     setup: 500,
     platform: 300,
-    freeTrial: true,
+    freeTrial: false,
     description: "One platform, one polished content system, and a full automation stack turning followers into booked clients.",
     designedToCreate: "One platform, one polished content system, and a full automation stack turning followers into booked clients.",
     features: [
@@ -113,6 +118,7 @@ export const PLANS: Plan[] = [
       "Monthly performance report — reach, growth, top posts & next steps in plain English",
     ],
     cta: "Launch My Brand",
+    paymentUrl: "https://link.shopdollhouse.co/payment-link/6a2a89f703b17c94f5715c0e",
   },
   {
     id: "growth",
@@ -124,7 +130,7 @@ export const PLANS: Plan[] = [
     monthly: 2497,
     setup: 500,
     platform: 300,
-    freeTrial: true,
+    freeTrial: false,
     description: "Three platforms running, an AI Clone posting for you, leads followed up automatically, and ads bringing in new clients — while you focus on the work.",
     designedToCreate: "Three platforms running, an AI Clone posting for you, leads followed up automatically, and ads bringing in new clients — while you focus on the work.",
     features: [
@@ -145,6 +151,7 @@ export const PLANS: Plan[] = [
       "Monthly performance report across all 3 platforms",
     ],
     cta: "Scale With Everything",
+    paymentUrl: "https://link.shopdollhouse.co/payment-link/6a2a8a2471a0aa761e464331",
   },
 ];
 
@@ -184,7 +191,13 @@ export function PlanCard({
   const activeFeatures = activeTier?.features ?? plan.features;
   const visible = activeFeatures.slice(0, 5);
   const hidden = activeFeatures.slice(5);
-  const linkProps = ctaNewTab ? { target: "_blank", rel: "noopener noreferrer" } : {};
+  // Prefer the active tier's payment link, then the plan's, then the passed-in CTA href.
+  const checkoutUrl = activeTier?.paymentUrl ?? plan.paymentUrl ?? ctaHref;
+  const isPaymentLink = Boolean(activeTier?.paymentUrl ?? plan.paymentUrl);
+  const linkProps = isPaymentLink || ctaNewTab ? { target: "_blank", rel: "noopener noreferrer" } : {};
+  // e.g. "Get Foundation — just $297/month"
+  const shortName = plan.name.replace(/^The\s+/, "");
+  const ctaLabel = isPaymentLink ? `Get ${shortName} — just $${fmt(activeMonthly)}/month` : plan.cta;
 
   return (
     <article id={plan.id} className={`flex h-full scroll-mt-24 flex-col overflow-hidden rounded-2xl shadow-sm ${pulse ? "plan-pulse" : ""}`} style={{ background: "#fff" }}>
@@ -249,11 +262,6 @@ export function PlanCard({
             <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1" style={{ background: CREAM, color: INK, fontFamily: FONT_LUXE, fontSize: "0.58rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>
               <svg viewBox="0 0 12 10" width="10" height="9" fill={ROSE}><path d="M6 9 L0.5 3.5 a2.2 2.2 0 0 1 3.1 -3.1 L6 2.8 l2.4 -2.4 a2.2 2.2 0 0 1 3.1 3.1 Z" /></svg>
               {billing === "6" ? "6-Month Agreement" : "12-Month Agreement"}
-            </span>
-          )}
-          {plan.freeTrial && (
-            <span className="rounded-full px-3 py-1" style={{ background: ROSE, color: "#fff", fontFamily: FONT_LUXE, fontSize: "0.58rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>
-              First 14 Days Free
             </span>
           )}
         </div>
@@ -414,8 +422,8 @@ export function PlanCard({
           <p className="border-t pt-4 text-center" style={{ borderColor: "rgba(29,15,11,0.1)", fontFamily: FONT_LUXE, fontSize: "11px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: INK }}>
             Custom Launch Plan Included
           </p>
-          <a href={ctaHref} {...linkProps} className="mt-4 flex min-h-12 items-center justify-center rounded-full px-6 py-4 text-center transition-opacity hover:opacity-90" style={{ background: plan.accent, color: "#fff", fontFamily: FONT_BODY, fontWeight: 600 }}>
-            {plan.cta}
+          <a href={checkoutUrl} {...linkProps} className="mt-4 flex min-h-12 items-center justify-center rounded-full px-6 py-4 text-center transition-opacity hover:opacity-90" style={{ background: plan.accent, color: "#fff", fontFamily: FONT_BODY, fontWeight: 600 }}>
+            {ctaLabel}
           </a>
         </div>
       </div>

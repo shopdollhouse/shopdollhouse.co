@@ -167,7 +167,7 @@ function Nav() {
           className="text-[var(--cream)] text-[10px] tracking-[0.2em] uppercase"
           style={{ fontFamily: "'Jost', sans-serif" }}
         >
-          Founding client offer — try us free for 14 days
+          Founding client offer — limited spots available
         </span>
         <span style={{ color: "var(--gold)", fontSize: "0.55rem" }}>✦</span>
       </a>
@@ -562,7 +562,7 @@ function Hero() {
         >
           {[
             { stat: "$297", label: "Plans Start" },
-            { stat: "14 Days", label: "Founding Trial" },
+            { stat: "Day 1", label: "We Start" },
             { stat: "24/7", label: "Lead Response" },
           ].map(({ stat, label }, i) => (
             <div key={label} className={`flex flex-col items-center gap-1 px-2 ${i < 2 ? "border-r border-[var(--gold)]/25" : ""}`}>
@@ -586,7 +586,7 @@ function Hero() {
           className="reveal mt-3 text-[var(--ink)]/60 italic"
           style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1rem, 2vw, 1.2rem)", animationDelay: "0.85s" }}
         >
-          First 14 days of management free · Done for you, every day · Continue only if it feels like a fit
+          Done for you, every day · We start building the moment you join · Built around your business
         </p>
       </div>
 
@@ -2298,7 +2298,7 @@ function Pricing() {
               })}
             </div>
             <p className="text-center text-[var(--ink)]/48" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem" }}>
-              {contractTerm === "6" ? "6-month start · 14-day free trial · Setup fee due upfront" : "12-month plan · 1 month free · 14-day free trial · Setup fee due upfront"}
+              {contractTerm === "6" ? "6-month start · Setup fee due upfront" : "12-month plan · 1 month free · Setup fee due upfront"}
             </p>
           </div>
 
