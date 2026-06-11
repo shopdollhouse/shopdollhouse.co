@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { usePageMeta } from "@/lib/use-page-meta";
+
+type Billing = "6" | "12";
 
 export const Route = createFileRoute("/foundation")({ component: FoundationLandingPage });
 
@@ -108,7 +111,7 @@ function Check() {
   );
 }
 
-function OptionCard({ plan }: { plan: FoundationOption }) {
+function OptionCard({ plan, billing }: { plan: FoundationOption; billing: Billing }) {
   const isPlaceholder = plan.paymentUrl.includes("REPLACE_WITH");
   return (
     <article
@@ -128,7 +131,7 @@ function OptionCard({ plan }: { plan: FoundationOption }) {
         <div className="mt-5 flex flex-nowrap items-center gap-1.5">
           <span className="inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-1.5" style={{ background: CREAM, color: INK, fontFamily: FONT_LUXE, fontSize: "0.54rem", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase" }}>
             <svg viewBox="0 0 12 10" width="9" height="8" fill={ROSE}><path d="M6 9 L0.5 3.5 a2.2 2.2 0 0 1 3.1 -3.1 L6 2.8 l2.4 -2.4 a2.2 2.2 0 0 1 3.1 3.1 Z" /></svg>
-            6-Month Agreement
+            {billing === "6" ? "6-Month Agreement" : "12-Month Agreement"}
           </span>
           <span className="whitespace-nowrap rounded-full px-3 py-1.5" style={{ background: ROSE, color: "#fff", fontFamily: FONT_LUXE, fontSize: "0.54rem", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase" }}>
             ${fmt(plan.setup)} One-Time Setup
@@ -184,6 +187,8 @@ function FoundationLandingPage() {
     "A professional website, booking calendar, and lead system for local businesses — built, hosted, and managed for you. Plans from $97/mo.",
   );
 
+  const [billing, setBilling] = useState<Billing>("6");
+
   return (
     <main className="overflow-x-hidden text-[var(--ink)]" style={{ background: CREAM }}>
       {/* ── HERO ─────────────────────────────────────────── */}
@@ -208,9 +213,43 @@ function FoundationLandingPage() {
 
       {/* ── OPTIONS ──────────────────────────────────────── */}
       <section className="px-6 py-16 md:py-20" style={{ background: BLUSH }}>
+        {/* 6 / 12-month toggle */}
+        <div className="mx-auto mb-10 flex max-w-[430px] flex-col items-center gap-3">
+          <div
+            className="grid w-full grid-cols-2 gap-1 rounded-full p-1.5"
+            style={{ background: "rgba(255,250,246,0.72)", border: "1px solid rgba(200,168,100,0.3)", boxShadow: "0 18px 40px -28px rgba(120,70,55,0.42), inset 0 1px 0 rgba(255,255,255,0.68)" }}
+          >
+            {([
+              { value: "6" as Billing, label: "6 Months", badge: "" },
+              { value: "12" as Billing, label: "12 Months", badge: "1 Month Free" },
+            ]).map((option) => {
+              const active = billing === option.value;
+              return (
+                <button
+                  key={option.value}
+                  type="button"
+                  onClick={() => setBilling(option.value)}
+                  className="flex min-h-[38px] items-center justify-center gap-1.5 rounded-full px-3 py-2 transition-all"
+                  style={{ background: active ? INK : "transparent", color: active ? CREAM : "rgba(30,15,10,0.58)", fontFamily: FONT_LUXE, fontSize: "0.58rem", letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 800, boxShadow: active ? "0 10px 22px -14px rgba(30,15,10,0.55)" : "none" }}
+                >
+                  <span>{option.label}</span>
+                  {option.badge && (
+                    <span className="rounded-full px-2 py-0.5" style={{ background: "var(--gold)", color: INK, fontSize: "0.5rem", letterSpacing: "0.06em" }}>
+                      {option.badge}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+          <p style={{ fontFamily: FONT_BODY, fontSize: "13px", color: "rgba(29,15,11,0.6)" }}>
+            Choose 12 months and your last month is on us.
+          </p>
+        </div>
+
         <div className="mx-auto grid max-w-6xl items-start gap-6 lg:grid-cols-3">
           {OPTIONS.map((opt) => (
-            <OptionCard key={opt.id} plan={opt} />
+            <OptionCard key={opt.id} plan={opt} billing={billing} />
           ))}
         </div>
         <p className="mx-auto mt-10 max-w-2xl text-center" style={{ fontFamily: FONT_BODY, fontSize: "12px", lineHeight: 1.8, color: "rgba(29,15,11,0.45)" }}>
