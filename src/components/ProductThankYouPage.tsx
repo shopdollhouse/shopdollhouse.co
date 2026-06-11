@@ -66,12 +66,17 @@ const PROMPT_KIT_ACCESS: AccessItem = {
   href: "https://ai-prompt-kit.vercel.app/",
 };
 
-const SERVICE_STEPS: NextStep[] = [
-  { title: "Your setup fee is confirmed", body: "Your payment came through and your spot is officially secured — there's nothing else to pay today." },
-  { title: "Watch for your welcome email", body: "Within 24 hours you'll get a welcome email with your onboarding details and the few things we need from you to begin." },
-  { title: "Book your onboarding call", body: "Pick a time below so we can kick things off, learn about your business, and map out your build." },
-  { title: "We build it for you", body: "From there, we get to work. Your system goes live and your monthly plan begins once everything is built and ready." },
-];
+function serviceSteps(termOptions: string): NextStep[] {
+  return [
+    { title: "Your setup fee is confirmed", body: `Your payment came through and your spot is officially secured. To complete your enrollment, we'll send you an invoice for the plan term you choose — ${termOptions}.` },
+    { title: "Watch for your welcome email", body: "Within 24 hours you'll get a welcome email with your onboarding details and the few things we need from you to begin." },
+    { title: "Book your onboarding call", body: "Pick a time below so we can kick things off, learn about your business, and map out your build." },
+    { title: "We build it for you", body: "From there, we get to work. Your system goes live and your monthly plan begins once everything is built and ready." },
+  ];
+}
+
+const WEBSITE_PLAN_STEPS = serviceSteps("3, 6, or 12 months");
+const MANAGED_PLAN_STEPS = serviceSteps("6 or 12 months");
 
 const PRODUCTS: Record<ThankYouProductKey, ThankYouProduct> = {
   "brand-kit": {
@@ -127,7 +132,7 @@ const PRODUCTS: Record<ThankYouProductKey, ThankYouProduct> = {
     eyebrow: "Your Website Is On Its Way",
     message: "Your one-time setup fee is in and your spot is secured. Next, we'll gather what we need and start building your website, booking calendar, and chat widget — hosted and handled for you.",
     images: [{ src: leadSystemImage, alt: "A professional website and booking system" }],
-    nextSteps: SERVICE_STEPS,
+    nextSteps: WEBSITE_PLAN_STEPS,
   },
   foundation: {
     kind: "service",
@@ -138,7 +143,7 @@ const PRODUCTS: Record<ThankYouProductKey, ThankYouProduct> = {
     eyebrow: "Your Lead System Starts Now",
     message: "Your one-time setup fee is in and your spot is secured. Next, we'll build your website and full lead system so every call, click, and inquiry turns into a booked client.",
     images: [{ src: leadSystemImage, alt: "A website connected to an automated lead system" }],
-    nextSteps: SERVICE_STEPS,
+    nextSteps: WEBSITE_PLAN_STEPS,
   },
   "foundation-lsa": {
     kind: "service",
@@ -149,7 +154,7 @@ const PRODUCTS: Record<ThankYouProductKey, ThankYouProduct> = {
     eyebrow: "Your Lead System + Google Ads",
     message: "Your one-time setup fee is in and your spot is secured. Next, we'll build your full Foundation system and set up your Google Local Service Ads so you show up first and pay per result.",
     images: [{ src: leadSystemImage, alt: "A website with Google Local Service Ads" }],
-    nextSteps: SERVICE_STEPS,
+    nextSteps: WEBSITE_PLAN_STEPS,
   },
   starter: {
     kind: "service",
@@ -160,7 +165,7 @@ const PRODUCTS: Record<ThankYouProductKey, ThankYouProduct> = {
     eyebrow: "Your Platform, Fully Managed",
     message: "Your one-time setup fee is in and your spot is secured. Next, we'll build your AI Clone, set up your content system and automations, and get your platform fully managed for you.",
     images: [{ src: managedGrowthImage, alt: "A fully managed social media platform" }],
-    nextSteps: SERVICE_STEPS,
+    nextSteps: MANAGED_PLAN_STEPS,
   },
   growth: {
     kind: "service",
@@ -171,7 +176,7 @@ const PRODUCTS: Record<ThankYouProductKey, ThankYouProduct> = {
     eyebrow: "Your Full Growth System",
     message: "Your one-time setup fee is in and your spot is secured. Next, we'll build your AI Clone across all three platforms, set up your ads and automations, and get your complete growth system running.",
     images: [{ src: managedGrowthImage, alt: "A full social media and ads growth system" }],
-    nextSteps: SERVICE_STEPS,
+    nextSteps: MANAGED_PLAN_STEPS,
   },
 };
 
