@@ -417,14 +417,14 @@ export function PlanCard({
           <p className="border-t pt-4 text-center" style={{ borderColor: "rgba(29,15,11,0.1)", fontFamily: FONT_LUXE, fontSize: "11px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: INK }}>
             Custom Launch Plan Included
           </p>
-          <a href={checkoutUrl} {...linkProps} className="mt-4 flex min-h-12 flex-col items-center justify-center rounded-full px-6 py-3 text-center transition-opacity hover:opacity-90" style={{ background: plan.accent, color: "#fff", fontFamily: FONT_BODY }}>
+          <a href={checkoutUrl} {...linkProps} className="mt-4 flex min-h-12 flex-col items-center justify-center rounded-full px-6 py-3 text-center transition-opacity hover:opacity-90" style={{ background: plan.accent, color: "#fff", fontFamily: FONT_BODY, textTransform: "uppercase" }}>
             {isPaymentLink ? (
               <>
-                <span style={{ fontWeight: 700, fontSize: "0.98rem", letterSpacing: "0.02em" }}>Get {shortName}</span>
-                <span style={{ fontWeight: 400, fontSize: "0.72rem", opacity: 0.9, marginTop: "1px" }}>Just ${fmt(activeMonthly)} USD/mo</span>
+                <span style={{ fontWeight: 700, fontSize: "0.9rem", letterSpacing: "0.06em" }}>Get {shortName}</span>
+                <span style={{ fontWeight: 400, fontSize: "0.68rem", letterSpacing: "0.08em", opacity: 0.9, marginTop: "2px" }}>Just ${fmt(activeMonthly)} USD/mo</span>
               </>
             ) : (
-              <span style={{ fontWeight: 600 }}>{plan.cta}</span>
+              <span style={{ fontWeight: 600, letterSpacing: "0.06em" }}>{plan.cta}</span>
             )}
           </a>
           {isPaymentLink && (
