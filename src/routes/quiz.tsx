@@ -356,18 +356,23 @@ function QuizPage() {
       source: "Brand Quiz",
     };
 
-    console.log("Submitting quiz lead:", payload);
+    const QUIZ_WEBHOOK_URL =
+      "https://services.leadconnectorhq.com/hooks/ElOoFIfV3BYE54LNg3Yw/webhook-trigger/xmwCh8Imv3XWw0i0AHok";
 
-    fetch(
-      "https://services.leadconnectorhq.com/hooks/ElOoFIfV3BYE54LNg3Yw/webhook-trigger/xmwCh8Imv3XWw0i0AHok",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      }
-    ).catch((err) => {
-      console.warn("Quiz webhook failed:", err);
-    });
+    console.log("🔔 [Quiz] Firing webhook to:", QUIZ_WEBHOOK_URL);
+    console.log("🔔 [Quiz] Payload:", payload);
+
+    fetch(QUIZ_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    })
+      .then((res) => {
+        console.log("✅ [Quiz] Webhook responded with HTTP", res.status, res.ok ? "(success)" : "(error)");
+      })
+      .catch((err) => {
+        console.error("❌ [Quiz] Webhook BLOCKED or failed (likely an ad blocker / privacy shield):", err);
+      });
 
     // Backup capture so a quiz lead is never lost if the GHL webhook hiccups.
     fetch("https://formspree.io/f/mwvrvrzj", {
