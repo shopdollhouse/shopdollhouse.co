@@ -130,12 +130,12 @@ function OptionCard({ plan, billing }: { plan: FoundationOption; billing: Billin
         <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "13.5px", lineHeight: 1.5, color: "rgba(29,15,11,0.6)" }}>{plan.tagline}</p>
 
         {/* badges */}
-        <div className="mt-5 flex flex-nowrap items-center gap-1.5">
-          <span className="inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-1.5" style={{ background: CREAM, color: INK, fontFamily: FONT_LUXE, fontSize: "0.54rem", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase" }}>
-            <svg viewBox="0 0 12 10" width="9" height="8" fill={ROSE}><path d="M6 9 L0.5 3.5 a2.2 2.2 0 0 1 3.1 -3.1 L6 2.8 l2.4 -2.4 a2.2 2.2 0 0 1 3.1 3.1 Z" /></svg>
+        <div className="mt-5 flex flex-col items-center gap-2.5">
+          <span className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-4 py-2" style={{ background: CREAM, color: INK, fontFamily: FONT_LUXE, fontSize: "0.66rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+            <svg viewBox="0 0 12 10" width="11" height="10" fill={ROSE}><path d="M6 9 L0.5 3.5 a2.2 2.2 0 0 1 3.1 -3.1 L6 2.8 l2.4 -2.4 a2.2 2.2 0 0 1 3.1 3.1 Z" /></svg>
             {billing === "3" ? "3-Month Agreement" : "6-Month Agreement"}
           </span>
-          <span className="whitespace-nowrap rounded-full px-3 py-1.5" style={{ background: ROSE, color: "#fff", fontFamily: FONT_LUXE, fontSize: "0.54rem", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase" }}>
+          <span className="whitespace-nowrap rounded-full px-4 py-2" style={{ background: ROSE, color: "#fff", fontFamily: FONT_LUXE, fontSize: "0.66rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>
             ${fmt(plan.setup)} One-Time Setup
           </span>
         </div>
