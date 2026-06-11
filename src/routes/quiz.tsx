@@ -369,6 +369,13 @@ function QuizPage() {
       console.warn("Quiz webhook failed:", err);
     });
 
+    // Backup capture so a quiz lead is never lost if the GHL webhook hiccups.
+    fetch("https://formspree.io/f/mwvrvrzj", {
+      method: "POST",
+      headers: { Accept: "application/json", "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    }).catch(() => {});
+
     setSubmitting(false);
     setPhase("result");
   }
