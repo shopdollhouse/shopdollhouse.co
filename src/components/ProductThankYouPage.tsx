@@ -572,6 +572,17 @@ export default function ProductThankYouPage({ productKey }: { productKey: ThankY
           {!isService && <DeviceNote />}
 
           <div className={`${isService ? "" : "mt-5"} space-y-4`}>
+            {isService && (
+              <NoticeCard eyebrow="A Warm Welcome" title="Welcome to The Dollhouse" icon={<SparkleIcon />}>
+                <p>
+                  I'm so happy you're here. You've just done what most business owners put off for years — and from here, we handle the heavy lifting so you can focus on running your business.
+                </p>
+                <p>
+                  Complete your onboarding questionnaire above, book your onboarding call, and keep an eye on your inbox. We'll take it from here and start building your system right away.
+                </p>
+              </NoticeCard>
+            )}
+
             {!isService && (
               <NoticeCard title="Save this page" icon={<BookmarkIcon />}>
                 <p>
