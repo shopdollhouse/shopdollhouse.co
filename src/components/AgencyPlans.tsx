@@ -159,11 +159,13 @@ const fmt = (n: number) => n.toLocaleString("en-US");
 export const sixMonth = (p: Plan) => p.monthly * 6 + p.setup;
 export const twelveMonth = (p: Plan) => p.monthly * 11 + p.setup; // 12th month free
 
-function Check({ color = ROSE }: { color?: string }) {
+function Check({ color = "#bd7476" }: { color?: string }) {
   return (
-    <svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-1 shrink-0">
-      <path d="M3 8.5 6.2 11.5 13 4.5" />
-    </svg>
+    <span className="mt-0.5 inline-flex shrink-0 items-center justify-center rounded-full" style={{ width: "19px", height: "19px", background: color }}>
+      <svg viewBox="0 0 16 16" width="10" height="10" fill="none" stroke="#fff" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 8.5 6.2 11.5 13 4.5" />
+      </svg>
+    </span>
   );
 }
 
