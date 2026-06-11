@@ -65,7 +65,6 @@ const OPTIONS: FoundationOption[] = [
       "Lead-generating website, built and hosted for you",
       "Missed-call text-back — every missed call gets an instant text",
       "Instant lead follow-up — new inquiries get an automatic reply",
-      "Voice AI receptionist — answers and books 24/7",
       "5-star review funnel to grow your reputation",
       "Online booking calendar and website chat widget",
       "Full CRM setup — every lead organized in one place",
