@@ -359,7 +359,7 @@ function QuizPage() {
     console.log("Submitting quiz lead:", payload);
 
     fetch(
-      "https://services.leadconnectorhq.com/hooks/ElOoFIfV3BYE54LNg3Yw/webhook-trigger/L1o1245Pw0wy3tl4STcq",
+      "https://services.leadconnectorhq.com/hooks/ElOoFIfV3BYE54LNg3Yw/webhook-trigger/xmwCh8Imv3XWw0i0AHok",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
