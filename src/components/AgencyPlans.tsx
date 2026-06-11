@@ -330,7 +330,10 @@ export function PlanCard({
           /* Default single pricing block */
           <div className="mt-5">
             <p style={{ fontFamily: FONT_DISPLAY, fontSize: "52px", lineHeight: 1, color: plan.accent }}>
-              ${fmt(plan.monthly)}<span style={{ fontFamily: FONT_BODY, fontSize: "1rem", color: "rgba(29,15,11,0.5)", marginLeft: "0.3rem" }}>USD /mo</span>
+              ${fmt(plan.monthly)}
+            </p>
+            <p style={{ fontFamily: FONT_BODY, fontSize: "0.72rem", fontWeight: 400, letterSpacing: "0.1em", color: "rgba(29,15,11,0.42)", marginTop: "5px" }}>
+              USD / mo
             </p>
             {plan.platform > 0 && (
               <p className="mt-3 inline-block rounded-lg px-3 py-2" style={{ background: CREAM, border: `1px solid ${ROSE}`, fontFamily: FONT_BODY, fontSize: "13px", color: INK }}>
