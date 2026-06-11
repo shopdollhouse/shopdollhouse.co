@@ -269,9 +269,6 @@ export function PlanCard({
           </span>
         </div>
 
-        <p className="mt-4" style={{ fontFamily: FONT_BODY, fontSize: "12px", color: "rgba(29,15,11,0.5)" }}>
-          {hasTiers ? `$${fmt(plan.setup)} setup due upfront · ${localMonths}-month contract` : `$${fmt(plan.setup)} setup due upfront · ${billing}-month contract`}
-        </p>
 
         {/* Pricing tiers selector — shown only for plans with pricingTiers */}
         {plan.pricingTiers ? (
