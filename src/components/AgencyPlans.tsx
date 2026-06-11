@@ -425,6 +425,17 @@ export function PlanCard({
           <a href={checkoutUrl} {...linkProps} className="mt-4 flex min-h-12 items-center justify-center rounded-full px-6 py-4 text-center transition-opacity hover:opacity-90" style={{ background: plan.accent, color: "#fff", fontFamily: FONT_BODY, fontWeight: 600 }}>
             {ctaLabel}
           </a>
+          {isPaymentLink && (
+            <a
+              href="https://link.shopdollhouse.co/widget/booking/9mOtVmE8ihxgAX2AMzge"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2.5 block text-center transition-opacity hover:opacity-70"
+              style={{ fontFamily: FONT_BODY, fontSize: "12.5px", color: "rgba(29,15,11,0.55)", textDecoration: "underline", textUnderlineOffset: "2px" }}
+            >
+              Not ready? Book a free call →
+            </a>
+          )}
         </div>
       </div>
     </article>
