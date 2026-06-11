@@ -48,7 +48,7 @@ export const PLANS: Plan[] = [
     name: "The Foundation",
     subtitle: "For service businesses that need a website and full lead system before anything else.",
     monthly: 297,
-    setup: 1000,
+    setup: 997,
     platform: 0,
     freeTrial: false,
     description: "A website and automation system that turns every inquiry, missed call, and appointment into a managed conversation.",

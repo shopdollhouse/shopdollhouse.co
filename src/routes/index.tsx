@@ -2107,7 +2107,6 @@ function LiveSetupModal({ open, onClose }: { open: boolean; onClose: () => void 
 }
 
 function Pricing() {
-  const [liveModalOpen, setLiveModalOpen] = useState(false);
   const [contractTerm, setContractTerm] = useState<"6" | "12">("6");
   const contractMonths = Number(contractTerm);
   const setupFee = 500;
@@ -2232,25 +2231,7 @@ function Pricing() {
           Start with the foundation, then scale into the managed growth system when you are ready.
         </p>
 
-        <div
-          className="mx-auto mt-7 flex max-w-xl flex-col items-center gap-2 rounded-2xl px-6 py-5"
-          style={{ background: "rgba(189,116,118,0.08)", border: "1px solid rgba(189,116,118,0.28)" }}
-        >
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem", lineHeight: 1.6, color: "var(--ink)" }}>
-            Ready to get started? Secure your spot with your $500 setup fee and we'll begin onboarding right away.
-          </p>
-          <button
-            type="button"
-            onClick={() => setLiveModalOpen(true)}
-            className="rounded-full px-7 py-3 transition-opacity hover:opacity-90"
-            style={{ background: "#bd7476", color: "#fff", fontFamily: "'Jost', sans-serif", fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase" }}
-          >
-            Pay $500 setup fee now →
-          </button>
-        </div>
       </div>
-
-      <LiveSetupModal open={liveModalOpen} onClose={() => setLiveModalOpen(false)} />
 
       <div className="mt-10 max-w-6xl mx-auto grid md:grid-cols-3 gap-8 lg:gap-7 items-start">
         {/* Foundation — has its own independent 3/6-month toggle inside the card */}
