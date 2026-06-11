@@ -264,6 +264,9 @@ export function PlanCard({
               {billing === "6" ? "6-Month Agreement" : "12-Month Agreement"}
             </span>
           )}
+          <span className="rounded-full px-3 py-1" style={{ background: ROSE, color: "#fff", fontFamily: FONT_LUXE, fontSize: "0.58rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>
+            ${fmt(plan.setup)} One-Time Setup
+          </span>
         </div>
 
         <p className="mt-4" style={{ fontFamily: FONT_BODY, fontSize: "12px", color: "rgba(29,15,11,0.5)" }}>
