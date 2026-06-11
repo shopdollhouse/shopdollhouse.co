@@ -11,7 +11,7 @@ const FONT_BODY = "'DM Sans', sans-serif";
 const FONT_LUXE = "'Jost', sans-serif";
 const FONT_SCRIPT = "'Allura', cursive";
 
-const BOOKING_URL = "https://link.shopdollhouse.co/widget/booking/9mOtVmE8ihxgAX2AMzge";
+const BOOKING_URL = "https://link.shopdollhouse.co/widget/booking/kSfB3lStgR2Cq6N4rIqH";
 
 export type ThankYouProductKey =
   | "brand-kit"
@@ -70,7 +70,7 @@ function serviceSteps(termOptions: string): NextStep[] {
   return [
     { title: "Your setup fee is confirmed", body: `Your payment came through and your spot is officially secured. To complete your enrollment, we'll send you an invoice for the plan term you choose — ${termOptions}.` },
     { title: "Watch for your welcome email", body: "Within 24 hours you'll get a welcome email with your onboarding details and the few things we need from you to begin." },
-    { title: "Book your onboarding call", body: "Pick a time below so we can kick things off, learn about your business, and map out your build." },
+    { title: "Book your kickoff call", body: "Pick a time below so we can kick things off, learn about your business, and map out your build." },
     { title: "We build it for you", body: "Your monthly plan begins as soon as you complete your plan invoice. From there, we get to work and your system goes live and running for you." },
   ];
 }
@@ -507,7 +507,7 @@ export default function ProductThankYouPage({ productKey }: { productKey: ThankY
                 className="mx-auto mt-8 flex max-w-md items-center justify-center rounded-full bg-[var(--rose)] px-6 py-4 text-center text-white transition-all hover:-translate-y-0.5 hover:opacity-90"
                 style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase" }}
               >
-                Book Your Onboarding Call →
+                Book Your Kickoff Call →
               </a>
 
               <div className="mx-auto mt-12 max-w-3xl">
@@ -578,7 +578,7 @@ export default function ProductThankYouPage({ productKey }: { productKey: ThankY
                   I'm so happy you're here. You've just done what most business owners put off for years — and from here, we handle the heavy lifting so you can focus on running your business.
                 </p>
                 <p>
-                  Complete your onboarding questionnaire above, book your onboarding call, and keep an eye on your inbox. We'll take it from here and start building your system right away.
+                  Complete your onboarding questionnaire above, book your kickoff call, and keep an eye on your inbox. We'll take it from here and start building your system right away.
                 </p>
               </NoticeCard>
             )}
