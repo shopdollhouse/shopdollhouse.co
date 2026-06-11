@@ -17,8 +17,7 @@ const CREAM = "var(--cream)";
 const BLUSH = "var(--blush)";
 const ROSE_HEX = "#bd7476";
 
-// TODO: replace with the live $97/mo + $497 setup payment link once created in GoHighLevel.
-const ESSENTIALS_PAYMENT_URL = "https://link.shopdollhouse.co/payment-link/REPLACE_WITH_97_ESSENTIALS_LINK";
+const ESSENTIALS_PAYMENT_URL = "https://link.shopdollhouse.co/payment-link/6a2af61271a0aa761e464449";
 const FOUNDATION_PAYMENT_URL = "https://link.shopdollhouse.co/payment-link/6a2a88f671a0aa761e46432b";
 const FOUNDATION_LSA_PAYMENT_URL = "https://link.shopdollhouse.co/payment-link/6a2a89a303b17c94f5715c0d";
 const BOOKING_URL = "https://link.shopdollhouse.co/widget/booking/9mOtVmE8ihxgAX2AMzge";
