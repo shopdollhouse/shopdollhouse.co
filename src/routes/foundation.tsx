@@ -208,8 +208,11 @@ function FoundationLandingPage() {
             <span style={{ color: ROSE }}>·</span>
             <span>Setup fee due upfront</span>
             <span style={{ color: ROSE }}>·</span>
-            <span>6-month agreement</span>
+            <span>{billing}-month agreement</span>
           </div>
+          <a href="/" className="mt-5 inline-block transition-opacity hover:opacity-70" style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: ROSE, textDecoration: "underline", textUnderlineOffset: "3px" }}>
+            ← Explore the full Dollhouse Brand Studio
+          </a>
         </div>
       </section>
 
@@ -255,7 +258,7 @@ function FoundationLandingPage() {
           ))}
         </div>
         <p className="mx-auto mt-10 max-w-2xl text-center" style={{ fontFamily: FONT_BODY, fontSize: "12px", lineHeight: 1.8, color: "rgba(29,15,11,0.45)" }}>
-          You pay only your one-time setup fee today to get started · Your monthly plan begins once your system is built and live · 6-month minimum term · All payments and setup fees are non-refundable.
+          You pay only your one-time setup fee today to get started · Your monthly plan begins once your system is built and live · {billing}-month minimum term · All payments and setup fees are non-refundable.
         </p>
       </section>
 
