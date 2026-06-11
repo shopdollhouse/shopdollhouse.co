@@ -308,25 +308,21 @@ function LiveSetupModal({ open, onClose }) {
 }
 
 function LiveSetupCta() {
-  const [modalOpen, setModalOpen] = useState(false);
-
   return (
     <div
       className="mx-auto mt-7 flex max-w-xl flex-col items-center gap-2 rounded-2xl px-6 py-5"
       style={{ background: "rgba(189,116,118,0.08)", border: "1px solid rgba(189,116,118,0.28)" }}
     >
       <p style={{ fontFamily: FONT_BODY, fontSize: "0.92rem", lineHeight: 1.6, color: "var(--ink)" }}>
-        Watching live? Secure your spot now and we'll get you started right away.
+        Want your social media done for you? We build the content, ads, and follow-up so your business grows while you focus on the work.
       </p>
-      <button
-        type="button"
-        onClick={() => setModalOpen(true)}
+      <a
+        href="/"
         className="rounded-full px-7 py-3 transition-opacity hover:opacity-90"
         style={{ background: "#bd7476", color: "#fff", fontFamily: FONT_LUXE, fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase" }}
       >
-        Pay $500 setup fee now →
-      </button>
-      <LiveSetupModal open={modalOpen} onClose={() => setModalOpen(false)} />
+        Explore Our Marketing Plans →
+      </a>
     </div>
   );
 }
