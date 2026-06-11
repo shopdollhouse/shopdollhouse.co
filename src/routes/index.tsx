@@ -2888,9 +2888,9 @@ function Contact() {
                 <iframe
                   src="https://api.leadconnectorhq.com/widget/booking/9mOtVmE8ihxgAX2AMzge"
                   title="Book a free discovery call"
-                  scrolling="no"
-                  id="ghl-booking-9mOtVmE8ihxgAX2AMzge"
-                  style={{ width: "100%", border: "none", minHeight: "700px", display: "block", borderRadius: "12px" }}
+                  scrolling="yes"
+                  id="9mOtVmE8ihxgAX2AMzge_1718000000000"
+                  style={{ width: "100%", border: "none", minHeight: "1050px", display: "block", borderRadius: "12px" }}
                 />
               </div>
             </div>
