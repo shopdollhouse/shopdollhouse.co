@@ -337,9 +337,6 @@ export function PlanCard({
                 + ${plan.platform}/mo platform access
               </p>
             )}
-            <p className="mt-2 inline-block rounded-lg px-3 py-1.5" style={{ border: "1px dashed rgba(29,15,11,0.3)", fontFamily: FONT_BODY, fontSize: "12px", color: "rgba(29,15,11,0.65)" }}>
-              + ${fmt(plan.setup)} one-time setup
-            </p>
           </div>
         )}
 
