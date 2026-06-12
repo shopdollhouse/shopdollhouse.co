@@ -98,20 +98,201 @@ function MoodCheckIn() {
   );
 }
 
-function ComingSoonTool({ name }: { name: string }) {
+/* ── Shared styles ───────────────────────────────────── */
+const promptStyle = { fontFamily: FONT_DISPLAY, fontSize: "1.4rem", fontStyle: "italic" as const, color: ROSE_HEX, lineHeight: 1.25 };
+const drawBtn = "mt-4 w-full rounded-full py-3 transition-opacity hover:opacity-90";
+const drawBtnStyle = { background: ROSE_HEX, color: "#fff", fontFamily: FONT_LUXE, fontSize: "0.66rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase" as const };
+
+/* ── Phrase-draw tools (word, post idea, mantra, affirmations) ── */
+const WORDS = ["Abundance", "Bold", "Soft", "Unstoppable", "Magnetic", "Aligned", "Limitless", "Radiant", "Fearless", "Overflow", "Iconic", "Ease", "Devoted", "Rich", "Brave"];
+const POSTS = ["Share a behind-the-scenes of your day", "Post a before & after", "Tell the story of why you started", "Share your #1 tip in your niche", "Show your workspace", "Answer a question clients always ask", "Share a win — big or small", "Do a 'day in the life'", "Myth vs truth in your industry", "Share your favourite tool or resource", "Introduce yourself to new followers", "Show your process start to finish"];
+const MANTRAS = ["Money flows to me easily and often.", "I am a magnet for abundance.", "Every day, in every way, I'm getting richer.", "I deserve to be paid well for my gifts.", "My income grows even while I rest.", "Wealth is my natural state."];
+const RICH = ["I am that girl.", "Main character energy, always.", "I move like the woman I'm becoming.", "Luxury is my baseline, not my reward.", "I am magnetic, soft, and unstoppable.", "I don't chase — I attract."];
+
+function PhraseDraw({ prompt, cta, phrases }: { prompt: string; cta: string; phrases: string[] }) {
+  const [shown, setShown] = useState<string | null>(null);
+  const draw = () => { let p = phrases[Math.floor(Math.random() * phrases.length)]; while (p === shown && phrases.length > 1) p = phrases[Math.floor(Math.random() * phrases.length)]; setShown(p); };
   return (
     <div className="text-center">
-      <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", fontStyle: "italic", color: ROSE_HEX, lineHeight: 1.2 }}>{name}</p>
-      <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", lineHeight: 1.6, color: "rgba(29,15,11,0.6)" }}>
-        Your exclusive tool is being styled with love — opening very soon. 🩷
+      <p style={promptStyle}>{prompt}</p>
+      <div className="mt-3 flex min-h-[58px] items-center justify-center">
+        {shown ? (
+          <p style={{ fontFamily: FONT_BODY, fontSize: "1rem", lineHeight: 1.5, color: "rgba(29,15,11,0.82)", fontWeight: 500 }}>{shown}</p>
+        ) : (
+          <p style={{ fontFamily: FONT_BODY, fontSize: "0.84rem", color: "rgba(29,15,11,0.45)" }}>Tap below 🩷</p>
+        )}
+      </div>
+      <button type="button" onClick={draw} className={drawBtn} style={drawBtnStyle}>{cta}</button>
+    </div>
+  );
+}
+
+/* ── Brand colour mood picker ────────────────────────── */
+const PALETTES = [
+  { name: "Soft & Romantic", colors: ["#FCF4EE", "#F7E4DF", "#BD7476", "#C8A864"] },
+  { name: "Bold & Magnetic", colors: ["#1D0F0B", "#BD7476", "#C8A864", "#FCF4EE"] },
+  { name: "Clean & Editorial", colors: ["#FFFFFF", "#EDE7DF", "#1D0F0B", "#C8A864"] },
+  { name: "Warm & Cozy", colors: ["#F2E3D5", "#D9A77C", "#9E5A5C", "#5A3B2E"] },
+];
+function ColorMood() {
+  const [pick, setPick] = useState<number | null>(null);
+  if (pick !== null) {
+    const p = PALETTES[pick];
+    return (
+      <div className="text-center">
+        <p style={{ fontFamily: FONT_LUXE, fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: GOLD }}>Your brand vibe</p>
+        <p className="mt-1" style={promptStyle}>{p.name}</p>
+        <div className="mt-4 flex justify-center gap-2">
+          {p.colors.map((c) => <span key={c} className="h-12 w-12 rounded-full" style={{ background: c, border: "1px solid rgba(29,15,11,0.12)" }} />)}
+        </div>
+        <button type="button" onClick={() => setPick(null)} className="mt-5 rounded-full px-5 py-2" style={{ background: "rgba(189,116,118,0.12)", color: ROSE_HEX, fontFamily: FONT_LUXE, fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase" }}>Try another</button>
+      </div>
+    );
+  }
+  return (
+    <div className="text-center">
+      <p style={promptStyle}>What's your brand mood today?</p>
+      <div className="mt-4 grid grid-cols-2 gap-2">
+        {PALETTES.map((p, i) => (
+          <button key={p.name} type="button" onClick={() => setPick(i)} className="rounded-xl px-3 py-2.5 transition-all hover:-translate-y-0.5" style={{ background: "rgba(255,255,255,0.7)", border: "1px solid rgba(189,116,118,0.3)", color: INK, fontFamily: FONT_BODY, fontSize: "0.78rem" }}>{p.name}</button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ── Aesthetic focus timer ───────────────────────────── */
+function FocusTimer() {
+  const [secs, setSecs] = useState(25 * 60);
+  const [running, setRunning] = useState(false);
+  useEffect(() => {
+    if (!running) return;
+    const id = window.setInterval(() => setSecs((s) => (s > 0 ? s - 1 : 0)), 1000);
+    return () => window.clearInterval(id);
+  }, [running]);
+  useEffect(() => { if (secs === 0) setRunning(false); }, [secs]);
+  const preset = (m: number) => { setRunning(false); setSecs(m * 60); };
+  const mm = String(Math.floor(secs / 60)).padStart(2, "0");
+  const ss = String(secs % 60).padStart(2, "0");
+  return (
+    <div className="text-center">
+      <p style={{ fontFamily: FONT_DISPLAY, fontSize: "3rem", lineHeight: 1, color: ROSE_HEX, fontWeight: 500 }}>{mm}:{ss}</p>
+      <div className="mt-3 flex justify-center gap-2">
+        {[5, 15, 25].map((m) => <button key={m} type="button" onClick={() => preset(m)} className="rounded-full px-3 py-1.5" style={{ background: "rgba(189,116,118,0.1)", color: ROSE_HEX, fontFamily: FONT_LUXE, fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>{m} min</button>)}
+      </div>
+      <button type="button" onClick={() => setRunning((r) => !r)} className={drawBtn} style={drawBtnStyle}>{running ? "Pause" : "Start Focus"}</button>
+    </div>
+  );
+}
+
+/* ── Manifest button ─────────────────────────────────── */
+const MANIFEST_LINES = ["It's already yours. Stay open. 🩷", "The universe heard you — trust the timing.", "You're a magnet for exactly this.", "Done is the energy. Act like it's already coming.", "What's meant for you is finding its way."];
+function Manifest() {
+  const [wish, setWish] = useState("");
+  const [done, setDone] = useState<string | null>(null);
+  const send = () => { if (!wish.trim()) return; setDone(MANIFEST_LINES[Math.floor(Math.random() * MANIFEST_LINES.length)]); };
+  if (done) {
+    return (
+      <div className="text-center">
+        <p style={promptStyle}>Manifesting…</p>
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.95rem", color: "rgba(29,15,11,0.82)", fontWeight: 500 }}>"{wish}"</p>
+        <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "0.9rem", lineHeight: 1.6, color: ROSE_HEX }}>{done}</p>
+        <button type="button" onClick={() => { setDone(null); setWish(""); }} className="mt-4 rounded-full px-5 py-2" style={{ background: "rgba(189,116,118,0.12)", color: ROSE_HEX, fontFamily: FONT_LUXE, fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase" }}>Manifest again</button>
+      </div>
+    );
+  }
+  return (
+    <div className="text-center">
+      <p style={promptStyle}>What are you calling in?</p>
+      <input type="text" value={wish} onChange={(e) => setWish(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") send(); }} placeholder="I am manifesting…" className="mt-4 w-full rounded-xl px-4 py-3 text-center focus:outline-none" style={{ fontFamily: FONT_BODY, fontSize: "0.9rem", background: BLUSH, border: "1px solid rgba(200,168,100,0.35)", color: INK }} />
+      <button type="button" onClick={send} className={drawBtn} style={drawBtnStyle}>Manifest It ✦</button>
+    </div>
+  );
+}
+
+/* ── Did you show up today? ──────────────────────────── */
+function ShowUp() {
+  const KEY = "dh-showup";
+  const [data, setData] = useState<{ count: number; last: string }>({ count: 0, last: "" });
+  useEffect(() => { try { const r = window.localStorage.getItem(KEY); if (r) setData(JSON.parse(r)); } catch (_) { /* ignore */ } }, []);
+  const today = new Date().toDateString();
+  const doneToday = data.last === today;
+  const yes = () => { if (doneToday) return; const next = { count: data.count + 1, last: today }; setData(next); try { window.localStorage.setItem(KEY, JSON.stringify(next)); } catch (_) { /* ignore */ } };
+  return (
+    <div className="text-center">
+      <p style={promptStyle}>Did you show up today?</p>
+      {doneToday ? (
+        <p className="mt-4" style={{ fontFamily: FONT_BODY, fontSize: "0.95rem", lineHeight: 1.6, color: "rgba(29,15,11,0.78)" }}>You showed up today 🔥 That's <strong style={{ color: ROSE_HEX }}>{data.count}</strong> times you've chosen yourself. Proud of you. 🩷</p>
+      ) : (
+        <>
+          <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(29,15,11,0.5)" }}>Total: {data.count}</p>
+          <button type="button" onClick={yes} className={drawBtn} style={drawBtnStyle}>Yes, I showed up ✦</button>
+        </>
+      )}
+    </div>
+  );
+}
+
+/* ── Win jar / gratitude jar ─────────────────────────── */
+function Jar({ storageKey, prompt, placeholder, cta }: { storageKey: string; prompt: string; placeholder: string; cta: string }) {
+  const [items, setItems] = useState<string[]>([]);
+  const [value, setValue] = useState("");
+  useEffect(() => { try { const r = window.localStorage.getItem(storageKey); if (r) setItems(JSON.parse(r)); } catch (_) { /* ignore */ } }, [storageKey]);
+  const add = () => { const v = value.trim(); if (!v) return; const next = [v, ...items].slice(0, 100); setItems(next); try { window.localStorage.setItem(storageKey, JSON.stringify(next)); } catch (_) { /* ignore */ } setValue(""); };
+  return (
+    <div className="text-center">
+      <p style={promptStyle}>{prompt}</p>
+      <p className="mt-1" style={{ fontFamily: FONT_LUXE, fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: GOLD }}>{items.length} in your jar</p>
+      <input type="text" value={value} onChange={(e) => setValue(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") add(); }} placeholder={placeholder} className="mt-3 w-full rounded-xl px-4 py-3 text-center focus:outline-none" style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", background: BLUSH, border: "1px solid rgba(200,168,100,0.35)", color: INK }} />
+      <button type="button" onClick={add} className={drawBtn} style={drawBtnStyle}>{cta}</button>
+      {items.length > 0 && (
+        <div className="mt-4 space-y-1.5 text-left">
+          {items.slice(0, 3).map((it, i) => (
+            <p key={i} className="rounded-lg px-3 py-2" style={{ background: "rgba(189,116,118,0.07)", fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(29,15,11,0.72)" }}>🩷 {it}</p>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ── The Vault (Month 12 finale) ─────────────────────── */
+function TheVault() {
+  return (
+    <div className="text-center">
+      <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.6rem", fontStyle: "italic", color: ROSE_HEX, lineHeight: 1.2 }}>You did it. 🏆</p>
+      <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "0.9rem", lineHeight: 1.6, color: "rgba(29,15,11,0.72)" }}>
+        You've collected all 12 keys and completed your Dollhouse. You're officially a Founding Member — every tool is yours, forever. 🩷
       </p>
     </div>
   );
 }
 
+function ComingSoonTool({ name }: { name: string }) {
+  return (
+    <div className="text-center">
+      <p style={promptStyle}>{name}</p>
+      <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", lineHeight: 1.6, color: "rgba(29,15,11,0.6)" }}>Your exclusive tool is being styled with love — opening very soon. 🩷</p>
+    </div>
+  );
+}
+
 function renderTool(room: Room) {
-  if (room.n === 6) return <MoodCheckIn />;
-  return <ComingSoonTool name={room.tool} />;
+  switch (room.n) {
+    case 1: return <PhraseDraw prompt="Your word of the year is…" cta="Spin My Word ✦" phrases={WORDS} />;
+    case 2: return <PhraseDraw prompt="Today, post this…" cta="Give Me An Idea ✦" phrases={POSTS} />;
+    case 3: return <PhraseDraw prompt="Your money mantra…" cta="New Mantra ✦" phrases={MANTRAS} />;
+    case 4: return <ColorMood />;
+    case 5: return <FocusTimer />;
+    case 6: return <MoodCheckIn />;
+    case 7: return <Manifest />;
+    case 8: return <PhraseDraw prompt="Say it with me…" cta="Affirm Me ✦" phrases={RICH} />;
+    case 9: return <ShowUp />;
+    case 10: return <Jar storageKey="dh-winjar" prompt="Drop in a win 🩷" placeholder="Today I…" cta="Add To My Jar ✦" />;
+    case 11: return <Jar storageKey="dh-gratitudejar" prompt="What are you grateful for?" placeholder="I'm grateful for…" cta="Add To My Jar ✦" />;
+    case 12: return <TheVault />;
+    default: return <ComingSoonTool name={room.tool} />;
+  }
 }
 
 /* ── Room card with code gate ────────────────────────── */
