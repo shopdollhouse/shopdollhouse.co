@@ -13,6 +13,7 @@ import { Route as VaultRouteImport } from './routes/vault'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SoftwareRouteImport } from './routes/software'
+import { Route as SocietyRouteImport } from './routes/society'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -51,6 +52,11 @@ const TermsRoute = TermsRouteImport.update({
 const SoftwareRoute = SoftwareRouteImport.update({
   id: '/software',
   path: '/software',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SocietyRoute = SocietyRouteImport.update({
+  id: '/society',
+  path: '/society',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -159,6 +165,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
   '/services': typeof ServicesRoute
+  '/society': typeof SocietyRoute
   '/software': typeof SoftwareRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
@@ -184,6 +191,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
   '/services': typeof ServicesRoute
+  '/society': typeof SocietyRoute
   '/software': typeof SoftwareRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
@@ -210,6 +218,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
   '/services': typeof ServicesRoute
+  '/society': typeof SocietyRoute
   '/software': typeof SoftwareRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
@@ -237,6 +246,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/quiz'
     | '/services'
+    | '/society'
     | '/software'
     | '/terms'
     | '/thank-you'
@@ -262,6 +272,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/quiz'
     | '/services'
+    | '/society'
     | '/software'
     | '/terms'
     | '/thank-you'
@@ -287,6 +298,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/quiz'
     | '/services'
+    | '/society'
     | '/software'
     | '/terms'
     | '/thank-you'
@@ -313,6 +325,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   QuizRoute: typeof QuizRoute
   ServicesRoute: typeof ServicesRoute
+  SocietyRoute: typeof SocietyRoute
   SoftwareRoute: typeof SoftwareRoute
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
@@ -357,6 +370,13 @@ declare module '@tanstack/react-router' {
       path: '/software'
       fullPath: '/software'
       preLoaderRoute: typeof SoftwareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/society': {
+      id: '/society'
+      path: '/society'
+      fullPath: '/society'
+      preLoaderRoute: typeof SocietyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -505,6 +525,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   QuizRoute: QuizRoute,
   ServicesRoute: ServicesRoute,
+  SocietyRoute: SocietyRoute,
   SoftwareRoute: SoftwareRoute,
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
