@@ -2900,8 +2900,37 @@ function Contact() {
               {step === 2 && (
                 <div className="space-y-3">
                   <div className="grid grid-cols-2 gap-x-3 gap-y-1.5">
+                    {/* Featured: Contractors & home services */}
+                    {(() => {
+                      const opt = "Contractors & home services";
+                      const selected = fd.industry === opt;
+                      return (
+                        <button
+                          key={opt}
+                          type="button"
+                          onClick={() => setFd(prev => ({ ...prev, industry: opt }))}
+                          className="col-span-2 flex min-h-11 items-center gap-2.5 rounded-full px-4 py-2.5 text-left transition-all hover:-translate-y-0.5"
+                          style={{
+                            fontFamily: "'DM Sans', sans-serif",
+                            fontSize: "0.82rem",
+                            fontWeight: 600,
+                            lineHeight: 1.25,
+                            background: selected ? "#bd7476" : "rgba(189,116,118,0.1)",
+                            color: selected ? "#fff" : "#bd7476",
+                            border: selected ? "1px solid #bd7476" : "1px solid rgba(189,116,118,0.5)",
+                            boxShadow: selected ? "0 4px 14px -6px rgba(189,116,118,0.45)" : "0 8px 20px -18px rgba(90,45,35,0.5)",
+                          }}
+                        >
+                          <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: selected ? "rgba(255,255,255,0.7)" : "#bd7476" }} aria-hidden />
+                          <span className="flex-1">{opt}</span>
+                          <span className="shrink-0 rounded-full px-2 py-0.5" style={{ background: selected ? "rgba(255,255,255,0.22)" : "#bd7476", color: "#fff", fontSize: "0.55rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                            ★ Most Common
+                          </span>
+                        </button>
+                      );
+                    })()}
                     {[
-                      "Contractors & home services","Coaches & consultants",
+                      "Coaches & consultants",
                       "Med spas & aesthetics","Real estate agents",
                       "Salons & beauty pros","Restaurants & food brands",
                       "Fitness studios & gyms","Law firms & professionals",
