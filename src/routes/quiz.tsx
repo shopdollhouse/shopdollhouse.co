@@ -213,7 +213,7 @@ const RESULTS: Record<ResultKey, {
   content: {
     type: "The Visibility Planner",
     tagline: "You have more to say than you think.",
-    body: "You're not out of ideas. You're out of a system. The blank caption box is killing your momentum because you're starting from nothing every single time. That's not a creativity problem. That's a process problem. The AI Prompt Kit gives you 200+ prompts written specifically for women building brands online. Stop waiting to feel inspired. Start posting with a plan that actually points to something.",
+    body: "You're not out of ideas. You're out of a system. The blank caption box is killing your momentum because you're starting from nothing every single time. That's not a creativity problem. That's a process problem. The AI Prompt Kit gives you 50+ prompts written specifically for women building brands online. Stop waiting to feel inspired. Start posting with a plan that actually points to something.",
     diagnosis: "Your content problem is not a lack of ideas. It is a lack of repeatable prompts.",
     focus: "Create a content system so every post points back to the offer.",
     quickWins: ["Pick your content pillars", "Use hooks that start conversations", "Turn one idea into multiple posts"],
