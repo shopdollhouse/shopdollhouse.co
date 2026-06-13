@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { usePageMeta } from "@/lib/use-page-meta";
+import { useScrollReveal } from "@/lib/use-scroll-reveal";
 import { PLANS, PlanCard, type Billing } from "@/components/AgencyPlans";
 import {
   PlanComparisonSection,
@@ -39,6 +40,8 @@ function ServicesPage() {
     "Pricing & Plans | The Dollhouse Brand Studio",
     "Done-for-you social media, AI Clone content, automation, and lead systems for service businesses. Plans from $297/mo. Get a free proposal.",
   );
+
+  useScrollReveal();
 
   const [billing, setBilling] = useState<Billing>("6");
   const [pulseId, setPulseId] = useState<string | null>(null);
@@ -152,7 +155,7 @@ function ServicesPage() {
 
       {/* ── 5 · PLAN CARDS ────────────────────────────── */}
       <section id="plans-grid" className="px-6 pb-20 pt-10 md:pb-28" style={{ background: BLUSH }}>
-        <div className="mx-auto grid max-w-6xl items-start gap-6 lg:grid-cols-3">
+        <div className="mx-auto grid max-w-6xl items-start gap-6 lg:grid-cols-3" data-stagger>
           {PLANS.map((p) => (
             <PlanCard key={p.id} plan={p} billing={billing} pulse={pulseId === p.id} ctaHref={PROPOSAL_URL} ctaNewTab />
           ))}

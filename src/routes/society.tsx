@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { usePageMeta } from "@/lib/use-page-meta";
+import { useScrollReveal } from "@/lib/use-scroll-reveal";
 
 export const Route = createFileRoute("/society")({ component: SocietyWaitlistPage });
 
@@ -34,6 +35,8 @@ function SocietyWaitlistPage() {
     "The Dollhouse Society — Join the Waitlist | The Dollhouse",
     "A monthly luxury subscription box launching Fall 2026. Join the waitlist for founding-member access and first dibs before doors open.",
   );
+
+  useScrollReveal();
 
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");

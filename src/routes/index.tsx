@@ -27,6 +27,7 @@ import leadSystemImage from "@/assets/path-lead-system.jpg";
 import brandRoomImage from "@/assets/path-brand-room.jpg";
 import { managedServiceLinks, systemServices } from "@/lib/system-services";
 import { usePageMeta } from "@/lib/use-page-meta";
+import { useScrollReveal } from "@/lib/use-scroll-reveal";
 import { PLANS, PlanCard } from "@/components/AgencyPlans";
 import { PlanComparisonSection, ResultsStatsSection, AgencyFaqSection, FinalCtaSection, AgencyFooterNotes, pulsePlan } from "@/components/AgencySections";
 
@@ -467,7 +468,9 @@ function Hero() {
           className="reveal mt-4 flex justify-center text-[var(--gold)]"
           style={{ animationDelay: "0.15s" }}
         >
-          <DoorIcon className="w-7 h-10" />
+          <span className="float-slow inline-flex">
+            <DoorIcon className="w-7 h-10" />
+          </span>
         </div>
 
         <p
@@ -3267,29 +3270,7 @@ function Index() {
   );
 
   // Scroll-reveal: sections gently rise + fade in as they enter the viewport.
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const sections = Array.from(document.querySelectorAll("main > section"));
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("sr-in");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.08, rootMargin: "0px 0px -8% 0px" },
-    );
-    sections.forEach((el) => {
-      const rect = el.getBoundingClientRect();
-      // Anything already on screen at load stays visible — only below-the-fold sections animate.
-      if (rect.top < window.innerHeight * 0.92) return;
-      el.classList.add("sr");
-      observer.observe(el);
-    });
-    return () => observer.disconnect();
-  }, []);
+  useScrollReveal();
 
   return (
     <main className="bg-[var(--blush)] text-[var(--ink)]">

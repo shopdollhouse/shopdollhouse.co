@@ -167,7 +167,7 @@ export function ResultsStatsSection() {
     <section className="px-6 py-20" style={{ background: BLUSH }}>
       <div className="mx-auto max-w-[820px] text-center">
         <Eyebrow>What Clients Are Saying</Eyebrow>
-        <div className="mt-8 grid gap-8 sm:grid-cols-3">
+        <div className="mt-8 grid gap-8 sm:grid-cols-3" data-stagger>
           {[
             ["24/7", "Voice AI answering your missed calls"],
             ["Done for you", "Content planned, created, and managed for your business"],

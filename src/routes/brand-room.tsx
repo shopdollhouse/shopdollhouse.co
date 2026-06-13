@@ -5,6 +5,7 @@ import productImage from "@/assets/product-brand-kit.jpg";
 import workbookImage from "@/assets/product-workbook.jpg";
 import promptKitImage from "@/assets/product-ai-prompt-kit.jpg";
 import { usePageMeta } from "@/lib/use-page-meta";
+import { useScrollReveal } from "@/lib/use-scroll-reveal";
 
 export const Route = createFileRoute("/brand-room")({ component: BrandRoomPage });
 
@@ -210,6 +211,8 @@ function BrandRoomPage() {
     "The Dollhouse Brand Room | The Dollhouse Brand Studio",
     "Three digital tools for women building brands online: AI Prompt Kit, Brand Workbook, Brand Kit Blueprint, and the full Brand Room Suite.",
   );
+
+  useScrollReveal();
 
   return (
     <main className="min-h-screen overflow-x-hidden text-[var(--ink)]" style={{ background: "var(--cream)" }}>

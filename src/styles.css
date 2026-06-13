@@ -138,17 +138,56 @@
   animation: soft-fade 1.2s ease-out forwards;
 }
 
-/* ── Scroll reveal (sections animate in as you scroll) ── */
-.sr {
+/* ── Scroll reveal system (animates in as you scroll) ── */
+.sr,
+.sr-left,
+.sr-right,
+.sr-scale {
   opacity: 0;
-  transform: translateY(18px);
   transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform;
 }
-.sr.sr-in {
+.sr { transform: translateY(18px); }
+.sr-left { transform: translateX(-28px); }
+.sr-right { transform: translateX(28px); }
+.sr-scale { transform: scale(0.94); }
+.sr.sr-in,
+.sr-left.sr-in,
+.sr-right.sr-in,
+.sr-scale.sr-in {
   opacity: 1;
   transform: none;
 }
+
+/* Staggered children — each child cascades in a beat after the last */
+[data-stagger] > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-stagger].sr-in > * { opacity: 1; transform: none; }
+[data-stagger].sr-in > *:nth-child(1) { transition-delay: 0.05s; }
+[data-stagger].sr-in > *:nth-child(2) { transition-delay: 0.15s; }
+[data-stagger].sr-in > *:nth-child(3) { transition-delay: 0.25s; }
+[data-stagger].sr-in > *:nth-child(4) { transition-delay: 0.35s; }
+[data-stagger].sr-in > *:nth-child(5) { transition-delay: 0.45s; }
+[data-stagger].sr-in > *:nth-child(6) { transition-delay: 0.55s; }
+
+/* ── Card hover lift (luxury micro-interaction) ─────── */
+main article {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+main article:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 28px 60px -30px rgba(90, 45, 35, 0.38);
+}
+
+/* ── Gentle float for decorative accents ────────────── */
+@keyframes dh-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+.float-slow { animation: dh-float 5s ease-in-out infinite; }
 
 /* ── AI Clone living-image effects ─────────────────── */
 @keyframes dh-kenburns {
@@ -206,9 +245,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sr { opacity: 1; transform: none; transition: none; }
-  .ai-kenburns, .ai-scan, .ai-shimmer, .ai-badge-pulse, .ai-sparkle { animation: none !important; }
+  .sr, .sr-left, .sr-right, .sr-scale, [data-stagger] > * { opacity: 1; transform: none; transition: none; }
+  .ai-kenburns, .ai-scan, .ai-shimmer, .ai-badge-pulse, .ai-sparkle, .float-slow { animation: none !important; }
   .ai-scan, .ai-shimmer, .ai-sparkle { opacity: 0; }
+  main article, main article:hover { transform: none; transition: none; }
 }
 
 /* Luxe button — used for primary CTAs site-wide */

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { usePageMeta } from "@/lib/use-page-meta";
+import { useScrollReveal } from "@/lib/use-scroll-reveal";
 
 type Billing = "3" | "6";
 
@@ -187,6 +188,8 @@ function FoundationLandingPage() {
     "A professional website, booking calendar, and lead system for local businesses — built, hosted, and managed for you. Plans from $97/mo.",
   );
 
+  useScrollReveal();
+
   const [billing, setBilling] = useState<Billing>("3");
 
   return (
@@ -250,7 +253,7 @@ function FoundationLandingPage() {
           </p>
         </div>
 
-        <div className="mx-auto grid max-w-6xl items-start gap-6 lg:grid-cols-3">
+        <div className="mx-auto grid max-w-6xl items-start gap-6 lg:grid-cols-3" data-stagger>
           {OPTIONS.map((opt) => (
             <OptionCard key={opt.id} plan={opt} billing={billing} />
           ))}

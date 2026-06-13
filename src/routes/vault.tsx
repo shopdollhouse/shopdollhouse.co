@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { usePageMeta } from "@/lib/use-page-meta";
+import { useScrollReveal } from "@/lib/use-scroll-reveal";
 
 export const Route = createFileRoute("/vault")({ component: VaultPage });
 
@@ -374,6 +375,8 @@ function VaultPage() {
     "Unlock your exclusive monthly tool with the key from your Dollhouse box. Collect all 12 keys to complete your Dollhouse.",
   );
 
+  useScrollReveal();
+
   const [unlocked, setUnlocked] = useState<number[]>([]);
 
   useEffect(() => {
@@ -410,7 +413,7 @@ function VaultPage() {
 
       {/* Rooms grid */}
       <section className="px-6 py-16 md:py-20">
-        <div className="mx-auto grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3" data-stagger>
           {ROOMS.map((room) => (
             <RoomCard key={room.n} room={room} unlocked={unlocked.includes(room.n)} onUnlock={handleUnlock} />
           ))}
