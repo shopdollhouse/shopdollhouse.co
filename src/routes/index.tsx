@@ -1852,7 +1852,7 @@ function AICloneSection() {
                   Real Photo
                 </span>
                 <span
-                  className="rounded-full px-3 py-2 text-center font-semibold"
+                  className="ai-badge-pulse rounded-full px-3 py-2 text-center font-semibold"
                   style={{
                     background: "rgba(255,250,246,0.96)",
                     color: "var(--gold)",
@@ -1860,10 +1860,9 @@ function AICloneSection() {
                     fontSize: "0.64rem",
                     letterSpacing: "0.16em",
                     textTransform: "uppercase",
-                    boxShadow: "0 10px 22px -14px rgba(30,15,10,0.55)",
                   }}
                 >
-                  AI Clone
+                  ✦ AI Clone
                 </span>
               </div>
               <div className="absolute inset-0 grid grid-cols-2">
@@ -1871,7 +1870,12 @@ function AICloneSection() {
                   <img src={mandyPhoto} alt="Real portrait reference" className="h-full w-full object-cover" style={{ filter: "saturate(0.96) contrast(1.02)", objectPosition: "center 18%" }} />
                 </div>
                 <div className="relative overflow-hidden" style={{ background: "rgba(255,250,246,0.68)" }}>
-                  <img src={mandyAIClonePreview} alt="AI clone example portrait preview" className="h-full w-full object-cover" style={{ filter: "saturate(0.98) contrast(1.02)", objectPosition: "center 14%" }} />
+                  <img src={mandyAIClonePreview} alt="AI clone example portrait preview" className="ai-kenburns h-full w-full object-cover" style={{ filter: "saturate(0.98) contrast(1.02)", objectPosition: "center 14%" }} />
+                  <span aria-hidden className="ai-scan" />
+                  <span aria-hidden className="ai-shimmer" />
+                  <span aria-hidden className="ai-sparkle" style={{ top: "16%", right: "12%", fontSize: "17px" }}>✦</span>
+                  <span aria-hidden className="ai-sparkle" style={{ top: "58%", right: "26%", fontSize: "11px", animationDelay: "1.4s" }}>✦</span>
+                  <span aria-hidden className="ai-sparkle" style={{ top: "36%", left: "12%", fontSize: "10px", animationDelay: "0.8s" }}>✦</span>
                 </div>
               </div>
               <div className="absolute bottom-0 left-1/2 top-0 z-[1] w-px -translate-x-1/2 bg-[rgba(255,250,246,0.72)]" />
@@ -3261,6 +3265,31 @@ function Index() {
     "The Dollhouse Brand Studio | Social Media Marketing & Lead Automation",
     "Done-for-you social media, AI clone content, websites, text follow-up, review funnels, and automation systems for service businesses.",
   );
+
+  // Scroll-reveal: sections gently rise + fade in as they enter the viewport.
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const sections = Array.from(document.querySelectorAll("main > section"));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("sr-in");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -8% 0px" },
+    );
+    sections.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      // Anything already on screen at load stays visible — only below-the-fold sections animate.
+      if (rect.top < window.innerHeight * 0.92) return;
+      el.classList.add("sr");
+      observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <main className="bg-[var(--blush)] text-[var(--ink)]">

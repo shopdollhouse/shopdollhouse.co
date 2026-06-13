@@ -138,6 +138,79 @@
   animation: soft-fade 1.2s ease-out forwards;
 }
 
+/* ── Scroll reveal (sections animate in as you scroll) ── */
+.sr {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.sr.sr-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── AI Clone living-image effects ─────────────────── */
+@keyframes dh-kenburns {
+  0%, 100% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1.07) translateY(-1.5%); }
+}
+@keyframes dh-scan {
+  0% { top: -12%; opacity: 0; }
+  8% { opacity: 1; }
+  45% { top: 105%; opacity: 1; }
+  55% { opacity: 0; }
+  100% { top: 105%; opacity: 0; }
+}
+@keyframes dh-shimmer {
+  0%, 60% { transform: translateX(-130%) skewX(-12deg); opacity: 0; }
+  70% { opacity: 0.5; }
+  80%, 100% { transform: translateX(230%) skewX(-12deg); opacity: 0; }
+}
+@keyframes dh-badge-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(200, 168, 100, 0.45); }
+  50% { box-shadow: 0 0 0 7px rgba(200, 168, 100, 0); }
+}
+@keyframes dh-sparkle {
+  0%, 100% { opacity: 0; transform: scale(0.4) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(25deg); }
+}
+.ai-kenburns { animation: dh-kenburns 9s ease-in-out infinite; }
+.ai-scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  animation: dh-scan 6s ease-in-out infinite;
+  z-index: 3;
+  pointer-events: none;
+}
+.ai-shimmer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 45%;
+  background: linear-gradient(90deg, transparent, rgba(255, 245, 225, 0.45), transparent);
+  animation: dh-shimmer 6s ease-in-out infinite;
+  z-index: 2;
+  pointer-events: none;
+}
+.ai-badge-pulse { animation: dh-badge-pulse 2.6s ease-in-out infinite; }
+.ai-sparkle {
+  position: absolute;
+  color: var(--gold);
+  animation: dh-sparkle 3.2s ease-in-out infinite;
+  z-index: 3;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sr { opacity: 1; transform: none; transition: none; }
+  .ai-kenburns, .ai-scan, .ai-shimmer, .ai-badge-pulse, .ai-sparkle { animation: none !important; }
+  .ai-scan, .ai-shimmer, .ai-sparkle { opacity: 0; }
+}
+
 /* Luxe button — used for primary CTAs site-wide */
 .btn-ink {
   position: relative;
