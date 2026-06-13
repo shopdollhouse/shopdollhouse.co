@@ -222,6 +222,56 @@
   animation: dh-text-pan 7s linear infinite;
 }
 
+/* ── Cursor glow — soft rose-gold light follows the mouse ── */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 560px;
+  height: 560px;
+  margin: -280px 0 0 -280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200, 168, 100, 0.16) 0%, rgba(189, 116, 118, 0.1) 35%, transparent 70%);
+  pointer-events: none;
+  z-index: 40;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  will-change: transform;
+}
+
+/* ── Aurora drift — living light over the hero ───────── */
+@keyframes dh-aurora {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.aurora {
+  background: linear-gradient(115deg, rgba(189, 116, 118, 0.22), rgba(200, 168, 100, 0.18), rgba(247, 228, 223, 0.1), rgba(189, 116, 118, 0.22));
+  background-size: 320% 320%;
+  animation: dh-aurora 16s ease-in-out infinite;
+  mix-blend-mode: soft-light;
+}
+
+/* ── Featured card glow — breathing gold halo ────────── */
+@keyframes dh-card-glow {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(200, 168, 100, 0.4), 0 0 28px rgba(200, 168, 100, 0.22), 0 18px 48px -28px rgba(90, 45, 35, 0.4); }
+  50% { box-shadow: 0 0 0 1px rgba(189, 116, 118, 0.5), 0 0 44px rgba(189, 116, 118, 0.32), 0 18px 48px -28px rgba(90, 45, 35, 0.4); }
+}
+.featured-glow { animation: dh-card-glow 4s ease-in-out infinite; }
+
+/* ── Marquee strip ───────────────────────────────────── */
+@keyframes dh-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: dh-marquee 28s linear infinite;
+  will-change: transform;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
 /* ── Floating hero sparkles ──────────────────────────── */
 @keyframes dh-sparkle-drift {
   0%, 100% { transform: translateY(0) scale(1); opacity: 0.35; }
@@ -308,8 +358,8 @@ main article:hover {
 
 @media (prefers-reduced-motion: reduce) {
   .sr, .sr-left, .sr-right, .sr-scale, [data-stagger] > * { opacity: 1; transform: none; filter: none; transition: none; }
-  .ai-kenburns, .ai-scan, .ai-shimmer, .ai-badge-pulse, .ai-sparkle, .float-slow, .bg-kenburns, .bar-shimmer::after, .text-shimmer, .sparkle-drift { animation: none !important; }
-  .ai-scan, .ai-shimmer, .ai-sparkle, .sparkle-drift { opacity: 0; }
+  .ai-kenburns, .ai-scan, .ai-shimmer, .ai-badge-pulse, .ai-sparkle, .float-slow, .bg-kenburns, .bar-shimmer::after, .text-shimmer, .sparkle-drift, .aurora, .featured-glow, .marquee-track { animation: none !important; }
+  .ai-scan, .ai-shimmer, .ai-sparkle, .sparkle-drift, .cursor-glow { opacity: 0 !important; }
   main article, main article:hover { transform: none; transition: none; }
 }
 

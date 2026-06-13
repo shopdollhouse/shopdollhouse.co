@@ -200,7 +200,7 @@ export function PlanCard({
   const shortName = plan.name.replace(/^The\s+/, "");
 
   return (
-    <article id={plan.id} className={`flex h-full scroll-mt-24 flex-col overflow-hidden rounded-2xl shadow-sm ${pulse ? "plan-pulse" : ""}`} style={{ background: "#fff" }}>
+    <article id={plan.id} className={`flex h-full scroll-mt-24 flex-col overflow-hidden rounded-2xl shadow-sm ${pulse ? "plan-pulse" : ""} ${plan.badge?.text === "Most Popular" ? "featured-glow" : ""}`} style={{ background: "#fff" }}>
       {plan.badge && (
         <div className="px-4 py-2 text-center" style={{ background: plan.badge.bg, color: plan.badge.color, fontFamily: FONT_LUXE, fontSize: "0.66rem", fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase" }}>
           {plan.badge.text}

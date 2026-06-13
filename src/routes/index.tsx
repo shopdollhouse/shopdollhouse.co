@@ -427,6 +427,8 @@ function Hero() {
           backgroundPosition: "center",
         }}
       />
+      {/* Aurora — living light drifting over the photo */}
+      <div aria-hidden className="aurora absolute inset-0 pointer-events-none" />
       {/* Floating gold sparkles */}
       <span aria-hidden className="sparkle-drift" style={{ top: "18%", left: "12%", fontSize: "16px" }}>✦</span>
       <span aria-hidden className="sparkle-drift" style={{ top: "30%", right: "14%", fontSize: "12px", animationDelay: "1.6s" }}>✦</span>
@@ -762,6 +764,30 @@ function PlatformSymbol({ name }: { name: string }) {
       <path {...common} d="M15 12V9.5A2.5 2.5 0 0 1 17.5 7h5A2.5 2.5 0 0 1 25 9.5V12M15 18v8M20 18v8M25 18v8" />
       <circle cx="15" cy="15" r="1.3" fill="currentColor" />
     </svg>
+  );
+}
+
+/* ─── Marquee strip — scrolling brand ticker ──────────── */
+function MarqueeStrip() {
+  const items = ["AI Clone", "Content", "Websites", "Ads", "Automation", "Lead Follow-Up", "Reviews", "Booking"];
+  const row = items.map((t) => (
+    <span key={t} className="inline-flex items-center">
+      <span
+        className="italic"
+        style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.5rem, 3vw, 2.2rem)", color: "var(--rose)", padding: "0 1.6rem" }}
+      >
+        {t}
+      </span>
+      <span style={{ color: "var(--gold)", fontSize: "0.8rem" }}>✦</span>
+    </span>
+  ));
+  return (
+    <section aria-hidden className="overflow-hidden py-5" style={{ background: "var(--cream)", borderTop: "1px solid rgba(200,168,100,0.22)", borderBottom: "1px solid rgba(200,168,100,0.22)" }}>
+      <div className="marquee-track">
+        <div className="inline-flex items-center">{row}</div>
+        <div className="inline-flex items-center">{row}</div>
+      </div>
+    </section>
   );
 }
 
@@ -3287,6 +3313,7 @@ function Index() {
       <Hero />
       <ChooseYourPath />
       <TrustBar />
+      <MarqueeStrip />
       <Services />
       <ProofSection />
       <AICloneSection />
