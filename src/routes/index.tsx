@@ -160,7 +160,7 @@ function Nav() {
       {/* Urgency banner */}
       <a
         href="#contact"
-        className="fixed top-0 inset-x-0 z-50 h-9 flex items-center justify-center gap-3 px-4 hover:opacity-90 transition-opacity"
+        className="bar-shimmer fixed top-0 inset-x-0 z-50 h-9 flex items-center justify-center gap-3 px-4 hover:opacity-90 transition-opacity"
         style={{ backgroundColor: "var(--ink)" }}
       >
         <span style={{ color: "var(--gold)", fontSize: "0.55rem" }}>✦</span>
@@ -416,12 +416,22 @@ function Hero() {
   return (
     <header
       className="relative min-h-[calc(100svh-36px)] flex items-center justify-center px-4 pt-36 pb-10 overflow-hidden md:pt-24"
-      style={{
-        backgroundImage: `url(${bgImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
     >
+      {/* Animated background — slow cinematic zoom */}
+      <div
+        aria-hidden
+        className="bg-kenburns absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `url(${bgImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
+      {/* Floating gold sparkles */}
+      <span aria-hidden className="sparkle-drift" style={{ top: "18%", left: "12%", fontSize: "16px" }}>✦</span>
+      <span aria-hidden className="sparkle-drift" style={{ top: "30%", right: "14%", fontSize: "12px", animationDelay: "1.6s" }}>✦</span>
+      <span aria-hidden className="sparkle-drift" style={{ bottom: "22%", left: "20%", fontSize: "11px", animationDelay: "3s" }}>✦</span>
+      <span aria-hidden className="sparkle-drift" style={{ bottom: "30%", right: "22%", fontSize: "15px", animationDelay: "2.2s" }}>✦</span>
       {/* Base wash — tones down the photo */}
       <div
         aria-hidden
@@ -829,7 +839,7 @@ function HowItWorks() {
         title="How we take it off your plate"
         italic="A simple handoff, then a managed system."
       />
-      <div className="mt-16 max-w-5xl mx-auto grid md:grid-cols-3 gap-5 relative">
+      <div className="mt-16 max-w-5xl mx-auto grid md:grid-cols-3 gap-5 relative" data-stagger>
         {/* Connector line between steps */}
         <div
           aria-hidden
@@ -1656,7 +1666,7 @@ function ProofSection() {
         />
 
         <div className="mt-14 rounded-[34px] p-5 md:p-8" style={{ background: "rgba(255,250,246,0.68)", border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)", boxShadow: "0 34px 80px -54px rgba(90,45,35,0.45)" }}>
-          <div className="grid gap-4 md:grid-cols-5">
+          <div className="grid gap-4 md:grid-cols-5" data-stagger>
             {flow.map(({ icon: Icon, label, body }, index) => (
               <div key={label} className="relative rounded-2xl p-5 text-center" style={{ background: index === 4 ? "var(--ink)" : "rgba(255,255,255,0.58)", border: "1px solid rgba(200,168,100,0.2)" }}>
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full" style={{ background: index === 4 ? "rgba(200,168,100,0.14)" : "rgba(200,168,100,0.12)", color: "var(--gold)" }}>
@@ -1784,12 +1794,11 @@ function AICloneSection() {
             your own
           </p>
           <h2
-            className="reveal mx-auto max-w-4xl"
+            className="reveal text-shimmer mx-auto max-w-4xl"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: "clamp(3.7rem, 8.2vw, 7.6rem)",
               fontWeight: 400,
-              color: "var(--rose)",
               lineHeight: 0.9,
               letterSpacing: "0.03em",
               textTransform: "uppercase",
@@ -1933,7 +1942,7 @@ function AICloneSection() {
         <div className="max-w-5xl mx-auto mb-16">
           <p className="text-center text-[10px] tracking-luxe uppercase mb-3 font-semibold" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>Here's a breakdown of what you get</p>
           <h3 className="text-center mb-8 italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: "clamp(2rem, 4vw, 3.4rem)", color: "var(--rose)" }}>A content engine with your clone at the center</h3>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4" data-stagger>
             {included.map(({ icon: Icon, title, desc }) => (
               <div key={title} className="rounded-2xl p-5" style={{ background: "rgba(255,250,246,0.75)", border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)", boxShadow: "0 18px 48px -38px rgba(90,45,35,0.55)" }}>
                 <div className="w-9 h-9 rounded-full flex items-center justify-center mb-4" style={{ background: "rgba(200,168,100,0.12)", color: "var(--gold)" }}><Icon size={18} strokeWidth={1.8} /></div>
@@ -1947,7 +1956,7 @@ function AICloneSection() {
         <div className="max-w-5xl mx-auto mb-12 md:mb-16">
           <p className="text-center text-[10px] tracking-luxe uppercase mb-3 font-semibold" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>Included implementation assets</p>
           <h3 className="text-center mb-8 italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: "clamp(1.9rem, 3.8vw, 3.2rem)", color: "var(--rose)" }}>Everything we need to make your content system convert</h3>
-          <div className="grid sm:grid-cols-3 gap-4">
+          <div className="grid sm:grid-cols-3 gap-4" data-stagger>
             {bonuses.map(({ icon: Icon, title, desc }) => (
               <div key={title} className="rounded-2xl p-5" style={{ background: "rgba(255,250,246,0.72)", border: "1px solid color-mix(in oklab, var(--gold) 32%, transparent)" }}>
                 <div className="flex items-center justify-between gap-3 mb-5">
@@ -2102,7 +2111,7 @@ function Pricing() {
 
       </div>
 
-      <div className="mt-10 max-w-6xl mx-auto grid md:grid-cols-3 gap-8 lg:gap-7 items-start">
+      <div className="mt-10 max-w-6xl mx-auto grid md:grid-cols-3 gap-8 lg:gap-7 items-start" data-stagger>
         {/* Foundation — has its own independent 3/6-month toggle inside the card */}
         <div id={`plan-${PLANS[0].id}`} className="scroll-mt-32">
           <PlanCard plan={PLANS[0]} billing="6" ctaHref="#contact" />
