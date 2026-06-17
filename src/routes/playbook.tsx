@@ -999,7 +999,7 @@ Here are my notes from the discovery call today:
 - Their biggest pain point (in their own words): [WHAT THEY SAID]
 - What they want most: [THEIR GOAL]
 - Platforms they're on: [PLATFORMS]
-- Package I recommended: [Starter / Growth / Elite]
+- Package I recommended: [Foundation / Starter / Growth]
 - Did I offer the 14-day free trial? [YES / NO]
 - Monthly fee: $[AMOUNT] + $500 one-time setup
 - Anything specific I promised to address: [NOTES]
@@ -1912,7 +1912,7 @@ Paste this into ChatGPT to write the messages:
 
 New client name: [NAME]
 Business name: [BUSINESS NAME]
-Package they signed up for: [Starter / Growth / Elite]
+Package they signed up for: [Foundation / Starter / Growth]
 Platform they're on: [Instagram / Facebook / TikTok / etc.]
 
 Write:
@@ -1956,7 +1956,7 @@ Paste this into ChatGPT to write all messages:
 
 The lead didn't book after the initial outreach. They're warm but haven't committed. Goal: build trust, show proof, handle objections, and get them to book a call or start the free trial.
 
-Our packages: Starter $1,000/mo, Growth $2,500/mo, Elite $5,000+/mo. All with a $500 one-time setup and 14-day free trial option.
+Our packages: Foundation $297/mo, Starter $1,000/mo, Growth $2,497/mo. Setup is $997 for Foundation and $500 for Starter and Growth — and when a client pays 3 months upfront, the 4th month is free.
 
 Write:
 1. Day 0 SMS — immediate. Short and warm. 'We've got some good stuff coming your way.'
@@ -2050,7 +2050,7 @@ Tone: professional but warm. Confident, not pushy. Make it feel custom — not l
 Length: 400–600 words. Clean, scannable formatting. No fluff."`,
     },
     {
-      title: "Client Proposal — Growth Package ($2,500/mo)",
+      title: "Client Proposal — Growth Package ($2,497/mo)",
       tag: "Proposals",
       prompt: `Use this prompt to generate a full proposal for the Growth package. Best for clients who want multiple platforms, paid ads, and faster growth.
 
@@ -2065,7 +2065,7 @@ Discovery call notes:
 - Platforms they want: [e.g., Instagram + TikTok + Facebook]
 - Current situation: [e.g., have one platform but want more / running ads but no results / need full system]
 
-Package: Growth — $2,500/mo + $500 one-time setup fee
+Package: Growth — $2,497/mo + $500 one-time setup fee
 Includes:
 - Everything in Starter — now across 3 platforms (Instagram, TikTok, Facebook)
 - Paid ad management — Facebook & Instagram ads included
@@ -2080,54 +2080,13 @@ Format the proposal with these sections:
 2. The Problem We Solve — restate their pain points (use their exact words if possible)
 3. Our Solution — describe Growth package as it applies to their specific business and goals
 4. What's Included — clean formatted deliverable list
-5. Pricing — $2,500/mo + $500 setup. Mention free trial option.
+5. Pricing — $2,497/mo + $500 setup. Mention free trial option.
 6. Results You Can Expect — be honest, set realistic expectations for first 30/60/90 days
 7. Next Steps — Step 1 / Step 2 / Step 3
 8. About The Dollhouse Brand Studio — 2–3 sentences
 
 Tone: premium and results-focused. This client is investing more — the proposal should match that seriousness.
 Length: 500–700 words. Scannable, professional, no fluff."`,
-    },
-    {
-      title: "Client Proposal — Elite Package ($5,000+/mo)",
-      tag: "Proposals",
-      prompt: `Use this prompt for high-ticket prospects. The Elite proposal should feel like it came from a real agency — premium, thorough, and specific to their business.
-
-Paste this into ChatGPT:
-
-"Write a high-end social media and digital marketing proposal for [CLIENT/BUSINESS NAME] from The Dollhouse Brand Studio.
-
-Discovery call notes:
-- Business type: [TYPE — e.g., med spa chain / law firm / e-commerce brand scaling to $1M+]
-- Their biggest challenge: [what they told you]
-- Their goals: [e.g., dominate local market / build a content machine / scale with ads]
-- Platforms: [e.g., all 5: Instagram, TikTok, Facebook, YouTube, LinkedIn or Google Business]
-- Budget appetite: [$5,000–$10,000/mo]
-- Current operation: [e.g., has marketing person internally / running ads already / large team]
-
-Package: Elite — Starting at $5,000/mo + $500 one-time setup fee
-Includes:
-- Full-service management across 5 platforms
-- AI brand clone + AI voice agent for inbound inquiries
-- Full paid ad management (Meta + Google)
-- Email + SMS campaigns + advanced automation workflows
-- Weekly content production (20–30 pieces/month)
-- Dedicated account manager (Mandy personally involved)
-- Monthly strategy meeting + detailed reporting dashboard
-- Priority support and same-day response SLA
-
-Format this proposal with:
-1. Executive Summary — 1 powerful paragraph on the opportunity and what we'll build together
-2. Situation Analysis — their current position and what's being left on the table
-3. Our Strategy — a high-level content + paid ads + automation game plan specific to their business
-4. Full Scope of Work — detailed deliverable list by category
-5. Investment — $5,000/mo starting rate (note: final quote based on scope) + $500 setup
-6. Timeline — what happens in weeks 1, 2, 3, 4 after they start
-7. Why The Dollhouse Brand Studio — 3–4 sentences. Confident. Why us, not anyone else.
-8. Next Steps — exactly how to move forward today
-
-Tone: premium agency tone. Polished, data-aware, strategic. This is a high-ticket close — every word should earn trust.
-Length: 700–1,000 words. Well-formatted sections, clean and professional."`,
     },
     {
       title: "Custom Proposal Builder — Any Client, Any Package",
@@ -2143,7 +2102,7 @@ Here's everything from the discovery call:
 
 Based on my notes above, do the following:
 
-1. Recommend the best package for this client (Starter $1k, Growth $2.5k, or Elite $5k+) and explain why in 2–3 sentences. If they should start on one and upgrade, note that.
+1. Recommend the best package for this client (Foundation $297/mo, Starter $1k, or Growth $2.5k) and explain why in 2–3 sentences. If they should start on one and upgrade, note that.
 
 2. Write a complete custom proposal with these sections:
    - Personal intro referencing something specific from our call
@@ -2174,7 +2133,7 @@ Details to include:
 - Client: [CLIENT FULL NAME or BUSINESS LEGAL NAME]
 - Service Start Date: [DATE]
 - Services Provided: [LIST — e.g., social media management for Instagram, content creation, scheduling, monthly reporting]
-- Package: [Content Starter / Starter / Growth / Elite]
+- Package: [Foundation / Starter / Growth]
 - Monthly Fee: $[AMOUNT]/month
 - Contract Term: [6-month minimum / 12-month annual] — specify which applies
 - One-Time Setup Fee: $500 (due before work begins, non-refundable)
@@ -3690,57 +3649,83 @@ This gives you a ready-to-work outreach pipeline from a single prompt.`,
 function ServiceTiers() {
   const tiers = [
     {
-      label: "Starter",
+      label: "Website Essentials",
+      price: "$97/mo",
+      setup: "$497 one-time setup",
+      tag: "Get online",
+      tagColor: "#8a9870",
+      items: [
+        "Professional website — designed, built, and hosted for you",
+        "Online booking calendar so clients can book themselves",
+        "Website chat widget — visitors message you right from your site",
+        "Mobile-friendly and on-brand to your business",
+        "Hosting, updates, and uptime all included",
+      ],
+      note: "The fastest way to get a client online and looking legit. No content or automation — just a clean, working website.",
+    },
+    {
+      label: "The Foundation",
+      price: "$297/mo",
+      setup: "$997 one-time setup",
+      tag: "Lead system",
+      tagColor: "#7a98c8",
+      items: [
+        "Professional website built for lead generation",
+        "Missed call text-back — anyone who calls gets a text immediately",
+        "Instant lead follow-up — new inquiries get an automatic text response",
+        "5-star review funnel with private feedback step before the public request",
+        "Pay 3 months upfront — your 4th month is free",
+      ],
+      note: "Website plus the lead system behind it. Turns every inquiry, missed call, and appointment into a managed conversation.",
+    },
+    {
+      label: "Foundation + Google LSA",
+      price: "$497/mo",
+      setup: "$997 one-time setup",
+      tag: "Foundation + ads",
+      tagColor: "#c87a98",
+      items: [
+        "Everything in The Foundation plan",
+        "Google Local Service Ads management",
+        "Your business shows as sponsored with a top rating on Google",
+        "You only pay per result, not per click",
+        "Pay 3 months upfront — your 4th month is free",
+      ],
+      note: "Foundation plus a top, sponsored spot on Google — pay per result, not per click.",
+    },
+    {
+      label: "The Starter",
       price: "$1,000/mo",
-      setup: "$500 one-time setup",
-      tag: "Start here",
+      setup: "$500 one-time setup · + $300/mo platform access",
+      tag: "1 platform managed",
       tagColor: "var(--gold)",
       items: [
         "1 platform fully managed — nothing to post, nothing to schedule",
-        "AI clone or custom brand character — content that sounds like you, without filming",
-        "Reels, carousels & static posts — 3x per week (12 posts/mo)",
-        "Comment keyword triggers — auto-DM lead magnet when they comment a word",
-        "DM automation — every inquiry gets an instant reply that guides them to book or buy",
-        "Online booking system — clients book directly from the page",
-        "Lead funnels & automations that turn followers into booked appointments",
-        "Missed call text back — auto-texts anyone who calls and doesn't get answered",
+        "AI clone or custom brand character — content in your voice, without filming",
+        "3 AI clone videos pinned at the top — your signature content",
+        "16 posts/month — Reels, Carousels & Static, all on-brand",
+        "Content approval — nothing goes live without your sign-off",
+        "Comment-to-DM automation + missed call text-back",
+        "CRM pipeline + booking link + monthly performance report",
       ],
-      note: "Best starting point. Gets the client online, consistent, and converting. Build trust here, then upgrade.",
+      note: "Best starting point for social. Gets the client online, consistent, and converting on one platform.",
     },
     {
-      label: "Growth",
-      price: "$2,500/mo",
-      setup: "$500 one-time setup",
+      label: "The Growth",
+      price: "$2,497/mo",
+      setup: "$500 one-time setup · + $300/mo platform access",
       tag: "Most popular",
       tagColor: "var(--rose)",
       items: [
-        "Everything in Starter — AI clone content now running across 3 platforms: Instagram, TikTok & Facebook",
-        "Paid ads — Facebook & Instagram ad management included",
-        "Email & SMS automations that follow up with every lead while you sleep",
-        "Automated appointment reminders — reduce no-shows before they happen",
-        "Reputation & review management — 5-star presence built on autopilot",
-        "More content, more reach — 3–5x per week (up to 20 posts/mo)",
-        "Monthly strategy call to double down on what's working",
+        "Everything in Starter — AI clone content across 3 platforms: Instagram, TikTok & Facebook",
+        "Paid Meta ads — Facebook & Instagram ad management included",
+        "24 posts/month — 8 per platform (Reels, Carousels & Static)",
+        "Email & SMS automations that follow up with every lead",
+        "Voice AI receptionist + automated appointment reminders",
+        "Reputation & review management — 5-star presence on autopilot",
+        "Monthly strategy call + monthly performance report",
       ],
-      note: "Best for clients who want to scale. The ads + AI clone content combo is what drives real consistent inbound.",
-    },
-    {
-      label: "Elite",
-      price: "$5,000+/mo",
-      setup: "$500 one-time setup",
-      tag: "Full system",
-      tagColor: "#4a7a4a",
-      items: [
-        "Everything in Growth — expanded to 5 platforms: Instagram, TikTok, Facebook, LinkedIn & Threads",
-        "AI voice agent — answers calls, handles inquiries & books appointments 24/7",
-        "Full AI booking system — chat, reminders, follow-up & review collection automated",
-        "AI website design & build — a complete conversion-ready site done for you",
-        "Google, Facebook, Instagram & TikTok ad management — all platforms, fully managed",
-        "Daily content — 5–7x per week (up to 28 posts/mo) across every platform",
-        "Monthly email newsletter — written, designed & sent for you",
-        "Monthly strategy call (60 min deep-dive) + weekly performance reports",
-      ],
-      note: "For high-LTV clients who want their entire online presence fully managed. Goal: 5 Elite clients = $25,000+/mo.",
+      note: "Best for clients who want to scale. Three platforms, ads, and AI clone content driving consistent inbound.",
     },
   ];
 
@@ -3793,7 +3778,7 @@ function ServiceTiers() {
       <div className="rounded-2xl p-5" style={{ background: "var(--ink)" }}>
         <p className="text-[10px] tracking-widest uppercase mb-2" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Upgrade Path</p>
         <p style={{ fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(250,243,234,0.75)", lineHeight: 1.7 }}>
-          Start most clients on Starter. Once they see real results — usually 30–60 days — bring up Growth or Elite. Never push an upgrade before they've seen the win. The AI clone and content system sells itself once it's running.
+          Start most clients on Starter. Once they see real results — usually 30–60 days — bring up Growth. Never push an upgrade before they've seen the win. The AI clone and content system sells itself once it's running.
         </p>
       </div>
     </div>
@@ -3997,8 +3982,7 @@ Does that sound like something that would take a load off your plate?"
 
 Pricing — start high, work down only if needed:
 - Starter: $1,000/mo + $500 one-time setup (1 platform, AI clone, automations)
-- Growth: $2,500/mo + $500 one-time setup (3 platforms, ads, email/SMS automations)
-- Elite: $5,000+/mo + $500 one-time setup (5 platforms, AI voice agent, full system)
+- Growth: $2,497/mo + $500 one-time setup (3 platforms, ads, email/SMS automations)
 
 If they hesitate on price: "We do offer a 14-day free trial. The $500 setup still applies so we can build everything out — but the first two weeks are on us so you can see the results before committing."`,
     },
@@ -4253,20 +4237,28 @@ Thanks again for trusting me with [BUSINESS NAME].
       <div className="rounded-2xl p-7" style={{ background: "rgba(255,255,255,0.65)", border: "1px solid rgba(200,168,100,0.2)" }}>
         <p className="text-[10px] tracking-widest uppercase mb-1" style={{ fontFamily: FONT_LUXE, color: "var(--gold)" }}>Our Packages — Know These Cold</p>
         <h3 className="mb-2" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: "var(--rose)" }}>Dollhouse Pricing</h3>
-        <p className="mb-5" style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(30,15,10,0.5)", lineHeight: 1.6 }}>Always start by presenting Elite. Work your way down only if needed. All packages include a $500 one-time setup fee — never waived. Present the free trial after they say yes to a package, not before.</p>
+        <p className="mb-5" style={{ fontFamily: FONT_BODY, fontSize: "0.83rem", color: "rgba(30,15,10,0.5)", lineHeight: 1.6 }}>Always start by presenting Growth. Work your way down only if needed. Starter and Growth include a $500 one-time setup fee; Foundation is a $997 setup — never waived. Present the 4th-month-free offer after they say yes to a package, not before.</p>
         <div className="space-y-3">
           {[
             {
-              range: "$5,000+/mo", label: "Elite", color: "#7b68ee",
-              items: ["Full-service across 5 platforms (Instagram, TikTok, Facebook, YouTube, LinkedIn)", "AI brand clone + AI voice agent for inbound inquiries", "Full paid ad management — Meta + Google", "20–30 posts/month + email and SMS campaigns", "Dedicated account manager, weekly production, monthly strategy meeting"],
-            },
-            {
-              range: "$2,500/mo", label: "Growth", color: "#c97a7a",
+              range: "$2,497/mo", label: "Growth", color: "#c97a7a",
               items: ["Everything in Starter — expanded to 3 platforms", "Paid ad management — Facebook and Instagram ads included", "Email and SMS automation sequences for lead follow-up", "24 posts/month across 3 platforms", "Full CRM pipeline setup and monthly strategy call"],
             },
             {
               range: "$1,000/mo", label: "Starter", color: "var(--gold)",
-              items: ["1 platform fully managed — content, captions, scheduling", "AI brand clone built out in their voice", "12 posts/month (Reels, carousels, static mix)", "Comment keyword trigger + auto-DM + missed call text-back", "Monthly performance report with plain-English breakdown"],
+              items: ["1 platform fully managed — content, captions, scheduling", "AI brand clone built out in their voice", "16 posts/month (Reels, carousels, static mix)", "Comment keyword trigger + auto-DM + missed call text-back", "Monthly performance report with plain-English breakdown"],
+            },
+            {
+              range: "$497/mo", label: "Foundation + Google LSA", color: "#c87a98",
+              items: ["Everything in The Foundation", "Google Local Service Ads management", "Shows as sponsored with a top rating on Google", "You pay per result, not per click", "$997 one-time setup"],
+            },
+            {
+              range: "$297/mo", label: "The Foundation", color: "#7a98c8",
+              items: ["Professional website built for lead generation", "Missed call text-back on every missed call", "Instant lead follow-up on new inquiries", "5-star review funnel", "$997 setup · pay 3 months, 4th free"],
+            },
+            {
+              range: "$97/mo", label: "Website Essentials", color: "#8a9870",
+              items: ["Professional website — designed, built & hosted", "Online booking calendar", "Website chat widget", "Mobile-friendly and on-brand", "$497 one-time setup"],
             },
           ].map(({ range, label, color, items }) => (
             <div key={label} className="flex gap-4 rounded-xl p-4" style={{ background: "rgba(200,168,100,0.06)", border: "1px solid rgba(200,168,100,0.15)" }}>
@@ -4576,7 +4568,7 @@ Thanks again for trusting me with [BUSINESS NAME].
           { type: "subhead", text: "The Pitch — After You've Listened" },
           { type: "send", label: "Transition into your pitch — say this", text: "Okay, so based on what you just told me — [restate their main pain point in their own words] — here's exactly what I'd do for [BUSINESS NAME]:\n\nFirst, we handle all your content. Every graphic, every caption, every post — done for you. You never have to think about what to post again.\n\nWe schedule everything directly to your [PLATFORMS THEY MENTIONED] — a full month of content, queued up and ready.\n\nWe also build your AI brand clone so the content actually sounds like you, not generic. And we set up automations so anyone who comments or messages your page gets responded to automatically — turning engagement into conversations, and conversations into bookings.\n\nEvery month, you get a report showing what's working — reach, engagement, what your audience responded to — so we keep getting smarter about your strategy.\n\nAll of this, completely done for you." },
           { type: "subhead", text: "Presenting the Packages — Always Start High" },
-          { type: "send", label: "How to introduce pricing", text: "So we have three ways to work together, depending on what makes sense right now.\n\nThe most popular for businesses at your stage is our Starter package — $1,000 a month. That gets you one platform fully managed, your AI brand clone built out, all the automations set up, and your monthly performance report. There's a one-time $500 setup fee that covers building everything out for your specific business.\n\nIf you want to scale faster — multiple platforms, paid ads, email and SMS automations — that's our Growth package at $2,500 a month.\n\nAnd for businesses that want the full system — AI voice agent, five platforms, the works — that's Elite, starting at $5,000 a month.\n\nBased on what you told me, I think [RECOMMEND ONE] makes the most sense for where you are right now. What's your gut reaction to that?" },
+          { type: "send", label: "How to introduce pricing", text: "So we have three ways to work together, depending on what makes sense right now.\n\nIf you just need the essentials first — a professional website with automated lead follow-up, missed-call text-back, and a review funnel — that's our Foundation plan at $297 a month.\n\nThe most popular for businesses at your stage is our Starter package — $1,000 a month. That gets you one platform fully managed, your AI brand clone built out, all the automations set up, and your monthly performance report. There's a one-time $500 setup fee that covers building everything out for your specific business.\n\nIf you want to scale faster — multiple platforms, paid ads, email and SMS automations — that's our Growth package at $2,497 a month.\n\nBased on what you told me, I think [RECOMMEND ONE] makes the most sense for where you are right now. What's your gut reaction to that?" },
           { type: "if_say", text: "Which one do you recommend?" },
           { type: "you_say", text: "Honestly — based on everything you told me, especially the [specific pain point they mentioned] — I'd start with [Starter/Growth]. It gets you everything you need without overcomplicating it. You can always add more once you see it working." },
           { type: "subhead", text: "The Close — Ask Directly" },
@@ -6654,7 +6646,7 @@ SHARE A RESULT
 "We set this up for another ${niche} in ${city} and they [result — e.g. booked 12 new clients in 30 days]. That's what we're going for here."
 
 EXPLAIN THE OFFER
-Present all 3 plans. Always start with Elite or Growth. Walk down to Starter only if needed. Never open with the cheapest option. Every plan includes a $500 one-time setup fee. If they hesitate on price say: "We do offer a 14-day free trial — the $500 setup applies but the first two weeks are completely free so you can see results before committing."
+Present all 3 plans. Always start with Growth. Walk down to Starter or Foundation only if needed. Never open with the cheapest option. Every managed plan includes a $500 one-time setup fee (Foundation is a $997 setup). If they hesitate on price say: "When you pay three months upfront, your fourth month is completely free — so you can see real results before you spend another dollar."
 
 ASK FOR THE SALE
 "Based on everything you've told me, I think [TIER] is the right fit for ${biz}. Do you want to get started?" Then stop talking. Let them answer.
@@ -7880,7 +7872,7 @@ const MILESTONES: Milestone[] = [
       "First month at $10,000+ USD in recurring monthly revenue",
       "Sales call → proposal → close cycle running in under 7 days",
     ],
-    math: "6 Growth clients × $2,500 USD = $15,000 USD/mo. Add 2 Elite × $5,000 USD = $25,000 USD/mo. Add-ons bring it to $30,000+ USD/mo = roughly $40,500+ CAD/mo. Setup fees + one-time services add $5k–$10k USD/month on top. At $33k USD/mo you're earning more CAD than most Canadians make in a year — every single month.",
+    math: "6 Growth clients × $2,497 USD = ~$15,000 USD/mo. Add 8 Starter clients × $1,000 USD = $8,000 USD/mo plus a few Foundation clients at $297 USD. Add-ons bring it to $30,000+ USD/mo = roughly $40,500+ CAD/mo. Setup fees + one-time services add $5k–$10k USD/month on top. At $33k USD/mo you're earning more CAD than most Canadians make in a year — every single month.",
   },
   {
     period: "4–12 Months", goal: "$83,000–$100,000+ USD/mo", cad: "≈ $112,000–$135,000+ CAD/mo", emoji: "crown", color: "#7b68ee", label: "The Million-Dollar Year",
@@ -7893,7 +7885,7 @@ const MILESTONES: Milestone[] = [
       "White-label partnerships generating additional passive income",
       "Your personal brand IS the business — you are a known face in this space",
     ],
-    math: "10 Elite × $5,000 USD = $50,000 USD. 10 Growth × $2,500 USD = $25,000 USD. Add-ons + AI video packages = $10,000 USD. Digital products/course = $5,000–$15,000 USD/mo. Total: $90,000–$100,000 USD/mo recurring = $121,500–$135,000 CAD/mo. Multiply by 12 months = $1M+ USD / $1.35M+ CAD. You are a Canadian charging in US dollars. That exchange rate is your built-in advantage.",
+    math: "20 Growth clients × $2,497 USD = ~$50,000 USD/mo. 15 Starter × $1,000 USD = $15,000 USD/mo. Add-ons + AI video packages = $10,000 USD. Digital products/course = $5,000–$15,000 USD/mo. Total: $80,000–$90,000 USD/mo recurring = $108,000–$121,500 CAD/mo. Multiply by 12 months = $1M+ USD / $1.35M+ CAD. You are a Canadian charging in US dollars. That exchange rate is your built-in advantage.",
   },
 ];
 
@@ -8330,99 +8322,67 @@ function ScheduleTab() {
 
 /* ─── Quote Builder ───────────────────────────────────── */
 const QB_PACKAGES = {
-  hosting: {
-    name: "Hosting Only", monthly: 97, setup: 0, emoji: "globe", color: "#8a9870",
-    tagline: "Website live + GHL account access + 1 automated follow-up. No setup fee.",
+  website_essentials: {
+    name: "Website Essentials", monthly: 97, setup: 497, emoji: "globe", color: "#8a9870",
+    tagline: "Get online fast — a clean website, booking calendar, and chat widget, hosted and handled for you.",
     includes: [
-      "Website hosted and live on their domain",
-      "GHL account access (Conversations tab)",
-      "1 automated email + SMS follow-up when someone fills out the contact form",
-      "No content creation — strictly hosting",
+      "Professional website — designed, built, and hosted for you",
+      "Online booking calendar so clients can book themselves",
+      "Website chat widget — visitors message you right from your site",
+      "Mobile-friendly and on-brand to your business",
+      "Hosting, updates, and uptime all included",
     ],
   },
-  saas_suite: {
-    name: "SaaS Suite", monthly: 297, setup: 0, emoji: "settings", color: "#7a98c8",
-    tagline: "Talking website + backend autoresponder + Google reviews. No setup fee.",
+  foundation: {
+    name: "The Foundation", monthly: 297, setup: 997, emoji: "settings", color: "#7a98c8",
+    tagline: "A website and automation system that turns every inquiry, missed call, and appointment into a managed conversation.",
     includes: [
-      "Talking website — AI chat widget reads all pages, answers questions, books appointments automatically",
-      "Backend autoresponder — automatic SMS + email when someone fills out a form, with follow-up sequences",
-      "Google reviews funnel — 5 stars → Google · 4 stars or below → private feedback form only",
-      "Software monthly access — client gets their own sub-account with your branding",
-      "Mobile app — Lead Connector on their phone so they see every lead in real time",
+      "Professional website built for lead generation",
+      "Missed call text-back — anyone who calls gets a text immediately",
+      "Instant lead follow-up — new inquiries get an automatic text response",
+      "5-star review funnel with private feedback step before the public request",
+      "Pay 3 months upfront — your 4th month is free",
     ],
   },
-  saas_ads: {
-    name: "SaaS + Ads/AI", monthly: 500, setup: 0, emoji: "megaphone", color: "#c87a98",
-    tagline: "Everything in SaaS + Google Local Service Ads OR AI receptionist/chat widget.",
+  foundation_lsa: {
+    name: "Foundation + Google LSA", monthly: 497, setup: 997, emoji: "megaphone", color: "#c87a98",
+    tagline: "Everything in Foundation, plus your business shows as sponsored with a top rating on Google — pay per result, not per click.",
     includes: [
-      "Everything in the SaaS Suite plan",
-      "Google Local Service Ads — link their Google Business Profile + runs itself",
-      "OR AI receptionist — answers calls, handles FAQs, books appointments 24/7",
-      "OR AI chat widget — talking AI assistant on the website",
-      "No advertising experience needed for Google Local Service Ads",
-    ],
-  },
-  content_starter: {
-    name: "Content Starter", monthly: 500, setup: 500, emoji: "sprout", color: "#a8b87a",
-    tagline: "Entry-level done-for-you content — branded posts, scheduled and managed.",
-    includes: [
-      "8 branded posts/month (static & carousels)",
-      "1 platform managed",
-      "Branded, scheduled, and done for you",
-      "Monthly performance report",
+      "Everything in The Foundation plan",
+      "Google Local Service Ads management",
+      "Your business shows as sponsored with a top rating on Google",
+      "You only pay per result, not per click",
+      "Pay 3 months upfront — your 4th month is free",
     ],
   },
   starter: {
-    name: "Starter", monthly: 1000, setup: 500, emoji: "sparkle", color: "#c8a864",
-    tagline: "AI-powered social media management + full back-end conversion system.",
+    name: "The Starter", monthly: 1000, setup: 500, emoji: "sparkle", color: "#c8a864",
+    tagline: "One platform fully managed + AI clone + full back-end conversion system. + $300/mo platform access.",
     includes: [
       "1 platform of your choice — Facebook, Instagram or TikTok",
-      "AI clone or brand mascot — trained to your face, voice & energy in week 1",
+      "AI clone or brand mascot — trained to your face, voice & energy",
       "3 AI clone videos pinned at the top — your signature content",
-      "12 posts/month — 4 Reels · 4 Carousels · 4 Static, all on-brand",
+      "16 posts/month — Reels, Carousels & Static, all on-brand",
       "Content approval before posting — you see everything first",
-      "Comment-to-DM automation — comments turn into instant private messages",
-      "Monthly performance snapshot — plain English results",
+      "Comment-to-DM automation + missed call text-back",
+      "CRM pipeline + booking link + monthly performance report",
+      "+ $300/mo platform access",
     ],
   },
   growth: {
-    name: "Growth", monthly: 2500, setup: 500, emoji: "rocket", color: "#c97a7a",
-    tagline: "3 platforms fully managed — more content, paid ads, and full automation.",
+    name: "The Growth", monthly: 2497, setup: 500, emoji: "rocket", color: "#c97a7a",
+    tagline: "3 platforms fully managed — more content, paid Meta ads, and full automation. + $300/mo platform access.",
     includes: [
       "3 platforms — Facebook, Instagram & TikTok — nothing to post",
       "AI clone or brand mascot across all 3 platforms",
-      "6 AI clone videos/month — 2 pinned per platform",
       "24 posts/month — 8 per platform (Reels · Carousels · Static)",
-      "Content approval before posting",
-      "Dedicated content strategy — hashtag research, captions & posting times",
-      "Paid Meta ads management — campaigns built, managed & optimised",
+      "Content approval + dedicated content strategy",
+      "Paid Meta ads management — built, managed & optimised",
       "Comment-to-DM + text follow-up AI bot across all platforms",
       "Voice AI receptionist + missed call text-back",
-      "Automated appointment reminders",
+      "Automated appointment reminders + review management",
       "Monthly strategy call + monthly performance report",
-      "Review management — automated review requests",
-    ],
-  },
-  elite: {
-    name: "Elite", monthly: 5000, setup: 500, emoji: "crown", color: "#7b68ee",
-    tagline: "Your entire online business fully managed — maximum content, all ads, full AI system.",
-    includes: [
-      "3 platforms — Instagram, TikTok & Facebook — daily posting",
-      "AI clone or brand mascot across all 3 platforms",
-      "12 AI clone videos/month — 4 per platform, always pinned",
-      "36 posts/month — 12 per platform (4 Reels · 4 Carousels · 4 Static)",
-      "Content approval before posting",
-      "Full ad management — Facebook, Instagram, TikTok & Google",
-      "Advanced AI voice agent — calls, FAQs & bookings 24/7",
-      "Full AI booking system — chat, confirmations, reminders & reviews",
-      "Comment-to-DM + text follow-up bot + missed call text-back",
-      "Monthly email newsletter — written, designed & sent",
-      "Website design & build — conversion-ready site done for you",
-      "Monthly 60-min strategy call + weekly performance reports",
-      "Priority 48-hr revisions + quarterly brand audit",
-      "Dedicated account manager",
-      "Weekly strategy calls",
-      "Priority support + same-day response",
+      "+ $300/mo platform access",
     ],
   },
 } as const;
@@ -8509,7 +8469,7 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
   const discountPct = contractLen === "12mo" ? 0.10 : 0;
   const discount = Math.round(monthlySubtotal * discountPct);
   const monthlyTotal = monthlySubtotal - discount;
-  const setupFee = selectedPkg ? 500 : 0;
+  const setupFee = selectedPkg ? selectedPkg.setup : 0;
   const onetimeTotal = onetimeAddons.reduce((s, a) => s + a.price, 0);
   const dueToday = trial
     ? setupFee + onetimeTotal
@@ -8890,7 +8850,7 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
                       </div>
                       <div className="text-right shrink-0">
                         <p style={{ fontFamily: FONT_LUXE, fontSize: "1.05rem", color: p.color, fontWeight: 600 }}>${p.monthly.toLocaleString()}/mo</p>
-                        <p style={{ fontFamily: FONT_BODY, fontSize: "0.7rem", color: "rgba(30,15,10,0.4)" }}>+ $500 setup</p>
+                        <p style={{ fontFamily: FONT_BODY, fontSize: "0.7rem", color: "rgba(30,15,10,0.4)" }}>{`+ $${p.setup.toLocaleString()} setup`}</p>
                       </div>
                     </div>
                     {isSelected && (
@@ -9236,22 +9196,25 @@ function DiscoveryCallTab() {
       heading: "Present your package",
       script: `Based on everything they told you — pick the right plan:`,
       choices: [
-        { label: "Content Starter — $500/mo", key: "package", value: "content_starter", next: "reaction" },
-        { label: "Starter — $1,000/mo", key: "package", value: "starter", next: "reaction" },
-        { label: "Growth — $2,500/mo", key: "package", value: "growth", next: "reaction" },
-        { label: "Elite — $5,000+/mo", key: "package", value: "elite", next: "reaction" },
+        { label: "Website Essentials — $97/mo", key: "package", value: "website_essentials", next: "reaction" },
+        { label: "The Foundation — $297/mo", key: "package", value: "foundation", next: "reaction" },
+        { label: "Foundation + Google LSA — $497/mo", key: "package", value: "foundation_lsa", next: "reaction" },
+        { label: "The Starter — $1,000/mo", key: "package", value: "starter", next: "reaction" },
+        { label: "The Growth — $2,497/mo", key: "package", value: "growth", next: "reaction" },
       ],
     },
 
     reaction: {
       heading: "What was their reaction?",
-      script: choices.package === "content_starter"
-        ? `"So there's actually a perfect entry-point for this. It's called our Content Starter — $500 a month. We create 8 branded posts for you every month, schedule everything, and it's completely done for you. No AI avatar, no automation — just really clean, on-brand content going out consistently. There's a one-time $500 setup fee to get everything built out, and we start with a 6-month minimum — you'll see results within 90 days and months 4 through 6 are where it really compounds. After that you can stay month-to-month or lock in 12 months for 10% off.\n\nWhat do you think?"`
+      script: choices.package === "website_essentials"
+        ? `"So for where ${biz} is right now, I'd start you with our Website Essentials — it's $97 a month. You get a professional website, an online booking calendar, and a chat widget, all designed, built, and hosted for you. There's a one-time $497 setup to build it all out. It's the simplest way to get online and looking legit fast.\n\nWant me to get that started for ${biz}?"`
+        : choices.package === "foundation"
+        ? `"For ${biz}, I'd go with our Foundation plan — $297 a month. You get the professional website plus the full lead system behind it: missed-call text-back so no call goes unanswered, instant follow-up on every new inquiry, and a 5-star review funnel. There's a one-time $997 setup. And if you pay three months upfront, your fourth month is free.\n\nDoes that sound like what ${biz} needs right now?"`
+        : choices.package === "foundation_lsa"
+        ? `"Based on what you told me, I'd go with Foundation plus Google Local Service Ads — $497 a month. You get everything in Foundation, and your business shows up as a sponsored, top-rated result on Google. Best part: you only pay per result, not per click. One-time $997 setup.\n\nWant me to set that up so ${biz} starts showing at the top of Google?"`
         : choices.package === "starter"
         ? `"So the plan I'd recommend for ${biz} is our Starter. It's $1,000 a month — and you get your full AI clone built so your face and voice is showing up in content without you filming, one platform fully managed, comment-to-DM automation, and a monthly performance report. There's a one-time $500 setup fee to build everything out, and we start with a 6-month minimum — you'll see real results within 90 days and months 4 through 6 are where it really compounds.\n\nWant me to walk you through what that specifically looks like for ${biz}?"`
-        : choices.package === "growth"
-        ? `"For ${biz}, I'd actually go with our Growth plan. It's $2,500 a month — and this gets you across three platforms fully managed, Instagram, TikTok, and Facebook. Your AI clone running, paid ad management, email and SMS automation so leads get followed up automatically. One-time $500 setup fee to kick things off. Based on what you told me about [pain], this is the one that's really going to move the needle.\n\nDoes that feel like the right level for where you want to take ${biz}?"`
-        : `"Honestly, based on everything you've told me, I think Elite is the right move for ${biz}. It's $5,000 a month — and it's the full system. Five platforms, AI clone, AI voice agent so your phone is never unmanned, full ad management, everything. Your business completely dominating online, nothing left to chance. One-time $500 setup fee.\n\nThis is what we build for businesses that are serious about growth. What's your reaction to that?"`,
+        : `"For ${biz}, I'd actually go with our Growth plan. It's $2,497 a month — and this gets you across three platforms fully managed, Instagram, TikTok, and Facebook. Your AI clone running, paid ad management, email and SMS automation so leads get followed up automatically. One-time $500 setup fee to kick things off. Based on what you told me about [pain], this is the one that's really going to move the needle.\n\nDoes that feel like the right level for where you want to take ${biz}?"`,
       choices: [
         { label: "Sounds great — they want to move forward", key: "reaction", value: "ready", next: "close" },
         { label: "That's more than they expected / too expensive", key: "reaction", value: "price", next: "close" },
@@ -9579,12 +9542,13 @@ const PROPOSAL_DECKS: PDeck[] = [
         layout: "pricing", bg: "light",
         heading: "Our plans",
         prices: [
+          { name: "Website Essentials", price: "$97/mo", tag: "Website · booking · chat widget" },
           { name: "Foundation", price: "$297/mo", tag: "Website · lead follow-up · review funnel" },
-          { name: "Content Lite", price: "$500/mo", tag: "1 platform · 3 posts/week · static + carousel" },
-          { name: "Starter", price: "$1,000/mo", tag: "1 platform · AI clone · 12 posts/mo" },
-          { name: "Growth", price: "$2,500/mo", tag: "3 platforms · ads · full automation" },
+          { name: "Foundation + Google LSA", price: "$497/mo", tag: "Foundation · Google Local Service Ads" },
+          { name: "Starter", price: "$1,000/mo", tag: "1 platform · AI clone · 16 posts/mo" },
+          { name: "Growth", price: "$2,497/mo", tag: "3 platforms · ads · full automation" },
         ],
-        script: "We have a path for where you are right now and where you want to go next. Foundation is the website and follow-up system. Content Lite keeps one platform active. Starter adds the AI clone and stronger content support. Growth is the full system with three platforms, ads, and automations. Every plan has a $500 setup fee so we can build the system correctly from the start.",
+        script: "We have a path for where you are right now and where you want to go next. Website Essentials gets you a professional website fast. The Foundation adds the full lead and follow-up system. Foundation plus Google LSA puts you at the top of Google. The Starter adds the AI clone and stronger content support. The Growth is the full system with three platforms, ads, and automations. Setup is $497 to $997 depending on the plan, so we can build everything correctly from the start.",
       },
       {
         layout: "bullets", bg: "blush",
@@ -9953,12 +9917,14 @@ const PROPOSAL_DECKS: PDeck[] = [
         layout: "pricing", bg: "light",
         heading: "Investment",
         prices: [
+          { name: "Website Essentials", price: "$97/mo", tag: "Website + booking + chat" },
           { name: "Foundation", price: "$297/mo", tag: "Website + lead system" },
-          { name: "Content Lite", price: "$500/mo", tag: "1 platform · 3 posts/week" },
-          { name: "Growth", price: "$2,500/mo", tag: "3 platforms" },
-          { name: "Setup Fee", price: "$500", tag: "One-time · all monthly plans" },
+          { name: "Foundation + Google LSA", price: "$497/mo", tag: "Foundation + Google LSA" },
+          { name: "Starter", price: "$1,000/mo", tag: "1 platform + AI clone" },
+          { name: "Growth", price: "$2,497/mo", tag: "3 platforms" },
+          { name: "Setup", price: "$497–$997", tag: "One-time · varies by plan" },
         ],
-        script: "Here's how the all-in-one system is priced. Foundation gives you the website and lead follow-up engine. Content Lite keeps one platform active. Growth is the full managed system with three platforms, ads, and automation. Every monthly plan has a $500 setup fee so we can build the account correctly.",
+        script: "Here's how the all-in-one system is priced. Website Essentials is the professional website. The Foundation adds the lead and follow-up engine, and Foundation plus Google LSA puts you at the top of Google. The Starter brings in the AI clone and content. The Growth is the full managed system with three platforms, ads, and automation. Setup runs $497 to $997 depending on the plan so we can build the account correctly.",
       },
       {
         layout: "steps", bg: "dark",
@@ -10373,10 +10339,12 @@ const PROPOSAL_DECKS: PDeck[] = [
         layout: "pricing", bg: "light",
         heading: "Automation is strongest inside Growth",
         prices: [
+          { name: "Website Essentials", price: "$97/mo", tag: "Website + booking + chat" },
           { name: "Foundation", price: "$297/mo", tag: "Website + follow-up basics" },
+          { name: "Foundation + Google LSA", price: "$497/mo", tag: "Foundation + Google LSA" },
           { name: "Starter", price: "$1,000/mo", tag: "Content + AI clone + comment-to-DM" },
-          { name: "Growth", price: "$2,500/mo", tag: "Full automation stack" },
-          { name: "Setup fee", price: "$500", tag: "One-time, all plans" },
+          { name: "Growth", price: "$2,497/mo", tag: "Full automation stack" },
+          { name: "Setup fee", price: "$497–$997", tag: "One-time, varies by plan" },
         ],
         script: "Here's how the packages break down. Foundation covers the website and basic lead follow-up. Starter covers your content and AI clone. Growth is where the full automation stack comes in — voice agent, DM responder, follow-up sequences, review automation, everything. Based on what you've told me about the leads you're currently missing, I think Growth is the level that would genuinely transform what's happening in your business.",
       },
@@ -10432,7 +10400,7 @@ const PROPOSAL_DECKS: PDeck[] = [
         layout: "bullets", bg: "light",
         heading: "Your Plan — What You're Getting",
         bullets: [
-          "Plan: [STARTER / GROWTH / ELITE]",
+          "Plan: [FOUNDATION / STARTER / GROWTH]",
           "Platforms: [LIST PLATFORMS — e.g. Instagram · TikTok · Facebook]",
           "Monthly content: [NUMBER] posts per month",
           "Content types: Reels · Carousels · Static posts",
@@ -10678,11 +10646,11 @@ const PROPOSAL_DECKS: PDeck[] = [
         layout: "bullets", bg: "rose",
         heading: "Every budget has a starting point.",
         bullets: [
-          "$297/mo — Talking website + backend autoresponder + Google reviews · No setup fee",
-          "$500/mo — Everything above + Google Local Service Ads or AI voice receptionist",
-          "$1,000/mo — Full social media management + AI clone + full automation",
-          "$2,500/mo — 3 platforms + paid Meta ads + full system",
-          "$5,000+/mo — Elite — daily content across all platforms + all ad channels + website build",
+          "$97/mo — Website Essentials: website + booking calendar + chat widget, hosted",
+          "$297/mo — The Foundation: website + missed-call text-back + lead follow-up + review funnel",
+          "$497/mo — Foundation + Google LSA: Foundation + Google Local Service Ads, pay per result",
+          "$1,000/mo — The Starter: 1 platform fully managed + AI clone + automations",
+          "$2,497/mo — The Growth: 3 platforms + paid Meta ads + full system",
           "Every plan includes Lead Connector — see every lead and booking from your phone",
         ],
         script: "You don't have to start with the full system. Some clients start at $297 a month. That gets you the talking website, the automated follow-ups, and the Google review funnel. That alone has helped clients go from 10 reviews to 50 in two weeks. From there you add on when it makes sense. The important thing is every single plan includes the mobile app — so you see your leads in real time from your phone, wherever you are.",
@@ -10702,7 +10670,7 @@ function getReadAloudScript(deck: PDeck, slide: PSlide, slideIndex: number) {
   if (slide.layout === "live_quote") {
     return [
       "Now I am going to build your plan with you on the screen, so you can see exactly what is included and what the investment looks like.",
-      "First, I am choosing the package that matches what you told me you need. If you want the leanest start, we can begin with Foundation or Content Lite. If you want the stronger growth path, Starter gives you the AI clone and content support. If you want the full system that can realistically create momentum, Growth is the best fit because it combines content, ads, the AI clone, and automation.",
+      "First, I am choosing the package that matches what you told me you need. If you want the leanest start, we can begin with Website Essentials or The Foundation. If you want to show at the top of Google, Foundation plus Google LSA is the move. If you want the stronger growth path, The Starter gives you the AI clone and content support. If you want the full system that can realistically create momentum, The Growth is the best fit because it combines content, ads, the AI clone, and automation.",
       "Next, I am going to add only the services that make sense for your business. I do not want to sell you random extras. I want anything we add to either help you get seen, capture leads, follow up faster, book appointments, or turn happy clients into reviews.",
       "The $500 setup fee is one time. That covers the buildout, onboarding, platform setup, automations, and making sure the system is actually ready before we launch. The monthly price is what keeps the system running, managed, optimized, and reported on.",
       "If you choose the 12-month option, you get the last month free. That is why the savings shows here. The reason I like the annual option is because this is not a one-week fix. The first month is setup and launch. Months two and three are where we test, improve, and build momentum. After that, the system starts compounding.",
@@ -10778,10 +10746,11 @@ function getReadAloudScript(deck: PDeck, slide: PSlide, slideIndex: number) {
 /* ── Live Quote Slide ────────────────────────────────────────────────────── */
 function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
   const PLANS = [
-    { id: "foundation",   name: "Foundation",   price: 297,  desc: "Functional website + automated lead follow-up + reviews + SEO foundation" },
-    { id: "content_lite", name: "Content Lite", price: 500,  desc: "1 platform + static and carousel posts 3 times per week" },
-    { id: "starter",      name: "Starter",      price: 1000, desc: "1 platform + AI clone + 12 posts/mo + lead follow-up" },
-    { id: "growth",       name: "Growth",       price: 2500, desc: "3 platforms + ads + AI clone + full automation stack" },
+    { id: "website_essentials", name: "Website Essentials", price: 97,  setup: 497, desc: "Professional website + booking calendar + chat widget, hosted" },
+    { id: "foundation",   name: "Foundation",   price: 297,  setup: 997, desc: "Functional website + automated lead follow-up + reviews + SEO foundation" },
+    { id: "foundation_lsa", name: "Foundation + Google LSA", price: 497, setup: 997, desc: "Everything in Foundation + Google Local Service Ads — pay per result" },
+    { id: "starter",      name: "Starter",      price: 1000, setup: 500, desc: "1 platform + AI clone + 16 posts/mo + lead follow-up" },
+    { id: "growth",       name: "Growth",       price: 2497, setup: 500, desc: "3 platforms + ads + AI clone + full automation stack" },
   ];
   const ADDONS = [
     { id: "meta_ads",  name: "Meta Ads Management",       price: 500,  note: "+ min $1k/mo ad spend paid directly by client to Meta" },
@@ -10801,7 +10770,7 @@ function LiveQuoteSlide({ bg }: { bg: "dark" | "light" | "blush" | "rose" }) {
   const addonTotal = ADDONS.filter(a => addons.has(a.id)).reduce((s, a) => s + a.price, 0);
   const subtotal = sel.price + addonTotal;
   const monthly = subtotal;
-  const setupFee = 500;
+  const setupFee = sel.setup;
   const months = contract === "6mo" ? 6 : 12;
   const freeMonths = contract === "12mo" ? 1 : 0;
   const regularTotal = monthly * months + setupFee;

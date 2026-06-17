@@ -9,14 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VaultRouteImport } from './routes/vault'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SoftwareRouteImport } from './routes/software'
+import { Route as SocietyRouteImport } from './routes/society'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PlaybookRouteImport } from './routes/playbook'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as FoundationRouteImport } from './routes/foundation'
 import { Route as BrandRoomRouteImport } from './routes/brand-room'
 import { Route as AiCloneRouteImport } from './routes/ai-clone'
 import { Route as IndexRouteImport } from './routes/index'
@@ -31,6 +34,11 @@ import { Route as BrandRoomBrandWorkbookRouteImport } from './routes/brand-room_
 import { Route as BrandRoomBrandKitRouteImport } from './routes/brand-room_.brand-kit'
 import { Route as BrandRoomAiPromptKitRouteImport } from './routes/brand-room_.ai-prompt-kit'
 
+const VaultRoute = VaultRouteImport.update({
+  id: '/vault',
+  path: '/vault',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ThankYouRoute = ThankYouRouteImport.update({
   id: '/thank-you',
   path: '/thank-you',
@@ -44,6 +52,11 @@ const TermsRoute = TermsRouteImport.update({
 const SoftwareRoute = SoftwareRouteImport.update({
   id: '/software',
   path: '/software',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SocietyRoute = SocietyRouteImport.update({
+  id: '/society',
+  path: '/society',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -69,6 +82,11 @@ const PlaybookRoute = PlaybookRouteImport.update({
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FoundationRoute = FoundationRouteImport.update({
+  id: '/foundation',
+  path: '/foundation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BrandRoomRoute = BrandRoomRouteImport.update({
@@ -141,14 +159,17 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ai-clone': typeof AiCloneRoute
   '/brand-room': typeof BrandRoomRoute
+  '/foundation': typeof FoundationRoute
   '/onboarding': typeof OnboardingRoute
   '/playbook': typeof PlaybookRoute
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
   '/services': typeof ServicesRoute
+  '/society': typeof SocietyRoute
   '/software': typeof SoftwareRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
+  '/vault': typeof VaultRoute
   '/brand-room/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room/brand-kit': typeof BrandRoomBrandKitRoute
   '/brand-room/brand-workbook': typeof BrandRoomBrandWorkbookRoute
@@ -164,14 +185,17 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ai-clone': typeof AiCloneRoute
   '/brand-room': typeof BrandRoomRoute
+  '/foundation': typeof FoundationRoute
   '/onboarding': typeof OnboardingRoute
   '/playbook': typeof PlaybookRoute
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
   '/services': typeof ServicesRoute
+  '/society': typeof SocietyRoute
   '/software': typeof SoftwareRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
+  '/vault': typeof VaultRoute
   '/brand-room/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room/brand-kit': typeof BrandRoomBrandKitRoute
   '/brand-room/brand-workbook': typeof BrandRoomBrandWorkbookRoute
@@ -188,14 +212,17 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/ai-clone': typeof AiCloneRoute
   '/brand-room': typeof BrandRoomRoute
+  '/foundation': typeof FoundationRoute
   '/onboarding': typeof OnboardingRoute
   '/playbook': typeof PlaybookRoute
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
   '/services': typeof ServicesRoute
+  '/society': typeof SocietyRoute
   '/software': typeof SoftwareRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
+  '/vault': typeof VaultRoute
   '/brand-room_/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room_/brand-kit': typeof BrandRoomBrandKitRoute
   '/brand-room_/brand-workbook': typeof BrandRoomBrandWorkbookRoute
@@ -213,14 +240,17 @@ export interface FileRouteTypes {
     | '/'
     | '/ai-clone'
     | '/brand-room'
+    | '/foundation'
     | '/onboarding'
     | '/playbook'
     | '/privacy'
     | '/quiz'
     | '/services'
+    | '/society'
     | '/software'
     | '/terms'
     | '/thank-you'
+    | '/vault'
     | '/brand-room/ai-prompt-kit'
     | '/brand-room/brand-kit'
     | '/brand-room/brand-workbook'
@@ -236,14 +266,17 @@ export interface FileRouteTypes {
     | '/'
     | '/ai-clone'
     | '/brand-room'
+    | '/foundation'
     | '/onboarding'
     | '/playbook'
     | '/privacy'
     | '/quiz'
     | '/services'
+    | '/society'
     | '/software'
     | '/terms'
     | '/thank-you'
+    | '/vault'
     | '/brand-room/ai-prompt-kit'
     | '/brand-room/brand-kit'
     | '/brand-room/brand-workbook'
@@ -259,14 +292,17 @@ export interface FileRouteTypes {
     | '/'
     | '/ai-clone'
     | '/brand-room'
+    | '/foundation'
     | '/onboarding'
     | '/playbook'
     | '/privacy'
     | '/quiz'
     | '/services'
+    | '/society'
     | '/software'
     | '/terms'
     | '/thank-you'
+    | '/vault'
     | '/brand-room_/ai-prompt-kit'
     | '/brand-room_/brand-kit'
     | '/brand-room_/brand-workbook'
@@ -283,14 +319,17 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AiCloneRoute: typeof AiCloneRoute
   BrandRoomRoute: typeof BrandRoomRoute
+  FoundationRoute: typeof FoundationRoute
   OnboardingRoute: typeof OnboardingRoute
   PlaybookRoute: typeof PlaybookRoute
   PrivacyRoute: typeof PrivacyRoute
   QuizRoute: typeof QuizRoute
   ServicesRoute: typeof ServicesRoute
+  SocietyRoute: typeof SocietyRoute
   SoftwareRoute: typeof SoftwareRoute
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
+  VaultRoute: typeof VaultRoute
   BrandRoomAiPromptKitRoute: typeof BrandRoomAiPromptKitRoute
   BrandRoomBrandKitRoute: typeof BrandRoomBrandKitRoute
   BrandRoomBrandWorkbookRoute: typeof BrandRoomBrandWorkbookRoute
@@ -305,6 +344,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/vault': {
+      id: '/vault'
+      path: '/vault'
+      fullPath: '/vault'
+      preLoaderRoute: typeof VaultRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/thank-you': {
       id: '/thank-you'
       path: '/thank-you'
@@ -324,6 +370,13 @@ declare module '@tanstack/react-router' {
       path: '/software'
       fullPath: '/software'
       preLoaderRoute: typeof SoftwareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/society': {
+      id: '/society'
+      path: '/society'
+      fullPath: '/society'
+      preLoaderRoute: typeof SocietyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -359,6 +412,13 @@ declare module '@tanstack/react-router' {
       path: '/onboarding'
       fullPath: '/onboarding'
       preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/foundation': {
+      id: '/foundation'
+      path: '/foundation'
+      fullPath: '/foundation'
+      preLoaderRoute: typeof FoundationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/brand-room': {
@@ -459,14 +519,17 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AiCloneRoute: AiCloneRoute,
   BrandRoomRoute: BrandRoomRoute,
+  FoundationRoute: FoundationRoute,
   OnboardingRoute: OnboardingRoute,
   PlaybookRoute: PlaybookRoute,
   PrivacyRoute: PrivacyRoute,
   QuizRoute: QuizRoute,
   ServicesRoute: ServicesRoute,
+  SocietyRoute: SocietyRoute,
   SoftwareRoute: SoftwareRoute,
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
+  VaultRoute: VaultRoute,
   BrandRoomAiPromptKitRoute: BrandRoomAiPromptKitRoute,
   BrandRoomBrandKitRoute: BrandRoomBrandKitRoute,
   BrandRoomBrandWorkbookRoute: BrandRoomBrandWorkbookRoute,

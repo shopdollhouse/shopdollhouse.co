@@ -62,25 +62,22 @@ function PrivacyPage() {
 
         <Section title="Information We Collect">
           <p>
-            We collect information you provide directly, including your name, email address, and phone number when you interact with our website, chat widget, forms, or quiz.
+            We collect information you provide directly, including your name, email address, and phone number when you interact with our website, chat widget, forms, or quiz. We may also collect business information you share with us (such as your business name, industry, and website), payment information processed securely through our third-party payment provider, and technical information such as your IP address, browser type, and pages viewed.
           </p>
         </Section>
 
-        <Section title="How We Use Your Information">
+        <Section title="How We Use Information">
           <p>
-            We use your information to respond to inquiries, send appointment reminders, provide customer support, and share promotional offers and updates about our services.
+            We use the information we collect to provide and improve our services, respond to inquiries, provide customer support, process payments, send appointment reminders and lead follow-ups, and — where you have opted in — share promotional offers and updates. We may also use it to personalize your experience and comply with legal obligations.
           </p>
         </Section>
 
-        <Section title="SMS & Text Message Consent">
+        <Section title="SMS & Communications">
           <p>
-            By providing your phone number and opting in, you consent to receive text messages from The Dollhouse Brand Studio, including automated, promotional, and customer support messages. Message frequency varies. Message and data rates may apply. Consent is not a condition of purchase.
+            By providing your phone number and opting in, you consent to receive text messages (SMS) from The Dollhouse Brand Studio, including automated, transactional, customer support, and promotional messages. Message frequency varies. Message and data rates may apply. Consent to receive SMS is not a condition of any purchase.
           </p>
-        </Section>
-
-        <Section title="Opting Out">
           <p>
-            You may opt out of SMS messages at any time by replying STOP. For help, reply HELP or email{" "}
+            You may opt out at any time by replying STOP to any message. After you reply STOP, we will send one confirmation message and stop sending you SMS messages. For help, reply HELP or email{" "}
             <a href="mailto:hello@shopdollhouse.co" style={{ color: "var(--rose)", textDecoration: "underline" }}>
               hello@shopdollhouse.co
             </a>
@@ -88,14 +85,46 @@ function PrivacyPage() {
           </p>
         </Section>
 
-        <Section title="Data Sharing">
+        <Section title="Data Sharing Policy">
           <p>
-            We do not sell, trade, or share your personal information with third parties for marketing purposes.
+            We do not sell your personal information. We may share information only with trusted third-party service providers who help us operate our business (such as our CRM, communications, and payment processors), and only to the extent necessary to provide our services.
+          </p>
+          <p>
+            <strong>No mobile information will be shared with third parties or affiliates for marketing/promotional purposes.</strong> SMS opt-in consent and phone numbers collected for SMS purposes are never shared with any third party or affiliate for their marketing or promotional use.
           </p>
         </Section>
 
-        <Section title="Contact Us">
+        <Section title="Cookies & Tracking">
+          <p>
+            We use cookies and similar technologies to operate the website, remember your preferences, analyze traffic, and improve performance. You can control or disable cookies through your browser settings, though some features may not function properly without them. We may also use analytics and advertising tools to understand how visitors interact with our website.
+          </p>
+        </Section>
+
+        <Section title="Data Security">
+          <p>
+            We implement reasonable administrative, technical, and physical safeguards designed to protect your information. However, no method of transmission or storage is completely secure, and we cannot guarantee absolute security.
+          </p>
+        </Section>
+
+        <Section title="Third-Party Services">
+          <p>
+            We use trusted third-party platforms to deliver our services, including GoHighLevel, which acts as a data processor for our CRM, SMS and communications, forms, and marketing automation. We also use a third-party payment processor to securely handle transactions, and analytics and advertising platforms (such as Meta and Google) to measure and improve our marketing. These providers process information on our behalf and are expected to maintain appropriate safeguards.
+          </p>
+        </Section>
+
+        <Section title="Your Rights">
+          <p>
+            Depending on your location, you may have the right to access, correct, or delete the personal information we hold about you, withdraw consent, or opt out of marketing and SMS communications. To exercise any of these rights, contact us at{" "}
+            <a href="mailto:hello@shopdollhouse.co" style={{ color: "var(--rose)", textDecoration: "underline" }}>
+              hello@shopdollhouse.co
+            </a>
+            . We will respond in accordance with applicable law.
+          </p>
+        </Section>
+
+        <Section title="Contact Information">
           <p>The Dollhouse Brand Studio</p>
+          <p>Markham, ON, Canada</p>
           <p>
             <a href="mailto:hello@shopdollhouse.co" style={{ color: "var(--rose)", textDecoration: "underline" }}>
               hello@shopdollhouse.co

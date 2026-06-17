@@ -30,7 +30,7 @@ function ctaLinkProps(newTab: boolean) {
   return newTab ? { target: "_blank", rel: "noopener noreferrer" } : {};
 }
 
-const PULSE_STYLE = `@keyframes plan-pulse{0%,100%{box-shadow:0 0 0 2px rgba(189,116,118,0.2),0 18px 48px -28px rgba(189,116,118,0.4);transform:translateY(0)}45%{box-shadow:0 0 0 7px rgba(189,116,118,0.42),0 24px 54px -24px rgba(189,116,118,0.62);transform:translateY(-3px)}}.plan-pulse{animation:plan-pulse 1.6s ease-in-out 3}`;
+export const PULSE_STYLE = `@keyframes plan-pulse{0%,100%{box-shadow:0 0 0 2px rgba(189,116,118,0.2),0 18px 48px -28px rgba(189,116,118,0.4);transform:translateY(0)}45%{box-shadow:0 0 0 7px rgba(189,116,118,0.42),0 24px 54px -24px rgba(189,116,118,0.62);transform:translateY(-3px)}}.plan-pulse{animation:plan-pulse 1.6s ease-in-out 3}`;
 
 export function pulsePlan(id: string) {
   const el = document.getElementById(id);
@@ -114,7 +114,7 @@ export function PlanComparisonSection() {
     ["Platform managed", "-", "1 platform", "3 platforms"],
     ["Posts per month", "-", "16", "24"],
     ["Comment-to-DM automation", "-", "y", "y"],
-    ["Voice AI receptionist", "y", "y", "y"],
+    ["Voice AI receptionist", "-", "-", "y"],
     ["Missed call text-back", "y", "y", "y"],
     ["Appointment reminders", "y", "y", "y"],
     ["Review management", "y", "-", "y"],
@@ -167,7 +167,7 @@ export function ResultsStatsSection() {
     <section className="px-6 py-20" style={{ background: BLUSH }}>
       <div className="mx-auto max-w-[820px] text-center">
         <Eyebrow>What Clients Are Saying</Eyebrow>
-        <div className="mt-8 grid gap-8 sm:grid-cols-3">
+        <div className="mt-8 grid gap-8 sm:grid-cols-3" data-stagger>
           {[
             ["24/7", "Voice AI answering your missed calls"],
             ["Done for you", "Content planned, created, and managed for your business"],
@@ -187,14 +187,14 @@ export function ResultsStatsSection() {
 /* ── FAQ ─────────────────────────────────────────────── */
 export function AgencyFaqSection() {
   const items: [string, string][] = [
-    ["What is included in the $500 setup fee?", "The $500 covers your full onboarding, system buildout, automation setup, CRM configuration, calendar integration, and launch prep. It is a one-time fee required upfront before your build begins. Monthly billing starts after your free 14-day trial."],
+    ["What is included in the setup fee?", "Your one-time setup fee covers your full onboarding, system buildout, automation setup, CRM configuration, calendar integration, and launch prep. It is $997 for Foundation and $500 for Starter and Growth, charged today to get started. Your monthly management then begins once your system is built and live."],
     ["What is the +$300/mo platform access fee?", "This covers your dedicated CRM platform, content tools, and the AI systems powering your automations and AI Clone. It is separate from your management fee and billed monthly alongside it."],
     ["Is ad spend included?", "No. Ad spend is never included in any package. It is paid directly by you to Meta. We recommend starting at $1,000–$2,000/mo for best results. Your package cost and ad budget are always separate."],
     ["What is the AI Clone and when is it built?", "The AI Clone is a digital version of you — built during onboarding and trained to your look, voice, and energy. It creates content that looks and sounds like you, posted to your platforms every month. Included in Starter and Growth."],
     ["What is the difference between Starter and Growth?", "Starter is one platform — fully managed with an AI Clone, 16 posts per month, and a complete automation system. Growth is all three platforms — Facebook, Instagram, and TikTok — plus paid Meta ads, dedicated strategy, and monthly strategy calls. If Starter is the launchpad, Growth is the full system."],
     ["Can I upgrade my plan later?", "Yes. Many clients start with Foundation or Starter and move into Growth when the timing is right. We will recommend the upgrade when your results support it."],
     ["Do I have to sign a contract?", "Yes. All clients sign a service agreement before work begins. You can choose a 6-month or 12-month term — whichever works best for you. Clients who commit to 12 months get one month free (you pay for 11, we work all 12). The contract outlines your deliverables, payment terms, and everything we’ve agreed to. It’s written in plain language — no legalese."],
-    ["When do I pay?", "A one-time setup fee of $500 is due when you sign. Your first monthly retainer payment starts on Day 15 — after your 14-day onboarding period. After that, you’re billed every 30 days on the same date."],
+    ["When do I pay?", "You pay only your one-time setup fee today to get started ($997 for Foundation, $500 for Starter and Growth). Your monthly billing begins once your system is live, then continues every 30 days on the same date."],
     ["What if I want to cancel before my term is up?", "We require 30 days written notice to cancel. If you cancel before your term is complete, an early termination fee equal to 2 months of your retainer is due. The setup fee is non-refundable. We’re upfront about this from day one so there are no surprises."],
     ["What happens after my term ends?", "Your agreement automatically moves to month-to-month. You can cancel anytime with 30 days notice — no new long-term commitment required."],
   ];
@@ -232,7 +232,7 @@ export function FinalCtaSection({ proposalHref, newTab = false }: { proposalHref
           Get a Free Proposal
         </a>
         <p className="mt-5" style={{ fontFamily: FONT_BODY, fontSize: "13px", color: "rgba(255,255,255,0.5)" }}>
-          First 14 days free · $500 setup due upfront · 6-month agreement
+          Setup fee due upfront · 6-month agreement
         </p>
       </div>
     </section>
@@ -242,9 +242,18 @@ export function FinalCtaSection({ proposalHref, newTab = false }: { proposalHref
 /* ── Legal footer notes ──────────────────────────────── */
 export function AgencyFooterNotes() {
   return (
-    <section className="px-6 py-10" style={{ background: CREAM }}>
-      <p className="mx-auto max-w-3xl text-center" style={{ fontFamily: FONT_BODY, fontSize: "12px", lineHeight: 1.7, color: "rgba(29,15,11,0.5)" }}>
-        $500 one-time setup fee required upfront on every plan · First 14 days of monthly management free on Starter and Growth · Ad spend is not included in any package — paid directly by you to Meta · Minimum $1,000/mo ad spend recommended
+    <section
+      className="px-6"
+      style={{
+        background: CREAM,
+        borderTop: "1px solid rgba(29,15,11,0.08)",
+        borderBottom: "1px solid rgba(29,15,11,0.08)",
+        paddingTop: "28px",
+        paddingBottom: "28px",
+      }}
+    >
+      <p className="mx-auto max-w-2xl text-center" style={{ fontFamily: FONT_BODY, fontSize: "11px", lineHeight: 1.8, color: "rgba(29,15,11,0.42)" }}>
+        One-time setup fee required upfront on every plan — $997 for Foundation, $500 for Starter and Growth · Ad spend is not included in any package and is paid directly by you to Meta · Minimum $1,000–$2,000/mo ad spend recommended
       </p>
     </section>
   );

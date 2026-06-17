@@ -213,7 +213,7 @@ const RESULTS: Record<ResultKey, {
   content: {
     type: "The Visibility Planner",
     tagline: "You have more to say than you think.",
-    body: "You're not out of ideas. You're out of a system. The blank caption box is killing your momentum because you're starting from nothing every single time. That's not a creativity problem. That's a process problem. The AI Prompt Kit gives you 200+ prompts written specifically for women building brands online. Stop waiting to feel inspired. Start posting with a plan that actually points to something.",
+    body: "You're not out of ideas. You're out of a system. The blank caption box is killing your momentum because you're starting from nothing every single time. That's not a creativity problem. That's a process problem. The AI Prompt Kit gives you 50+ prompts written specifically for women building brands online. Stop waiting to feel inspired. Start posting with a plan that actually points to something.",
     diagnosis: "Your content problem is not a lack of ideas. It is a lack of repeatable prompts.",
     focus: "Create a content system so every post points back to the offer.",
     quickWins: ["Pick your content pillars", "Use hooks that start conversations", "Turn one idea into multiple posts"],
@@ -321,7 +321,6 @@ function QuizPage() {
   const [answers, setAnswers] = useState<ResultKey[]>([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
   const [business, setBusiness] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<ResultKey>("foundation");
@@ -352,24 +351,35 @@ function QuizPage() {
       email,
       firstName,
       lastName,
-      phone,
       business,
       quizResult: nextResult,
       source: "Brand Quiz",
     };
 
-    console.log("Submitting quiz lead:", payload);
+    const QUIZ_WEBHOOK_URL =
+      "https://services.leadconnectorhq.com/hooks/ElOoFIfV3BYE54LNg3Yw/webhook-trigger/xmwCh8Imv3XWw0i0AHok";
 
-    fetch(
-      "https://services.leadconnectorhq.com/hooks/ElOoFIfV3BYE54LNg3Yw/webhook-trigger/L1o1245Pw0wy3tl4STcq",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      }
-    ).catch((err) => {
-      console.warn("Quiz webhook failed:", err);
-    });
+    console.log("🔔 [Quiz] Firing webhook to:", QUIZ_WEBHOOK_URL);
+    console.log("🔔 [Quiz] Payload:", payload);
+
+    fetch(QUIZ_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    })
+      .then((res) => {
+        console.log("✅ [Quiz] Webhook responded with HTTP", res.status, res.ok ? "(success)" : "(error)");
+      })
+      .catch((err) => {
+        console.error("❌ [Quiz] Webhook BLOCKED or failed (likely an ad blocker / privacy shield):", err);
+      });
+
+    // Backup capture so a quiz lead is never lost if the GHL webhook hiccups.
+    fetch("https://formspree.io/f/mwvrvrzj", {
+      method: "POST",
+      headers: { Accept: "application/json", "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    }).catch(() => {});
 
     setSubmitting(false);
     setPhase("result");
@@ -381,7 +391,6 @@ function QuizPage() {
     setAnswers([]);
     setName("");
     setEmail("");
-    setPhone("");
     setBusiness("");
     setResult("foundation");
   }
@@ -396,7 +405,7 @@ function QuizPage() {
         <BrandMark />
         <div className="hidden md:flex items-center gap-8" style={{ fontFamily: FONT_LUXE, fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.52)" }}>
           <Link to="/brand-room" className="hover:text-[var(--rose)] transition-colors">Brand Room</Link>
-          <a href={BRAND_KIT_URL} className="hover:text-[var(--rose)] transition-colors">Brand Kit</a>
+          <Link to="/services" className="hover:text-[var(--rose)] transition-colors">Social Media Marketing</Link>
         </div>
         <a href={BRAND_KIT_URL} className="rounded-full px-4 py-2.5 bg-[var(--ink)] text-[var(--cream)] text-[10px] tracking-[0.16em] uppercase" style={{ fontFamily: FONT_LUXE }}>
           View Brand Kit
@@ -490,7 +499,6 @@ function QuizPage() {
                 <input required placeholder="Your first name" value={name} onChange={(e) => setName(e.target.value)} className="rounded-xl px-5 py-3.5 focus:outline-none" style={{ fontFamily: FONT_BODY, background: "rgba(255,255,255,0.86)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }} />
                 <input required type="email" placeholder="Your email address" value={email} onChange={(e) => setEmail(e.target.value)} className="rounded-xl px-5 py-3.5 focus:outline-none" style={{ fontFamily: FONT_BODY, background: "rgba(255,255,255,0.86)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }} />
                 <input placeholder="What kind of brand are you building? (optional)" value={business} onChange={(e) => setBusiness(e.target.value)} className="rounded-xl px-5 py-3.5 focus:outline-none" style={{ fontFamily: FONT_BODY, background: "rgba(255,255,255,0.86)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }} />
-                <input type="tel" placeholder="Phone number (optional)" value={phone} onChange={(e) => setPhone(e.target.value)} className="rounded-xl px-5 py-3.5 focus:outline-none" style={{ fontFamily: FONT_BODY, background: "rgba(255,255,255,0.86)", border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }} />
                 <button disabled={submitting} className="mt-2 rounded-full px-6 py-4 transition-all hover:-translate-y-0.5 disabled:opacity-60" style={{ background: "var(--gold)", color: "var(--ink)", fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>
                   {submitting ? "Preparing your result..." : "Show me my result →"}
                 </button>

@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { usePageMeta } from "@/lib/use-page-meta";
+import { useScrollReveal } from "@/lib/use-scroll-reveal";
 import { PLANS, PlanCard, type Billing } from "@/components/AgencyPlans";
 import {
-  FocusedSetupSection,
   PlanComparisonSection,
   ResultsStatsSection,
   AgencyFaqSection,
   FinalCtaSection,
   AgencyFooterNotes,
+  PULSE_STYLE,
 } from "@/components/AgencySections";
 
 export const Route = createFileRoute("/services")({ component: ServicesPage });
@@ -40,6 +41,8 @@ function ServicesPage() {
     "Done-for-you social media, AI Clone content, automation, and lead systems for service businesses. Plans from $297/mo. Get a free proposal.",
   );
 
+  useScrollReveal();
+
   const [billing, setBilling] = useState<Billing>("6");
   const [pulseId, setPulseId] = useState<string | null>(null);
 
@@ -50,13 +53,13 @@ function ServicesPage() {
     setPulseId(null);
     window.requestAnimationFrame(() => {
       setPulseId(id);
-      window.setTimeout(() => setPulseId(null), 1500);
+      window.setTimeout(() => setPulseId(null), 5000);
     });
   }
 
   return (
     <main className="overflow-x-hidden text-[var(--ink)]" style={{ background: CREAM }}>
-      <style>{`@keyframes plan-pulse{0%{box-shadow:0 0 0 0 rgba(189,116,118,0)}30%{box-shadow:0 0 0 5px rgba(189,116,118,0.55)}100%{box-shadow:0 0 0 0 rgba(189,116,118,0)}}.plan-pulse{animation:plan-pulse 1.5s ease-out}`}</style>
+      <style>{PULSE_STYLE}</style>
 
       {/* ── 1 · STICKY MOBILE TOP BAR ─────────────────── */}
       <a href="#plans" className="fixed inset-x-0 top-0 z-50 block px-4 py-2.5 text-center md:hidden" style={{ background: INK, color: "#fff", fontFamily: FONT_BODY, fontSize: "0.78rem" }}>
@@ -80,9 +83,9 @@ function ServicesPage() {
             </p>
           </div>
           <div className="mx-auto mt-9 flex max-w-md flex-wrap items-center justify-center gap-x-3 gap-y-1" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: INK }}>
-            <span>First 14 days free</span>
+            <span>Done for you, every day</span>
             <span style={{ color: ROSE }}>·</span>
-            <span>$500 setup due upfront</span>
+            <span>Setup fee due upfront</span>
             <span style={{ color: ROSE }}>·</span>
             <span>6-month agreement</span>
           </div>
@@ -145,14 +148,14 @@ function ServicesPage() {
             </button>
           </div>
           <p className="mt-4" style={{ fontFamily: FONT_BODY, fontSize: "13px", color: "rgba(29,15,11,0.6)" }}>
-            6-month start · 14-day free trial · $500 setup due upfront
+            6-month start · Setup fee due upfront
           </p>
         </div>
       </section>
 
       {/* ── 5 · PLAN CARDS ────────────────────────────── */}
       <section id="plans-grid" className="px-6 pb-20 pt-10 md:pb-28" style={{ background: BLUSH }}>
-        <div className="mx-auto grid max-w-6xl items-start gap-6 lg:grid-cols-3">
+        <div className="mx-auto grid max-w-6xl items-start gap-6 lg:grid-cols-3" data-stagger>
           {PLANS.map((p) => (
             <PlanCard key={p.id} plan={p} billing={billing} pulse={pulseId === p.id} ctaHref={PROPOSAL_URL} ctaNewTab />
           ))}
@@ -160,12 +163,11 @@ function ServicesPage() {
       </section>
 
       {/* ── 6–10 · shared sections ────────────────────── */}
-      <FocusedSetupSection proposalHref={PROPOSAL_URL} newTab />
+      <AgencyFooterNotes />
       <PlanComparisonSection />
       <ResultsStatsSection />
       <AgencyFaqSection />
       <FinalCtaSection proposalHref={PROPOSAL_URL} newTab />
-      <AgencyFooterNotes />
     </main>
   );
 }

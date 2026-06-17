@@ -5,6 +5,7 @@ import productImage from "@/assets/product-brand-kit.jpg";
 import workbookImage from "@/assets/product-workbook.jpg";
 import promptKitImage from "@/assets/product-ai-prompt-kit.jpg";
 import { usePageMeta } from "@/lib/use-page-meta";
+import { useScrollReveal } from "@/lib/use-scroll-reveal";
 
 export const Route = createFileRoute("/brand-room")({ component: BrandRoomPage });
 
@@ -64,8 +65,8 @@ const products = [
     regular: "$37",
     label: "Create the content",
     tagline: "For the woman who knows what to post but can't find the words.",
-    body: "200+ prompts across 8 brand rooms — written for women building brands online. No more blank captions.",
-    bullets: ["200+ prompts organised by content type", "Social posts, emails, DMs, brand story", "Built for the Dollhouse content pillars", "Works with any AI tool", "Start using it today"],
+    body: "50+ prompts across 8 brand rooms — written for women building brands online. No more blank captions.",
+    bullets: ["50+ prompts organised by content type", "Social posts, emails, DMs, brand story", "Built for the Dollhouse content pillars", "Works with any AI tool", "Start using it today"],
     href: SALES_PAGES.ai,
     checkout: CHECKOUT.ai,
     image: promptKitImage,
@@ -184,11 +185,34 @@ function Button({ href, children, rose = false, ghost = false }: { href: string;
   );
 }
 
+
+function LiveSetupCta() {
+  return (
+    <div
+      className="mx-auto mt-7 flex max-w-xl flex-col items-center gap-2 rounded-2xl px-6 py-5"
+      style={{ background: "rgba(189,116,118,0.08)", border: "1px solid rgba(189,116,118,0.28)" }}
+    >
+      <p style={{ fontFamily: FONT_BODY, fontSize: "0.92rem", lineHeight: 1.6, color: "var(--ink)" }}>
+        Want your social media done for you? We build the content, ads, and follow-up so your business grows while you focus on the work.
+      </p>
+      <a
+        href="/"
+        className="rounded-full px-7 py-3 transition-opacity hover:opacity-90"
+        style={{ background: "#bd7476", color: "#fff", fontFamily: FONT_LUXE, fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase" }}
+      >
+        Explore Our Marketing Plans →
+      </a>
+    </div>
+  );
+}
+
 function BrandRoomPage() {
   usePageMeta(
     "The Dollhouse Brand Room | The Dollhouse Brand Studio",
     "Three digital tools for women building brands online: AI Prompt Kit, Brand Workbook, Brand Kit Blueprint, and the full Brand Room Suite.",
   );
+
+  useScrollReveal();
 
   return (
     <main className="min-h-screen overflow-x-hidden text-[var(--ink)]" style={{ background: "var(--cream)" }}>
@@ -254,6 +278,8 @@ function BrandRoomPage() {
             <Button href="#inside">Enter the Brand Room — From $17</Button>
             <a href="#inside" className="btn-ghost">See what's inside ↓</a>
           </div>
+
+          <LiveSetupCta />
         </div>
       </header>
 

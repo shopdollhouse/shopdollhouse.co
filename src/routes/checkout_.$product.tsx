@@ -15,7 +15,7 @@ const checkoutLinks: Record<string, string> = {
 };
 
 const products: Record<string, { name: string; price: string; regular?: string; tagline: string }> = {
-  "ai-prompt-kit": { name: "AI Prompt Kit", price: "$17", regular: "$37", tagline: "200+ prompts for content that converts." },
+  "ai-prompt-kit": { name: "AI Prompt Kit", price: "$17", regular: "$37", tagline: "50+ prompts for content that converts." },
   "brand-workbook": { name: "Brand Workbook", price: "$47", regular: "$261", tagline: "Clarity on your offer, audience & message." },
   "brand-kit": { name: "Brand Kit Blueprint", price: "$97", regular: "$145", tagline: "Your full visual identity, built from scratch." },
   "brand-room-suite": { name: "The Full Suite", price: "$127", regular: "$161", tagline: "All three tools. Everything you need." },

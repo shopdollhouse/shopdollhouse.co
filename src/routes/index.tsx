@@ -27,8 +27,9 @@ import leadSystemImage from "@/assets/path-lead-system.jpg";
 import brandRoomImage from "@/assets/path-brand-room.jpg";
 import { managedServiceLinks, systemServices } from "@/lib/system-services";
 import { usePageMeta } from "@/lib/use-page-meta";
+import { useScrollReveal } from "@/lib/use-scroll-reveal";
 import { PLANS, PlanCard } from "@/components/AgencyPlans";
-import { FocusedSetupSection, PlanComparisonSection, ResultsStatsSection, AgencyFaqSection, FinalCtaSection, AgencyFooterNotes, pulsePlan } from "@/components/AgencySections";
+import { PlanComparisonSection, ResultsStatsSection, AgencyFaqSection, FinalCtaSection, AgencyFooterNotes, pulsePlan } from "@/components/AgencySections";
 
 export const Route = createFileRoute("/")({ component: Index });
 
@@ -159,7 +160,7 @@ function Nav() {
       {/* Urgency banner */}
       <a
         href="#contact"
-        className="fixed top-0 inset-x-0 z-50 h-9 flex items-center justify-center gap-3 px-4 hover:opacity-90 transition-opacity"
+        className="bar-shimmer fixed top-0 inset-x-0 z-50 h-9 flex items-center justify-center gap-3 px-4 hover:opacity-90 transition-opacity"
         style={{ backgroundColor: "var(--ink)" }}
       >
         <span style={{ color: "var(--gold)", fontSize: "0.55rem" }}>✦</span>
@@ -167,7 +168,7 @@ function Nav() {
           className="text-[var(--cream)] text-[10px] tracking-[0.2em] uppercase"
           style={{ fontFamily: "'Jost', sans-serif" }}
         >
-          Founding client offer — try us free for 14 days
+          Founding client offer — limited spots available
         </span>
         <span style={{ color: "var(--gold)", fontSize: "0.55rem" }}>✦</span>
       </a>
@@ -415,12 +416,24 @@ function Hero() {
   return (
     <header
       className="relative min-h-[calc(100svh-36px)] flex items-center justify-center px-4 pt-36 pb-10 overflow-hidden md:pt-24"
-      style={{
-        backgroundImage: `url(${bgImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
     >
+      {/* Animated background — slow cinematic zoom */}
+      <div
+        aria-hidden
+        className="bg-kenburns absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `url(${bgImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
+      {/* Aurora — living light drifting over the photo */}
+      <div aria-hidden className="aurora absolute inset-0 pointer-events-none" />
+      {/* Floating gold sparkles */}
+      <span aria-hidden className="sparkle-drift" style={{ top: "18%", left: "12%", fontSize: "16px" }}>✦</span>
+      <span aria-hidden className="sparkle-drift" style={{ top: "30%", right: "14%", fontSize: "12px", animationDelay: "1.6s" }}>✦</span>
+      <span aria-hidden className="sparkle-drift" style={{ bottom: "22%", left: "20%", fontSize: "11px", animationDelay: "3s" }}>✦</span>
+      <span aria-hidden className="sparkle-drift" style={{ bottom: "30%", right: "22%", fontSize: "15px", animationDelay: "2.2s" }}>✦</span>
       {/* Base wash — tones down the photo */}
       <div
         aria-hidden
@@ -467,7 +480,9 @@ function Hero() {
           className="reveal mt-4 flex justify-center text-[var(--gold)]"
           style={{ animationDelay: "0.15s" }}
         >
-          <DoorIcon className="w-7 h-10" />
+          <span className="float-slow inline-flex">
+            <DoorIcon className="w-7 h-10" />
+          </span>
         </div>
 
         <p
@@ -562,7 +577,7 @@ function Hero() {
         >
           {[
             { stat: "$297", label: "Plans Start" },
-            { stat: "14 Days", label: "Founding Trial" },
+            { stat: "Day 1", label: "We Start" },
             { stat: "24/7", label: "Lead Response" },
           ].map(({ stat, label }, i) => (
             <div key={label} className={`flex flex-col items-center gap-1 px-2 ${i < 2 ? "border-r border-[var(--gold)]/25" : ""}`}>
@@ -586,7 +601,7 @@ function Hero() {
           className="reveal mt-3 text-[var(--ink)]/60 italic"
           style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1rem, 2vw, 1.2rem)", animationDelay: "0.85s" }}
         >
-          First 14 days of management free · Done for you, every day · Continue only if it feels like a fit
+          Done for you, every day · We start building the moment you join · Built around your business
         </p>
       </div>
 
@@ -752,6 +767,30 @@ function PlatformSymbol({ name }: { name: string }) {
   );
 }
 
+/* ─── Marquee strip — scrolling brand ticker ──────────── */
+function MarqueeStrip() {
+  const items = ["AI Clone", "Content", "Websites", "Ads", "Automation", "Lead Follow-Up", "Reviews", "Booking"];
+  const row = items.map((t) => (
+    <span key={t} className="inline-flex items-center">
+      <span
+        className="italic"
+        style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.5rem, 3vw, 2.2rem)", color: "var(--rose)", padding: "0 1.6rem" }}
+      >
+        {t}
+      </span>
+      <span style={{ color: "var(--gold)", fontSize: "0.8rem" }}>✦</span>
+    </span>
+  ));
+  return (
+    <section aria-hidden className="overflow-hidden py-5" style={{ background: "var(--cream)", borderTop: "1px solid rgba(200,168,100,0.22)", borderBottom: "1px solid rgba(200,168,100,0.22)" }}>
+      <div className="marquee-track">
+        <div className="inline-flex items-center">{row}</div>
+        <div className="inline-flex items-center">{row}</div>
+      </div>
+    </section>
+  );
+}
+
 function TrustBar() {
   const touchpoints = [
     { icon: Video, title: "Content", body: "Show up consistently" },
@@ -826,7 +865,7 @@ function HowItWorks() {
         title="How we take it off your plate"
         italic="A simple handoff, then a managed system."
       />
-      <div className="mt-16 max-w-5xl mx-auto grid md:grid-cols-3 gap-5 relative">
+      <div className="mt-16 max-w-5xl mx-auto grid md:grid-cols-3 gap-5 relative" data-stagger>
         {/* Connector line between steps */}
         <div
           aria-hidden
@@ -1653,7 +1692,7 @@ function ProofSection() {
         />
 
         <div className="mt-14 rounded-[34px] p-5 md:p-8" style={{ background: "rgba(255,250,246,0.68)", border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)", boxShadow: "0 34px 80px -54px rgba(90,45,35,0.45)" }}>
-          <div className="grid gap-4 md:grid-cols-5">
+          <div className="grid gap-4 md:grid-cols-5" data-stagger>
             {flow.map(({ icon: Icon, label, body }, index) => (
               <div key={label} className="relative rounded-2xl p-5 text-center" style={{ background: index === 4 ? "var(--ink)" : "rgba(255,255,255,0.58)", border: "1px solid rgba(200,168,100,0.2)" }}>
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full" style={{ background: index === 4 ? "rgba(200,168,100,0.14)" : "rgba(200,168,100,0.12)", color: "var(--gold)" }}>
@@ -1781,12 +1820,11 @@ function AICloneSection() {
             your own
           </p>
           <h2
-            className="reveal mx-auto max-w-4xl"
+            className="reveal text-shimmer mx-auto max-w-4xl"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: "clamp(3.7rem, 8.2vw, 7.6rem)",
               fontWeight: 400,
-              color: "var(--rose)",
               lineHeight: 0.9,
               letterSpacing: "0.03em",
               textTransform: "uppercase",
@@ -1852,7 +1890,7 @@ function AICloneSection() {
                   Real Photo
                 </span>
                 <span
-                  className="rounded-full px-3 py-2 text-center font-semibold"
+                  className="ai-badge-pulse rounded-full px-3 py-2 text-center font-semibold"
                   style={{
                     background: "rgba(255,250,246,0.96)",
                     color: "var(--gold)",
@@ -1860,10 +1898,9 @@ function AICloneSection() {
                     fontSize: "0.64rem",
                     letterSpacing: "0.16em",
                     textTransform: "uppercase",
-                    boxShadow: "0 10px 22px -14px rgba(30,15,10,0.55)",
                   }}
                 >
-                  AI Clone
+                  ✦ AI Clone
                 </span>
               </div>
               <div className="absolute inset-0 grid grid-cols-2">
@@ -1871,7 +1908,12 @@ function AICloneSection() {
                   <img src={mandyPhoto} alt="Real portrait reference" className="h-full w-full object-cover" style={{ filter: "saturate(0.96) contrast(1.02)", objectPosition: "center 18%" }} />
                 </div>
                 <div className="relative overflow-hidden" style={{ background: "rgba(255,250,246,0.68)" }}>
-                  <img src={mandyAIClonePreview} alt="AI clone example portrait preview" className="h-full w-full object-cover" style={{ filter: "saturate(0.98) contrast(1.02)", objectPosition: "center 14%" }} />
+                  <img src={mandyAIClonePreview} alt="AI clone example portrait preview" className="ai-kenburns h-full w-full object-cover" style={{ filter: "saturate(0.98) contrast(1.02)", objectPosition: "center 14%" }} />
+                  <span aria-hidden className="ai-scan" />
+                  <span aria-hidden className="ai-shimmer" />
+                  <span aria-hidden className="ai-sparkle" style={{ top: "16%", right: "12%", fontSize: "17px" }}>✦</span>
+                  <span aria-hidden className="ai-sparkle" style={{ top: "58%", right: "26%", fontSize: "11px", animationDelay: "1.4s" }}>✦</span>
+                  <span aria-hidden className="ai-sparkle" style={{ top: "36%", left: "12%", fontSize: "10px", animationDelay: "0.8s" }}>✦</span>
                 </div>
               </div>
               <div className="absolute bottom-0 left-1/2 top-0 z-[1] w-px -translate-x-1/2 bg-[rgba(255,250,246,0.72)]" />
@@ -1926,7 +1968,7 @@ function AICloneSection() {
         <div className="max-w-5xl mx-auto mb-16">
           <p className="text-center text-[10px] tracking-luxe uppercase mb-3 font-semibold" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>Here's a breakdown of what you get</p>
           <h3 className="text-center mb-8 italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: "clamp(2rem, 4vw, 3.4rem)", color: "var(--rose)" }}>A content engine with your clone at the center</h3>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4" data-stagger>
             {included.map(({ icon: Icon, title, desc }) => (
               <div key={title} className="rounded-2xl p-5" style={{ background: "rgba(255,250,246,0.75)", border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)", boxShadow: "0 18px 48px -38px rgba(90,45,35,0.55)" }}>
                 <div className="w-9 h-9 rounded-full flex items-center justify-center mb-4" style={{ background: "rgba(200,168,100,0.12)", color: "var(--gold)" }}><Icon size={18} strokeWidth={1.8} /></div>
@@ -1940,7 +1982,7 @@ function AICloneSection() {
         <div className="max-w-5xl mx-auto mb-12 md:mb-16">
           <p className="text-center text-[10px] tracking-luxe uppercase mb-3 font-semibold" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>Included implementation assets</p>
           <h3 className="text-center mb-8 italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: "clamp(1.9rem, 3.8vw, 3.2rem)", color: "var(--rose)" }}>Everything we need to make your content system convert</h3>
-          <div className="grid sm:grid-cols-3 gap-4">
+          <div className="grid sm:grid-cols-3 gap-4" data-stagger>
             {bonuses.map(({ icon: Icon, title, desc }) => (
               <div key={title} className="rounded-2xl p-5" style={{ background: "rgba(255,250,246,0.72)", border: "1px solid color-mix(in oklab, var(--gold) 32%, transparent)" }}>
                 <div className="flex items-center justify-between gap-3 mb-5">
@@ -1966,6 +2008,7 @@ function AICloneSection() {
     </section>
   );
 }
+
 
 function Pricing() {
   const [contractTerm, setContractTerm] = useState<"6" | "12">("6");
@@ -2028,8 +2071,8 @@ function Pricing() {
     },
     {
       name: "Growth",
-      price: "$2,500",
-      monthlyPrice: 2500,
+      price: "$2,497",
+      monthlyPrice: 2497,
       platformFee: 300,
       fit: "Featured for steady booked leads",
       outcome: "Three platforms running, an AI Clone posting for you, leads followed up automatically, and ads bringing in new clients — while you focus on the work.",
@@ -2041,7 +2084,7 @@ function Pricing() {
       features: [
         "3 platforms fully managed — Facebook, Instagram & TikTok — nothing to post, nothing to manage",
         "AI Clone or custom brand mascot — built during onboarding, active across all 3 platforms",
-        "6 AI Clone videos/month — 2 pinned per platform, always your best content front and centre",
+        "Your AI Clone shows up consistently on all three platforms on your behalf, so your audience sees you every day without you ever picking up a camera",
         "24 posts/month — 8 per platform, Reels, Carousels & Static — all on-brand",
         "Content approval — you see and approve everything before it goes live",
         "Dedicated content strategy — pillars, hashtags, caption writing & optimal posting times",
@@ -2057,13 +2100,6 @@ function Pricing() {
       ],
     },
   ];
-  const appointmentBooking = {
-    name: "Appointment Booking",
-    price: "$500",
-    summary:
-      "A focused setup for businesses that need leads to book faster: calendar connection, booking flow, confirmations, and appointment reminders.",
-    features: ["Booking calendar setup", "Confirmation text/email flow", "Reminder sequence", "Simple lead handoff"],
-  };
   const getPlanMath = (tier: (typeof tiers)[number]) => {
     const regularTotal = tier.monthlyPrice * contractMonths + setupFee;
     const bonusMonths = contractTerm === "12" ? 1 : 0;
@@ -2098,82 +2134,202 @@ function Pricing() {
         <p className="mx-auto mt-5 max-w-2xl text-[var(--ink)]/58 leading-7" style={{ fontFamily: "'DM Sans', sans-serif" }}>
           Start with the foundation, then scale into the managed growth system when you are ready.
         </p>
+
       </div>
 
-      <div className="mt-8 flex justify-center px-1">
-        <div
-          className="grid w-full max-w-[430px] grid-cols-2 gap-1 rounded-full p-1"
-          style={{
-            background: "rgba(255,250,246,0.72)",
-            border: "1px solid rgba(200,168,100,0.28)",
-            boxShadow: "0 18px 40px -28px rgba(120,70,55,0.42), inset 0 1px 0 rgba(255,255,255,0.68)",
-          }}
-        >
-          {[
-            { value: "6", label: "6 Months", badge: "" },
-            { value: "12", label: "12 Months", badge: "1 Month Free" },
-          ].map((option) => {
-            const active = contractTerm === option.value;
-            return (
-              <button
-                key={option.value}
-                type="button"
-                aria-label={option.badge ? `${option.label}, ${option.badge}` : option.label}
-                onClick={() => setContractTerm(option.value as "6" | "12")}
-                className="flex min-h-[34px] items-center justify-center gap-1 rounded-full px-2 py-2 transition-all sm:min-h-[38px] sm:gap-1.5 sm:px-2.5"
-                style={{
-                  background: active ? "var(--ink)" : "transparent",
-                  color: active ? "var(--cream)" : "rgba(30,15,10,0.58)",
-                  fontFamily: "'Jost', sans-serif",
-                  fontSize: "clamp(0.5rem, 0.9vw, 0.58rem)",
-                  letterSpacing: "0.14em",
-                  textTransform: "uppercase",
-                  fontWeight: 800,
-                  boxShadow: active ? "0 10px 22px -14px rgba(30,15,10,0.55)" : "none",
-                }}
-              >
-                <span>{option.label}</span>
-                {option.badge && (
-                  <span
-                    aria-hidden="true"
-                    className="rounded-full px-1.5 py-0.5 sm:px-2"
+      <div className="mt-10 max-w-6xl mx-auto grid md:grid-cols-3 gap-8 lg:gap-7 items-start" data-stagger>
+        {/* Foundation — has its own independent 3/6-month toggle inside the card */}
+        <div id={`plan-${PLANS[0].id}`} className="scroll-mt-32">
+          <PlanCard plan={PLANS[0]} billing="6" ctaHref="#contact" />
+        </div>
+
+        {/* Starter + Growth — controlled by the shared 6/12-month toggle below */}
+        <div className="md:col-span-2 flex flex-col gap-6">
+          {/* 6-Month / 12-Month toggle — applies to Starter & Growth only */}
+          <div className="flex flex-col items-center gap-3">
+            <div
+              className="grid w-full max-w-[430px] grid-cols-2 gap-1 rounded-full p-1"
+              style={{
+                background: "rgba(255,250,246,0.72)",
+                border: "1px solid rgba(200,168,100,0.28)",
+                boxShadow: "0 18px 40px -28px rgba(120,70,55,0.42), inset 0 1px 0 rgba(255,255,255,0.68)",
+              }}
+            >
+              {[
+                { value: "6", label: "6 Months", badge: "" },
+                { value: "12", label: "12 Months", badge: "1 Month Free" },
+              ].map((option) => {
+                const active = contractTerm === option.value;
+                return (
+                  <button
+                    key={option.value}
+                    type="button"
+                    aria-label={option.badge ? `${option.label}, ${option.badge}` : option.label}
+                    onClick={() => setContractTerm(option.value as "6" | "12")}
+                    className="flex min-h-[34px] items-center justify-center gap-1 rounded-full px-2 py-2 transition-all sm:min-h-[38px] sm:gap-1.5 sm:px-2.5"
                     style={{
-                      background: "var(--gold)",
-                      color: "var(--ink)",
+                      background: active ? "var(--ink)" : "transparent",
+                      color: active ? "var(--cream)" : "rgba(30,15,10,0.58)",
                       fontFamily: "'Jost', sans-serif",
-                      fontSize: "clamp(0.38rem, 0.7vw, 0.46rem)",
-                      letterSpacing: "0.07em",
+                      fontSize: "clamp(0.5rem, 0.9vw, 0.58rem)",
+                      letterSpacing: "0.14em",
                       textTransform: "uppercase",
-                      whiteSpace: "nowrap",
                       fontWeight: 800,
+                      boxShadow: active ? "0 10px 22px -14px rgba(30,15,10,0.55)" : "none",
                     }}
                   >
-                    {option.badge}
-                  </span>
-                )}
-              </button>
-            );
-          })}
+                    <span>{option.label}</span>
+                    {option.badge && (
+                      <span
+                        aria-hidden="true"
+                        className="rounded-full px-1.5 py-0.5 sm:px-2"
+                        style={{
+                          background: "var(--gold)",
+                          color: "var(--ink)",
+                          fontFamily: "'Jost', sans-serif",
+                          fontSize: "clamp(0.38rem, 0.7vw, 0.46rem)",
+                          letterSpacing: "0.07em",
+                          textTransform: "uppercase",
+                          whiteSpace: "nowrap",
+                          fontWeight: 800,
+                        }}
+                      >
+                        {option.badge}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+            <p className="text-center text-[var(--ink)]/48" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem" }}>
+              {contractTerm === "6" ? "6-month start · Setup fee due upfront" : "12-month plan · 1 month free · Setup fee due upfront"}
+            </p>
+          </div>
+
+          {/* Starter & Growth side by side */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-7 items-start">
+            {PLANS.slice(1).map((p) => (
+              <div key={p.id} id={`plan-${p.id}`} className="scroll-mt-32">
+                <PlanCard plan={p} billing={contractTerm} ctaHref="#contact" />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-      <p className="mt-4 text-center text-[var(--ink)]/48" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem" }}>
-        {contractTerm === "6" ? "6-month start · 14-day free trial · $500 setup due upfront" : "12-month plan · 1 month free · 14-day free trial · $500 setup due upfront"}
-      </p>
 
 
-      <div className="mt-12 max-w-6xl mx-auto grid md:grid-cols-3 gap-8 lg:gap-7 items-start">
-        {PLANS.map((p) => (
-          <div key={p.id} id={`plan-${p.id}`} className="scroll-mt-32">
-            <PlanCard plan={p} billing={contractTerm} ctaHref="#contact" />
+      {/* [LSA upsell removed — now integrated into Foundation card] */}
+      <div className="mt-10 max-w-5xl mx-auto hidden">
+        <div className="text-center mb-6">
+          <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
+            Foundation Plan Add-On
+          </p>
+          <h3
+            className="mt-2 italic text-[var(--ink)]"
+            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.75rem, 3vw, 2.4rem)", lineHeight: 1.05 }}
+          >
+            Google Local Service Ads
+          </h3>
+          <p
+            className="mt-3 text-[var(--ink)]/60 leading-7 max-w-xl mx-auto"
+            style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem", fontStyle: "italic" }}
+          >
+            Your business shows as sponsored with a top rating on Google. You only pay per result, not per click.
+          </p>
+          <div className="mt-4 flex items-center gap-3 max-w-xs mx-auto">
+            <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 45%, transparent), transparent)" }} />
+            <span style={{ color: "var(--gold)", fontSize: "0.7rem" }}>♥</span>
+            <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 45%, transparent), transparent)" }} />
           </div>
-        ))}
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* Card 1 — Basic $297 */}
+          <article
+            className="rounded-[28px] p-8 flex flex-col"
+            style={{
+              background: "linear-gradient(180deg, #fbf3ee 0%, #f6e8e1 100%)",
+              border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)",
+              boxShadow: "0 30px 60px -30px rgba(160,110,95,0.35), inset 0 1px 0 rgba(255,255,255,0.6)",
+            }}
+          >
+            <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
+              Google LSA · Basic Management
+            </p>
+            <h4 className="mt-3 italic text-[var(--ink)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.55rem, 2.2vw, 2rem)", lineHeight: 1.1 }}>
+              Basic Management
+            </h4>
+            <div className="mt-5 flex items-end gap-1.5">
+              <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.5rem, 3.8vw, 3.25rem)", fontStyle: "italic", color: "var(--gold)", lineHeight: 1 }}>$297</span>
+              <span className="mb-1.5" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.5rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(30,15,10,0.45)" }}>/mo</span>
+            </div>
+            <div className="my-5 flex items-center gap-3">
+              <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 40%, transparent), transparent)" }} />
+              <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>✦</span>
+              <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 40%, transparent), transparent)" }} />
+            </div>
+            <ul className="space-y-3 flex-1">
+              {["Your business listed as a Google Sponsored result", "Top-rated badge displayed on your listing", "Pay per lead — not per click", "Ad setup, optimization, and monthly management", "Budget monitoring and performance reporting"].map((f, i) => (
+                <li key={i} className="flex items-start gap-3" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.88rem", color: "rgba(30,15,10,0.82)" }}>
+                  <PlanFeatureIcon index={i} filled={false} />
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-7 flex items-center gap-3 rounded-xl px-4 py-3" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.3)" }}>
+              <span style={{ color: "var(--gold)", fontSize: "0.75rem", flexShrink: 0 }}>✦</span>
+              <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.78rem", color: "var(--ink)", opacity: 0.75 }}>Pay 3 months upfront — your 4th month is free.</p>
+            </div>
+            <a href="#contact" className="mt-5 w-full block rounded-2xl px-5 py-4 text-center transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ backgroundColor: "var(--gold)", boxShadow: "0 12px 28px -10px rgba(160,110,60,0.5)" }}>
+              <p className="text-[var(--ink)] leading-tight" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.1rem", fontStyle: "italic", fontWeight: 700 }}>Ask About Google LSA →</p>
+            </a>
+          </article>
+
+          {/* Card 2 — With AI Conversations $497 */}
+          <article
+            className="rounded-[28px] p-8 flex flex-col relative"
+            style={{
+              background: "linear-gradient(180deg, #fbf3ee 0%, #f6e8e1 100%)",
+              border: "2px solid color-mix(in oklab, var(--gold) 55%, transparent)",
+              boxShadow: "0 40px 80px -24px rgba(160,90,80,0.4), 0 0 0 1px rgba(200,168,100,0.2), inset 0 1px 0 rgba(255,255,255,0.7)",
+            }}
+          >
+            <span className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-2 rounded-full text-[10px] tracking-luxe uppercase whitespace-nowrap" style={{ fontFamily: "'Jost', sans-serif", backgroundColor: "var(--gold)", color: "var(--ink)", fontWeight: 700, boxShadow: "0 8px 20px -10px rgba(120,80,60,0.5)" }}>
+              Most Popular
+            </span>
+            <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
+              Google LSA · With AI Conversations
+            </p>
+            <h4 className="mt-3 italic text-[var(--ink)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.55rem, 2.2vw, 2rem)", lineHeight: 1.1 }}>
+              Google LSA + AI Conversations
+            </h4>
+            <div className="mt-5 flex items-end gap-1.5">
+              <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.5rem, 3.8vw, 3.25rem)", fontStyle: "italic", color: "var(--gold)", lineHeight: 1 }}>$497</span>
+              <span className="mb-1.5" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.5rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(30,15,10,0.45)" }}>/mo</span>
+            </div>
+            <div className="my-5 flex items-center gap-3">
+              <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 40%, transparent), transparent)" }} />
+              <span style={{ color: "var(--gold)", fontSize: "0.6rem" }}>✦</span>
+              <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 40%, transparent), transparent)" }} />
+            </div>
+            <ul className="space-y-3 flex-1">
+              {["Everything in the Basic plan", "AI-powered conversations that respond to every lead instantly", "Automatic lead follow-up so no inquiry goes unanswered", "Smart qualification — AI captures name, need, and contact details", "Seamlessly hands off hot leads to your team or booking system"].map((f, i) => (
+                <li key={i} className="flex items-start gap-3" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.88rem", color: "rgba(30,15,10,0.82)" }}>
+                  <PlanFeatureIcon index={i} filled={false} />
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-7 flex items-center gap-3 rounded-xl px-4 py-3" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.3)" }}>
+              <span style={{ color: "var(--gold)", fontSize: "0.75rem", flexShrink: 0 }}>✦</span>
+              <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.78rem", color: "var(--ink)", opacity: 0.75 }}>Pay 3 months upfront — your 4th month is free.</p>
+            </div>
+            <a href="#contact" className="mt-5 w-full block rounded-2xl px-5 py-4 text-center transition-all hover:-translate-y-0.5 hover:opacity-90" style={{ backgroundColor: "var(--gold)", boxShadow: "0 12px 28px -10px rgba(160,110,60,0.5)" }}>
+              <p className="text-[var(--ink)] leading-tight" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.1rem", fontStyle: "italic", fontWeight: 700 }}>Ask About Google LSA + AI →</p>
+            </a>
+          </article>
+        </div>
       </div>
-
-
-      {/* Pricing footnote */}
-      <p className="text-center mt-6 mb-2" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.38)" }}>
-        Foundation starts at $297/mo &nbsp;·&nbsp; first 14 days of monthly management free &nbsp;·&nbsp; one-time $500 setup fee due upfront
-      </p>
 
     </section>
   );
@@ -2438,92 +2594,144 @@ function ComparisonTable() {
   );
 }
 
+/* ─── FormSelect ───────────────────────────────────────── */
+function FormSelect({
+  value, onChange, options,
+}: { value: string; onChange: (v: string) => void; options: string[] }) {
+  const [open, setOpen] = useState(false);
+  const ROSE = "#bd7476";
+  const ic = "w-full rounded-xl bg-white/72 border px-5 py-3.5 text-[var(--ink)] focus:outline-none transition";
+  return (
+    <div className="relative">
+      {/* Invisible overlay to close on outside click */}
+      {open && (
+        <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
+      )}
+      <button
+        type="button"
+        onClick={() => setOpen(o => !o)}
+        className={`${ic} flex items-center justify-between gap-2`}
+        style={{
+          borderColor: open ? ROSE : "rgba(200,168,100,0.3)",
+          boxShadow: open ? `0 0 0 2px rgba(189,116,118,0.18)` : "none",
+          fontFamily: "'Cormorant Garamond', serif",
+          fontSize: "1rem",
+        }}
+      >
+        <span style={{ color: ROSE }}>{value}</span>
+        <svg
+          viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6"
+          style={{ width: "13px", height: "13px", color: ROSE, flexShrink: 0,
+            transform: open ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.2s ease" }}
+        >
+          <path d="M3 6l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+      {open && (
+        <div
+          className="absolute z-50 w-full mt-1 rounded-xl overflow-hidden"
+          style={{
+            background: "rgba(255,252,249,0.98)",
+            border: `1px solid rgba(189,116,118,0.35)`,
+            boxShadow: "0 16px 40px -16px rgba(120,60,55,0.35)",
+            backdropFilter: "blur(12px)",
+          }}
+        >
+          {options.map((opt) => {
+            const selected = opt === value;
+            return (
+              <button
+                key={opt}
+                type="button"
+                onClick={() => { onChange(opt); setOpen(false); }}
+                className="w-full px-5 py-3 text-left transition-colors"
+                style={{
+                  background: selected ? ROSE : "transparent",
+                  color: selected ? "#fff" : "var(--ink)",
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "1rem",
+                  borderBottom: "1px solid rgba(200,168,100,0.12)",
+                }}
+              >
+                {opt}
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 /* ─── Contact ─────────────────────────────────────────── */
 function Contact() {
-  const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [showCalendar, setShowCalendar] = useState(false);
+  const [step, setStep] = useState(0);
 
   // Load the GoHighLevel booking-widget script once (auto-resizes the embedded calendar).
   useEffect(() => {
     const SRC = "https://link.msgsndr.com/js/form_embed.js";
     if (document.querySelector(`script[src="${SRC}"]`)) return;
     const s = document.createElement("script");
-    s.src = SRC;
-    s.async = true;
+    s.src = SRC; s.async = true;
     document.body.appendChild(s);
   }, []);
+  const [status, setStatus] = useState<"idle" | "sending" | "done">("idle");
+  const TOTAL_STEPS = 6;
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    const get = (k: string) => (data.get(k)?.toString() ?? "").trim();
+  const [fd, setFd] = useState({
+    first_name: "", last_name: "", email: "", phone: "",
+    business_name: "", industry: "", website: "",
+    plan: "Foundation — $297/mo", main_goal: "Get more booked leads",
+    message: "",
+    contract_term: "3 months", setup_readiness: "I understand there is a one-time setup fee",
+    industry_other: "",
+  });
 
-    // This form has separate first/last name fields, so use them directly.
+  const set = (k: keyof typeof fd) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+    setFd(prev => ({ ...prev, [k]: e.target.value }));
+
+  function handleSubmit() {
+    setStatus("sending");
     const payload = {
-      firstName: get("first_name"),
-      lastName: get("last_name"),
-      email: get("email"),
-      businessName: get("business_name"),
-      industry: get("industry"),
-      website: get("website"),
-      plan: get("plan"),
-      commitment: get("contract_term"),
-      setupReadiness: get("setup_readiness"),
-      mainGoal: get("main_goal"),
-      winDescription: get("message"),
+      firstName: fd.first_name, lastName: fd.last_name,
+      email: fd.email, phone: fd.phone,
+      businessName: fd.business_name, industry: fd.industry === "Something else" && fd.industry_other ? fd.industry_other : fd.industry, website: fd.website,
+      plan: fd.plan, mainGoal: fd.main_goal,
+      winDescription: fd.message,
+      commitment: fd.contract_term, setupReadiness: fd.setup_readiness,
       source: "Proposal Form",
     };
-
-    console.log("Proposal submitted:", payload);
-
-    // CRM inbound webhook — fire and forget; never block the confirmation.
     fetch("https://services.leadconnectorhq.com/hooks/ElOoFIfV3BYE54LNg3Yw/webhook-trigger/00b38935-1381-43b0-99c7-c0c33be9f456", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    }).catch((err) => {
-      console.warn("Proposal webhook failed:", err);
-    });
-
-    // Keep the Formspree email backup (also non-blocking).
-    const all: Record<string, string> = {};
-    data.forEach((value, key) => { all[key] = value as string; });
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload),
+    }).catch((err) => console.warn("Proposal webhook failed:", err));
     fetch("https://formspree.io/f/mwvrvrzj", {
-      method: "POST",
-      headers: { Accept: "application/json", "Content-Type": "application/json" },
-      body: JSON.stringify(all),
+      method: "POST", headers: { Accept: "application/json", "Content-Type": "application/json" }, body: JSON.stringify(payload),
     }).catch(() => {});
-
-    // Always confirm to the user, regardless of webhook outcome.
     setStatus("done");
-    form.reset();
   }
 
-  const inputClass = "w-full rounded-xl bg-white/72 border border-[var(--gold)]/30 px-5 py-3.5 text-[var(--ink)] placeholder:text-[var(--ink)]/35 focus:outline-none focus:border-[var(--rose)] focus:bg-white/90 transition";
-  const inputStyle = { fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem" };
-  const labelClass = "block text-[10px] tracking-luxe uppercase text-[var(--gold)] mb-2";
-  const labelStyle = { fontFamily: "'Jost', sans-serif" };
+  const ic = "w-full rounded-xl bg-white/72 border border-[var(--gold)]/30 px-5 py-3.5 text-[var(--ink)] placeholder:text-[var(--ink)]/35 focus:outline-none focus:border-[var(--rose)] focus:bg-white/90 transition";
+  const is = { fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem" } as React.CSSProperties;
+  const lc = "block text-[10px] tracking-luxe uppercase text-[var(--gold)] mb-2";
+  const ls = { fontFamily: "'Jost', sans-serif" } as React.CSSProperties;
+
+  const stepTitles = ["Let's start with you", "Best Fit For", "Tell us about your business", "What are you looking for?", "Where are you right now?", "Almost done"];
+  const stepHeadings = ["Let's start with you", "Which best describes your business?", "Tell us about your business", "What are you looking for?", "Where are you right now?", "Almost done"];
 
   return (
     <section id="contact" className="scroll-mt-32 py-24 md:py-32 px-6">
-      <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.88fr_1.12fr] gap-8 lg:gap-12 items-start">
+      <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.88fr_1.12fr] gap-8 lg:gap-12 items-stretch">
+        {/* ── LEFT COLUMN (unchanged) ── */}
         <div className="lg:sticky lg:top-36">
           <Eyebrow>Private Proposal Request</Eyebrow>
           <h2
             className="mt-4 text-[var(--rose)] leading-[0.98]"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(3rem, 6vw, 5.8rem)",
-              fontWeight: 400,
-            }}
+            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(3rem, 6vw, 5.8rem)", fontWeight: 400 }}
           >
             Apply for your private growth plan.
           </h2>
-          <p
-            className="mt-6 max-w-lg text-[var(--ink)]/62 leading-8"
-            style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem" }}
-          >
+          <p className="mt-6 max-w-lg text-[var(--ink)]/62 leading-8" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem" }}>
             Share what you sell, what is getting stuck, and which level of support feels realistic. We will recommend the right plan, contract term, setup path, add-ons, and free-trial timeline before you commit.
           </p>
           <div className="mt-8 grid gap-3">
@@ -2531,263 +2739,430 @@ function Contact() {
               ["1", "We review your business, offer, current online presence, and lead flow."],
               ["2", "You receive a private recommendation for the plan, term, setup fee, free-trial window, and add-ons."],
               ["3", "If it is a fit, we book your strategy call and map the build timeline."],
-            ].map(([step, copy]) => (
-              <div
-                key={step}
-                className="flex gap-4 rounded-2xl px-5 py-4"
-                style={{
-                  background: "rgba(255,250,246,0.62)",
-                  border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",
-                }}
-              >
-                <span
-                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
-                  style={{ background: "rgba(200,168,100,0.14)", color: "var(--gold)", fontFamily: "'Jost', sans-serif", fontSize: "0.7rem", letterSpacing: "0.12em" }}
-                >
-                  {step}
-                </span>
-                <p className="m-0 text-sm leading-6 text-[var(--ink)]/64" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                  {copy}
-                </p>
+            ].map(([n, copy]) => (
+              <div key={n} className="flex gap-4 rounded-2xl px-5 py-4" style={{ background: "rgba(255,250,246,0.62)", border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}>
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full" style={{ background: "rgba(200,168,100,0.14)", color: "var(--gold)", fontFamily: "'Jost', sans-serif", fontSize: "0.7rem", letterSpacing: "0.12em" }}>{n}</span>
+                <p className="m-0 text-sm leading-6 text-[var(--ink)]/64" style={{ fontFamily: "'DM Sans', sans-serif" }}>{copy}</p>
               </div>
             ))}
           </div>
-          <div
-            className="mt-8 overflow-hidden rounded-[24px] border p-5 sm:p-6"
-            style={{
-              background: "linear-gradient(145deg, rgba(255,250,246,0.9), rgba(248,229,225,0.78))",
-              borderColor: "rgba(200,168,100,0.3)",
-              boxShadow: "0 24px 58px -40px rgba(90,45,35,0.42), inset 0 1px 0 rgba(255,255,255,0.78)",
-            }}
-          >
-            <div className="flex items-center gap-3">
-              <span className="h-px w-8 bg-[var(--gold)]/55" aria-hidden />
-              <p className="text-[var(--rose)] text-[10px] tracking-luxe uppercase font-semibold" style={{ fontFamily: "'Jost', sans-serif" }}>
-                Best fit for
-              </p>
-              <span className="h-px flex-1 bg-[var(--gold)]/32" aria-hidden />
+        </div>
+
+        {/* ── RIGHT COLUMN ── */}
+        <div className="flex flex-col gap-4 items-stretch h-full">
+        <div className="flex-1 rounded-[28px] bg-white/76 backdrop-blur-md border border-white/85 shadow-[0_30px_70px_-35px_rgba(120,70,60,0.42)] p-6 md:p-9 flex flex-col">
+
+          {/* ── CALENDAR VIEW ── */}
+          {showCalendar ? (
+            <div className="space-y-5">
+              <button
+                type="button"
+                onClick={() => setShowCalendar(false)}
+                className="flex items-center gap-2 text-[11px] tracking-luxe uppercase transition-colors hover:text-[var(--rose)]"
+                style={{ fontFamily: "'Jost', sans-serif", color: "var(--ink)" }}
+              >
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" style={{ width: "13px", height: "13px" }}><path d="M10 3 5 8l5 5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                Back to the Proposal
+              </button>
+              <div>
+                <p className="text-[10px] tracking-luxe uppercase font-semibold" style={{ fontFamily: "'Jost', sans-serif", color: "#bd7476" }}>Book a free discovery call</p>
+                <h3 className="mt-2 italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.8rem, 3vw, 2.45rem)", lineHeight: 1.05, color: "var(--ink)" }}>Pick a time that works for you.</h3>
+                <p className="mt-2 text-[var(--ink)]/58 leading-6" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem" }}>45 minutes with Mandy. No pitch, no pressure — just clarity on what's possible for your business.</p>
+              </div>
+              <div className="overflow-hidden rounded-2xl p-1.5" style={{ background: "#FCF4EE", border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}>
+                <iframe
+                  src="https://api.leadconnectorhq.com/widget/booking/9mOtVmE8ihxgAX2AMzge"
+                  title="Book a free discovery call"
+                  scrolling="yes"
+                  id="9mOtVmE8ihxgAX2AMzge_1718000000000"
+                  style={{ width: "100%", border: "none", minHeight: "1050px", display: "block", borderRadius: "12px" }}
+                />
+              </div>
             </div>
-            <div className="mt-4 grid gap-2 sm:grid-cols-2">
-              {[
-                "Contractors & home services",
-                "Coaches & consultants",
-                "Med spas & aesthetics",
-                "Real estate agents",
-                "Salons & beauty pros",
-                "Restaurants & food brands",
-                "Fitness studios & gyms",
-                "Law firms & professionals",
-                "Retail & boutique brands",
-                "E-commerce businesses",
-                "Photographers & creatives",
-                "Mortgage & insurance pros",
-              ].map((industry) => (
-                <div
-                  key={industry}
-                  className="flex min-h-10 items-center gap-2.5 rounded-full px-3.5 py-2 text-[var(--ink)]/72"
+
+          ) : status === "done" ? (
+            /* ── THANK YOU ── */
+            <div className="flex flex-col items-center justify-center gap-5 py-12 text-center">
+              <span style={{ fontSize: "2rem" }}>✦</span>
+              <h3 className="italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.8rem, 3vw, 2.4rem)", lineHeight: 1.1, color: "var(--rose)" }}>You're in.</h3>
+              <p className="max-w-sm text-[var(--ink)]/62 leading-7" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                Expect a private reply within 24 hours.
+              </p>
+            </div>
+
+          ) : step === 0 ? (
+            /* ── PATH SELECTOR ── */
+            <div className="flex flex-col flex-1 space-y-5">
+              {/* Intro */}
+              <div className="pb-5 border-b border-[var(--gold)]/18">
+                <p className="text-[10px] tracking-luxe uppercase font-semibold" style={{ fontFamily: "'Jost', sans-serif", color: "#bd7476" }}>
+                  Ready to work together?
+                </p>
+                <h3
+                  className="mt-3 italic text-[var(--ink)] leading-[1.05]"
+                  style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2rem, 3.5vw, 2.8rem)" }}
+                >
+                  Let's build something that actually works.
+                </h3>
+                <p className="mt-2.5 text-[var(--ink)]/55 leading-6" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem" }}>
+                  Choose how you'd like to connect — we'll take it from there.
+                </p>
+              </div>
+
+              {/* Cards */}
+              <div className="grid sm:grid-cols-2 gap-4 items-stretch flex-1">
+                {/* Option A — Proposal Form */}
+                <button
+                  type="button"
+                  onClick={() => setStep(1)}
+                  className="group text-left rounded-[20px] p-6 flex flex-col justify-between h-full transition-all duration-300 hover:-translate-y-1"
                   style={{
-                    border: "1px solid rgba(200,168,100,0.26)",
-                    background: "rgba(255,255,255,0.62)",
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: "0.78rem",
-                    lineHeight: 1.25,
-                    boxShadow: "0 8px 20px -18px rgba(90,45,35,0.5)",
+                    background: "linear-gradient(145deg, rgba(189,116,118,0.08) 0%, rgba(255,248,246,0.92) 100%)",
+                    border: "1.5px solid rgba(189,116,118,0.28)",
+                    boxShadow: "0 10px 32px -16px rgba(189,116,118,0.25)",
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLButtonElement).style.borderColor = "#bd7476";
+                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 22px 48px -18px rgba(189,116,118,0.45)";
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(189,116,118,0.28)";
+                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 10px 32px -16px rgba(189,116,118,0.25)";
                   }}
                 >
-                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--rose)]/72" aria-hidden />
-                  {industry}
+                  <div>
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full mb-4" style={{ background: "rgba(189,116,118,0.14)" }}>
+                      <svg viewBox="0 0 18 18" fill="none" stroke="#bd7476" strokeWidth="1.5" style={{ width: "17px", height: "17px" }}><path d="M3 5h12M3 9h8M3 13h6" strokeLinecap="round" /></svg>
+                    </span>
+                    <p className="text-[10px] tracking-luxe uppercase mb-2" style={{ fontFamily: "'Jost', sans-serif", color: "#bd7476", fontWeight: 600 }}>Proposal Request</p>
+                    <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.35rem, 2.2vw, 1.65rem)", color: "var(--ink)", lineHeight: 1.15, fontWeight: 400 }}>
+                      Send a Private Proposal Request
+                    </p>
+                    <p className="mt-3 text-[var(--ink)]/55 leading-[1.65]" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.86rem" }}>
+                      Answer a few questions and receive a private plan recommendation, pricing, and setup timeline within 24 hours.
+                    </p>
+                  </div>
+                  <div className="mt-5 flex items-center justify-between">
+                    <span className="text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", color: "#bd7476" }}>Get started</span>
+                    <span style={{ color: "#bd7476", fontSize: "1.1rem", lineHeight: 1 }}>→</span>
+                  </div>
+                </button>
+
+                {/* Option B — Discovery Call */}
+                <button
+                  type="button"
+                  onClick={() => setShowCalendar(true)}
+                  className="group text-left rounded-[20px] p-6 flex flex-col justify-between h-full transition-all duration-300 hover:-translate-y-1"
+                  style={{
+                    background: "linear-gradient(145deg, rgba(200,168,100,0.09) 0%, rgba(255,252,244,0.92) 100%)",
+                    border: "1.5px solid rgba(200,168,100,0.3)",
+                    boxShadow: "0 10px 32px -16px rgba(160,120,60,0.2)",
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLButtonElement).style.borderColor = "#bd7476";
+                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 22px 48px -18px rgba(189,116,118,0.38)";
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(200,168,100,0.3)";
+                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 10px 32px -16px rgba(160,120,60,0.2)";
+                  }}
+                >
+                  <div>
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full mb-4" style={{ background: "rgba(200,168,100,0.14)" }}>
+                      <svg viewBox="0 0 18 18" fill="none" stroke="var(--gold)" strokeWidth="1.5" style={{ width: "17px", height: "17px" }}><rect x="2" y="3" width="14" height="12" rx="2" /><path d="M6 1.5v3M12 1.5v3M2 8h14" strokeLinecap="round" /></svg>
+                    </span>
+                    <p className="text-[10px] tracking-luxe uppercase mb-2" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)", fontWeight: 600 }}>Discovery Call</p>
+                    <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.35rem, 2.2vw, 1.65rem)", color: "var(--ink)", lineHeight: 1.15, fontWeight: 400 }}>
+                      Book a Free Discovery Call
+                    </p>
+                    <p className="mt-3 text-[var(--ink)]/55 leading-[1.65]" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.86rem" }}>
+                      Skip the form and jump straight into a free 45-minute call with Mandy — no pressure, just clarity.
+                    </p>
+                  </div>
+                  <div className="mt-5 flex items-center justify-between">
+                    <span className="text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>Book now</span>
+                    <span style={{ color: "#bd7476", fontSize: "1.1rem", lineHeight: 1 }}>→</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+          ) : (
+            /* ── MULTI-STEP FORM ── */
+            <div className="space-y-6">
+              {/* Progress bar */}
+              <div className="space-y-2">
+                <div className="flex gap-1.5">
+                  {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
+                    <div
+                      key={i}
+                      className="h-1.5 flex-1 rounded-full transition-all duration-300"
+                      style={{ background: i < step ? "#bd7476" : "rgba(200,168,100,0.2)" }}
+                    />
+                  ))}
                 </div>
-              ))}
+                <div className="flex items-center justify-between">
+                  <p className="text-[10px] tracking-luxe uppercase text-[var(--gold)]" style={{ fontFamily: "'Jost', sans-serif" }}>
+                    Step {step} of {TOTAL_STEPS} — {stepTitles[step - 1]}
+                  </p>
+                  <p className="text-[10px] font-semibold" style={{ fontFamily: "'Jost', sans-serif", color: "#bd7476" }}>
+                    {Math.round((step / TOTAL_STEPS) * 100)}%
+                  </p>
+                </div>
+              </div>
+
+              {/* Step heading */}
+              <div className="border-b border-[var(--gold)]/18 pb-5">
+                <h3 className="italic text-[var(--ink)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.8rem, 3vw, 2.45rem)", lineHeight: 1.05 }}>
+                  {stepHeadings[step - 1]}
+                </h3>
+              </div>
+
+              {/* ── STEP 1 ── */}
+              {step === 1 && (
+                <div className="space-y-4">
+                  <div className="grid sm:grid-cols-2 gap-6">
+                    <div>
+                      <label className={lc} style={ls}>First Name *</label>
+                      <input type="text" value={fd.first_name} onChange={set("first_name")} placeholder="Jane" required className={ic} style={is} />
+                    </div>
+                    <div>
+                      <label className={lc} style={ls}>Last Name *</label>
+                      <input type="text" value={fd.last_name} onChange={set("last_name")} placeholder="Doe" required className={ic} style={is} />
+                    </div>
+                  </div>
+                  <div>
+                    <label className={lc} style={ls}>Email *</label>
+                    <input type="email" value={fd.email} onChange={set("email")} placeholder="you@brand.co" required className={ic} style={is} />
+                  </div>
+                </div>
+              )}
+
+              {/* ── STEP 2 ── Business type */}
+              {step === 2 && (
+                <div className="space-y-3">
+                  <div className="grid grid-cols-2 gap-x-3 gap-y-1.5">
+                    {/* Featured: Contractors & home services */}
+                    {(() => {
+                      const opt = "Contractors & home services";
+                      const selected = fd.industry === opt;
+                      return (
+                        <button
+                          key={opt}
+                          type="button"
+                          onClick={() => setFd(prev => ({ ...prev, industry: opt }))}
+                          className="col-span-2 flex min-h-11 items-center gap-2.5 rounded-full px-4 py-2.5 text-left transition-all hover:-translate-y-0.5"
+                          style={{
+                            fontFamily: "'DM Sans', sans-serif",
+                            fontSize: "0.82rem",
+                            fontWeight: 600,
+                            lineHeight: 1.25,
+                            background: selected ? "#bd7476" : "rgba(189,116,118,0.1)",
+                            color: selected ? "#fff" : "#bd7476",
+                            border: selected ? "1px solid #bd7476" : "1px solid rgba(189,116,118,0.5)",
+                            boxShadow: selected ? "0 4px 14px -6px rgba(189,116,118,0.45)" : "0 8px 20px -18px rgba(90,45,35,0.5)",
+                          }}
+                        >
+                          <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: selected ? "rgba(255,255,255,0.7)" : "#bd7476" }} aria-hidden />
+                          <span className="flex-1">{opt}</span>
+                          <span className="shrink-0 rounded-full px-2 py-0.5" style={{ background: selected ? "rgba(255,255,255,0.22)" : "#bd7476", color: "#fff", fontSize: "0.55rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                            ★ Most Common
+                          </span>
+                        </button>
+                      );
+                    })()}
+                    {[
+                      "Coaches & consultants",
+                      "Med spas & aesthetics","Real estate agents",
+                      "Salons & beauty pros","Restaurants & food brands",
+                      "Fitness studios & gyms","Law firms & professionals",
+                      "Retail & boutique brands","E-commerce businesses",
+                      "Photographers & creatives","Mortgage & insurance pros",
+                    ].map((opt) => {
+                      const selected = fd.industry === opt;
+                      return (
+                        <button
+                          key={opt}
+                          type="button"
+                          onClick={() => setFd(prev => ({ ...prev, industry: opt }))}
+                          className="flex min-h-10 items-center gap-2.5 rounded-full px-3.5 py-2 text-left transition-all hover:-translate-y-0.5"
+                          style={{
+                            fontFamily: "'DM Sans', sans-serif",
+                            fontSize: "0.78rem",
+                            lineHeight: 1.25,
+                            background: selected ? "#bd7476" : "rgba(255,255,255,0.62)",
+                            color: selected ? "#fff" : "var(--ink)",
+                            border: selected ? "1px solid #bd7476" : "1px solid rgba(200,168,100,0.26)",
+                            boxShadow: selected ? "0 4px 14px -6px rgba(189,116,118,0.45)" : "0 8px 20px -18px rgba(90,45,35,0.5)",
+                          }}
+                        >
+                          <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: selected ? "rgba(255,255,255,0.7)" : "var(--rose)" }} aria-hidden />
+                          {opt}
+                        </button>
+                      );
+                    })}
+                    {/* Full-width "Something else" pill */}
+                    {(() => {
+                      const selected = fd.industry === "Something else";
+                      return (
+                        <button
+                          key="Something else"
+                          type="button"
+                          onClick={() => setFd(prev => ({ ...prev, industry: "Something else" }))}
+                          className="col-span-2 flex min-h-10 items-center justify-center gap-2.5 rounded-full px-3.5 py-2.5 text-center transition-all hover:-translate-y-0.5"
+                          style={{
+                            fontFamily: "'DM Sans', sans-serif",
+                            fontSize: "0.78rem",
+                            lineHeight: 1.25,
+                            background: selected ? "#bd7476" : "rgba(189,116,118,0.07)",
+                            color: selected ? "#fff" : "#bd7476",
+                            border: selected ? "1px solid #bd7476" : "1px dashed rgba(189,116,118,0.5)",
+                            boxShadow: selected ? "0 4px 14px -6px rgba(189,116,118,0.45)" : "none",
+                            fontWeight: 500,
+                          }}
+                        >
+                          <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: selected ? "rgba(255,255,255,0.7)" : "#bd7476" }} aria-hidden />
+                          Something else
+                        </button>
+                      );
+                    })()}
+                  </div>
+                  {/* Reveal text input when "Something else" is selected */}
+                  {fd.industry === "Something else" && (
+                    <div>
+                      <label className={lc} style={ls}>Tell us about your business</label>
+                      <input
+                        type="text"
+                        value={fd.industry_other}
+                        onChange={e => setFd(prev => ({ ...prev, industry_other: e.target.value }))}
+                        placeholder="e.g. Event planning, Non-profit, Tech startup..."
+                        className={ic}
+                        style={is}
+                      />
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* ── STEP 3 ── Tell us about your business */}
+              {step === 3 && (
+                <div className="space-y-4">
+                  <div>
+                    <label className={lc} style={ls}>Business Name *</label>
+                    <input type="text" value={fd.business_name} onChange={set("business_name")} placeholder="Bloom Med Spa" required className={ic} style={is} />
+                  </div>
+                  <div>
+                    <label className={lc} style={ls}>Website <span className="normal-case opacity-60">(optional)</span></label>
+                    <input type="url" value={fd.website} onChange={set("website")} placeholder="e.g. yourbusiness.com" className={ic} style={is} />
+                  </div>
+                </div>
+              )}
+
+              {/* ── STEP 4 ── What are you looking for? */}
+              {step === 4 && (
+                <div className="space-y-4">
+                  <div>
+                    <label className={lc} style={ls}>Which plan interests you?</label>
+                    <FormSelect
+                      value={fd.plan}
+                      onChange={v => setFd(prev => ({ ...prev, plan: v }))}
+                      options={["Foundation — $297/mo","Foundation + Google LSA — $497/mo","Starter — $1,000/mo","Growth — $2,497/mo","Not sure yet"]}
+                    />
+                  </div>
+                  <div>
+                    <label className={lc} style={ls}>What's your main goal?</label>
+                    <FormSelect
+                      value={fd.main_goal}
+                      onChange={v => setFd(prev => ({ ...prev, main_goal: v }))}
+                      options={["Get more booked leads","Build my online presence","Run paid ads","Automate my follow-up","All of the above"]}
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* ── STEP 5 ── Where are you right now? */}
+              {step === 5 && (
+                <div className="space-y-4">
+                  <div>
+                    <label className={lc} style={ls}>Tell us about your business</label>
+                    <textarea
+                      value={fd.message}
+                      onChange={set("message")}
+                      rows={6}
+                      placeholder="Tell us what you sell, where leads are getting stuck, and what you want your system to handle every day."
+                      className={`${ic} resize-none`}
+                      style={is}
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* ── STEP 6 ── Almost done */}
+              {step === 6 && (
+                <div className="space-y-4">
+                  <div>
+                    <label className={lc} style={ls}>Preferred commitment</label>
+                    <FormSelect
+                      value={fd.contract_term}
+                      onChange={v => setFd(prev => ({ ...prev, contract_term: v }))}
+                      options={["3 months","6 months","1 year","Not sure yet"]}
+                    />
+                  </div>
+                  <div>
+                    <label className={lc} style={ls}>Setup readiness</label>
+                    <FormSelect
+                      value={fd.setup_readiness}
+                      onChange={v => setFd(prev => ({ ...prev, setup_readiness: v }))}
+                      options={["I understand there is a one-time setup fee","I need more information about setup costs"]}
+                    />
+                  </div>
+
+                </div>
+              )}
+
+              {/* Navigation buttons */}
+              <div className="space-y-3 pt-0">
+                {step < TOTAL_STEPS ? (
+                  <button
+                    type="button"
+                    onClick={() => setStep(s => s + 1)}
+                    className="w-full rounded-2xl py-4 text-[11px] tracking-luxe uppercase hover:-translate-y-0.5 hover:opacity-90 transition"
+                    style={{ fontFamily: "'Jost', sans-serif", background: "#bd7476", color: "#fff", boxShadow: "0 18px 36px -22px rgba(189,116,118,0.55)" }}
+                  >
+                    Next →
+                  </button>
+                ) : (
+                  <>
+                    <button
+                      type="button"
+                      onClick={handleSubmit}
+                      disabled={status === "sending"}
+                      className="w-full rounded-2xl py-4 text-[11px] tracking-luxe uppercase hover:-translate-y-0.5 hover:opacity-90 transition disabled:opacity-60"
+                      style={{ fontFamily: "'Jost', sans-serif", background: "#bd7476", color: "#fff", boxShadow: "0 18px 36px -22px rgba(189,116,118,0.55)" }}
+                    >
+                      {status === "sending" ? "Sending..." : "Send My Free Proposal Request →"}
+                    </button>
+                  </>
+                )}
+                {step >= 1 && (
+                  <button
+                    type="button"
+                    onClick={() => setStep(s => s - 1)}
+                    className="w-full flex items-center justify-center gap-2 rounded-xl py-3 text-[11px] tracking-luxe uppercase transition-opacity hover:opacity-80"
+                    style={{ fontFamily: "'Jost', sans-serif", color: "#bd7476", border: "1px solid rgba(189,116,118,0.35)" }}
+                  >
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" style={{ width: "12px", height: "12px" }}><path d="M10 3 5 8l5 5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    Back
+                  </button>
+                )}
+              </div>
             </div>
-            <p
-              className="mt-5 border-t border-[var(--gold)]/20 pt-4 text-[var(--ink)]/62 leading-6"
-              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem" }}
-            >
-              Built for business owners who are ready to stop guessing at their marketing — and start showing up everywhere online, every single day, with content, systems, and strategy fully handled for them.
-            </p>
-          </div>
+          )}
         </div>
-
-        <div className="rounded-[28px] bg-white/76 backdrop-blur-md border border-white/85 shadow-[0_30px_70px_-35px_rgba(120,70,60,0.42)] p-6 md:p-9">
-        {showCalendar ? (
-          <div className="space-y-5">
-            <button
-              type="button"
-              onClick={() => setShowCalendar(false)}
-              className="flex items-center gap-2 text-[11px] tracking-luxe uppercase text-[var(--ink)]/70 transition-colors hover:text-[var(--rose)]"
-              style={{ fontFamily: "'Jost', sans-serif" }}
-            >
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" style={{ width: "13px", height: "13px" }}><path d="M10 3 5 8l5 5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-              Back to the proposal
-            </button>
-            <div>
-              <p className="text-[10px] tracking-luxe uppercase text-[var(--gold)]" style={{ fontFamily: "'Jost', sans-serif" }}>Book a free discovery call</p>
-              <h3 className="mt-2 text-[var(--rose)] italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.8rem, 3vw, 2.45rem)", lineHeight: 1.05 }}>Pick a time that works for you.</h3>
-            </div>
-            <div className="overflow-hidden rounded-2xl bg-white/60 p-1.5" style={{ border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}>
-              <iframe
-                src="https://api.leadconnectorhq.com/widget/booking/9mOtVmE8ihxgAX2AMzge"
-                title="Book a free discovery call"
-                scrolling="no"
-                id="ghl-booking-9mOtVmE8ihxgAX2AMzge"
-                style={{ width: "100%", border: "none", minHeight: "700px", display: "block", borderRadius: "12px" }}
-              />
-            </div>
-          </div>
-        ) : (
-        <form onSubmit={handleSubmit} className="space-y-5">
-        <div className="flex flex-col gap-3 border-b border-[var(--gold)]/18 pb-6 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="text-[10px] tracking-luxe uppercase text-[var(--gold)]" style={{ fontFamily: "'Jost', sans-serif" }}>
-              Application Details
-            </p>
-            <h3 className="mt-2 text-[var(--ink)] italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.8rem, 3vw, 2.45rem)", lineHeight: 1.05 }}>
-              Tell us what you need built.
-            </h3>
-          </div>
-          <p className="text-[var(--ink)]/45 text-sm md:text-right" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-            Private reply within 24 hours.
-          </p>
-        </div>
-        {/* First / Last */}
-        <div className="grid sm:grid-cols-2 gap-4">
-          {([["First Name", "first_name", "Jane"], ["Last Name", "last_name", "Doe"]] as const).map(([label, name, ph]) => (
-            <div key={name}>
-              <label className={labelClass} style={labelStyle}>{label} *</label>
-              <input type="text" name={name} placeholder={ph} required className={inputClass} style={inputStyle} />
-            </div>
-          ))}
-        </div>
-
-        {/* Email */}
-        <div>
-          <label className={labelClass} style={labelStyle}>Email *</label>
-          <input type="email" name="email" placeholder="you@brand.co" required className={inputClass} style={inputStyle} />
-        </div>
-
-        {/* Business / Industry / Website */}
-        <div className="grid sm:grid-cols-2 gap-4">
-          <div>
-            <label className={labelClass} style={labelStyle}>Business Name</label>
-            <input type="text" name="business_name" placeholder="Bloom Med Spa" className={inputClass} style={inputStyle} />
-          </div>
-          <div>
-            <label className={labelClass} style={labelStyle}>Industry / Niche</label>
-            <input type="text" name="industry" placeholder="e.g. Medical Aesthetics" className={inputClass} style={inputStyle} />
-          </div>
-        </div>
-        <div>
-          <label className={labelClass} style={labelStyle}>Website <span className="normal-case opacity-60">(optional)</span></label>
-          <input type="url" name="website" placeholder="e.g. yourbusiness.com" className={inputClass} style={inputStyle} />
-        </div>
-
-        {/* Plan */}
-        <div className="grid sm:grid-cols-2 gap-4">
-          <div>
-            <label className={labelClass} style={labelStyle}>Which plan interests you?</label>
-            <select name="plan" className={inputClass} style={inputStyle}>
-              <option>Foundation — $297/mo</option>
-              <option>Starter — $1,000/mo</option>
-              <option>Growth — $2,500/mo</option>
-              <option>Not sure yet — recommend one for me</option>
-            </select>
-          </div>
-          <div>
-            <label className={labelClass} style={labelStyle}>Preferred commitment</label>
-            <select name="contract_term" className={inputClass} style={inputStyle}>
-              <option>6 months</option>
-              <option>12 months (12th month free)</option>
-              <option>Not sure yet</option>
-            </select>
-          </div>
-        </div>
-
-        <div className="grid sm:grid-cols-2 gap-4">
-          <div>
-            <label className={labelClass} style={labelStyle}>Setup readiness</label>
-            <select name="setup_readiness" className={inputClass} style={inputStyle}>
-              <option>I understand there is a one-time $500 setup fee</option>
-              <option>I have questions about the setup fee</option>
-              <option>I am only browsing right now</option>
-            </select>
-          </div>
-          <div>
-            <label className={labelClass} style={labelStyle}>Main goal</label>
-            <select name="main_goal" className={inputClass} style={inputStyle}>
-              <option>Get more booked leads</option>
-              <option>Improve my website and follow-up</option>
-              <option>Post more consistently</option>
-              <option>Run ads and scale lead flow</option>
-              <option>Build an AI clone or brand character</option>
-              <option>Not sure yet</option>
-            </select>
-          </div>
-        </div>
-
-        {/* Message */}
-        <div>
-          <label className={labelClass} style={labelStyle}>What would make this a win?</label>
-          <textarea
-            name="message"
-            rows={4}
-            placeholder="Tell us what you sell, where leads are getting stuck, and what you want your monthly system to handle..."
-            className={`${inputClass} resize-none`}
-            style={inputStyle}
-          />
-        </div>
-
-        {status === "error" && (
-          <div className="rounded-xl px-5 py-4 text-center" style={{ background: "rgba(180,60,60,0.08)", border: "1px solid rgba(180,60,60,0.25)" }}>
-            <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.75rem", color: "#b43c3c", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-              Something went wrong — please email us directly at{" "}
-              <a href="mailto:hello@shopdollhouse.co" style={{ textDecoration: "underline", color: "#b43c3c" }}>
-                hello@shopdollhouse.co
-              </a>
-            </p>
-          </div>
-        )}
-
-        {status === "done" && (
-          <div className="rounded-xl px-5 py-4 text-center" style={{ background: "rgba(200,168,100,0.1)", border: "1px solid rgba(200,168,100,0.3)" }}>
-            <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.1rem", fontStyle: "italic", color: "var(--ink)", opacity: 0.8 }}>
-              Thank you! 🏹 We've received your request. Mandy will review your details and be in touch within 24–48 hours.
-            </p>
-          </div>
-        )}
-
-        <button
-          type="submit"
-          disabled={status === "sending" || status === "done"}
-          className="w-full rounded-2xl bg-[var(--ink)] text-[var(--cream)] py-4 text-[11px] tracking-luxe uppercase hover:-translate-y-0.5 hover:opacity-95 transition disabled:opacity-60 disabled:hover:translate-y-0"
-          style={{ fontFamily: "'Jost', sans-serif", boxShadow: "0 18px 36px -22px rgba(30,15,10,0.7)" }}
-        >
-          {status === "sending" ? "Sending..." : "Send my free proposal request →"}
-        </button>
-
-        <div className="flex items-center gap-3 my-1">
-          <span className="flex-1 h-px bg-[var(--gold)]/20" />
-          <span className="text-[var(--ink)]/30 text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>or</span>
-          <span className="flex-1 h-px bg-[var(--gold)]/20" />
-        </div>
-
-        <button
-          type="button"
-          onClick={() => setShowCalendar(true)}
-          className="w-full flex items-center justify-center gap-2 rounded-xl py-3.5 text-[11px] tracking-luxe uppercase transition-all hover:border-[var(--ink)]/40 hover:text-[var(--ink)]"
-          style={{
-            fontFamily: "'Jost', sans-serif",
-            color: "var(--ink)",
-            border: "1px solid color-mix(in oklab, var(--ink) 22%, transparent)",
-          }}
-        >
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: "13px", height: "13px" }}>
-            <rect x="2" y="3" width="12" height="11" rx="1.5" />
-            <path d="M5 1.5v3M11 1.5v3M2 7h12" strokeLinecap="round" />
-          </svg>
-          Book a free discovery call
-        </button>
-        </form>
-        )}
+        {/* Decorative closer */}
+        <p className="text-center" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(189,116,118,0.55)", lineHeight: 1.8 }}>
+          ✦ Private reply within 24 hours · No commitment required · Built for your business specifically
+        </p>
         </div>
       </div>
     </section>
@@ -2929,25 +3304,28 @@ function Index() {
     "Done-for-you social media, AI clone content, websites, text follow-up, review funnels, and automation systems for service businesses.",
   );
 
+  // Scroll-reveal: sections gently rise + fade in as they enter the viewport.
+  useScrollReveal();
+
   return (
     <main className="bg-[var(--blush)] text-[var(--ink)]">
       <Nav />
       <Hero />
       <ChooseYourPath />
       <TrustBar />
+      <MarqueeStrip />
       <Services />
       <ProofSection />
       <AICloneSection />
       <About />
       <HowItWorks />
       <Pricing />
-      <FocusedSetupSection proposalHref="#contact" />
+      <AgencyFooterNotes />
       <PlanComparisonSection />
       <ResultsStatsSection />
       <AgencyFaqSection />
       <FinalCtaSection proposalHref="#contact" />
       <Contact />
-      <AgencyFooterNotes />
       <Footer />
       <BackToTop />
     </main>
