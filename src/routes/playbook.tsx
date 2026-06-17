@@ -12117,6 +12117,7 @@ function PlaybookPage() {
   if (!authed) return <LoginGate onAuth={() => setAuthed(true)} />;
 
   const primaryTabs: { id: Tab; label: string; icon: string }[] = [
+    { id: "serviceoverview", label: "Service Overview", icon: "book" },
     { id: "deals",     label: "Deal Pipeline",    icon: "target" },
     { id: "quote",     label: "Quote Builder",    icon: "calculator" },
     { id: "discovery", label: "Discovery Call",   icon: "microphone" },
@@ -12133,7 +12134,6 @@ function PlaybookPage() {
     { id: "growth",   label: "Inbound Growth",   icon: "trending-up" },
     { id: "newhire",  label: "New Hire Guide",   icon: "users" },
     { id: "schedule", label: "Daily Schedule",   icon: "clock" },
-    { id: "serviceoverview", label: "Service Overview", icon: "book" },
     { id: "links",    label: "Quick Links",      icon: "link" },
   ];
 
