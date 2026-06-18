@@ -3300,8 +3300,8 @@ function BackToTop() {
 
 function Index() {
   usePageMeta(
-    "The Dollhouse Brand Studio | Social Media Marketing & Lead Automation",
-    "Done-for-you social media, AI clone content, websites, text follow-up, review funnels, and automation systems for service businesses.",
+    "Done-For-You Social Media Marketing in York Region & the GTA | The Dollhouse Brand Studio",
+    "Done-for-you social media marketing for service businesses in York Region, Toronto, and the GTA. Daily content, AI video, paid ads, review automation, and lead-converting websites — all handled for you.",
   );
 
   // Scroll-reveal: sections gently rise + fade in as they enter the viewport.
