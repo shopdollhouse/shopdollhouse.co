@@ -7,31 +7,87 @@ const WAITLIST = "mailto:hello@shopdollhouse.co?subject=Careers%20%E2%80%94%20Jo
 
 const ROLES: { icon: string; title: string; duties: string[] }[] = [
   {
-    icon: "🗂️",
-    title: "Account Coordinator",
-    duties: [
-      "Helping plan and execute each client's overall content strategy",
-      "Being a main point of contact for client communication",
-      "Performing keyword and hashtag research",
-      "Tracking trends across platforms",
-      "Building content calendars and lists",
-      "Drafting monthly performance reports",
-      "Coordinating reviews and approvals with clients",
-      "Keeping projects on schedule and on brand",
-    ],
-  },
-  {
     icon: "💼",
     title: "Account Manager",
     duties: [
       "Building strong relationships with clients as their dedicated partner",
       "Understanding each client's goals and translating them into strategy",
-      "Collaborating with the content team to align deliverables",
-      "Advocating for client needs and ensuring satisfaction",
       "Leading monthly strategy and reporting calls",
       "Reviewing content and reports before they reach the client",
       "Managing day-to-day client communication",
+      "Advocating for client needs and ensuring satisfaction",
       "Identifying upsell and retention opportunities",
+      "Keeping every account on track and on brand",
+    ],
+  },
+  {
+    icon: "🚪",
+    title: "Client Onboarding Specialist",
+    duties: [
+      "Sending and managing onboarding questionnaires",
+      "Collecting brand assets, logins, and access",
+      "Setting up client sub-accounts and workspaces",
+      "Connecting social accounts and booking tools",
+      "Running smooth kickoff and onboarding calls",
+      "Gathering AI clone photo and voice samples",
+      "Setting clear expectations and timelines",
+      "Handing off ready clients to the content team",
+    ],
+  },
+  {
+    icon: "📱",
+    title: "Social Media Manager",
+    duties: [
+      "Scheduling and publishing content across platforms",
+      "Managing community engagement and DMs",
+      "Running comment-to-DM lead conversations",
+      "Monitoring trends and optimal posting times",
+      "Responding to comments and messages promptly",
+      "Tracking engagement and growth metrics",
+      "Coordinating content approvals with clients",
+      "Keeping every account active and on brand",
+    ],
+  },
+  {
+    icon: "🎬",
+    title: "Content & AI Video Specialist",
+    duties: [
+      "Creating branded graphics, carousels, and reels",
+      "Producing AI avatar and clone video content",
+      "Editing short-form video for every platform",
+      "Maintaining a consistent on-brand look",
+      "Scheduling content in our platform's planner",
+      "Jumping on trends and formats that perform",
+      "Collaborating with copy and design teams",
+      "Building a library of reusable content",
+    ],
+  },
+  {
+    icon: "✍️",
+    title: "Copywriter",
+    duties: [
+      "Writing captions, hooks, and post copy",
+      "Writing blog posts and SEO page content",
+      "Crafting ad copy and offers",
+      "Writing email and SMS marketing sequences",
+      "Developing a distinct brand voice per client",
+      "Scripting AI clone and video content",
+      "Researching each niche's language and questions",
+      "Editing and proofreading all copy",
+    ],
+  },
+  {
+    icon: "🎨",
+    title: "Brand & Graphic Designer",
+    duties: [
+      "Designing logos, palettes, and brand identities",
+      "Building branded templates and social graphics",
+      "Designing the Brand Room digital products",
+      "Creating carousels, ads, and marketing assets",
+      "Maintaining a consistent visual system",
+      "Designing print and digital collateral",
+      "Collaborating with content and web teams",
+      "Keeping brand assets organized and on standard",
     ],
   },
   {
@@ -63,20 +119,6 @@ const ROLES: { icon: string; title: string; duties: string[] }[] = [
     ],
   },
   {
-    icon: "🎬",
-    title: "Content & AI Video Specialist",
-    duties: [
-      "Creating branded graphics, carousels, and reels",
-      "Producing AI avatar and clone video content",
-      "Scripting content around each niche's questions",
-      "Editing short-form video for every platform",
-      "Maintaining a consistent on-brand look",
-      "Scheduling content in our platform's planner",
-      "Jumping on trends and formats that perform",
-      "Building a library of reusable content",
-    ],
-  },
-  {
     icon: "🖥️",
     title: "Web Designer",
     duties: [
@@ -91,6 +133,20 @@ const ROLES: { icon: string; title: string; duties: string[] }[] = [
     ],
   },
   {
+    icon: "⚙️",
+    title: "Automation & Systems Specialist",
+    duties: [
+      "Building CRM pipelines and automations",
+      "Setting up missed-call text-back",
+      "Building 5-star review funnels",
+      "Creating lead follow-up and nurture flows",
+      "Configuring booking calendars and forms",
+      "Setting up the conversations inbox and reporting",
+      "Building reusable client onboarding snapshots",
+      "Testing and maintaining all automations",
+    ],
+  },
+  {
     icon: "📣",
     title: "Sales Development Representative",
     duties: [
@@ -101,20 +157,20 @@ const ROLES: { icon: string; title: string; duties: string[] }[] = [
       "Keeping the pipeline organized and up to date",
       "Following up consistently across touchpoints",
       "Hitting weekly outreach and meeting goals",
-      "Sharing feedback from the market with the team",
+      "Sharing market feedback with the team",
     ],
   },
   {
     icon: "📋",
-    title: "Project Coordinator / Project Manager",
+    title: "Operations & Project Manager",
     duties: [
-      "Managing multiple client projects from start to finish",
-      "Coordinating between content, design, and account teams",
+      "Managing projects from start to finish",
+      "Coordinating content, design, web, and account teams",
       "Setting and tracking deadlines and deliverables",
-      "Managing client expectations and clear communication",
-      "Identifying risks and developing mitigation plans",
-      "Keeping budgets and resources on track",
-      "Ensuring each project is delivered on time",
+      "Managing client expectations and communication",
+      "Identifying risks and resourcing accordingly",
+      "Keeping budgets and timelines on track",
+      "Running the monthly review-plan-create-invoice cycle",
       "Driving efficiency and quality across the studio",
     ],
   },
@@ -122,9 +178,14 @@ const ROLES: { icon: string; title: string; duties: string[] }[] = [
 
 function Check() {
   return (
-    <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="var(--rose)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-1 shrink-0">
-      <path d="M3 8.5 6.2 11.5 13 4.5" />
-    </svg>
+    <span
+      className="mt-0.5 shrink-0 inline-flex items-center justify-center rounded-full"
+      style={{ width: 18, height: 18, background: "var(--rose)" }}
+    >
+      <svg viewBox="0 0 16 16" width="10" height="10" fill="none" stroke="#fff" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 8.5 6.2 11.5 13 4.5" />
+      </svg>
+    </span>
   );
 }
 
@@ -214,9 +275,9 @@ function CareersPage() {
               <p className="mt-4 mb-3" style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>
                 Your Duties Will Include:
               </p>
-              <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2">
+              <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2.5">
                 {role.duties.map((d) => (
-                  <li key={d} className="flex items-start gap-2 text-[var(--ink)]/72" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", lineHeight: 1.4 }}>
+                  <li key={d} className="flex items-start gap-2.5 text-[var(--ink)]/72" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", lineHeight: 1.4 }}>
                     <Check />
                     <span>{d}</span>
                   </li>
