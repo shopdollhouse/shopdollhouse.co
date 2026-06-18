@@ -12121,6 +12121,19 @@ Would it make sense for me to put one together for you? It's on me.
         <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.75)" }}><strong>Call out your target audience</strong> in the first line — "Attention landscaping business owners…" / "If you own a landscaping company, this is for you." Right people stop, wrong people scroll → lower cost per lead.</p>
         <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.75)" }}><strong>The hook (first 2–3 seconds):</strong> your AI clone is the advantage — it's unexpected. e.g. "What if you could post video of yourself every day without ever recording?" / "I created an AI clone of a landscaper that looks and sounds just like him. Watch this."</p>
       </Block>
+
+      <Block title="29. Client Onboarding — The 7-Phase Process" sub="Follow this checklist for every single client.">
+        <BList items={[
+          <>{b("1. Send onboarding questionnaire")} — who they are, what they sell, target audience, competitors, brand colors & fonts, design preferences, stock content authorization. Built into your HighLevel snapshot — just send the link.</>,
+          <>{b("2. Collect assets & access")} — social logins (IG/FB/TikTok/LinkedIn, Google Business Profile, FB Business Manager), visual assets (headshots, hi-res logo, brand photos, ElevenLabs audio sample for clones).</>,
+          <>{b("3. Set up sub-account")} — create their workspace in HighLevel: connect social to Social Planner, install LeadConnector, connect domain/email/phone for automations.</>,
+          <>{b("4. Onboarding meeting")} — get their cell number, confirm contact preference, settle review-vs-publish authority, set the 48-hour rule (no response in 48h = you publish), set expectations ("first posts in 5–7 days").</>,
+          <>{b("5. First batch of content")} — ASK AI (posts), OpenArt (graphics), HeyGen (clone videos), ElevenLabs (voice). Send for review or publish if you have authority.</>,
+          <>{b("6. Backend systems")} — conversations inbox, automations, reporting.</>,
+          <>{b("7. Publish & communicate")} — start posting; text small wins every other day.</>,
+        ]} />
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.6)" }}><strong>Then: monthly repeat</strong> — review, plan, create, invoice.</p>
+      </Block>
     </div>
   );
 }
