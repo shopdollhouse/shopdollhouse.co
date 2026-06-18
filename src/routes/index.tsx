@@ -774,7 +774,7 @@ function MarqueeStrip() {
     <span key={t} className="inline-flex items-center">
       <span
         className="italic"
-        style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.5rem, 3vw, 2.2rem)", color: "var(--rose)", padding: "0 1.6rem" }}
+        style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1rem, 2vw, 1.5rem)", color: "var(--rose)", padding: "0 1.2rem" }}
       >
         {t}
       </span>
