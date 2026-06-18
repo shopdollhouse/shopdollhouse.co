@@ -5,10 +5,12 @@ export const Route = createFileRoute("/careers")({ component: CareersPage });
 
 const WAITLIST = "mailto:hello@shopdollhouse.co?subject=Careers%20%E2%80%94%20Join%20the%20Waitlist";
 
-const ROLES: { icon: string; title: string; duties: string[] }[] = [
+const ROLES: { icon: string; title: string; summary: string; duties: string[] }[] = [
   {
     icon: "💼",
     title: "Account Manager",
+    summary:
+      "Our Account Managers are the dedicated partner behind every client. You'll build real relationships, understand each client's goals, and make sure the work we deliver actually moves their business forward.",
     duties: [
       "Building strong relationships with clients as their dedicated partner",
       "Understanding each client's goals and translating them into strategy",
@@ -23,6 +25,8 @@ const ROLES: { icon: string; title: string; duties: string[] }[] = [
   {
     icon: "🚪",
     title: "Client Onboarding Specialist",
+    summary:
+      "First impressions set the tone for the whole relationship. You'll get every new client set up smoothly — collecting what we need, building their workspace, and handing off a fully ready account to the team.",
     duties: [
       "Sending and managing onboarding questionnaires",
       "Collecting brand assets, logins, and access",
@@ -37,6 +41,8 @@ const ROLES: { icon: string; title: string; duties: string[] }[] = [
   {
     icon: "📱",
     title: "Social Media Manager",
+    summary:
+      "Our Social Media Managers keep every client's presence alive and growing. You'll schedule and publish content, manage the community, and turn comments and DMs into real lead conversations.",
     duties: [
       "Scheduling and publishing content across platforms",
       "Managing community engagement and DMs",
@@ -51,6 +57,8 @@ const ROLES: { icon: string; title: string; duties: string[] }[] = [
   {
     icon: "🎬",
     title: "Content & AI Video Specialist",
+    summary:
+      "This is where the brand comes to life. You'll create the graphics, carousels, reels, and AI clone videos that stop the scroll and make our clients look incredible every single day.",
     duties: [
       "Creating branded graphics, carousels, and reels",
       "Producing AI avatar and clone video content",
@@ -65,6 +73,8 @@ const ROLES: { icon: string; title: string; duties: string[] }[] = [
   {
     icon: "✍️",
     title: "Copywriter",
+    summary:
+      "Words do the selling. Our Copywriter crafts the captions, hooks, ad copy, blogs, and email/SMS that give each client a distinct voice and turn attention into action.",
     duties: [
       "Writing captions, hooks, and post copy",
       "Writing blog posts and SEO page content",
@@ -79,6 +89,8 @@ const ROLES: { icon: string; title: string; duties: string[] }[] = [
   {
     icon: "🎨",
     title: "Brand & Graphic Designer",
+    summary:
+      "Our Brand & Graphic Designers shape how every client looks and feels. From full brand identities to our Brand Room digital products, you'll build a polished, consistent visual system across everything we create.",
     duties: [
       "Designing logos, palettes, and brand identities",
       "Building branded templates and social graphics",
@@ -93,6 +105,8 @@ const ROLES: { icon: string; title: string; duties: string[] }[] = [
   {
     icon: "📈",
     title: "Paid Ads Specialist",
+    summary:
+      "Paid ads turn great content into real reach. You'll build, manage, and optimize paid social campaigns — making analytical thinking and adaptability essential to getting clients more leads for less.",
     duties: [
       "Building and managing paid social campaigns",
       "Boosting top-performing organic posts strategically",
@@ -107,6 +121,8 @@ const ROLES: { icon: string; title: string; duties: string[] }[] = [
   {
     icon: "🔍",
     title: "SEO Specialist",
+    summary:
+      "Our SEO Specialists handle the day-to-day work that gets clients found. You'll run on-page and local SEO, optimize Google Business Profiles, and drive organic traffic with strategies that compound over time.",
     duties: [
       "Running on-page and local SEO optimization",
       "Performing keyword research and mapping",
@@ -121,6 +137,8 @@ const ROLES: { icon: string; title: string; duties: string[] }[] = [
   {
     icon: "🖥️",
     title: "Web Designer",
+    summary:
+      "Our Web Designers craft fast, beautiful, conversion-focused websites. You'll bring each client's digital presence to life — modern, mobile-first, and wired up to capture and convert leads.",
     duties: [
       "Designing and building booking and landing pages",
       "Creating mobile-first, conversion-focused layouts",
@@ -135,6 +153,8 @@ const ROLES: { icon: string; title: string; duties: string[] }[] = [
   {
     icon: "⚙️",
     title: "Automation & Systems Specialist",
+    summary:
+      "The systems behind the scenes are what make 'done-for-you' actually work. You'll build the pipelines, missed-call text-back, review funnels, and follow-up flows that keep every lead moving.",
     duties: [
       "Building CRM pipelines and automations",
       "Setting up missed-call text-back",
@@ -149,6 +169,8 @@ const ROLES: { icon: string; title: string; duties: string[] }[] = [
   {
     icon: "📣",
     title: "Sales Development Representative",
+    summary:
+      "As a Sales Development Representative, you'll grow our pipeline by engaging new and potential clients — booking discovery calls, sharing AI video samples, and following up until the deal is set.",
     duties: [
       "Reaching out to and qualifying potential clients",
       "Booking discovery calls with warm and cold leads",
@@ -163,6 +185,8 @@ const ROLES: { icon: string; title: string; duties: string[] }[] = [
   {
     icon: "📋",
     title: "Operations & Project Manager",
+    summary:
+      "Our Operations & Project Manager keeps the studio running. You'll coordinate every team, manage deadlines and budgets, and make sure each client project is delivered on time and to a high standard.",
     duties: [
       "Managing projects from start to finish",
       "Coordinating content, design, web, and account teams",
@@ -283,7 +307,10 @@ function CareersPage() {
                   {role.title}
                 </h3>
               </div>
-              <p className="mt-4 mb-3" style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>
+              <p className="mt-3 text-[var(--ink)]/65 leading-relaxed" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem" }}>
+                {role.summary}
+              </p>
+              <p className="mt-5 mb-3" style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gold)" }}>
                 Your Duties Will Include:
               </p>
               <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2.5">
