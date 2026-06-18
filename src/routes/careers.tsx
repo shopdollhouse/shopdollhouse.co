@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { usePageMeta } from "@/lib/use-page-meta";
 
@@ -5,11 +6,22 @@ export const Route = createFileRoute("/careers")({ component: CareersPage });
 
 const WAITLIST = "mailto:hello@shopdollhouse.co?subject=Careers%20%E2%80%94%20Join%20the%20Waitlist";
 
-// Roles are ordered by hiring priority — the sequence we grow the team in.
-const ROLES: { icon: string; title: string; summary: string; duties: string[] }[] = [
+// Roles are ordered by hiring priority. `phaseStart` marks the first role of each phase.
+const ROLES: {
+  icon: string;
+  title: string;
+  summary: string;
+  duties: string[];
+  phaseStart?: { label: string; title: string; blurb: string };
+}[] = [
   {
     icon: "🤝",
     title: "Executive & Personal Assistant",
+    phaseStart: {
+      label: "Phase 1",
+      title: "Free Your Time",
+      blurb: "The first hires that take work off your plate so you can focus on clients and growth.",
+    },
     summary:
       "Our Assistant is the founder's trusted right hand — keeping both the studio and day-to-day life organized so the big things get done. A calm, reliable presence across business and personal tasks.",
     duties: [
@@ -74,6 +86,11 @@ const ROLES: { icon: string; title: string; summary: string; duties: string[] }[
   {
     icon: "📣",
     title: "Sales Development Representative",
+    phaseStart: {
+      label: "Phase 2",
+      title: "Grow the Business",
+      blurb: "Bring in new clients, onboard them smoothly, and level up the creative.",
+    },
     summary:
       "As a Sales Development Representative, you'll grow our pipeline by engaging new and potential clients — booking discovery calls, sharing AI video samples, and following up until the deal is set.",
     duties: [
@@ -138,6 +155,11 @@ const ROLES: { icon: string; title: string; summary: string; duties: string[] }[
   {
     icon: "📈",
     title: "Paid Ads Specialist",
+    phaseStart: {
+      label: "Phase 3",
+      title: "Scale & Lead",
+      blurb: "Add specialist services and leadership as the studio grows.",
+    },
     summary:
       "Paid ads turn great content into real reach. You'll build, manage, and optimize paid social campaigns — making analytical thinking and adaptability essential to getting clients more leads for less.",
     duties: [
@@ -332,12 +354,27 @@ function CareersPage() {
       {/* Roles */}
       <section className="px-6 py-16">
         <div className="max-w-3xl mx-auto">
-          <p className="text-center mb-8 text-[var(--ink)]/45" style={{ fontFamily: "'Jost', sans-serif", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+          <p className="text-center mb-10 text-[var(--ink)]/45" style={{ fontFamily: "'Jost', sans-serif", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase" }}>
             Listed in the order we grow our team
           </p>
           <div className="space-y-6">
             {ROLES.map((role, i) => (
-              <div key={role.title} className="rounded-2xl p-7" style={{ background: "#fff", border: "1px solid color-mix(in oklab, var(--gold) 22%, transparent)", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
+              <Fragment key={role.title}>
+              {role.phaseStart && (
+                <div className={i === 0 ? "text-center" : "text-center pt-8"}>
+                  <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "11px", letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--gold)" }}>
+                    {role.phaseStart.label}
+                  </p>
+                  <h3 className="mt-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.9rem", fontWeight: 400, color: "var(--rose)" }}>
+                    {role.phaseStart.title}
+                  </h3>
+                  <p className="mt-1 mx-auto max-w-md text-[var(--ink)]/55" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem" }}>
+                    {role.phaseStart.blurb}
+                  </p>
+                  <div className="mt-4 mb-1 h-px w-12 mx-auto" style={{ background: "color-mix(in oklab, var(--gold) 50%, transparent)" }} />
+                </div>
+              )}
+              <div className="rounded-2xl p-7" style={{ background: "#fff", border: "1px solid color-mix(in oklab, var(--gold) 22%, transparent)", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
                 <div className="flex items-center gap-3">
                   <span
                     className="inline-flex items-center justify-center rounded-full shrink-0"
@@ -365,6 +402,7 @@ function CareersPage() {
                   ))}
                 </ul>
               </div>
+              </Fragment>
             ))}
           </div>
         </div>
