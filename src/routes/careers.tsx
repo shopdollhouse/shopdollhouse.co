@@ -71,6 +71,22 @@ const ROLES: { icon: string; title: string; summary: string; duties: string[] }[
     ],
   },
   {
+    icon: "🎞️",
+    title: "Video Editor",
+    summary:
+      "Great video is what wins on social, and our Video Editor makes it shine. You'll cut, polish, and caption short-form video that keeps people watching to the very end.",
+    duties: [
+      "Editing short-form video for Reels, TikTok, and Shorts",
+      "Adding captions, music, and on-brand effects",
+      "Cutting long-form content into clips",
+      "Polishing AI clone and talking-head videos",
+      "Cleaning up color, audio, and pacing",
+      "Keeping a consistent style for each client",
+      "Hitting fast turnaround on edits",
+      "Organizing footage and final files",
+    ],
+  },
+  {
     icon: "✍️",
     title: "Copywriter",
     summary:
@@ -196,6 +212,22 @@ const ROLES: { icon: string; title: string; summary: string; duties: string[] }[
       "Keeping budgets and timelines on track",
       "Running the monthly review-plan-create-invoice cycle",
       "Driving efficiency and quality across the studio",
+    ],
+  },
+  {
+    icon: "🤝",
+    title: "Executive & Personal Assistant",
+    summary:
+      "Our Assistant is the founder's trusted right hand — keeping both the studio and day-to-day life organized so the big things get done. A calm, reliable presence across business and personal tasks.",
+    duties: [
+      "Managing calendars, scheduling, and reminders",
+      "Organizing email and handling inbox triage",
+      "Booking travel, appointments, and reservations",
+      "Coordinating personal and business errands",
+      "Preparing documents, notes, and simple reports",
+      "Researching and gathering information",
+      "Following up on tasks and to-dos",
+      "Keeping the founder's day running smoothly",
     ],
   },
 ];
