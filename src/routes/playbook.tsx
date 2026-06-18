@@ -12081,6 +12081,46 @@ Would it make sense for me to put one together for you? It's on me.
         ]} />
         <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.55)" }}>Bonus topics to ask about: AI Voice Agent · AI Studio (website builder) · ASK AI pricing.</p>
       </Block>
+
+      <Block title="25. Claude Co-Work — AI-Powered Cold DM Outreach" sub="A 3-step system where Claude (with browser access) researches prospects and writes personalized DMs.">
+        <BList items={[
+          <>{b("Step 1 — Give Claude your prospect list")} (business names, owner names, phones, emails). Export from HighLevel as CSV, open Claude Co-Work on desktop, drop the file in. Example: "Here's my prospect list for dentists in Atlanta. I want to reach out to each owner via DM on Instagram."</>,
+          <>{b("Step 2 — Claude finds their profiles")} via Claude in Chrome — searches each owner's IG/FB/LinkedIn, one by one. Best niches: dentists, personal trainers, chiropractors, barbers/salons, real estate agents. DM the owner, not the business page.</>,
+          <>{b("Step 3 — Claude sends personalized DMs")} — visits each profile, reads recent posts & bio, writes a custom message. e.g. "Hey Dr. Smith, congrats on the new location! I noticed your social media hasn't been super active so I created a few posts for your practice. Would you like to see them?"</>,
+        ]} />
+        <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.7)" }}><strong>Good cold DM:</strong> keep it short (2–3 sentences) · make it personal · don't pitch (ask an easy yes) · no links (IG filters links from non-followers).</p>
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.7)" }}><strong>Volume + follow-ups:</strong> 10–15 quality DMs/day per platform (too fast = banned). Claude tracks who replied and follows up. Layer all 4 methods: call Mon → DM Wed → email Fri.</p>
+      </Block>
+
+      <Block title="26. Organic Content & SEO" sub="Inbound that compounds — target searchers already looking for what you offer.">
+        <BList items={[
+          <>{b("Keyword research")} — free tools: Google Keyword Planner, Ubersuggest, Google Autocomplete, "People Also Ask". List 5–10 niche keywords with search volume.</>,
+          <>{b("Optimize your website")} — page titles, headlines (H1/H2), meta descriptions, page copy all naturally include keywords (write for humans, don't stuff).</>,
+          <>{b("Write blog posts")} around your keywords (e.g. "5 Reasons Dentists Need Social Media in 2026"). AI does the heavy lifting; even 3–5 solid posts help.</>,
+          <>{b("Make videos")} on the same topics — full on YouTube, clipped for IG/TikTok/FB/LinkedIn. More places = more signals to Google.</>,
+          <>{b("AEO")} — show up when people ask ChatGPT/Gemini/Perplexity. Google Business Profile (#1), Yelp + Clutch, DesignRush + niche directories. Ask clients for Google reviews.</>,
+        ]} />
+        <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.7)" }}><strong>One-time effort, lasting impact:</strong> cold outreach stops when you stop; organic content is made once and brings leads for months/years. Case studies & video testimonials compound. <strong>Backlinks</strong> (guest posts, podcasts, publications, speaking) are a top ranking factor.</p>
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.7)" }}><strong>Timing:</strong> $5–10/day Google Ads on your main keyword while you wait for rankings. Don't go deep on SEO as a beginner — get your first 5–10 clients via cold outreach, hit $10K/mo, then invest.</p>
+      </Block>
+
+      <Block title="27. Algorithm-Driven Content">
+        <Tbl head={["SEO Content", "Algorithm Content"]} rows={[
+          ["Built around keywords", "Built to be trendy, edgy, or high-value"],
+          ["Shows up when people search", "Platforms push it to more people"],
+          ["Focused on search rankings", "Focused on views & engagement"],
+          ["Long-term discovery play", "YouTube, Instagram, TikTok, Facebook"],
+        ]} />
+        <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.7)" }}><strong>Content that stops the scroll:</strong> talking-head videos (opinions, stories, hot takes) · quick-tip videos (value in 60s, save & share) · behind-the-scenes (raw & authentic) · trending formats (sounds/challenges the algorithm already pushes).</p>
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.7)" }}><strong>The numbers game (first 100 days):</strong> 30 long-form (1 every 3 days) + 90 short-form (almost daily). The flywheel rewards consistency — once it spins, it feeds itself.</p>
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.55)" }}>Honest talk: 100+ days before results · massive volume · real investment (equipment/editor). That's why cold outreach is first — it can land a client in 30–60 days. Not comfortable on camera? AI clone: HeyGen ($29) + ElevenLabs ($25) ≈ $54/mo.</p>
+      </Block>
+
+      <Block title="28. Paid Ads" sub="Don't start until you're at ~$20K/mo recurring revenue.">
+        <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.75)" }}><strong>Before running ads you need:</strong> paying clients with real results · case studies & testimonials · a sales process that consistently closes · financial cushion to absorb testing · comfort offering the service for free first. The best ads are built on proof.</p>
+        <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.75)" }}><strong>Call out your target audience</strong> in the first line — "Attention landscaping business owners…" / "If you own a landscaping company, this is for you." Right people stop, wrong people scroll → lower cost per lead.</p>
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.75)" }}><strong>The hook (first 2–3 seconds):</strong> your AI clone is the advantage — it's unexpected. e.g. "What if you could post video of yourself every day without ever recording?" / "I created an AI clone of a landscaper that looks and sounds just like him. Watch this."</p>
+      </Block>
     </div>
   );
 }
