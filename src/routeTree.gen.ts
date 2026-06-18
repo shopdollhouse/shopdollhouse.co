@@ -21,6 +21,7 @@ import { Route as PlaybookRouteImport } from './routes/playbook'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as FoundationRouteImport } from './routes/foundation'
 import { Route as BrandRoomRouteImport } from './routes/brand-room'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AiCloneRouteImport } from './routes/ai-clone'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SystemsServiceRouteImport } from './routes/systems_.$service'
@@ -33,6 +34,7 @@ import { Route as BrandRoomWorkbookRouteImport } from './routes/brand-room_.work
 import { Route as BrandRoomBrandWorkbookRouteImport } from './routes/brand-room_.brand-workbook'
 import { Route as BrandRoomBrandKitRouteImport } from './routes/brand-room_.brand-kit'
 import { Route as BrandRoomAiPromptKitRouteImport } from './routes/brand-room_.ai-prompt-kit'
+import { Route as BlogSocialMediaMarketingYorkRegionRouteImport } from './routes/blog_.social-media-marketing-york-region'
 
 const VaultRoute = VaultRouteImport.update({
   id: '/vault',
@@ -92,6 +94,11 @@ const FoundationRoute = FoundationRouteImport.update({
 const BrandRoomRoute = BrandRoomRouteImport.update({
   id: '/brand-room',
   path: '/brand-room',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AiCloneRoute = AiCloneRouteImport.update({
@@ -154,10 +161,17 @@ const BrandRoomAiPromptKitRoute = BrandRoomAiPromptKitRouteImport.update({
   path: '/brand-room/ai-prompt-kit',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogSocialMediaMarketingYorkRegionRoute =
+  BlogSocialMediaMarketingYorkRegionRouteImport.update({
+    id: '/blog_/social-media-marketing-york-region',
+    path: '/blog/social-media-marketing-york-region',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ai-clone': typeof AiCloneRoute
+  '/blog': typeof BlogRoute
   '/brand-room': typeof BrandRoomRoute
   '/foundation': typeof FoundationRoute
   '/onboarding': typeof OnboardingRoute
@@ -170,6 +184,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/vault': typeof VaultRoute
+  '/blog/social-media-marketing-york-region': typeof BlogSocialMediaMarketingYorkRegionRoute
   '/brand-room/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room/brand-kit': typeof BrandRoomBrandKitRoute
   '/brand-room/brand-workbook': typeof BrandRoomBrandWorkbookRoute
@@ -184,6 +199,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ai-clone': typeof AiCloneRoute
+  '/blog': typeof BlogRoute
   '/brand-room': typeof BrandRoomRoute
   '/foundation': typeof FoundationRoute
   '/onboarding': typeof OnboardingRoute
@@ -196,6 +212,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/vault': typeof VaultRoute
+  '/blog/social-media-marketing-york-region': typeof BlogSocialMediaMarketingYorkRegionRoute
   '/brand-room/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room/brand-kit': typeof BrandRoomBrandKitRoute
   '/brand-room/brand-workbook': typeof BrandRoomBrandWorkbookRoute
@@ -211,6 +228,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/ai-clone': typeof AiCloneRoute
+  '/blog': typeof BlogRoute
   '/brand-room': typeof BrandRoomRoute
   '/foundation': typeof FoundationRoute
   '/onboarding': typeof OnboardingRoute
@@ -223,6 +241,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/vault': typeof VaultRoute
+  '/blog_/social-media-marketing-york-region': typeof BlogSocialMediaMarketingYorkRegionRoute
   '/brand-room_/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room_/brand-kit': typeof BrandRoomBrandKitRoute
   '/brand-room_/brand-workbook': typeof BrandRoomBrandWorkbookRoute
@@ -239,6 +258,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/ai-clone'
+    | '/blog'
     | '/brand-room'
     | '/foundation'
     | '/onboarding'
@@ -251,6 +271,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/thank-you'
     | '/vault'
+    | '/blog/social-media-marketing-york-region'
     | '/brand-room/ai-prompt-kit'
     | '/brand-room/brand-kit'
     | '/brand-room/brand-workbook'
@@ -265,6 +286,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/ai-clone'
+    | '/blog'
     | '/brand-room'
     | '/foundation'
     | '/onboarding'
@@ -277,6 +299,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/thank-you'
     | '/vault'
+    | '/blog/social-media-marketing-york-region'
     | '/brand-room/ai-prompt-kit'
     | '/brand-room/brand-kit'
     | '/brand-room/brand-workbook'
@@ -291,6 +314,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/ai-clone'
+    | '/blog'
     | '/brand-room'
     | '/foundation'
     | '/onboarding'
@@ -303,6 +327,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/thank-you'
     | '/vault'
+    | '/blog_/social-media-marketing-york-region'
     | '/brand-room_/ai-prompt-kit'
     | '/brand-room_/brand-kit'
     | '/brand-room_/brand-workbook'
@@ -318,6 +343,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AiCloneRoute: typeof AiCloneRoute
+  BlogRoute: typeof BlogRoute
   BrandRoomRoute: typeof BrandRoomRoute
   FoundationRoute: typeof FoundationRoute
   OnboardingRoute: typeof OnboardingRoute
@@ -330,6 +356,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
   VaultRoute: typeof VaultRoute
+  BlogSocialMediaMarketingYorkRegionRoute: typeof BlogSocialMediaMarketingYorkRegionRoute
   BrandRoomAiPromptKitRoute: typeof BrandRoomAiPromptKitRoute
   BrandRoomBrandKitRoute: typeof BrandRoomBrandKitRoute
   BrandRoomBrandWorkbookRoute: typeof BrandRoomBrandWorkbookRoute
@@ -428,6 +455,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BrandRoomRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ai-clone': {
       id: '/ai-clone'
       path: '/ai-clone'
@@ -512,12 +546,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BrandRoomAiPromptKitRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog_/social-media-marketing-york-region': {
+      id: '/blog_/social-media-marketing-york-region'
+      path: '/blog/social-media-marketing-york-region'
+      fullPath: '/blog/social-media-marketing-york-region'
+      preLoaderRoute: typeof BlogSocialMediaMarketingYorkRegionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AiCloneRoute: AiCloneRoute,
+  BlogRoute: BlogRoute,
   BrandRoomRoute: BrandRoomRoute,
   FoundationRoute: FoundationRoute,
   OnboardingRoute: OnboardingRoute,
@@ -530,6 +572,8 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
   VaultRoute: VaultRoute,
+  BlogSocialMediaMarketingYorkRegionRoute:
+    BlogSocialMediaMarketingYorkRegionRoute,
   BrandRoomAiPromptKitRoute: BrandRoomAiPromptKitRoute,
   BrandRoomBrandKitRoute: BrandRoomBrandKitRoute,
   BrandRoomBrandWorkbookRoute: BrandRoomBrandWorkbookRoute,
