@@ -18,9 +18,9 @@ const ROLES: {
     icon: "🤝",
     title: "Executive & Personal Assistant",
     phaseStart: {
-      label: "Phase 1",
-      title: "Free Your Time",
-      blurb: "The first hires that take work off your plate so you can focus on clients and growth.",
+      label: "The Studio",
+      title: "Content & Creative",
+      blurb: "The creative engine of the studio — the people who produce and publish our clients' content every day.",
     },
     summary:
       "Our Assistant is the founder's trusted right hand — keeping both the studio and day-to-day life organized so the big things get done. A calm, reliable presence across business and personal tasks.",
@@ -87,9 +87,9 @@ const ROLES: {
     icon: "📣",
     title: "Sales Development Representative",
     phaseStart: {
-      label: "Phase 2",
-      title: "Grow the Business",
-      blurb: "Bring in new clients, onboard them smoothly, and level up the creative.",
+      label: "Growth & Brand",
+      title: "Clients & Creative",
+      blurb: "The team that brings new clients in, welcomes them, and shapes how every brand looks and sounds.",
     },
     summary:
       "As a Sales Development Representative, you'll grow our pipeline by engaging new and potential clients — booking discovery calls, sharing AI video samples, and following up until the deal is set.",
@@ -156,9 +156,9 @@ const ROLES: {
     icon: "📈",
     title: "Paid Ads Specialist",
     phaseStart: {
-      label: "Phase 3",
-      title: "Scale & Lead",
-      blurb: "Add specialist services and leadership as the studio grows.",
+      label: "Strategy & Systems",
+      title: "Specialists & Leadership",
+      blurb: "The specialists and leaders who scale results — ads, SEO, websites, automation, and the people who keep it all on track.",
     },
     summary:
       "Paid ads turn great content into real reach. You'll build, manage, and optimize paid social campaigns — making analytical thinking and adaptability essential to getting clients more leads for less.",
@@ -355,7 +355,7 @@ function CareersPage() {
       <section className="px-6 py-16">
         <div className="max-w-3xl mx-auto">
           <p className="text-center mb-10 text-[var(--ink)]/45" style={{ fontFamily: "'Jost', sans-serif", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase" }}>
-            Listed in the order we grow our team
+            Explore the teams that make The Dollhouse run
           </p>
           <div className="space-y-6">
             {ROLES.map((role, i) => (
@@ -376,12 +376,6 @@ function CareersPage() {
               )}
               <div className="rounded-2xl p-7" style={{ background: "#fff", border: "1px solid color-mix(in oklab, var(--gold) 22%, transparent)", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
                 <div className="flex items-center gap-3">
-                  <span
-                    className="inline-flex items-center justify-center rounded-full shrink-0"
-                    style={{ width: 30, height: 30, background: "color-mix(in oklab, var(--gold) 16%, transparent)", color: "var(--gold)", fontFamily: "'Jost', sans-serif", fontSize: "0.8rem", fontWeight: 600 }}
-                  >
-                    {i + 1}
-                  </span>
                   <span style={{ fontSize: "1.4rem" }}>{role.icon}</span>
                   <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.5rem", fontWeight: 400, color: "var(--ink)" }}>
                     {role.title}

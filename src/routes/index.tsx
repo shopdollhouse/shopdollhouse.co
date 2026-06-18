@@ -3244,6 +3244,12 @@ function Footer() {
                 {label}
               </a>
             ))}
+            <Link to="/blog" className="text-[var(--ink)]/58 hover:text-[var(--rose)] transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.78rem", letterSpacing: "0.12em", textTransform: "uppercase" }}>
+              Blog
+            </Link>
+            <Link to="/careers" className="text-[var(--ink)]/58 hover:text-[var(--rose)] transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.78rem", letterSpacing: "0.12em", textTransform: "uppercase" }}>
+              Careers
+            </Link>
           </div>
         </div>
 
