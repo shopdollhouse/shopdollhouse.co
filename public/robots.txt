@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /playbook
+Disallow: /onboarding
+Disallow: /checkout
+Disallow: /thank-you
+
+Sitemap: https://www.shopdollhouse.co/sitemap.xml
