@@ -229,7 +229,20 @@ function Nav() {
                 className="nav-link hover:text-[var(--rose)] transition-colors inline-flex items-center gap-1.5 bg-transparent border-0 p-0 uppercase cursor-pointer"
               >
                 Systems
-                <span className="text-[var(--gold)] text-[9px]">⌄</span>
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--gold)"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                  style={{ transition: "transform 0.2s", transform: systemsOpen ? "rotate(180deg)" : "none" }}
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
               </button>
               <div
                 className={`absolute left-1/2 top-full z-50 mt-0 w-[860px] -translate-x-1/2 rounded-[26px] p-5 pt-10 transition-all duration-200 ${
