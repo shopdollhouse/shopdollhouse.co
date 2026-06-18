@@ -20,6 +20,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PlaybookRouteImport } from './routes/playbook'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as FoundationRouteImport } from './routes/foundation'
+import { Route as CareersRouteImport } from './routes/careers'
 import { Route as BrandRoomRouteImport } from './routes/brand-room'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AiCloneRouteImport } from './routes/ai-clone'
@@ -92,6 +93,11 @@ const OnboardingRoute = OnboardingRouteImport.update({
 const FoundationRoute = FoundationRouteImport.update({
   id: '/foundation',
   path: '/foundation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CareersRoute = CareersRouteImport.update({
+  id: '/careers',
+  path: '/careers',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BrandRoomRoute = BrandRoomRouteImport.update({
@@ -194,6 +200,7 @@ export interface FileRoutesByFullPath {
   '/ai-clone': typeof AiCloneRoute
   '/blog': typeof BlogRoute
   '/brand-room': typeof BrandRoomRoute
+  '/careers': typeof CareersRoute
   '/foundation': typeof FoundationRoute
   '/onboarding': typeof OnboardingRoute
   '/playbook': typeof PlaybookRoute
@@ -225,6 +232,7 @@ export interface FileRoutesByTo {
   '/ai-clone': typeof AiCloneRoute
   '/blog': typeof BlogRoute
   '/brand-room': typeof BrandRoomRoute
+  '/careers': typeof CareersRoute
   '/foundation': typeof FoundationRoute
   '/onboarding': typeof OnboardingRoute
   '/playbook': typeof PlaybookRoute
@@ -257,6 +265,7 @@ export interface FileRoutesById {
   '/ai-clone': typeof AiCloneRoute
   '/blog': typeof BlogRoute
   '/brand-room': typeof BrandRoomRoute
+  '/careers': typeof CareersRoute
   '/foundation': typeof FoundationRoute
   '/onboarding': typeof OnboardingRoute
   '/playbook': typeof PlaybookRoute
@@ -290,6 +299,7 @@ export interface FileRouteTypes {
     | '/ai-clone'
     | '/blog'
     | '/brand-room'
+    | '/careers'
     | '/foundation'
     | '/onboarding'
     | '/playbook'
@@ -321,6 +331,7 @@ export interface FileRouteTypes {
     | '/ai-clone'
     | '/blog'
     | '/brand-room'
+    | '/careers'
     | '/foundation'
     | '/onboarding'
     | '/playbook'
@@ -352,6 +363,7 @@ export interface FileRouteTypes {
     | '/ai-clone'
     | '/blog'
     | '/brand-room'
+    | '/careers'
     | '/foundation'
     | '/onboarding'
     | '/playbook'
@@ -384,6 +396,7 @@ export interface RootRouteChildren {
   AiCloneRoute: typeof AiCloneRoute
   BlogRoute: typeof BlogRoute
   BrandRoomRoute: typeof BrandRoomRoute
+  CareersRoute: typeof CareersRoute
   FoundationRoute: typeof FoundationRoute
   OnboardingRoute: typeof OnboardingRoute
   PlaybookRoute: typeof PlaybookRoute
@@ -488,6 +501,13 @@ declare module '@tanstack/react-router' {
       path: '/foundation'
       fullPath: '/foundation'
       preLoaderRoute: typeof FoundationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/careers': {
+      id: '/careers'
+      path: '/careers'
+      fullPath: '/careers'
+      preLoaderRoute: typeof CareersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/brand-room': {
@@ -624,6 +644,7 @@ const rootRouteChildren: RootRouteChildren = {
   AiCloneRoute: AiCloneRoute,
   BlogRoute: BlogRoute,
   BrandRoomRoute: BrandRoomRoute,
+  CareersRoute: CareersRoute,
   FoundationRoute: FoundationRoute,
   OnboardingRoute: OnboardingRoute,
   PlaybookRoute: PlaybookRoute,
