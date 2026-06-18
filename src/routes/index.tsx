@@ -3248,7 +3248,19 @@ function Footer() {
         </div>
       </div>
 
-      <div className="mt-12 max-w-6xl mx-auto flex flex-col gap-4 border-t border-[var(--gold)]/18 pt-6 text-center md:flex-row md:items-center md:justify-between md:text-left">
+      <div className="mt-12 max-w-6xl mx-auto flex items-center justify-center gap-6">
+        <a href="https://www.instagram.com/thedollhousestudio/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-[var(--ink)]/40 hover:text-[var(--rose)] transition-colors">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><rect x="2" y="2" width="20" height="20" rx="5" /><circle cx="12" cy="12" r="4.2" /><circle cx="17.6" cy="6.4" r="1" fill="currentColor" stroke="none" /></svg>
+        </a>
+        <a href="https://www.facebook.com/shopdollhouseco" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-[var(--ink)]/40 hover:text-[var(--rose)] transition-colors">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z" /></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/the-dollhouse-brand-studio" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-[var(--ink)]/40 hover:text-[var(--rose)] transition-colors">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.65h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21H9z" /></svg>
+        </a>
+      </div>
+
+      <div className="mt-6 max-w-6xl mx-auto flex flex-col gap-4 border-t border-[var(--gold)]/18 pt-6 text-center md:flex-row md:items-center md:justify-between md:text-left">
         <p className="text-xs text-[var(--ink)]/35" style={{ fontFamily: "'DM Sans', sans-serif" }}>
           © {new Date().getFullYear()} The Dollhouse Brand Studio. All rights reserved.
         </p>
