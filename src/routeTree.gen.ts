@@ -35,6 +35,9 @@ import { Route as BrandRoomBrandWorkbookRouteImport } from './routes/brand-room_
 import { Route as BrandRoomBrandKitRouteImport } from './routes/brand-room_.brand-kit'
 import { Route as BrandRoomAiPromptKitRouteImport } from './routes/brand-room_.ai-prompt-kit'
 import { Route as BlogSocialMediaMarketingYorkRegionRouteImport } from './routes/blog_.social-media-marketing-york-region'
+import { Route as BlogSocialMediaMarketingCostTorontoRouteImport } from './routes/blog_.social-media-marketing-cost-toronto'
+import { Route as BlogSocialMediaMarketingAgencyTorontoRouteImport } from './routes/blog_.social-media-marketing-agency-toronto'
+import { Route as BlogAiVideoMarketingTorontoRouteImport } from './routes/blog_.ai-video-marketing-toronto'
 
 const VaultRoute = VaultRouteImport.update({
   id: '/vault',
@@ -167,6 +170,24 @@ const BlogSocialMediaMarketingYorkRegionRoute =
     path: '/blog/social-media-marketing-york-region',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogSocialMediaMarketingCostTorontoRoute =
+  BlogSocialMediaMarketingCostTorontoRouteImport.update({
+    id: '/blog_/social-media-marketing-cost-toronto',
+    path: '/blog/social-media-marketing-cost-toronto',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogSocialMediaMarketingAgencyTorontoRoute =
+  BlogSocialMediaMarketingAgencyTorontoRouteImport.update({
+    id: '/blog_/social-media-marketing-agency-toronto',
+    path: '/blog/social-media-marketing-agency-toronto',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogAiVideoMarketingTorontoRoute =
+  BlogAiVideoMarketingTorontoRouteImport.update({
+    id: '/blog_/ai-video-marketing-toronto',
+    path: '/blog/ai-video-marketing-toronto',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -184,6 +205,9 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/vault': typeof VaultRoute
+  '/blog/ai-video-marketing-toronto': typeof BlogAiVideoMarketingTorontoRoute
+  '/blog/social-media-marketing-agency-toronto': typeof BlogSocialMediaMarketingAgencyTorontoRoute
+  '/blog/social-media-marketing-cost-toronto': typeof BlogSocialMediaMarketingCostTorontoRoute
   '/blog/social-media-marketing-york-region': typeof BlogSocialMediaMarketingYorkRegionRoute
   '/brand-room/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room/brand-kit': typeof BrandRoomBrandKitRoute
@@ -212,6 +236,9 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/vault': typeof VaultRoute
+  '/blog/ai-video-marketing-toronto': typeof BlogAiVideoMarketingTorontoRoute
+  '/blog/social-media-marketing-agency-toronto': typeof BlogSocialMediaMarketingAgencyTorontoRoute
+  '/blog/social-media-marketing-cost-toronto': typeof BlogSocialMediaMarketingCostTorontoRoute
   '/blog/social-media-marketing-york-region': typeof BlogSocialMediaMarketingYorkRegionRoute
   '/brand-room/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room/brand-kit': typeof BrandRoomBrandKitRoute
@@ -241,6 +268,9 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/vault': typeof VaultRoute
+  '/blog_/ai-video-marketing-toronto': typeof BlogAiVideoMarketingTorontoRoute
+  '/blog_/social-media-marketing-agency-toronto': typeof BlogSocialMediaMarketingAgencyTorontoRoute
+  '/blog_/social-media-marketing-cost-toronto': typeof BlogSocialMediaMarketingCostTorontoRoute
   '/blog_/social-media-marketing-york-region': typeof BlogSocialMediaMarketingYorkRegionRoute
   '/brand-room_/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room_/brand-kit': typeof BrandRoomBrandKitRoute
@@ -271,6 +301,9 @@ export interface FileRouteTypes {
     | '/terms'
     | '/thank-you'
     | '/vault'
+    | '/blog/ai-video-marketing-toronto'
+    | '/blog/social-media-marketing-agency-toronto'
+    | '/blog/social-media-marketing-cost-toronto'
     | '/blog/social-media-marketing-york-region'
     | '/brand-room/ai-prompt-kit'
     | '/brand-room/brand-kit'
@@ -299,6 +332,9 @@ export interface FileRouteTypes {
     | '/terms'
     | '/thank-you'
     | '/vault'
+    | '/blog/ai-video-marketing-toronto'
+    | '/blog/social-media-marketing-agency-toronto'
+    | '/blog/social-media-marketing-cost-toronto'
     | '/blog/social-media-marketing-york-region'
     | '/brand-room/ai-prompt-kit'
     | '/brand-room/brand-kit'
@@ -327,6 +363,9 @@ export interface FileRouteTypes {
     | '/terms'
     | '/thank-you'
     | '/vault'
+    | '/blog_/ai-video-marketing-toronto'
+    | '/blog_/social-media-marketing-agency-toronto'
+    | '/blog_/social-media-marketing-cost-toronto'
     | '/blog_/social-media-marketing-york-region'
     | '/brand-room_/ai-prompt-kit'
     | '/brand-room_/brand-kit'
@@ -356,6 +395,9 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
   VaultRoute: typeof VaultRoute
+  BlogAiVideoMarketingTorontoRoute: typeof BlogAiVideoMarketingTorontoRoute
+  BlogSocialMediaMarketingAgencyTorontoRoute: typeof BlogSocialMediaMarketingAgencyTorontoRoute
+  BlogSocialMediaMarketingCostTorontoRoute: typeof BlogSocialMediaMarketingCostTorontoRoute
   BlogSocialMediaMarketingYorkRegionRoute: typeof BlogSocialMediaMarketingYorkRegionRoute
   BrandRoomAiPromptKitRoute: typeof BrandRoomAiPromptKitRoute
   BrandRoomBrandKitRoute: typeof BrandRoomBrandKitRoute
@@ -553,6 +595,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSocialMediaMarketingYorkRegionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog_/social-media-marketing-cost-toronto': {
+      id: '/blog_/social-media-marketing-cost-toronto'
+      path: '/blog/social-media-marketing-cost-toronto'
+      fullPath: '/blog/social-media-marketing-cost-toronto'
+      preLoaderRoute: typeof BlogSocialMediaMarketingCostTorontoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog_/social-media-marketing-agency-toronto': {
+      id: '/blog_/social-media-marketing-agency-toronto'
+      path: '/blog/social-media-marketing-agency-toronto'
+      fullPath: '/blog/social-media-marketing-agency-toronto'
+      preLoaderRoute: typeof BlogSocialMediaMarketingAgencyTorontoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog_/ai-video-marketing-toronto': {
+      id: '/blog_/ai-video-marketing-toronto'
+      path: '/blog/ai-video-marketing-toronto'
+      fullPath: '/blog/ai-video-marketing-toronto'
+      preLoaderRoute: typeof BlogAiVideoMarketingTorontoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -572,6 +635,11 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
   VaultRoute: VaultRoute,
+  BlogAiVideoMarketingTorontoRoute: BlogAiVideoMarketingTorontoRoute,
+  BlogSocialMediaMarketingAgencyTorontoRoute:
+    BlogSocialMediaMarketingAgencyTorontoRoute,
+  BlogSocialMediaMarketingCostTorontoRoute:
+    BlogSocialMediaMarketingCostTorontoRoute,
   BlogSocialMediaMarketingYorkRegionRoute:
     BlogSocialMediaMarketingYorkRegionRoute,
   BrandRoomAiPromptKitRoute: BrandRoomAiPromptKitRoute,

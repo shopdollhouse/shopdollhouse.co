@@ -5,6 +5,30 @@ export const Route = createFileRoute("/blog")({ component: BlogIndex });
 
 const POSTS: { slug: string; title: string; excerpt: string; date: string; tag: string }[] = [
   {
+    slug: "/blog/social-media-marketing-agency-toronto",
+    title: "How to Choose a Social Media Marketing Agency in Toronto",
+    excerpt:
+      "The questions to ask, the red flags to avoid, and what a true done-for-you Toronto agency should actually include.",
+    date: "June 2026",
+    tag: "Toronto · GTA",
+  },
+  {
+    slug: "/blog/social-media-marketing-cost-toronto",
+    title: "How Much Does Social Media Marketing Cost in Toronto & the GTA?",
+    excerpt:
+      "A clear 2026 breakdown — DIY vs. freelancer vs. done-for-you agency — and what you actually get at each price.",
+    date: "June 2026",
+    tag: "Toronto · Pricing",
+  },
+  {
+    slug: "/blog/ai-video-marketing-toronto",
+    title: "AI Video Marketing for Toronto Businesses: The 2026 Advantage",
+    excerpt:
+      "How GTA businesses post daily video without ever filming — what an AI clone is, why it works, and how to start.",
+    date: "June 2026",
+    tag: "Toronto · AI",
+  },
+  {
     slug: "/blog/social-media-marketing-york-region",
     title: "Social Media Marketing for Service Businesses in York Region & the GTA",
     excerpt:
