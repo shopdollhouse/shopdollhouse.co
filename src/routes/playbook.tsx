@@ -12129,10 +12129,21 @@ Would it make sense for me to put one together for you? It's on me.
           <>{b("3. Set up sub-account")} — create their workspace in HighLevel: connect social to Social Planner, install LeadConnector, connect domain/email/phone for automations.</>,
           <>{b("4. Onboarding meeting")} — get their cell number, confirm contact preference, settle review-vs-publish authority, set the 48-hour rule (no response in 48h = you publish), set expectations ("first posts in 5–7 days").</>,
           <>{b("5. First batch of content")} — ASK AI (posts), OpenArt (graphics), HeyGen (clone videos), ElevenLabs (voice). Send for review or publish if you have authority.</>,
-          <>{b("6. Backend systems")} — conversations inbox, automations, reporting.</>,
-          <>{b("7. Publish & communicate")} — start posting; text small wins every other day.</>,
+          <>{b("6. Backend systems")} — set up the Conversations inbox so the client sees their leads; build automations like auto-DM replies; reporting.</>,
+          <>{b("7. Publish & communicate")} — publish on schedule; monitor engagement, respond to comments & DMs; text small wins every other day.</>,
         ]} />
-        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.6)" }}><strong>Then: monthly repeat</strong> — review, plan, create, invoice.</p>
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.6)" }}><strong>Then: the monthly repeat</strong> — Review (performance with client) → Share (wins & results) → Plan (next month's strategy) → Create (& schedule) → Invoice. Then do it all again. This is how you build predictable, recurring revenue.</p>
+      </Block>
+
+      <Block title="30. Content Reference — Best Performing Posts">
+        <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.75)" }}><strong>Best performing post types:</strong></p>
+        <BList items={[
+          <>{b("Value — Education")}: tips, how-tos, stats, etc.</>,
+          <>{b("Value — Entertainment")}: humor, emotional, interesting.</>,
+          <>{b("News or Trends")}.</>,
+        ]} />
+        <p className="mt-3 mb-1" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.7)" }}><strong>Format research prompt:</strong></p>
+        <Quote>Do the latest research on the best performing formats (carousels, videos, reels, etc.) on the major social media platforms and put it in a table.</Quote>
       </Block>
     </div>
   );
