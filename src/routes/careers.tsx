@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { usePageMeta } from "@/lib/use-page-meta";
 
 export const Route = createFileRoute("/careers")({ component: CareersPage });
@@ -211,8 +211,19 @@ function CareersPage() {
 
   return (
     <main className="min-h-screen" style={{ background: "var(--blush)", color: "var(--ink)" }}>
+      {/* Back to home */}
+      <div className="px-6 pt-10 max-w-3xl mx-auto">
+        <Link
+          to="/"
+          className="inline-flex items-center gap-2 text-[var(--gold)] hover:opacity-70 transition-opacity"
+          style={{ fontFamily: "'Jost', sans-serif", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase" }}
+        >
+          ← Back to home
+        </Link>
+      </div>
+
       {/* Hero */}
-      <section className="px-6 pt-24 pb-16 text-center">
+      <section className="px-6 pt-10 pb-16 text-center">
         <div className="max-w-2xl mx-auto">
           <p style={eyebrow}>Careers</p>
           <h1
@@ -296,6 +307,11 @@ function CareersPage() {
           </p>
           <div className="mt-6">
             <CtaButton>Join the Waitlist</CtaButton>
+          </div>
+          <div className="mt-10">
+            <Link to="/" className="btn-ghost">
+              ← Back to home
+            </Link>
           </div>
         </div>
       </section>
