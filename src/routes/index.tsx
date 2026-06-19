@@ -180,7 +180,7 @@ function Nav() {
         }`}
         style={{
           backgroundColor: scrolled
-            ? "color-mix(in oklab, var(--cream) 80%, transparent)"
+            ? "color-mix(in oklab, var(--cream) 94%, transparent)"
             : "transparent",
           backdropFilter: scrolled ? "blur(14px) saturate(140%)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(14px) saturate(140%)" : "none",

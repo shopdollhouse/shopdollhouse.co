@@ -285,14 +285,19 @@ function Check() {
   );
 }
 
-function CtaButton({ children }: { children: React.ReactNode }) {
+function CtaButton() {
   return (
     <a
       href={RESUME}
-      className="inline-block rounded-full px-8 py-3 transition-all hover:opacity-90"
-      style={{ background: "var(--rose)", color: "#fff", fontFamily: "'Jost', sans-serif", fontSize: "12px", letterSpacing: "0.18em", textTransform: "uppercase" }}
+      className="inline-flex items-center gap-2.5 rounded-full px-7 py-3 transition-all hover:opacity-90"
+      style={{ background: "var(--rose)", color: "#fff", fontFamily: "'Jost', sans-serif", fontSize: "13px", letterSpacing: "0.02em" }}
     >
-      {children}
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="3" y="5" width="18" height="14" rx="2" />
+        <path d="m3 7 9 6 9-6" />
+      </svg>
+      Send Resume to hello@shopdollhouse.co
+      <span aria-hidden="true">→</span>
     </a>
   );
 }
@@ -337,7 +342,7 @@ function CareersPage() {
             growing with us?
           </p>
           <div className="mt-8">
-            <CtaButton>Send Your Resume</CtaButton>
+            <CtaButton />
           </div>
         </div>
       </section>
@@ -386,7 +391,7 @@ function CareersPage() {
               future opportunities.
             </p>
             <div className="mt-4">
-              <CtaButton>Send Your Resume</CtaButton>
+              <CtaButton />
             </div>
           </div>
         </div>
@@ -486,7 +491,7 @@ function CareersPage() {
             Think you'd be a great fit? Even if there's no open role right now, we're always excited to meet talented people who share our vision. Send your resume and let's start a conversation.
           </p>
           <div className="mt-6">
-            <CtaButton>Send Your Resume</CtaButton>
+            <CtaButton />
           </div>
           <div className="mt-10">
             <Link to="/" className="btn-ghost">

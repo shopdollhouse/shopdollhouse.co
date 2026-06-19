@@ -115,6 +115,10 @@
   .border-gold { border-color: var(--gold); }
 }
 
+/* ── Branded text selection ──────────────────────────── */
+::selection { background: color-mix(in oklab, var(--rose) 26%, transparent); color: var(--ink); }
+::-moz-selection { background: color-mix(in oklab, var(--rose) 26%, transparent); color: var(--ink); }
+
 /* ── Reveal & motion ───────────────────────────────── */
 @keyframes rise-in {
   from { opacity: 0; transform: translateY(18px); }
