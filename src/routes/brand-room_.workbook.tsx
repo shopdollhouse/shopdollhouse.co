@@ -1,9 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { StanStoreProductPage } from "@/components/StanStoreProductPage";
-import { workbookProduct } from "@/lib/brand-products";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/brand-room_/workbook")({ component: WorkbookPage });
-
-function WorkbookPage() {
-  return <StanStoreProductPage product={workbookProduct} showCheckout />;
-}
+// Brand Room migrated to GoHighLevel (room.shopdollhouse.co).
+// This route now redirects to the GHL funnel.
+export const Route = createFileRoute("/brand-room_/workbook")({
+  beforeLoad: () => {
+    throw redirect({ href: "https://room.shopdollhouse.co/workbook" });
+  },
+});
