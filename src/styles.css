@@ -222,6 +222,13 @@
   animation: dh-text-pan 7s linear infinite;
 }
 
+/* When an element uses both .reveal and .text-shimmer, the later .text-shimmer
+   rule was overriding .reveal's rise-in animation, leaving it stuck at opacity:0.
+   Run BOTH animations so it reveals AND shimmers. */
+.reveal.text-shimmer {
+  animation: rise-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards, dh-text-pan 7s linear infinite;
+}
+
 /* ── Cursor sparkle trail — tiny sparkles drift behind the cursor ── */
 @keyframes dh-cursor-sparkle {
   0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3) rotate(0deg); }
@@ -356,7 +363,7 @@ main article:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sr, .sr-left, .sr-right, .sr-scale, [data-stagger] > * { opacity: 1; transform: none; filter: none; transition: none; }
+  .sr, .sr-left, .sr-right, .sr-scale, .reveal, .reveal-soft, [data-stagger] > * { opacity: 1; transform: none; filter: none; transition: none; }
   .ai-kenburns, .ai-scan, .ai-shimmer, .ai-badge-pulse, .ai-sparkle, .float-slow, .bg-kenburns, .bar-shimmer::after, .text-shimmer, .sparkle-drift, .aurora, .featured-glow, .marquee-track { animation: none !important; }
   .ai-scan, .ai-shimmer, .ai-sparkle, .sparkle-drift, .cursor-sparkle { opacity: 0 !important; }
   main article, main article:hover { transform: none; transition: none; }
