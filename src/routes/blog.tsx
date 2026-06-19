@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { usePageMeta } from "@/lib/use-page-meta";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export const Route = createFileRoute("/blog")({ component: BlogIndex });
 
@@ -180,6 +181,8 @@ function BlogIndex() {
           )}
         </div>
       </section>
+
+      <SiteFooter />
     </main>
   );
 }

@@ -238,6 +238,18 @@
   animation: dh-cursor-sparkle 0.8s ease-out forwards;
 }
 
+/* ── Luxury blog article ─────────────────────────────── */
+.dh-article > p { text-wrap: pretty; }
+.dh-article > p:first-of-type::first-letter {
+  font-family: "Cormorant Garamond", serif;
+  float: left;
+  font-size: 3.7rem;
+  line-height: 0.7;
+  padding: 0.08em 0.14em 0 0;
+  color: var(--rose);
+  font-weight: 600;
+}
+
 /* ── Aurora drift — living light over the hero ───────── */
 @keyframes dh-aurora {
   0% { background-position: 0% 50%; }

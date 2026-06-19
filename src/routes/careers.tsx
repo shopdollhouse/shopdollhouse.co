@@ -1,10 +1,27 @@
 import { Fragment } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { usePageMeta } from "@/lib/use-page-meta";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export const Route = createFileRoute("/careers")({ component: CareersPage });
 
-const WAITLIST = "mailto:hello@shopdollhouse.co?subject=Careers%20%E2%80%94%20Join%20the%20Waitlist";
+const RESUME = "mailto:hello@shopdollhouse.co?subject=Resume%20%E2%80%94%20The%20Dollhouse%20Brand%20Studio";
+
+const VALUES: { icon: string; title: string; body: string }[] = [
+  { icon: "⚡", title: "Move Fast", body: "We ship quickly and improve from real feedback. Done beats perfect." },
+  { icon: "💛", title: "Client Obsessed", body: "Every decision starts with one question: does this help our clients grow?" },
+  { icon: "✨", title: "Think Big", body: "We're building the future of done-for-you marketing. Dream big, execute bigger." },
+  { icon: "🤍", title: "Care Deeply", body: "About our clients, our craft, and each other. We win as a team." },
+];
+
+const PERKS: { icon: string; title: string; body: string }[] = [
+  { icon: "🏡", title: "Remote First", body: "Work from anywhere in Canada. We believe in flexibility and trust." },
+  { icon: "🕐", title: "Flexible Schedule", body: "Manage your own time. We care about the work, not hours logged." },
+  { icon: "🚀", title: "Real Impact", body: "Join early and directly shape how the studio grows from day one." },
+  { icon: "📚", title: "Learning & Growth", body: "Sharpen your skills with new tools and challenges every week." },
+  { icon: "🤖", title: "AI-Powered Work", body: "Work hands-on with cutting-edge AI content and automation tools." },
+  { icon: "🎨", title: "Creative Freedom", body: "Bring your ideas. Beautiful, original work is the whole point." },
+];
 
 // Roles are ordered by hiring priority. `phaseStart` marks the first role of each phase.
 const ROLES: {
@@ -271,7 +288,7 @@ function Check() {
 function CtaButton({ children }: { children: React.ReactNode }) {
   return (
     <a
-      href={WAITLIST}
+      href={RESUME}
       className="inline-block rounded-full px-8 py-3 transition-all hover:opacity-90"
       style={{ background: "var(--rose)", color: "#fff", fontFamily: "'Jost', sans-serif", fontSize: "12px", letterSpacing: "0.18em", textTransform: "uppercase" }}
     >
@@ -320,7 +337,7 @@ function CareersPage() {
             growing with us?
           </p>
           <div className="mt-8">
-            <CtaButton>Join the Waitlist</CtaButton>
+            <CtaButton>Send Your Resume</CtaButton>
           </div>
         </div>
       </section>
@@ -351,11 +368,71 @@ function CareersPage() {
         </div>
       </section>
 
+      {/* No open positions */}
+      <section className="px-6 py-12">
+        <div className="max-w-2xl mx-auto rounded-2xl p-8 md:p-10 text-center" style={{ background: "#fff", border: "1px solid color-mix(in oklab, var(--gold) 22%, transparent)", boxShadow: "0 8px 30px rgba(189,116,118,0.08)" }}>
+          <div style={{ fontSize: "1.8rem" }}>🤍</div>
+          <h2 className="mt-2" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.8rem", fontWeight: 400, color: "var(--ink)" }}>
+            No Open Positions Right Now
+          </h2>
+          <p className="mt-3 mx-auto max-w-lg text-[var(--ink)]/65 leading-relaxed" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem" }}>
+            We're brand new and don't have specific roles open just yet — but we're always looking for exceptional,
+            like-minded talent. If you think you'd be a great fit for the team as we grow, we'd love to hear from you.
+          </p>
+          <div className="mt-6 rounded-xl p-6" style={{ background: "var(--blush)", border: "1px solid color-mix(in oklab, var(--gold) 18%, transparent)" }}>
+            <p style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--gold)" }}>Send us your resume</p>
+            <p className="mt-2 text-[var(--ink)]/65" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem" }}>
+              Drop us a line with your resume and tell us why you're excited about The Dollhouse. We'll keep you in mind for
+              future opportunities.
+            </p>
+            <div className="mt-4">
+              <CtaButton>Send Your Resume</CtaButton>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What We Value */}
+      <section className="px-6 py-14" style={{ background: "var(--cream)" }}>
+        <div className="max-w-4xl mx-auto text-center">
+          <p style={eyebrow}>Our Culture</p>
+          <h2 className="mt-2" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "2rem", fontWeight: 400, color: "var(--ink)" }}>What We Value</h2>
+          <p className="mt-2 text-[var(--ink)]/55" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem" }}>The principles that guide how we work, build, and grow together.</p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {VALUES.map((v) => (
+              <div key={v.title} className="rounded-2xl p-6 text-center" style={{ background: "#fff", border: "1px solid color-mix(in oklab, var(--gold) 20%, transparent)" }}>
+                <div className="mx-auto inline-flex items-center justify-center rounded-full" style={{ width: 44, height: 44, background: "color-mix(in oklab, var(--gold) 14%, transparent)", fontSize: "1.3rem" }}>{v.icon}</div>
+                <h3 className="mt-3" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.25rem", fontWeight: 400, color: "var(--ink)" }}>{v.title}</h3>
+                <p className="mt-2 text-[var(--ink)]/60" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", lineHeight: 1.5 }}>{v.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why You'll Love Working Here */}
+      <section className="px-6 py-14">
+        <div className="max-w-4xl mx-auto text-center">
+          <p style={eyebrow}>Why Join</p>
+          <h2 className="mt-2" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "2rem", fontWeight: 400, color: "var(--ink)" }}>Why You'll Love Working Here</h2>
+          <p className="mt-2 text-[var(--ink)]/55" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem" }}>We take care of our team so they can do their best work.</p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 text-left">
+            {PERKS.map((p) => (
+              <div key={p.title} className="rounded-2xl p-6" style={{ background: "#fff", border: "1px solid color-mix(in oklab, var(--gold) 20%, transparent)" }}>
+                <div className="inline-flex items-center justify-center rounded-full" style={{ width: 40, height: 40, background: "color-mix(in oklab, var(--rose) 12%, transparent)", fontSize: "1.2rem" }}>{p.icon}</div>
+                <h3 className="mt-3" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.2rem", fontWeight: 400, color: "var(--ink)" }}>{p.title}</h3>
+                <p className="mt-1.5 text-[var(--ink)]/60" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", lineHeight: 1.5 }}>{p.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Roles */}
       <section className="px-6 py-16">
         <div className="max-w-3xl mx-auto">
           <p className="text-center mb-10 text-[var(--ink)]/45" style={{ fontFamily: "'Jost', sans-serif", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase" }}>
-            Explore the teams that make The Dollhouse run
+            The roles we'll build our team around as we grow
           </p>
           <div className="space-y-6">
             {ROLES.map((role, i) => (
@@ -406,10 +483,10 @@ function CareersPage() {
       <section className="px-6 pb-24 text-center">
         <div className="max-w-xl mx-auto">
           <p className="text-[var(--ink)]/75 leading-relaxed" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem" }}>
-            If any of these roles sound like the right fit for you, join the waitlist below and let's get in touch.
+            Think you'd be a great fit? Even if there's no open role right now, we're always excited to meet talented people who share our vision. Send your resume and let's start a conversation.
           </p>
           <div className="mt-6">
-            <CtaButton>Join the Waitlist</CtaButton>
+            <CtaButton>Send Your Resume</CtaButton>
           </div>
           <div className="mt-10">
             <Link to="/" className="btn-ghost">
@@ -418,6 +495,8 @@ function CareersPage() {
           </div>
         </div>
       </section>
+
+      <SiteFooter />
     </main>
   );
 }
