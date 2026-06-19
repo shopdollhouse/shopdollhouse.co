@@ -429,7 +429,7 @@ function Nav() {
 function Hero() {
   return (
     <header
-      className="relative min-h-[calc(100svh-36px)] flex items-center justify-center px-4 pt-36 pb-10 overflow-hidden md:pt-24"
+      className="relative min-h-[calc(100svh-36px)] flex items-start justify-center px-4 pt-32 pb-16 overflow-hidden md:pt-40"
     >
       {/* Animated background — slow cinematic zoom */}
       <div
