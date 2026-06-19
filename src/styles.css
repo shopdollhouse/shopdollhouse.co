@@ -222,21 +222,20 @@
   animation: dh-text-pan 7s linear infinite;
 }
 
-/* ── Cursor glow — soft rose-gold light follows the mouse ── */
-.cursor-glow {
+/* ── Cursor sparkle trail — tiny sparkles drift behind the cursor ── */
+@keyframes dh-cursor-sparkle {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3) rotate(0deg); }
+  25% { opacity: 0.85; }
+  100% { opacity: 0; transform: translate(-50%, -130%) scale(1) rotate(45deg); }
+}
+.cursor-sparkle {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 560px;
-  height: 560px;
-  margin: -280px 0 0 -280px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(200, 168, 100, 0.16) 0%, rgba(189, 116, 118, 0.1) 35%, transparent 70%);
-  pointer-events: none;
   z-index: 40;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  will-change: transform;
+  pointer-events: none;
+  line-height: 1;
+  color: var(--gold);
+  text-shadow: 0 0 5px rgba(200, 168, 100, 0.45);
+  animation: dh-cursor-sparkle 0.8s ease-out forwards;
 }
 
 /* ── Aurora drift — living light over the hero ───────── */
@@ -359,7 +358,7 @@ main article:hover {
 @media (prefers-reduced-motion: reduce) {
   .sr, .sr-left, .sr-right, .sr-scale, [data-stagger] > * { opacity: 1; transform: none; filter: none; transition: none; }
   .ai-kenburns, .ai-scan, .ai-shimmer, .ai-badge-pulse, .ai-sparkle, .float-slow, .bg-kenburns, .bar-shimmer::after, .text-shimmer, .sparkle-drift, .aurora, .featured-glow, .marquee-track { animation: none !important; }
-  .ai-scan, .ai-shimmer, .ai-sparkle, .sparkle-drift, .cursor-glow { opacity: 0 !important; }
+  .ai-scan, .ai-shimmer, .ai-sparkle, .sparkle-drift, .cursor-sparkle { opacity: 0 !important; }
   main article, main article:hover { transform: none; transition: none; }
 }
 

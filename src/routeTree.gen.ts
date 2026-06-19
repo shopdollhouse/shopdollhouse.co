@@ -20,7 +20,9 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PlaybookRouteImport } from './routes/playbook'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as FoundationRouteImport } from './routes/foundation'
+import { Route as CareersRouteImport } from './routes/careers'
 import { Route as BrandRoomRouteImport } from './routes/brand-room'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AiCloneRouteImport } from './routes/ai-clone'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SystemsServiceRouteImport } from './routes/systems_.$service'
@@ -33,6 +35,10 @@ import { Route as BrandRoomWorkbookRouteImport } from './routes/brand-room_.work
 import { Route as BrandRoomBrandWorkbookRouteImport } from './routes/brand-room_.brand-workbook'
 import { Route as BrandRoomBrandKitRouteImport } from './routes/brand-room_.brand-kit'
 import { Route as BrandRoomAiPromptKitRouteImport } from './routes/brand-room_.ai-prompt-kit'
+import { Route as BlogSocialMediaMarketingYorkRegionRouteImport } from './routes/blog_.social-media-marketing-york-region'
+import { Route as BlogSocialMediaMarketingCostTorontoRouteImport } from './routes/blog_.social-media-marketing-cost-toronto'
+import { Route as BlogSocialMediaMarketingAgencyTorontoRouteImport } from './routes/blog_.social-media-marketing-agency-toronto'
+import { Route as BlogAiVideoMarketingTorontoRouteImport } from './routes/blog_.ai-video-marketing-toronto'
 
 const VaultRoute = VaultRouteImport.update({
   id: '/vault',
@@ -89,9 +95,19 @@ const FoundationRoute = FoundationRouteImport.update({
   path: '/foundation',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CareersRoute = CareersRouteImport.update({
+  id: '/careers',
+  path: '/careers',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BrandRoomRoute = BrandRoomRouteImport.update({
   id: '/brand-room',
   path: '/brand-room',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AiCloneRoute = AiCloneRouteImport.update({
@@ -154,11 +170,37 @@ const BrandRoomAiPromptKitRoute = BrandRoomAiPromptKitRouteImport.update({
   path: '/brand-room/ai-prompt-kit',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogSocialMediaMarketingYorkRegionRoute =
+  BlogSocialMediaMarketingYorkRegionRouteImport.update({
+    id: '/blog_/social-media-marketing-york-region',
+    path: '/blog/social-media-marketing-york-region',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogSocialMediaMarketingCostTorontoRoute =
+  BlogSocialMediaMarketingCostTorontoRouteImport.update({
+    id: '/blog_/social-media-marketing-cost-toronto',
+    path: '/blog/social-media-marketing-cost-toronto',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogSocialMediaMarketingAgencyTorontoRoute =
+  BlogSocialMediaMarketingAgencyTorontoRouteImport.update({
+    id: '/blog_/social-media-marketing-agency-toronto',
+    path: '/blog/social-media-marketing-agency-toronto',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogAiVideoMarketingTorontoRoute =
+  BlogAiVideoMarketingTorontoRouteImport.update({
+    id: '/blog_/ai-video-marketing-toronto',
+    path: '/blog/ai-video-marketing-toronto',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ai-clone': typeof AiCloneRoute
+  '/blog': typeof BlogRoute
   '/brand-room': typeof BrandRoomRoute
+  '/careers': typeof CareersRoute
   '/foundation': typeof FoundationRoute
   '/onboarding': typeof OnboardingRoute
   '/playbook': typeof PlaybookRoute
@@ -170,6 +212,10 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/vault': typeof VaultRoute
+  '/blog/ai-video-marketing-toronto': typeof BlogAiVideoMarketingTorontoRoute
+  '/blog/social-media-marketing-agency-toronto': typeof BlogSocialMediaMarketingAgencyTorontoRoute
+  '/blog/social-media-marketing-cost-toronto': typeof BlogSocialMediaMarketingCostTorontoRoute
+  '/blog/social-media-marketing-york-region': typeof BlogSocialMediaMarketingYorkRegionRoute
   '/brand-room/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room/brand-kit': typeof BrandRoomBrandKitRoute
   '/brand-room/brand-workbook': typeof BrandRoomBrandWorkbookRoute
@@ -184,7 +230,9 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ai-clone': typeof AiCloneRoute
+  '/blog': typeof BlogRoute
   '/brand-room': typeof BrandRoomRoute
+  '/careers': typeof CareersRoute
   '/foundation': typeof FoundationRoute
   '/onboarding': typeof OnboardingRoute
   '/playbook': typeof PlaybookRoute
@@ -196,6 +244,10 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/vault': typeof VaultRoute
+  '/blog/ai-video-marketing-toronto': typeof BlogAiVideoMarketingTorontoRoute
+  '/blog/social-media-marketing-agency-toronto': typeof BlogSocialMediaMarketingAgencyTorontoRoute
+  '/blog/social-media-marketing-cost-toronto': typeof BlogSocialMediaMarketingCostTorontoRoute
+  '/blog/social-media-marketing-york-region': typeof BlogSocialMediaMarketingYorkRegionRoute
   '/brand-room/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room/brand-kit': typeof BrandRoomBrandKitRoute
   '/brand-room/brand-workbook': typeof BrandRoomBrandWorkbookRoute
@@ -211,7 +263,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/ai-clone': typeof AiCloneRoute
+  '/blog': typeof BlogRoute
   '/brand-room': typeof BrandRoomRoute
+  '/careers': typeof CareersRoute
   '/foundation': typeof FoundationRoute
   '/onboarding': typeof OnboardingRoute
   '/playbook': typeof PlaybookRoute
@@ -223,6 +277,10 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/vault': typeof VaultRoute
+  '/blog_/ai-video-marketing-toronto': typeof BlogAiVideoMarketingTorontoRoute
+  '/blog_/social-media-marketing-agency-toronto': typeof BlogSocialMediaMarketingAgencyTorontoRoute
+  '/blog_/social-media-marketing-cost-toronto': typeof BlogSocialMediaMarketingCostTorontoRoute
+  '/blog_/social-media-marketing-york-region': typeof BlogSocialMediaMarketingYorkRegionRoute
   '/brand-room_/ai-prompt-kit': typeof BrandRoomAiPromptKitRoute
   '/brand-room_/brand-kit': typeof BrandRoomBrandKitRoute
   '/brand-room_/brand-workbook': typeof BrandRoomBrandWorkbookRoute
@@ -239,7 +297,9 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/ai-clone'
+    | '/blog'
     | '/brand-room'
+    | '/careers'
     | '/foundation'
     | '/onboarding'
     | '/playbook'
@@ -251,6 +311,10 @@ export interface FileRouteTypes {
     | '/terms'
     | '/thank-you'
     | '/vault'
+    | '/blog/ai-video-marketing-toronto'
+    | '/blog/social-media-marketing-agency-toronto'
+    | '/blog/social-media-marketing-cost-toronto'
+    | '/blog/social-media-marketing-york-region'
     | '/brand-room/ai-prompt-kit'
     | '/brand-room/brand-kit'
     | '/brand-room/brand-workbook'
@@ -265,7 +329,9 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/ai-clone'
+    | '/blog'
     | '/brand-room'
+    | '/careers'
     | '/foundation'
     | '/onboarding'
     | '/playbook'
@@ -277,6 +343,10 @@ export interface FileRouteTypes {
     | '/terms'
     | '/thank-you'
     | '/vault'
+    | '/blog/ai-video-marketing-toronto'
+    | '/blog/social-media-marketing-agency-toronto'
+    | '/blog/social-media-marketing-cost-toronto'
+    | '/blog/social-media-marketing-york-region'
     | '/brand-room/ai-prompt-kit'
     | '/brand-room/brand-kit'
     | '/brand-room/brand-workbook'
@@ -291,7 +361,9 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/ai-clone'
+    | '/blog'
     | '/brand-room'
+    | '/careers'
     | '/foundation'
     | '/onboarding'
     | '/playbook'
@@ -303,6 +375,10 @@ export interface FileRouteTypes {
     | '/terms'
     | '/thank-you'
     | '/vault'
+    | '/blog_/ai-video-marketing-toronto'
+    | '/blog_/social-media-marketing-agency-toronto'
+    | '/blog_/social-media-marketing-cost-toronto'
+    | '/blog_/social-media-marketing-york-region'
     | '/brand-room_/ai-prompt-kit'
     | '/brand-room_/brand-kit'
     | '/brand-room_/brand-workbook'
@@ -318,7 +394,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AiCloneRoute: typeof AiCloneRoute
+  BlogRoute: typeof BlogRoute
   BrandRoomRoute: typeof BrandRoomRoute
+  CareersRoute: typeof CareersRoute
   FoundationRoute: typeof FoundationRoute
   OnboardingRoute: typeof OnboardingRoute
   PlaybookRoute: typeof PlaybookRoute
@@ -330,6 +408,10 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
   VaultRoute: typeof VaultRoute
+  BlogAiVideoMarketingTorontoRoute: typeof BlogAiVideoMarketingTorontoRoute
+  BlogSocialMediaMarketingAgencyTorontoRoute: typeof BlogSocialMediaMarketingAgencyTorontoRoute
+  BlogSocialMediaMarketingCostTorontoRoute: typeof BlogSocialMediaMarketingCostTorontoRoute
+  BlogSocialMediaMarketingYorkRegionRoute: typeof BlogSocialMediaMarketingYorkRegionRoute
   BrandRoomAiPromptKitRoute: typeof BrandRoomAiPromptKitRoute
   BrandRoomBrandKitRoute: typeof BrandRoomBrandKitRoute
   BrandRoomBrandWorkbookRoute: typeof BrandRoomBrandWorkbookRoute
@@ -421,11 +503,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FoundationRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/careers': {
+      id: '/careers'
+      path: '/careers'
+      fullPath: '/careers'
+      preLoaderRoute: typeof CareersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/brand-room': {
       id: '/brand-room'
       path: '/brand-room'
       fullPath: '/brand-room'
       preLoaderRoute: typeof BrandRoomRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ai-clone': {
@@ -512,13 +608,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BrandRoomAiPromptKitRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog_/social-media-marketing-york-region': {
+      id: '/blog_/social-media-marketing-york-region'
+      path: '/blog/social-media-marketing-york-region'
+      fullPath: '/blog/social-media-marketing-york-region'
+      preLoaderRoute: typeof BlogSocialMediaMarketingYorkRegionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog_/social-media-marketing-cost-toronto': {
+      id: '/blog_/social-media-marketing-cost-toronto'
+      path: '/blog/social-media-marketing-cost-toronto'
+      fullPath: '/blog/social-media-marketing-cost-toronto'
+      preLoaderRoute: typeof BlogSocialMediaMarketingCostTorontoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog_/social-media-marketing-agency-toronto': {
+      id: '/blog_/social-media-marketing-agency-toronto'
+      path: '/blog/social-media-marketing-agency-toronto'
+      fullPath: '/blog/social-media-marketing-agency-toronto'
+      preLoaderRoute: typeof BlogSocialMediaMarketingAgencyTorontoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog_/ai-video-marketing-toronto': {
+      id: '/blog_/ai-video-marketing-toronto'
+      path: '/blog/ai-video-marketing-toronto'
+      fullPath: '/blog/ai-video-marketing-toronto'
+      preLoaderRoute: typeof BlogAiVideoMarketingTorontoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AiCloneRoute: AiCloneRoute,
+  BlogRoute: BlogRoute,
   BrandRoomRoute: BrandRoomRoute,
+  CareersRoute: CareersRoute,
   FoundationRoute: FoundationRoute,
   OnboardingRoute: OnboardingRoute,
   PlaybookRoute: PlaybookRoute,
@@ -530,6 +656,13 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
   VaultRoute: VaultRoute,
+  BlogAiVideoMarketingTorontoRoute: BlogAiVideoMarketingTorontoRoute,
+  BlogSocialMediaMarketingAgencyTorontoRoute:
+    BlogSocialMediaMarketingAgencyTorontoRoute,
+  BlogSocialMediaMarketingCostTorontoRoute:
+    BlogSocialMediaMarketingCostTorontoRoute,
+  BlogSocialMediaMarketingYorkRegionRoute:
+    BlogSocialMediaMarketingYorkRegionRoute,
   BrandRoomAiPromptKitRoute: BrandRoomAiPromptKitRoute,
   BrandRoomBrandKitRoute: BrandRoomBrandKitRoute,
   BrandRoomBrandWorkbookRoute: BrandRoomBrandWorkbookRoute,

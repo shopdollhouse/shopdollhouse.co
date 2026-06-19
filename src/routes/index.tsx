@@ -229,7 +229,20 @@ function Nav() {
                 className="nav-link hover:text-[var(--rose)] transition-colors inline-flex items-center gap-1.5 bg-transparent border-0 p-0 uppercase cursor-pointer"
               >
                 Systems
-                <span className="text-[var(--gold)] text-[9px]">⌄</span>
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--gold)"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                  style={{ transition: "transform 0.2s", transform: systemsOpen ? "rotate(180deg)" : "none" }}
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
               </button>
               <div
                 className={`absolute left-1/2 top-full z-50 mt-0 w-[860px] -translate-x-1/2 rounded-[26px] p-5 pt-10 transition-all duration-200 ${
@@ -774,7 +787,7 @@ function MarqueeStrip() {
     <span key={t} className="inline-flex items-center">
       <span
         className="italic"
-        style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.5rem, 3vw, 2.2rem)", color: "var(--rose)", padding: "0 1.6rem" }}
+        style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1rem, 2vw, 1.5rem)", color: "var(--rose)", padding: "0 1.2rem" }}
       >
         {t}
       </span>
@@ -3231,6 +3244,12 @@ function Footer() {
                 {label}
               </a>
             ))}
+            <Link to="/blog" className="text-[var(--ink)]/58 hover:text-[var(--rose)] transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.78rem", letterSpacing: "0.12em", textTransform: "uppercase" }}>
+              Blog
+            </Link>
+            <Link to="/careers" className="text-[var(--ink)]/58 hover:text-[var(--rose)] transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.78rem", letterSpacing: "0.12em", textTransform: "uppercase" }}>
+              Careers
+            </Link>
           </div>
         </div>
 
@@ -3248,11 +3267,29 @@ function Footer() {
         </div>
       </div>
 
-      <div className="mt-12 max-w-6xl mx-auto flex flex-col gap-4 border-t border-[var(--gold)]/18 pt-6 text-center md:flex-row md:items-center md:justify-between md:text-left">
+      <div className="mt-12 max-w-6xl mx-auto flex items-center justify-center gap-6">
+        <a href="https://www.instagram.com/thedollhousestudio/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-[var(--ink)]/40 hover:text-[var(--rose)] transition-colors">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><rect x="2" y="2" width="20" height="20" rx="5" /><circle cx="12" cy="12" r="4.2" /><circle cx="17.6" cy="6.4" r="1" fill="currentColor" stroke="none" /></svg>
+        </a>
+        <a href="https://www.facebook.com/shopdollhouseco" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-[var(--ink)]/40 hover:text-[var(--rose)] transition-colors">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z" /></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/the-dollhouse-brand-studio" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-[var(--ink)]/40 hover:text-[var(--rose)] transition-colors">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.65h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21H9z" /></svg>
+        </a>
+      </div>
+
+      <div className="mt-6 max-w-6xl mx-auto flex flex-col gap-4 border-t border-[var(--gold)]/18 pt-6 text-center md:flex-row md:items-center md:justify-between md:text-left">
         <p className="text-xs text-[var(--ink)]/35" style={{ fontFamily: "'DM Sans', sans-serif" }}>
           © {new Date().getFullYear()} The Dollhouse Brand Studio. All rights reserved.
         </p>
         <div className="flex items-center justify-center gap-5">
+          <Link to="/blog" className="text-[var(--ink)]/35 hover:text-[var(--ink)]/58 transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase" }}>
+            Blog
+          </Link>
+          <Link to="/careers" className="text-[var(--ink)]/35 hover:text-[var(--ink)]/58 transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase" }}>
+            Careers
+          </Link>
           <Link to="/privacy" className="text-[var(--ink)]/35 hover:text-[var(--ink)]/58 transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase" }}>
             Privacy Policy
           </Link>
@@ -3300,8 +3337,8 @@ function BackToTop() {
 
 function Index() {
   usePageMeta(
-    "The Dollhouse Brand Studio | Social Media Marketing & Lead Automation",
-    "Done-for-you social media, AI clone content, websites, text follow-up, review funnels, and automation systems for service businesses.",
+    "Done-For-You Social Media Marketing in York Region & the GTA | The Dollhouse Brand Studio",
+    "Done-for-you social media marketing for service businesses in York Region, Toronto, and the GTA. Daily content, AI video, paid ads, review automation, and lead-converting websites — all handled for you.",
   );
 
   // Scroll-reveal: sections gently rise + fade in as they enter the viewport.

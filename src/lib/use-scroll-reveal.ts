@@ -48,27 +48,23 @@ export function useScrollReveal() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (!window.matchMedia("(pointer: fine)").matches) return;
 
-    // Soft rose-gold glow that follows the cursor.
-    const glow = document.createElement("div");
-    glow.className = "cursor-glow";
-    glow.setAttribute("aria-hidden", "true");
-    document.body.appendChild(glow);
-
-    let raf = 0;
-    let mx = 0;
-    let my = 0;
+    // Subtle sparkle trail that drifts behind the cursor.
+    let lastSpawn = 0;
     const onMove = (e: MouseEvent) => {
-      mx = e.clientX;
-      my = e.clientY;
-      glow.style.opacity = "1";
-      if (!raf) {
-        raf = window.requestAnimationFrame(() => {
-          glow.style.transform = `translate(${mx}px, ${my}px)`;
-          raf = 0;
-        });
-      }
+      const now = performance.now();
+      if (now - lastSpawn < 70) return; // throttle so it stays subtle
+      lastSpawn = now;
+      const s = document.createElement("span");
+      s.className = "cursor-sparkle";
+      s.setAttribute("aria-hidden", "true");
+      s.textContent = "✦";
+      s.style.left = `${e.clientX + (Math.random() - 0.5) * 10}px`;
+      s.style.top = `${e.clientY + (Math.random() - 0.5) * 10}px`;
+      s.style.fontSize = `${7 + Math.random() * 5}px`;
+      s.style.color = Math.random() < 0.5 ? "var(--gold)" : "var(--rose)";
+      document.body.appendChild(s);
+      window.setTimeout(() => s.remove(), 800);
     };
-    const onLeave = () => { glow.style.opacity = "0"; };
 
     // Gentle 3D tilt on cards as the cursor moves over them.
     const MAX_TILT = 4;
@@ -89,17 +85,14 @@ export function useScrollReveal() {
     };
 
     document.addEventListener("mousemove", onMove, { passive: true });
-    document.addEventListener("mouseleave", onLeave);
     document.addEventListener("mousemove", onTilt, { passive: true });
     document.addEventListener("mouseout", onTiltOut, { passive: true });
 
     return () => {
       document.removeEventListener("mousemove", onMove);
-      document.removeEventListener("mouseleave", onLeave);
       document.removeEventListener("mousemove", onTilt);
       document.removeEventListener("mouseout", onTiltOut);
-      if (raf) window.cancelAnimationFrame(raf);
-      glow.remove();
+      document.querySelectorAll(".cursor-sparkle").forEach((el) => el.remove());
     };
   }, []);
 }

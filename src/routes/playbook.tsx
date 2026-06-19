@@ -89,7 +89,7 @@ function SvgIcon({ id, size = 18, style }: { id: string; size?: number; style?: 
 }
 
 /* ─── Types ───────────────────────────────────────────── */
-type Tab = "start" | "workflow" | "monthly" | "prompts" | "outreach" | "growth" | "newhire" | "deals" | "content" | "quote" | "schedule" | "discovery" | "proposal" | "links";
+type Tab = "start" | "workflow" | "monthly" | "prompts" | "outreach" | "growth" | "newhire" | "deals" | "content" | "quote" | "schedule" | "discovery" | "proposal" | "links" | "serviceoverview";
 
 /* ─── Prompt Card ─────────────────────────────────────── */
 function PromptCard({ title, tag, prompt }: { title: string; tag: string; prompt: string }) {
@@ -8830,6 +8830,290 @@ function ProposalTab() {
   return null;
 }
 
+/* ─── Service Overview Tab (agency-build course reference) ── */
+function ServiceOverviewTab() {
+  const card: React.CSSProperties = { border: "1px solid rgba(200,168,100,0.2)", background: "rgba(255,255,255,0.6)", borderRadius: "1rem" };
+  const Block = ({ title, sub, children }: { title: string; sub?: string; children: React.ReactNode }) => (
+    <div className="overflow-hidden mb-5" style={card}>
+      <div className="px-5 py-3" style={{ borderBottom: "1px solid rgba(200,168,100,0.15)", background: "rgba(200,168,100,0.06)" }}>
+        <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.15rem", color: "#1e0f0a" }}>{title}</p>
+        {sub && <p className="mt-0.5" style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", fontStyle: "italic", color: "rgba(30,15,10,0.5)" }}>{sub}</p>}
+      </div>
+      <div className="px-5 py-4">{children}</div>
+    </div>
+  );
+  const BList = ({ items }: { items: React.ReactNode[] }) => (
+    <ul className="space-y-2">
+      {items.map((it, i) => (
+        <li key={i} className="flex gap-2.5" style={{ fontFamily: FONT_BODY, fontSize: "0.9rem", color: "rgba(30,15,10,0.8)", lineHeight: 1.5 }}>
+          <span style={{ color: "var(--gold)", flexShrink: 0 }}>◆</span>
+          <span>{it}</span>
+        </li>
+      ))}
+    </ul>
+  );
+  const Tbl = ({ head, rows }: { head: string[]; rows: React.ReactNode[][] }) => (
+    <div className="overflow-x-auto">
+      <table className="w-full text-left" style={{ borderCollapse: "collapse", fontFamily: FONT_BODY, fontSize: "0.82rem" }}>
+        <thead>
+          <tr>{head.map((h, i) => <th key={i} className="px-3 py-2" style={{ background: "var(--ink)", color: "var(--gold)", fontFamily: FONT_LUXE, fontSize: "0.68rem", letterSpacing: "0.08em", textTransform: "uppercase", border: "1px solid rgba(200,168,100,0.2)" }}>{h}</th>)}</tr>
+        </thead>
+        <tbody>
+          {rows.map((r, ri) => (
+            <tr key={ri} style={{ background: ri % 2 ? "rgba(255,255,255,0.4)" : "transparent" }}>
+              {r.map((c, ci) => <td key={ci} className="px-3 py-2 align-top" style={{ color: "rgba(30,15,10,0.8)", border: "1px solid rgba(200,168,100,0.15)" }}>{c}</td>)}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+  const Quote = ({ children }: { children: React.ReactNode }) => (
+    <div className="px-4 py-3 my-2 rounded-lg" style={{ background: "rgba(200,168,100,0.08)", borderLeft: "3px solid var(--gold)", fontFamily: FONT_BODY, fontSize: "0.88rem", color: "rgba(30,15,10,0.82)", lineHeight: 1.55, whiteSpace: "pre-line" }}>{children}</div>
+  );
+  const b = (t: string) => <strong style={{ color: "#1e0f0a" }}>{t}</strong>;
+
+  return (
+    <div>
+      <SectionHeader label="Service Overview" title="The AI-Powered SMMA Playbook" sub="Reference compiled from the agency-build course (60 slides). Note: the offer pricing below is the course's example model — the Dollhouse's own client plans differ (see Quote Builder / Proposal Deck)." />
+
+      <Block title="1. What You're Offering — The Core Three Services">
+        <BList items={[
+          <>{b("Social Media Management")} — creating and posting content on their behalf, every week. They do nothing.</>,
+          <>{b("Light Ad Management")} — boost best posts and run simple retargeting for more reach.</>,
+          <>{b("Lead Conversion")} — turn social traffic into real leads, appointments, and sales.</>,
+        ]} />
+        <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.6)" }}>The owner does <strong>nothing</strong>: no recording content, no expensive ad campaigns, no hiring a team. You handle it all.</p>
+      </Block>
+
+      <Block title="2. The Real Model — AI Is the Tool, Not the Product">
+        <Tbl head={["❌ Wrong Approach", "✅ Right Approach"]} rows={[
+          ["Offer AI websites, AI voice agents, etc.", "Deliver social media that drives real growth"],
+          ["Do the bare minimum — collect the check", "More engagement, traffic, leads, appointments"],
+          ["Never actually help the client grow", "Use AI to be faster AND more effective"],
+          ["Clients stagnate → they cancel", "Clients grow → they stay longer"],
+          ["High churn, frustrated on both sides", "Low churn, predictable recurring revenue"],
+        ]} />
+      </Block>
+
+      <Block title="3–5. The Three Offers">
+        <Tbl head={["", "Offer 1 — Graphics & Carousels", "Offer 2 — AI Videos & Clones", "Offer 3 — Hybrid"]} rows={[
+          [b("Price / mo"), "$400–$600", "~$1,000 (hottest)", "~$750"],
+          [b("Content"), "Graphics, Carousels", "AI Videos, Clones", "Videos + Graphics"],
+          [b("Support"), "Email / Tickets", "Dedicated 1-on-1", "Dedicated 1-on-1"],
+          [b("Time"), "Very Low (automated)", "Higher (video work)", "Medium (balanced)"],
+          [b("Best for"), "Side hustle, lifestyle biz", "Full agency, big growth", "Balance of both"],
+        ]} />
+        <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.6)" }}>Offer 2 support phases: <strong>Months 1–3</strong> high communication (building the clone) · <strong>Months 4–6</strong> smoothing out · <strong>Month 7+</strong> autopilot (~30 min/mo).</p>
+      </Block>
+
+      <Block title="6–7. Core Tool — HighLevel">
+        <Tbl head={["Plan", "Price", "Notes"]} rows={[
+          [b("Starter"), "$97/mo", "3 sub-accounts (clients). Covers 2–3 clients to start."],
+          [b("Unlimited ⭐"), "$297/mo", "Unlimited clients. Upgrade at 3+ clients."],
+        ]} />
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.6)" }}>Plus pay-per-send fees (~$25/mo budget covers email, calls & AI; 10,000 emails ≈ $7).</p>
+      </Block>
+
+      <Block title="8. Essential Tools to Launch">
+        <Tbl head={["Tool", "Cost", "For"]} rows={[
+          ["G-Suite", "$15/mo", "Pro email, Drive, Gemini Pro. Client-facing address."],
+          ["OpenArt", "$60/mo", "AI video — timelapse, talking objects, viral. No watermarks."],
+          ["HeyGen", "$29/mo", "AI clone videos — most realistic. Set a voice for consistency."],
+          ["ElevenLabs", "$25/mo", "Voice cloning / AI audio. Pairs with HeyGen."],
+        ]} />
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.55)" }}>Optional as you grow: ChatGPT/Claude (~$25/mo) · Part-time video editor / SM manager (~$500/mo).</p>
+      </Block>
+
+      <Block title="9–10. The Numbers — 10 Clients">
+        <Tbl head={["", "Offer 1 Graphics", "Offer 2 AI Videos", "Offer 3 Hybrid"]} rows={[
+          [b("Price/client"), "$500/mo", "$1,000/mo", "$750/mo"],
+          [b("Revenue (10)"), "$5,000/mo", "$10,000/mo", "$7,500/mo"],
+          [b("Tool costs"), "~$337/mo", "~$451/mo", "~$451/mo"],
+          [b("Video editor"), "—", "$500/mo", "$500/mo"],
+          [b("Monthly profit"), "~$4,663", "~$9,049", "~$6,549"],
+          [b("Margin"), "93%", "90%", "87%"],
+        ]} />
+      </Block>
+
+      <Block title="11–12. Niche Selection">
+        <p className="mb-2" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.7)" }}><strong>Avoid:</strong> B2B, e-commerce stores, software companies, warehouses/manufacturers — social isn't their channel; they cancel fast.</p>
+        <p className="mb-2" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.7)" }}><strong>Target by lead price</strong> (what they pay per lead on Home Advisor = willingness to invest):</p>
+        <Tbl head={["Business", "Lead cost", "Means for you"]} rows={[
+          ["HVAC", "$70–$110", "Easily pays $500–$1,000/mo for social leads"],
+          ["Roofer", "$80–$130", "High ticket jobs = happy to invest"],
+          ["Plumber", "$20–$35", "Lower cost — still worth it at volume"],
+          ["Personal Trainer", "$40–$80", "Owner IS the brand — perfect fit"],
+          ["Dentist", "$50–$100", "High lifetime value — motivated to market"],
+        ]} />
+      </Block>
+
+      <Block title="13. Competitor Reference — 99 Dollar Social">
+        <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.75)" }}>Self-serve SMM from $99/mo. 30 single-image posts = $279/mo · one free channel · extra platforms $10/mo each. Reference for how a productized self-serve competitor packages & prices.</p>
+      </Block>
+
+      <Block title="14. The 4 Content Approaches">
+        <BList items={[
+          <>{b("Clone the Owner")} — owner IS the brand. Best for dentists, lawyers, realtors, trainers, financial advisors, chiropractors. No filming required.</>,
+          <>{b("Clone Their Mascot")} — home service co's (plumbers, HVAC, exterminators). Turn a cartoon mascot into a talking AI video.</>,
+          <>{b("AI Influencer")} — any business without a face. Custom AI character becomes the brand voice. Cutting edge.</>,
+          <>{b("Viral AI Videos")} — timelapses, before/afters, trending effects. Best for interior designers, contractors, landscapers, auto detailers, cleaners.</>,
+        ]} />
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.55)" }}>Pick ONE type you're most comfortable creating. Get really good at it.</p>
+        <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.75)" }}><strong>Carousels with ASK AI (autopilot):</strong> make content about your NICHE not your agency. One day of work = 1–2 months of content — generate 30–60 carousels, schedule in the social planner, let it run.</p>
+      </Block>
+
+      <Block title="15–16. Outreach Pitch & Message">
+        <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.7)" }}><strong>Get permission first</strong> — don't blast videos into inboxes:</p>
+        <Quote>"Hey, I work with businesses like yours to create AI clones for the owner. I'd love to put together a quick sample video for you, totally free, no strings attached. Would you be open to seeing it?"</Quote>
+        <p className="mt-3 mb-1" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.7)" }}><strong>One-sentence pitch formula:</strong> "I help [NICHE] [achieve result] using AI so they can [benefit] without [pain]."</p>
+        <Quote>{`Hey [NAME], you inspire me! I've been studying your business and love what you do. Since your services are so good, I think this strategy I've used for my clients can really help you.
+
+Basically, I create AI clones of business owners and use it to expand their social media presence, attracting more leads and clients.`}</Quote>
+      </Block>
+
+      <Block title="17–18. The 5-Part Sales Call">
+        <p className="mb-2" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.7)" }}>Before every meeting have ready: <strong>AI video sample · simple sales deck · ready-to-sign proposal</strong> (close in the meeting, not after).</p>
+        <BList items={[
+          <>{b("1. Build Rapport")} — first 2 min matter. Ask about their day, compliment something specific, be genuine not scripted.</>,
+          <>{b("2. Ask Questions")} (most important) — how are you getting customers now? worked with anyone before? biggest challenge? goals this year? Let them talk.</>,
+          <>{b("3. Show Your Work")} — "I put this together for you. Check this out." Play the video, ask what they think, bridge: "Could you see yourself having these?" Then walk the deck: content creation → backend system → results.</>,
+          <>{b("4. Present the Offer")} — only after they're excited. What's included, what it costs, what to expect. Free-trial pitch: "I'd love to do a 14-day trial so you see results before committing." Still collect payment method.</>,
+          <>{b("5. Close or Next Steps")} — ready: proposal + signature + payment, get started. Need time: set a specific follow-up date.</>,
+        ]} />
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.55)" }}>After every call, note what worked / what felt off, adjust, go again.</p>
+      </Block>
+
+      <Block title="19. Contract Structure">
+        <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.75)" }}>Monthly subscription, auto-renews, <strong>no rollover</strong> (unused posts don't carry over). Must include: start date & timeline · key deliverables · amount charged · cancellation policy · <strong>client obligations</strong>.</p>
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.75)" }}>Client obligations (these protect you): <strong>content review deadline</strong> (no review in time = right to publish) · <strong>account access required</strong> (no access = no service) · <strong>AI clone rights</strong> (explicit rights to name, photo, voice).</p>
+      </Block>
+
+      <Block title="20. Lead-Gen Prompt (Google Maps Scrape)">
+        <PromptCard title="Lead Research" tag="Lead Gen" prompt={`Act as a B2B Lead Generation Expert and Market Research.
+
+I need to identify small businesses in the [Niche] who need help with social media.
+
+As a first step, review the google maps listing link below and scrape all the businesses then put it into a table organized by:
+- Company
+- Name (owner or main contact)
+- Role
+- Phone number (publicly listed)
+- Country code
+- Email Address (search for 'contact@', 'info@', or listed owner emails)
+- Business Type
+- Number of reviews
+- Average Review Rating
+- Rating/Notes on their social media presence
+
+Once complete, the table should be prepared as a CSV and available for export.
+
+Link: [Enter Google Maps search URL]
+
+Constraints: Only include small to medium-sized businesses (avoid national chains or big enterprises).`} />
+      </Block>
+
+      <Block title="21–23. Cold Outreach Scripts">
+        <p className="mb-1" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--gold)" }}>Cold Call</p>
+        <Quote>{`"Hey, is this [BUSINESS NAME]? My name is [YOUR NAME]. I came across your business on Google — you do really great work but your social media could use a little love. I work with [NICHE] businesses to create AI-powered social content that gets more visibility and customers. I put together a quick AI video sample for a business just like yours — totally free. Would you be open to a quick 10-minute Zoom so I can show you?"`}</Quote>
+        <p className="mt-1" style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.55)" }}>If YES: book right there ("this afternoon or tomorrow? I've got 2 and 4 available"), send the invite immediately.</p>
+        <Tbl head={["Objection", "Response"]} rows={[
+          ["\"I don't need social media.\"", "Totally understand — a lot of my clients said the same before they saw what AI content could do. It's 10 minutes and it's free. Worst case, you see something cool."],
+          ["\"We get all our business from word of mouth.\"", "That's awesome — word of mouth is powerful. Social amplifies it. Just 10 minutes and it's free."],
+        ]} />
+        <p className="mt-4 mb-1" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--gold)" }}>Cold Visit (walk in, ask for owner/manager)</p>
+        <Quote>{`"Hey, my name is [YOUR NAME]. I run a small social media agency and work specifically with [NICHE] businesses. I came across your business and thought your [social media / brand / mascot] had a lot of potential. I'd love to create a quick AI video for you, totally free, just to show what's possible. Can I get your number and send it over when it's done?"`}</Quote>
+        <p className="mt-4 mb-1" style={{ fontFamily: FONT_LUXE, fontSize: "0.72rem", letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--gold)" }}>Cold Email (use separate domains — never your main one)</p>
+        <Quote>{`Subject: Quick question about [BUSINESS NAME]
+
+Hey [NAME],
+
+I came across [BUSINESS NAME] on Google and noticed you've got some great reviews. I work with [NICHE] businesses and I use AI to create social media content for them. I actually made a quick AI clone video for a [NICHE] business similar to yours and the owner was blown away.
+
+Would it make sense for me to put one together for you? It's on me.
+
+[YOUR NAME]`}</Quote>
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.8rem", color: "rgba(30,15,10,0.55)" }}>Daily habits: build your list (Google Maps/Yelp), 10 calls or 5 visits/day (20 calls ≈ 2 meetings), same script every time, always follow up (yes often comes on touchpoint #2–3).</p>
+      </Block>
+
+      <Block title="24. Kickoff Call Checklist">
+        <BList items={[
+          <>{b("Connect your domain")} to HighLevel so funnels/sites use your brand.</>,
+          <>{b("Set up business email")} so messages come from your address.</>,
+          <>{b("Get a phone number")} inside HighLevel for calls & texts.</>,
+          <>{b("A2P registration")} — approval to legally send texts.</>,
+          <>{b("Import & build a snapshot")} — critical for the AI SMMA snapshot.</>,
+        ]} />
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.55)" }}>Bonus topics to ask about: AI Voice Agent · AI Studio (website builder) · ASK AI pricing.</p>
+      </Block>
+
+      <Block title="25. Claude Co-Work — AI-Powered Cold DM Outreach" sub="A 3-step system where Claude (with browser access) researches prospects and writes personalized DMs.">
+        <BList items={[
+          <>{b("Step 1 — Give Claude your prospect list")} (business names, owner names, phones, emails). Export from HighLevel as CSV, open Claude Co-Work on desktop, drop the file in. Example: "Here's my prospect list for dentists in Atlanta. I want to reach out to each owner via DM on Instagram."</>,
+          <>{b("Step 2 — Claude finds their profiles")} via Claude in Chrome — searches each owner's IG/FB/LinkedIn, one by one. Best niches: dentists, personal trainers, chiropractors, barbers/salons, real estate agents. DM the owner, not the business page.</>,
+          <>{b("Step 3 — Claude sends personalized DMs")} — visits each profile, reads recent posts & bio, writes a custom message. e.g. "Hey Dr. Smith, congrats on the new location! I noticed your social media hasn't been super active so I created a few posts for your practice. Would you like to see them?"</>,
+        ]} />
+        <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.7)" }}><strong>Good cold DM:</strong> keep it short (2–3 sentences) · make it personal · don't pitch (ask an easy yes) · no links (IG filters links from non-followers).</p>
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.7)" }}><strong>Volume + follow-ups:</strong> 10–15 quality DMs/day per platform (too fast = banned). Claude tracks who replied and follows up. Layer all 4 methods: call Mon → DM Wed → email Fri.</p>
+      </Block>
+
+      <Block title="26. Organic Content & SEO" sub="Inbound that compounds — target searchers already looking for what you offer.">
+        <BList items={[
+          <>{b("Keyword research")} — free tools: Google Keyword Planner, Ubersuggest, Google Autocomplete, "People Also Ask". List 5–10 niche keywords with search volume.</>,
+          <>{b("Optimize your website")} — page titles, headlines (H1/H2), meta descriptions, page copy all naturally include keywords (write for humans, don't stuff).</>,
+          <>{b("Write blog posts")} around your keywords (e.g. "5 Reasons Dentists Need Social Media in 2026"). AI does the heavy lifting; even 3–5 solid posts help.</>,
+          <>{b("Make videos")} on the same topics — full on YouTube, clipped for IG/TikTok/FB/LinkedIn. More places = more signals to Google.</>,
+          <>{b("AEO")} — show up when people ask ChatGPT/Gemini/Perplexity. Google Business Profile (#1), Yelp + Clutch, DesignRush + niche directories. Ask clients for Google reviews.</>,
+        ]} />
+        <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.7)" }}><strong>One-time effort, lasting impact:</strong> cold outreach stops when you stop; organic content is made once and brings leads for months/years. Case studies & video testimonials compound. <strong>Backlinks</strong> (guest posts, podcasts, publications, speaking) are a top ranking factor.</p>
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.7)" }}><strong>Timing:</strong> $5–10/day Google Ads on your main keyword while you wait for rankings. Don't go deep on SEO as a beginner — get your first 5–10 clients via cold outreach, hit $10K/mo, then invest.</p>
+      </Block>
+
+      <Block title="27. Algorithm-Driven Content">
+        <Tbl head={["SEO Content", "Algorithm Content"]} rows={[
+          ["Built around keywords", "Built to be trendy, edgy, or high-value"],
+          ["Shows up when people search", "Platforms push it to more people"],
+          ["Focused on search rankings", "Focused on views & engagement"],
+          ["Long-term discovery play", "YouTube, Instagram, TikTok, Facebook"],
+        ]} />
+        <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.7)" }}><strong>Content that stops the scroll:</strong> talking-head videos (opinions, stories, hot takes) · quick-tip videos (value in 60s, save & share) · behind-the-scenes (raw & authentic) · trending formats (sounds/challenges the algorithm already pushes).</p>
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.7)" }}><strong>The numbers game (first 100 days):</strong> 30 long-form (1 every 3 days) + 90 short-form (almost daily). The flywheel rewards consistency — once it spins, it feeds itself.</p>
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.55)" }}>Honest talk: 100+ days before results · massive volume · real investment (equipment/editor). That's why cold outreach is first — it can land a client in 30–60 days. Not comfortable on camera? AI clone: HeyGen ($29) + ElevenLabs ($25) ≈ $54/mo.</p>
+      </Block>
+
+      <Block title="28. Paid Ads" sub="Don't start until you're at ~$20K/mo recurring revenue.">
+        <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.75)" }}><strong>Before running ads you need:</strong> paying clients with real results · case studies & testimonials · a sales process that consistently closes · financial cushion to absorb testing · comfort offering the service for free first. The best ads are built on proof.</p>
+        <p className="mt-3" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.75)" }}><strong>Call out your target audience</strong> in the first line — "Attention landscaping business owners…" / "If you own a landscaping company, this is for you." Right people stop, wrong people scroll → lower cost per lead.</p>
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.75)" }}><strong>The hook (first 2–3 seconds):</strong> your AI clone is the advantage — it's unexpected. e.g. "What if you could post video of yourself every day without ever recording?" / "I created an AI clone of a landscaper that looks and sounds just like him. Watch this."</p>
+      </Block>
+
+      <Block title="29. Client Onboarding — The 7-Phase Process" sub="Follow this checklist for every single client.">
+        <BList items={[
+          <>{b("1. Send onboarding questionnaire")} — who they are, what they sell, target audience, competitors, brand colors & fonts, design preferences, stock content authorization. Built into your HighLevel snapshot — just send the link.</>,
+          <>{b("2. Collect assets & access")} — social logins (IG/FB/TikTok/LinkedIn, Google Business Profile, FB Business Manager), visual assets (headshots, hi-res logo, brand photos, ElevenLabs audio sample for clones).</>,
+          <>{b("3. Set up sub-account")} — create their workspace in HighLevel: connect social to Social Planner, install LeadConnector, connect domain/email/phone for automations.</>,
+          <>{b("4. Onboarding meeting")} — get their cell number, confirm contact preference, settle review-vs-publish authority, set the 48-hour rule (no response in 48h = you publish), set expectations ("first posts in 5–7 days").</>,
+          <>{b("5. First batch of content")} — ASK AI (posts), OpenArt (graphics), HeyGen (clone videos), ElevenLabs (voice). Send for review or publish if you have authority.</>,
+          <>{b("6. Backend systems")} — set up the Conversations inbox so the client sees their leads; build automations like auto-DM replies; reporting.</>,
+          <>{b("7. Publish & communicate")} — publish on schedule; monitor engagement, respond to comments & DMs; text small wins every other day.</>,
+        ]} />
+        <p className="mt-2" style={{ fontFamily: FONT_BODY, fontSize: "0.82rem", color: "rgba(30,15,10,0.6)" }}><strong>Then: the monthly repeat</strong> — Review (performance with client) → Share (wins & results) → Plan (next month's strategy) → Create (& schedule) → Invoice. Then do it all again. This is how you build predictable, recurring revenue.</p>
+      </Block>
+
+      <Block title="30. Content Reference — Best Performing Posts">
+        <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.75)" }}><strong>Best performing post types:</strong></p>
+        <BList items={[
+          <>{b("Value — Education")}: tips, how-tos, stats, etc.</>,
+          <>{b("Value — Entertainment")}: humor, emotional, interesting.</>,
+          <>{b("News or Trends")}.</>,
+        ]} />
+        <p className="mt-3 mb-1" style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(30,15,10,0.7)" }}><strong>Format research prompt:</strong></p>
+        <Quote>Do the latest research on the best performing formats (carousels, videos, reels, etc.) on the major social media platforms and put it in a table.</Quote>
+      </Block>
+    </div>
+  );
+}
+
 function PlaybookPage() {
   const [authed, setAuthed] = useState(() => sessionStorage.getItem("dh_admin") === "1");
   const [tab, setTab] = useState<Tab>("deals");
@@ -8862,6 +9146,7 @@ function PlaybookPage() {
   if (!authed) return <LoginGate onAuth={() => setAuthed(true)} />;
 
   const primaryTabs: { id: Tab; label: string; icon: string }[] = [
+    { id: "serviceoverview", label: "Service Overview", icon: "book" },
     { id: "deals",     label: "Deal Pipeline",    icon: "target" },
     { id: "quote",     label: "Quote Builder",    icon: "calculator" },
     { id: "discovery", label: "Discovery Call",   icon: "microphone" },
@@ -8982,6 +9267,7 @@ function PlaybookPage() {
         {tab === "newhire" && <NewHireTab />}
         {tab === "quote" && <QuoteBuilderTab prospects={prospects} persist={persist} prospectId={quoteProspectId} onGoToDeals={() => { setQuoteProspectId(null); setTab("deals"); }} onClearProspect={() => setQuoteProspectId(null)} />}
         {tab === "schedule" && <ScheduleTab />}
+        {tab === "serviceoverview" && <ServiceOverviewTab />}
         {tab === "links" && <LinksTab />}
       </div>
 

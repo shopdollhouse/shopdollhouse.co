@@ -37,8 +37,8 @@ function Eyebrow({ children, color = ROSE }: { children: React.ReactNode; color?
 
 function ServicesPage() {
   usePageMeta(
-    "Pricing & Plans | The Dollhouse Brand Studio",
-    "Done-for-you social media, AI Clone content, automation, and lead systems for service businesses. Plans from $297/mo. Get a free proposal.",
+    "Social Media Marketing Pricing & Plans — York Region & GTA | The Dollhouse Brand Studio",
+    "Done-for-you social media marketing plans for service businesses in York Region, Toronto & the GTA — content, AI Clone video, automation, and lead systems from $297/mo. Get a free proposal.",
   );
 
   useScrollReveal();
