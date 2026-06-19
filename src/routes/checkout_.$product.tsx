@@ -98,7 +98,7 @@ function CheckoutRedirectPage() {
           </>
         ) : (
           <a
-            href="/brand-room#pricing"
+            href="https://room.shopdollhouse.co"
             className="mt-7 inline-flex min-h-12 w-full items-center justify-center rounded-full px-8 py-4 transition-opacity hover:opacity-90"
             style={{ background: "var(--ink)", color: "var(--cream)", fontFamily: FONT_LUXE, fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase" }}
           >

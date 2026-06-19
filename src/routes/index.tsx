@@ -651,7 +651,7 @@ function ChooseYourPath() {
       eyebrow: "Starting From Scratch",
       title: "I need to build my brand and offer before marketing.",
       body: "Use the Brand Room tools to clarify your audience, offer, visuals, content, and launch direction.",
-      href: "/brand-room",
+      href: "https://room.shopdollhouse.co",
       cta: "Enter The Brand Room",
       targetPlan: null,
       image: brandRoomImage,
@@ -3205,13 +3205,13 @@ function FinalCTA() {
       >
         The Brand Room helps beginners shape their offer, brand, content direction, and web app foundation before they move into a full growth retainer.
       </p>
-      <Link
-        to="/brand-room"
+      <a
+        href="https://room.shopdollhouse.co"
         className="mt-8 inline-flex items-center gap-2 rounded-2xl px-8 py-4 hover:-translate-y-0.5 transition-all"
         style={{ backgroundColor: "var(--ink)", color: "var(--cream)", fontFamily: "'Cormorant Garamond', serif", fontSize: "1.15rem", fontStyle: "italic", fontWeight: 700 }}
       >
         Start in The Brand Room →
-      </Link>
+      </a>
     </section>
   );
 }

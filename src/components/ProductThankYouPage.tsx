@@ -664,7 +664,7 @@ export default function ProductThankYouPage({ productKey }: { productKey: ThankY
               <p className="text-[var(--ink)]/62" style={{ fontFamily: FONT_BODY, fontSize: "0.86rem" }}>Questions about your {isService ? "order" : "access"}?</p>
               <a href="mailto:hello@shopdollhouse.co" className="text-[var(--rose)] underline underline-offset-4" style={{ fontFamily: FONT_BODY, fontSize: "0.86rem" }}>hello@shopdollhouse.co</a>
             </div>
-            <a href={isService ? "/" : "/brand-room"} className="rounded-full border border-[var(--gold)]/35 bg-white/35 px-6 py-3 text-[var(--ink)] transition-colors hover:bg-white/65" style={{ fontFamily: FONT_LUXE, fontSize: "0.64rem", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase" }}>
+            <a href={isService ? "/" : "https://room.shopdollhouse.co"} className="rounded-full border border-[var(--gold)]/35 bg-white/35 px-6 py-3 text-[var(--ink)] transition-colors hover:bg-white/65" style={{ fontFamily: FONT_LUXE, fontSize: "0.64rem", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase" }}>
               {isService ? "Return to Home" : "Return to Brand Room"}
             </a>
           </div>

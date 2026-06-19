@@ -1,4 +1,12 @@
 {
+  "redirects": [
+    { "source": "/brand-room", "destination": "https://room.shopdollhouse.co", "permanent": true },
+    { "source": "/brand-room/brand-kit", "destination": "https://room.shopdollhouse.co/brand-kit", "permanent": true },
+    { "source": "/brand-room/workbook", "destination": "https://room.shopdollhouse.co/workbook", "permanent": true },
+    { "source": "/brand-room/brand-workbook", "destination": "https://room.shopdollhouse.co/workbook", "permanent": true },
+    { "source": "/brand-room/ai-prompt-kit", "destination": "https://room.shopdollhouse.co/ai-prompt-kit", "permanent": true },
+    { "source": "/quiz", "destination": "https://room.shopdollhouse.co/quiz", "permanent": true }
+  ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
   "buildCommand": "npm run build",
   "outputDirectory": "dist",

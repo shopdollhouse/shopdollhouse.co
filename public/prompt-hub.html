@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Dollhouse Brand Studio — GHL Prompt Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500&family=Allura&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blush:#f7eded;--blush2:#f2e4e4;--cream:#faf7f2;
+  --rose:#bd7476;--rose-dk:#a05e60;
+  --gold:#c8a464;--gold-lt:#e8d5b0;
+  --ink:#171717;--ink2:#2c2c2c;--muted:#8d8d8d;
+  --border:#e8d5d5;--done:#2a6e4a;--done-bg:#eaf4ee;--white:#fff;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--ink);min-height:100vh;}
+
+/* HEADER */
+.site-header{background:var(--cream);padding:52px 40px 40px;text-align:center;border-bottom:1px solid var(--border);position:relative;}
+.site-header::before{content:'♥';position:absolute;top:20px;left:40px;color:var(--gold);font-size:14px;opacity:.5;}
+.site-header::after{content:'♥';position:absolute;top:20px;right:40px;color:var(--gold);font-size:14px;opacity:.5;}
+.logo-the{font-family:'Allura',cursive;font-size:28px;color:var(--gold);display:block;line-height:1;margin-bottom:2px;}
+.logo-name{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,58px);font-weight:600;color:var(--rose);letter-spacing:.08em;display:block;line-height:1.05;text-transform:uppercase;}
+.logo-sub{font-family:'Jost',sans-serif;font-size:12px;font-weight:400;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);display:block;margin-top:6px;}
+.header-divider{width:60px;height:1px;background:var(--gold);margin:18px auto;opacity:.5;}
+.header-desc{font-family:'DM Sans',sans-serif;font-size:13px;color:#8a8a8a;max-width:480px;margin:0 auto;line-height:1.7;font-weight:300;}
+.star-row{font-size:11px;color:var(--gold);margin-top:14px;letter-spacing:6px;opacity:.6;}
+
+/* DECK TOGGLE */
+.deck-section{background:var(--cream);padding:22px 40px 2px;}
+.deck-toggle{max-width:560px;margin:0 auto;display:flex;gap:6px;background:var(--blush);border:1px solid var(--border);border-radius:40px;padding:5px;box-shadow:0 2px 12px rgba(189,116,118,.06);}
+.deck-btn{flex:1;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);background:none;border:none;border-radius:30px;padding:11px 14px;cursor:pointer;transition:color .22s,background .22s,box-shadow .22s;white-space:nowrap;line-height:1.3;}
+.deck-btn:hover{color:var(--rose);}
+.deck-btn.active{background:var(--white);color:var(--rose);box-shadow:0 2px 10px rgba(189,116,118,.12);}
+.deck-btn .dn{display:inline-block;background:var(--blush2);border-radius:10px;padding:1px 7px;font-size:9px;margin-left:5px;color:var(--muted);}
+.deck-btn.active .dn{color:var(--rose);}
+
+/* SEARCH */
+.search-section{background:var(--cream);padding:24px 40px;}
+.search-wrap{max-width:920px;margin:0 auto;position:relative;}
+.search-wrap input{width:100%;background:var(--white);border:1px solid var(--border);border-radius:40px;padding:13px 20px 13px 48px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink2);outline:none;transition:border-color .2s;box-shadow:0 2px 12px rgba(189,116,118,.06);}
+.search-wrap input:focus{border-color:var(--rose);}
+.search-wrap input::placeholder{color:var(--muted);}
+.s-icon{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--rose);font-size:15px;}
+.s-count{position:absolute;right:18px;top:50%;transform:translateY(-50%);font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.1em;color:var(--muted);}
+
+/* CLIENT PANEL */
+.client-section{background:var(--cream);padding:0 40px 32px;}
+.client-box{max-width:920px;margin:0 auto;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--white);box-shadow:0 2px 16px rgba(189,116,118,.05);}
+.client-head{background:var(--blush);padding:13px 20px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;}
+.client-head-eyebrow{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--rose-dk);}
+.client-chevron{font-size:13px;color:var(--muted);transition:transform .3s;}
+.client-chevron.open{transform:rotate(180deg);}
+.client-grid{display:none;grid-template-columns:1fr 1fr;gap:12px;padding:20px;}
+.client-grid.open{display:grid;}
+.fg{display:flex;flex-direction:column;gap:5px;}
+.fg.full{grid-column:1/-1;}
+.fg label{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);}
+.fg input,.fg textarea{background:var(--blush);border:1px solid var(--border);border-radius:6px;padding:9px 12px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--ink2);outline:none;transition:border-color .2s;}
+.fg input:focus,.fg textarea:focus{border-color:var(--rose);}
+.fg textarea{resize:vertical;min-height:56px;}
+.fill-note{grid-column:1/-1;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.1em;color:var(--muted);text-align:center;padding-top:4px;}
+
+/* HEADER EYEBROW */
+.header-eyebrow{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.header-eyebrow .hb{opacity:.55;margin:0 8px;}
+
+/* QUICK START GUIDE */
+.howto-section{background:var(--cream);padding:6px 40px 0;}
+.howto-box{max-width:920px;margin:0 auto;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--white);box-shadow:0 2px 16px rgba(189,116,118,.05);}
+.howto-head{background:var(--blush);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;}
+.howto-eyebrow{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--rose-dk);}
+.howto-chevron{font-size:13px;color:var(--muted);transition:transform .3s;}
+.howto-chevron.open{transform:rotate(180deg);}
+.howto-body{display:none;padding:20px 24px 22px;}
+.howto-body.open{display:block;}
+.howto-list{margin:0;padding:0;list-style:none;counter-reset:ht;}
+.howto-list li{position:relative;padding:0 0 16px 42px;font-family:'DM Sans',sans-serif;font-size:13.5px;line-height:1.62;color:var(--ink2);counter-increment:ht;}
+.howto-list li:last-child{padding-bottom:0;}
+.howto-list li::before{content:counter(ht);position:absolute;left:0;top:-2px;width:27px;height:27px;border-radius:50%;background:var(--rose);color:#fff;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center;}
+.howto-list b{color:var(--ink);font-weight:600;}
+.howto-foot{margin-top:18px;padding-top:14px;border-top:1px solid var(--border);font-family:'DM Sans',sans-serif;font-size:12px;line-height:1.6;color:var(--muted);font-style:italic;}
+.howto-foot::before{content:'♥ ';color:var(--gold);font-style:normal;}
+.ph-chip{background:#fff3b0;border-radius:3px;padding:0 6px;font-weight:600;color:#7a5a00;}
+.fv-chip{background:#e6f4ee;border-radius:3px;padding:0 6px;font-weight:600;color:#1a7a4a;}
+
+/* CATEGORY NAV (wrapped chip grid) */
+.cat-nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);box-shadow:0 2px 12px rgba(0,0,0,.04);}
+.cat-bar{max-width:920px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:11px 40px;}
+.cat-toggle{flex-shrink:0;display:inline-flex;align-items:center;gap:8px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);background:var(--blush);border:1px solid var(--border);border-radius:30px;padding:8px 16px;cursor:pointer;transition:border-color .2s,background .2s;}
+.cat-toggle:hover{border-color:var(--rose);}
+.cat-toggle .ct-icon{font-size:11px;transition:transform .3s;}
+.cat-toggle.collapsed .ct-icon{transform:rotate(-90deg);}
+.cat-current{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.cat-current b{color:var(--rose);font-weight:500;}
+.cat-grid{max-width:920px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;padding:0 40px 16px;}
+.cat-grid.collapsed{display:none;}
+.cat-chip{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--cream);border:1px solid var(--border);border-radius:30px;padding:9px 15px;cursor:pointer;transition:color .18s,border-color .18s,background .18s;white-space:nowrap;}
+.cat-chip:hover{border-color:var(--rose);color:var(--rose);}
+.cat-chip.active{background:var(--rose);border-color:var(--rose);color:#fff;}
+.cat-chip .cb{display:inline-block;background:rgba(120,90,90,.1);border-radius:10px;padding:1px 7px;font-size:9px;margin-left:6px;color:var(--muted);}
+.cat-chip:hover .cb{color:var(--rose);}
+.cat-chip.active .cb{background:rgba(255,255,255,.25);color:#fff;}
+
+/* PROGRESS */
+.prog-section{background:var(--blush);border-bottom:1px solid var(--border);padding:10px 40px;}
+.prog-inner{max-width:920px;margin:0 auto;display:flex;align-items:center;gap:14px;}
+.prog-label{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);}
+.prog-track{flex:1;height:2px;background:var(--border);border-radius:2px;overflow:hidden;}
+.prog-fill{height:100%;background:var(--rose);border-radius:2px;width:0%;transition:width .5s;}
+.prog-count{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.1em;color:var(--rose);}
+
+/* MAIN */
+main{max-width:920px;margin:0 auto;padding:44px 40px 80px;}
+
+.section-block{margin-bottom:56px;}
+.section-head{display:flex;align-items:center;gap:12px;margin-bottom:8px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+.sec-star{color:var(--gold);font-size:13px;flex-shrink:0;}
+.sec-title{font-family:'Jost',sans-serif;font-size:22px;font-weight:600;color:var(--ink);letter-spacing:.05em;text-transform:uppercase;}
+.sec-dash{flex:1;height:1px;background:var(--border);margin:0 10px;}
+.sec-sub{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+.sec-count{font-family:'Jost',sans-serif;font-size:10px;color:var(--muted);white-space:nowrap;margin-left:4px;}
+.sec-intro{font-family:'DM Sans',sans-serif;font-size:12px;color:var(--muted);line-height:1.65;margin-bottom:18px;max-width:640px;}
+
+.no-results{display:none;text-align:center;padding:56px 24px;font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:var(--muted);}
+
+/* CARD */
+.prompt-card{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:10px;transition:border-color .25s,box-shadow .25s,transform .15s;position:relative;}
+.prompt-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--rose);opacity:0;transition:opacity .2s;}
+.prompt-card:hover{box-shadow:0 4px 24px rgba(189,116,118,.09);transform:translateY(-1px);}
+.prompt-card:hover::before,.prompt-card.done::before{opacity:1;}
+.prompt-card.done{border-color:var(--done);}
+.prompt-card.done .card-head{background:var(--done-bg);}
+.prompt-card.done .step-num{background:var(--done)!important;color:#fff!important;}
+.prompt-card.done .step-lbl{color:var(--done);}
+.prompt-card.done .done-btn{background:var(--done);color:#fff;border-color:var(--done);}
+
+.card-head{display:flex;align-items:center;gap:12px;padding:12px 18px;background:var(--blush);border-bottom:1px solid var(--border);cursor:pointer;user-select:none;}
+.step-num{width:30px;height:30px;border-radius:50%;background:var(--rose);color:#fff;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step-lbl{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);flex:1;line-height:1.5;}
+.done-btn{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.1em;color:var(--muted);background:none;border:1px solid var(--border);border-radius:20px;padding:4px 12px;cursor:pointer;transition:all .18s;white-space:nowrap;flex-shrink:0;}
+.done-btn:hover{border-color:var(--done);color:var(--done);}
+
+.card-body{padding:0;}
+
+/* Context note */
+.context-note{background:var(--blush2);border-bottom:1px solid var(--border);padding:10px 18px;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--rose-dk);line-height:1.6;font-style:italic;}
+.context-note::before{content:'♥ ';color:var(--gold);}
+
+.prompt-text{font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.85;color:var(--ink2);white-space:pre-wrap;padding:16px 18px 14px;word-break:break-word;}
+.ph{background:#fff3b0;border-radius:3px;padding:1px 5px;font-weight:500;color:#7a5a00;}
+.fv{background:#e6f4ee;border-radius:3px;padding:1px 5px;font-weight:500;color:#1a7a4a;}
+
+.card-actions{padding:0 18px 16px;display:flex;gap:10px;align-items:center;}
+.copy-btn{display:inline-flex;align-items:center;gap:8px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;background:var(--rose);color:#fff;border:none;border-radius:30px;padding:10px 22px;cursor:pointer;transition:background .2s,transform .1s;}
+.copy-btn:hover{background:var(--rose-dk);transform:scale(1.02);}
+.copy-btn.copied{background:var(--done);}
+.copy-btn svg{width:12px;height:12px;flex-shrink:0;}
+mark{background:#fff3b0;border-radius:2px;padding:0 2px;font-style:normal;}
+
+/* FOOTER */
+footer{background:var(--cream);text-align:center;padding:40px;border-top:1px solid var(--border);}
+.footer-logo-the{font-family:'Allura',cursive;font-size:22px;color:var(--gold);display:block;line-height:1;}
+.footer-logo-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--rose);letter-spacing:.1em;display:block;margin:2px 0;text-transform:uppercase;}
+.footer-logo-sub{font-family:'Jost',sans-serif;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:block;}
+.footer-heart{display:block;font-size:18px;margin-top:12px;color:var(--rose);}
+.reset-btn{display:inline-block;margin-top:14px;background:none;border:1px solid var(--border);border-radius:20px;padding:6px 18px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all .2s;}
+.reset-btn:hover{border-color:var(--rose);color:var(--rose);}
+
+@media(max-width:640px){
+  .site-header,.search-section,.client-section,.prog-section,.deck-section,.howto-section{padding-left:20px;padding-right:20px;}
+  .nav-inner{padding:0 20px;}
+  main{padding:32px 20px 60px;}
+  .client-grid{grid-template-columns:1fr;}
+  .card-actions{flex-wrap:wrap;}
+}
+</style>
+</head>
+<body>
+
+<div class="site-header">
+  <span class="logo-the">the</span>
+  <span class="logo-name">Dollhouse</span>
+  <span class="logo-sub">Brand Studio</span>
+  <div class="header-divider"></div>
+  <p class="header-eyebrow"><span class="hb">♥</span>Ask AI Prompt Hub<span class="hb">♥</span></p>
+  <p class="header-desc">A step-by-step library of ready-to-paste prompts for finding clients, creating content, and running the agency inside GoHighLevel. New here? Open the quick guide below — it walks you through everything.</p>
+</div>
+
+<div class="howto-section">
+  <div class="howto-box">
+    <div class="howto-head" id="howtoHead" onclick="toggleHowto()">
+      <span class="howto-eyebrow">♥ &nbsp; New here? How to use this hub</span>
+      <span class="howto-chevron open" id="howtoChevron">▼</span>
+    </div>
+    <div class="howto-body open" id="howtoBody">
+      <ol class="howto-list">
+        <li><b>Pick a library.</b> Use the two tabs just below to switch between <b>The Dollhouse Hub</b> (prompts for running the agency) and the <b>AI Cashflow Masterclass</b> (plays for finding new clients).</li>
+        <li><b>Fill in Client Details once.</b> Open the <b>Client Details</b> box and type in the business name, niche, city, and so on. Every prompt fills that info in for you — <span class="fv-chip">green</span> means it's filled in, <span class="ph-chip">yellow</span> means you still need to add it before sending.</li>
+        <li><b>Find the prompt you need.</b> Tap <b>Categories</b> to open the full list and jump to a section, or type in the search box (e.g. "email," "carousel," "leads").</li>
+        <li><b>Follow the Step numbers.</b> Work top to bottom. When prompts share the same Step number, they're <b>options</b> — just pick one and move on.</li>
+        <li><b>Copy, paste, done.</b> Hit <b>Copy Prompt</b>, paste it into GHL Ask AI, then tap <b>Mark done</b> so you can see your progress at the top.</li>
+      </ol>
+      <p class="howto-foot">That's it. You don't need to memorize anything — work through the steps in order and the hub keeps you on track. The bar at the top shows how far you've gotten.</p>
+    </div>
+  </div>
+</div>
+
+<div class="deck-section">
+  <div class="deck-toggle" id="deckToggle">
+    <button class="deck-btn active" data-deck="dollhouse" onclick="setDeck('dollhouse')">The Dollhouse Hub<span class="dn" id="dn_dollhouse"></span></button>
+    <button class="deck-btn" data-deck="cashflow" onclick="setDeck('cashflow')">AI Cashflow Masterclass<span class="dn" id="dn_cashflow"></span></button>
+  </div>
+</div>
+
+<div class="search-section">
+  <div class="search-wrap">
+    <span class="s-icon">♥</span>
+    <input type="text" id="searchInput" placeholder="Search prompts… try 'proposal', 'email', 'mascot', 'carousel', 'leads'" oninput="handleSearch()">
+    <span class="s-count" id="searchCount"></span>
+  </div>
+</div>
+
+<div class="client-section">
+  <div class="client-box">
+    <div class="client-head" id="clientHead" onclick="toggleClient()">
+      <span class="client-head-eyebrow">♥ &nbsp; Client Details — Fill once, auto-fills every prompt</span>
+      <span class="client-chevron" id="clientChevron">▼</span>
+    </div>
+    <div class="client-grid" id="clientGrid">
+      <div class="fg"><label>Business Name</label><input id="f_name" placeholder="e.g. Bright Smile Dental" oninput="liveUpdate()"></div>
+      <div class="fg"><label>Industry / Niche</label><input id="f_niche" placeholder="e.g. Dental, HVAC, Med Spa" oninput="liveUpdate()"></div>
+      <div class="fg"><label>Website URL</label><input id="f_url" placeholder="e.g. https://www.example.com" oninput="liveUpdate()"></div>
+      <div class="fg"><label>City / Location</label><input id="f_city" placeholder="e.g. Atlanta, GA" oninput="liveUpdate()"></div>
+      <div class="fg"><label>Brand Colors (hex)</label><input id="f_colors" placeholder="e.g. #bd7476, #c8a464" oninput="liveUpdate()"></div>
+      <div class="fg"><label>Brand Fonts</label><input id="f_fonts" placeholder="e.g. Cormorant Garamond, Jost" oninput="liveUpdate()"></div>
+      <div class="fg"><label>Service / Offer / Price</label><input id="f_service" placeholder="e.g. teeth whitening, $49 tune-up" oninput="liveUpdate()"></div>
+      <div class="fg"><label>Month / Time Period</label><input id="f_month" placeholder="e.g. July, Q3, next 30 days" oninput="liveUpdate()"></div>
+      <div class="fg"><label>Owner / Your Name</label><input id="f_owner" placeholder="e.g. Mandy Fortune" oninput="liveUpdate()"></div>
+      <div class="fg"><label>Social Platform</label><input id="f_social" placeholder="e.g. Instagram, Facebook" oninput="liveUpdate()"></div>
+      <div class="fg"><label>Product Name</label><input id="f_product" placeholder="e.g. Brand Kit, AI Prompt Kit" oninput="liveUpdate()"></div>
+      <div class="fg"><label>Product / File URL</label><input id="f_produrl" placeholder="e.g. https://cdn.example.com/file.pdf" oninput="liveUpdate()"></div>
+      <div class="fg full"><label>Extra Notes (discovery call, specialties, anything extra)</label><textarea id="f_notes" placeholder="Paste your discovery call notes here and they'll auto-fill into proposal prompts…" oninput="liveUpdate()"></textarea></div>
+      <div class="fill-note">♥ &nbsp; Yellow = needs filling &nbsp;·&nbsp; Green = auto-filled &nbsp; ♥</div>
+    </div>
+  </div>
+</div>
+
+<div class="cat-nav">
+  <div class="cat-bar">
+    <button class="cat-toggle" id="catToggle" onclick="toggleCats()"><span class="ct-icon">▾</span> Categories</button>
+    <span class="cat-current" id="catCurrent">Showing <b>All prompts</b></span>
+  </div>
+  <div class="cat-grid" id="catGrid"></div>
+</div>
+
+<div class="prog-section">
+  <div class="prog-inner">
+    <span class="prog-label">Progress</span>
+    <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+    <span class="prog-count" id="progCount">0 / 0</span>
+  </div>
+</div>
+
+<main id="mainContent">
+  <div class="no-results" id="noResults">No prompts match your search. 🖤</div>
+</main>
+
+<footer>
+  <span class="footer-logo-the">the</span>
+  <span class="footer-logo-name">Dollhouse</span>
+  <span class="footer-logo-sub">Brand Studio</span>
+  <span class="footer-heart">🖤</span>
+  <button class="reset-btn" onclick="resetAll()">↺ &nbsp; Reset All Progress</button>
+</footer>
+
+<script>
+const sections=[
+  {
+    id:'agency',
+    title:'Agency Growth',
+    sub:'Revenue & launch sequence',
+    intro:'Use these when you already have a GHL sub-account loaded with contacts, pipelines, and conversations. Ask AI can read all of it and turn it into a real action plan.',
+    prompts:[
+      {label:'Sub-Account Full Revenue Audit',context:'Start here. Reviews every corner of your account — contacts, pipelines, conversations, calendars, workflows — and finds your single biggest revenue opportunity right now.',text:'Review all the data in my sub-account and tell me how my agency can make the most money possible in the next 30 days. Review everything — contacts, pipelines, conversations, calendars, and workflows. Identify my lead sources, my hottest leads that need immediate action, and the single biggest revenue opportunity I\'m sitting on right now.'},
+      {label:'Revenue Projection (95% Confident)',context:'The follow-up that makes it run the math. Swap in your own price point. It won\'t answer until it\'s 95% confident — no fluff.',text:'My average price point is around $1,000 per month. Based on the plan above, how much revenue could I realistically generate in the next 30 days if I executed it? Take a moderately aggressive approach, show me where each new client would come from, and do not give me an answer until you are 95% confident in it.'},
+      {label:'First $1K MRR — Ask Me Questions First',context:'Instead of a generic list, Ask AI builds a questionnaire first — asks about your skills, comfort with outreach, ideal client, budget, and time — then gives a hyper-specific business idea.',text:'Give me two ways to make $1,000 in monthly recurring revenue within the next 30 days. Customer acquisition must start on day one. Before you answer, ask me whatever questions you need about my skills, experience, budget, and how much time I can commit so the idea is tailored specifically to me.'},
+      {label:'20-Day Launch Plan With Budget',context:'Turns the idea into a plan you can actually run. Builds a startup budget (mostly free on GHL) plus a full 20-day plan in four phases.',text:'Create a 20-day plan that needs less than $1,000 upfront and gets me to my first paying customer as fast as possible. Customer acquisition must start on day one. Include a startup budget and break the plan into clear phases.'},
+      {label:'Blocker Diagnostic — Strip to Money Only',context:'What makes it actually executable. Ask AI asks 3 yes/no questions, then strips the plan down to a focused Money Plan with only what leads directly to revenue.',text:'Ask me three yes-or-no questions to identify what will stop me this week. Then cut the plan in half and keep only what directly leads to money.'},
+    ]
+  },
+  {
+    id:'leads',
+    title:'Lead Research',
+    sub:'Find & qualify prospects',
+    intro:'Ask AI goes from helpful tool to full business partner here — finding real prospects, auditing their social presence, and preparing everything you need to reach out.',
+    prompts:[
+      {label:'B2B Lead List (Running Google Ads)',context:'Ask AI searches the web and the Google Ads Transparency Center to find firms actively spending on ads. Swap in your own city and niche.',text:'Act as a B2B lead generation specialist and market researcher. Identify 25 small businesses in [CITY] within the [NICHE] industry that are actively spending money on advertising. For each one, give me: company name, website, phone number, email address, physical address, and any publicly available social media profiles. Prioritize firms you can verify are running paid ads (for example, via the Google Ads Transparency Center).'},
+      {label:'Find Businesses With No Social Presence',context:'The flip side — find businesses with strong reputations or ad spend but weak or non-existent social media. These are your warmest prospects.',text:'Help me create a list of 25 small businesses in the [NICHE] niche, in the [CITY] metro area, that don\'t have a social media presence or very a small one'},
+      {label:'Rank Prospects by Social Media Gap',context:'Analyzes all 25 firms\' Instagram, Facebook, and LinkedIn to find the single best target — strong reputation, spending on ads, but almost no social presence.',text:'From that list, identify which prospects would benefit the most from having a consistent social media presence. Check each firm\'s Instagram, Facebook, and LinkedIn — how often they post, their follower counts, and whether their social media matches the quality of their paid advertising. Skip the ones already doing well, then rank the rest by their social media gap and tell me the single best target.'},
+      {label:'Dental Niche Lead List — Atlanta (Google Ads)',context:'Niche-specific version of the B2B lead prompt, pre-configured for dental practices in Atlanta. Excludes national chains. Delivers a clean markdown table with contact details and ad evidence.',text:'Act as a B2B Lead Generation Specialist and Market Researcher. I need to identify 25 small dental practices in Atlanta (general dentistry, cosmetic dentistry, pediatric dentistry, or orthodontics) who are currently running Google Ads.\nTask:\nUse Google Search and the Google Ads Transparency Center to confirm which practices in this area/niche are active advertisers.\nFor each of the 25 businesses, provide the following in a clean markdown table: Practice Name, Website URL, Phone Number (Publicly listed), Email Address (Search for \'contact@\', \'info@\', or listed owner/dentist emails), Ad Evidence (Briefly mention if you saw their ad on Search, Maps, or the Transparency Center).\nConstraints:\nOnly include practices that appear to be small to medium-sized (avoid national chains like Aspen Dental, Heartland, or Pacific Dental).\nIf an email isn\'t explicitly on the homepage, check the \'Contact\' or \'About Us\' pages.\nEnsure all 25 are unique leads.'},
+    ]
+  },
+  {
+    id:'outreach',
+    title:'Cold Outreach',
+    sub:'DMs, emails & call scripts',
+    intro:'Every outreach message is built around specificity — one real observation, one soft question, zero pitch. The AI clone angle is the highest-converting hook.',
+    prompts:[
+      {label:'First-Touch Outreach Message',context:'Under 80 words for DM, under 150 for email. One specific observation about their business. Ends with one soft question. Two versions — casual and professional.',text:'Write a short, personalised first outreach message from [OWNER_NAME] at The Dollhouse Brand Studio to a business owner.\n\n- Business name: [BUSINESS_NAME]\n- Owner\'s name (if known): [NAME]\n- Industry / niche: [NICHE]\n- City: [CITY]\n- What I noticed about their current social media: [OBSERVATION]\n- What I want to lead with: [AI Clone Pitch / Compliment + question / Free Trial offer / General intro]\n- Channel: [DM / Email]\n\nRules: under 80 words for DM, under 150 for email; sounds like a real person; one specific observation; ends with ONE soft question (not a pitch); warm and confident; do NOT mention price; no bullet points in the DM version. Write 2 versions - one slightly more casual, one more professional.'},
+      {label:'AI Clone Cold Email',context:'Curiosity-driven subject line. Leads with something specific about their business. One easy yes/no question at the end. Sounds human, not templated.',text:'Create a short personalised cold email from [OWNER_NAME] at The Dollhouse Brand Studio.\n\nRecipient name: [NAME]\nBusiness name: [BUSINESS_NAME]\nNiche: [NICHE]\nCity: [CITY]\nWhat I noticed about them: [OBSERVATION]\n\nRules: under 100 words; curiosity-driven subject line (no clickbait); warm and genuine; lead with something specific about their business; one easy yes/no question at the end; sound human, not a template; do NOT mention price. The hook: ask if they\'d be interested in seeing an AI version of themselves that can promote their business online 24/7 - without ever recording content.'},
+      {label:'Branded Sample Posts + Cold Email',context:'Create 3 posts branded specifically for the prospect, then a cold email referencing their ad spend and missing social presence. No hard pitch — just the work.',text:'Act as an Instagram strategist and outreach specialist. For the target firm above, create three sample social media posts branded specifically for them — use their brand colors, reference their actual specialties, and speak to their target audience. Then write a personalized cold outreach email that references specific details about them, points out the gap between their ad spend and their social media presence, and offers to show them the three posts you just created. No hard pitch — just the work.'},
+      {label:'Image-Led Email (Embed Post, Book Meeting)',context:'Shorter, punchier. Embed one of the social media images directly in the email body. Leads with the visual, ends with a CTA to see a full month of branded content.',text:'Create another version of that email, but this time embed one of the social media images directly in the email body. Make it shorter and punchier, personalize the subject line, lead with the image, and end with a call to action asking if they want to see a full month of branded content for their firm. Then break down why this version converts better.'},
+      {label:'Send the Email (Two Words)',context:'After all the setup — two words. Ask AI creates the contact, applies tags, and sends through the CRM.',text:'Send this email.'},
+      {label:'Mascot Outreach (DM + Email)',context:'Use after building a prospect\'s mascot or AI character. Send before pitching — let the video do the selling.',text:'Use after building a prospect\'s mascot/AI character. Send BEFORE pitching - let the video do the selling.\n\nDM VERSION: "Hey [NAME] - I brought [BUSINESS_NAME]\'s mascot to life, and it can promote your business 24/7 without you ever having to record anything. Would you like to see it?"\n\nEMAIL VERSION:\nSubject: I made something for [BUSINESS_NAME]\n"Hi [NAME], I know this is a bit different from a normal outreach email - but hear me out. I was looking at [BUSINESS_NAME]\'s social media and thought there was an opportunity to do something really cool for your brand. So I went ahead and created an AI mascot character for your business that can show up on your social media, talk about your services, and build brand recognition - completely on autopilot. Would you want to see it? [OWNER_NAME], The Dollhouse Brand Studio"\n\nFOLLOW-UP (3-5 days later): "Hey [NAME], just checking - did you see my message about the [BUSINESS_NAME] mascot? I\'d love to show it to you this week if you have a few minutes."'},
+      {label:'Cold Call Script (AI Clone)',context:'Use when calling a prospect who hasn\'t responded to your email or DM. Always offer the free sample — it\'s a zero-resistance yes. Best call times: 10am–12pm and 2pm–4pm local.',text:'Use when calling a prospect who hasn\'t responded to your email or DM about the AI clone/mascot.\n\nOPENING: "Hey [NAME], this is [OWNER_NAME] - I reached out by email a few days ago. I\'m the one who creates AI video clones of business owners for their social media. I\'d love to make one of you for free, just to show you what it looks like. Would you be open to seeing it?"\n\nIF YES: "Amazing. I can have it ready within 24 hours. What\'s the best email to send it to? Or - do you have 10 minutes this week for a quick Zoom? It makes way more sense when you can see it running."\n\nIF "WHAT IS IT EXACTLY?": "We take a photo of you and use AI to create a video of you talking, moving, promoting your business. It looks completely real - you never have to film anything. Want me to put one together for you for free?"\n\nIF "NOT INTERESTED": "No worries at all - can I ask, is it just the timing, or is social media not something you\'re focused on right now?"\n\nIF "I\'LL THINK ABOUT IT": "Of course - how about this: I\'ll put the free sample together anyway and just send it over. No strings. Fair enough?"\n\nNotes: always offer the free sample (zero-resistance yes); the sample is a 15-20 sec demo; goal of the call is a yes to see the sample; best call times 10am-12pm and 2pm-4pm local.'},
+      {label:'Cold Text — No Website (Built One for Free)',context:'Casual, conversational cold text for prospects with no website. Ultra-low friction opener — you\'ve already done something for them before asking for anything. Includes a stop word so it feels respectful.',text:'Hey man, this is [OWNER_NAME]... I was looking you guys up on google and saw that you don\'t have a website or anything like that. I know this is kinda random but I went ahead and built you one. Do you wanna see it? just say "byebye" if you want me to stop'},
+      {label:'Cold Text — Broken Website Fix',context:'Opens with curiosity, not a pitch. You\'ve already "fixed" something they didn\'t know was broken. Works best after actually running a quick audit on their site.',text:'hey I just googled you and your website looked broken for me for some reason.\n\nI actually went ahead and fixed it.\n\ndo you wanna see what I fixed?'},,
+      {label:'Comment-to-DM Reply — Warm Question + Book a Call',context:'A warm DM reply after someone comments — qualifies them, then offers a quick call.',text:'Hey [NAME] — thanks for commenting! You mentioned you had a question about what we do — happy to help. What are you trying to accomplish right now (more leads, better conversions, or something else)? If you want, you can book a quick call and we\'ll point you in the right direction: [BOOKING LINK]'}
+    ]
+  },
+  {
+    id:'social',
+    title:'Social Media',
+    sub:'Graphics, carousels & scheduling',
+    intro:'From a single post to a full 33-piece monthly content library. Always start with the portfolio builder if you\'re approaching a new niche.',
+    prompts:[
+      {label:'Portfolio Builder (Sample Posts Before Selling)',context:'Optional but powerful — lets you show prospects real work before you\'ve landed a client. Ask AI invents a mock brand and generates standalone posts plus carousels. Replace the niche with your own target.',text:'I want to build a small portfolio of social media images and carousel examples I can show to [NICHE] businesses before selling. Can you guide me through the best way to do this using you, and create the examples for me?'},
+      {label:'12-Post Instagram Pack',context:'4 educational + 4 promotional + 4 engaging/fun. Clean branded graphics with bold headline and subtitle on each.',text:'Create 12 Instagram post graphics for a local [NICHE] practice. Make 4 educational posts (tips about [SERVICE]), 4 promotional posts ([SERVICE] special, new patient discount, free consultation offer, and family plan), and 4 engaging/fun posts (before/after transformation, myth vs fact, a "did you know" fun fact, and a patient appreciation post). Use a clean, professional style with a [BRAND_COLORS] color scheme. Each graphic should include a bold headline and a short subtitle.'},
+      {label:'33 Instagram Graphics (Full Month)',context:'A full month of content. Ask AI researches what\'s trending for the niche and builds graphics focused on reach and follower growth.',text:'Act as an elite social media marketer and create 33 instagram graphics this business, do some research to create compelling graphics that will capture attention and are trendy right now, the goal for each posts is more reach and more followers: [WEBSITE_URL]'},
+      {label:'Enhance Designs — Stop-Scroll',context:'Run this after any graphic batch. Ask AI reviews every post and upgrades them for scroll-stopping impact — gradients, metallic badges, gold accents, refined type.',text:'Act as an elite graphic designer and review all the social media posts, find ways to enhance the designs even further so that people on their phones will stop scrolling and pay attention, keep the brand colors consistent with the business website'},
+      {label:'Enhance Designs — Premium & Professional',context:'One more upgrade pass. Focused on making everything look more premium and polished.',text:'Enhance the designs. Make them look more premium and professional.'},
+      {label:'Instagram Carousel — AI Agency (7 Slides)',context:'Your own content. Dark premium design, electric blue or neon green gradients. Hook slide → booming market → niche → tools → first client → scale → CTA.',text:'Create a stunning Instagram carousel post (1080×1080, 7 slides) about "How to Start an AI Agency in 2026." The hook on slide 1 should say "My social media agency generated over $400K last month — here\'s how you can start your own AI agency in 2026." Use a modern, dark premium design with bold typography, accent colors (electric blue or neon green gradients), and clean layouts. Each slide should cover: Slide 1 - Hook/Title, Slide 2 - Why AI Agencies are booming, Slide 3 - Pick your niche, Slide 4 - The tools you need (GoHighLevel, AI content tools), Slide 5 - How to get your first client, Slide 6 - Scale with automation, Slide 7 - CTA to follow for more. Make it look professional, eye-catching, and ready to post.'},
+      {label:'Enhance Carousel Design Further',context:'Add visual depth, improve gradients, make typography more impactful. Each slide should feel premium and scroll-stopping.',text:'This looks good, but continue to enhance the design, making it even more attractive. Add more visual depth, improve the gradient effects, make the typography more impactful, and ensure each slide feels premium and scroll-stopping.'},
+      {label:'Recreate Inspiration Post for Client',context:'Upload a post you love and ask AI to rebuild it in the client\'s brand.',text:'Take inspiration from the photo attached, but re-create it for this business.'},
+      {label:'Viral Post from Memory',context:'If you\'ve saved viral post ideas to memory, this pulls them back and recreates the format for a new post.',text:'Make another viral post similar to the ones about the husband and wife from my memory.'},
+      {label:'Save Viral Post Ideas to Memory',context:'Save a winning post format to Ask AI\'s memory so you can recreate it for any client in the future.',text:'Save these viral post ideas to my memory (the one about the husband and wife) for future reference.'},
+      {label:'Create Next Month Posts from Memory',context:'Uses the saved brand from memory to generate next month\'s content without starting from scratch.',text:'Create next month\'s post using the brand from memory'},
+      {label:'Schedule Posts for the Month',context:'Ask AI chooses the optimal posting order, times, and schedule based on best practices for the platform.',text:'Schedule all the posts for the month of [MONTH] to connected [SOCIAL_PLATFORM] page, choose the order of posts, times and schedule based on best practices'},
+      {label:'Schedule to Instagram — Best Dates & Times',context:'After your graphics are ready, this sends them to the connected Instagram account and lets Ask AI pick the optimal dates and times based on engagement best practices.',text:'Schedule these to the connected Instagram account, pick the best dates and times.'},
+      {label:'3 Carousels from Website Branding',context:'Paste in the client\'s website URL or screenshot and Ask AI pulls the brand — colors, fonts, style — then builds 3 value-packed carousels designed for reach and saves.',text:'Act as an elite Instagram designer and create 3 carousels graphics using this website branding: [WEBSITE_URL] - Create engaging content that is pure value and will get more reach and saves, and take your time designing the images.'},
+      {label:'Weekly Scheduled Task Prompt',context:'Use this inside GHL\'s Scheduled Tasks (set to run weekly, Monday 9am). Generates 7 fresh value-driven posts automatically each week.',text:'Act as an Elite instagram strategist, create 7 images for social media for this business: [WEBSITE_URL]\n\nTake your time and create enhanced graphics with unique elements, background, gradients and other powerful design elements. The topic you choose should be compelling and built to reach the maximum amount of people, so the posts should focus on providing value rather that gets people to engage and share, rather than promoting.'},,
+      {label:'One-Month Instagram Content Plan — Med Spa',context:'Plan a full month of Instagram content for a med spa — topics, captions, hashtags, and best posting times.',text:'Act as a social media strategist for a med spa. Plan one month of Instagram content. Give me post topics, captions, hashtags, and the best days and times to post for this audience.'},
+      {label:'Carousel Design from an Inspiration Image',context:'Have AI design carousel slides based on an inspiration image you paste.',text:'now act as an elite graphic designer, and create designs for carousel #1 taking inspiration from this image : [PASTE INSPIRATION IMAGE URL]'},
+      {label:'Pick Best Time & Schedule Posts on Instagram',context:'Auto-pick the best posting times and schedule your posts on Instagram.',text:'pick the best time and schedule these posts on instagram'}
+    ]
+  },
+  {
+    id:'video4x4',
+    title:'4x4 Video Method',
+    sub:'Viral scripts & content strategy',
+    intro:'A psychology-based video scripting system. Every piece starts with a Strong Topic, then a Hook, then Proof, then a Mirror — and ends with a CTA. Use this for your own content and for clients.',
+    prompts:[
+      {label:'20 Strong Video Topics',context:'Strong topics call out a specific behaviour, challenge identity, interrupt a delusion, or expose something the audience knows but hasn\'t admitted. Sorted by pain activation score.',text:'You are a viral content strategist trained in psychology-based video scripting. I need 20 STRONG video topics for [BUSINESS NAME / NICHE].\n\nBusiness type: [e.g. life coach / med spa / personal trainer / restaurant / real estate]\nIdeal client: [DESCRIBE]\nContent goal: [get DMs / build trust / sell a service / grow followers / go viral]\n\nSTRONG topic criteria: calls out a specific behaviour, challenges identity, interrupts a delusion, speaks directly to the ideal client, exposes something they know but haven\'t admitted.\n\nFor EACH of the 20 topics give me: 1) the STRONG topic, 2) the WEAK version it replaces, 3) the identity it confronts, 4) the transformation it points to, 5) a pain activation score 1-10. Sort by pain activation score, highest first. Do NOT make these generic - they should feel written specifically for this business and audience.'},
+      {label:'Emotional Trigger Selector',context:'Ranks all 6 core emotional triggers for your specific audience and topic. Tells you which one to bet on and warns you which ones could backfire.',text:'You are a content psychologist and viral video strategist. Identify the best emotional triggers for a video for [BUSINESS NAME / CREATOR NAME].\n\nIdeal viewer: [DESCRIBE in detail - age, situation, what they want, what\'s stopping them, what they secretly believe]\nVideo topic: [PASTE THE STRONG TOPIC]\nTone: [bold / warm / vulnerable / educational]\n\nThe 6 core triggers: 1) Shame exposure, 2) Hope, 3) Identity challenge, 4) Fear of regret, 5) Aspiration/exposure, 6) Belonging/recognition.\n\nFor this audience: 1) rank all 6 from most to least effective and explain why, 2) give an example of how each of the top 3 would sound as a hook sentence for this topic, 3) tell me the one trigger you\'d bet on and why, 4) warn me about any trigger that could backfire or feel manipulative. Then use the #1 trigger to write 3 hook options.'},
+      {label:'Story → Full Video Script',context:'Turn a real story into a complete short-form script. The messier and more honest the raw story, the better the output.',text:'You are a viral content strategist trained in the 4x4 Method. Turn a real story into a complete short-form video script.\n\nTHE STORY: [Paste the real story raw - the situation, the emotional low point, what changed, the result or lesson. The messier and more honest, the better.]\n\nCreator / Business: [NAME]\nIdeal viewer: [who needs to hear this story to feel less alone?]\nPlatform: [Instagram Reel / TikTok]\nLength: [30 / 45 / 60 seconds]\nTone: [vulnerable and raw / hopeful / direct]\n\nDo this: 1) FIND THE HOOK (the single most pattern-interrupting line - write Sentence 1 + Sentence 2), 2) FIND THE PROOF (the part that makes the hook believable - sharpen the numbers/timeline), 3) FIND THE MIRROR (what pattern in the viewer\'s life this exposes + the transition into VALUE), 4) WRITE THE CTA. Then write the FULL script with all 4 sections labelled and timed.\n\nAlso give: the on-screen title + subtitle, the full caption (3-4 lines + CTA + hashtags), and one note on how to deliver it.'},
+      {label:'30-Day Video Content Calendar',context:'A full month of short-form video — week by week, intentionally varied between authority, emotional connection, objections, and action. Includes viral potential and DM-driver rankings.',text:'You are a viral content strategist trained in the 4x4 Method. Build a 30-day short-form video content calendar for [BUSINESS NAME / CREATOR NAME].\n\nBusiness type / niche: [TYPE]\nIdeal viewer: [DESCRIBE specifically]\nPrimary platform: [Instagram Reels / TikTok / both]\nPosting frequency: [3x per week / 5x per week / daily]\nGoals this month: [grow following / get DMs / drive bookings / sell a product / build authority]\nUpcoming promotions or events: [LIST or \'none\']\nTone: [bold / warm and educational / raw and personal / luxury lifestyle]\n\nEach entry includes: Date/Day #, Strong Topic, Hook (2 sentences), On-Screen Title, Caption Subtitle, Emotional Trigger Used, Proof Element, CTA. Vary intentionally: Week 1 authority, Week 2 emotional connection, Week 3 objections + desire, Week 4 drive action.\n\nAt the end: 1) the 3 highest-viral-potential videos + why, 2) the 3 most likely to drive DMs/bookings + why, 3) one tip on batch-filming all 30 efficiently.'},
+      {label:'Caption + CTA Writer',context:'Subtitle, caption body, CTA, and 8 hashtags — all calibrated to the emotional state the video leaves the viewer in.',text:'You are a social media copywriter trained in the 4x4 Method. Write the full caption + CTA package for this video:\n\nVideo topic: [PASTE THE STRONG TOPIC]\nHook used: [PASTE THE TWO-SENTENCE HOOK]\nOn-screen title: [PASTE]\nSubtitle: [PASTE]\nBusiness / Creator: [NAME and TYPE]\nPlatform: [Instagram / TikTok / Facebook]\nPrimary CTA: [comment / DM / follow / book / share]\nEmotional trigger used: [which one?]\n\nWrite in 3 parts: PART 1 - subtitle line (first line, before the \'more\' cutoff, deepens the hook without repeating it); PART 2 - caption body (3-5 lines, conversational, continues the pattern exposure, include one screenshot-worthy line); PART 3 - call to action (one clear ask matched to the emotional state the video left them in). HASHTAGS: 8 total - 2 large (1M+), 3 medium (100K-1M), 3 small (under 100K). After everything, one note on why this caption works for this audience.'},
+      {label:'10 Reel Opening Hooks',context:'10 hooks, each under 8 words, each with a one-line explanation of why it works. Every one is deliverable on camera — no clickbait.',text:'Generate 10 Reel opening hooks for [BUSINESS_NAME], a [BUSINESS TYPE].\n\nTarget audience: [WHO THEY SERVE]\nTopic: [REEL TOPIC]\nGoal: [Get saves / Drive DMs / Build trust / Promote offer]\n\nRules: each hook under 8 words; create curiosity, urgency, or immediate relatability; works spoken aloud as the first line; no clickbait - must be something they can deliver on.\n\nFormat:\n1. [Hook]\n(Why it works: one sentence)'},
+    ]
+  },
+  {
+    id:'mascot',
+    title:'AI Video & Mascots',
+    sub:'Clones, mascots & AI video',
+    intro:'The AI clone is the highest-converting hook Dollhouse offers. Start with the mascot workflow for new clients, then use the talking-head scripts for ongoing content.',
+    prompts:[
+      {label:'Mascot Creation Workflow (OpenArt)',context:'Build the mascot image first, then animate it, then use the outreach hook. Start at 480p while testing, upscale to 4K once happy.',text:'Build a branded AI mascot for [BUSINESS_NAME], then bring it to life as a video.\n\nSTEP 1 - CREATE THE MASCOT IMAGE (OpenArt.ai -> Image Generation). Upload a reference image (business owner, logo, or a vibe photo). Prompt:\n"I will be adding a reference image. Bring this image to life making [him/her/them] a real-life character as a mascot for [BUSINESS_NAME]. [STYLE - photorealistic / 3D / illustrated / cartoon]. Wearing [OUTFIT that matches the brand]. Background: [branded setting]. Professional, likeable, memorable."\n\nSTEP 2 - ANIMATE (OpenArt -> Image to Video -> Seedance 2.0). Upload the mascot image. Prompt:\n"Show [CHARACTER DESCRIPTION] in [SETTING]. The character is moving, talking, and demonstrating [ACTION]. Include action shots. Expressive, engaging, natural. Cinematic realism."\nStart at 480p while testing, then UPSCALE to 4K once happy.\n\nSTEP 3 - OUTREACH HOOK (DM/email): "Hey [NAME] - I brought [BUSINESS_NAME]\'s mascot to life and it can promote your business 24/7. Would you like to see it?"'},
+      {label:'Multi-Scene AI Video Prompt (Kling/Veo/Runway)',context:'4 scenes: location shot → action sequence → educational point → CTA close. Stitch in CapCut. Add captions. Each scene under 15 seconds.',text:'Write AI video prompts for tools like Kling, Pika, Veo, or Runway. Upload a clear headshot of the business owner as the reference image.\n\nScene 1 - [LOCATION: office / storefront / clinic / outdoor]. Reference character: [UPLOAD PHOTO]. Vertical cinematic realism. Show [CLIENT DESCRIPTION] standing in [SETTING]. Medium shot, looks into camera, calm confidence, natural hand gestures, believable lip sync.\nDialogue: "[OPENING LINE - hook, question, or bold statement]"\n\nScene 2 - Action Sequence. Reference character: [UPLOAD PHOTO]. Vertical cinematic realism. Fast multi-shot: 1) [ACTION SHOT 1], 2) [close-up of relevant object], 3) [wide establishing shot]. Smooth camera motion, documentary feel.\nDialogue: "[EDUCATIONAL TIP OR KEY POINT]"\n\nScene 3 - [SETTING]. Reference character: [UPLOAD PHOTO]. Natural body movement, serious but helpful tone, realistic facial sync.\nDialogue: "[WARNING, PROOF POINT, OR NEXT STEP]"\n\nScene 4 - Close / CTA. Back in [ORIGINAL SETTING]. Medium close-up, warm authoritative expression.\nDialogue: "[CTA - book, follow, call, DM]"\n\nKeep each scene\'s dialogue under 15 seconds. Stitch in CapCut. Add captions.'},
+      {label:'One-Shot AI Talking-Head Video',context:'Paste directly into your AI video tool with the client\'s reference photo uploaded. Hook → tips → warning → close. Approx 15–25 seconds total.',text:'Paste into your AI video tool with the client\'s reference photo uploaded:\n\n"[CLIENT DESCRIPTION - e.g. \'A sharp personal injury attorney in a navy suit\'] standing in [SETTING - e.g. \'a modern law office with bookshelves behind them\']. They look into camera and speak clearly. Show action shots of them [RELEVANT SCENE].\n\nDialogue (must match timing, approx [X] seconds):\n\'[FULL SCRIPT HERE - write in their voice, short and punchy]\'\n\nEnsure the audio matches what is shown. Vertical cinematic realism. Smooth, realistic facial sync. Professional lighting."\n\nExample script structure: Hook (2-3 sec) "If you [SITUATION], here\'s the first thing you do:" -> Tips (5-8 sec, 2-3 fast action items) -> Warning (2 sec) "Whatever you do, don\'t [COMMON MISTAKE]" -> Close (2 sec, warm line or CTA).'},
+    ]
+  },
+  {
+    id:'automation',
+    title:'Automations',
+    sub:'Workflows, sequences & bots',
+    intro:'Build these once, run them forever. The onboarding automation alone saves hours per new client.',
+    prompts:[
+      {label:'New Client Onboarding Automation',context:'Triggers on sign-up → welcome email → 2-day wait → brand asset questionnaire → wait for response → notify you they\'re ready for onboarding.',text:'Create an automation that sends them a welcome email, waits two days, then sends a questionnaire to collect their brand assets, waits for the response, and then notifies you that they\'re ready for onboarding.'},
+      {label:'New Lead Welcome Sequence (4-Touch)',context:'Welcome SMS + email immediately, follow-up email day 2, follow-up SMS day 3, final email day 4 with light urgency. Every message sounds like it\'s from a real person.',text:'Write a 4-touch lead welcome sequence for [BUSINESS_NAME].\n\nBuild: Trigger "Form Submitted" -> immediate SMS + Email -> wait 1 day -> follow-up email -> wait 2 days -> follow-up SMS -> wait 1 day -> final email -> tag "Lead Sequence Complete".\n\nBusiness type: [BUSINESS TYPE]\nLead source: [Facebook ad / website form / free trial sign-up]\nOffer they responded to: [free consultation / 14-day trial / discount]\nTone: [warm and personal / professional / energetic]\n\nWrite: 1) Welcome SMS (immediate, under 160 chars), 2) Welcome Email (subject + body, confirm what they signed up for + what happens next + CTA), 3) Follow-up Email Day 2 (one piece of value, soft CTA), 4) Follow-up SMS Day 3 (casual check-in), 5) Final Email Day 4 (light urgency + clear booking CTA). Make every message sound like it\'s from a real person named [OWNER_NAME].'},
+      {label:'Review Request System',context:'After service completion → 24hr wait → text with Google Business Profile link → if no response in 3 days → follow-up.',text:'Set up a review request system for a client. After a service is completed, the system waits 24 hours, then sends a text asking for a review with a direct link to their Google Business Profile. If they don\'t respond in three days, it sends a follow-up.'},
+      {label:'Lead Nurture Workflow (Welcome → Offer → Reminder)',context:'Welcome email on form submit → special offer day 3 → reminder day 10. Simple, effective, runs on autopilot.',text:'Set up a workflow that sends a welcome email when a new lead fills out the form, then follows up three days later with a special offer, then sends a reminder a week after that.'},
+      {label:'Instagram Auto DM Chatbot',context:'Replies to any comment containing the trigger word with an automatic DM. Set up in GHL\'s Social Planner.',text:'I want to create an instagram auto dm chatbot that replies to comments whenever "interested"'},,
+      {label:'GHL Instagram Comment-to-DM Automation Workflow',context:'Build a GoHighLevel comment-to-DM automation that engages commenters and books consultations.',text:'Create a GoHighLevel Instagram Comment-to-DM Automation Workflow for [BUSINESS NAME].\n\nObjective:\nAutomatically engage Instagram users who comment on posts and move the conversation into DMs where they can receive information and book a consultation.\n\nWorkflow Requirements:\n\nTrigger:\nInstagram comment containing a keyword: GLOW, SKIN, BEAUTY, CONSULT, INFO, SPECIAL\n\nStep 1:\nAutomatically reply to the Instagram comment:\n"✨ Thanks for your interest! We\'ve sent you a DM with more information."\n\nStep 2:\nSend Instagram DM:\n"Hi {{contact.first_name}}! Thank you for your interest in [BUSINESS NAME]. How can we help you today?"\nOptions:\n* Anti-Aging Treatments\n* Facials\n* Botox & Fillers\n* Body Contouring\n* Pricing\n* Book Consultation\n\nStep 3:\nCreate conditional branches based on the selected option.\n\nAnti-Aging Treatments:\nSend information about anti-aging services and ask if they would like to schedule a consultation.\n\nPricing:\nProvide pricing inquiry response and invite them to book a consultation.\n\nBook Consultation:\nSend booking link immediately.\n\nStep 4:\nIf no response after 24 hours:\nSend follow-up DM:\n"Just checking in to see if you had any questions about our services. We\'d be happy to help."\n\nStep 5:\n"We\'re here whenever you\'re ready. Feel free to reply anytime or book a consultation using our scheduling link."\n\nStep 6:\nIf user requests booking:\n* Send booking link.\n* Apply tag: Consultation Requested.\n* Notify assigned team member.\n\nStep 7:\nIf appointment is booked:\n* Apply tag: Appointment Booked.\n* Stop follow-up sequence.\n* Send confirmation message.\n\nOutput:\nProvide the workflow structure, triggers, conditions, wait steps, tags, actions, and exact GoHighLevel workflow configuration.'},
+      {label:'GHL Review Management Workflow — 5-Star Routing',context:'Auto-request reviews after an appointment — route 5-star to Google, 1–3 star to a private recovery pipeline.',text:'Create a GoHighLevel review management workflow that automatically requests customer feedback after an appointment. If a customer leaves a 5-star review, thank them and send them directly to leave a public Google review. If a customer leaves a 1–3 star review, do not send them to a public review site. Instead, collect their feedback privately, create an internal notification, assign the issue to a team member, and move the contact into a customer recovery pipeline so the team can resolve the problem. Include all triggers, conditions, notifications, tags, and follow-up actions needed to automate the process.'}
+    ]
+  },
+  {
+    id:'email',
+    title:'Email Marketing',
+    sub:'Templates, campaigns & promos',
+    intro:'Use the branded template first to set the visual standard, then build campaigns on top of it.',
+    prompts:[
+      {label:'Branded Email Template',context:'Sets the visual foundation. Plug in brand colors and fonts and Ask AI builds a reusable template in GHL\'s email builder.',text:'Create an email template using the colors [BRAND_COLORS] and the fonts [BRAND_FONTS]. Ensure the design is visually appealing and aligns with the intended branding.'},
+      {label:'Promotional Email (Special Offer)',context:'Lead with urgency. Clear CTA to book online. Works for any service niche — swap in the offer details.',text:'Create a promotional email for a [NICHE] [SERVICE] special. Include urgency and a clear call-to-action to book online'},
+      {label:'Welcome Email Campaign',context:'Sends automatically when a new contact enters the system. Sets expectations and warms them up.',text:'Create an email campaign for welcome email'},
+      {label:'Seasonal Offers Campaign',context:'Timely promotions tied to the month or season. Great for med spas, HVAC, dental, and home services.',text:'Create an email campaign for seasonal offers'},
+      {label:'Re-Engagement Campaign',context:'For contacts who haven\'t opened or clicked in 60–90 days. Win them back before removing.',text:'Create an email campaign for re-engagement campaign'},
+      {label:'Book an Appointment Campaign',context:'Direct booking campaign. Single CTA, no distractions.',text:'Create an email campaign for book an appointment'},
+    ]
+  },
+  {
+    id:'forms',
+    title:'Forms & Surveys',
+    sub:'Intake, questionnaires & reviews',
+    intro:'Forms are your silent intake team. Build them once and they qualify, collect, and route leads without any manual work.',
+    prompts:[
+      {label:'Client Onboarding Questionnaire',context:'Collects everything you need to start managing a client\'s social media — brand assets, tone, platforms, goals, logins.',text:'Use the form tool and Build a client onboarding questionnaire that collects important details related to their business and what we need for their social media marketing'},
+      {label:'Multi-Step Intake Survey',context:'Multi-step is less overwhelming than one long form. Great for dental, medical, legal, and service businesses.',text:'Build a multi-step intake survey for a [NICHE] office'},
+      {label:'Conditional Logic Form',context:'Next question changes based on what the person selects. Different follow-up paths for different service types.',text:'Make this form conditional where the next question changes based on what the person selects asks - different follow-up questions depending on whether someone selects "routine cleaning" or "emergency visit."'},
+      {label:'5-Star Review Routing Survey',context:'Happy customers get routed to Google. Unhappy customers get routed to a private feedback form so bad reviews never go public.',text:'Build a survey that routes satisfied customers to leave a 5-star review'},
+    ]
+  },
+  {
+    id:'content',
+    title:'Content & Copy',
+    sub:'Calendars, captions & long-form',
+    intro:'From a single caption to a full 30-day strategy with hashtags, SEO blogs, and brand voice — everything a client needs to stay consistent.',
+    prompts:[
+      {label:'30-Day Content Calendar (Pillars)',context:'Education, Behind the Scenes, Social Proof, Promotion, Personality — rotated intelligently across the month. No two consecutive posts the same format or pillar.',text:'You are a social media strategist. Create a 30-day content calendar for the following client.\n\nBusiness: [BUSINESS NAME + WHAT THEY DO]\nTarget audience: [WHO THEY SERVE]\nContent pillars: Education, Behind the Scenes, Social Proof, Promotion, Personality\nPosting schedule: [X] posts per week on [PLATFORMS]\nCurrent offer or promotion this month: [OFFER/PROMO]\nBrand voice: [PASTE VOICE GUIDE OR DESCRIBE]\n\nFor each post include: 1) day + platform, 2) content pillar, 3) post concept (1 sentence), 4) caption hook (first line only), 5) recommended format (static / carousel / Reel / Story). Prioritize variety - no two consecutive posts should be the same format or pillar.'},
+      {label:'5 Instagram Captions',context:'5 captions for a specific content pillar. Each starts with a scroll-stopping hook and ends with a clear CTA. Written as if the owner is speaking directly to one person.',text:'Write 5 Instagram captions for [BUSINESS_NAME], a [BUSINESS TYPE] that serves [TARGET AUDIENCE].\n\nBrand voice: [DESCRIBE - e.g. warm, direct, elevated but approachable]\nThis week\'s content pillar: [EDUCATION / PROMOTION / SOCIAL PROOF / BTS / PERSONALITY]\nTopic or offer to highlight: [SPECIFIC TOPIC]\n\nFor each caption: start with a scroll-stopping first line (the hook), 3-5 sentences of body copy, a clear call to action, and 5 relevant hashtags. Warm, conversational, no corporate-speak - write as if the owner is speaking directly to one person.'},
+      {label:'Brand Voice Guide',context:'3 brand voice words, personality description, Do\'s and Don\'ts, a sample sentence, and a caption tone guide.',text:'You are a brand strategist. Create a brand voice guide for a client.\n\nBusiness name: [BUSINESS_NAME]\nIndustry: [NICHE]\nTarget audience: [age, gender, lifestyle, problems they have]\n3 brands they admire: [BRAND 1], [BRAND 2], [BRAND 3]\nWords they\'d use to describe their brand: [ADJECTIVES]\nWords they never want associated with their brand: [ANTI-WORDS]\n\nCreate: 1) Brand voice in 3 words, 2) Brand personality description (3-4 sentences), 3) Do\'s and Don\'ts (5 of each), 4) Sample sentence in their voice ("We help [audience] do [thing]."), 5) Caption tone guide (formal / casual / playful / educational / inspirational).'},
+      {label:'Hashtag Strategy',context:'Broad + mid-size + niche + community + 3 branded hashtag suggestions they can own. Includes how many to use and where to put them.',text:'Create a hashtag strategy for [BUSINESS_NAME], a [BUSINESS TYPE] based in [CITY].\n\nTarget audience: [DESCRIBE]\nNiche: [NICHE]\nPlatforms: Instagram / TikTok (specify)\n\nGenerate: 5 broad hashtags (1M+ posts), 10 mid-size (100K-1M), 10 niche (under 100K), 5 community hashtags, 3 branded hashtag suggestions they can own. Also recommend how many to use per post and whether to put them in the caption or first comment.'},
+      {label:'LinkedIn Post (+ A/B Hook)',context:'Short white space, bold first line, no corporate-speak. Includes an alternate hook for A/B testing.',text:'Write a LinkedIn post for [BUSINESS_NAME].\n\nAbout the author: [WHO IS THIS]\nPost topic: [WHAT THIS POST IS ABOUT]\nGoal: [grow followers / get DMs / build authority / drive leads / share a lesson]\nTone: [professional but human / bold and opinionated / educational / story-based]\nLength: [Short under 150 words / Medium 200-300 / Long 400+]\n\nStructure: LINE 1 (the hook - bold/opinionated/curious, under 15 words, shows before \'see more\'); BODY (3-5 short paragraphs, 1-3 lines each, lots of white space, one idea each, a real story or strong POV, no corporate-speak); CLOSE + CTA (memorable last line + a simple ask). HASHTAGS: 5 total - 2 broad (1M+), 3 niche (under 200K). Also write an alternate hook line for A/B testing.'},
+      {label:'SEO Blog Post',context:'Full SEO-optimized blog post for a target keyword. Title + meta + 5-7 H2 sections + CTA. Drives inbound leads from business owners searching that topic.',text:'Write a detailed SEO blog post for The Dollhouse Brand Studio targeting the following keyword.\n\nTarget keyword: [KEYWORD - e.g. "social media marketing for med spas"]\nTarget audience: [WHO THIS POST IS FOR]\nGoal: drive inbound leads from business owners searching this topic\n\nStructure: 1) Title (include the exact keyword, under 65 characters), 2) Meta description (under 155 characters, include keyword), 3) Introduction (2-3 paragraphs - open with a pain point, introduce the studio as the solution, state what the post covers), 4) 5-7 H2 sections (common problems, what good social media looks like for this niche, content ideas, how to measure results, what to look for in an agency), 5) Conclusion with CTA (book a discovery call). Confident, helpful, expert tone. Genuinely useful first - not salesy.'},
+    ]
+  },
+  {
+    id:'sales',
+    title:'Sales & Proposals',
+    sub:'Proposals, decks & contracts',
+    intro:'Every proposal is personalized to the discovery call — not templated. The goal is to make the client feel like this was written just for them.',
+    prompts:[
+      {label:'Starter Proposal ($1K/mo)',context:'Personal intro → their problem in their own words → Starter package applied to their business → pricing → free trial mention → next steps.',text:'Write a professional social media management proposal for [BUSINESS_NAME] from The Dollhouse Brand Studio.\n\nDiscovery call notes:\n- Business type: [TYPE]\n- Their biggest pain point: [what they told you]\n- Their goal: [more leads / more bookings / more brand awareness]\n- Platforms they want: [e.g. Instagram + Facebook]\n- Current social situation: [DESCRIBE]\n\nPackage: Starter - $1,000/mo + $500 one-time setup. Includes: 1 platform fully managed, AI brand clone, 12 posts/month, comment keyword + auto-DM automation, missed-call text-back, online booking integration, monthly report, 14-day free trial option.\n\nSections: 1) Introduction (personalised), 2) The Problem We Solve (their words), 3) Our Solution (Starter applied to their business), 4) What\'s Included, 5) Pricing ($1,000/mo + $500 setup; mention free trial), 6) Next Steps (sign / pay setup / onboarding call), 7) About The Dollhouse Brand Studio (2-3 sentences). Tone: professional but warm, confident, custom. Length 400-600 words.'},
+      {label:'Growth Proposal ($2.5K/mo)',context:'3 platforms + paid ads + 24 posts + full CRM pipeline. Results-focused. Includes honest 30/60/90-day expectations.',text:'Write a professional social media management proposal for [BUSINESS_NAME] from The Dollhouse Brand Studio.\n\nDiscovery call notes:\n- Business type: [TYPE]\n- Their biggest pain point: [what they told you]\n- Their goal: [scale lead volume / run ads / expand to multiple platforms]\n- Platforms they want: [e.g. Instagram + TikTok + Facebook]\n- Current situation: [DESCRIBE]\n\nPackage: Growth - $2,500/mo + $500 setup. Includes: everything in Starter across 3 platforms, paid ad management (FB + IG), email + SMS automation, 24 posts/month, full CRM pipeline, monthly strategy call + report, 14-day free trial option.\n\nSections: 1) Introduction, 2) The Problem We Solve, 3) Our Solution, 4) What\'s Included, 5) Pricing, 6) Results You Can Expect (honest 30/60/90-day expectations), 7) Next Steps, 8) About. Tone: premium and results-focused. Length 500-700 words.'},
+      {label:'Elite Proposal ($5K+/mo)',context:'Executive summary → situation analysis → full scope of work → investment → timeline weeks 1-4. Maximum scope, polished agency tone.',text:'Write a high-end social media and digital marketing proposal for [BUSINESS_NAME] from The Dollhouse Brand Studio.\n\nDiscovery call notes:\n- Business type: [TYPE]\n- Their biggest challenge: [what they told you]\n- Their goals: [dominate local market / build a content machine / scale with ads]\n- Platforms: [e.g. all 5]\n- Budget appetite: [$5,000-$10,000/mo]\n- Current operation: [DESCRIBE]\n\nPackage: Elite - starting at $5,000/mo + $500 setup. Includes: full-service across 5 platforms, AI brand clone + AI voice agent, full paid ad management (Meta + Google), email + SMS + advanced automation, 20-30 pieces/month, dedicated account manager, monthly strategy meeting + reporting dashboard, priority support SLA.\n\nSections: 1) Executive Summary, 2) Situation Analysis, 3) Our Strategy, 4) Full Scope of Work (by category), 5) Investment ($5,000/mo starting + $500 setup), 6) Timeline (weeks 1-4), 7) Why The Dollhouse Brand Studio, 8) Next Steps. Tone: premium agency, polished, strategic. Length 700-1,000 words.'},
+      {label:'Custom Proposal (AI Recommends Package)',context:'Paste your raw discovery call notes and Ask AI recommends the right package, writes the full custom proposal, and tells you whether to offer the free trial.',text:'Build a custom social media management proposal for [BUSINESS_NAME] from The Dollhouse Brand Studio.\n\nHere\'s everything from the discovery call: [PASTE YOUR NOTES - what they said, what they need, budget reaction, what got them excited, what concerned them]\n\nDo this:\n1. Recommend the best package (Starter $1k, Growth $2.5k, or Elite $5k+) and explain why in 2-3 sentences (note if they should start on one and upgrade).\n2. Write a complete custom proposal: personal intro referencing the call; their problem in their own words; a custom solution tailored to what they actually need; pricing and what\'s included; 14-day free trial mention if applicable; exact next steps to sign and start; a personal closing line.\n3. Suggest whether to mention the free trial for this client and why.\n\nTone: match their energy from the call.'},
+      {label:'Fast Proposal After Discovery',context:'5 sections, under 400 words. Plus a 3-line send email and a 48-hour follow-up reminder. The fastest path from call to signed proposal.',text:'Write a short, personalised social media proposal for [BUSINESS_NAME] from The Dollhouse Brand Studio.\n\nNotes from the discovery call:\n- Business type: [TYPE]\n- Their biggest pain point (their own words): [WHAT THEY SAID]\n- What they want most: [THEIR GOAL]\n- Platforms they\'re on: [PLATFORMS]\n- Package I recommended: [Starter / Growth / Elite]\n- Did I offer the 14-day free trial? [YES / NO]\n- Monthly fee: $[AMOUNT] + $500 one-time setup\n- Anything specific I promised to address: [NOTES]\n\nWrite a proposal with 5 sections only, under 400 words total: 1) personalised opening (reference something specific), 2) the Problem (their own words), 3) our Solution (their business specifically), 4) What\'s Included (clean bullet list), 5) Next Steps (sign / pay setup / kickoff call within 48 hours). Tone: warm, confident, specific - not template-y.\n\nAfter the proposal, also write: a 3-line email (subject + body) to send it, and one reminder follow-up message for 48 hours later if no reply.'},
+      {label:'7-Slide Sales Pitch Deck',context:'One slide per section, 50 words max each. Introduction → their problem → our solution → proof → their package → investment → next steps.',text:'Build a 7-slide sales pitch deck for The Dollhouse Brand Studio for a specific prospect.\n\n- Business name: [BUSINESS_NAME]\n- Niche: [NICHE]\n- City: [CITY]\n- Pain points from the call: [THEIR EXACT WORDS]\n- Package they\'re interested in: [describe]\n- Monthly price: $[AMOUNT]\n- Setup fee: $[AMOUNT or "none"]\n\nSlides: 1) Introduction (who we are, what we do, why), 2) Their Problem (their own words), 3) Our Solution (software + service working together), 4) Proof (case study/testimonial, or "we set up a system like this for a [SIMILAR NICHE] business and they [RESULT] in [TIMEFRAME]"), 5) Their Package (what\'s included + 1-2 things NOT included), 6) Investment (monthly + setup + terms), 7) Next Steps (sign / onboarding form / kickoff call within 48 hours). Keep each slide to 50 words or less. No filler.'},
+      {label:'Service Agreement',context:'Professional contract covering all 10 key sections. Governing law: Ontario, Canada. Plain English, readable in under 5 minutes. Have a lawyer review before use on clients over $2K/mo.',text:'Draft a social media management service agreement for The Dollhouse Brand Studio. (Have a lawyer review before using for clients over $2,000/mo.)\n\n- Service Provider: The Dollhouse Brand Studio ([OWNER_NAME], Owner)\n- Client: [CLIENT FULL NAME or BUSINESS LEGAL NAME]\n- Service Start Date: [DATE]\n- Services Provided: [LIST]\n- Package: [Content Starter / Starter / Growth / Elite]\n- Monthly Fee: $[AMOUNT]/month\n- Contract Term: [6-month minimum / 12-month annual]\n- One-Time Setup Fee: $500 (due before work begins, non-refundable)\n- Billing Date: [DATE]\n- Payment Method: [card on file / ACH / invoice]\n\nSections: 1) Services, 2) Term & Minimum Commitment (6-month initial term; after that 30 days\' written notice; 12-month at 10% discount), 3) Fees & Payment (add 10% after 7 days late), 4) Client Responsibilities (logins, photos, feedback within 48 hrs), 5) Intellectual Property (content belongs to client after payment), 6) Confidentiality, 7) Limitation of Liability (not liable for algorithm changes, ad fluctuations, results beyond our control), 8) No Guarantee of Results, 9) Termination, 10) Governing Law (Ontario, Canada), 11) Signatures. Tone: professional and clear, plain English, readable in under 5 minutes.'},
+      {label:'14-Day Free Trial Agreement',context:'Friendly, signable in under 2 minutes. Setup fee collected upfront ($500, non-refundable). Auto-bills on day 15 unless cancelled in writing before trial end.',text:'Write a 14-day free trial agreement for The Dollhouse Brand Studio.\n\n- Service Provider: The Dollhouse Brand Studio ([OWNER_NAME])\n- Client: [BUSINESS_NAME]\n- Trial Start Date: [DATE]\n- Trial End Date: [DATE + 14 days]\n- Setup Fee (collected upfront, non-refundable): $500\n- Platform Managed During Trial: [SOCIAL_PLATFORM]\n- Monthly Fee After Trial: $[AMOUNT]/month\n- Billing Starts: automatically on Day 15 unless cancelled in writing before trial end\n\nSections: 1) Trial Description (what\'s included), 2) Setup Fee ($500 before work begins, non-refundable, covers AI clone build + content system + automation setup), 3) Trial Period (14 days at no additional charge), 4) Conversion to Monthly (auto-bills unless cancelled in writing 48 hours before trial end), 5) Cancellation During Trial (no obligation beyond the $500), 6) Client Responsibilities, 7) Signatures. Tone: friendly and clear, signable in under 2 minutes.'},
+    ]
+  },
+  {
+    id:'reporting',
+    title:'Reports & Audits',
+    sub:'Client reports & visibility audits',
+    intro:'Reports are a retention tool. A client who understands what\'s working stays. Never apologize for numbers — contextualize them.',
+    prompts:[
+      {label:'Monthly Report Summary',context:'Leads with a win. 3 highlight bullets. What we learned. Next month focus. Confident advisor tone — never apologetic.',text:'Write a monthly social media report summary to send to a client.\n\nClient: [BUSINESS_NAME]\nMonth: [MONTH]\nPlatforms: [PLATFORMS]\n\nData (fill in actual numbers): total reach [X]; impressions [X]; engagement rate [X%]; new followers [+X]; top performing post [DESCRIPTION + why it worked]; ad results (if applicable) spend $[X], reach [X], clicks [X], cost per result $[X].\n\nWrite: 1) opening sentence (positive, lead with a win), 2) highlights (3 bullets), 3) what we learned this month (1-2 sentences), 4) focus for next month (2-3 sentences), 5) closing (warm, professional). Tone: confident advisor. Never apologise for numbers - contextualise them.'},
+      {label:'Plain-English Monthly Report',context:'Translates every number into what it means for their business. THE WIN → WHAT THE NUMBERS MEAN → WHAT WORKED → WHAT\'S NEXT. No jargon.',text:'You are writing a monthly social media report for [BUSINESS_NAME], a [BUSINESS TYPE] in [CITY]. Translate every number into what it means for their business.\n\nStats for [MONTH]: Reach [X]; Impressions [X]; Engagement rate [X%]; New followers [+X]; Top post [DESCRIBE]; Ad results (if applicable) spent $[X], generated [X] leads/clicks at $[X] each; Compared to last month [better/worse/same].\n\nStructure: THE WIN (best result, one sentence) -> WHAT THE NUMBERS MEAN (explain reach, engagement rate, new followers, ads in plain language with what changed vs last month) -> WHAT WORKED (2-3 sentences) -> WHAT\'S NEXT (what we\'ll double down on). Friendly and confident, no jargon, no apologising for numbers. End with one sentence on why showing up consistently matters.'},
+      {label:'GEO / AI-Search Visibility Audit',context:'Scores your agency on 7 categories — brand consistency, niche clarity, proof, citations, reviews, content, and AI search visibility. Each gets a 1-5 score + a fix.',text:'Run a GEO (Generative Engine Optimization) audit for The Dollhouse Brand Studio.\n\nNiche: done-for-you social media marketing for small businesses\nLocation: [CITY]\nWebsite: shopdollhouse.co\n\nScore us 1-5 on: 1) brand name consistency across website, Google Business Profile, Instagram, Facebook, directories; 2) niche clarity (is it obvious who we serve and what we do?); 3) case studies and proof with specific numbers; 4) third-party mentions/links/citations; 5) review count and quality; 6) content consistency across platforms; 7) AI search visibility (would we appear if someone asked ChatGPT or Gemini "best social media agency for [niche]"?).\n\nFor each category give: current score (1-5), what\'s missing or weak, and a specific action to fix it this month.'},
+    ]
+  },
+  {
+    id:'ads',
+    title:'Paid Ads',
+    sub:'Ad copy & boost strategy',
+    intro:'Start with the $150 Meta boost pitch for every new client — it\'s an easy yes that makes all their organic content work harder.',
+    prompts:[
+      {label:'FB/IG Ad Copy (3 Angles)',context:'Pain-aware → desire-based → social proof. Each version has Primary Text, Headline, and Description. Three different angles on the same offer.',text:'Write 3 versions of Facebook/Instagram ad copy for [BUSINESS_NAME].\n\nProduct/Service being advertised: [WHAT THEY\'RE SELLING]\nTarget audience: [WHO SEES THIS AD - be specific]\nPain point the ad addresses: [THEIR PROBLEM]\nOffer or hook: [WHAT MAKES THIS WORTH CLICKING]\nCall to action: [LEARN MORE / SHOP NOW / BOOK NOW / DM US]\nBudget/price point (if relevant): [PRICE OR DEAL]\n\nFor each version write: Primary Text (2-4 sentences, conversational), Headline (under 7 words, punchy), Description (1 sentence supporting the headline).\nVersion 1: Pain-aware (lead with the problem). Version 2: Desire-based (lead with the transformation/result). Version 3: Social proof angle (lead with a result or testimonial hook).'},
+      {label:'$150 Meta Boost Pitch',context:'How to recommend and explain the monthly boost to a client. The $150 goes directly from the client to Meta — not to you. Include it in every quote.',text:'Explain the $150/mo Meta boost recommendation to a client.\n\nTHE RECOMMENDATION: every month we identify the single best-performing post and put $150 behind it as a Meta boost - the minimum effective budget for meaningful reach beyond current followers. The $150 goes directly from the client to Meta; it is NOT paid to us.\n\nHOW TO PITCH IT: "One thing I always recommend alongside the content plan is a small monthly boost budget - $150 directly to Meta, paid by you. Every month we take your best-performing post and push it to a targeted audience in [CITY] who match your ideal customer. Organic reach gets you in front of people who already follow you; the boost gets you in front of people who don\'t know you yet. That\'s separate from what you pay us - but it makes everything we create for you work 5x harder."\n\nFOR MASCOT CLIENTS: boost the best mascot video as a retargeting ad so people who engaged keep seeing the character - brand recognition builds, trust builds, they book.\n\nIN THE QUOTE: "Recommended: $150/mo Meta boost (client pays directly to Meta) - boosts your best post each month for maximum reach." Add it to the Ad Spend field; it does not affect your fees.'},
+    ]
+  },
+  {
+    id:'website',
+    title:'Websites & Funnels',
+    sub:'Landing pages, sales & checkout',
+    intro:'GHL builds complete websites, funnels, and checkout flows. Use these prompts to build them fast — then customize in the page editor.',
+    prompts:[
+      {label:'Luxury Business Website',context:'Clean, elegant, feminine, high-end. Soft neutral tones, modern typography, smooth scrolling animations. Works for any premium service brand.',text:'Create a modern, luxury-style website for a [NICHE] brand called "[BUSINESS_NAME]." The website should feel clean, elegant, feminine, and high-end, using soft neutral tones, glowing skin visuals, modern typography, and smooth scrolling animations.'},
+      {label:'Digital Product Sales Page + Checkout',context:'High-converting sales page for a one-time digital product. Include table of contents, proof screenshots, logo, and branding URL.',text:'Build a high converting digital product sales page and checkout for my "[PRODUCT_NAME]" digital product. I am adding the table of contents for the SOP for reference so the buyer knows what they will get. I am also attaching a screenshot of my analytics as proof of my own success. I\'m attaching my logo as well and for the branding use [WEBSITE_URL]'},
+      {label:'High-Converting Checkout Page',context:'Standalone checkout with payment processing. Clean, minimal, high trust.',text:'Build a high converting checkout page and a payment processing option'},
+      {label:'Secure Product Delivery Page',context:'PDF lives on a locked page. Each buyer gets a unique access code after purchase. Unauthorized links don\'t work.',text:'Here is the link to the product people will get access to [PRODUCT_URL]\n\nPlease create a page this PDF will live on and I want a secure way for people to access the SOP digital product page so that only buyers have access and the link does not spread to unauthorized users, please create a unique code after each purchase, the user must use this unique code in order to access the page with the SOP'},,
+      {label:'Luxury Spa / Med Spa Website Build',context:'Full website-build brief for a luxury/med spa — pages, sections, design style, and lead-gen goals.',text:'Create a high-converting website for a luxury spa/med spa designed to generate consultation bookings and treatment appointments.\n\nBusiness Type:\nLuxury Spa / Med Spa\n\nTarget Audience:\nWomen aged 30-65 interested in: [list key interests — e.g. anti-aging, facials, Botox & fillers, body contouring, skincare]\n\nDesign Style:\n* Modern\n* Elegant\n* Premium\n* Trustworthy\n* Clean and minimalist\n\nObjective:\nGenerate leads and appointment bookings.\n\nCreate the following pages:\n\n1. Home Page\n[hero with booking CTA + key sections]\n* FAQ section\n* Final CTA section\n\n2. Services Page\nFor each service include:\n* Benefits\n* Who it\'s for\n* Expected results\n* CTA\n\n3. Skin Assessment Landing Page\n* Interactive lead generation page\n* Educational content\n* Lead capture form\n* Consultation booking CTA\n\n4. About Us Page\n[story, team, credentials + booking CTA]'}
+    ]
+  },
+  {
+    id:'product',
+    title:'Digital Products',
+    sub:'SOPs, outlines & digital goods',
+    intro:'Digital products are Dollhouse\'s front door — they bring in women who grow into full agency clients.',
+    prompts:[
+      {label:'SOP Creation — AI Avatar / Digital Twin',context:'Ask AI gathers all the information it needs before starting. The SOP covers how to make YouTube videos using a cloned AI version of yourself.',text:'I am creating a digital product, which will be an SOP, about how to make Youtube videos with your digital twin (AI Avatar) which is a cloned version of yourself. I\'m selling it for less than $100 and even though its cheap, I still want it to be an extremely helpful document for anyone who wants to create their own digital avatars. I need your help creating the SOP, please let me know what information you need from me before we start creating'},
+      {label:'Digital Product Outline (Any Topic)',context:'Paste in your topic and Ask AI figures out what to include, how to structure it, and what format works best.',text:'I\'m creating a digital product about [PRODUCT_NAME], help me figure out what to include.'},
+    ]
+  },
+
+  /* ===== DECK 2 — AI CASHFLOW MASTERCLASS ===== */
+  {
+    deck:'cashflow',
+    id:'trustaudits',
+    title:'AI Trust Audits',
+    sub:'llms.txt audits & outreach',
+    intro:'The AI-search angle: most local businesses are invisible to ChatGPT, Gemini, and Perplexity because they have no (or a broken) llms.txt file. Build the lead list first, then run the SMS or email sequence.',
+    prompts:[
+      {step:1,label:'Gemini Lead List — Businesses Running Ads',context:'Run in Gemini. Uses Google Search + the Google Ads Transparency Center to confirm active advertisers. Swap in your city and niche.',text:'Act as a B2B Lead Generation Specialist and Market Researcher. I need to identify 25 small businesses in [CITY] within the [NICHE] niche who are currently running Google Ads.\n\nTask: Use Google Search and the Google Ads Transparency Center to confirm which businesses in this area/niche are active advertisers.\n\nFor each of the 25 businesses, provide the following in a clean markdown table:\n- Company Name\n- Website URL\n- Phone Number (publicly listed)\n- Email Address (search for \'contact@\', \'info@\', or listed owner emails)\n- Ad Evidence (briefly mention if you saw their ad on Search, Maps, or the Transparency Center)'},
+      {step:1,label:'Manus Lead List — No / Broken llms.txt',context:'Run in Manus AI. Finds businesses with a missing, incomplete, or misconfigured llms.txt file — your warmest AI-audit prospects.',text:'Help me build a lead list of businesses in [CITY] that either have no llms.txt file or have one that is incomplete/improperly configured.\n\nFor each business found, I want: Business name, Website URL, llms.txt status (missing, incomplete, or misconfigured), what is missing or wrong (e.g. no llms.txt, file exists but has no structured content, broken links, missing key sections like description/docs/contact), business size / type (if determinable), and contact or outreach info (LinkedIn, contact page, or email if publicly available).\n\nTarget criteria — Industry/Niche: [NICHE]; Location: [CITY]; Company size: SMBs; Minimum number of leads: 20-50. Output format: a structured table or exportable spreadsheet (CSV/Excel).'},
+      {step:2,label:'SMS #1 — The Wake-Up Call',context:'First touch. Short, specific, ends with a low-friction question. [First Name] is the recipient — fill it manually.',text:'Hey [First Name], quick heads up — when someone asks ChatGPT or Google AI to recommend a [NICHE] business in [CITY], your business isn\'t showing up. I fix that. Want to see what\'s missing? — [OWNER_NAME]'},
+      {step:2,label:'SMS #2 — The Competitor Angle',context:'Use when you want to lead with urgency. Frames it as a land-grab before the market saturates.',text:'[First Name] — your competitors in [CITY] are starting to show up in AI search results. You\'re not. I help local businesses get found by ChatGPT, Gemini & Perplexity before your market gets saturated. 2 mins to chat?'},
+      {step:2,label:'SMS #3 — The Direct Problem',context:'Most direct. Names the exact technical gap (no llms.txt) after a quick audit. Best after you\'ve actually checked their site.',text:'Hey [First Name], I ran a quick audit on [BUSINESS_NAME] — your site has no llms.txt file, which means AI tools literally can\'t recommend you to customers. Easy fix. Want me to send the details? — [OWNER_NAME]'},
+      {step:2,label:'Email #1 — The Audit Email',context:'The flagship cold email. Explains the problem in plain English, then offers a free audit with no pitch call required.',text:'Subject: [BUSINESS_NAME] is invisible to ChatGPT — here\'s why\n\nHey [First Name],\n\nI was doing some research on local [NICHE] businesses in [CITY] and ran your site through a quick AI search audit.\n\nHere\'s the problem: when someone opens ChatGPT, Gemini, or Perplexity and types "best [NICHE] in [CITY]" — your business doesn\'t come up.\n\nIt\'s not a Google SEO issue. It\'s a newer problem most small businesses don\'t even know exists yet.\n\nAI search engines pull from something called an llms.txt file — and [BUSINESS_NAME] either doesn\'t have one or it\'s not properly set up. That means AI tools have no structured way to understand what you do, who you serve, or why someone should choose you.\n\nThe businesses getting recommended right now are the ones who moved early.\n\nI help local businesses get properly configured so they show up when AI tools are asked for recommendations in their niche.\n\nIf you want, I can send over a free audit showing exactly what\'s missing and what it would take to fix it. No pitch call required — just a straight answer.\n\n— [OWNER_NAME], The Dollhouse Brand Studio'},
+      {step:2,label:'Email #2 — The Competitor Fear Email',context:'Leads with urgency and the early-mover window. Best as a second touch after Email #1 goes unanswered.',text:'Subject: Your competitor might already be doing this…\n\nHey [First Name],\n\nAI search is changing how customers find local businesses — and most small businesses have no idea it\'s happening.\n\nRight now, tools like ChatGPT and Perplexity are being asked millions of questions like "who\'s the best [NICHE] in [CITY]."\n\nThe businesses that show up aren\'t the ones with the best Yelp reviews or the most Google stars. They\'re the ones with properly structured, AI-readable data on their website.\n\nI checked [BUSINESS_NAME] — you\'re currently not set up for this at all.\n\nHere\'s why it matters right now: we\'re still early. The businesses that get this dialed in over the next 60-90 days will own those AI recommendations long-term. The ones who wait will be playing catch-up against whoever moved first.\n\nI work specifically with [NICHE] businesses in [CITY] to fix this fast — usually in under a week.\n\nWorth a quick look? I\'ll send you a free breakdown of exactly what your site is missing.\n\n— [OWNER_NAME], The Dollhouse Brand Studio'},
+      {step:2,label:'Email #3 — The Simple & Direct Offer',context:'Shortest of the three. One question, one easy reply ("audit"). Good for a final touch or a colder list.',text:'Subject: Quick question about [BUSINESS_NAME]\n\nHey [First Name],\n\nOne quick question — do you know if your website is set up to be recommended by AI tools like ChatGPT?\n\nMost small businesses aren\'t. It\'s a technical gap called a missing or broken llms.txt file, and it means AI search engines skip right over you when a potential customer asks for a recommendation in your area.\n\nI specialize in fixing this for local businesses. It\'s not a huge project — but the window to get ahead of your competition is closing fast as more businesses wake up to this.\n\nI can pull a free audit for [BUSINESS_NAME] and show you exactly what\'s missing in plain English — no jargon, no obligation.\n\nJust reply "audit" and I\'ll send it over.\n\n— [OWNER_NAME], The Dollhouse Brand Studio'},
+      {step:2,label:'Cold DM — The Screen Recording Hook',context:'Ultra-short DM or email. Curiosity-only, offers a screen recording of what Google\'s AI recommends instead of them. No pitch.',text:'Quick question — have you noticed Google showing AI answers above the search results lately?\n\nWe\'re seeing businesses lose clicks even while still ranking well. I ran a quick check on your site and it doesn\'t appear in the AI answers yet.\n\nHappy to send you a short screen recording showing what Google\'s AI is recommending instead — no pitch.'},
+    ]
+  },
+  {
+    deck:'cashflow',
+    id:'socialposting',
+    title:'Irresistible Social Posting',
+    sub:'Visual-rich prospects & the sample play',
+    intro:'For prospects who already have great photos but a dead social feed. Build the list, then lead with free sample content instead of a pitch.',
+    prompts:[
+      {step:1,label:'Gemini Lead List — Visual-Rich, Social-Starved',context:'Finds high-ticket local businesses with a strong website gallery but a weak or inactive social presence — perfect for the "I made you content" play.',text:'I am an agency owner looking for social media content creation clients. I need a prospecting list of 20 high-ticket local businesses in [CITY] (focus: luxury home services, private tours, or high-end venues).\n\nCrucial selection criteria:\n- Visual Richness: the business must have a high-quality portfolio or gallery on their website (so there are assets to work from).\n- Social Deficit: they must have a weak or inactive social media presence (e.g. last post was 3+ months ago, or low engagement).\n\nOrganize the data into a table with:\n- Business Name & URL\n- Niche\n- Asset Grade (High / Med — based on the quality of images on their site)\n- The Social Gap (e.g. "Instagram inactive since 2023" or "Zero video content")\n- The Hook: a specific pitch referencing their site\'s gallery (e.g. "Turn your Project Gallery page into 6 months of Instagram Reels automatically")\n- Public Phone Number'},
+      {step:2,label:'"Are You Still Open?" Email',context:'The highest-converting email in the masterclass. Send in all lowercase. Leads with the free sample content you already made — no pressure.',text:'Subject: are you still open? (send in all lowercase — it gets more opens)\n\nHi [First Name],\n\nI live in [CITY] and was looking online for a [NICHE] and came across your business. I almost called to book, but I thought you might be closed because you haven\'t posted on [SOCIAL_PLATFORM] since [date].\n\nBeing a small business owner myself, I know how time-consuming it is to manage an online presence — which is exactly why I made it my mission to become an expert at it.\n\nTo show you what I mean, I went ahead and created two weeks of social media content specifically for your business. Take a look below. If you want to use it, feel free — it\'s yours. If it sparks a conversation about having someone handle this for you moving forward, we can talk about that too. No pressure either way. You\'ve got some new content to post!\n\nBest, [OWNER_NAME]'},
+    ]
+  },
+  {
+    deck:'cashflow',
+    id:'donemethod',
+    title:'Already Done Method',
+    sub:'No-website prospects & the pre-built offer',
+    intro:'For businesses with no website at all. The angle: you\'ve already built the site (or the content) — they just have to say yes. Scarcity does the closing.',
+    prompts:[
+      {step:1,label:'Manus Lead List — Businesses With No Website',context:'Run in Manus AI. Scrapes Google Maps for listings with no website button — only Directions — i.e. prime "I already built you one" targets.',text:'Search Google Maps for [NICHE] businesses in [CITY]. Go through the results and identify listings that do NOT have a website linked to their Google Business Profile — you can tell because there is no "Website" button on the listing card, only a "Directions" button, and the profile shows an "Add website" option under "Add missing information."\n\nFor each business found without a website, provide: Business Name, Category, Full Address, Phone Number, and a direct link to their Google Maps listing. Focus on locally owned, independent businesses.'},
+      {step:1,label:'No-Website Lead List — Strict Criteria',context:'Tighter version. Filters on multiple criteria at once (active profile + no site + legit operation) and returns the exact 4 fields you need to reach out. Auto-fills your niche from Client Details.',text:'Find 10-20 businesses in [CITY] that meet ALL of the following criteria:\n- [NICHE] businesses\n- Have an active Google Business Profile\n- Have NO website connected to their Google Business Profile\n- Appear to be legitimate operating businesses\n\nFor each business, provide:\n1. Business Name\n2. Google Maps / Google Business Profile URL\n3. Phone Number\n4. Email Address (if publicly available)'},
+      {step:2,label:'AI Studio Full Website Build',context:'The flagship build prompt. Paste a prospect\'s Google Maps URL and the AI researches their listing, reviews, and photos to generate a full premium website blueprint — pages, copy, SEO, and CTAs. Use it to create the "already done" site, then send the Golden Email below with the link.',text:'AI STUDIO WEBSITE PROMPT\n\nYou are an award-winning web designer, CRO expert, local SEO specialist, and direct-response copywriter.\n\nYour task is to create a complete premium website for a local business using ONLY the information available from the Google Business Profile, Google Maps listing, reviews, photos, social profiles, and publicly available online information.\n\nBusiness Information:\n- Google Maps URL: [GOOGLE_MAPS_URL]\n\nObjective: Create a modern, high-converting website that looks like a professional agency-built website worth $5,000-$15,000. The business may not currently have a website.\n\nResearch Phase — Analyze all publicly available information and extract: Business name, Primary services, Secondary services, Service areas, Customer reviews, Customer pain points, Frequently mentioned benefits, Business strengths, Photos, Contact information, Hours of operation, Industry positioning.\n\nIf information is missing:\n- Infer reasonable content based on industry best practices\n- Clearly label assumptions internally\n- Never invent certifications, awards, years in business, licenses, or credentials\n\nWebsite Goal — Generate more: Phone calls, Form submissions, Appointment bookings, Quote requests.\n\nDesign Direction — Create a premium modern design using: Strong visual hierarchy, Modern typography, Large hero sections, Clean whitespace, Trust-building layouts, Subtle animations, Modern cards and content blocks, Mobile-first responsive design. The website should look significantly better than the average local business website.\n\nCreate These Pages: Home, About, Services, Individual Service Pages, Reviews, Gallery, Service Areas, FAQ, Contact.\n\nHomepage Requirements:\n- Hero: Powerful headline, Clear value proposition, Primary CTA, Secondary CTA\n- Trust: Review highlights, Reputation indicators, Customer satisfaction messaging\n- Services: Top services, Service benefits, Internal linking opportunities\n- Why Choose Us: Differentiators, Customer-focused benefits\n- Gallery: Showcase available images, Suggest image types if insufficient photos exist\n- Reviews: Pull themes from actual reviews, Highlight recurring customer praise\n- FAQ: Address common buying objections\n- Final CTA: Strong lead generation offer, Clear contact options\n\nSEO Requirements (every page): Optimized page title, Meta description, H1, H2 structure, Local keyword strategy, Internal linking recommendations.\n\nContent Requirements: Write persuasive, human-sounding copy. Avoid generic AI wording. Make the business appear trustworthy, professional, and credible. Create enough content to immediately publish the website.\n\nLead Generation Bonus — At the end, provide: Top 5 weaknesses in the business\'s current online presence, Top 5 opportunities to generate more leads, Recommended lead magnet or special offer, Recommended call-to-action, Recommended Google Business Profile improvements.\n\nFinal Deliverable — Produce a complete website blueprint including: Sitemap, Page structure, Copy, SEO recommendations, CTA placements, Design guidance. The final result should be impressive enough that a business owner would gladly pay to have it launched.'},
+      {step:3,label:'Golden Email — "I Built You This Website"',context:'The pre-built-site offer. One-time price, no strings, scarcity close (one business per market). Fill [PRICE] and [LINK].',text:'Subject: i built you this [NICHE] website\n\nHey [First Name],\n\nI was scoping out [NICHE] businesses in [CITY] and stumbled on your business. It looks like you have a great reputation — but no website? I\'m sure you know that\'s leaving money on the table every single day.\n\nHere\'s the situation: I just finished building a professional [NICHE] website for someone else. They went a different direction. The site is done, polished, and ready to go — I just need someone to actually use it.\n\nNormally this is a $3,000 build. I\'m letting it go for [PRICE], one-time, no strings attached.\n\nIt\'s a lead-focused design built to turn visitors into calls and looks sharp on mobile. If you want it, just let me know — I can have it live for you in 48 hours or less.\n\nHere\'s the site: [LINK]\n\nP.S. I\'m only offering this to one [NICHE] business in [CITY]. First one to respond gets it — after that, I move on to the next market.\n\nTalk soon,\n[OWNER_NAME]\nThe Dollhouse Brand Studio'},
+      {step:3,label:'SMS — Pre-Built Site Offer',context:'The text version of the Golden Email. Casual, scarcity-driven, 48-hour turnaround. Fill [PRICE].',text:'Hey [First Name], saw you run a [NICHE] biz but still don\'t have a website? I\'ve got a pro [NICHE] site ready to go — built for turning leads into sales. I usually sell these for $3k, but it\'s yours today for only [PRICE] if you want it. Can be live in 48hrs. First [NICHE] business who responds takes it — just let me know.'},
+    ]
+  },
+  {
+    id:'pb_4x4',
+    title:'4x4 Video Scripts',
+    sub:'Framework + ready-to-run scripts',
+    intro:'The full 4x4 video framework and ready-to-run scripts for every business type — straight from the Dollhouse playbook.',
+    prompts:[
+      {label:'4x4 Method — Overview & Framework Reference',context:'This is the content strategy framework hardcoded into every video we create for clients. Read this before using any other 4x4 prompt.',text:'This is the content strategy framework hardcoded into every video we create for clients. Read this before using any other 4x4 prompt.\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nTHE GOAL\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nThis is not just a formula — it walks the viewer through five steps.\nCuriosity → Recognition → Trust → Belief → Action.\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nBEFORE YOU SCRIPT: SET YOUR INTENTION\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nStart with a STRONG topic — not a weak one.\n\nWeak: "Why you need discipline"       → Generic. No one reacts.\nStrong: "Why your low self-esteem is disguised as waiting for motivation" → Exposes a pattern. Everyone reacts.\n\nA strong topic:\n✓ Calls out a specific behaviour\n✓ Challenges the viewer\'s identity\n✓ Interrupts a delusion they\'re holding\n✓ Makes the ideal client say "this is for ME"\n✓ Nobody is confused about who it\'s speaking to\n\nDefine your psychological target before scripting:\n— Who is this for?\n— What identities does this confront in them?\n— What pain or frustration am I bringing to light?\n— What transformation am I offering?\n— Why does this matter to them? Why does it matter to me to say it?\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nTHE 4x4 STRUCTURE\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nSTEP 1 — HOOK (First 4 seconds)\nThe hook is an INTERRUPTION. The brain decides in 1–3 seconds: is this about me?\nFirst two sentences must DISRUPT, ACCUSE, REVEAL, or EXPOSE.\n\nWhy two sentences?\n→ Sentence 1 = pattern interruption (shock)\n→ Sentence 2 = personal relevance (clarity)\nShock without clarity → they leave. Clarity without shock → they scroll. You need BOTH.\n\nOn-screen title + subtitle:\n→ Title anchors the theme — does NOT repeat the hook\n→ Subtitle adds context (include in caption)\nExample: Hook: "You don\'t have a content problem — you have a courage problem."\nTitle on screen: "The Psychology of Inconsistent Creators"\nSubtitle in caption: "How low self-esteem sabotages visibility"\n\nSTEP 2 — PROOF (External validation, early in the video)\nBack up the hook immediately. Nobody cares until you prove it.\n→ A stat or study\n→ A testimonial or case study\n→ Your own real personal results\n\nSTEP 3 — VALUE / PROBLEM (The mirror and the story)\nPeople don\'t connect to information — they connect to mirrors.\nHold a mirror up to expose their patterns (not to shame — to make them aware).\n\nUse a personal story. Stories do three things:\n1. Build trust\n2. Build emotional connection\n3. Lower resistance\n\nTeach from your scars, not just from theory.\n\nEmotional triggers that work (NOT shame — pattern exposure):\n→ Shame exposure: "You say you want wealth but avoid responsibility."\n→ Hope: "You\'re closer than you think."\n→ Identity challenge: "You don\'t lack a skill — you lack a belief system."\n→ Fear of regret: "You\'re wasting your potential."\n→ Aspiration/exposure: Showing what\'s possible through your lifestyle or results.\n\nKEY RULE: Don\'t shame people. Expose their patterns. That is authority.\n\nSTEP 4 — CALL TO ACTION (Last 4 seconds)\nEnd every video with a clear CTA. This boosts engagement and feeds the algorithm.\n→ "Comment [WORD] and I\'ll DM you [RESOURCE]"\n→ "Follow for [OUTCOME] content"\n→ "Share this with someone who [SITUATION]"\n→ "Book a free call — link in bio"\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nQUICK REFERENCE\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nHook     → First 4 seconds  → Interrupt, expose, make it personal\nProof    → Right after hook → Stat / testimonial / personal results\nValue    → Middle           → Mirror, story, pain points, takeaways\nCTA      → Last 4 seconds   → Drive engagement, feed the algorithm'},
+      {label:'4x4 Script — Local Service Business',context:'Use this to write a 4x4 video script specifically for local service businesses — salons, dentists, chiropractors, HVAC, plumbers, landscapers, gyms, med spas, restaurants, etc.',text:'Use this to write a 4x4 video script specifically for local service businesses — salons, dentists, chiropractors, HVAC, plumbers, landscapers, gyms, med spas, restaurants, etc.\n\nThese clients aren\'t personal brands — but the 4x4 method still applies. The business owner becomes the face, and the content exposes patterns in how their customers behave.\n\nPaste this into ChatGPT:\n\n"You are a viral content strategist trained in the 4x4 Method. Write a complete short-form video script for a local [BUSINESS TYPE] called [BUSINESS NAME] located in [CITY].\n\nIdeal customer: [DESCRIBE — e.g., \'homeowners 35–65 who keep ignoring their HVAC until it breaks\' / \'women who want to feel confident but keep postponing self-care\']\nVideo goal: [get more bookings / build local trust / get more DMs / go viral in the community]\nTopic (STRONG — expose a pattern): [PASTE STRONG TOPIC — or ask AI to suggest one first]\nPlatform: [Instagram Reel / TikTok / Facebook Reel]\nLength: [30 / 45 / 60 seconds]\nTone: [warm and local / bold and direct / educational]\nOwner\'s name (if they\'ll be on camera): [NAME]\n\nUse the full 4x4 structure:\n\nHOOK (First 4 sec):\n→ Sentence 1: Expose or interrupt — call out the behaviour their customers have\n→ Sentence 2: Make it personal to their specific audience (locals who need this service)\n\nExample hook for a dentist:\n\'You\'ve been putting off that appointment for three years. Not because you can\'t afford it — because you\'re scared of what they\'ll find.\'\n\nPROOF:\n→ A local stat, a before/after, a number of years in business, or a real customer result\n→ Something that builds instant local credibility\n\nVALUE (The mirror + story):\n→ Expose the pattern the ideal customer has (e.g., DIY-ing something until it becomes a bigger problem / avoiding the dentist until the pain is unbearable)\n→ Tell a real story: a customer who waited and what happened vs. one who acted early\n→ Give them 1–3 actionable tips or the one truth they need to hear\n→ Use an emotional trigger: hope, identity challenge, fear of regret, or aspiration\n\nCTA (Last 4 sec):\n→ \'Comment [WORD] and I\'ll DM you [our special offer]\'\n→ \'Book your appointment — link in bio\'\n→ \'Call us at [NUMBER]\'\n→ \'Tag someone who needs to hear this\'\n\nAfter the script:\n1. Caption for the post (local, conversational, include city name, 5 hashtags — mix of local and niche)\n2. On-screen text overlays (2–3 key phrases to flash on screen)\n3. What visual to show while talking (clinic/shop interior, the service being performed, before/after, team at work)"'},
+      {label:'4x4 Script — Personal Brand / Coach / Creator',text:'Use this for personal brand clients — coaches, consultants, course creators, thought leaders, or for building Mandy\'s own brand content. This is where the 4x4 method is most powerful — because the content IS the person.\n\nPaste this into ChatGPT:\n\n"You are a viral content strategist trained in the 4x4 Method — a psychology-based nervous system sequencing approach to video content.\n\nWrite a complete short-form video script for [NAME], a [THEIR IDENTITY — e.g., \'business coach for first-generation entrepreneurs\' / \'social media strategist for women-owned small businesses\' / \'life coach who teaches high-achievers to stop self-sabotaging\'].\n\nIdeal viewer: [DESCRIBE — be deeply specific: their age range, what they want, what\'s stopping them, what they secretly believe about themselves]\nTopic (STRONG — must expose a pattern the ideal viewer has): [PASTE STRONG TOPIC]\nPlatform: [Instagram Reel / TikTok]\nLength: [30 / 45 / 60 seconds]\nTone: [raw and real / bold and confrontational / warm and mentoring / vulnerable and honest]\nKey personal story or credential to weave in: [e.g., \'I used to post from a shelter with $11 in my account\' / \'I hit six figures before I dealt with my imposter syndrome\']\n\nThe FULL 4x4 structure:\n\nHOOK (First 4 sec):\n→ Sentence 1: A bold pattern interrupt — accuse, expose, reveal something they know but haven\'t admitted. This is a confrontation, not a conversation.\n→ Sentence 2: Personal relevance — narrow it to exactly who this is for. They should feel caught.\n\nThe hook should feel like [NAME] is talking directly to one specific person, not a crowd.\n\nON-SCREEN:\nTitle (anchors the video theme — does not repeat the hook):\nSubtitle (in the caption — adds more context):\n\nPROOF (Right after hook — earn the right to be heard):\n→ Personal result, a transformation they went through, or a client\'s result\n→ Something specific and real — not vague. Numbers, timelines, before/after.\n\nVALUE (The mirror + story + emotional trigger):\n→ Hold the mirror up. Expose the pattern — gently but honestly. Don\'t shame, expose.\n→ Tell the real story: something from your own journey or a client\'s journey that the viewer will recognize themselves in\n→ This is where you teach from your SCARS, not just your strategy\n→ Choose and use one emotional trigger:\n   • Shame exposure: call out the gap between what they say they want and what they do\n   • Hope: show them the light — \'you are closer than you think\'\n   • Identity challenge: \'you don\'t lack a skill — you lack a belief system\'\n   • Fear of regret: \'you are wasting your potential and somewhere deep down you know it\'\n   • Aspiration/Exposure: show what\'s possible when someone makes the shift\n\nCTA (Last 4 sec):\n→ Be direct. One ask. Should feel like the natural next step from the video\'s transformation.\n→ Options: \'Comment [WORD]\' / \'Follow for more of this\' / \'Share with someone who needs this\' / \'DM me [WORD] and I\'ll send you [RESOURCE]\'\n\nAfter the script give me:\n1. Caption (3–5 punchy lines, sounds like them talking, not marketing. CTA at the end. 5–8 hashtags.)\n2. 3 on-screen text overlays (the phrases that need to LAND on screen visually)\n3. The one piece of advice on how to DELIVER this video — what energy, what body language, what does their face need to say"'},
+      {label:'4x4 Script — E-Commerce / Product Brand',text:'Use this for product-based brands — e-commerce, clothing, beauty, food, lifestyle products, etc. The 4x4 method works for product content by tying the product to an identity shift or emotional truth — not just showing the product.\n\nPaste this into ChatGPT:\n\n"You are a viral content strategist trained in the 4x4 Method. Write a short-form video script for [BRAND NAME], an e-commerce brand that sells [PRODUCT TYPE].\n\nIdeal customer: [DESCRIBE — e.g., \'women 20–35 who want to feel premium and put-together but are on a budget\' / \'men who care about their appearance but don\'t want to look like they\'re trying too hard\']\nProduct being featured: [SPECIFIC PRODUCT]\nVideo goal: [drive sales / build brand identity / go viral / grow following]\nTopic (STRONG — tie it to an identity or pattern, not just the product): [PASTE STRONG TOPIC or describe what the product represents emotionally]\nPlatform: [TikTok / Instagram Reel]\nLength: [15 / 30 / 45 seconds]\nTone: [aspirational and luxury / fun and relatable / raw and honest / lifestyle-focused]\n\nImportant: Do NOT make this a product demo. Make it a MIRROR that the ideal customer holds up and sees themselves — with the product as the vehicle for their transformation.\n\nTHE FULL 4x4 STRUCTURE:\n\nHOOK (First 4 sec):\n→ Sentence 1: Expose the pattern or identity the viewer has around the type of person who uses this product\n→ Sentence 2: Make it personal — tie it directly to who they are or who they want to be\n→ Example for a luxury skin care brand: \'You keep buying cheap skincare and wondering why you don\'t feel like a priority. You already know what the real problem is.\'\n\nPROOF:\n→ A before/after, a number (% of customers who see X result), a viral moment, a testimonial\n→ Or a lifestyle exposure that makes the product feel aspirational and attainable at the same time\n\nVALUE (The mirror + emotional trigger):\n→ Connect the product to a transformation — not just a feature\n→ Use ASPIRATION EXPOSURE: show what this product represents for someone who has the life they want\n→ Or use IDENTITY CHALLENGE: \'you don\'t buy cheap because you can\'t afford better — you buy cheap because you don\'t think you deserve better\'\n→ Tell a short real story: a customer\'s experience, or your own relationship to the product\n\nCTA (Last 4 sec):\n→ \'Shop now — link in bio\'\n→ \'Comment [WORD] and I\'ll DM you a discount code\'\n→ \'Tag someone who needs this\'\n→ \'Follow — we drop new [PRODUCT] every [DAY]\'\n\nAfter the script:\n1. Caption (2–3 lines, sounds human, includes CTA, 5–8 hashtags — niche + product-specific)\n2. Visual direction: what to show on screen? Product close-up, lifestyle shot, unboxing, before/after, luxury styling?\n3. On-screen text overlays (2–3 phrases that land visually)\n4. Hook-to-product ratio advice: how much time showing product vs. talking to the viewer?"'},
+      {label:'Full 4x4 Script — Master Template (Any Business)',context:'Use this to write a complete video script for any client using the full 4x4 Method. This is the master prompt — it applies to any niche, any platform.',text:'Use this to write a complete video script for any client using the full 4x4 Method. This is the master prompt — it applies to any niche, any platform.\n\nPaste this into ChatGPT:\n\n"You are a viral content strategist and scriptwriter trained in the 4x4 Method — a psychology-based nervous system sequencing approach to video content that guides viewers through: Curiosity → Recognition → Regulation → Belief → Action.\n\nWrite a complete short-form video script for [BUSINESS NAME].\n\nBusiness type: [TYPE]\nIdeal client: [DESCRIBE — be specific about who they are, what they want, what\'s stopping them]\nVideo topic (STRONG — not generic): [PASTE THE STRONG TOPIC]\nPlatform: [Instagram Reel / TikTok / Facebook Reel]\nTarget length: [30 / 45 / 60 seconds]\nTone: [bold and confrontational / warm and vulnerable / educational / raw and real]\n\nDeliver the script in the exact 4x4 structure below:\n\n━━ STEP 1: HOOK — First 4 seconds ━━\nTwo sentences maximum.\nSentence 1: Pattern interruption — shock, disrupt, accuse, reveal, or expose.\nSentence 2: Personal relevance — narrow to the exact viewer this is for.\nThe viewer must think \'this is about ME\' or they scroll.\n\nON-SCREEN TEXT:\nTitle (anchors the theme — does not repeat the hook):\nSubtitle (1 line, goes in the caption):\n\n━━ STEP 2: PROOF — Right after the hook ━━\nImmediately validate the hook with proof. This earns the right to be heard.\nUse ONE of: a real statistic / a testimonial / personal results / a case study.\nKeep it short — 1–3 sentences. The viewer is still deciding if they trust you.\n\n━━ STEP 3: VALUE — The mirror and the story ━━\nThis is the body of the video. Hold a mirror up to expose their pattern without shaming them.\n\nUse a story from real life (client story, personal experience, a scenario they\'ll recognize).\nStories build trust, build emotional connection, and lower resistance.\nTeach from scars, not theory.\n\nThen deliver the actual value — the insight, strategy, or truth that moves them.\nInclude at least ONE emotional trigger:\n→ Shame exposure (expose the pattern, not the person)\n→ Hope (\'you\'re closer than you think\')\n→ Identity challenge (\'you don\'t lack a skill — you lack a belief system\')\n→ Fear of regret (\'you\'re wasting your potential\')\n→ Aspiration exposure (what\'s possible when they change)\n\n━━ STEP 4: CALL TO ACTION — Last 4 seconds ━━\nOne clear action. Make it feel like the natural next step, not a sales pitch.\nOptions: Comment [WORD] / Follow for [OUTCOME] / Book a call / Share with someone who [SITUATION]\n\n━━ AFTER THE SCRIPT ━━\nAlso give me:\n1. The full CAPTION for this post (2–4 sentences + CTA + 5–8 hashtags)\n2. 3 on-screen text overlays to show during the video (beyond the title — key phrases to flash on screen)\n3. Audio direction (what vibe/style of background music fits this video)\n4. One suggestion for what to show visually while talking (b-roll, environment, action shot)"'},
+      {label:'Story Content Script',text:'Create a 5-slide Instagram Story sequence for [CLIENT NAME].\n\nGoal of this story: [EDUCATE / PROMOTE / BUILD TRUST / DRIVE DMs]\nTopic: [SPECIFIC TOPIC OR OFFER]\nBrand voice: [DESCRIBE]\n\nFor each slide:\n- Slide number\n- Main text (under 15 words — Stories are read fast)\n- Visual direction (colour, image type, background — keep it simple)\n- Any interactive element: poll / question box / swipe up / link sticker\n\nEnd with a clear CTA slide. Make it feel like a conversation, not an ad.'}
+    ]
+  },
+  {
+    id:'pb_specs',
+    title:'Platform Specs & Design Briefs',
+    sub:'Sizes & briefs for every platform',
+    intro:'Exact design briefs, specs, and sizes for every platform — Instagram, Facebook, TikTok, and Google Business.',
+    prompts:[
+      {label:'Instagram Static Post — Design Brief Prompt',context:'Use this prompt to brief an AI image tool, designer, or Canva to create a static Instagram post for a client.',text:'Use this prompt to brief an AI image tool, designer, or Canva to create a static Instagram post for a client.\n\nCanvas: 1080 × 1350 px (portrait, 4:5) — this size gets the most feed real estate.\nIf square is needed: 1080 × 1080 px.\nExport: PNG or JPG, max 8MB, sRGB.\n\n---\n\nPaste this into ChatGPT or your AI tool:\n\n"Create a detailed design brief for a static Instagram post for [BUSINESS NAME].\n\nBusiness type: [e.g., med spa / restaurant / real estate agent]\nPost goal: [e.g., promote a service / share a tip / announce a sale / build trust]\nCanvas size: 1080 × 1350 px\n\nInclude:\n- Headline text (under 6 words, big and bold)\n- Subheadline or supporting copy (1–2 lines)\n- Call to action text (e.g., \'Book Now\' / \'Link in Bio\' / \'DM us\')\n- Colour palette direction (pull from their brand colours if known: [BRAND COLOURS])\n- Image or background direction (photo, gradient, solid colour, texture)\n- Font style direction (bold/modern, script/elegant, clean/minimal)\n- Mood/vibe: [e.g., luxury, approachable, clinical, warm, bold]\n\nGive me the layout as: what\'s at the top, middle, and bottom of the graphic."\n\n---\nOnce you have the brief — build it in Canva, Adobe Express, or your design tool at the correct canvas size above.'},
+      {label:'Instagram Reel — Script & Spec Prompt',context:'Use this prompt to generate a full Reel script with the correct video specs for Instagram.',text:'Use this prompt to generate a full Reel script with the correct video specs for Instagram.\n\nVideo Specs:\nCanvas: 1080 × 1920 px (9:16 vertical — full screen)\nLength: 15–60 seconds ideal (up to 90 sec allowed)\nSafe zone for text/graphics: keep all elements 250px from top and bottom edges (UI overlays)\nCaptions: Always add — 85% of Reels are watched on mute\nExport: MP4, H.264, max 4GB\n\n---\n\nPaste this into ChatGPT:\n\n"Write a complete Instagram Reel script for [BUSINESS NAME].\n\nBusiness type: [e.g., chiropractor / clothing boutique / personal trainer]\nReel goal: [e.g., get viewers to book / educate about a service / show a transformation / drive DMs]\nTarget length: [15 / 30 / 45 / 60] seconds\nTone: [e.g., fun and energetic / calm and professional / bold and direct]\nHook style: [e.g., question / bold statement / surprising fact / \'Did you know...\']\n\nWrite it in this format:\n- 0:00–0:03 HOOK — [what to say or show to stop the scroll]\n- 0:03–0:10 SETUP — [the problem or context]\n- 0:10–0:35 VALUE — [tips, transformation, story, or proof]\n- 0:35–0:45 CTA — [exactly what to say at the end: DM us / book / follow / comment]\n\nAlso include:\n- 3 on-screen text overlay suggestions (what to put on the screen at key moments)\n- 2 trending audio vibes that would fit this Reel (describe the type, not a specific song)\n- Caption for the post (under 150 characters + 5 hashtags)"'},
+      {label:'Instagram Carousel — 5 Slides (Client Content)',context:'Use this prompt to generate a complete 5-slide carousel for any client. Max 5 slides — clean, scannable, and converts.',text:'Use this prompt to generate a complete 5-slide carousel for any client. Max 5 slides — clean, scannable, and converts.\n\nCanvas: 1080 × 1080 px (square) or 1080 × 1350 px (portrait)\nEach slide is its own graphic — same size for all slides\nFile: PNG or JPG per slide, export in order (Slide 1, 2, 3, 4, 5)\nMax slides: 5 — keep it tight. People swipe less as carousels get longer.\n\n---\n\nPaste this into ChatGPT:\n\n"Create a complete 5-slide Instagram carousel for [BUSINESS NAME].\n\nBusiness type: [e.g., salon / law firm / fitness coach]\nCarousel topic: [e.g., \'5 signs you need [SERVICE]\' / \'3 things to know before [PURCHASE]\' / \'Why [BUSINESS NAME] is different\']\nCanvas size per slide: 1080 × 1080 px\nBrand colours: [LIST COLOURS or \'use professional defaults\']\nTone: [e.g., educational / motivational / luxury / friendly]\n\nFor each of the 5 slides, give me:\n• Slide number and type (Hook / Content / Content / Proof / CTA)\n• Headline text (under 7 words — big, bold)\n• Body copy (1–3 short lines max per slide)\n• Visual direction (what image, icon, or background works on this slide)\n• Design note (what makes this slide stand out visually)\n\nSlide structure:\n- Slide 1 (Hook): Bold claim, question, or result that makes them swipe\n- Slide 2: First point / tip / reason\n- Slide 3: Second point / tip / reason\n- Slide 4: Third point — OR a testimonial / proof / stat\n- Slide 5 (CTA): Direct ask — \'Book now\' / \'DM us [WORD]\' / \'Follow for more\'\n\nEnd with: suggested caption for the post (under 200 characters + 5–8 hashtags)"'},
+      {label:'Facebook Feed Post — Design Brief Prompt',context:'Use this prompt to generate a Facebook static post brief for any client.',text:'Use this prompt to generate a Facebook static post brief for any client.\n\nCanvas:\n- Square: 1080 × 1080 px (shows well on both desktop and mobile)\n- Landscape: 1200 × 630 px (better for link previews and boosted posts)\n- Portrait: 1080 × 1350 px (4:5 — max height Facebook allows in feed)\n\nRecommended: 1080 × 1080 px square for most posts.\nExport: JPG or PNG, under 8MB, sRGB.\n\n---\n\nPaste this into ChatGPT:\n\n"Create a Facebook static post design brief for [BUSINESS NAME].\n\nBusiness type: [TYPE]\nPost goal: [promote a service / share a testimonial / announce an offer / holiday post]\nCanvas: 1080 × 1080 px\n\nInclude:\n- Primary headline (6 words or fewer, large and bold)\n- Supporting copy (2–3 short lines)\n- CTA text (e.g., \'Call Now\' / \'Get a Free Quote\' / \'Book Online\')\n- Phone number or website to include: [PHONE / URL]\n- Visual direction: [photo of the business, before/after, product shot, or text-only]\n- Colour palette: [BRAND COLOURS or describe the vibe]\n- Mood: [e.g., trustworthy and local / bold and promotional / clean and modern]\n\nAlso write the Facebook caption for this post:\n- 2–4 sentences max\n- Include a CTA at the end\n- Add 3–5 relevant hashtags"'},
+      {label:'Google Business Post — Design & Copy Prompt',context:'Use this prompt to generate a Google Business Profile post for any client. These posts show up in Google Maps and Google Search — very high visibility for local businesses.',text:'Use this prompt to generate a Google Business Profile post for any client. These posts show up in Google Maps and Google Search — very high visibility for local businesses.\n\nImage Specs:\nRecommended: 1200 × 900 px (4:3 landscape) — shows best in the GMB interface\nMinimum: 400 × 300 px\nMax file size: 10MB\nFormat: JPG or PNG\nPost character limit: 1,500 characters (but 150–300 is the sweet spot — most people don\'t read long GMB posts)\n\nPost types available in Google Business:\n• What\'s New — general update or offer\n• Event — for classes, sales, pop-ups (requires start/end date)\n• Offer — for promotions with a redemption code or link\n• Product — for specific service or product highlights\n\n---\n\nPaste this into ChatGPT:\n\n"Write a Google Business Profile post for [BUSINESS NAME].\n\nBusiness type: [TYPE — e.g., plumber / dentist / bakery]\nPost type: [What\'s New / Offer / Event / Product]\nGoal: [get more calls / promote a service / share a seasonal offer / get more reviews]\nImage size for this post: 1200 × 900 px\n\nWrite:\n1. The post copy (150–300 characters — short, local, conversational. Include the city/neighbourhood name.)\n2. A call to action suggestion (Book / Call / Learn More / Get Offer)\n3. Brief image direction: what photo would work best for this post (interior shot, product, team, before/after, etc.)\n4. 3 keywords to naturally include in the post for local SEO\n\nAlso suggest: best day/time to post this for a [TYPE] business."'},
+      {label:'TikTok Video — Script & Spec Prompt',context:'Use this prompt to generate a TikTok-specific video script with correct specs.',text:'Use this prompt to generate a TikTok-specific video script with correct specs.\n\nVideo Specs:\nCanvas: 1080 × 1920 px (9:16 vertical — ALWAYS vertical for TikTok)\nLength: 7–60 seconds for most reach; 3–5 min for educational content\nSafe zone: keep text 150px from all 4 edges (TikTok overlays UI on top and bottom)\nCaptions: essential — add them in CapCut or TikTok\'s auto-caption tool\nExport: MP4, H.264, max 287.6MB\n\n---\n\nPaste this into ChatGPT:\n\n"Write a TikTok script for [BUSINESS NAME] designed to get views and followers.\n\nBusiness type: [TYPE — e.g., nail tech / HVAC company / life coach]\nGoal: [get bookings / go viral / educate / show a before/after / trend participation]\nLength: [15 / 30 / 60] seconds\nTone: [real and relatable / professional but approachable / fun and trendy]\n\nTikTok script format:\n- 0:00–0:03: HOOK — [the first words. Must be a scroll-stopper. Often a question or bold statement]\n- 0:03–0:08: PROMISE — [what they\'ll learn or see if they keep watching]\n- 0:08–0:45: CONTENT — [the actual value, story, or transformation]\n- 0:45–0:60: CTA — [follow us / comment / book / DM the word [WORD]]\n\nAlso include:\n- 2 on-screen text overlays (what words appear on screen at key moments)\n- Audio direction (describe the vibe: hype beat, calm background music, trending sound style)\n- Caption for TikTok (1–2 punchy lines + 5 hashtags mixing popular and niche)\n- Thumbnail text (the 3–5 words shown before they play the video)"'},
+      {label:'TikTok Carousel / Photo Slideshow — 5 Slides',context:'Use this prompt to generate a TikTok photo carousel (slideshow post). TikTok photo carousels are getting massive organic reach right now.',text:'Use this prompt to generate a TikTok photo carousel (slideshow post). TikTok photo carousels are getting massive organic reach right now.\n\nCanvas: 1080 × 1920 px per slide (9:16 vertical) — TikTok shows them full-screen\nOR: 1080 × 1080 px square (also works, shows with black bars)\nMax slides: Up to 35 — but 3–7 slides performs best for engagement\nFile: JPG or PNG per slide\n\n---\n\nPaste this into ChatGPT:\n\n"Create a 5-slide TikTok photo carousel for [BUSINESS NAME].\n\nBusiness type: [TYPE]\nTopic: [e.g., \'5 things your [SERVICE PROVIDER] isn\'t telling you\' / \'[NUMBER] mistakes to avoid\' / \'how we do [PROCESS] step by step\']\nCanvas: 1080 × 1920 px per slide\nTone: [educational / motivational / behind-the-scenes / trendy list format]\n\nFor each of the 5 slides:\n• Slide number + type\n• Big bold text overlay (under 8 words — this is the main message on screen)\n• Brief visual direction (what photo or background works here)\n\nSlide structure:\n- Slide 1 (Hook): Bold statement or question — makes them tap to swipe\n- Slides 2–4: The content, tips, facts, or steps\n- Slide 5 (CTA): \'Follow for more\' or \'Comment [WORD] for [OFFER]\'\n\nAlso write:\n- The TikTok caption (1–2 lines + 5 hashtags)\n- On-screen text style direction (e.g., big white bold on dark, split layout, minimal)"'},
+      {label:'Size Cheat Sheet — All Platforms Quick Reference',context:'Use this as your go-to reference before creating any content. Always build at these sizes so nothing gets cropped or distorted when posted.',text:'Use this as your go-to reference before creating any content. Always build at these sizes so nothing gets cropped or distorted when posted.\n\n═══════════════════════════════════\nINSTAGRAM\n═══════════════════════════════════\nStatic Post (Square)       1080 × 1080 px  (1:1)\nStatic Post (Portrait)     1080 × 1350 px  (4:5) ← best for feed reach\nStatic Post (Landscape)    1080 × 566 px   (1.91:1)\nReel / Video               1080 × 1920 px  (9:16 vertical)\nCarousel Slides            1080 × 1080 px  (square) or 1080 × 1350 px (portrait)\nStory                      1080 × 1920 px  (9:16 vertical)\nProfile Photo              320 × 320 px    (displays at 110px)\n\n═══════════════════════════════════\nFACEBOOK\n═══════════════════════════════════\nFeed Post (Square)         1080 × 1080 px\nFeed Post (Landscape)      1200 × 630 px\nReel / Video               1080 × 1920 px  (9:16 vertical)\nStory                      1080 × 1920 px  (9:16 vertical)\nCover Photo                820 × 312 px\nProfile Photo              170 × 170 px\n\n═══════════════════════════════════\nTIKTOK\n═══════════════════════════════════\nVideo                      1080 × 1920 px  (9:16 vertical)\nPhoto Carousel             1080 × 1920 px  per slide (or 1080 × 1080 square)\nProfile Photo              200 × 200 px\n\n═══════════════════════════════════\nGOOGLE BUSINESS PROFILE\n═══════════════════════════════════\nPost Photo                 1200 × 900 px   (4:3 landscape) ← recommended\nLogo                       250 × 250 px\nCover Photo                1080 × 608 px\nProduct Photo              1200 × 900 px\n\n═══════════════════════════════════\nLINKEDIN\n═══════════════════════════════════\nFeed Post (Landscape)      1200 × 627 px\nFeed Post (Square)         1200 × 1200 px\nDocument / Carousel        1080 × 1080 px  per slide\nVideo                      1080 × 1920 px  (vertical) or 1920 × 1080 (horizontal)\nProfile Photo              400 × 400 px\nBanner                     1584 × 396 px\n\n═══════════════════════════════════\nDESIGN TIPS\n═══════════════════════════════════\n• Safe zone: keep text and logos 150px from all edges on Stories/Reels\n• Portrait (4:5) takes up more feed space than square — use it for static posts\n• Export all graphics at 72 DPI, sRGB colour, JPG or PNG\n• Keep file sizes under 8MB for fast loading'},
+      {label:'Keyword CTA — Carousel Last Slide',context:'Use this to write the CTA that goes on the last slide of a keyword-trigger carousel.',text:'Use this to write the CTA that goes on the last slide of a keyword-trigger carousel.\n\nBusiness: [CLIENT NAME]\nOffer / lead magnet: [WHAT THEY\'RE GETTING — e.g. "free skincare guide," "free estimate," "discount code"]\nKeyword: [WHAT THEY SHOULD COMMENT — keep it short, relevant, and memorable: GLOW / QUOTE / MENU / BOOK]\n\nWrite 3 options for the last slide text:\n\nOption 1: Direct ask\n"Comment [KEYWORD] and we\'ll send you [OFFER] right to your DMs 👇"\n\nOption 2: Value-first\n"Want [BENEFIT]? Drop [KEYWORD] in the comments — we\'ll send you [OFFER] instantly."\n\nOption 3: Curiosity\n"There\'s a free [OFFER] waiting for you. Just comment [KEYWORD] below 👇"\n\n---\nPlatform setup reminder:\nAfter posting, go to the platform → Workflows → Create trigger:\nTrigger: Instagram comment contains "[KEYWORD]"\nAction: AI Agent sends DM with lead magnet link + starts conversation\nTag contact in CRM → create follow-up task'}
+    ]
+  },
+  {
+    id:'pb_outreach',
+    title:'Cold Outreach & Email (Playbook)',
+    sub:'DMs, cold emails & follow-ups',
+    intro:'Cold DMs, cold emails, follow-ups, and mascot scripts for booking new clients.',
+    prompts:[
+      {label:'Cold DM — Instagram',text:'Hey [NAME] 👋\n\nLove what you\'re doing with [BUSINESS NAME] — [specific genuine compliment about their product/service/brand].\n\nQuick question: are you handling your own social content right now, or do you have someone helping you?\n\nI run a done-for-you social media studio and I had a couple ideas for your page that I think could really perform. Happy to share them — no strings attached.'},
+      {label:'DM Follow-Up (No Response After 3 Days)',text:'Hey [NAME] — just wanted to bump this up in case it got buried!\n\nNo worries if now isn\'t the right time. I just genuinely think there\'s an opportunity here for [BUSINESS NAME] and wanted to make sure you saw it.\n\nIf you\'re curious, I\'m happy to do a free quick audit of your current social media and share what I\'d change. Totally free, no pitch.\n\nJust reply "audit" and I\'ll get it to you. 🙂'},
+      {label:'Cold Email — Local Business',text:'Subject: quick question about [BUSINESS NAME]\'s social\n\nHi [FIRST NAME],\n\nI was looking at [BUSINESS NAME] online and noticed you\'re doing [SOMETHING POSITIVE — e.g., "great work in the [industry] space"] — but your social media presence doesn\'t seem to match the quality of what you actually offer.\n\nI run The Dollhouse Brand Studio. We handle done-for-you social media for small businesses — content creation, posting, ads, all of it — so you don\'t have to think about it.\n\nI\'d love to put together a quick look at what we\'d do for you specifically. No pitch deck, no pressure — just a 15-minute call to see if it\'s even a fit.\n\nWould [DAY] or [DAY] this week work for you?\n\n— Mandy\nThe Dollhouse Brand Studio\nshopdollhouse.co'},
+      {label:'Cold Email — E-Commerce Brand',text:'Subject: your content could be converting more\n\nHi [FIRST NAME],\n\nI came across [BRAND NAME] and love what you\'re selling — but I noticed your social content isn\'t doing the heavy lifting it could be for a brand at your level.\n\nAt The Dollhouse Brand Studio, we specialize in social media and paid ads for product-based businesses. We\'ve helped brands go from inconsistent posting to a full content engine running every day — without the owner touching it.\n\nIf you\'re open to it, I\'d love to share what that could look like for [BRAND NAME] specifically. 15 minutes, no obligation.\n\nHere\'s my calendar: [LINK]\n\n— Mandy Fortune\nThe Dollhouse Brand Studio'},
+      {label:'Mascot Cold Call Script',context:'Use this when calling a prospect who hasn\'t responded to your initial email or DM about the AI clone/mascot.',text:'Use this when calling a prospect who hasn\'t responded to your initial email or DM about the AI clone/mascot.\n\n━━━ OPENING ━━━\n"Hey [NAME], this is [YOUR NAME] — I reached out by email a few days ago. I\'m the one who creates AI video clones of business owners for their social media.\n\nI\'d love to make one of you for free, just to show you what it looks like. Would you be open to seeing it?"\n\n━━━ IF THEY SAY YES ━━━\n"Amazing. I can have it ready within 24 hours. What\'s the best email to send it to?\n\n[OR] — Do you have 10 minutes this week for a quick Zoom? I\'d rather show you in person — it makes way more sense when you can see it running."\n\n━━━ IF THEY SAY "WHAT IS IT EXACTLY?" ━━━\n"So basically — we take a photo of you and use AI to create a video of you talking, moving, promoting your business. It looks completely real. You never have to film anything. Your content just goes out every day on autopilot.\n\nMost business owners have never seen anything like it until I show them. That\'s why I\'d rather just send it to you — want me to put one together for you for free?"\n\n━━━ IF THEY SAY "I\'M NOT INTERESTED" ━━━\n"No worries at all — can I ask, is it just the timing, or is social media not something you\'re focused on right now? [Let them answer. This tells you if it\'s a no forever or a not now.]"\n\n━━━ IF THEY WANT TO THINK ABOUT IT ━━━\n"Of course — how about this: I\'ll put the free sample together anyway and just send it over. No strings. You can see it and decide from there. Fair enough?"\n\n━━━ NOTES ━━━\n• Always offer the free sample — it\'s a zero-resistance yes\n• The free sample isn\'t a full build — it\'s a 15–20 second demo video\n• Your goal on this call: get a yes to see the sample, then book the meeting from there\n• Calls work best between 10am–12pm and 2pm–4pm local time'},
+      {label:'Email Newsletter',text:'Write a marketing email for [CLIENT NAME] to send to their email list.\n\nTopic / purpose: [WHAT THIS EMAIL IS ABOUT]\nOffer included (if any): [OFFER + LINK]\nAudience: [WHO IS ON THIS LIST]\nBrand voice: [DESCRIBE]\nDesired action: [WHAT YOU WANT THEM TO DO]\n\nEmail structure:\n1. Subject line (write 3 options — one curiosity, one benefit, one direct)\n2. Preview text (under 90 characters)\n3. Opening (1–2 sentences — personal, warm, not salesy)\n4. Body (3–4 short paragraphs — value first, offer second)\n5. CTA button text\n6. Sign-off (in brand voice)\n\nKeep it under 250 words. Write like a human, not a marketing department.'},
+      {label:'Follow-Up Email Sequence (After No Response)',text:'--- EMAIL 2 (3 days after first email) ---\n\nSubject: Re: quick question about [BUSINESS NAME]\'s social\n\nHi [NAME],\n\nJust bumping this up — I know inboxes get busy.\n\nI actually put together a few quick ideas for [BUSINESS NAME] based on what I can see from your current pages. Happy to send them over — no strings, just genuine ideas.\n\nWorth a 15-minute call?\n\n— Mandy\n\n---\n\nEMAIL 3 (5 days after email 2) ---\n\nSubject: last one from me\n\nHi [NAME],\n\nI don\'t want to be that person who emails five times — so this is my last one.\n\nIf now isn\'t the right time for [BUSINESS NAME], I completely understand. But if things change and social media / content becomes something you want handled, I\'d love to be the first call you make.\n\nWishing you a great [MONTH] regardless.\n\n— Mandy\nThe Dollhouse Brand Studio\nshopdollhouse.co'}
+    ]
+  },
+  {
+    id:'pb_leads',
+    title:'Lead Gen & Strategy (Playbook)',
+    sub:'Niche, scrape, sort & pipeline',
+    intro:'Pick the right niche, scrape and sort leads, and build the CRM pipeline behind them.',
+    prompts:[
+      {label:'Niche Selection — High-Ticket, High Call Volume Industries',context:'Paste into ChatGPT or Claude to identify your best niche:',text:'Paste into ChatGPT or Claude to identify your best niche:\n\n"What are the top local business industries that have a high inbound call volume of leads AND high average ticket prices? Give me the top 10 with their average job value and why they need appointment-setting automation.\n\nBad examples to exclude: hair salons, barber shops (too low ticket, too low call volume).\n\nFor each niche, also tell me:\n1. Their #1 pain point related to lead management\n2. What problems they have that an AI automation agency can solve\n3. Whether they typically use Google, social media, or referrals to find new clients"\n\nTop performing niches to start with:\n- Home Remodeling / Kitchen & Bath Renovation\n- HVAC (Heating, Ventilation & Air Conditioning)\n- Roofing\n- Plumbing\n- Landscaping\n- Legal Services (Personal Injury, Family Law)\n- Dental / Orthodontics\n- Pest Control\n- Automotive Repair\n\nPro tip: Search Amazon for books targeting your chosen niche — skim them to learn all the industry language your clients use.'},
+      {label:'Lead Gen → CRM Pipeline Setup',text:'Act as a B2B Lead Generation Specialist and Market Researcher.\n\nStep 1 — Research:\nIdentify 25 small [NICHE] businesses in [CITY] who are currently running Google Ads.\n\nUse Google Search and the Google Ads Transparency Center to confirm active advertisers. For each business provide:\n- Business Name\n- Website URL\n- Phone Number\n- Email Address\n- Ad Evidence (where you saw their ad)\n\nOnly include small/independent businesses. Avoid national chains. All 25 must be unique.\n\nStep 2 — CRM Setup:\nOnce the list is complete:\n1. Create a new contact in the CRM for each business using the name, email, phone, and website found above\n2. Create a new pipeline called "[NICHE] Cold Outreach — [CITY] [MONTH/YEAR]"\n3. Add all 25 contacts to the first stage of the pipeline: "New Lead"\n4. Tag each contact with: [NICHE], [CITY], Cold Outreach, Google Ads Advertiser\n\n---\nThis gives you a ready-to-work pipeline from a single prompt.'},
+      {label:'Lead Scraping — TrySmartScraper (Google Maps)',text:'How to pull hundreds of qualified local business leads in minutes using the SmartScraper Chrome extension.\n\nSETUP:\n1. Install TrySmartScraper.com Chrome Extension (free trial available)\n2. Go to Google Maps\n3. Search your target niche + city (e.g., "Kitchen Remodeling in Toronto")\n4. Click the SmartScraper extension → select "Extract Data"\n5. Download the CSV — you get: business name, phone number, website URL, review count, rating\n\nSORT THE CSV — PRIME TARGETS:\n✓ Under 30 Google reviews OR rating below 4.3 → need reputation help\n✓ Website URL listed but looks outdated or mobile-unfriendly → ready for a rebuild\n✓ No website listed at all → easiest sell (build it free and pitch the $200/mo)\n✓ Phone number listed → cold call immediately\n\nSKIP:\n✗ National chains or franchises\n✗ 200+ reviews with 4.8+ rating → already well-managed\n✗ No phone number → can\'t reach\n\nUse the "Website Fixed" or "Student Tech Experiment" script below to reach out to each one.'},
+      {label:'Lead Sorting Matrix — Filter Gold From Your Scraped List',text:'After scraping leads from Google Maps (via OutScraper or Apollo), open the CSV and filter using this criteria:\n\nPRIME TARGETS — mark these immediately:\n✓ Under 30 Google reviews OR rating below 4.3 stars → bleeding clients, need reputation management\n✓ No live chat bubble on their website → dropping mobile traffic, prime for AI Web-Chat build\n✓ Contact form on site but no callback guarantee → missing leads after hours, prime for AI text-back\n✓ Phone number listed but no answer during business hours → need AI receptionist / missed call text-back\n✓ Website looks outdated or mobile-unfriendly → need AI website rebuild\n\nSKIP THESE:\n✗ 200+ reviews with 4.8+ rating → already well-managed\n✗ National franchise locations → not the decision maker\n✗ No phone number listed → can\'t cold call\n✗ "Permanently Closed" listing → verify first\n\nFor each prime target, note:\n1. Their name and best phone number\n2. What specific problem you spotted (e.g., "no chat widget", "low reviews", "no text-back")\n3. Which service to lead with when you call'}
+    ]
+  },
+  {
+    id:'pb_more',
+    title:'Automations, Sales & Brand (Playbook)',
+    sub:'Setup, pitch, proposals & brand',
+    intro:'Automations, the discovery-call pitch, proposals, referrals, and the full client content strategy.',
+    prompts:[
+      {label:'Appointment Reminder Sequence',text:'Build this for every client who has appointment-based bookings. Reduces no-shows by up to 80%.\n\nWHAT IT DOES:\nAfter an appointment is booked in the system — the contact automatically receives reminders at 24 hours, 2 hours, and 15 minutes before their appointment.\n\nHOW TO BUILD IT IN THE PLATFORM:\nTrigger: "Appointment Booked" (calendar event created)\n\nReminder 1:\nAction: Wait until [24 hours before appointment start time]\nAction: Send SMS (24-hour reminder)\nAction: Send Email (24-hour reminder)\n\nReminder 2:\nAction: Wait until [2 hours before appointment start time]\nAction: Send SMS (2-hour reminder)\n\nReminder 3:\nAction: Wait until [15 minutes before appointment start time]\nAction: Send SMS (15-minute reminder)\n\n---\n\nPaste this into ChatGPT to write the messages:\n\n"Write an appointment reminder sequence for [BUSINESS NAME].\n\nBusiness type: [TYPE — e.g., chiropractor / salon / financial advisor]\nAppointment type: [e.g., consultation / adjustment / haircut / onboarding call]\nTone: [warm / professional]\nBusiness address: [ADDRESS] (include in reminders)\nCancellation/reschedule instructions: [e.g., \'Reply CANCEL to cancel\' or \'Call us at [PHONE]\']\n\nWrite:\n\n1. 24-HOUR REMINDER SMS — under 160 characters. Confirm the appointment time and date. Include address or Zoom link. Include how to reschedule.\n\n2. 24-HOUR REMINDER EMAIL — Subject line + body. Friendly tone. Recap what to bring / prepare if applicable. Confirm time, date, address/link.\n\n3. 2-HOUR REMINDER SMS — under 160 characters. Quick reminder. Keep it warm and short.\n\n4. 15-MINUTE REMINDER SMS — under 160 characters. \'We\'re ready for you!\' style. Very short."'},
+      {label:'Missed Call Text-Back — Automation Setup',context:'This is the #1 automation to build for every single client. Set it up during onboarding — every client gets this regardless of package.',text:'This is the #1 automation to build for every single client. Set it up during onboarding — every client gets this regardless of package.\n\nWHAT IT DOES:\nWhen a customer calls [CLIENT BUSINESS] and no one answers, the system automatically sends them a text within 60 seconds — so you never lose a lead to a missed call.\n\nHOW TO BUILD IT IN THE PLATFORM:\nTrigger: "Call Status = Missed / No Answer"\nAction 1: Wait — 1 minute\nAction 2: Send SMS from [CLIENT PHONE NUMBER]\nAction 3 (optional): Add tag "Missed Call — Needs Follow-Up" to contact\nAction 4 (optional): Add to pipeline stage "New Lead"\n\n---\n\nPaste this into ChatGPT to write the SMS message for your client:\n\n"Write a missed call text-back message for [BUSINESS NAME].\n\nBusiness type: [TYPE — e.g., dental office / law firm / plumbing company]\nTone: [professional / warm and friendly / urgent]\n\nRequirements:\n- Under 160 characters (one SMS credit)\n- Acknowledge the missed call\n- Include a way to respond or book (link, reply to text, or call back option)\n- Sound human — NOT automated\n\nWrite 3 versions: one warm/friendly, one direct/professional, one with a light urgency."\n\n---\n\nAfter the message is written — paste it into the SMS field in the workflow.\nTest it by calling the client\'s number from a separate phone before going live.'},
+      {label:'AI Appointment Setter — System Prompt (Copy & Paste)',text:'Paste this entire block into your AI module\'s System Instructions inside your platform\'s Conversation AI, Make.com, or OpenAI API settings. Replace the bracketed info with your client\'s details.\n\n---\n\nYou are an elite, highly professional AI front-desk receptionist named [NAME], working for [Client Business Name] (a premium [e.g., Roofing / Home Remodeling / HVAC] contractor in [City/Region]).\n\nYour sole, singular objective is to guide the user into booking an estimate or consultation appointment on our calendar. Do not write long-form essays or give technical pricing quotes. Keep responses under 2–3 sentences max. Be polite, clear, and professional.\n\n### BUSINESS INFORMATION:\n- Services Offered: [List 3–4 primary services, e.g., Roof Repair, Full Replacements, Emergency Leak Patches]\n- Pricing: We do not quote over text. All accurate pricing requires a free, 15-minute on-site assessment by a project manager.\n- Availability: Monday – Friday, 8 AM – 5 PM.\n\n### CONVERSATION PROTOCOL:\n1. Greet the customer warmly and confirm you can handle their project type.\n2. Ask 1 qualifying question: "What is the rough scope or location of your project?"\n3. Once they answer, transition instantly to the calendar: "I have two slots open for an inspector to give you a guaranteed quote: [Option 1, e.g., Tomorrow at 10 AM] or [Option 2, e.g., Thursday at 2 PM]. Which works better?"\n4. If they agree to a time, confirm and state that a calendar invite has been sent.\n\n### CRITICAL RULES:\n- Never break character.\n- Never invent facts, certifications, or make up pricing.\n- If a customer asks a highly technical question, say: "That\'s an excellent question for our on-site estimator. Let\'s get you on the books so they can evaluate that directly for you."\n- Output purely as natural, plain text conversational messaging. No markdown, no hashtags, no emojis.'},
+      {label:'Full Service Pitch — What to Say on a Discovery Call',context:'Use this as your talking track when a prospect is on the phone or on a call. Customize to their business.',text:'Use this as your talking track when a prospect is on the phone or on a call. Customize to their business.\n\n---\n\n"So here\'s exactly what working with us looks like:\n\nFirst, we handle all your content — we create the graphics, write every caption, add the hashtags. You don\'t touch any of it.\n\nThen we schedule everything directly to your Instagram, Facebook, [TikTok / Google Business / wherever they\'re active]. One month of posts, fully planned and queued up. Done.\n\nBut here\'s the part most social media agencies don\'t offer: we also set up an automation so that any time someone comments on one of your posts, they automatically get a DM from your account within seconds. So instead of those comments just sitting there, we\'re turning them into conversations — and conversations into booked appointments.\n\nAnd every month we send you a report so you can see exactly what\'s working — reach, engagement, what content your audience loved — so we keep getting smarter about your strategy.\n\nAll of this, done for you, every single month.\n\nWe charge $[PRICE]/month. There\'s a 6-month minimum to start — that\'s how long it takes to build the momentum and really see results. You can also lock in 12 months for 10% off. But what I can tell you is that the businesses we work with stay because they see it working.\n\nDoes that sound like something that would take a load off your plate?"\n\nPricing — start high, work down only if needed:\n- Starter: $1,000/mo + $500 one-time setup (1 platform, AI clone, automations)\n- Growth: $2,497/mo + $500 one-time setup (3 platforms, ads, email/SMS automations)\n\nIf they hesitate on price: "We do offer a 14-day free trial. The $500 setup still applies so we can build everything out — but the first two weeks are on us so you can see the results before committing."'},
+      {label:'Post-Call Proposal, Contract & Invoice — Send Today',text:'Use this right after a discovery call. Fill in your notes from the call and paste into ChatGPT to generate a complete, personalised proposal in minutes. Then send it with the contract and invoice — all in one email.\n\nPaste into ChatGPT:\n\n"Write a short, personalised social media proposal for [BUSINESS NAME] from The Dollhouse Brand Studio.\n\nHere are my notes from the discovery call today:\n- Business type: [TYPE]\n- Their biggest pain point (in their own words): [WHAT THEY SAID]\n- What they want most: [THEIR GOAL]\n- Platforms they\'re on: [PLATFORMS]\n- Package I recommended: [Foundation / Starter / Growth]\n- Did I offer the 14-day free trial? [YES / NO]\n- Monthly fee: $[AMOUNT] + $500 one-time setup\n- Anything specific I promised to address: [NOTES]\n\nWrite a proposal with these 5 sections only — keep it under 400 words total:\n1. A personalised opening (reference something specific from our call — make them feel heard)\n2. The Problem (restate their pain point in their own words — show you listened)\n3. Our Solution (describe what we\'ll do for THEIR business specifically — not generic)\n4. What\'s Included (clean bullet list for the package they chose)\n5. Next Steps (Step 1: sign the agreement / Step 2: pay the setup invoice / Step 3: kickoff call within 48 hours)\n\nTone: warm, confident, specific. Not salesy. Not template-y. Reads like it was written just for them.\n\nAfter the proposal, also write:\n- A short 3-line email subject + body to send the proposal (friendly, excited, not pushy)\n- One reminder follow-up message to send 48 hours later if no reply"\n\n---\nAfter ChatGPT gives you the proposal:\n1. Copy it into your proposal template (Canva, Google Docs, or PDF)\n2. Attach the service agreement (use the contract template in the Contracts prompt)\n3. Send the invoice for $500 (setup fee only if they\'re doing the free trial) or the full setup + first month\n4. Send everything in one email — not three separate ones'},
+      {label:'Referral Ask (Existing Client)',text:'Hey [CLIENT NAME],\n\nLoving working with you on [BUSINESS NAME] — seeing [SPECIFIC WIN, e.g., "that reach spike last month"] was a great moment.\n\nQuick ask: if you know any other business owners who are struggling with their social media or just don\'t have time for it, I\'d love an introduction. I\'m selectively taking on a few new clients this month and a referral from you carries a lot of weight.\n\nIf you send someone my way who signs, I\'ll give you [INCENTIVE — e.g., "a free month of reporting" or "$50 credit on your next invoice"].\n\nNo pressure at all — just thought I\'d ask. 😊\n\nThanks again for trusting me with [BUSINESS NAME].\n\n— Mandy'},
+      {label:'Client Content Strategy Document — Full Brand Bible',text:'Use this prompt after a client completes their onboarding questionnaire. Paste their answers + this prompt into ChatGPT or Claude. It generates a complete Client Content Strategy Document — your master reference for everything you create for this client.\n\nPaste this into AI, then paste the client\'s onboarding questionnaire answers below it:\n\n"You are creating a comprehensive Client Content Strategy Document for The Dollhouse Brand Studio. Using the onboarding questionnaire answers provided below, generate a complete, professional content strategy document.\n\nThe document should include the following sections:\n\n─────────────────────────────────────────\n1. CLIENT OVERVIEW\n─────────────────────────────────────────\n- Business name, industry, city\n- Website and social media URLs (Facebook, Instagram, TikTok)\n- Plan enrolled in\n- Account manager: Mandy Fortune — The Dollhouse Brand Studio\n\n─────────────────────────────────────────\n2. BRAND GUIDE\n─────────────────────────────────────────\nCreate a brand guide table with:\n- Font Heading (Large): [suggest a premium Google Font based on their aesthetic]\n- Subhead (Medium): [suggest a complementary Google Font]\n- Body Text: [suggest a clean readable Google Font]\n- Primary Color: [extract or suggest hex code based on their stated colours]\n- Secondary Color: [extract or suggest]\n- Accent Color: [extract or suggest]\n- Tone of Voice: [2–3 sentences describing how the brand should speak — based on their vibe, audience, and business]\n- Content Topics: [list 4–6 content pillars based on their business and goals]\n\n─────────────────────────────────────────\n3. TARGET AUDIENCE\n─────────────────────────────────────────\n- Ideal client profile (age, gender, income, lifestyle)\n- What problem they have\n- What makes them choose this business\n- Where they spend time online\n\n─────────────────────────────────────────\n4. COMPETITOR ANALYSIS\n─────────────────────────────────────────\nFor each competitor listed, provide:\n- What they do well on social media\n- What they do poorly or are missing\n- Opportunity for differentiation\n\n─────────────────────────────────────────\n5. CONTENT CALENDAR FRAMEWORK\n─────────────────────────────────────────\nCreate a weekly content framework with 5 post types:\n- Monday: [content pillar]\n- Tuesday: [content pillar]\n- Wednesday: [content pillar]\n- Thursday: [content pillar]\n- Friday: [content pillar]\n- Best time to post: [suggest based on industry and audience]\n- Caption tone: [describe the ideal tone for captions]\n\n─────────────────────────────────────────\n6. HASHTAG STRATEGY\n─────────────────────────────────────────\nGenerate 30 hashtags in 3 tiers:\n- Broad (10): large general hashtags in the niche (1M+ posts)\n- Mid (10): niche-specific hashtags (100K–1M posts)\n- Local/targeted (10): city-specific or hyper-targeted hashtags\n\n─────────────────────────────────────────\n7. 20 CONTENT QUESTIONS & ANSWERS\n─────────────────────────────────────────\nGenerate 20 FAQ-style questions that real clients/customers ask this business — with detailed, accurate answers for each. These become ready-made educational content posts.\n\nFormat: Question on one line, Answer on the next line.\n\n─────────────────────────────────────────\n8. POST IDEAS (10 STARTER IDEAS)\n─────────────────────────────────────────\nGenerate 10 specific post ideas for the first month — include:\n- Post type (Reel / Carousel / Static)\n- Hook / headline\n- Caption direction (2 sentences)\n- CTA\n\n─────────────────────────────────────────\n9. INSPIRATION DIRECTION\n─────────────────────────────────────────\nBased on the Instagram accounts and websites the client loves, describe:\n- The visual aesthetic to aim for (colours, photography style, layout)\n- 3 specific content styles to replicate for this brand\n- What to avoid\n\n─────────────────────────────────────────\n10. FIRST 30 DAYS STRATEGY\n─────────────────────────────────────────\nWrite a brief paragraph (3–5 sentences) describing the strategic goal for the first 30 days, what content should focus on, and what success looks like.\n\nFormat the entire document cleanly with clear section headers, easy to read and use as a working reference. Tone: professional and strategic.\n\n[PASTE CLIENT\'S ONBOARDING QUESTIONNAIRE ANSWERS BELOW THIS LINE]\n"'},
+      {label:'GHL Website — Revamp an Existing Site (Vibe Builder)',context:'Use this in the AI Studio Vibe Builder to rebuild a client\'s existing website into a high-converting GHL site.',text:'Use this in the AI Studio Vibe Builder to rebuild a client\'s existing website into a high-converting GHL site.\n\nPaste into AI Studio Vibe Builder:\n\n"Build a modern, high-converting website using the following details:\n- Client Business Name: [Business Name]\n- Location: [City, Province/State]\n- Current Website for Context: [Insert Current URL]\n- Design Style Inspiration: [Describe style — e.g., clean minimalist with smooth hover-highlight sections and serif typography]\n- Primary Services: [List 3–4 key services — e.g., Luxury Kitchen Remodeling, Custom Cabinetry, Quartz Countertop Installation]\n- Core Goal: Convert cold traffic into estimate survey submissions and direct calendar bookings."\n\nAFTER BUILDING — add these two things immediately:\n1. Replace the contact form with a multi-step Survey → Book a Call flow (removes friction, increases conversions)\n2. Add a Review Funnel landing page with QR code: 5-star → redirects to Google Business Profile. 4 stars or below → private feedback form only.'}
+    ]
+  },
+];
+
+const PH={
+  '[BUSINESS_NAME]':()=>gf('f_name'),
+  '[NICHE]':()=>gf('f_niche'),
+  '[WEBSITE_URL]':()=>gf('f_url'),
+  '[CITY]':()=>gf('f_city'),
+  '[BRAND_COLORS]':()=>gf('f_colors'),
+  '[BRAND_FONTS]':()=>gf('f_fonts'),
+  '[SERVICE]':()=>gf('f_service'),
+  '[MONTH]':()=>gf('f_month'),
+  '[OWNER_NAME]':()=>gf('f_owner'),
+  '[SOCIAL_PLATFORM]':()=>gf('f_social'),
+  '[PRODUCT_NAME]':()=>gf('f_product'),
+  '[PRODUCT_URL]':()=>gf('f_produrl'),
+};
+function gf(id){return document.getElementById(id)?.value.trim()||'';}
+
+function fillText(raw){
+  let o=raw;
+  for(const[k,g] of Object.entries(PH)){const v=g();if(v)o=o.split(k).join('\x00F\x00'+v+'\x00/F\x00');}
+  return o;
+}
+function toHTML(raw,q=''){
+  let s=fillText(raw);
+  s=s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  s=s.replace(/\x00F\x00(.+?)\x00\/F\x00/g,'<span class="fv">$1</span>');
+  s=s.replace(/\[([^\]]+)\]/g,'<span class="ph">[$1]</span>');
+  if(q){const e=q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');s=s.replace(new RegExp('('+e+')','gi'),'<mark>$1</mark>');}
+  return s;
+}
+function plainText(raw){
+  let o=raw;
+  for(const[k,g] of Object.entries(PH)){const v=g();if(v)o=o.split(k).join(v);}
+  return o;
+}
+
+const DKEY='dollhouse_done_v2';
+function loadDone(){try{return JSON.parse(localStorage.getItem(DKEY))||{};}catch{return{};}}
+function saveDone(d){localStorage.setItem(DKEY,JSON.stringify(d));}
+let done=loadDone();
+function dk(sid,i){return sid+'_'+i;}
+
+function toggleDone(sid,i){
+  const k=dk(sid,i);
+  if(done[k])delete done[k];else done[k]=true;
+  saveDone(done);
+  const card=document.getElementById('c_'+k);
+  if(!card)return;
+  const isDone=!!done[k];
+  card.classList.toggle('done',isDone);
+  card.querySelector('.done-btn').textContent=isDone?'✓ Done':'Mark done';
+  const sn=card.querySelector('.step-num');
+  sn.textContent=isDone?'✓':(sn.dataset.num||String(i+1));
+  updateProgress();
+}
+
+function updateProgress(){
+  let total=0,count=0;
+  sections.forEach(sec=>{
+    if(!inDeck(sec))return;
+    sec.prompts.forEach((p,i)=>{total++;if(done[dk(sec.id,i)])count++;});
+  });
+  document.getElementById('progFill').style.width=(total?count/total*100:0)+'%';
+  document.getElementById('progCount').textContent=count+' / '+total;
+}
+
+function resetAll(){
+  done={};saveDone(done);
+  document.querySelectorAll('.prompt-card').forEach(c=>c.classList.remove('done'));
+  document.querySelectorAll('.done-btn').forEach(b=>b.textContent='Mark done');
+  document.querySelectorAll('.step-num').forEach(n=>{if(n.dataset.num)n.textContent=n.dataset.num;});
+  updateProgress();
+}
+
+let activeDeck='dollhouse';
+function inDeck(sec){return (sec.deck||'dollhouse')===activeDeck;}
+let activeSec='all';
+let searchQ='';
+
+let catsOpen=true;
+function toggleCats(){
+  catsOpen=!catsOpen;
+  document.getElementById('catGrid').classList.toggle('collapsed',!catsOpen);
+  document.getElementById('catToggle').classList.toggle('collapsed',!catsOpen);
+}
+function setActive(sid){
+  activeSec=sid;
+  document.querySelectorAll('.cat-chip').forEach(b=>b.classList.toggle('active',b.dataset.sid===sid));
+  document.getElementById('catCurrent').innerHTML='Showing <b>'+catLabel(sid)+'</b>';
+  if(window.innerWidth<=640&&catsOpen)toggleCats();
+  renderAll();
+}
+
+function handleSearch(){
+  searchQ=document.getElementById('searchInput').value.trim().toLowerCase();
+  renderAll();
+}
+
+function liveUpdate(){
+  sections.forEach(sec=>sec.prompts.forEach((p,i)=>{
+    const el=document.getElementById('pt_'+dk(sec.id,i));
+    if(el)el.innerHTML=toHTML(p.text,searchQ);
+  }));
+}
+
+function renderAll(){
+  const main=document.getElementById('mainContent');
+  const noRes=document.getElementById('noResults');
+  main.innerHTML='';
+  main.appendChild(noRes);
+  noRes.style.display='none';
+  let total=0;
+
+  sections.forEach(sec=>{
+    if(!inDeck(sec))return;
+    if(activeSec!=='all'&&activeSec!==sec.id)return;
+    const matched=sec.prompts.map((p,i)=>({p,i})).filter(({p})=>
+      !searchQ||p.label.toLowerCase().includes(searchQ)||p.text.toLowerCase().includes(searchQ)||(p.context&&p.context.toLowerCase().includes(searchQ))
+    );
+    if(!matched.length)return;
+    total+=matched.length;
+
+    const block=document.createElement('div');
+    block.className='section-block';
+    block.id='sec_'+sec.id;
+
+    const introHTML=sec.intro?`<p class="sec-intro">${sec.intro}</p>`:'';
+    block.innerHTML=`<div class="section-head">
+      <span class="sec-star">♥</span>
+      <span class="sec-title">${sec.title}</span>
+      <div class="sec-dash"></div>
+      <span class="sec-sub">${sec.sub}</span>
+      <span class="sec-count">${matched.length}</span>
+    </div>${introHTML}`;
+
+    matched.forEach(({p,i})=>{
+      const k=dk(sec.id,i);
+      const isDone=!!done[k];
+      const card=document.createElement('div');
+      card.className='prompt-card'+(isDone?' done':'');
+      card.id='c_'+k;
+
+      const contextHTML=p.context?`<div class="context-note">${p.context}</div>`:'';
+      const stepNo=(p.step!=null)?p.step:(i+1);
+
+      card.innerHTML=`
+        <div class="card-head" onclick="toggleDone('${sec.id}',${i})">
+          <div class="step-num" data-num="${stepNo}">${isDone?'✓':stepNo}</div>
+          <div class="step-lbl">Step ${stepNo} &nbsp;·&nbsp; ${p.label}</div>
+          <button class="done-btn" onclick="event.stopPropagation();toggleDone('${sec.id}',${i})">${isDone?'✓ Done':'Mark done'}</button>
+        </div>
+        <div class="card-body">
+          ${contextHTML}
+          <div class="prompt-text" id="pt_${k}">${toHTML(p.text,searchQ)}</div>
+        </div>
+        <div class="card-actions">
+          <button class="copy-btn" id="cp_${k}" onclick="copyPrompt('${sec.id}',${i})">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Prompt
+          </button>
+        </div>`;
+      block.appendChild(card);
+    });
+    main.appendChild(block);
+  });
+
+  if(!total)noRes.style.display='block';
+  const sc=document.getElementById('searchCount');
+  sc.textContent=searchQ?total+' result'+(total!==1?'s':''):'';
+  updateProgress();
+}
+
+function copyPrompt(sid,i){
+  const sec=sections.find(s=>s.id===sid);
+  const k=dk(sid,i);
+  navigator.clipboard.writeText(plainText(sec.prompts[i].text)).then(()=>{
+    const btn=document.getElementById('cp_'+k);
+    if(!btn)return;
+    const orig=btn.innerHTML;
+    btn.classList.add('copied');
+    btn.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Copied!`;
+    setTimeout(()=>{btn.classList.remove('copied');btn.innerHTML=orig;},2000);
+  });
+}
+
+function catLabel(sid){
+  if(sid==='all')return 'All prompts';
+  const s=sections.find(x=>x.id===sid);
+  return s?s.title:'All prompts';
+}
+function buildNav(){
+  const grid=document.getElementById('catGrid');
+  grid.innerHTML='';
+  const deckSecs=sections.filter(inDeck);
+  const total=deckSecs.reduce((a,s)=>a+s.prompts.length,0);
+  const allChip=document.createElement('button');
+  allChip.className='cat-chip'+(activeSec==='all'?' active':'');
+  allChip.dataset.sid='all';
+  allChip.innerHTML='All<span class="cb">'+total+'</span>';
+  allChip.onclick=()=>setActive('all');
+  grid.appendChild(allChip);
+  deckSecs.forEach(sec=>{
+    const chip=document.createElement('button');
+    chip.className='cat-chip'+(activeSec===sec.id?' active':'');
+    chip.dataset.sid=sec.id;
+    chip.innerHTML=sec.title+'<span class="cb">'+sec.prompts.length+'</span>';
+    chip.onclick=()=>setActive(sec.id);
+    grid.appendChild(chip);
+  });
+  document.getElementById('catCurrent').innerHTML='Showing <b>'+catLabel(activeSec)+'</b>';
+}
+
+function deckCount(d){return sections.filter(s=>(s.deck||'dollhouse')===d).reduce((a,s)=>a+s.prompts.length,0);}
+function updateDeckCounts(){
+  const a=document.getElementById('dn_dollhouse');if(a)a.textContent=deckCount('dollhouse');
+  const b=document.getElementById('dn_cashflow');if(b)b.textContent=deckCount('cashflow');
+}
+
+function setDeck(d){
+  if(activeDeck===d)return;
+  activeDeck=d;
+  activeSec='all';
+  document.querySelectorAll('.deck-btn').forEach(b=>b.classList.toggle('active',b.dataset.deck===d));
+  document.getElementById('searchInput').value='';
+  searchQ='';
+  document.getElementById('searchCount').textContent='';
+  buildNav();
+  renderAll();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+let howtoOpen=true;
+function toggleHowto(){
+  howtoOpen=!howtoOpen;
+  document.getElementById('howtoBody').classList.toggle('open',howtoOpen);
+  document.getElementById('howtoChevron').classList.toggle('open',howtoOpen);
+}
+
+let clientOpen=false;
+function toggleClient(){
+  clientOpen=!clientOpen;
+  document.getElementById('clientGrid').classList.toggle('open',clientOpen);
+  document.getElementById('clientChevron').classList.toggle('open',clientOpen);
+}
+
+updateDeckCounts();
+buildNav();
+renderAll();
+</script>
+</body>
+</html>
