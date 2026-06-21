@@ -2956,9 +2956,9 @@ function Contact() {
               {step === 2 && (
                 <div className="space-y-3">
                   <div className="grid grid-cols-2 gap-x-3 gap-y-1.5">
-                    {/* Featured: Contractors & home services */}
+                    {/* Featured: Med spas & aesthetics */}
                     {(() => {
-                      const opt = "Contractors & home services";
+                      const opt = "Med spas & aesthetics";
                       const selected = fd.industry === opt;
                       return (
                         <button
@@ -2986,12 +2986,12 @@ function Contact() {
                       );
                     })()}
                     {[
-                      "Coaches & consultants",
-                      "Med spas & aesthetics","Real estate agents",
-                      "Salons & beauty pros","Restaurants & food brands",
-                      "Fitness studios & gyms","Law firms & professionals",
-                      "Retail & boutique brands","E-commerce businesses",
-                      "Photographers & creatives","Mortgage & insurance pros",
+                      "Real estate agents","Contractors & home services",
+                      "Coaches & consultants","Salons & beauty pros",
+                      "Restaurants & food brands","Fitness studios & gyms",
+                      "Law firms & professionals","Retail & boutique brands",
+                      "E-commerce businesses","Photographers & creatives",
+                      "Mortgage & insurance pros",
                     ].map((opt) => {
                       const selected = fd.industry === opt;
                       return (
