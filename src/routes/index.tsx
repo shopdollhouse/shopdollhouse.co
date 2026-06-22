@@ -626,7 +626,7 @@ function Hero() {
 function ChooseYourPath() {
   const paths = [
     {
-      eyebrow: "Med Spas & Clinics",
+      eyebrow: "We Specialize · Med Spas & Clinics",
       title: "I want more booked clients.",
       body: "We run the ads and our AI Caller books the patients — while you focus on your work.",
       href: "https://clinic.shopdollhouse.co",
@@ -705,8 +705,8 @@ function ChooseYourPath() {
                 />
               </div>
               <div className="flex flex-1 flex-col p-6">
-                <p className="gold-grad inline-flex w-fit text-[12px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", fontWeight: 800, letterSpacing: "0.18em" }}>
-                  ✦ {eyebrow}
+                <p className="gold-grad inline-flex w-fit items-center gap-1.5 text-[14px] uppercase" style={{ fontFamily: "'Jost', sans-serif", fontWeight: 800, letterSpacing: "0.14em", filter: "drop-shadow(0 0 10px rgba(200,164,100,0.6))" }}>
+                  ♥ {eyebrow}
                 </p>
                 <h3 className="mt-2.5" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.65rem", lineHeight: 1.05, color: featured ? "var(--cream)" : "var(--ink)" }}>
                   {title}
