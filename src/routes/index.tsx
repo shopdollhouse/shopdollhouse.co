@@ -668,7 +668,7 @@ function ChooseYourPath() {
     <section className="px-6 py-16 md:py-20" style={{ background: "linear-gradient(180deg, #fff8f3 0%, var(--cream) 100%)" }}>
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow>Start Here</Eyebrow>
+          <p className="gold-grad text-[17px] tracking-luxe uppercase font-semibold" style={{ fontFamily: "'Jost', sans-serif" }}>Start Here</p>
           <h2 className="mt-3 text-[var(--ink)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.3rem, 5vw, 3.8rem)", fontWeight: 400, lineHeight: 1 }}>
             Which one sounds like you?
           </h2>
