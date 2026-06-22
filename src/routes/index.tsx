@@ -192,25 +192,28 @@ function Nav() {
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-10">
           <a
             href="/"
-            className="flex flex-col items-start leading-tight shrink-0 no-underline"
+            className="flex items-center gap-2.5 shrink-0 no-underline"
           >
-            <span
-              className="text-[var(--ink)]/55 font-normal not-italic"
-              style={{ fontFamily: "'Allura', cursive", fontSize: "18px", letterSpacing: "1px", textTransform: "lowercase", lineHeight: 1 }}
-            >
-              the
-            </span>
-            <span
-              className="text-[var(--ink)] italic"
-              style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "15px", letterSpacing: "4px", textTransform: "uppercase", marginTop: "-4px" }}
-            >
-              Dollhouse
-            </span>
-            <span
-              className="text-[var(--gold)] not-italic font-semibold"
-              style={{ fontFamily: "'Jost', sans-serif", fontSize: "6.5px", letterSpacing: "3px", textTransform: "uppercase", marginTop: "1px" }}
-            >
-              Brand Studio
+            <DoorIcon className="h-10 w-auto" />
+            <span className="flex flex-col items-start leading-none">
+              <span
+                className="not-italic"
+                style={{ fontFamily: "'Allura', cursive", color: "var(--gold)", fontSize: "20px", letterSpacing: "0.5px", textTransform: "lowercase", lineHeight: 1 }}
+              >
+                the
+              </span>
+              <span
+                className="not-italic"
+                style={{ fontFamily: "'Cormorant Garamond', serif", color: "var(--rose)", fontSize: "19px", fontWeight: 500, letterSpacing: "5px", textTransform: "uppercase", lineHeight: 1, marginTop: "-1px" }}
+              >
+                Dollhouse
+              </span>
+              <span
+                className="not-italic font-semibold"
+                style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)", fontSize: "6.5px", letterSpacing: "3.5px", textTransform: "uppercase", marginTop: "2px" }}
+              >
+                Brand Studio
+              </span>
             </span>
           </a>
 
@@ -626,7 +629,8 @@ function Hero() {
 function ChooseYourPath() {
   const paths = [
     {
-      eyebrow: "We Specialize · Med Spas & Clinics",
+      eyebrow: "Med Spas & Clinics",
+      calloutSub: "We Specialize",
       title: "I want more booked clients.",
       body: "We run the ads and our AI Caller books the patients — while you focus on your work.",
       href: "https://clinic.shopdollhouse.co",
@@ -674,7 +678,7 @@ function ChooseYourPath() {
         </div>
 
         <div className="mt-8 grid gap-4 lg:grid-cols-3">
-          {paths.map(({ eyebrow, title, body, href, cta, targetPlan, image, imageAlt, featured }) => (
+          {paths.map(({ eyebrow, calloutSub, title, body, href, cta, targetPlan, image, imageAlt, featured }) => (
             <a
               key={title}
               href={href}
@@ -705,9 +709,16 @@ function ChooseYourPath() {
                 />
               </div>
               <div className="flex flex-1 flex-col p-6">
-                <p className="gold-grad inline-flex w-fit items-center gap-1.5 text-[14px] uppercase" style={{ fontFamily: "'Jost', sans-serif", fontWeight: 800, letterSpacing: "0.14em", filter: "drop-shadow(0 0 10px rgba(200,164,100,0.6))" }}>
-                  ♥ {eyebrow}
-                </p>
+                <div className="flex flex-col">
+                  <p className="gold-grad inline-flex w-fit items-center gap-1.5 text-[14px] uppercase" style={{ fontFamily: "'Jost', sans-serif", fontWeight: 800, letterSpacing: "0.14em", filter: "drop-shadow(0 0 10px rgba(200,164,100,0.6))" }}>
+                    ♥ {eyebrow}
+                  </p>
+                  {calloutSub && (
+                    <span className="uppercase" style={{ fontFamily: "'Jost', sans-serif", color: featured ? "rgba(200,164,100,0.9)" : "var(--gold)", fontSize: "9px", fontWeight: 600, letterSpacing: "0.22em", marginTop: "3px" }}>
+                      {calloutSub}
+                    </span>
+                  )}
+                </div>
                 <h3 className="mt-2.5" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.65rem", lineHeight: 1.05, color: featured ? "var(--cream)" : "var(--ink)" }}>
                   {title}
                 </h3>
