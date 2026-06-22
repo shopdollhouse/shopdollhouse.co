@@ -37,8 +37,9 @@ function Cta({ children = "Book a Strategy Call", light = false }: { children?: 
 }
 
 function Eyebrow({ children, color = "var(--gold)" }: { children: React.ReactNode; color?: string }) {
+  const isGold = color === "var(--gold)";
   return (
-    <p style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", fontWeight: 700, letterSpacing: "0.24em", textTransform: "uppercase", color }}>
+    <p className={isGold ? "gold-grad" : undefined} style={{ fontFamily: FONT_LUXE, fontSize: "0.66rem", fontWeight: 700, letterSpacing: "0.24em", textTransform: "uppercase", color: isGold ? undefined : color }}>
       {children}
     </p>
   );
@@ -100,7 +101,7 @@ function ClinicsPage() {
             <span style={{ color: "var(--gold)" }}>✦</span>
             <span style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--gold)" }}>Now Accepting Founding Clients</span>
           </span>
-          <p className="reveal mt-6" style={{ fontFamily: FONT_SCRIPT, fontSize: "clamp(2rem, 4vw, 3rem)", color: "var(--gold)", lineHeight: 0.9 }}>a fully booked</p>
+          <p className="reveal gold-grad mt-6" style={{ fontFamily: FONT_SCRIPT, fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 0.9 }}>a fully booked</p>
           <h1 className="reveal text-shimmer mx-auto mt-1 max-w-3xl" style={{ fontFamily: FONT_DISPLAY, fontWeight: 400, fontSize: "clamp(2.9rem, 7vw, 5.6rem)", lineHeight: 0.98, letterSpacing: "0.01em" }}>
             Patient Acquisition,<br />Done For You
           </h1>
@@ -136,7 +137,7 @@ function ClinicsPage() {
         <div className="mx-auto mt-12 grid max-w-5xl gap-5 md:grid-cols-2">
           {METHOD.map((m) => (
             <div key={m.n} className="reveal rounded-2xl p-8" style={{ background: "#fff", border: "1px solid rgba(200,164,100,0.25)", boxShadow: "0 24px 60px -40px rgba(90,45,35,0.4)" }}>
-              <p style={{ fontFamily: FONT_DISPLAY, fontSize: "2.4rem", color: "var(--gold)", lineHeight: 1 }}>{m.n}</p>
+              <p className="gold-grad" style={{ fontFamily: FONT_DISPLAY, fontSize: "2.4rem", lineHeight: 1 }}>{m.n}</p>
               <h3 className="mt-3" style={{ fontFamily: FONT_DISPLAY, fontWeight: 500, fontSize: "1.5rem", color: "var(--ink)" }}>{m.title}</h3>
               <p className="mt-2.5" style={{ fontFamily: FONT_BODY, fontSize: "0.95rem", lineHeight: 1.65, color: "rgba(30,15,10,0.62)" }}>{m.body}</p>
             </div>
@@ -282,7 +283,7 @@ function ClinicsPage() {
       <section className="relative px-6 py-28 text-center" style={{ background: "radial-gradient(120% 90% at 50% 120%, #2a1a10 0%, #1a0e0c 60%)" }}>
         <div aria-hidden className="pointer-events-none absolute left-1/2 bottom-0 -translate-x-1/2" style={{ width: 560, height: 420, background: "radial-gradient(circle, rgba(189,116,118,0.45) 0%, rgba(189,116,118,0) 70%)", filter: "blur(36px)" }} />
         <div className="relative mx-auto max-w-2xl">
-          <p className="reveal" style={{ fontFamily: FONT_SCRIPT, fontSize: "clamp(2rem, 4vw, 3rem)", color: "var(--gold)", lineHeight: 0.9 }}>let's fill your calendar</p>
+          <p className="reveal gold-grad" style={{ fontFamily: FONT_SCRIPT, fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 0.9 }}>let's fill your calendar</p>
           <h2 className="reveal text-shimmer mt-1" style={{ fontFamily: FONT_DISPLAY, fontWeight: 400, fontSize: "clamp(2.4rem, 5.5vw, 4rem)", lineHeight: 1 }}>
             A conversation worth your time
           </h2>
@@ -296,7 +297,7 @@ function ClinicsPage() {
 
       {/* ── FOOTER ───────────────────────────────────────── */}
       <footer className="px-6 py-12 text-center" style={{ background: "#140a07" }}>
-        <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem", color: "var(--gold)" }}>The Dollhouse Brand Studio</p>
+        <p className="gold-grad" style={{ fontFamily: FONT_DISPLAY, fontSize: "1.4rem" }}>The Dollhouse Brand Studio</p>
         <p className="mt-2" style={{ fontFamily: FONT_LUXE, fontSize: "0.62rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(250,243,234,0.5)" }}>Patient acquisition for Canadian clinics</p>
         <p className="mx-auto mt-6 max-w-xl" style={{ fontFamily: FONT_BODY, fontSize: "0.7rem", lineHeight: 1.6, color: "rgba(250,243,234,0.35)" }}>
           Results vary by clinic, market, and effort; nothing here is a guarantee of specific outcomes. Marketing services only — we do not provide medical advice or make treatment claims. Canadian privacy compliant (PIPEDA).
