@@ -626,31 +626,31 @@ function Hero() {
 function ChooseYourPath() {
   const paths = [
     {
-      eyebrow: "Managed Growth",
-      title: "I have a business. I want more booked clients.",
-      body: "Choose content, ads, AI clone, reviews, and lead follow-up managed together.",
-      href: "#pricing",
-      cta: "See Managed Plans",
-      targetPlan: "growth",
+      eyebrow: "Done-For-You Growth",
+      title: "I want more booked clients.",
+      body: "We run the ads and our AI Caller books the patients — while you focus on your work.",
+      href: "https://clinic.shopdollhouse.co",
+      cta: "See How It Works",
+      targetPlan: null,
       image: managedGrowthImage,
       imageAlt: "A booked client calendar and business growth dashboard",
       featured: true,
     },
     {
-      eyebrow: "Lead System",
-      title: "I need the website and follow-up foundation first.",
-      body: "Start with the website, missed-call text-back, review funnel, CRM, and on-site SEO — your complete lead foundation.",
-      href: "#foundation",
-      cta: "See The Foundation Plan",
+      eyebrow: "Website & Leads",
+      title: "I need a website and lead system first.",
+      body: "A site that captures every lead — missed-call text-back, reviews, and follow-up built in.",
+      href: "#pricing",
+      cta: "See Website Plans",
       targetPlan: "foundation",
       image: leadSystemImage,
       imageAlt: "A website connected to an automated lead follow-up and booking system",
       featured: false,
     },
     {
-      eyebrow: "Starting From Scratch",
-      title: "I need to build my brand and offer before marketing.",
-      body: "Use the Brand Room tools to clarify your audience, offer, visuals, content, and launch direction.",
+      eyebrow: "Start From Scratch",
+      title: "I need to build my brand first.",
+      body: "Clarify your offer, visuals, and content in the Brand Room before you market.",
       href: "https://room.shopdollhouse.co",
       cta: "Enter The Brand Room",
       targetPlan: null,
@@ -666,10 +666,10 @@ function ChooseYourPath() {
         <div className="mx-auto max-w-2xl text-center">
           <Eyebrow>Start Here</Eyebrow>
           <h2 className="mt-3 text-[var(--ink)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.3rem, 5vw, 3.8rem)", fontWeight: 400, lineHeight: 1 }}>
-            Choose the support that matches where you are now.
+            Which one sounds like you?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--ink)]/60" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.98rem", lineHeight: 1.7 }}>
-            You do not need every service at once. Start with the gap that is costing you the most time or leads.
+            Pick the path that fits where you are right now — you don't need everything at once.
           </p>
         </div>
 
