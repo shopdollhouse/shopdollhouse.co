@@ -20,6 +20,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PlaybookRouteImport } from './routes/playbook'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as FoundationRouteImport } from './routes/foundation'
+import { Route as ClinicsRouteImport } from './routes/clinics'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as BrandRoomRouteImport } from './routes/brand-room'
 import { Route as BlogRouteImport } from './routes/blog'
@@ -93,6 +94,11 @@ const OnboardingRoute = OnboardingRouteImport.update({
 const FoundationRoute = FoundationRouteImport.update({
   id: '/foundation',
   path: '/foundation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClinicsRoute = ClinicsRouteImport.update({
+  id: '/clinics',
+  path: '/clinics',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CareersRoute = CareersRouteImport.update({
@@ -201,6 +207,7 @@ export interface FileRoutesByFullPath {
   '/blog': typeof BlogRoute
   '/brand-room': typeof BrandRoomRoute
   '/careers': typeof CareersRoute
+  '/clinics': typeof ClinicsRoute
   '/foundation': typeof FoundationRoute
   '/onboarding': typeof OnboardingRoute
   '/playbook': typeof PlaybookRoute
@@ -233,6 +240,7 @@ export interface FileRoutesByTo {
   '/blog': typeof BlogRoute
   '/brand-room': typeof BrandRoomRoute
   '/careers': typeof CareersRoute
+  '/clinics': typeof ClinicsRoute
   '/foundation': typeof FoundationRoute
   '/onboarding': typeof OnboardingRoute
   '/playbook': typeof PlaybookRoute
@@ -266,6 +274,7 @@ export interface FileRoutesById {
   '/blog': typeof BlogRoute
   '/brand-room': typeof BrandRoomRoute
   '/careers': typeof CareersRoute
+  '/clinics': typeof ClinicsRoute
   '/foundation': typeof FoundationRoute
   '/onboarding': typeof OnboardingRoute
   '/playbook': typeof PlaybookRoute
@@ -300,6 +309,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/brand-room'
     | '/careers'
+    | '/clinics'
     | '/foundation'
     | '/onboarding'
     | '/playbook'
@@ -332,6 +342,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/brand-room'
     | '/careers'
+    | '/clinics'
     | '/foundation'
     | '/onboarding'
     | '/playbook'
@@ -364,6 +375,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/brand-room'
     | '/careers'
+    | '/clinics'
     | '/foundation'
     | '/onboarding'
     | '/playbook'
@@ -397,6 +409,7 @@ export interface RootRouteChildren {
   BlogRoute: typeof BlogRoute
   BrandRoomRoute: typeof BrandRoomRoute
   CareersRoute: typeof CareersRoute
+  ClinicsRoute: typeof ClinicsRoute
   FoundationRoute: typeof FoundationRoute
   OnboardingRoute: typeof OnboardingRoute
   PlaybookRoute: typeof PlaybookRoute
@@ -501,6 +514,13 @@ declare module '@tanstack/react-router' {
       path: '/foundation'
       fullPath: '/foundation'
       preLoaderRoute: typeof FoundationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/clinics': {
+      id: '/clinics'
+      path: '/clinics'
+      fullPath: '/clinics'
+      preLoaderRoute: typeof ClinicsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/careers': {
@@ -645,6 +665,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogRoute: BlogRoute,
   BrandRoomRoute: BrandRoomRoute,
   CareersRoute: CareersRoute,
+  ClinicsRoute: ClinicsRoute,
   FoundationRoute: FoundationRoute,
   OnboardingRoute: OnboardingRoute,
   PlaybookRoute: PlaybookRoute,
