@@ -84,7 +84,7 @@ const PlanFeatureIcon = ({ index, filled }: { index: number; filled: boolean }) 
 /* ─── Shared ──────────────────────────────────────────── */
 const Eyebrow = ({ children }: { children: React.ReactNode }) => (
   <p
-    className="text-[var(--gold)] text-[11px] tracking-luxe uppercase font-medium"
+    className="gold-grad text-[11px] tracking-luxe uppercase font-semibold"
     style={{ fontFamily: "'Jost', sans-serif" }}
   >
     {children}
@@ -626,7 +626,7 @@ function Hero() {
 function ChooseYourPath() {
   const paths = [
     {
-      eyebrow: "Done-For-You Growth",
+      eyebrow: "Med Spas & Clinics",
       title: "I want more booked clients.",
       body: "We run the ads and our AI Caller books the patients — while you focus on your work.",
       href: "https://clinic.shopdollhouse.co",
@@ -637,7 +637,7 @@ function ChooseYourPath() {
       featured: true,
     },
     {
-      eyebrow: "Website & Leads",
+      eyebrow: "Service Businesses",
       title: "I need a website and lead system first.",
       body: "A site that captures every lead — missed-call text-back, reviews, and follow-up built in.",
       href: "#pricing",
@@ -648,7 +648,7 @@ function ChooseYourPath() {
       featured: false,
     },
     {
-      eyebrow: "Start From Scratch",
+      eyebrow: "New Brands",
       title: "I need to build my brand first.",
       body: "Clarify your offer, visuals, and content in the Brand Room before you market.",
       href: "https://room.shopdollhouse.co",
@@ -705,8 +705,8 @@ function ChooseYourPath() {
                 />
               </div>
               <div className="flex flex-1 flex-col p-6">
-                <p className="text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)", fontWeight: 700 }}>
-                  {eyebrow}
+                <p className="gold-grad inline-flex w-fit text-[12px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", fontWeight: 800, letterSpacing: "0.18em" }}>
+                  ✦ {eyebrow}
                 </p>
                 <h3 className="mt-2.5" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.65rem", lineHeight: 1.05, color: featured ? "var(--cream)" : "var(--ink)" }}>
                   {title}
