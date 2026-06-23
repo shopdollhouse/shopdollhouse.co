@@ -457,15 +457,15 @@ main article:hover {
   content: '';
   position: absolute;
   left: 0; right: 0; bottom: -6px;
-  height: 1px;
-  background: var(--rose);
+  height: 1.5px;
+  border-radius: 1px;
+  background: linear-gradient(90deg, #e8d5b0 0%, #c8a464 35%, #a87f3e 50%, #c8a464 65%, #e8d5b0 100%);
   transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.35s ease;
+  transform-origin: center;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .nav-link:hover::after {
   transform: scaleX(1);
-  transform-origin: left;
 }
 
 /* Plan card highlight pulse — triggered by pulsePlan() from "Choose Your Path" / plan finder */
