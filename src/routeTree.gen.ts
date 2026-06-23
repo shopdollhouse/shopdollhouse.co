@@ -38,7 +38,10 @@ import { Route as BrandRoomAiPromptKitRouteImport } from './routes/brand-room_.a
 import { Route as BlogSocialMediaMarketingYorkRegionRouteImport } from './routes/blog_.social-media-marketing-york-region'
 import { Route as BlogSocialMediaMarketingCostTorontoRouteImport } from './routes/blog_.social-media-marketing-cost-toronto'
 import { Route as BlogSocialMediaMarketingAgencyTorontoRouteImport } from './routes/blog_.social-media-marketing-agency-toronto'
+import { Route as BlogMedSpaMissedCallsRouteImport } from './routes/blog_.med-spa-missed-calls'
+import { Route as BlogMedSpaFacebookAdsRouteImport } from './routes/blog_.med-spa-facebook-ads'
 import { Route as BlogHowToGetMoreMedSpaPatientsRouteImport } from './routes/blog_.how-to-get-more-med-spa-patients'
+import { Route as BlogBestAiReceptionistMedSpaRouteImport } from './routes/blog_.best-ai-receptionist-med-spa'
 import { Route as BlogAiVideoMarketingTorontoRouteImport } from './routes/blog_.ai-video-marketing-toronto'
 
 const VaultRoute = VaultRouteImport.update({
@@ -189,10 +192,26 @@ const BlogSocialMediaMarketingAgencyTorontoRoute =
     path: '/blog/social-media-marketing-agency-toronto',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogMedSpaMissedCallsRoute = BlogMedSpaMissedCallsRouteImport.update({
+  id: '/blog_/med-spa-missed-calls',
+  path: '/blog/med-spa-missed-calls',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogMedSpaFacebookAdsRoute = BlogMedSpaFacebookAdsRouteImport.update({
+  id: '/blog_/med-spa-facebook-ads',
+  path: '/blog/med-spa-facebook-ads',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogHowToGetMoreMedSpaPatientsRoute =
   BlogHowToGetMoreMedSpaPatientsRouteImport.update({
     id: '/blog_/how-to-get-more-med-spa-patients',
     path: '/blog/how-to-get-more-med-spa-patients',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogBestAiReceptionistMedSpaRoute =
+  BlogBestAiReceptionistMedSpaRouteImport.update({
+    id: '/blog_/best-ai-receptionist-med-spa',
+    path: '/blog/best-ai-receptionist-med-spa',
     getParentRoute: () => rootRouteImport,
   } as any)
 const BlogAiVideoMarketingTorontoRoute =
@@ -220,7 +239,10 @@ export interface FileRoutesByFullPath {
   '/thank-you': typeof ThankYouRoute
   '/vault': typeof VaultRoute
   '/blog/ai-video-marketing-toronto': typeof BlogAiVideoMarketingTorontoRoute
+  '/blog/best-ai-receptionist-med-spa': typeof BlogBestAiReceptionistMedSpaRoute
   '/blog/how-to-get-more-med-spa-patients': typeof BlogHowToGetMoreMedSpaPatientsRoute
+  '/blog/med-spa-facebook-ads': typeof BlogMedSpaFacebookAdsRoute
+  '/blog/med-spa-missed-calls': typeof BlogMedSpaMissedCallsRoute
   '/blog/social-media-marketing-agency-toronto': typeof BlogSocialMediaMarketingAgencyTorontoRoute
   '/blog/social-media-marketing-cost-toronto': typeof BlogSocialMediaMarketingCostTorontoRoute
   '/blog/social-media-marketing-york-region': typeof BlogSocialMediaMarketingYorkRegionRoute
@@ -253,7 +275,10 @@ export interface FileRoutesByTo {
   '/thank-you': typeof ThankYouRoute
   '/vault': typeof VaultRoute
   '/blog/ai-video-marketing-toronto': typeof BlogAiVideoMarketingTorontoRoute
+  '/blog/best-ai-receptionist-med-spa': typeof BlogBestAiReceptionistMedSpaRoute
   '/blog/how-to-get-more-med-spa-patients': typeof BlogHowToGetMoreMedSpaPatientsRoute
+  '/blog/med-spa-facebook-ads': typeof BlogMedSpaFacebookAdsRoute
+  '/blog/med-spa-missed-calls': typeof BlogMedSpaMissedCallsRoute
   '/blog/social-media-marketing-agency-toronto': typeof BlogSocialMediaMarketingAgencyTorontoRoute
   '/blog/social-media-marketing-cost-toronto': typeof BlogSocialMediaMarketingCostTorontoRoute
   '/blog/social-media-marketing-york-region': typeof BlogSocialMediaMarketingYorkRegionRoute
@@ -287,7 +312,10 @@ export interface FileRoutesById {
   '/thank-you': typeof ThankYouRoute
   '/vault': typeof VaultRoute
   '/blog_/ai-video-marketing-toronto': typeof BlogAiVideoMarketingTorontoRoute
+  '/blog_/best-ai-receptionist-med-spa': typeof BlogBestAiReceptionistMedSpaRoute
   '/blog_/how-to-get-more-med-spa-patients': typeof BlogHowToGetMoreMedSpaPatientsRoute
+  '/blog_/med-spa-facebook-ads': typeof BlogMedSpaFacebookAdsRoute
+  '/blog_/med-spa-missed-calls': typeof BlogMedSpaMissedCallsRoute
   '/blog_/social-media-marketing-agency-toronto': typeof BlogSocialMediaMarketingAgencyTorontoRoute
   '/blog_/social-media-marketing-cost-toronto': typeof BlogSocialMediaMarketingCostTorontoRoute
   '/blog_/social-media-marketing-york-region': typeof BlogSocialMediaMarketingYorkRegionRoute
@@ -322,7 +350,10 @@ export interface FileRouteTypes {
     | '/thank-you'
     | '/vault'
     | '/blog/ai-video-marketing-toronto'
+    | '/blog/best-ai-receptionist-med-spa'
     | '/blog/how-to-get-more-med-spa-patients'
+    | '/blog/med-spa-facebook-ads'
+    | '/blog/med-spa-missed-calls'
     | '/blog/social-media-marketing-agency-toronto'
     | '/blog/social-media-marketing-cost-toronto'
     | '/blog/social-media-marketing-york-region'
@@ -355,7 +386,10 @@ export interface FileRouteTypes {
     | '/thank-you'
     | '/vault'
     | '/blog/ai-video-marketing-toronto'
+    | '/blog/best-ai-receptionist-med-spa'
     | '/blog/how-to-get-more-med-spa-patients'
+    | '/blog/med-spa-facebook-ads'
+    | '/blog/med-spa-missed-calls'
     | '/blog/social-media-marketing-agency-toronto'
     | '/blog/social-media-marketing-cost-toronto'
     | '/blog/social-media-marketing-york-region'
@@ -388,7 +422,10 @@ export interface FileRouteTypes {
     | '/thank-you'
     | '/vault'
     | '/blog_/ai-video-marketing-toronto'
+    | '/blog_/best-ai-receptionist-med-spa'
     | '/blog_/how-to-get-more-med-spa-patients'
+    | '/blog_/med-spa-facebook-ads'
+    | '/blog_/med-spa-missed-calls'
     | '/blog_/social-media-marketing-agency-toronto'
     | '/blog_/social-media-marketing-cost-toronto'
     | '/blog_/social-media-marketing-york-region'
@@ -422,7 +459,10 @@ export interface RootRouteChildren {
   ThankYouRoute: typeof ThankYouRoute
   VaultRoute: typeof VaultRoute
   BlogAiVideoMarketingTorontoRoute: typeof BlogAiVideoMarketingTorontoRoute
+  BlogBestAiReceptionistMedSpaRoute: typeof BlogBestAiReceptionistMedSpaRoute
   BlogHowToGetMoreMedSpaPatientsRoute: typeof BlogHowToGetMoreMedSpaPatientsRoute
+  BlogMedSpaFacebookAdsRoute: typeof BlogMedSpaFacebookAdsRoute
+  BlogMedSpaMissedCallsRoute: typeof BlogMedSpaMissedCallsRoute
   BlogSocialMediaMarketingAgencyTorontoRoute: typeof BlogSocialMediaMarketingAgencyTorontoRoute
   BlogSocialMediaMarketingCostTorontoRoute: typeof BlogSocialMediaMarketingCostTorontoRoute
   BlogSocialMediaMarketingYorkRegionRoute: typeof BlogSocialMediaMarketingYorkRegionRoute
@@ -643,11 +683,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSocialMediaMarketingAgencyTorontoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog_/med-spa-missed-calls': {
+      id: '/blog_/med-spa-missed-calls'
+      path: '/blog/med-spa-missed-calls'
+      fullPath: '/blog/med-spa-missed-calls'
+      preLoaderRoute: typeof BlogMedSpaMissedCallsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog_/med-spa-facebook-ads': {
+      id: '/blog_/med-spa-facebook-ads'
+      path: '/blog/med-spa-facebook-ads'
+      fullPath: '/blog/med-spa-facebook-ads'
+      preLoaderRoute: typeof BlogMedSpaFacebookAdsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog_/how-to-get-more-med-spa-patients': {
       id: '/blog_/how-to-get-more-med-spa-patients'
       path: '/blog/how-to-get-more-med-spa-patients'
       fullPath: '/blog/how-to-get-more-med-spa-patients'
       preLoaderRoute: typeof BlogHowToGetMoreMedSpaPatientsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog_/best-ai-receptionist-med-spa': {
+      id: '/blog_/best-ai-receptionist-med-spa'
+      path: '/blog/best-ai-receptionist-med-spa'
+      fullPath: '/blog/best-ai-receptionist-med-spa'
+      preLoaderRoute: typeof BlogBestAiReceptionistMedSpaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog_/ai-video-marketing-toronto': {
@@ -678,7 +739,10 @@ const rootRouteChildren: RootRouteChildren = {
   ThankYouRoute: ThankYouRoute,
   VaultRoute: VaultRoute,
   BlogAiVideoMarketingTorontoRoute: BlogAiVideoMarketingTorontoRoute,
+  BlogBestAiReceptionistMedSpaRoute: BlogBestAiReceptionistMedSpaRoute,
   BlogHowToGetMoreMedSpaPatientsRoute: BlogHowToGetMoreMedSpaPatientsRoute,
+  BlogMedSpaFacebookAdsRoute: BlogMedSpaFacebookAdsRoute,
+  BlogMedSpaMissedCallsRoute: BlogMedSpaMissedCallsRoute,
   BlogSocialMediaMarketingAgencyTorontoRoute:
     BlogSocialMediaMarketingAgencyTorontoRoute,
   BlogSocialMediaMarketingCostTorontoRoute:
