@@ -14,6 +14,14 @@ const POSTS: {
   tint: [string, string];
 }[] = [
   {
+    slug: "/blog/how-to-get-more-med-spa-patients",
+    title: "How to Get More Med Spa Patients in 2026 (Without Chasing Leads)",
+    excerpt: "The 2026 med spa marketing playbook — AI Facebook & Instagram ads plus an AI caller that books consultations in 60 seconds.",
+    date: "Jun 23, 2026",
+    category: "Med Spa Growth",
+    tint: ["#f8e7e2", "#f1d3cf"],
+  },
+  {
     slug: "/blog/social-media-marketing-agency-toronto",
     title: "How to Choose a Social Media Marketing Agency in Toronto",
     excerpt: "The questions to ask, the red flags to avoid, and what a true done-for-you Toronto agency should actually include.",
@@ -47,7 +55,7 @@ const POSTS: {
   },
 ];
 
-const CATEGORIES = ["All Posts", "Agency Tips", "Pricing", "AI Video", "Local Marketing"];
+const CATEGORIES = ["All Posts", "Med Spa Growth", "Agency Tips", "Pricing", "AI Video", "Local Marketing"];
 
 function BlogIndex() {
   usePageMeta(

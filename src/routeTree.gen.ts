@@ -38,6 +38,7 @@ import { Route as BrandRoomAiPromptKitRouteImport } from './routes/brand-room_.a
 import { Route as BlogSocialMediaMarketingYorkRegionRouteImport } from './routes/blog_.social-media-marketing-york-region'
 import { Route as BlogSocialMediaMarketingCostTorontoRouteImport } from './routes/blog_.social-media-marketing-cost-toronto'
 import { Route as BlogSocialMediaMarketingAgencyTorontoRouteImport } from './routes/blog_.social-media-marketing-agency-toronto'
+import { Route as BlogHowToGetMoreMedSpaPatientsRouteImport } from './routes/blog_.how-to-get-more-med-spa-patients'
 import { Route as BlogAiVideoMarketingTorontoRouteImport } from './routes/blog_.ai-video-marketing-toronto'
 
 const VaultRoute = VaultRouteImport.update({
@@ -188,6 +189,12 @@ const BlogSocialMediaMarketingAgencyTorontoRoute =
     path: '/blog/social-media-marketing-agency-toronto',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogHowToGetMoreMedSpaPatientsRoute =
+  BlogHowToGetMoreMedSpaPatientsRouteImport.update({
+    id: '/blog_/how-to-get-more-med-spa-patients',
+    path: '/blog/how-to-get-more-med-spa-patients',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogAiVideoMarketingTorontoRoute =
   BlogAiVideoMarketingTorontoRouteImport.update({
     id: '/blog_/ai-video-marketing-toronto',
@@ -213,6 +220,7 @@ export interface FileRoutesByFullPath {
   '/thank-you': typeof ThankYouRoute
   '/vault': typeof VaultRoute
   '/blog/ai-video-marketing-toronto': typeof BlogAiVideoMarketingTorontoRoute
+  '/blog/how-to-get-more-med-spa-patients': typeof BlogHowToGetMoreMedSpaPatientsRoute
   '/blog/social-media-marketing-agency-toronto': typeof BlogSocialMediaMarketingAgencyTorontoRoute
   '/blog/social-media-marketing-cost-toronto': typeof BlogSocialMediaMarketingCostTorontoRoute
   '/blog/social-media-marketing-york-region': typeof BlogSocialMediaMarketingYorkRegionRoute
@@ -245,6 +253,7 @@ export interface FileRoutesByTo {
   '/thank-you': typeof ThankYouRoute
   '/vault': typeof VaultRoute
   '/blog/ai-video-marketing-toronto': typeof BlogAiVideoMarketingTorontoRoute
+  '/blog/how-to-get-more-med-spa-patients': typeof BlogHowToGetMoreMedSpaPatientsRoute
   '/blog/social-media-marketing-agency-toronto': typeof BlogSocialMediaMarketingAgencyTorontoRoute
   '/blog/social-media-marketing-cost-toronto': typeof BlogSocialMediaMarketingCostTorontoRoute
   '/blog/social-media-marketing-york-region': typeof BlogSocialMediaMarketingYorkRegionRoute
@@ -278,6 +287,7 @@ export interface FileRoutesById {
   '/thank-you': typeof ThankYouRoute
   '/vault': typeof VaultRoute
   '/blog_/ai-video-marketing-toronto': typeof BlogAiVideoMarketingTorontoRoute
+  '/blog_/how-to-get-more-med-spa-patients': typeof BlogHowToGetMoreMedSpaPatientsRoute
   '/blog_/social-media-marketing-agency-toronto': typeof BlogSocialMediaMarketingAgencyTorontoRoute
   '/blog_/social-media-marketing-cost-toronto': typeof BlogSocialMediaMarketingCostTorontoRoute
   '/blog_/social-media-marketing-york-region': typeof BlogSocialMediaMarketingYorkRegionRoute
@@ -312,6 +322,7 @@ export interface FileRouteTypes {
     | '/thank-you'
     | '/vault'
     | '/blog/ai-video-marketing-toronto'
+    | '/blog/how-to-get-more-med-spa-patients'
     | '/blog/social-media-marketing-agency-toronto'
     | '/blog/social-media-marketing-cost-toronto'
     | '/blog/social-media-marketing-york-region'
@@ -344,6 +355,7 @@ export interface FileRouteTypes {
     | '/thank-you'
     | '/vault'
     | '/blog/ai-video-marketing-toronto'
+    | '/blog/how-to-get-more-med-spa-patients'
     | '/blog/social-media-marketing-agency-toronto'
     | '/blog/social-media-marketing-cost-toronto'
     | '/blog/social-media-marketing-york-region'
@@ -376,6 +388,7 @@ export interface FileRouteTypes {
     | '/thank-you'
     | '/vault'
     | '/blog_/ai-video-marketing-toronto'
+    | '/blog_/how-to-get-more-med-spa-patients'
     | '/blog_/social-media-marketing-agency-toronto'
     | '/blog_/social-media-marketing-cost-toronto'
     | '/blog_/social-media-marketing-york-region'
@@ -409,6 +422,7 @@ export interface RootRouteChildren {
   ThankYouRoute: typeof ThankYouRoute
   VaultRoute: typeof VaultRoute
   BlogAiVideoMarketingTorontoRoute: typeof BlogAiVideoMarketingTorontoRoute
+  BlogHowToGetMoreMedSpaPatientsRoute: typeof BlogHowToGetMoreMedSpaPatientsRoute
   BlogSocialMediaMarketingAgencyTorontoRoute: typeof BlogSocialMediaMarketingAgencyTorontoRoute
   BlogSocialMediaMarketingCostTorontoRoute: typeof BlogSocialMediaMarketingCostTorontoRoute
   BlogSocialMediaMarketingYorkRegionRoute: typeof BlogSocialMediaMarketingYorkRegionRoute
@@ -629,6 +643,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSocialMediaMarketingAgencyTorontoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog_/how-to-get-more-med-spa-patients': {
+      id: '/blog_/how-to-get-more-med-spa-patients'
+      path: '/blog/how-to-get-more-med-spa-patients'
+      fullPath: '/blog/how-to-get-more-med-spa-patients'
+      preLoaderRoute: typeof BlogHowToGetMoreMedSpaPatientsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog_/ai-video-marketing-toronto': {
       id: '/blog_/ai-video-marketing-toronto'
       path: '/blog/ai-video-marketing-toronto'
@@ -657,6 +678,7 @@ const rootRouteChildren: RootRouteChildren = {
   ThankYouRoute: ThankYouRoute,
   VaultRoute: VaultRoute,
   BlogAiVideoMarketingTorontoRoute: BlogAiVideoMarketingTorontoRoute,
+  BlogHowToGetMoreMedSpaPatientsRoute: BlogHowToGetMoreMedSpaPatientsRoute,
   BlogSocialMediaMarketingAgencyTorontoRoute:
     BlogSocialMediaMarketingAgencyTorontoRoute,
   BlogSocialMediaMarketingCostTorontoRoute:
