@@ -2042,7 +2042,7 @@ function AICloneSection() {
 function Pricing() {
   const [contractTerm, setContractTerm] = useState<"6" | "12">("6");
   const contractMonths = Number(contractTerm);
-  const setupFee = 500;
+  const setupFee = 997;
   const fullPlanBonus = contractTerm === "12" ? "Annual bonus: 1 month free on every plan" : "Choose annual to unlock 1 month free";
   const displayPrice = (monthlyPrice: number) => `$${monthlyPrice.toLocaleString()}`;
 
