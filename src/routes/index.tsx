@@ -1983,7 +1983,7 @@ function AICloneSection() {
                 <div>
                   <p className="text-[10px] tracking-[0.16em] uppercase mb-2 font-bold" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>Starter Plan</p>
                   <p className="m-0 italic text-4xl" style={{ fontFamily: "'Cormorant Garamond', serif", color: "var(--rose)" }}>$1,000/mo</p>
-                  <p className="m-0 mt-1 text-sm" style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(30,15,10,0.52)" }}>plus $500 one-time setup</p>
+                  <p className="m-0 mt-1 text-sm" style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(30,15,10,0.52)" }}>plus $997 one-time setup</p>
                 </div>
                 <div className="rounded-2xl px-5 py-4 text-left sm:text-right" style={{ background: "rgba(255,255,255,0.5)", color: "var(--ink)", border: "1px solid rgba(200,168,100,0.24)" }}>
                   <p className="m-0 text-[10px] tracking-[0.16em] uppercase font-bold" style={{ fontFamily: "'Jost', sans-serif" }}>Launch Timeline</p>
@@ -2055,7 +2055,7 @@ function Pricing() {
       fit: "Best for getting the lead system in place",
       outcome: "A website and automation system that turns every inquiry, missed call, and appointment into a managed conversation.",
       tagline: "For service businesses that need a website and full lead system before anything else.",
-      setupLabel: "+ $500 one-time setup",
+      setupLabel: "+ $997 one-time setup",
       cta: "Build My Foundation →",
       features: [
         "10–20 page professional website built for lead generation",
@@ -2081,7 +2081,7 @@ function Pricing() {
       outcome: "One platform, one polished content system, and a full automation stack turning followers into booked clients.",
       tagline: "For businesses and personal brands ready to be fully active on one platform with a lead system behind every post.",
       topBadge: { label: "Best Starting Point", tone: "pink" as "gold" | "pink" },
-      setupLabel: "+ $500 one-time setup",
+      setupLabel: "+ $997 one-time setup",
       cta: "Launch My Brand →",
       features: [
         "1 platform fully managed — Facebook, Instagram, or TikTok — nothing to post",
@@ -2108,7 +2108,7 @@ function Pricing() {
       tagline: "For service businesses ready for all 3 platforms, full automation, and paid Meta ads working together every day.",
       featured: true,
       topBadge: { label: "Most Popular", tone: "gold" as "gold" | "pink" },
-      setupLabel: "+ $500 one-time setup",
+      setupLabel: "+ $997 one-time setup",
       cta: "Scale With Everything →",
       features: [
         "3 platforms fully managed — Facebook, Instagram & TikTok — nothing to post, nothing to manage",
