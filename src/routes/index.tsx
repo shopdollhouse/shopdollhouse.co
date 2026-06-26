@@ -277,14 +277,17 @@ function Nav() {
                       <a
                         key={service.href}
                         href={service.href}
-                        className="rounded-2xl px-3 py-2.5 hover:bg-white/70 transition-colors"
+                        className="group/svc flex cursor-pointer items-center justify-between gap-2 rounded-2xl border border-[var(--gold)]/15 bg-white/40 px-3 py-2.5 transition-colors hover:border-[var(--gold)]/40 hover:bg-white/80"
                       >
-                        <span className="block text-[var(--ink)] normal-case tracking-normal leading-tight" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.76rem", fontWeight: 700 }}>
-                          {service.title}
+                        <span>
+                          <span className="block text-[var(--ink)] normal-case tracking-normal leading-tight" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.76rem", fontWeight: 700 }}>
+                            {service.title}
+                          </span>
+                          <span className="mt-1 block text-[var(--ink)]/48 normal-case tracking-normal leading-snug" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.66rem" }}>
+                            {service.short}
+                          </span>
                         </span>
-                        <span className="mt-1 block text-[var(--ink)]/48 normal-case tracking-normal leading-snug" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.66rem" }}>
-                          {service.short}
-                        </span>
+                        <span aria-hidden className="shrink-0 text-[var(--gold)] opacity-0 transition-opacity group-hover/svc:opacity-100">→</span>
                       </a>
                     ))}
                   </div>
@@ -299,7 +302,7 @@ function Nav() {
                       <a
                         key={service.slug}
                         href={`/systems/${service.slug}`}
-                        className="group/item rounded-2xl p-3 flex gap-3 hover:bg-white/70 transition-colors"
+                        className="group/item flex cursor-pointer gap-3 rounded-2xl border border-[var(--gold)]/15 bg-white/40 p-3 transition-colors hover:border-[var(--gold)]/40 hover:bg-white/80"
                       >
                         <span
                           className="h-10 w-10 rounded-xl flex items-center justify-center shrink-0"
@@ -319,6 +322,7 @@ function Nav() {
                             {service.short}
                           </span>
                         </span>
+                        <span aria-hidden className="ml-auto self-center shrink-0 text-[var(--gold)] opacity-0 transition-opacity group-hover/item:opacity-100">→</span>
                       </a>
                     );
                   })}
