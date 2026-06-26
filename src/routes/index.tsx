@@ -30,7 +30,7 @@ import { usePageMeta } from "@/lib/use-page-meta";
 import { SiteFooter } from "@/components/SiteFooter";
 import { useScrollReveal } from "@/lib/use-scroll-reveal";
 import { PLANS, PlanCard } from "@/components/AgencyPlans";
-import { PlanComparisonSection, ResultsStatsSection, AgencyFaqSection, FinalCtaSection, AgencyFooterNotes, pulsePlan } from "@/components/AgencySections";
+import { AgencyFaqSection, FinalCtaSection, AgencyFooterNotes, pulsePlan } from "@/components/AgencySections";
 
 export const Route = createFileRoute("/")({ component: Index });
 
@@ -3277,7 +3277,6 @@ function Index() {
       <Hero />
       <ChooseYourPath />
       <TrustBar />
-      <MarqueeStrip />
       <Services />
       <ProofSection />
       <AICloneSection />
@@ -3285,8 +3284,6 @@ function Index() {
       <HowItWorks />
       <Pricing />
       <AgencyFooterNotes />
-      <PlanComparisonSection />
-      <ResultsStatsSection />
       <AgencyFaqSection />
       <FinalCtaSection proposalHref="#contact" />
       <Contact />
