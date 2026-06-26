@@ -4870,16 +4870,16 @@ function LinksTab() {
       title: "Your Website Pages",
       icon: "flower",
       links: [
-        { label: "Main Website", url: "https://www.shopdollhouse.co/", desc: "Your public-facing homepage" },
-        { label: "Brand Room", url: "https://www.shopdollhouse.co/brand-room", desc: "The brand room page" },
+        { label: "Main Website", url: "https://www.dollhousebrandstudio.com/", desc: "Your public-facing homepage" },
+        { label: "Brand Room", url: "https://www.dollhousebrandstudio.com/brand-room", desc: "The brand room page" },
       ],
     },
     {
       title: "Send to Clients",
       icon: "send",
       links: [
-        { label: "Client Onboarding Questionnaire", url: "https://www.shopdollhouse.co/onboarding", desc: "Send this to every client the moment they sign — gets you everything you need to build their marketing plan" },
-        { label: "Get a Free Proposal", url: "https://www.shopdollhouse.co/#contact", desc: "Direct link to the proposal form for cold outreach" },
+        { label: "Client Onboarding Questionnaire", url: "https://www.dollhousebrandstudio.com/onboarding", desc: "Send this to every client the moment they sign — gets you everything you need to build their marketing plan" },
+        { label: "Get a Free Proposal", url: "https://www.dollhousebrandstudio.com/#contact", desc: "Direct link to the proposal form for cold outreach" },
       ],
     },
     {
@@ -4943,8 +4943,8 @@ function LinksTab() {
       title: "Internal Pages",
       icon: "lock",
       links: [
-        { label: "This Playbook", url: "https://www.shopdollhouse.co/playbook", desc: "Your full business operating system — admin only" },
-        { label: "Brand Room Page", url: "https://www.shopdollhouse.co/brand-room", desc: "Internal brand room builder" },
+        { label: "This Playbook", url: "https://www.dollhousebrandstudio.com/playbook", desc: "Your full business operating system — admin only" },
+        { label: "Brand Room Page", url: "https://www.dollhousebrandstudio.com/brand-room", desc: "Internal brand room builder" },
       ],
     },
   ];

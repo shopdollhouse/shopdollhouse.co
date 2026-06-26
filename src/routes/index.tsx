@@ -633,7 +633,7 @@ function ChooseYourPath() {
       calloutSub: "We Specialize",
       title: "I want more booked clients.",
       body: "We run the ads and our AI Caller books the patients — while you focus on your work.",
-      href: "https://clinic.shopdollhouse.co",
+      href: "https://medspa.dollhousebrandstudio.com",
       cta: "See How It Works",
       targetPlan: null,
       image: managedGrowthImage,

@@ -91,7 +91,7 @@ export function BlogPost({
   children: React.ReactNode;
 }) {
   usePageMeta(`${title} | The Dollhouse Brand Studio`, description);
-  const url = `https://www.shopdollhouse.co${slug}`;
+  const url = `https://www.dollhousebrandstudio.com${slug}`;
 
   useEffect(() => {
     const ld = document.createElement("script");
@@ -108,7 +108,7 @@ export function BlogPost({
       publisher: {
         "@type": "Organization",
         name: "The Dollhouse Brand Studio",
-        logo: { "@type": "ImageObject", url: "https://www.shopdollhouse.co/apple-touch-icon.png" },
+        logo: { "@type": "ImageObject", url: "https://www.dollhousebrandstudio.com/apple-touch-icon.png" },
       },
       about: ["Social media marketing", "Toronto", "York Region", "Greater Toronto Area"],
     });

@@ -150,7 +150,7 @@ function TermsPage() {
             {"  |  "}
             <a href="tel:+12893014567" style={{ color: "var(--rose)", textDecoration: "underline" }}>(289) 301-4567</a>
             {"  |  "}
-            <a href="https://www.shopdollhouse.co" target="_blank" rel="noopener noreferrer" style={{ color: "var(--rose)", textDecoration: "underline" }}>shopdollhouse.co</a>
+            <a href="https://www.dollhousebrandstudio.com" target="_blank" rel="noopener noreferrer" style={{ color: "var(--rose)", textDecoration: "underline" }}>shopdollhouse.co</a>
           </p>
         </Section>
 

@@ -442,7 +442,7 @@ export function PlanCard({
           )}
           {plan.id === "foundation" && (
             <a
-              href="https://www.shopdollhouse.co/foundation"
+              href="https://www.dollhousebrandstudio.com/foundation"
               className="mt-2 block text-center transition-opacity hover:opacity-70"
               style={{ fontFamily: FONT_BODY, fontSize: "12.5px", fontWeight: 600, color: "#bd7476", textDecoration: "underline", textUnderlineOffset: "2px" }}
             >

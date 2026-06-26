@@ -313,7 +313,7 @@ export default function OnboardingForm() {
       {/* Sticky header */}
       <div style={{ position: "sticky", top: 0, zIndex: 50, background: "rgba(248,237,232,0.9)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(200,168,100,0.15)" }}>
         <div style={{ maxWidth: 760, margin: "0 auto", padding: "12px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
-          <a href="https://shopdollhouse.co" style={{ textDecoration: "none" }}>
+          <a href="https://www.dollhousebrandstudio.com" style={{ textDecoration: "none" }}>
             <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.2rem", color: "var(--rose)", fontStyle: "italic", margin: 0 }}>the Dollhouse</p>
             <p style={{ fontFamily: FONT_LUXE, fontSize: "0.55rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--gold)", margin: 0 }}>Brand Studio</p>
           </a>
@@ -483,7 +483,7 @@ export default function OnboardingForm() {
 function Nav() {
   return (
     <header style={{ background: "rgba(248,237,232,0.85)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(200,168,100,0.12)", padding: "14px 32px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-      <a href="https://shopdollhouse.co" style={{ textDecoration: "none" }}>
+      <a href="https://www.dollhousebrandstudio.com" style={{ textDecoration: "none" }}>
         <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.25rem", color: "var(--rose)", fontStyle: "italic", margin: 0 }}>the Dollhouse</p>
         <p style={{ fontFamily: FONT_LUXE, fontSize: "0.55rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--gold)", margin: 0 }}>Brand Studio</p>
       </a>

@@ -14,38 +14,6 @@ const POSTS: {
   tint: [string, string];
 }[] = [
   {
-    slug: "/blog/how-to-get-more-med-spa-patients",
-    title: "How to Get More Med Spa Patients in 2026 (Without Chasing Leads)",
-    excerpt: "The 2026 med spa marketing playbook — AI Facebook & Instagram ads plus an AI caller that books consultations in 60 seconds.",
-    date: "Jun 23, 2026",
-    category: "Med Spa Growth",
-    tint: ["#f8e7e2", "#f1d3cf"],
-  },
-  {
-    slug: "/blog/med-spa-missed-calls",
-    title: "Why Your Med Spa Is Losing Patients to Missed Calls",
-    excerpt: "Missed and slow-answered calls quietly cost med spas thousands a month — and how an AI caller books every patient in 60 seconds.",
-    date: "Jun 23, 2026",
-    category: "Med Spa Growth",
-    tint: ["#f6ded8", "#f1d3cf"],
-  },
-  {
-    slug: "/blog/med-spa-facebook-ads",
-    title: "Med Spa Facebook & Instagram Ads: What Actually Works in 2026",
-    excerpt: "Why Meta beats Google for clinics, the ad creative that converts, and how to turn ad clicks into booked consultations.",
-    date: "Jun 23, 2026",
-    category: "Med Spa Growth",
-    tint: ["#f8e9e5", "#f4dcdc"],
-  },
-  {
-    slug: "/blog/best-ai-receptionist-med-spa",
-    title: "The Best AI Receptionist for Med Spas & Clinics in 2026",
-    excerpt: "What an AI receptionist does for a med spa, why it books more than a human front desk, and how to set one up in Canada.",
-    date: "Jun 23, 2026",
-    category: "Med Spa Growth",
-    tint: ["#f3e6ef", "#e9d6e8"],
-  },
-  {
     slug: "/blog/social-media-marketing-agency-toronto",
     title: "How to Choose a Social Media Marketing Agency in Toronto",
     excerpt: "The questions to ask, the red flags to avoid, and what a true done-for-you Toronto agency should actually include.",
@@ -79,7 +47,7 @@ const POSTS: {
   },
 ];
 
-const CATEGORIES = ["All Posts", "Med Spa Growth", "Agency Tips", "Pricing", "AI Video", "Local Marketing"];
+const CATEGORIES = ["All Posts", "Agency Tips", "Pricing", "AI Video", "Local Marketing"];
 
 function BlogIndex() {
   usePageMeta(

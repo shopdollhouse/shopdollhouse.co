@@ -1,5 +1,6 @@
 {
   "redirects": [
+    { "source": "/medspa", "destination": "https://medspa.dollhousebrandstudio.com", "permanent": true },
     { "source": "/brand-room", "destination": "https://room.shopdollhouse.co", "permanent": true },
     { "source": "/brand-room/brand-kit", "destination": "https://room.shopdollhouse.co/brand-kit", "permanent": true },
     { "source": "/brand-room/workbook", "destination": "https://room.shopdollhouse.co/workbook", "permanent": true },
