@@ -2976,10 +2976,10 @@ function Contact() {
                   ))}
                 </div>
                 <div className="flex items-center justify-between">
-                  <p className="text-[10px] tracking-luxe uppercase text-[var(--gold)]" style={{ fontFamily: "'Jost', sans-serif" }}>
+                  <p className="text-[0.82rem] tracking-[0.08em] uppercase font-semibold text-[var(--ink)]" style={{ fontFamily: "'Jost', sans-serif" }}>
                     Step {step} of {TOTAL_STEPS} — {stepTitles[step - 1]}
                   </p>
-                  <p className="text-[10px] font-semibold" style={{ fontFamily: "'Jost', sans-serif", color: "#bd7476" }}>
+                  <p className="text-[0.82rem] font-semibold" style={{ fontFamily: "'Jost', sans-serif", color: "#bd7476" }}>
                     {Math.round((step / TOTAL_STEPS) * 100)}%
                   </p>
                 </div>
