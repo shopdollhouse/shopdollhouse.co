@@ -2687,6 +2687,34 @@ function FormSelect({
 }
 
 /* ─── Contact ─────────────────────────────────────────── */
+function RadioGroup({ value, onSelect, options }: { value: string; onSelect: (v: string) => void; options: string[] }) {
+  return (
+    <div className="grid gap-2">
+      {options.map(opt => {
+        const selected = value === opt;
+        return (
+          <button
+            key={opt}
+            type="button"
+            onClick={() => onSelect(opt)}
+            className="flex items-center gap-2.5 rounded-2xl px-4 py-3 text-left transition-all hover:-translate-y-0.5"
+            style={{
+              fontFamily: "'DM Sans', sans-serif", fontSize: "0.84rem", lineHeight: 1.3,
+              background: selected ? "#bd7476" : "rgba(255,255,255,0.62)",
+              color: selected ? "#fff" : "var(--ink)",
+              border: selected ? "1px solid #bd7476" : "1px solid rgba(200,168,100,0.26)",
+              boxShadow: selected ? "0 4px 14px -6px rgba(189,116,118,0.45)" : "0 8px 20px -18px rgba(90,45,35,0.5)",
+            }}
+          >
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: selected ? "rgba(255,255,255,0.7)" : "var(--rose)" }} aria-hidden />
+            <span className="flex-1">{opt}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 function Contact() {
   const [showCalendar, setShowCalendar] = useState(false);
   const [step, setStep] = useState(0);
@@ -2703,26 +2731,49 @@ function Contact() {
   const TOTAL_STEPS = 6;
 
   const [fd, setFd] = useState({
-    first_name: "", last_name: "", email: "", phone: "",
-    business_name: "", industry: "", website: "",
-    plan: "Foundation — $297/mo", main_goal: "Get more booked leads",
-    message: "",
-    contract_term: "3 months", setup_readiness: "I understand there is a one-time setup fee",
-    industry_other: "",
+    full_name: "", business_name: "", website: "", email: "", phone: "",
+    business_type: "", decision_maker: "", revenue: "", budget: "", timeline: "",
+    goal: "", challenge: "",
+    marketing_now: [] as string[],
+    lead_source: "", capacity: "", win_90: "", anything_else: "",
+    sms_consent: false,
   });
 
-  const set = (k: keyof typeof fd) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
-    setFd(prev => ({ ...prev, [k]: e.target.value }));
+  const set =
+    (k: "full_name" | "business_name" | "website" | "email" | "phone" | "challenge" | "lead_source" | "win_90" | "anything_else") =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+      setFd(prev => ({ ...prev, [k]: e.target.value }));
+
+  const toggleMarketing = (opt: string) =>
+    setFd(prev => ({
+      ...prev,
+      marketing_now: prev.marketing_now.includes(opt)
+        ? prev.marketing_now.filter(x => x !== opt)
+        : [...prev.marketing_now, opt],
+    }));
+
+  const redirect =
+    fd.business_type === "Med spa or aesthetic clinic"
+      ? { url: "https://medspa.dollhousebrandstudio.com/apply", label: "Continue to the med spa application", msg: "We run a dedicated done-for-you program just for med spas and clinics — you'll get the right application and offer over there." }
+      : fd.decision_maker === "No, I am researching for someone else"
+      ? { url: "https://room.shopdollhouse.co", label: "Explore the Brand Room", msg: "Since you're researching for someone else, the Brand Room and our digital products are the best place to start." }
+      : fd.budget === "Under $300"
+      ? { url: "https://room.shopdollhouse.co", label: "Explore the Brand Room & products", msg: "For budgets under $300/mo, the Brand Room and our digital products are the best fit — build your foundation first, then graduate into a managed plan." }
+      : null;
 
   function handleSubmit() {
     setStatus("sending");
+    const fitTag = fd.revenue === "Under $10,000" ? "Yellow" : fd.timeline === "Just exploring for now" ? "Nurture" : "Green";
     const payload = {
-      firstName: fd.first_name, lastName: fd.last_name,
+      fullName: fd.full_name,
+      businessName: fd.business_name, website: fd.website,
       email: fd.email, phone: fd.phone,
-      businessName: fd.business_name, industry: fd.industry === "Something else" && fd.industry_other ? fd.industry_other : fd.industry, website: fd.website,
-      plan: fd.plan, mainGoal: fd.main_goal,
-      winDescription: fd.message,
-      commitment: fd.contract_term, setupReadiness: fd.setup_readiness,
+      businessType: fd.business_type, decisionMaker: fd.decision_maker,
+      monthlyRevenue: fd.revenue, marketingBudget: fd.budget, timeline: fd.timeline,
+      mainGoal: fd.goal, biggestChallenge: fd.challenge,
+      currentMarketing: fd.marketing_now.join(", "), leadSource: fd.lead_source,
+      capacity: fd.capacity, win90Days: fd.win_90, anythingElse: fd.anything_else,
+      smsConsent: fd.sms_consent, fitTag,
       source: "Proposal Form",
     };
     fetch("https://services.leadconnectorhq.com/hooks/ElOoFIfV3BYE54LNg3Yw/webhook-trigger/00b38935-1381-43b0-99c7-c0c33be9f456", {
@@ -2739,8 +2790,8 @@ function Contact() {
   const lc = "block text-[10px] tracking-luxe uppercase text-[var(--gold)] mb-2";
   const ls = { fontFamily: "'Jost', sans-serif" } as React.CSSProperties;
 
-  const stepTitles = ["Let's start with you", "Best Fit For", "Tell us about your business", "What are you looking for?", "Where are you right now?", "Almost done"];
-  const stepHeadings = ["Let's start with you", "Which best describes your business?", "Tell us about your business", "What are you looking for?", "Where are you right now?", "Almost done"];
+  const stepTitles = ["Your details", "Your business", "Your numbers", "Your goals", "Your marketing", "Almost done"];
+  const stepHeadings = ["Let's start with you", "Tell us about your business", "Where you're at right now", "What you're looking for", "Your marketing today", "Almost done"];
 
   return (
     <section id="contact" className="scroll-mt-32 py-24 md:py-32 px-6">
@@ -2941,211 +2992,186 @@ function Contact() {
                 </h3>
               </div>
 
-              {/* ── STEP 1 ── */}
+              {/* ── STEP 1 — Your details ── */}
               {step === 1 && (
                 <div className="space-y-4">
+                  <div>
+                    <label className={lc} style={ls}>Your full name *</label>
+                    <input type="text" value={fd.full_name} onChange={set("full_name")} placeholder="Jane Doe" required className={ic} style={is} />
+                  </div>
+                  <div>
+                    <label className={lc} style={ls}>Business name *</label>
+                    <input type="text" value={fd.business_name} onChange={set("business_name")} placeholder="Your Business" required className={ic} style={is} />
+                  </div>
+                  <div>
+                    <label className={lc} style={ls}>Website or Instagram link *</label>
+                    <input type="text" value={fd.website} onChange={set("website")} placeholder="yourbusiness.com or @yourbusiness" required className={ic} style={is} />
+                  </div>
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div>
-                      <label className={lc} style={ls}>First Name *</label>
-                      <input type="text" value={fd.first_name} onChange={set("first_name")} placeholder="Jane" required className={ic} style={is} />
+                      <label className={lc} style={ls}>Best email *</label>
+                      <input type="email" value={fd.email} onChange={set("email")} placeholder="you@business.com" required className={ic} style={is} />
                     </div>
                     <div>
-                      <label className={lc} style={ls}>Last Name *</label>
-                      <input type="text" value={fd.last_name} onChange={set("last_name")} placeholder="Doe" required className={ic} style={is} />
+                      <label className={lc} style={ls}>Best phone *</label>
+                      <input type="tel" value={fd.phone} onChange={set("phone")} placeholder="(289) 555-0123" required className={ic} style={is} />
                     </div>
-                  </div>
-                  <div>
-                    <label className={lc} style={ls}>Email *</label>
-                    <input type="email" value={fd.email} onChange={set("email")} placeholder="you@brand.co" required className={ic} style={is} />
                   </div>
                 </div>
               )}
 
-              {/* ── STEP 2 ── Business type */}
+              {/* ── STEP 2 — Your business ── */}
               {step === 2 && (
-                <div className="space-y-3">
-                  <div className="grid grid-cols-2 gap-x-3 gap-y-1.5">
-                    {/* Featured: Med spas & aesthetics */}
-                    {(() => {
-                      const opt = "Med spas & aesthetics";
-                      const selected = fd.industry === opt;
-                      return (
-                        <button
-                          key={opt}
-                          type="button"
-                          onClick={() => setFd(prev => ({ ...prev, industry: opt }))}
-                          className="col-span-2 flex min-h-11 items-center gap-2.5 rounded-full px-4 py-2.5 text-left transition-all hover:-translate-y-0.5"
-                          style={{
-                            fontFamily: "'DM Sans', sans-serif",
-                            fontSize: "0.82rem",
-                            fontWeight: 600,
-                            lineHeight: 1.25,
-                            background: selected ? "#bd7476" : "rgba(189,116,118,0.1)",
-                            color: selected ? "#fff" : "#bd7476",
-                            border: selected ? "1px solid #bd7476" : "1px solid rgba(189,116,118,0.5)",
-                            boxShadow: selected ? "0 4px 14px -6px rgba(189,116,118,0.45)" : "0 8px 20px -18px rgba(90,45,35,0.5)",
-                          }}
-                        >
-                          <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: selected ? "rgba(255,255,255,0.7)" : "#bd7476" }} aria-hidden />
-                          <span className="flex-1">{opt}</span>
-                          <span className="shrink-0 rounded-full px-2 py-0.5" style={{ background: selected ? "rgba(255,255,255,0.22)" : "#bd7476", color: "#fff", fontSize: "0.55rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>
-                            ★ Most Common
-                          </span>
-                        </button>
-                      );
-                    })()}
-                    {[
-                      "Real estate agents","Contractors & home services",
-                      "Coaches & consultants","Salons & beauty pros",
-                      "Restaurants & food brands","Fitness studios & gyms",
-                      "Law firms & professionals","Retail & boutique brands",
-                      "E-commerce businesses","Photographers & creatives",
-                      "Mortgage & insurance pros",
-                    ].map((opt) => {
-                      const selected = fd.industry === opt;
-                      return (
-                        <button
-                          key={opt}
-                          type="button"
-                          onClick={() => setFd(prev => ({ ...prev, industry: opt }))}
-                          className="flex min-h-10 items-center gap-2.5 rounded-full px-3.5 py-2 text-left transition-all hover:-translate-y-0.5"
-                          style={{
-                            fontFamily: "'DM Sans', sans-serif",
-                            fontSize: "0.78rem",
-                            lineHeight: 1.25,
-                            background: selected ? "#bd7476" : "rgba(255,255,255,0.62)",
-                            color: selected ? "#fff" : "var(--ink)",
-                            border: selected ? "1px solid #bd7476" : "1px solid rgba(200,168,100,0.26)",
-                            boxShadow: selected ? "0 4px 14px -6px rgba(189,116,118,0.45)" : "0 8px 20px -18px rgba(90,45,35,0.5)",
-                          }}
-                        >
-                          <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: selected ? "rgba(255,255,255,0.7)" : "var(--rose)" }} aria-hidden />
-                          {opt}
-                        </button>
-                      );
-                    })}
-                    {/* Full-width "Something else" pill */}
-                    {(() => {
-                      const selected = fd.industry === "Something else";
-                      return (
-                        <button
-                          key="Something else"
-                          type="button"
-                          onClick={() => setFd(prev => ({ ...prev, industry: "Something else" }))}
-                          className="col-span-2 flex min-h-10 items-center justify-center gap-2.5 rounded-full px-3.5 py-2.5 text-center transition-all hover:-translate-y-0.5"
-                          style={{
-                            fontFamily: "'DM Sans', sans-serif",
-                            fontSize: "0.78rem",
-                            lineHeight: 1.25,
-                            background: selected ? "#bd7476" : "rgba(189,116,118,0.07)",
-                            color: selected ? "#fff" : "#bd7476",
-                            border: selected ? "1px solid #bd7476" : "1px dashed rgba(189,116,118,0.5)",
-                            boxShadow: selected ? "0 4px 14px -6px rgba(189,116,118,0.45)" : "none",
-                            fontWeight: 500,
-                          }}
-                        >
-                          <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: selected ? "rgba(255,255,255,0.7)" : "#bd7476" }} aria-hidden />
-                          Something else
-                        </button>
-                      );
-                    })()}
+                <div className="space-y-5">
+                  <div>
+                    <label className={lc} style={ls}>What type of business do you run? *</label>
+                    <RadioGroup
+                      value={fd.business_type}
+                      onSelect={v => setFd(prev => ({ ...prev, business_type: v }))}
+                      options={["Home service or contractor (roofing, HVAC, renovations, etc.)", "Other service business", "Product or e-commerce business", "Just starting — no business yet", "Med spa or aesthetic clinic"]}
+                    />
                   </div>
-                  {/* Reveal text input when "Something else" is selected */}
-                  {fd.industry === "Something else" && (
-                    <div>
-                      <label className={lc} style={ls}>Tell us about your business</label>
-                      <input
-                        type="text"
-                        value={fd.industry_other}
-                        onChange={e => setFd(prev => ({ ...prev, industry_other: e.target.value }))}
-                        placeholder="e.g. Event planning, Non-profit, Tech startup..."
-                        className={ic}
-                        style={is}
-                      />
-                    </div>
-                  )}
+                  <div>
+                    <label className={lc} style={ls}>Are you the owner or decision-maker? *</label>
+                    <RadioGroup
+                      value={fd.decision_maker}
+                      onSelect={v => setFd(prev => ({ ...prev, decision_maker: v }))}
+                      options={["Yes, it is my business", "I am part of the decision (co-owner or manager)", "No, I am researching for someone else"]}
+                    />
+                  </div>
                 </div>
               )}
 
-              {/* ── STEP 3 ── Tell us about your business */}
+              {/* ── STEP 3 — Your numbers ── */}
               {step === 3 && (
-                <div className="space-y-4">
+                <div className="space-y-5">
                   <div>
-                    <label className={lc} style={ls}>Business Name *</label>
-                    <input type="text" value={fd.business_name} onChange={set("business_name")} placeholder="Bloom Med Spa" required className={ic} style={is} />
+                    <label className={lc} style={ls}>Current monthly revenue (roughly)? *</label>
+                    <RadioGroup
+                      value={fd.revenue}
+                      onSelect={v => setFd(prev => ({ ...prev, revenue: v }))}
+                      options={["Under $10,000", "$10,000 to $30,000", "$30,000 to $75,000", "$75,000 or more"]}
+                    />
                   </div>
                   <div>
-                    <label className={lc} style={ls}>Website <span className="normal-case opacity-60">(optional)</span></label>
-                    <input type="url" value={fd.website} onChange={set("website")} placeholder="e.g. yourbusiness.com" className={ic} style={is} />
+                    <label className={lc} style={ls}>What can you comfortably invest in marketing each month? *</label>
+                    <RadioGroup
+                      value={fd.budget}
+                      onSelect={v => setFd(prev => ({ ...prev, budget: v }))}
+                      options={["Under $300", "$300 to $1,000", "$1,000 to $2,500", "$2,500 or more", "Not sure yet"]}
+                    />
+                  </div>
+                  <div>
+                    <label className={lc} style={ls}>How soon are you looking to get started? *</label>
+                    <RadioGroup
+                      value={fd.timeline}
+                      onSelect={v => setFd(prev => ({ ...prev, timeline: v }))}
+                      options={["Right away or this month", "In the next 1 to 3 months", "Just exploring for now"]}
+                    />
                   </div>
                 </div>
               )}
 
-              {/* ── STEP 4 ── What are you looking for? */}
+              {/* ── STEP 4 — Your goals ── */}
               {step === 4 && (
-                <div className="space-y-4">
+                <div className="space-y-5">
                   <div>
-                    <label className={lc} style={ls}>Which plan interests you?</label>
-                    <FormSelect
-                      value={fd.plan}
-                      onChange={v => setFd(prev => ({ ...prev, plan: v }))}
-                      options={["Foundation — $297/mo","Foundation + Google LSA — $497/mo","Starter — $1,000/mo","Growth — $2,497/mo","Not sure yet"]}
+                    <label className={lc} style={ls}>What is your number one goal right now? *</label>
+                    <RadioGroup
+                      value={fd.goal}
+                      onSelect={v => setFd(prev => ({ ...prev, goal: v }))}
+                      options={["More booked appointments and new clients", "A website and lead system that converts", "Stop missing calls and leads", "Build my brand and content", "Scale past my current ceiling"]}
                     />
                   </div>
                   <div>
-                    <label className={lc} style={ls}>What's your main goal?</label>
-                    <FormSelect
-                      value={fd.main_goal}
-                      onChange={v => setFd(prev => ({ ...prev, main_goal: v }))}
-                      options={["Get more booked leads","Build my online presence","Run paid ads","Automate my follow-up","All of the above"]}
-                    />
+                    <label className={lc} style={ls}>What is your biggest marketing challenge right now? *</label>
+                    <textarea value={fd.challenge} onChange={set("challenge")} rows={4} placeholder="Be as specific as you can — this helps us prepare for your call." className={`${ic} resize-none`} style={is} />
                   </div>
                 </div>
               )}
 
-              {/* ── STEP 5 ── Where are you right now? */}
+              {/* ── STEP 5 — Your marketing ── */}
               {step === 5 && (
-                <div className="space-y-4">
+                <div className="space-y-5">
                   <div>
-                    <label className={lc} style={ls}>Tell us about your business</label>
-                    <textarea
-                      value={fd.message}
-                      onChange={set("message")}
-                      rows={6}
-                      placeholder="Tell us what you sell, where leads are getting stuck, and what you want your system to handle every day."
-                      className={`${ic} resize-none`}
-                      style={is}
+                    <label className={lc} style={ls}>What are you currently doing for marketing? (select all) *</label>
+                    <div className="grid gap-2">
+                      {["Nothing or word of mouth only", "Posting on social media myself", "Running paid ads (Meta or Google)", "I have an agency or freelancer", "Other"].map(opt => {
+                        const selected = fd.marketing_now.includes(opt);
+                        return (
+                          <button
+                            key={opt}
+                            type="button"
+                            onClick={() => toggleMarketing(opt)}
+                            className="flex items-center gap-2.5 rounded-2xl px-4 py-3 text-left transition-all hover:-translate-y-0.5"
+                            style={{
+                              fontFamily: "'DM Sans', sans-serif", fontSize: "0.84rem", lineHeight: 1.3,
+                              background: selected ? "#bd7476" : "rgba(255,255,255,0.62)",
+                              color: selected ? "#fff" : "var(--ink)",
+                              border: selected ? "1px solid #bd7476" : "1px solid rgba(200,168,100,0.26)",
+                              boxShadow: selected ? "0 4px 14px -6px rgba(189,116,118,0.45)" : "0 8px 20px -18px rgba(90,45,35,0.5)",
+                            }}
+                          >
+                            <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded text-[10px]" style={{ border: selected ? "1px solid #fff" : "1px solid rgba(189,116,118,0.5)", background: selected ? "rgba(255,255,255,0.2)" : "transparent", color: "#fff" }} aria-hidden>{selected ? "✓" : ""}</span>
+                            <span className="flex-1">{opt}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  <div>
+                    <label className={lc} style={ls}>How do most new clients find you now, and roughly how many per month? *</label>
+                    <input type="text" value={fd.lead_source} onChange={set("lead_source")} placeholder="e.g. Google, referrals, Instagram — about 5 per month" className={ic} style={is} />
+                  </div>
+                  <div>
+                    <label className={lc} style={ls}>Could you handle more clients right now if they came in? *</label>
+                    <RadioGroup
+                      value={fd.capacity}
+                      onSelect={v => setFd(prev => ({ ...prev, capacity: v }))}
+                      options={["Yes, I have capacity", "Yes but I would need to hire", "I am near full"]}
                     />
                   </div>
                 </div>
               )}
 
-              {/* ── STEP 6 ── Almost done */}
+              {/* ── STEP 6 — Almost done ── */}
               {step === 6 && (
-                <div className="space-y-4">
+                <div className="space-y-5">
                   <div>
-                    <label className={lc} style={ls}>Preferred commitment</label>
-                    <FormSelect
-                      value={fd.contract_term}
-                      onChange={v => setFd(prev => ({ ...prev, contract_term: v }))}
-                      options={["3 months","6 months","1 year","Not sure yet"]}
-                    />
+                    <label className={lc} style={ls}>What would make this a clear win in the next 90 days? *</label>
+                    <input type="text" value={fd.win_90} onChange={set("win_90")} placeholder="e.g. 10 new clients, consistent content, a website that books" className={ic} style={is} />
                   </div>
                   <div>
-                    <label className={lc} style={ls}>Setup readiness</label>
-                    <FormSelect
-                      value={fd.setup_readiness}
-                      onChange={v => setFd(prev => ({ ...prev, setup_readiness: v }))}
-                      options={["I understand there is a one-time setup fee","I need more information about setup costs"]}
-                    />
+                    <label className={lc} style={ls}>Anything else I should know before we talk? <span className="normal-case opacity-60">(optional)</span></label>
+                    <textarea value={fd.anything_else} onChange={set("anything_else")} rows={3} placeholder="Totally optional — but anything you share helps." className={`${ic} resize-none`} style={is} />
                   </div>
+                  <label className="flex items-start gap-3 rounded-2xl px-4 py-3.5 cursor-pointer" style={{ background: "rgba(255,250,246,0.62)", border: "1px solid color-mix(in oklab, var(--gold) 24%, transparent)" }}>
+                    <input type="checkbox" checked={fd.sms_consent} onChange={e => setFd(prev => ({ ...prev, sms_consent: e.target.checked }))} className="mt-0.5 h-4 w-4 shrink-0 accent-[#bd7476]" />
+                    <span className="text-[var(--ink)]/62 leading-5" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem" }}>
+                      By checking this box, I consent to receive text messages from The Dollhouse Brand Studio about my application, follow-up, and appointment details. Message frequency varies. Message and data rates may apply. Text HELP for assistance or STOP to opt out.
+                    </span>
+                  </label>
+                </div>
+              )}
 
+              {/* Non-fit redirect banner */}
+              {redirect && (
+                <div className="rounded-2xl px-5 py-4" style={{ background: "rgba(189,116,118,0.08)", border: "1px solid rgba(189,116,118,0.35)" }}>
+                  <p className="m-0 text-[var(--ink)]/70 leading-6" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem" }}>{redirect.msg}</p>
                 </div>
               )}
 
               {/* Navigation buttons */}
               <div className="space-y-3 pt-0">
-                {step < TOTAL_STEPS ? (
+                {redirect ? (
+                  <a
+                    href={redirect.url}
+                    className="w-full flex items-center justify-center rounded-2xl py-4 text-[11px] tracking-luxe uppercase hover:-translate-y-0.5 hover:opacity-90 transition no-underline"
+                    style={{ fontFamily: "'Jost', sans-serif", background: "#bd7476", color: "#fff", boxShadow: "0 18px 36px -22px rgba(189,116,118,0.55)" }}
+                  >
+                    {redirect.label} →
+                  </a>
+                ) : step < TOTAL_STEPS ? (
                   <button
                     type="button"
                     onClick={() => setStep(s => s + 1)}
@@ -3159,12 +3185,17 @@ function Contact() {
                     <button
                       type="button"
                       onClick={handleSubmit}
-                      disabled={status === "sending"}
-                      className="w-full rounded-2xl py-4 text-[11px] tracking-luxe uppercase hover:-translate-y-0.5 hover:opacity-90 transition disabled:opacity-60"
+                      disabled={status === "sending" || !fd.sms_consent}
+                      className="w-full rounded-2xl py-4 text-[11px] tracking-luxe uppercase hover:-translate-y-0.5 hover:opacity-90 transition disabled:opacity-60 disabled:cursor-not-allowed"
                       style={{ fontFamily: "'Jost', sans-serif", background: "#bd7476", color: "#fff", boxShadow: "0 18px 36px -22px rgba(189,116,118,0.55)" }}
                     >
-                      {status === "sending" ? "Sending..." : "Send My Free Proposal Request →"}
+                      {status === "sending" ? "Sending..." : "Send My Application →"}
                     </button>
+                    {!fd.sms_consent && (
+                      <p className="text-center text-[var(--ink)]/45" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.7rem" }}>
+                        Please check the consent box above to submit.
+                      </p>
+                    )}
                   </>
                 )}
                 {step >= 1 && (
