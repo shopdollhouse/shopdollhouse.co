@@ -4198,7 +4198,7 @@ function StartHereTab() {
         { task: "Create your agency profile inside the platform", detail: "Name: The Dollhouse Brand Studio. Upload your logo, set your brand colours, add a professional photo. This is the first thing clients see when they're onboarded — make it look like a real business." },
         { task: "Connect all 4 social media accounts to the platform", detail: "TikTok, Instagram, Facebook, Threads. You need these connected to post content for your own brand AND to eventually link client accounts. Do this once, benefit forever." },
         { task: "Set up Stripe (or the platform's built-in payments)", detail: "You cannot get paid without this. Takes 10 minutes. You need a bank account and a government ID. Once connected, you can send invoices and collect setup fees instantly." },
-        { task: "Set up a professional email", detail: "hello@shopdollhouse.co — forward it to your personal Gmail for now. Free to set up with Google Workspace or just use a Gmail alias until you're ready to pay." },
+        { task: "Set up a professional email", detail: "hello@dollhousebrandstudio.com — forward it to your personal Gmail for now. Free to set up with Google Workspace or just use a Gmail alias until you're ready to pay." },
         { task: "Create a booking link", detail: "Use Calendly (free) or your platform's built-in calendar. Set up one slot: 'Discovery Call — 30 minutes.' This link goes in every single DM when someone says they're interested. Never make them figure out your schedule." },
         { task: "Download Canva (free)", detail: "You'll use Canva to design client content and create your own social media graphics. The free plan is enough to start. Set up a Canva account with your business email. (The brand kit product is already built — Canva is for your agency work.)" },
       ],
@@ -5629,7 +5629,7 @@ function QuoteBuilderTab({ prospects, persist, prospectId, onGoToDeals, onClearP
 
     lines.push("═".repeat(54));
     lines.push("  The Dollhouse Brand Studio");
-    lines.push("  hello@shopdollhouse.co");
+    lines.push("  hello@dollhousebrandstudio.com");
     lines.push("  shopdollhouse.co");
     lines.push("═".repeat(54));
 
@@ -6561,7 +6561,7 @@ const PROPOSAL_DECKS: PDeck[] = [
       {
         layout: "title", bg: "dark",
         heading: "Thank you.",
-        sub: "The Dollhouse Brand Studio  ·  hello@shopdollhouse.co",
+        sub: "The Dollhouse Brand Studio  ·  hello@dollhousebrandstudio.com",
         script: "Thank you so much for your time today. I genuinely believe in what we can build together — and I'm excited about what's possible for your business. The door is always open. Reach out any time. [Smile. Give them your card. Let them leave feeling great.]",
       },
     ],
@@ -6668,7 +6668,7 @@ const PROPOSAL_DECKS: PDeck[] = [
       {
         layout: "title", bg: "dark",
         heading: "Thank you.",
-        sub: "The Dollhouse Brand Studio  ·  hello@shopdollhouse.co",
+        sub: "The Dollhouse Brand Studio  ·  hello@dollhousebrandstudio.com",
         script: "Thank you so much for your time today. I'm really excited about what we can build together. Reach out any time — I'm here. [Smile. Hand over your card. Let them leave on a high note.]",
       },
     ],
@@ -6772,7 +6772,7 @@ const PROPOSAL_DECKS: PDeck[] = [
       {
         layout: "title", bg: "dark",
         heading: "Thank you.",
-        sub: "The Dollhouse Brand Studio  ·  hello@shopdollhouse.co",
+        sub: "The Dollhouse Brand Studio  ·  hello@dollhousebrandstudio.com",
         script: "Thank you so much for your time today. This is going to be something really special. The door is always open — reach out any time. [Smile. Give them your card. Let them go excited.]",
       },
     ],
@@ -6917,7 +6917,7 @@ const PROPOSAL_DECKS: PDeck[] = [
       {
         layout: "title", bg: "dark",
         heading: "Thank you.",
-        sub: "The Dollhouse Brand Studio  ·  hello@shopdollhouse.co",
+        sub: "The Dollhouse Brand Studio  ·  hello@dollhousebrandstudio.com",
         script: "Thank you so much for your time today. I'm genuinely excited about what we can do for your business. The door is always open — I'm here whenever you're ready. [Smile. Give them your card. End on warmth.]",
       },
     ],
@@ -7036,7 +7036,7 @@ const PROPOSAL_DECKS: PDeck[] = [
       {
         layout: "title", bg: "dark",
         heading: "Thank you.",
-        sub: "The Dollhouse Brand Studio  ·  hello@shopdollhouse.co",
+        sub: "The Dollhouse Brand Studio  ·  hello@dollhousebrandstudio.com",
         script: "Thank you so much for sitting with me today. I can already picture what your brand is going to look like — and I'm excited to build it. Reach out whenever you're ready. [Smile. Give them your card. End warm.]",
       },
     ],
@@ -7183,7 +7183,7 @@ const PROPOSAL_DECKS: PDeck[] = [
       {
         layout: "title", bg: "dark",
         heading: "Thank you.",
-        sub: "The Dollhouse Brand Studio  ·  hello@shopdollhouse.co",
+        sub: "The Dollhouse Brand Studio  ·  hello@dollhousebrandstudio.com",
         script: "Thank you so much for your time today. We built all of this for you because we genuinely believe in your business — and I hope you can feel that. I'm excited for what comes next. The door is always open. [Smile. Give them your card. Let them leave on a high.]",
       },
     ],
@@ -7330,7 +7330,7 @@ const PROPOSAL_DECKS: PDeck[] = [
       {
         layout: "title", bg: "dark",
         heading: "Thank you.",
-        sub: "The Dollhouse Brand Studio  ·  hello@shopdollhouse.co",
+        sub: "The Dollhouse Brand Studio  ·  hello@dollhousebrandstudio.com",
         script: "Thank you so much for your time today. The system I showed you — it works. And I'd love to build it for your business. I'm here whenever you're ready. [Smile. Give them your card. End warm and confident.]",
       },
     ],
@@ -7452,9 +7452,9 @@ const PROPOSAL_DECKS: PDeck[] = [
         layout: "steps", bg: "blush",
         heading: "Access & Permissions",
         steps: [
-          { n: "01", title: "Instagram & Facebook", desc: "Open Meta Business Suite → Settings → People → Add People. Enter hello@shopdollhouse.co and assign Admin access. We never need your password — this is the safe, official way." },
-          { n: "02", title: "TikTok", desc: "Open TikTok Business Center → Members → Invite Member. Enter hello@shopdollhouse.co and assign Operator access. Let's do this together right now." },
-          { n: "03", title: "Google Business Profile", desc: "Open your Google Business Profile → Managers → Add. Enter hello@shopdollhouse.co as a Manager. Takes 30 seconds and keeps your account secure." },
+          { n: "01", title: "Instagram & Facebook", desc: "Open Meta Business Suite → Settings → People → Add People. Enter hello@dollhousebrandstudio.com and assign Admin access. We never need your password — this is the safe, official way." },
+          { n: "02", title: "TikTok", desc: "Open TikTok Business Center → Members → Invite Member. Enter hello@dollhousebrandstudio.com and assign Operator access. Let's do this together right now." },
+          { n: "03", title: "Google Business Profile", desc: "Open your Google Business Profile → Managers → Add. Enter hello@dollhousebrandstudio.com as a Manager. Takes 30 seconds and keeps your account secure." },
         ],
         script: "Let's do this right now while we're both here — it takes about 5 minutes and means we can start work immediately. I never need your passwords for any platform. You're adding me as an official admin or manager — which you can remove at any time. Pull up Instagram first and I'll walk you through it. [Go through each platform together on the call. Don't end without at least Instagram and Facebook access confirmed.]",
       },
@@ -7462,7 +7462,7 @@ const PROPOSAL_DECKS: PDeck[] = [
         layout: "bullets", bg: "light",
         heading: "How We Work Together",
         bullets: [
-          "Best way to reach me: hello@shopdollhouse.co",
+          "Best way to reach me: hello@dollhousebrandstudio.com",
           "Response time: within 24 hours, Monday to Friday",
           "Urgent issues (account access, errors): reply directly to any email from us",
           "Monthly check-in call included — book anytime via your calendar link",
@@ -7498,7 +7498,7 @@ const PROPOSAL_DECKS: PDeck[] = [
       {
         layout: "title", bg: "dark",
         heading: "Let's build something\nbeautiful.",
-        sub: "The Dollhouse Brand Studio  ·  hello@shopdollhouse.co",
+        sub: "The Dollhouse Brand Studio  ·  hello@dollhousebrandstudio.com",
         script: "That's everything for today. You're officially a Dollhouse client and I am so excited to build your brand room. Check your email — your onboarding follow-up will have your media folder link, your calendar link, and a full summary of everything we covered today. Any last questions before I let you go? [Pause. Smile. End warm and confident. They should feel excited, not overwhelmed.]",
       },
     ],
@@ -7624,7 +7624,7 @@ const PROPOSAL_DECKS: PDeck[] = [
       /* 14 */ {
         layout: "title", bg: "dark",
         heading: "Thank you.",
-        sub: "The Dollhouse Brand Studio  ·  hello@shopdollhouse.co",
+        sub: "The Dollhouse Brand Studio  ·  hello@dollhousebrandstudio.com",
         script: "Thank you so much for your time today. I hope everything is crystal clear — how it works, what's included, and what it costs. I want you to feel 100% comfortable before making any decision. If you have questions after this, my email is on the screen. What would you like to do next?",
       },
     ],

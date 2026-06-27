@@ -196,7 +196,7 @@ export default function OnboardingForm() {
         body: JSON.stringify({ ...form, brandVibes: vibes.join(", "), contentTypes: contentTypes.join(", "), _subject: `🎀 New Client Onboarding — ${form.businessName}` }),
       });
       if (res.ok) { setSubmitted(true); window.scrollTo({ top: 0, behavior: "smooth" }); }
-      else setError("Something went wrong. Please try again or email hello@shopdollhouse.co");
+      else setError("Something went wrong. Please try again or email hello@dollhousebrandstudio.com");
     } catch { setError("Network error. Please check your connection and try again."); }
     finally { setSubmitting(false); }
   };
@@ -223,7 +223,7 @@ export default function OnboardingForm() {
             Thank you for completing your onboarding questionnaire. We've received everything and Mandy will be in touch within 24 hours to confirm your next steps and send your media folder link.
           </p>
           <p style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(30,15,10,0.3)" }}>
-            The Dollhouse Brand Studio &nbsp;·&nbsp; hello@shopdollhouse.co
+            The Dollhouse Brand Studio &nbsp;·&nbsp; hello@dollhousebrandstudio.com
           </p>
         </div>
       </div>
@@ -473,7 +473,7 @@ export default function OnboardingForm() {
       {/* Footer */}
       <div style={{ textAlign: "center", padding: "20px 24px", borderTop: "1px solid rgba(200,168,100,0.1)" }}>
         <p style={{ fontFamily: FONT_LUXE, fontSize: "0.58rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.28)" }}>
-          The Dollhouse Brand Studio &nbsp;·&nbsp; hello@shopdollhouse.co &nbsp;·&nbsp; shopdollhouse.co
+          The Dollhouse Brand Studio &nbsp;·&nbsp; hello@dollhousebrandstudio.com &nbsp;·&nbsp; shopdollhouse.co
         </p>
       </div>
     </div>

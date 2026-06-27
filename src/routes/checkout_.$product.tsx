@@ -11,7 +11,7 @@ const checkoutLinks: Record<string, string> = {
   "ai-prompt-kit": "https://link.fastpaydirect.com/payment-link/6a22a43471a0aa761e46326a",
   "brand-workbook": "https://link.fastpaydirect.com/payment-link/6a22a3fe03b17c94f5714ba9",
   "brand-kit": "https://link.fastpaydirect.com/payment-link/6a22a22903b17c94f5714ba7",
-  "brand-room-suite": "mailto:hello@shopdollhouse.co?subject=Brand%20Room%20Suite%20Checkout",
+  "brand-room-suite": "mailto:hello@dollhousebrandstudio.com?subject=Brand%20Room%20Suite%20Checkout",
 };
 
 const products: Record<string, { name: string; price: string; regular?: string; tagline: string }> = {

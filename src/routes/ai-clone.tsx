@@ -252,7 +252,7 @@ function AIClonePage() {
         <a href="/#contact" style={{ display: "inline-block", padding: "16px 48px", borderRadius: 999, background: cream, color: rose, fontFamily: FONT_LUXE, fontSize: "0.78rem", letterSpacing: "0.16em", textTransform: "uppercase", textDecoration: "none", fontWeight: 700 }}>
           Get My AI Clone →
         </a>
-        <p style={{ fontFamily: FONT_BODY, fontSize: "0.75rem", color: "rgba(245,232,224,0.5)", marginTop: 16 }}>hello@shopdollhouse.co · shopdollhouse.co</p>
+        <p style={{ fontFamily: FONT_BODY, fontSize: "0.75rem", color: "rgba(245,232,224,0.5)", marginTop: 16 }}>hello@dollhousebrandstudio.com · shopdollhouse.co</p>
       </section>
 
     </div>

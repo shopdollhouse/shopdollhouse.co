@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 
 export const Route = createFileRoute("/careers")({ component: CareersPage });
 
-const RESUME = "mailto:hello@shopdollhouse.co?subject=Resume%20%E2%80%94%20The%20Dollhouse%20Brand%20Studio";
+const RESUME = "mailto:hello@dollhousebrandstudio.com?subject=Resume%20%E2%80%94%20The%20Dollhouse%20Brand%20Studio";
 
 const VALUES: { icon: string; title: string; body: string }[] = [
   { icon: "⚡", title: "Move Fast", body: "We ship quickly and improve from real feedback. Done beats perfect." },
@@ -296,7 +296,7 @@ function CtaButton() {
         <rect x="3" y="5" width="18" height="14" rx="2" />
         <path d="m3 7 9 6 9-6" />
       </svg>
-      Send Resume to hello@shopdollhouse.co
+      Send Resume to hello@dollhousebrandstudio.com
       <span aria-hidden="true">→</span>
     </a>
   );

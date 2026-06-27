@@ -84,7 +84,7 @@ function TermsPage() {
           </p>
           <p>
             <strong>Help:</strong> For assistance, reply HELP to any message or email{" "}
-            <a href="mailto:hello@shopdollhouse.co" style={{ color: "var(--rose)", textDecoration: "underline" }}>hello@shopdollhouse.co</a>.
+            <a href="mailto:hello@dollhousebrandstudio.com" style={{ color: "var(--rose)", textDecoration: "underline" }}>hello@dollhousebrandstudio.com</a>.
           </p>
           <p>
             <strong>Carrier Liability:</strong> Carriers are not liable for delayed or undelivered messages.
@@ -146,7 +146,7 @@ function TermsPage() {
         <Section title="11. Contact Information">
           <p>The Dollhouse Brand Studio · Markham, ON, Canada</p>
           <p>
-            <a href="mailto:hello@shopdollhouse.co" style={{ color: "var(--rose)", textDecoration: "underline" }}>hello@shopdollhouse.co</a>
+            <a href="mailto:hello@dollhousebrandstudio.com" style={{ color: "var(--rose)", textDecoration: "underline" }}>hello@dollhousebrandstudio.com</a>
             {"  |  "}
             <a href="tel:+12893014567" style={{ color: "var(--rose)", textDecoration: "underline" }}>(289) 301-4567</a>
             {"  |  "}
