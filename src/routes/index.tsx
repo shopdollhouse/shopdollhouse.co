@@ -2731,16 +2731,15 @@ function Contact() {
   const TOTAL_STEPS = 6;
 
   const [fd, setFd] = useState({
-    full_name: "", business_name: "", website: "", email: "", phone: "",
+    full_name: "", business_name: "", website: "", email: "",
     business_type: "", decision_maker: "", revenue: "", budget: "", timeline: "",
     goal: "", challenge: "",
     marketing_now: [] as string[],
     lead_source: "", capacity: "", win_90: "", anything_else: "",
-    sms_consent: false,
   });
 
   const set =
-    (k: "full_name" | "business_name" | "website" | "email" | "phone" | "challenge" | "lead_source" | "win_90" | "anything_else") =>
+    (k: "full_name" | "business_name" | "website" | "email" | "challenge" | "lead_source" | "win_90" | "anything_else") =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
       setFd(prev => ({ ...prev, [k]: e.target.value }));
 
@@ -2767,13 +2766,13 @@ function Contact() {
     const payload = {
       fullName: fd.full_name,
       businessName: fd.business_name, website: fd.website,
-      email: fd.email, phone: fd.phone,
+      email: fd.email,
       businessType: fd.business_type, decisionMaker: fd.decision_maker,
       monthlyRevenue: fd.revenue, marketingBudget: fd.budget, timeline: fd.timeline,
       mainGoal: fd.goal, biggestChallenge: fd.challenge,
       currentMarketing: fd.marketing_now.join(", "), leadSource: fd.lead_source,
       capacity: fd.capacity, win90Days: fd.win_90, anythingElse: fd.anything_else,
-      smsConsent: fd.sms_consent, fitTag,
+      fitTag,
       source: "Proposal Form",
     };
     fetch("https://services.leadconnectorhq.com/hooks/ElOoFIfV3BYE54LNg3Yw/webhook-trigger/00b38935-1381-43b0-99c7-c0c33be9f456", {
@@ -3007,15 +3006,9 @@ function Contact() {
                     <label className={lc} style={ls}>Website or Instagram link *</label>
                     <input type="text" value={fd.website} onChange={set("website")} placeholder="yourbusiness.com or @yourbusiness" required className={ic} style={is} />
                   </div>
-                  <div className="grid sm:grid-cols-2 gap-6">
-                    <div>
-                      <label className={lc} style={ls}>Best email *</label>
-                      <input type="email" value={fd.email} onChange={set("email")} placeholder="you@business.com" required className={ic} style={is} />
-                    </div>
-                    <div>
-                      <label className={lc} style={ls}>Best phone *</label>
-                      <input type="tel" value={fd.phone} onChange={set("phone")} placeholder="(289) 555-0123" required className={ic} style={is} />
-                    </div>
+                  <div>
+                    <label className={lc} style={ls}>Best email *</label>
+                    <input type="email" value={fd.email} onChange={set("email")} placeholder="you@business.com" required className={ic} style={is} />
                   </div>
                 </div>
               )}
@@ -3145,12 +3138,6 @@ function Contact() {
                     <label className={lc} style={ls}>Anything else I should know before we talk? <span className="normal-case opacity-60">(optional)</span></label>
                     <textarea value={fd.anything_else} onChange={set("anything_else")} rows={3} placeholder="Totally optional — but anything you share helps." className={`${ic} resize-none`} style={is} />
                   </div>
-                  <label className="flex items-start gap-3 rounded-2xl px-4 py-3.5 cursor-pointer" style={{ background: "rgba(255,250,246,0.62)", border: "1px solid color-mix(in oklab, var(--gold) 24%, transparent)" }}>
-                    <input type="checkbox" checked={fd.sms_consent} onChange={e => setFd(prev => ({ ...prev, sms_consent: e.target.checked }))} className="mt-0.5 h-4 w-4 shrink-0 accent-[#bd7476]" />
-                    <span className="text-[var(--ink)]/62 leading-5" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem" }}>
-                      By checking this box, I consent to receive text messages from The Dollhouse Brand Studio about my application, follow-up, and appointment details. Message frequency varies. Message and data rates may apply. Text HELP for assistance or STOP to opt out.
-                    </span>
-                  </label>
                 </div>
               )}
 
@@ -3185,17 +3172,12 @@ function Contact() {
                     <button
                       type="button"
                       onClick={handleSubmit}
-                      disabled={status === "sending" || !fd.sms_consent}
+                      disabled={status === "sending"}
                       className="w-full rounded-2xl py-4 text-[11px] tracking-luxe uppercase hover:-translate-y-0.5 hover:opacity-90 transition disabled:opacity-60 disabled:cursor-not-allowed"
                       style={{ fontFamily: "'Jost', sans-serif", background: "#bd7476", color: "#fff", boxShadow: "0 18px 36px -22px rgba(189,116,118,0.55)" }}
                     >
                       {status === "sending" ? "Sending..." : "Send My Application →"}
                     </button>
-                    {!fd.sms_consent && (
-                      <p className="text-center text-[var(--ink)]/45" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.7rem" }}>
-                        Please check the consent box above to submit.
-                      </p>
-                    )}
                   </>
                 )}
                 {step >= 1 && (
