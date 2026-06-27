@@ -136,7 +136,7 @@ function PrivacyPage() {
             </a>
           </p>
           <p>
-            <a href="https://www.shopdollhouse.co" target="_blank" rel="noopener noreferrer" style={{ color: "var(--rose)", textDecoration: "underline" }}>
+            <a href="https://www.dollhousebrandstudio.com" target="_blank" rel="noopener noreferrer" style={{ color: "var(--rose)", textDecoration: "underline" }}>
               shopdollhouse.co
             </a>
           </p>

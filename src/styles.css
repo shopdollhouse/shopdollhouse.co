@@ -233,6 +233,17 @@
   animation: rise-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards, dh-text-pan 7s linear infinite;
 }
 
+/* Metallic gold gradient for gold TEXT accents (eyebrows, script, headings).
+   No animation, so it never conflicts with .reveal. Keep solid var(--gold)
+   on borders/icons/dots. */
+.gold-grad {
+  background: linear-gradient(100deg, #e8d5b0 0%, #c8a464 42%, #a87f3e 66%, #dcc089 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
 /* ── Cursor sparkle trail — tiny sparkles drift behind the cursor ── */
 @keyframes dh-cursor-sparkle {
   0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3) rotate(0deg); }
@@ -446,15 +457,15 @@ main article:hover {
   content: '';
   position: absolute;
   left: 0; right: 0; bottom: -6px;
-  height: 1px;
-  background: var(--rose);
+  height: 1.5px;
+  border-radius: 1px;
+  background: linear-gradient(90deg, #e8d5b0 0%, #c8a464 35%, #a87f3e 50%, #c8a464 65%, #e8d5b0 100%);
   transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.35s ease;
+  transform-origin: center;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .nav-link:hover::after {
   transform: scaleX(1);
-  transform-origin: left;
 }
 
 /* Plan card highlight pulse — triggered by pulsePlan() from "Choose Your Path" / plan finder */

@@ -99,7 +99,7 @@ export const PLANS: Plan[] = [
     name: "The Starter",
     subtitle: "For businesses and personal brands ready to be fully active on one platform with a lead system behind every post.",
     monthly: 1000,
-    setup: 500,
+    setup: 997,
     platform: 300,
     freeTrial: false,
     description: "One platform, one polished content system, and a full automation stack turning followers into booked clients.",
@@ -128,7 +128,7 @@ export const PLANS: Plan[] = [
     name: "The Growth",
     subtitle: "For service businesses ready for all 3 platforms, full automation, and paid Meta ads working together every day.",
     monthly: 2497,
-    setup: 500,
+    setup: 997,
     platform: 300,
     freeTrial: false,
     description: "Three platforms running, an AI Clone posting for you, leads followed up automatically, and ads bringing in new clients — while you focus on the work.",
@@ -442,7 +442,7 @@ export function PlanCard({
           )}
           {plan.id === "foundation" && (
             <a
-              href="https://www.shopdollhouse.co/foundation"
+              href="https://www.dollhousebrandstudio.com/foundation"
               className="mt-2 block text-center transition-opacity hover:opacity-70"
               style={{ fontFamily: FONT_BODY, fontSize: "12.5px", fontWeight: 600, color: "#bd7476", textDecoration: "underline", textUnderlineOffset: "2px" }}
             >

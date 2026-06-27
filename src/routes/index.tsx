@@ -30,7 +30,7 @@ import { usePageMeta } from "@/lib/use-page-meta";
 import { SiteFooter } from "@/components/SiteFooter";
 import { useScrollReveal } from "@/lib/use-scroll-reveal";
 import { PLANS, PlanCard } from "@/components/AgencyPlans";
-import { PlanComparisonSection, ResultsStatsSection, AgencyFaqSection, FinalCtaSection, AgencyFooterNotes, pulsePlan } from "@/components/AgencySections";
+import { AgencyFaqSection, FinalCtaSection, AgencyFooterNotes, pulsePlan } from "@/components/AgencySections";
 
 export const Route = createFileRoute("/")({ component: Index });
 
@@ -84,7 +84,7 @@ const PlanFeatureIcon = ({ index, filled }: { index: number; filled: boolean }) 
 /* ─── Shared ──────────────────────────────────────────── */
 const Eyebrow = ({ children }: { children: React.ReactNode }) => (
   <p
-    className="text-[var(--gold)] text-[11px] tracking-luxe uppercase font-medium"
+    className="gold-grad text-[11px] tracking-luxe uppercase font-semibold"
     style={{ fontFamily: "'Jost', sans-serif" }}
   >
     {children}
@@ -192,25 +192,28 @@ function Nav() {
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-10">
           <a
             href="/"
-            className="flex flex-col items-start leading-tight shrink-0 no-underline"
+            className="flex items-center gap-2.5 shrink-0 no-underline"
           >
-            <span
-              className="text-[var(--ink)]/55 font-normal not-italic"
-              style={{ fontFamily: "'Allura', cursive", fontSize: "18px", letterSpacing: "1px", textTransform: "lowercase", lineHeight: 1 }}
-            >
-              the
-            </span>
-            <span
-              className="text-[var(--ink)] italic"
-              style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "15px", letterSpacing: "4px", textTransform: "uppercase", marginTop: "-4px" }}
-            >
-              Dollhouse
-            </span>
-            <span
-              className="text-[var(--gold)] not-italic font-semibold"
-              style={{ fontFamily: "'Jost', sans-serif", fontSize: "6.5px", letterSpacing: "3px", textTransform: "uppercase", marginTop: "1px" }}
-            >
-              Brand Studio
+            <DoorIcon className="h-10 w-auto" />
+            <span className="flex flex-col items-start leading-none">
+              <span
+                className="not-italic"
+                style={{ fontFamily: "'Allura', cursive", color: "var(--gold)", fontSize: "20px", letterSpacing: "0.5px", textTransform: "lowercase", lineHeight: 1 }}
+              >
+                the
+              </span>
+              <span
+                className="not-italic"
+                style={{ fontFamily: "'Cormorant Garamond', serif", color: "var(--rose)", fontSize: "19px", fontWeight: 500, letterSpacing: "5px", textTransform: "uppercase", lineHeight: 1, marginTop: "-1px" }}
+              >
+                Dollhouse
+              </span>
+              <span
+                className="not-italic font-semibold"
+                style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)", fontSize: "6.5px", letterSpacing: "3.5px", textTransform: "uppercase", marginTop: "2px" }}
+              >
+                Brand Studio
+              </span>
             </span>
           </a>
 
@@ -274,14 +277,17 @@ function Nav() {
                       <a
                         key={service.href}
                         href={service.href}
-                        className="rounded-2xl px-3 py-2.5 hover:bg-white/70 transition-colors"
+                        className="group/svc flex cursor-pointer items-center justify-between gap-2 rounded-2xl border border-[var(--gold)]/15 bg-white/40 px-3 py-2.5 transition-colors hover:border-[var(--gold)]/40 hover:bg-white/80"
                       >
-                        <span className="block text-[var(--ink)] normal-case tracking-normal leading-tight" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.76rem", fontWeight: 700 }}>
-                          {service.title}
+                        <span>
+                          <span className="block text-[var(--ink)] normal-case tracking-normal leading-tight" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.76rem", fontWeight: 700 }}>
+                            {service.title}
+                          </span>
+                          <span className="mt-1 block text-[var(--ink)]/48 normal-case tracking-normal leading-snug" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.66rem" }}>
+                            {service.short}
+                          </span>
                         </span>
-                        <span className="mt-1 block text-[var(--ink)]/48 normal-case tracking-normal leading-snug" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.66rem" }}>
-                          {service.short}
-                        </span>
+                        <span aria-hidden className="shrink-0 text-[var(--gold)] opacity-0 transition-opacity group-hover/svc:opacity-100">→</span>
                       </a>
                     ))}
                   </div>
@@ -296,7 +302,7 @@ function Nav() {
                       <a
                         key={service.slug}
                         href={`/systems/${service.slug}`}
-                        className="group/item rounded-2xl p-3 flex gap-3 hover:bg-white/70 transition-colors"
+                        className="group/item flex cursor-pointer gap-3 rounded-2xl border border-[var(--gold)]/15 bg-white/40 p-3 transition-colors hover:border-[var(--gold)]/40 hover:bg-white/80"
                       >
                         <span
                           className="h-10 w-10 rounded-xl flex items-center justify-center shrink-0"
@@ -316,6 +322,7 @@ function Nav() {
                             {service.short}
                           </span>
                         </span>
+                        <span aria-hidden className="ml-auto self-center shrink-0 text-[var(--gold)] opacity-0 transition-opacity group-hover/item:opacity-100">→</span>
                       </a>
                     );
                   })}
@@ -626,31 +633,32 @@ function Hero() {
 function ChooseYourPath() {
   const paths = [
     {
-      eyebrow: "Managed Growth",
-      title: "I have a business. I want more booked clients.",
-      body: "Choose content, ads, AI clone, reviews, and lead follow-up managed together.",
-      href: "#pricing",
-      cta: "See Managed Plans",
-      targetPlan: "growth",
+      eyebrow: "Med Spas & Clinics",
+      calloutSub: "We Specialize",
+      title: "I want more booked clients.",
+      body: "We run the ads and our AI Caller books the patients — while you focus on your work.",
+      href: "https://medspa.dollhousebrandstudio.com",
+      cta: "See How It Works",
+      targetPlan: null,
       image: managedGrowthImage,
       imageAlt: "A booked client calendar and business growth dashboard",
       featured: true,
     },
     {
-      eyebrow: "Lead System",
-      title: "I need the website and follow-up foundation first.",
-      body: "Start with the website, missed-call text-back, review funnel, CRM, and on-site SEO — your complete lead foundation.",
-      href: "#foundation",
-      cta: "See The Foundation Plan",
+      eyebrow: "Service Businesses",
+      title: "I need a website and lead system first.",
+      body: "A site that captures every lead — missed-call text-back, reviews, and follow-up built in.",
+      href: "#pricing",
+      cta: "See Website Plans",
       targetPlan: "foundation",
       image: leadSystemImage,
       imageAlt: "A website connected to an automated lead follow-up and booking system",
       featured: false,
     },
     {
-      eyebrow: "Starting From Scratch",
-      title: "I need to build my brand and offer before marketing.",
-      body: "Use the Brand Room tools to clarify your audience, offer, visuals, content, and launch direction.",
+      eyebrow: "New Brands",
+      title: "I need to build my brand first.",
+      body: "Clarify your offer, visuals, and content in the Brand Room before you market.",
       href: "https://room.shopdollhouse.co",
       cta: "Enter The Brand Room",
       targetPlan: null,
@@ -664,17 +672,17 @@ function ChooseYourPath() {
     <section className="px-6 py-16 md:py-20" style={{ background: "linear-gradient(180deg, #fff8f3 0%, var(--cream) 100%)" }}>
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow>Start Here</Eyebrow>
+          <p className="gold-grad text-[17px] tracking-luxe uppercase font-semibold" style={{ fontFamily: "'Jost', sans-serif" }}>Start Here</p>
           <h2 className="mt-3 text-[var(--ink)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.3rem, 5vw, 3.8rem)", fontWeight: 400, lineHeight: 1 }}>
-            Choose the support that matches where you are now.
+            Which one sounds like you?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--ink)]/60" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.98rem", lineHeight: 1.7 }}>
-            You do not need every service at once. Start with the gap that is costing you the most time or leads.
+            Pick the path that fits where you are right now — you don't need everything at once.
           </p>
         </div>
 
         <div className="mt-8 grid gap-4 lg:grid-cols-3">
-          {paths.map(({ eyebrow, title, body, href, cta, targetPlan, image, imageAlt, featured }) => (
+          {paths.map(({ eyebrow, calloutSub, title, body, href, cta, targetPlan, image, imageAlt, featured }) => (
             <a
               key={title}
               href={href}
@@ -705,9 +713,16 @@ function ChooseYourPath() {
                 />
               </div>
               <div className="flex flex-1 flex-col p-6">
-                <p className="text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)", fontWeight: 700 }}>
-                  {eyebrow}
-                </p>
+                <div className="flex flex-col">
+                  <p className="gold-grad inline-flex w-fit items-center gap-1.5 text-[14px] uppercase" style={{ fontFamily: "'Jost', sans-serif", fontWeight: 800, letterSpacing: "0.14em", filter: "drop-shadow(0 0 10px rgba(200,164,100,0.6))" }}>
+                    ♥ {eyebrow}
+                  </p>
+                  {calloutSub && (
+                    <span className="uppercase" style={{ fontFamily: "'Jost', sans-serif", color: featured ? "rgba(200,164,100,0.9)" : "var(--gold)", fontSize: "9px", fontWeight: 600, letterSpacing: "0.22em", marginTop: "3px" }}>
+                      {calloutSub}
+                    </span>
+                  )}
+                </div>
                 <h3 className="mt-2.5" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.65rem", lineHeight: 1.05, color: featured ? "var(--cream)" : "var(--ink)" }}>
                   {title}
                 </h3>
@@ -1968,7 +1983,7 @@ function AICloneSection() {
                 <div>
                   <p className="text-[10px] tracking-[0.16em] uppercase mb-2 font-bold" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)" }}>Starter Plan</p>
                   <p className="m-0 italic text-4xl" style={{ fontFamily: "'Cormorant Garamond', serif", color: "var(--rose)" }}>$1,000/mo</p>
-                  <p className="m-0 mt-1 text-sm" style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(30,15,10,0.52)" }}>plus $500 one-time setup</p>
+                  <p className="m-0 mt-1 text-sm" style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(30,15,10,0.52)" }}>plus $997 one-time setup</p>
                 </div>
                 <div className="rounded-2xl px-5 py-4 text-left sm:text-right" style={{ background: "rgba(255,255,255,0.5)", color: "var(--ink)", border: "1px solid rgba(200,168,100,0.24)" }}>
                   <p className="m-0 text-[10px] tracking-[0.16em] uppercase font-bold" style={{ fontFamily: "'Jost', sans-serif" }}>Launch Timeline</p>
@@ -2027,7 +2042,7 @@ function AICloneSection() {
 function Pricing() {
   const [contractTerm, setContractTerm] = useState<"6" | "12">("6");
   const contractMonths = Number(contractTerm);
-  const setupFee = 500;
+  const setupFee = 997;
   const fullPlanBonus = contractTerm === "12" ? "Annual bonus: 1 month free on every plan" : "Choose annual to unlock 1 month free";
   const displayPrice = (monthlyPrice: number) => `$${monthlyPrice.toLocaleString()}`;
 
@@ -2040,7 +2055,7 @@ function Pricing() {
       fit: "Best for getting the lead system in place",
       outcome: "A website and automation system that turns every inquiry, missed call, and appointment into a managed conversation.",
       tagline: "For service businesses that need a website and full lead system before anything else.",
-      setupLabel: "+ $500 one-time setup",
+      setupLabel: "+ $997 one-time setup",
       cta: "Build My Foundation →",
       features: [
         "10–20 page professional website built for lead generation",
@@ -2066,7 +2081,7 @@ function Pricing() {
       outcome: "One platform, one polished content system, and a full automation stack turning followers into booked clients.",
       tagline: "For businesses and personal brands ready to be fully active on one platform with a lead system behind every post.",
       topBadge: { label: "Best Starting Point", tone: "pink" as "gold" | "pink" },
-      setupLabel: "+ $500 one-time setup",
+      setupLabel: "+ $997 one-time setup",
       cta: "Launch My Brand →",
       features: [
         "1 platform fully managed — Facebook, Instagram, or TikTok — nothing to post",
@@ -2093,7 +2108,7 @@ function Pricing() {
       tagline: "For service businesses ready for all 3 platforms, full automation, and paid Meta ads working together every day.",
       featured: true,
       topBadge: { label: "Most Popular", tone: "gold" as "gold" | "pink" },
-      setupLabel: "+ $500 one-time setup",
+      setupLabel: "+ $997 one-time setup",
       cta: "Scale With Everything →",
       features: [
         "3 platforms fully managed — Facebook, Instagram & TikTok — nothing to post, nothing to manage",
@@ -2956,9 +2971,9 @@ function Contact() {
               {step === 2 && (
                 <div className="space-y-3">
                   <div className="grid grid-cols-2 gap-x-3 gap-y-1.5">
-                    {/* Featured: Contractors & home services */}
+                    {/* Featured: Med spas & aesthetics */}
                     {(() => {
-                      const opt = "Contractors & home services";
+                      const opt = "Med spas & aesthetics";
                       const selected = fd.industry === opt;
                       return (
                         <button
@@ -2986,12 +3001,12 @@ function Contact() {
                       );
                     })()}
                     {[
-                      "Coaches & consultants",
-                      "Med spas & aesthetics","Real estate agents",
-                      "Salons & beauty pros","Restaurants & food brands",
-                      "Fitness studios & gyms","Law firms & professionals",
-                      "Retail & boutique brands","E-commerce businesses",
-                      "Photographers & creatives","Mortgage & insurance pros",
+                      "Real estate agents","Contractors & home services",
+                      "Coaches & consultants","Salons & beauty pros",
+                      "Restaurants & food brands","Fitness studios & gyms",
+                      "Law firms & professionals","Retail & boutique brands",
+                      "E-commerce businesses","Photographers & creatives",
+                      "Mortgage & insurance pros",
                     ].map((opt) => {
                       const selected = fd.industry === opt;
                       return (
@@ -3266,7 +3281,6 @@ function Index() {
       <Hero />
       <ChooseYourPath />
       <TrustBar />
-      <MarqueeStrip />
       <Services />
       <ProofSection />
       <AICloneSection />
@@ -3274,8 +3288,6 @@ function Index() {
       <HowItWorks />
       <Pricing />
       <AgencyFooterNotes />
-      <PlanComparisonSection />
-      <ResultsStatsSection />
       <AgencyFaqSection />
       <FinalCtaSection proposalHref="#contact" />
       <Contact />

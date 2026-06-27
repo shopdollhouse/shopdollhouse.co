@@ -30,11 +30,11 @@ body{background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--ink);m
 
 /* DECK TOGGLE */
 .deck-section{background:var(--cream);padding:22px 40px 2px;}
-.deck-toggle{max-width:560px;margin:0 auto;display:flex;gap:6px;background:var(--blush);border:1px solid var(--border);border-radius:40px;padding:5px;box-shadow:0 2px 12px rgba(189,116,118,.06);}
+.deck-toggle{max-width:840px;margin:0 auto;display:flex;gap:6px;background:var(--blush);border:1px solid var(--border);border-radius:40px;padding:5px;box-shadow:0 2px 12px rgba(189,116,118,.06);}
 .deck-btn{flex:1;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);background:none;border:none;border-radius:30px;padding:11px 14px;cursor:pointer;transition:color .22s,background .22s,box-shadow .22s;white-space:nowrap;line-height:1.3;}
 .deck-btn:hover{color:var(--rose);}
 .deck-btn.active{background:var(--white);color:var(--rose);box-shadow:0 2px 10px rgba(189,116,118,.12);}
-.deck-btn .dn{display:inline-block;background:var(--blush2);border-radius:10px;padding:1px 7px;font-size:9px;margin-left:5px;color:var(--muted);}
+.deck-btn .dn{display:inline-block;background:var(--blush2);border-radius:12px;padding:2px 9px;font-size:11px;margin-left:6px;color:var(--muted);}
 .deck-btn.active .dn{color:var(--rose);}
 
 /* SEARCH */
@@ -197,7 +197,7 @@ footer{background:var(--cream);text-align:center;padding:40px;border-top:1px sol
     </div>
     <div class="howto-body open" id="howtoBody">
       <ol class="howto-list">
-        <li><b>Pick a library.</b> Use the two tabs just below to switch between <b>The Dollhouse Hub</b> (prompts for running the agency) and the <b>AI Cashflow Masterclass</b> (plays for finding new clients).</li>
+        <li><b>Pick a library.</b> Use the three tabs just below to switch between <b>The Dollhouse Hub</b> (prompts for running the agency), the <b>AI Cashflow Masterclass</b> (plays for finding new clients), and the <b>AI Money Vault</b> (lead lists, outreach, AI-search audits, agents and money plays from the masterclass).</li>
         <li><b>Fill in Client Details once.</b> Open the <b>Client Details</b> box and type in the business name, niche, city, and so on. Every prompt fills that info in for you — <span class="fv-chip">green</span> means it's filled in, <span class="ph-chip">yellow</span> means you still need to add it before sending.</li>
         <li><b>Find the prompt you need.</b> Tap <b>Categories</b> to open the full list and jump to a section, or type in the search box (e.g. "email," "carousel," "leads").</li>
         <li><b>Follow the Step numbers.</b> Work top to bottom. When prompts share the same Step number, they're <b>options</b> — just pick one and move on.</li>
@@ -212,6 +212,7 @@ footer{background:var(--cream);text-align:center;padding:40px;border-top:1px sol
   <div class="deck-toggle" id="deckToggle">
     <button class="deck-btn active" data-deck="dollhouse" onclick="setDeck('dollhouse')">The Dollhouse Hub<span class="dn" id="dn_dollhouse"></span></button>
     <button class="deck-btn" data-deck="cashflow" onclick="setDeck('cashflow')">AI Cashflow Masterclass<span class="dn" id="dn_cashflow"></span></button>
+    <button class="deck-btn" data-deck="webplay" onclick="setDeck('webplay')">AI Money Vault<span class="dn" id="dn_webplay"></span></button>
   </div>
 </div>
 
@@ -527,9 +528,8 @@ const sections=[
     prompts:[
       {step:1,label:'Manus Lead List — Businesses With No Website',context:'Run in Manus AI. Scrapes Google Maps for listings with no website button — only Directions — i.e. prime "I already built you one" targets.',text:'Search Google Maps for [NICHE] businesses in [CITY]. Go through the results and identify listings that do NOT have a website linked to their Google Business Profile — you can tell because there is no "Website" button on the listing card, only a "Directions" button, and the profile shows an "Add website" option under "Add missing information."\n\nFor each business found without a website, provide: Business Name, Category, Full Address, Phone Number, and a direct link to their Google Maps listing. Focus on locally owned, independent businesses.'},
       {step:1,label:'No-Website Lead List — Strict Criteria',context:'Tighter version. Filters on multiple criteria at once (active profile + no site + legit operation) and returns the exact 4 fields you need to reach out. Auto-fills your niche from Client Details.',text:'Find 10-20 businesses in [CITY] that meet ALL of the following criteria:\n- [NICHE] businesses\n- Have an active Google Business Profile\n- Have NO website connected to their Google Business Profile\n- Appear to be legitimate operating businesses\n\nFor each business, provide:\n1. Business Name\n2. Google Maps / Google Business Profile URL\n3. Phone Number\n4. Email Address (if publicly available)'},
-      {step:2,label:'AI Studio Full Website Build',context:'The flagship build prompt. Paste a prospect\'s Google Maps URL and the AI researches their listing, reviews, and photos to generate a full premium website blueprint — pages, copy, SEO, and CTAs. Use it to create the "already done" site, then send the Golden Email below with the link.',text:'AI STUDIO WEBSITE PROMPT\n\nYou are an award-winning web designer, CRO expert, local SEO specialist, and direct-response copywriter.\n\nYour task is to create a complete premium website for a local business using ONLY the information available from the Google Business Profile, Google Maps listing, reviews, photos, social profiles, and publicly available online information.\n\nBusiness Information:\n- Google Maps URL: [GOOGLE_MAPS_URL]\n\nObjective: Create a modern, high-converting website that looks like a professional agency-built website worth $5,000-$15,000. The business may not currently have a website.\n\nResearch Phase — Analyze all publicly available information and extract: Business name, Primary services, Secondary services, Service areas, Customer reviews, Customer pain points, Frequently mentioned benefits, Business strengths, Photos, Contact information, Hours of operation, Industry positioning.\n\nIf information is missing:\n- Infer reasonable content based on industry best practices\n- Clearly label assumptions internally\n- Never invent certifications, awards, years in business, licenses, or credentials\n\nWebsite Goal — Generate more: Phone calls, Form submissions, Appointment bookings, Quote requests.\n\nDesign Direction — Create a premium modern design using: Strong visual hierarchy, Modern typography, Large hero sections, Clean whitespace, Trust-building layouts, Subtle animations, Modern cards and content blocks, Mobile-first responsive design. The website should look significantly better than the average local business website.\n\nCreate These Pages: Home, About, Services, Individual Service Pages, Reviews, Gallery, Service Areas, FAQ, Contact.\n\nHomepage Requirements:\n- Hero: Powerful headline, Clear value proposition, Primary CTA, Secondary CTA\n- Trust: Review highlights, Reputation indicators, Customer satisfaction messaging\n- Services: Top services, Service benefits, Internal linking opportunities\n- Why Choose Us: Differentiators, Customer-focused benefits\n- Gallery: Showcase available images, Suggest image types if insufficient photos exist\n- Reviews: Pull themes from actual reviews, Highlight recurring customer praise\n- FAQ: Address common buying objections\n- Final CTA: Strong lead generation offer, Clear contact options\n\nSEO Requirements (every page): Optimized page title, Meta description, H1, H2 structure, Local keyword strategy, Internal linking recommendations.\n\nContent Requirements: Write persuasive, human-sounding copy. Avoid generic AI wording. Make the business appear trustworthy, professional, and credible. Create enough content to immediately publish the website.\n\nLead Generation Bonus — At the end, provide: Top 5 weaknesses in the business\'s current online presence, Top 5 opportunities to generate more leads, Recommended lead magnet or special offer, Recommended call-to-action, Recommended Google Business Profile improvements.\n\nFinal Deliverable — Produce a complete website blueprint including: Sitemap, Page structure, Copy, SEO recommendations, CTA placements, Design guidance. The final result should be impressive enough that a business owner would gladly pay to have it launched.'},
-      {step:3,label:'Golden Email — "I Built You This Website"',context:'The pre-built-site offer. One-time price, no strings, scarcity close (one business per market). Fill [PRICE] and [LINK].',text:'Subject: i built you this [NICHE] website\n\nHey [First Name],\n\nI was scoping out [NICHE] businesses in [CITY] and stumbled on your business. It looks like you have a great reputation — but no website? I\'m sure you know that\'s leaving money on the table every single day.\n\nHere\'s the situation: I just finished building a professional [NICHE] website for someone else. They went a different direction. The site is done, polished, and ready to go — I just need someone to actually use it.\n\nNormally this is a $3,000 build. I\'m letting it go for [PRICE], one-time, no strings attached.\n\nIt\'s a lead-focused design built to turn visitors into calls and looks sharp on mobile. If you want it, just let me know — I can have it live for you in 48 hours or less.\n\nHere\'s the site: [LINK]\n\nP.S. I\'m only offering this to one [NICHE] business in [CITY]. First one to respond gets it — after that, I move on to the next market.\n\nTalk soon,\n[OWNER_NAME]\nThe Dollhouse Brand Studio'},
-      {step:3,label:'SMS — Pre-Built Site Offer',context:'The text version of the Golden Email. Casual, scarcity-driven, 48-hour turnaround. Fill [PRICE].',text:'Hey [First Name], saw you run a [NICHE] biz but still don\'t have a website? I\'ve got a pro [NICHE] site ready to go — built for turning leads into sales. I usually sell these for $3k, but it\'s yours today for only [PRICE] if you want it. Can be live in 48hrs. First [NICHE] business who responds takes it — just let me know.'},
+      {step:2,label:'Golden Email — "I Built You This Website"',context:'The pre-built-site offer. One-time price, no strings, scarcity close (one business per market). Fill [PRICE] and [LINK].',text:'Subject: i built you this [NICHE] website\n\nHey [First Name],\n\nI was scoping out [NICHE] businesses in [CITY] and stumbled on your business. It looks like you have a great reputation — but no website? I\'m sure you know that\'s leaving money on the table every single day.\n\nHere\'s the situation: I just finished building a professional [NICHE] website for someone else. They went a different direction. The site is done, polished, and ready to go — I just need someone to actually use it.\n\nNormally this is a $3,000 build. I\'m letting it go for [PRICE], one-time, no strings attached.\n\nIt\'s a lead-focused design built to turn visitors into calls and looks sharp on mobile. If you want it, just let me know — I can have it live for you in 48 hours or less.\n\nHere\'s the site: [LINK]\n\nP.S. I\'m only offering this to one [NICHE] business in [CITY]. First one to respond gets it — after that, I move on to the next market.\n\nTalk soon,\n[OWNER_NAME]\nThe Dollhouse Brand Studio'},
+      {step:2,label:'SMS — Pre-Built Site Offer',context:'The text version of the Golden Email. Casual, scarcity-driven, 48-hour turnaround. Fill [PRICE].',text:'Hey [First Name], saw you run a [NICHE] biz but still don\'t have a website? I\'ve got a pro [NICHE] site ready to go — built for turning leads into sales. I usually sell these for $3k, but it\'s yours today for only [PRICE] if you want it. Can be live in 48hrs. First [NICHE] business who responds takes it — just let me know.'},
     ]
   },
   {
@@ -605,7 +605,250 @@ const sections=[
       {label:'Client Content Strategy Document — Full Brand Bible',text:'Use this prompt after a client completes their onboarding questionnaire. Paste their answers + this prompt into ChatGPT or Claude. It generates a complete Client Content Strategy Document — your master reference for everything you create for this client.\n\nPaste this into AI, then paste the client\'s onboarding questionnaire answers below it:\n\n"You are creating a comprehensive Client Content Strategy Document for The Dollhouse Brand Studio. Using the onboarding questionnaire answers provided below, generate a complete, professional content strategy document.\n\nThe document should include the following sections:\n\n─────────────────────────────────────────\n1. CLIENT OVERVIEW\n─────────────────────────────────────────\n- Business name, industry, city\n- Website and social media URLs (Facebook, Instagram, TikTok)\n- Plan enrolled in\n- Account manager: Mandy Fortune — The Dollhouse Brand Studio\n\n─────────────────────────────────────────\n2. BRAND GUIDE\n─────────────────────────────────────────\nCreate a brand guide table with:\n- Font Heading (Large): [suggest a premium Google Font based on their aesthetic]\n- Subhead (Medium): [suggest a complementary Google Font]\n- Body Text: [suggest a clean readable Google Font]\n- Primary Color: [extract or suggest hex code based on their stated colours]\n- Secondary Color: [extract or suggest]\n- Accent Color: [extract or suggest]\n- Tone of Voice: [2–3 sentences describing how the brand should speak — based on their vibe, audience, and business]\n- Content Topics: [list 4–6 content pillars based on their business and goals]\n\n─────────────────────────────────────────\n3. TARGET AUDIENCE\n─────────────────────────────────────────\n- Ideal client profile (age, gender, income, lifestyle)\n- What problem they have\n- What makes them choose this business\n- Where they spend time online\n\n─────────────────────────────────────────\n4. COMPETITOR ANALYSIS\n─────────────────────────────────────────\nFor each competitor listed, provide:\n- What they do well on social media\n- What they do poorly or are missing\n- Opportunity for differentiation\n\n─────────────────────────────────────────\n5. CONTENT CALENDAR FRAMEWORK\n─────────────────────────────────────────\nCreate a weekly content framework with 5 post types:\n- Monday: [content pillar]\n- Tuesday: [content pillar]\n- Wednesday: [content pillar]\n- Thursday: [content pillar]\n- Friday: [content pillar]\n- Best time to post: [suggest based on industry and audience]\n- Caption tone: [describe the ideal tone for captions]\n\n─────────────────────────────────────────\n6. HASHTAG STRATEGY\n─────────────────────────────────────────\nGenerate 30 hashtags in 3 tiers:\n- Broad (10): large general hashtags in the niche (1M+ posts)\n- Mid (10): niche-specific hashtags (100K–1M posts)\n- Local/targeted (10): city-specific or hyper-targeted hashtags\n\n─────────────────────────────────────────\n7. 20 CONTENT QUESTIONS & ANSWERS\n─────────────────────────────────────────\nGenerate 20 FAQ-style questions that real clients/customers ask this business — with detailed, accurate answers for each. These become ready-made educational content posts.\n\nFormat: Question on one line, Answer on the next line.\n\n─────────────────────────────────────────\n8. POST IDEAS (10 STARTER IDEAS)\n─────────────────────────────────────────\nGenerate 10 specific post ideas for the first month — include:\n- Post type (Reel / Carousel / Static)\n- Hook / headline\n- Caption direction (2 sentences)\n- CTA\n\n─────────────────────────────────────────\n9. INSPIRATION DIRECTION\n─────────────────────────────────────────\nBased on the Instagram accounts and websites the client loves, describe:\n- The visual aesthetic to aim for (colours, photography style, layout)\n- 3 specific content styles to replicate for this brand\n- What to avoid\n\n─────────────────────────────────────────\n10. FIRST 30 DAYS STRATEGY\n─────────────────────────────────────────\nWrite a brief paragraph (3–5 sentences) describing the strategic goal for the first 30 days, what content should focus on, and what success looks like.\n\nFormat the entire document cleanly with clear section headers, easy to read and use as a working reference. Tone: professional and strategic.\n\n[PASTE CLIENT\'S ONBOARDING QUESTIONNAIRE ANSWERS BELOW THIS LINE]\n"'},
       {label:'GHL Website — Revamp an Existing Site (Vibe Builder)',context:'Use this in the AI Studio Vibe Builder to rebuild a client\'s existing website into a high-converting GHL site.',text:'Use this in the AI Studio Vibe Builder to rebuild a client\'s existing website into a high-converting GHL site.\n\nPaste into AI Studio Vibe Builder:\n\n"Build a modern, high-converting website using the following details:\n- Client Business Name: [Business Name]\n- Location: [City, Province/State]\n- Current Website for Context: [Insert Current URL]\n- Design Style Inspiration: [Describe style — e.g., clean minimalist with smooth hover-highlight sections and serif typography]\n- Primary Services: [List 3–4 key services — e.g., Luxury Kitchen Remodeling, Custom Cabinetry, Quartz Countertop Installation]\n- Core Goal: Convert cold traffic into estimate survey submissions and direct calendar bookings."\n\nAFTER BUILDING — add these two things immediately:\n1. Replace the contact form with a multi-step Survey → Book a Call flow (removes friction, increases conversions)\n2. Add a Review Funnel landing page with QR code: 5-star → redirects to Google Business Profile. 4 stars or below → private feedback form only.'}
     ]
-  },
+  },,
+{
+  "deck": "webplay",
+  "id": "vault_strategy",
+  "title": "Start Here · Game Plan",
+  "sub": "New? Begin here",
+  "intro": "Brand new to this? Start right here. These prompts give you the big picture and your very first move. Run the $1,000 plan first — it builds your personal roadmap — then work down the tabs in order, Step 1 through Step 6.",
+  "prompts": [
+    {
+      "label": "$1,000 Client — Full Business Plan",
+      "context": "The flagship money prompt. Asks AI to find a client, identify a problem, deliver a solution, and hand you every asset (scripts, templates, SOPs) to make your first $1,000.",
+      "text": "Help me make $1,000 by finding me a client to sell a digital service to by identifying a problem and providing a solution.\n1. How to find the prospect\n2. A creative tactic to get their contact info\n3. A creative way to get their attention\n4. The digital service I should sell them and how to deliver it.\nInclude all assets I will need including any scripts, templates, PDFs, DMs, emails, presentations, fulfillment SOPs and more."
+    },
+    {
+      "label": "ChatGPT Client Workflow (3 Steps)",
+      "context": "A quick conversational flow to get ChatGPT doing the client-getting work end-to-end on a named lead.",
+      "text": "Run this as a 3-step flow:\n1. How can ChatGPT help me get digital marketing clients?\n2. If I give you a lead by name, website and email, can you do all of this for me?\n3. Let's do one for [BUSINESS NAME], [WEBSITE], [EMAIL]."
+    },
+    {
+      "label": "7 Ways to Use Deep Research for Outreach",
+      "context": "A reference play: seven ways to turn Manus/AI deep research into ultra-personalized pitches, lead magnets, and follow-ups.",
+      "text": "Use AI Deep Research to win clients, seven ways:\n1. ULTRA-CUSTOM PITCHES — Pull social profiles, website performance, ad presence, reviews and SEO gaps, then craft a hyper-personalized pitch: \"Hey [Name], I noticed your last Facebook post was 2 months ago and you're not running any Google Ads… I helped a competitor in [CITY] double their leads with just a $500 budget. Want me to show you how?\"\n2. UNCOVER COMPETITOR GAPS — \"I ran a deep dive on [Competitor]; they're ranking for 27 keywords you're not showing up for. Want a quick 10-minute breakdown?\"\n3. REPORTS AS LEAD MAGNETS — Turn the research into instant audit PDFs / 'Local Business Visibility Reports' and give them away in DMs with: \"Want a full visibility report on your business? I'll run one free. Just reply 'yes'.\"\n4. FACEBOOK GROUPS / LINKEDIN — Find 'need marketing help' posts, run research, and comment/DM with a specific insight.\n5. FOLLOW UP OLD LEADS — Find a NEW gap they have now (bad reviews, outdated content, no retargeting) and reopen: \"Hey [Name], just saw your rating dropped and you're missing branded searches. Want me to fix this before it hurts bookings?\"\n6. WEEKLY 'SPY REPORTS' AS CONTENT — \"This local [NICHE] spent $2K on ads last month… and wasted 80% of it,\" then break down the research and offer the same analysis.\n7. BUILD SALES SCRIPTS FROM INTEL — Use their top pages, bad reviews, weak CTAs and outdated content to walk into the call already knowing their pain points."
+    }
+  ]
+},
+{
+  "deck": "webplay",
+  "id": "vault_leads",
+  "title": "Step 1 · Find Leads",
+  "sub": "Get a list of businesses",
+  "intro": "Your first real task: get a list of local businesses that need help. Paste any of these into Manus AI, Gemini, or ChatGPT and fill in your city and niche. Beginner tip — start with the no-website lists at the top; those owners are the easiest first clients to win.",
+  "prompts": [
+    {
+      "label": "Find Businesses With No Website",
+      "context": "Run in ChatGPT, Gemini, or Manus. Builds a list of local home-service & professional businesses that have a Google profile but no website — your warmest \"I already built you one\" targets.",
+      "text": "Find 10-20 businesses in [CITY] that meet ALL of the following criteria:\n- Located in [CITY] or the surrounding [REGION] area\n- Home Services or Professional Services businesses\n- Have an active Google Business Profile\n- Have NO website connected to their Google Business Profile\n- Appear to be legitimate operating businesses\n\nFor each business, provide:\n1. Business Name\n2. Google Maps / Google Business Profile URL\n3. Phone Number\n4. Email Address (if publicly available)\n\nOutput as a table.\n\nPrioritize businesses that would clearly benefit from a professional website, such as: Roofers, Plumbers, Electricians, HVAC companies, Landscapers, Tree services, Pressure washing companies, Handymen, Contractors, Attorneys, Accountants, Bookkeepers, Insurance agents, Mortgage brokers, Real estate-related services.\n\nExclude: Franchise locations, National chains, Businesses that already have a website listed anywhere on their Google profile, Businesses that are permanently closed.\n\nGoal: Identify [CITY] businesses that have a Google Business Profile but no website so I can contact them and offer a free website redesign or low-cost website build. Return only the best opportunities with the strongest Google review presence and highest likelihood of becoming a paying client."
+    },
+    {
+      "label": "No-Website Lead List (Gemini/Manus)",
+      "context": "Finds businesses with a claimed Google listing but NO website linked.",
+      "text": "I run a digital marketing agency in [CITY] that is looking to expand. My ideal clients are in the [NICHE] space. Make me a detailed list of 25 leads of small businesses that have a claimed listing in Google but no website linked. Collect any additional business information including business name, address, city, state, phone number, website address, email address and key decision makers. Exclude franchises or chains.\n\nAsk me any clarifying questions."
+    },
+    {
+      "label": "Quick No-Website List (5 fast)",
+      "context": "The fast version — 5 no-website businesses with just the essentials.",
+      "text": "Find me 5 businesses in [CITY] that have Google Business Profiles but do not have a website. I'll need their company name, email and phone #."
+    },
+    {
+      "label": "Low-Review-Score List (5 fast)",
+      "context": "Finds businesses with weak review scores — perfect for pitching reputation/reviews services.",
+      "text": "Find me 5 businesses in [CITY] that have Google Business Profiles but do not have a good review score. I'll need their company name, email and phone #."
+    },
+    {
+      "label": "Local Lead List — Niche + Services",
+      "context": "The core expansion-list prompt. Returns 25 local leads with full contact info plus a service idea for each.",
+      "text": "I run a digital marketing agency in [CITY] that is looking to expand. My ideal clients are in the [NICHE] space. Make me a detailed list of 25 leads from the [NICHE] space in [CITY]. Collect all their business information including business name, address, city, state, phone number, website address, email address and key decision makers. Exclude franchises or chains. Finally, give me an idea of what digital marketing services I can offer to each of them.\n\nAsk me any clarifying questions."
+    },
+    {
+      "label": "Audit-Hook List (Gemini, 2 niches)",
+      "context": "20 leads in two niches, each with a digital audit, the single best service to pitch, the likely decision-maker, and a custom cold opener for the top 3.",
+      "text": "I am acting as a digital marketing agency owner in [CITY]. I need to build a high-quality prospecting list for two specific niches: 1) [NICHE 1] and 2) [NICHE 2] in [CITY].\nPlease use Google Search to find 20 real, active businesses in [CITY] fitting these criteria. Do not include large franchises or national chains; focus on local SMBs with established websites.\nFor each lead, organize the data into a table with the following columns:\n1. Business Name\n2. Website URL\n3. Niche\n4. Likely Decision Maker Title (Owner, General Manager, or Marketing Director?)\n5. Digital Audit & The \"Hook\": Briefly analyze their current digital presence (website quality, likely SEO gaps, social media activity) and suggest one specific high-value service I should pitch them (e.g., 'Website is non-responsive; pitch a redesign' or 'Low Google Review count; pitch Reputation Management').\n6. Public Phone Number (from their Google Business Profile)\nAfter the table, choose the top 3 opportunities and write a custom 2-sentence 'cold email opener' for each that references the specific weakness you identified in the audit."
+    },
+    {
+      "label": "Traffic-Gap List (Similarweb)",
+      "context": "Builds a revenue-qualified list and uses Similarweb to flag businesses with low traffic/visibility who need marketing help.",
+      "text": "Hi Manus,\nPlease build me a lead list of 25 small [NICHE] companies located in [CITY/STATE] with an estimated annual revenue between $1-5 million.\nFor each company, please perform the following steps:\n- Identify the company and its website.\n- Use the Similarweb integration to analyze their website traffic and identify those that could benefit from marketing help (e.g., low traffic, low search visibility).\n- Find the contact information for each qualified lead, including a contact person's name, their email address, and the company's phone number.\nPlease present the final list in a table format."
+    },
+    {
+      "label": "LinkedIn Owner Search (100 owners)",
+      "context": "Uses a Google site: search of LinkedIn to pull up to 100 small-business owners with contact details.",
+      "text": "Use the Google search keyword [site:linkedin.com/in/ \"small business owner\" OR \"founder\" OR \"CEO\" \"[CITY], [STATE]\"] to help me find at least 100 small business owners with the following details:\n\n- Business Name\n- Owner's Full Name\n- Business Address\n- Website URL\n- Contact Phone Number\n- Email Address\n\nTarget criteria:\n- Location: [CITY], [STATE]\n- Industry: [NICHE - e.g., restaurants, retail, consulting, home services]\n- Business size: Small businesses (typically under 50 employees)"
+    },
+    {
+      "label": "Meta Ad Library Competitor Check",
+      "context": "Feed it a CSV of businesses already running Google Ads. Manus visits the Meta Ad Library and flags who's also running Facebook/Instagram ads, plus a strategy note for each.",
+      "text": "Role: Act as a Senior Growth Marketer and Competitor Intelligence Specialist.\nContext: I have attached a CSV of small businesses in the [NICHE] niche. These businesses are currently confirmed to be running Google Ads.\nTask:\n1. Use your Browser Operator to visit the Meta Ad Library (facebook.com/ads/library).\n2. For each business in the attached CSV, search for their active ads in the \"All Ads\" category for the [REGION] region.\n3. Verify if they have any currently active ads on Facebook or Instagram.\nOutput Requirements: Create an updated version of my table with two additional columns:\n- Meta Ads Active: (Yes/No)\n- Ad Strategy Note: (e.g., \"Focusing on video testimonials,\" \"Running seasonal discounts,\" or \"No active Meta presence found\")\nConstraint: If multiple businesses have similar names, cross-reference the website URL from the CSV with the \"About\" section or website link on the Facebook Page to ensure accuracy.\nDeliverable: Provide the final verified list in a structured table and offer to export the results back into a new CSV."
+    },
+    {
+      "label": "AI-Built Sites Needing SEO",
+      "context": "Finds small businesses whose sites were built with AI tools (Lovable, etc.) that Google struggles to read — a fresh angle for an SEO/rebuild pitch.",
+      "text": "Can you find me 10 sites that were built with an AI tool like Lovable for small businesses in the [NICHE] space that need better SEO? Give me the contact info of the site owner — name, phone # and email if possible."
+    }
+  ]
+},
+{
+  "deck": "webplay",
+  "id": "nowebsite",
+  "title": "Step 2 · Build the Site",
+  "sub": "Build it before you pitch",
+  "intro": "Pick one business from your Step 1 list and build them a website before you ever talk to them. Paste their Google Maps link into the prompt below — the AI reads their reviews, services and photos and hands you a complete site you can show them in minutes.",
+  "prompts": [
+    {
+      "label": "AI Studio Website Prompt",
+      "context": "Paste a prospect's Google Maps URL into AI Studio (or ChatGPT) and it researches their listing, reviews, and photos to generate a complete premium website blueprint — pages, copy, SEO, and CTAs. Build the \"already done\" site, then pitch it with the email or text in Step 3.",
+      "text": "AI STUDIO WEBSITE PROMPT\n\nYou are an award-winning web designer, CRO expert, local SEO specialist, and direct-response copywriter.\n\nYour task is to create a complete premium website for a local business using ONLY the information available from the Google Business Profile, Google Maps listing, reviews, photos, social profiles, and publicly available online information.\n\nBusiness Information:\n- Google Maps URL: [GOOGLE_MAPS_URL]\n\nObjective:\nCreate a modern, high-converting website that looks like a professional agency-built website worth $5,000-$15,000. The business may not currently have a website.\n\nResearch Phase — Analyze all publicly available information and extract: Business name, Primary services, Secondary services, Service areas, Customer reviews, Customer pain points, Frequently mentioned benefits, Business strengths, Photos, Contact information, Hours of operation, Industry positioning.\n\nIf information is missing:\n- Infer reasonable content based on industry best practices.\n- Clearly label assumptions internally.\n- Never invent certifications, awards, years in business, licenses, or credentials.\n\nWebsite Goal — Generate more: Phone calls, Form submissions, Appointment bookings, Quote requests.\n\nDesign Direction — Create a premium modern design using: Strong visual hierarchy, Modern typography, Large hero sections, Clean whitespace, Trust-building layouts, Subtle animations, Modern cards and content blocks, Mobile-first responsive design. The website should look significantly better than the average local business website.\n\nCreate These Pages: Home, About, Services, Individual Service Pages, Reviews, Gallery, Service Areas, FAQ, Contact.\n\nHomepage Requirements:\n- Hero: Powerful headline, Clear value proposition, Primary CTA, Secondary CTA.\n- Trust: Review highlights, Reputation indicators, Customer satisfaction messaging.\n- Services: Top services, Service benefits, Internal linking opportunities.\n- Why Choose Us: Differentiators, Customer-focused benefits.\n- Gallery: Showcase available images, Suggest image types if insufficient photos exist.\n- Reviews: Pull themes from actual reviews, Highlight recurring customer praise.\n- FAQ: Address common buying objections.\n- Final CTA: Strong lead generation offer, Clear contact options.\n\nSEO Requirements (every page): Optimized page title, Meta description, H1, H2 structure, Local keyword strategy, Internal linking recommendations.\n\nContent Requirements: Write persuasive, human-sounding copy. Avoid generic AI wording. Make the business appear trustworthy, professional, and established. Create enough content to immediately publish the website.\n\nLead Generation Bonus — At the end, provide: Top 5 weaknesses in the business's current online presence, Top 5 opportunities to generate more leads, Recommended lead magnet or special offer, Recommended call-to-action, Recommended Google Business Profile improvements.\n\nFinal Deliverable — Produce a complete website blueprint including: Site map, Page structure, Copy, SEO recommendations, CTA placements, Design guidance. The final result should be impressive enough that a business owner would gladly pay to have it launched."
+    }
+  ]
+},
+{
+  "deck": "webplay",
+  "id": "vault_outreach",
+  "title": "Step 3 · Reach Out",
+  "sub": "Send the pitch",
+  "intro": "Now send it. Every template here is plug-and-play — fill in the brackets (city, trade, your name) and send. Beginner tip — start with the Golden Email or the Text; they get the most replies.",
+  "prompts": [
+    {
+      "label": "Golden Email — Free Website Concept",
+      "context": "Send after you've built the free site. Leads with the missing-website observation, gives the concept away free, and only asks them to cover hosting.",
+      "text": "Hi {{First Name}},\n\nI was looking at your Google Business Profile and noticed you don't currently have a website.\n\nYou're already getting reviews and showing up on Google, but most customers still expect to click through to a website before calling.\n\nI built a website concept for {{Business Name}} and I'd be happy to give it to you free (normally I charge $2,000) — but I'd like to start a relationship and help you grow your business. All you have to do is pay the hosting.\n\nNo catch. If you like it, use it.\n\nHere's the link: [LINK]\n\n— Nick"
+    },
+    {
+      "label": "Text Prospecting Template",
+      "context": "Short SMS version of the pitch. One specific observation + a done-for-you site, live in 48 hours. Swap in their name, city, and trade.",
+      "text": "Hey [First Name], saw you run a [trade] biz in [CITY] but no website. I've got a pro [trade] site ready to go — built for leads, mobile-friendly, usually $3k but yours for $1k one-time. Can be live in 48hrs. Text me at [Your Phone Number] for details. First [trade] biz takes it!"
+    },
+    {
+      "label": "Golden Email — Liquidate a Pre-Built Site",
+      "context": "The original 'I built this for someone else, letting it go' angle. One-time price, scarcity close, 48-hour turnaround.",
+      "text": "Subject: I Built This Website for a [trade] — Letting It Go for [PRICE]\n\nHey [First Name],\nI was checking out [trade] companies in [CITY] and noticed you don't have a website. I get it — you're busy running your business, and building a website from scratch is a hassle (not to mention expensive).\nHere's the deal: I recently built a professional [trade] website for a client, but they ended up going a different direction. Normally, I sell these for $3,000, but since it's already done, I'm just looking to liquidate it for [PRICE] — one-time, no hidden fees.\nIt's designed to bring in leads, looks great on mobile, and I can have it up and running for you in 48 hours or less.\n\nIf you want to see what it looks like, hit reply or text me at [Your Phone Number], and I'll send over the details. First [trade] to grab it gets it.\n\nHere's the site, hope you like it.\nTalk soon,\n[Your Name]\n[Your Company Name]\n[Your Phone Number]"
+    },
+    {
+      "label": "Pain-Killer Email — Broken Website",
+      "context": "For prospects whose existing site is broken. You've already rebuilt it; you're just letting it go cheap.",
+      "text": "Hey [First Name],\nI noticed your [NICHE] website is broken! I know it's a pain to fix and build websites.\nI built you a brand new website. I normally charge $3,000 for this, but I'd love to work with you, so I'm willing to part with it for only [PRICE].\nIt's set up to generate more website customers, looks clean on mobile, and I can have it live for you within 48 hours.\nIf you want to take a look, here's the link — it's already live: [LINK]\nHere's the site — hope you like it.\n\nTalk soon,\n[Your Name]\n[Your Company Name]\n[Your Phone Number]"
+    },
+    {
+      "label": "Prospecting Email — 'What Happened to Your Website?'",
+      "context": "Low-friction monthly-hosting offer. Pre-built site, no upfront design cost, just a small monthly fee.",
+      "text": "Subject: What happened to your website?\n\nHey [First Name],\n\nI looked you up because I needed a [NICHE] in [CITY]. When I tried to find your website — nothing came up. That's a problem. Customers search online first, and if you're not there, you're invisible.\n\nHere's the good news: I already built you a professional website (normally a $2,500 value). You don't need to pay for design or setup. All I ask is [PRICE]/month to cover hosting and maintenance, and it's yours.\n\nCheck it out here if you'd like to see it now — it's already live.\nVisit: [LINK] and let me know what you think.\n\nNo risk. No big upfront bill. Just a site that works for you.\n\nBest,\n[Your Name]\n[Your Email]"
+    },
+    {
+      "label": "'Just Noticed Something About Your Page' (Social)",
+      "context": "The highest-converting social re-engagement email. For businesses with a following who've gone quiet. Offers 2 weeks of free content.",
+      "text": "Subject: Just Noticed Something About Your Page…\n\nHey [First Name],\n\nHope this doesn't come out of left field — I was checking out your business online and noticed you've got a solid following on social media… but it looks like you haven't posted in a while?\n\nTotally get it — running a business is crazy. But I couldn't help thinking... you've got people already paying attention to you. That's rare. Most businesses would love to have that kind of audience — and every day they don't hear from you is money left on the table.\n\nAnyway, I help businesses like yours stay active online and connect with their followers in a way that actually drives results. No pressure or anything, but I'd be happy to create 2 weeks of free content for you — just to show you what it could look like.\n\nNo catch. If you like it, cool — we can chat more. If not, no big deal, you've got a couple weeks of quality posts done for free.\n\nLet me know if you're open to it.\nBest,\n[Your First Name]\n[Your Phone or Email]\n[Optional: IG handle or website if you want to build trust]"
+    },
+    {
+      "label": "AI-Built Site SEO Email",
+      "context": "For prospects on a slick AI-built site that Google can't read well. You've pre-built a Google-friendly version.",
+      "text": "Subject: I built a Google-friendly version of your website for you\n\nHi [First Name],\nI came across your current site and really liked the design. I noticed it was built with a newer AI tool, which is great for speed, but there's a major catch: Google often has a hard time \"seeing\" these types of sites.\nIf Google can't read your site, you won't show up when neighbors search for a pro to help them out.\nI actually went ahead and pre-built a new version of your website. I normally charge $3,000 for this, but I'd love to work with you, so I'm willing to part with it for only [PRICE].\nIt's set up to generate more website customers, looks clean on mobile, and I can have it live for you within 48 hours.\nIf you want to take a look, here's the link — it's already live: [LINK]\nHere's the site — hope you like it.\n\nTalk soon,\n[Your Name]\n[Your Company Name]\n[Your Phone Number]"
+    },
+    {
+      "label": "Data-Driven Outreach Emails (3 Scenarios)",
+      "context": "Three plug-and-play emails based on a prospect's traffic data: low traffic, zero measurable traffic, and site-is-down.",
+      "text": "Replace the bracketed placeholders with data from your lead list. Send from your own business account.\n\nTEMPLATE 1 — LOW WEBSITE TRAFFIC\nSubject: An idea for [Company Name]\nHi [Contact Name],\nI was researching local [NICHE] companies and saw that [Company Name]'s website gets around [Monthly Visits] visitors per month, primarily from [Primary Traffic Source] traffic.\nThis caught my attention because it suggests you might be missing out on a significant number of potential customers actively searching on Google in [CITY].\nI have a few specific ideas on how you can increase your visibility and generate more qualified leads. I can share them in a quick, 15-minute website audit — no strings attached.\nWould you be open to a brief chat next week?\nBest, [Your Name] | [Your Company] | [Your Phone Number]\n\nTEMPLATE 2 — ZERO MEASURABLE TRAFFIC\nSubject: Getting more customers for [Company Name]\nHi [Contact Name],\nI was researching [NICHE] businesses in [CITY] and noticed that [Company Name]'s website isn't currently generating any measurable online traffic.\nThis means you are likely invisible to the hundreds of potential customers searching every month.\nI specialize in helping businesses like yours get found online. I'd be happy to provide a free 15-minute audit to show you the search volume you could be capturing and a simple strategy to start generating leads.\nAre you the right person to discuss this with?\nBest, [Your Name] | [Your Company] | [Your Phone Number]\n\nTEMPLATE 3 — WEBSITE IS DOWN\nSubject: Quick question about your website\nHi [Contact Name],\nI was hoping to learn more about [Company Name]'s services today, but I found that your website appears to be down.\nEvery hour of downtime could mean lost leads. My specialty is building and optimizing websites for local businesses so they consistently generate traffic and sales. I can run a quick free audit to diagnose the issue and recommend how to get it back online and better optimized.\nWould you be open to a quick chat this afternoon?\nBest, [Your Name] | [Your Company] | [Your Phone Number]"
+    }
+  ]
+},
+{
+  "deck": "webplay",
+  "id": "vault_aisearch",
+  "title": "Step 4 · AI-Search Pitch",
+  "sub": "The 'invisible in AI' angle",
+  "intro": "A second angle that lands clients fast: when people ask ChatGPT or Google's AI for a recommendation, most local businesses don't show up. Use these to open that conversation, then back it with one of the audit prompts.",
+  "prompts": [
+    {
+      "label": "Cold DM — 'You're Getting Replaced in Google'",
+      "context": "Leads with the AI-visibility gap. You ran an audit; competitors show up in AI answers and they don't.",
+      "text": "Subject: You're getting replaced in Google (quietly)\n\nI searched \"[NICHE] in [CITY]\" using ChatGPT and Google's AI results…\nyou show up in Google, but not in the AI answers. Your competitors do.\nWhich means even if you rank… you're still losing clicks before people ever reach your site.\nI ran a quick AI visibility audit and found exactly where you're getting beat and why — here's the link to check it out =>\n\nNormally I charge $299 for these audits, but I'd like to prove my value up front in the hopes that we can start working together.\nLet me know if you want me to fix this and get you recommended by these AI tools."
+    },
+    {
+      "label": "Cold DM — AI Answers Above Results",
+      "context": "Softer, no-pitch opener. Offers a short screen recording of what Google's AI is recommending instead.",
+      "text": "Quick question — have you noticed Google showing AI answers above the search results lately?\nWe're seeing businesses lose clicks even while still ranking well. I ran a quick check on your site and it doesn't appear in the AI answers yet.\nHappy to send you a short screen recording showing what Google's AI is recommending instead — no pitch."
+    },
+    {
+      "label": "Cold DM — Not in AI Responses",
+      "context": "Ultra-short opener built around Google's AI map/answer results.",
+      "text": "Quick question — have you noticed Google showing AI answers above the search results lately?\nI was looking for [NICHE] in [CITY] and noticed that you guys are not showing up in the AI responses. Want me to fix that for you?"
+    },
+    {
+      "label": "AI Visibility Email (Full)",
+      "context": "The longer version: you searched their category across multiple AI tools, they weren't mentioned, and their site can't be crawled.",
+      "text": "Hey [First Name],\n\nQuick question — did you know that when someone asks ChatGPT or Google's AI for the best [NICHE] in [CITY], your business isn't showing up?\n\nI searched for [NICHE] in [CITY] using three different AI tools this week. [Business Name] wasn't mentioned once.\n\nI run a local digital marketing agency and I specialize in getting businesses found in AI search — it's the fastest-growing way people find services right now.\n\nI ran an AI visibility report for you that shows your website is unreachable to be crawled. This could be impacting why you're not showing up higher in Google and AI search.\n\nWorth a 15-minute call to show you exactly where you're missing? If not, check out the report — either way, keep up the good work.\n\n— [Your Name]\n[Your Company] | [CITY]"
+    },
+    {
+      "label": "GBP Audit Report Prompt",
+      "context": "Generates a professional paid-style Google Business Profile audit you can send to a prospect — issues, impact, action plan, and a soft pitch.",
+      "text": "You are an expert local SEO consultant. Write a professional, paid audit report for a local business's Google Business Profile (GBP). The goal is to help the business owner understand where their GBP stands, what's missing, what's hurting performance, and what action steps to take.\nInclude the following sections:\n- Profile Overview – Brief summary of what the business is doing well and why a strong GBP matters.\n- Key Issues Identified – List 3-5 problems or missed opportunities (e.g., missing categories, lack of photos, low review count, outdated info, no posts, duplicate listings).\n- Impact Analysis – Explain how each issue is likely affecting visibility, calls, and leads.\n- Action Plan – Recommend specific improvements, including why they matter and how they help the business grow.\n- Offer to Help – Close with a soft pitch explaining that you can implement all the changes and optimize the listing fully as a paid service, including citations, review strategy, and local SEO.\nTone: Clear, helpful, confident, and value-packed. Assume the business owner isn't technical, so explain things in plain language.\nThe business is: [BUSINESS NAME, a NICHE in CITY]"
+    },
+    {
+      "label": "GEO Audit From a Lead",
+      "context": "Hand it a lead and it builds a jargon-free, value-packed audit showing the gaps — written so a 9th grader could follow it.",
+      "text": "I like this lead: [LEAD / BUSINESS]. Build me an audit that I can use to send to the client to show the gaps in where they need help and position myself as someone who can help solve them. Do not use technical jargon, explain it like you're talking to a 9th grader, and demonstrate as much value as you can."
+    },
+    {
+      "label": "Pomelli SEO Campaign Prompt",
+      "context": "A buyer-intent SEO campaign brief — finds high-intent pages and content gaps that lead directly to consultations and form fills.",
+      "text": "Build an SEO campaign for [BUSINESS / NICHE]. The campaign should:\n- Identify high-intent service pages and content gaps that directly lead to consultations or contact form submissions\n- Optimize existing pages to clearly communicate trust, authority, and outcomes (not generic jargon)\n- Create new SEO-driven pages and supporting content that target buyer-intent searches (people looking to hire, not research)\n- Emphasize credibility, experience, and clear next steps (call, consultation, contact form)\n- Improve local visibility and conversion paths for mobile and desktop users\nThe content should be written for real potential clients, not other businesses in the industry. Focus on clarity, urgency, and problem-solution framing. Assume the visitor is stressed, time-constrained, and wants to know: \"Can this business help me, and how fast can I talk to someone?\"\nOutput should include: priority pages to optimize or create, suggested content themes and page angles that convert, a clear CTA strategy, and any obvious technical or structural improvements that would increase lead flow. Avoid generic branding advice — focus on actions that directly increase inbound leads and revenue."
+    }
+  ]
+},
+{
+  "deck": "webplay",
+  "id": "vault_ads",
+  "title": "Step 5 · Ads Pitch",
+  "sub": "For businesses already on ads",
+  "intro": "For prospects already running Meta or Google ads. Position yourself as the person who makes their ads work in the AI era — without raising their spend.",
+  "prompts": [
+    {
+      "label": "Meta Ads 'Optimize for AI' Email",
+      "context": "For prospects already running Meta ads. The hook: buyers now ask AI who to hire before they ever click.",
+      "text": "Subject: If Your Ads Aren't Optimized for AI, You're Behind\n\nHi [First Name],\nI see you're running Meta Ads for [NICHE]. That's solid.\nBut here's the problem: buyers aren't just scrolling anymore — they're asking AI tools who to hire and what to buy.\nIf your ads and brand aren't optimized for how AI recommends businesses, you're paying for traffic that was never warmed up in the first place.\nI'm helping [NICHE] companies adjust their Meta campaigns so AI tools reinforce their brand instead of ignoring it — which makes the ads work better without increasing spend.\nWant to see what that could look like for [Company Name]?"
+    },
+    {
+      "label": "Meta Ads 'Optimize for AI' SMS",
+      "context": "The text version of the Meta-ads-for-AI pitch.",
+      "text": "Hey [First Name] — quick question.\nYou're running Meta Ads for [NICHE]… but are you optimizing for AI tools like ChatGPT yet?\nMore buyers are asking AI who to hire before they ever click an ad. If your brand isn't positioned for that, your ads are working harder than they need to.\nI've been helping [NICHE] businesses tweak this so their ads convert better without raising spend.\nOpen to a quick look at how this could work for [Company Name]?"
+    },
+    {
+      "label": "ChatGPT Ads SMS",
+      "context": "Positions ChatGPT ads as the new, less-crowded Google Ads with lower lead costs.",
+      "text": "Hey [First Name], my name is [Your Name]. I noticed your Google Ads for [NICHE] — great copy. Have you looked into running ads inside ChatGPT yet? We're seeing much lower lead costs there right now since it's less crowded. Worth a quick 2-minute chat?"
+    },
+    {
+      "label": "Facebook Group Posts (Drum Up Interest)",
+      "context": "Generates simple, punchy posts to drop in local small-business Facebook groups.",
+      "text": "Give me some social media posts that I can post into Facebook groups in my area full of small business owners to drum up interest. Make these posts simple, no technical jargon, so a 10th grader can understand — short, simple, and punchy."
+    }
+  ]
+},
+{
+  "deck": "webplay",
+  "id": "vault_agents",
+  "title": "Step 6 · Automate It",
+  "sub": "Let AI do the work",
+  "intro": "Once you've landed a client, these do the heavy lifting: a drop-in chat concierge and a voice agent you can paste into your tools, plus the one-liner to have Manus build an agent for you.",
+  "prompts": [
+    {
+      "label": "Inbound Sales & Support Chat Agent",
+      "context": "A complete system prompt for an inbound concierge bot — qualifies leads, routes issues, and protects the brand by never over-promising. Paste into your chat AI's system instructions.",
+      "text": "ROLE\nYou are \"[BUSINESS] Concierge,\" the inbound Sales Support and Customer Success representative for [BUSINESS]. Your job is to: 1) Qualify inbound leads, 2) Move prospects toward booking a call, 3) Support existing clients with clarity and speed, 4) Route issues to the correct human team member, 5) Protect the brand by avoiding overpromises. You are not a strategist, closer, or decision-maker. You are a structured intake and guidance system.\n\nTONE: Friendly but direct, clear and structured, no hype, no jargon, no guarantees. Short paragraphs or bullet points preferred.\n\nNON-NEGOTIABLE RULES:\n1. Never promise rankings, revenue, ROAS, or specific lead numbers.\n2. Never guarantee timelines.\n3. Never quote exact custom pricing unless explicitly provided in the knowledge base.\n4. If missing key details, ask up to 3 targeted questions.\n5. If billing disputes, refund requests, cancellations, or contract changes are mentioned — gather facts and route to a human.\n6. If a client is upset, de-escalate calmly and route.\n7. Do not claim work was completed unless the user provides proof in chat.\n8. If unsure, say you will confirm and route.\n\nDEFAULT FLOW:\nStep 1: Identify — \"Are you a current client or looking to get started?\"\nStep 2: Classify the request (Sales / Support / Billing / Technical / General).\nStep 3: Collect essentials (only what is necessary).\nStep 4: Provide best next step.\nStep 5: Produce a structured handoff summary if needed.\n\nINBOUND SALES BEHAVIOR — qualification questions (ask only what's relevant): What type of business do you run? What location(s) do you serve? What is your main goal right now (calls, bookings, sales, traffic)? Are you currently running ads or doing SEO? What monthly marketing budget range are you comfortable with? Are you the decision-maker?\nIf asked \"how much?\": \"Pricing depends on scope and goals. If you share your industry, location, and what you're trying to grow, I can point you toward the right starting lane and what the next step looks like.\"\nIf asked \"how fast?\": \"We can't promise timelines because results depend on competition and current setup. What we can do is give you a clear action plan fast.\"\nPRIMARY CTA: \"Best next step is a quick 15-minute fit call. If it's not a fit, we'll tell you straight.\"\n\nCUSTOMER SUCCESS BEHAVIOR — triage (max 3): What service is this about? What changed and when? What impact are you seeing? De-escalation: \"Got it. I understand why that's frustrating. Let me collect the essentials so we can fix this quickly.\"\n\nROUTE TO HUMAN IF: billing dispute, refund request, cancellation, contract changes, severe performance complaint, website down, tracking broken, or legal/compliance questions. After gathering details, produce a handoff summary (Name, Business, Location, Phone/Email, Client or Prospect, Request Type, Primary Goal, Current Setup, Budget Range, Timeline, Summary, Recommended Next Step).\n\nDO NOT SAY: \"Guaranteed results,\" \"We will rank you #1,\" \"This will 10x your business,\" or any fixed performance promise. DO SAY: \"Here's the plan,\" \"Here's what we need,\" \"Here's the next step,\" \"If it's not a fit, we'll tell you.\""
+    },
+    {
+      "label": "Voice Agent Master Prompt",
+      "context": "A full voice-receptionist prompt (role, task, guidelines, examples, node flow) for an AI phone agent that handles existing customers and new leads. Paste into your voice-AI system instructions.",
+      "text": "# Role\nYou are [AGENT NAME], a warm, confident, and professional voice agent for [BUSINESS]. You help callers in two main categories: 1) Existing customers needing support, billing, or rescheduling; 2) New leads interested in our services. You sound human, not robotic. Use short, conversational affirmations like \"Great,\" \"Got it,\" or \"Understood.\" Never disclose you are an AI — always act like a real team member. Keep each response under 20 words and resolve or route the call within 5 minutes.\n\n# Task\n1. Greet the caller using their name when available ({{contact.first_name}}).\n2. Classify the caller: customer or new lead.\n3. Ask only the essentials naturally: \"May I have your name, email, business type, and what you're looking for help with today?\"\n4. Route efficiently: Customer → Support, Billing, or Booking. New Lead → Qualify → Book Discovery or send info via SMS (after consent).\n5. Always confirm SMS consent before sending links or summaries.\n6. Capture updated contact info automatically.\n\n# Guidelines\n- Keep the call under 5 minutes. Ask one question at a time. Never promise unavailable times. Escalate to a human if the caller sounds unsure or frustrated. Avoid sensitive topics (politics, religion, legal, medical). End each path politely and quickly.\n- For all business-related questions, check the Knowledge Base first to ensure accuracy before replying.\n- When reading numbers or acronyms aloud, spell them out phonetically (e.g., \"eight hundred five five five one two three four,\" \"C-R-M,\" \"A-P-I\").\n- Personalize with variables: Name: \"Hi {{contact.first_name}}!\" Email: \"I've updated your email as {{contact.email}}.\"\n\n# Examples\nGood: \"Got it, {{contact.first_name}} — what's the best email to confirm details?\" Avoid: \"I apologize for the inconvenience, can you please repeat that again?\" Good: \"Would you like the earliest available slot or a specific time?\" Avoid: \"I don't understand your response.\"\n\n# Node Flow\nNode 1 – Greeting & Classify: \"Hi {{contact.first_name}}, this is [AGENT NAME] with [BUSINESS]. Are you an existing customer or new to us?\" (Client/support/billing → Node 2; New/interested/demo → Node 6; Wrong number/not interested → Node 9.)\nNode 2 – Existing Customer: verify email, branch into Support, Billing, or Booking.\nNode 6 – New Lead: \"What type of business do you run? What do you need most help with — leads, follow-ups, reviews, or an all-in-one setup? And are you looking to start this week, this month, or just exploring?\" (Hot → book discovery; Warm → info SMS; Cold → polite exit.)\nNode 7 – Discovery Booking: only trigger the booking action after the caller confirms a time slot AND provides their email.\nNode 9 – Not Interested: \"No worries, {{contact.first_name}}. If you ever need help with automations or lead follow-ups, we're here. Have a great day!\" (Tag as DND.)\n\n# Reminders\nAlways capture: Name, Email, Business Type, Urgency, SMS Consent. Keep calls under 5 minutes — resolve or route fast. Always thank them at the end."
+    },
+    {
+      "label": "Have Manus Build You an Agent",
+      "context": "The one-liner that kicks off building an end-to-end client-getting agent in Manus AI.",
+      "text": "Create me an AI agent that can find small businesses as clients, close deals, and even do the work for me."
+    }
+  ]
+}
 ];
 
 const PH={
@@ -823,6 +1066,7 @@ function deckCount(d){return sections.filter(s=>(s.deck||'dollhouse')===d).reduc
 function updateDeckCounts(){
   const a=document.getElementById('dn_dollhouse');if(a)a.textContent=deckCount('dollhouse');
   const b=document.getElementById('dn_cashflow');if(b)b.textContent=deckCount('cashflow');
+  const c=document.getElementById('dn_webplay');if(c)c.textContent=deckCount('webplay');
 }
 
 function setDeck(d){

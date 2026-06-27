@@ -5,4 +5,4 @@ Disallow: /onboarding
 Disallow: /checkout
 Disallow: /thank-you
 
-Sitemap: https://www.shopdollhouse.co/sitemap.xml
+Sitemap: https://www.dollhousebrandstudio.com/sitemap.xml
