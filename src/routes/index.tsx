@@ -2787,8 +2787,8 @@ function Contact() {
 
   const ic = "w-full rounded-xl bg-white/72 border border-[var(--gold)]/30 px-5 py-3.5 text-[var(--ink)] placeholder:text-[var(--ink)]/35 focus:outline-none focus:border-[var(--rose)] focus:bg-white/90 transition";
   const is = { fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem" } as React.CSSProperties;
-  const lc = "block text-[10px] tracking-luxe uppercase text-[var(--gold)] mb-2";
-  const ls = { fontFamily: "'Jost', sans-serif" } as React.CSSProperties;
+  const lc = "block text-[0.95rem] text-[var(--ink)] mb-2.5";
+  const ls = { fontFamily: "'DM Sans', sans-serif", fontWeight: 600 } as React.CSSProperties;
 
   const stepTitles = ["Your details", "Your business", "Your numbers", "Your goals", "Your marketing", "Almost done"];
   const stepHeadings = ["Let's start with you", "Tell us about your business", "Where you're at right now", "What you're looking for", "Your marketing today", "Almost done"];
