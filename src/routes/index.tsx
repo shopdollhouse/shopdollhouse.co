@@ -702,14 +702,8 @@ function ChooseYourPath() {
                 <img
                   src={image}
                   alt={imageAlt}
-                  className="h-full w-full object-cover opacity-[0.82] transition-all duration-700 group-hover:scale-[1.025] group-hover:opacity-90"
-                  style={{ filter: "saturate(0.7) contrast(0.9) brightness(1.04)" }}
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.025]"
                   loading="lazy"
-                />
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0"
-                  style={{ background: "linear-gradient(180deg, rgba(255,248,243,0.08) 0%, rgba(255,248,243,0.28) 100%)" }}
                 />
               </div>
               <div className="flex flex-1 flex-col p-6">
