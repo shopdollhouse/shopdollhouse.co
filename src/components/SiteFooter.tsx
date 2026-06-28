@@ -41,8 +41,8 @@ export function SiteFooter() {
 
         <div>
           <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>Contact</p>
-          <a href="mailto:hello@dollhousebrandstudio.com" className="mt-4 block text-[var(--ink)]/68 hover:text-[var(--rose)] transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.78rem", letterSpacing: "0.12em" }}>
-            hello@dollhousebrandstudio.com
+          <a href="mailto:hello@shopdollhouse.co" className="mt-4 block text-[var(--ink)]/68 hover:text-[var(--rose)] transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.78rem", letterSpacing: "0.12em" }}>
+            hello@shopdollhouse.co
           </a>
           <a href="tel:+12893014567" className="mt-2 block text-[var(--ink)]/68 hover:text-[var(--rose)] transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.78rem", letterSpacing: "0.12em" }}>
             +1 (289) 301-4567

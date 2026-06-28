@@ -274,7 +274,7 @@ function getProductAccessUrl(product: BrandProduct) {
   if (product.checkoutUrl) return product.checkoutUrl;
   const subject = encodeURIComponent(`Request access: ${product.name}`);
   const body = encodeURIComponent(`Hi The Dollhouse,\n\nI would like access to ${product.name}.\n\nProduct: ${product.shortName}\nPrice: ${product.price}\n\nThank you!`);
-  return `mailto:hello@dollhousebrandstudio.com?subject=${subject}&body=${body}`;
+  return `mailto:hello@shopdollhouse.co?subject=${subject}&body=${body}`;
 }
 
 export function BrandProductSalesPage({ product }: { product: BrandProduct }) {

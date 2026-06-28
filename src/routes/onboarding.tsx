@@ -196,7 +196,7 @@ export default function OnboardingForm() {
         body: JSON.stringify({ ...form, brandVibes: vibes.join(", "), contentTypes: contentTypes.join(", "), _subject: `🎀 New Client Onboarding — ${form.businessName}` }),
       });
       if (res.ok) { setSubmitted(true); window.scrollTo({ top: 0, behavior: "smooth" }); }
-      else setError("Something went wrong. Please try again or email hello@dollhousebrandstudio.com");
+      else setError("Something went wrong. Please try again or email hello@shopdollhouse.co");
     } catch { setError("Network error. Please check your connection and try again."); }
     finally { setSubmitting(false); }
   };
@@ -223,7 +223,7 @@ export default function OnboardingForm() {
             Thank you for completing your onboarding questionnaire. We've received everything and Mandy will be in touch within 24 hours to confirm your next steps and send your media folder link.
           </p>
           <p style={{ fontFamily: FONT_LUXE, fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(30,15,10,0.3)" }}>
-            The Dollhouse Brand Studio &nbsp;·&nbsp; hello@dollhousebrandstudio.com
+            The Dollhouse Brand Studio &nbsp;·&nbsp; hello@shopdollhouse.co
           </p>
         </div>
       </div>
@@ -313,7 +313,7 @@ export default function OnboardingForm() {
       {/* Sticky header */}
       <div style={{ position: "sticky", top: 0, zIndex: 50, background: "rgba(248,237,232,0.9)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(200,168,100,0.15)" }}>
         <div style={{ maxWidth: 760, margin: "0 auto", padding: "12px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
-          <a href="https://www.dollhousebrandstudio.com" style={{ textDecoration: "none" }}>
+          <a href="https://shopdollhouse.co" style={{ textDecoration: "none" }}>
             <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.2rem", color: "var(--rose)", fontStyle: "italic", margin: 0 }}>the Dollhouse</p>
             <p style={{ fontFamily: FONT_LUXE, fontSize: "0.55rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--gold)", margin: 0 }}>Brand Studio</p>
           </a>
@@ -473,7 +473,7 @@ export default function OnboardingForm() {
       {/* Footer */}
       <div style={{ textAlign: "center", padding: "20px 24px", borderTop: "1px solid rgba(200,168,100,0.1)" }}>
         <p style={{ fontFamily: FONT_LUXE, fontSize: "0.58rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(30,15,10,0.28)" }}>
-          The Dollhouse Brand Studio &nbsp;·&nbsp; hello@dollhousebrandstudio.com &nbsp;·&nbsp; shopdollhouse.co
+          The Dollhouse Brand Studio &nbsp;·&nbsp; hello@shopdollhouse.co &nbsp;·&nbsp; shopdollhouse.co
         </p>
       </div>
     </div>
@@ -483,7 +483,7 @@ export default function OnboardingForm() {
 function Nav() {
   return (
     <header style={{ background: "rgba(248,237,232,0.85)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(200,168,100,0.12)", padding: "14px 32px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-      <a href="https://www.dollhousebrandstudio.com" style={{ textDecoration: "none" }}>
+      <a href="https://shopdollhouse.co" style={{ textDecoration: "none" }}>
         <p style={{ fontFamily: FONT_DISPLAY, fontSize: "1.25rem", color: "var(--rose)", fontStyle: "italic", margin: 0 }}>the Dollhouse</p>
         <p style={{ fontFamily: FONT_LUXE, fontSize: "0.55rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--gold)", margin: 0 }}>Brand Studio</p>
       </a>

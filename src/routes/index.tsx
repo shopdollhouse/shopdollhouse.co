@@ -637,7 +637,7 @@ function ChooseYourPath() {
       calloutSub: "We Specialize",
       title: "I want more booked clients.",
       body: "We run the ads and our AI Caller books the patients — while you focus on your work.",
-      href: "https://medspa.dollhousebrandstudio.com",
+      href: "https://dollhousebrandstudio.com",
       cta: "See How It Works",
       targetPlan: null,
       image: managedGrowthImage,
@@ -2753,7 +2753,7 @@ function Contact() {
 
   const redirect =
     fd.business_type === "Med spa or aesthetic clinic"
-      ? { url: "https://medspa.dollhousebrandstudio.com/apply", label: "Continue to the med spa application", msg: "We run a dedicated done-for-you program just for med spas and clinics — you'll get the right application and offer over there." }
+      ? { url: "https://dollhousebrandstudio.com/apply", label: "Continue to the med spa application", msg: "We run a dedicated done-for-you program just for med spas and clinics — you'll get the right application and offer over there." }
       : fd.decision_maker === "No, I am researching for someone else"
       ? { url: "https://room.shopdollhouse.co", label: "Explore the Brand Room", msg: "Since you're researching for someone else, the Brand Room and our digital products are the best place to start." }
       : fd.budget === "Under $300"

@@ -446,7 +446,7 @@ function MissingProduct() {
         <p className="mx-auto mt-4 max-w-md text-[var(--ink)]/62" style={{ fontFamily: FONT_BODY, lineHeight: 1.7 }}>
           We could not identify the product from this link. Please use the access link provided with your order or contact us for help.
         </p>
-        <a href="mailto:hello@dollhousebrandstudio.com" className="mt-6 inline-flex rounded-full bg-[var(--ink)] px-7 py-4 text-[var(--cream)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase" }}>
+        <a href="mailto:hello@shopdollhouse.co" className="mt-6 inline-flex rounded-full bg-[var(--ink)] px-7 py-4 text-[var(--cream)]" style={{ fontFamily: FONT_LUXE, fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase" }}>
           Get Access Help
         </a>
       </div>
@@ -662,7 +662,7 @@ export default function ProductThankYouPage({ productKey }: { productKey: ThankY
           <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-[var(--gold)]/20 pt-7 text-center sm:flex-row sm:text-left">
             <div>
               <p className="text-[var(--ink)]/62" style={{ fontFamily: FONT_BODY, fontSize: "0.86rem" }}>Questions about your {isService ? "order" : "access"}?</p>
-              <a href="mailto:hello@dollhousebrandstudio.com" className="text-[var(--rose)] underline underline-offset-4" style={{ fontFamily: FONT_BODY, fontSize: "0.86rem" }}>hello@dollhousebrandstudio.com</a>
+              <a href="mailto:hello@shopdollhouse.co" className="text-[var(--rose)] underline underline-offset-4" style={{ fontFamily: FONT_BODY, fontSize: "0.86rem" }}>hello@shopdollhouse.co</a>
             </div>
             <a href={isService ? "/" : "https://room.shopdollhouse.co"} className="rounded-full border border-[var(--gold)]/35 bg-white/35 px-6 py-3 text-[var(--ink)] transition-colors hover:bg-white/65" style={{ fontFamily: FONT_LUXE, fontSize: "0.64rem", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase" }}>
               {isService ? "Return to Home" : "Return to Brand Room"}
