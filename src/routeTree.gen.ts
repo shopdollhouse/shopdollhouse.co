@@ -15,6 +15,7 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SoftwareRouteImport } from './routes/software'
 import { Route as SocietyRouteImport } from './routes/society'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
 import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PlaybookRouteImport } from './routes/playbook'
@@ -68,6 +69,11 @@ const SocietyRoute = SocietyRouteImport.update({
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RefundPolicyRoute = RefundPolicyRouteImport.update({
+  id: '/refund-policy',
+  path: '/refund-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const QuizRoute = QuizRouteImport.update({
@@ -206,6 +212,7 @@ export interface FileRoutesByFullPath {
   '/playbook': typeof PlaybookRoute
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
+  '/refund-policy': typeof RefundPolicyRoute
   '/services': typeof ServicesRoute
   '/society': typeof SocietyRoute
   '/software': typeof SoftwareRoute
@@ -238,6 +245,7 @@ export interface FileRoutesByTo {
   '/playbook': typeof PlaybookRoute
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
+  '/refund-policy': typeof RefundPolicyRoute
   '/services': typeof ServicesRoute
   '/society': typeof SocietyRoute
   '/software': typeof SoftwareRoute
@@ -271,6 +279,7 @@ export interface FileRoutesById {
   '/playbook': typeof PlaybookRoute
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
+  '/refund-policy': typeof RefundPolicyRoute
   '/services': typeof ServicesRoute
   '/society': typeof SocietyRoute
   '/software': typeof SoftwareRoute
@@ -305,6 +314,7 @@ export interface FileRouteTypes {
     | '/playbook'
     | '/privacy'
     | '/quiz'
+    | '/refund-policy'
     | '/services'
     | '/society'
     | '/software'
@@ -337,6 +347,7 @@ export interface FileRouteTypes {
     | '/playbook'
     | '/privacy'
     | '/quiz'
+    | '/refund-policy'
     | '/services'
     | '/society'
     | '/software'
@@ -369,6 +380,7 @@ export interface FileRouteTypes {
     | '/playbook'
     | '/privacy'
     | '/quiz'
+    | '/refund-policy'
     | '/services'
     | '/society'
     | '/software'
@@ -402,6 +414,7 @@ export interface RootRouteChildren {
   PlaybookRoute: typeof PlaybookRoute
   PrivacyRoute: typeof PrivacyRoute
   QuizRoute: typeof QuizRoute
+  RefundPolicyRoute: typeof RefundPolicyRoute
   ServicesRoute: typeof ServicesRoute
   SocietyRoute: typeof SocietyRoute
   SoftwareRoute: typeof SoftwareRoute
@@ -466,6 +479,13 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/refund-policy': {
+      id: '/refund-policy'
+      path: '/refund-policy'
+      fullPath: '/refund-policy'
+      preLoaderRoute: typeof RefundPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/quiz': {
@@ -650,6 +670,7 @@ const rootRouteChildren: RootRouteChildren = {
   PlaybookRoute: PlaybookRoute,
   PrivacyRoute: PrivacyRoute,
   QuizRoute: QuizRoute,
+  RefundPolicyRoute: RefundPolicyRoute,
   ServicesRoute: ServicesRoute,
   SocietyRoute: SocietyRoute,
   SoftwareRoute: SoftwareRoute,

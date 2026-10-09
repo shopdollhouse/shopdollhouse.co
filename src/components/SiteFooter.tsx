@@ -1,10 +1,11 @@
 import { Link } from "@tanstack/react-router";
 
 const exploreLinks: [string, string][] = [
-  ["Services", "/#services"],
-  ["Pricing", "/#pricing"],
+  ["What's Included", "/#whats-included"],
+  ["How It Works", "/#how-it-works"],
+  ["Plans & Pricing", "/#plans"],
   ["FAQ", "/#faq"],
-  ["Proposal", "/#contact"],
+  ["Questions", "/#contact"],
 ];
 
 export function SiteFooter() {
@@ -18,7 +19,7 @@ export function SiteFooter() {
             <p className="text-[var(--gold)] font-semibold" style={{ fontFamily: "'Jost', sans-serif", fontSize: "8px", letterSpacing: "3px", textTransform: "uppercase", marginTop: "4px" }}>Brand Studio</p>
           </div>
           <p className="mt-5 max-w-sm text-[var(--ink)]/58 leading-7" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem" }}>
-            Done-for-you content, ads, AI clone, and follow-up systems for business owners who want the work handled beautifully.
+            Done-for-you social media, quote tools and automatic follow-up for local business owners who want the work handled beautifully.
           </p>
         </div>
 
@@ -47,8 +48,8 @@ export function SiteFooter() {
           <a href="tel:+12893014567" className="mt-2 block text-[var(--ink)]/68 hover:text-[var(--rose)] transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.78rem", letterSpacing: "0.12em" }}>
             +1 (289) 301-4567
           </a>
-          <a href="/#contact" className="mt-5 inline-flex rounded-full px-5 py-3 text-[var(--cream)] bg-[var(--ink)] hover:opacity-90 transition-opacity" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.68rem", letterSpacing: "0.18em", textTransform: "uppercase" }}>
-            Get a proposal →
+          <a href="/#plans" className="mt-5 inline-flex rounded-full px-5 py-3 text-[var(--cream)] bg-[var(--ink)] hover:opacity-90 transition-opacity" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.68rem", letterSpacing: "0.18em", textTransform: "uppercase" }}>
+            Get started →
           </a>
         </div>
       </div>
@@ -75,6 +76,9 @@ export function SiteFooter() {
           </Link>
           <Link to="/terms" className="text-[var(--ink)]/35 hover:text-[var(--ink)]/58 transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase" }}>
             Terms of Service
+          </Link>
+          <Link to="/refund-policy" className="text-[var(--ink)]/35 hover:text-[var(--ink)]/58 transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase" }}>
+            Refund Policy
           </Link>
           <Link to="/playbook" className="text-[var(--ink)]/45 hover:text-[var(--ink)]/70 transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase" }}>
             Admin
