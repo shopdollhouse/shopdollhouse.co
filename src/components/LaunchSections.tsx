@@ -1272,11 +1272,11 @@ export function LaunchFaq() {
     <section id="faq" className="scroll-mt-24 py-24 md:py-28 px-6 bg-[var(--cream)]">
       <div className="mx-auto grid max-w-6xl items-start gap-8 lg:grid-cols-[0.85fr_1.15fr]">
         <div id="about" className="overflow-hidden rounded-[8px]" style={card}>
-          <div className="relative aspect-[4/5] w-full overflow-hidden">
-            <img src={mandyPhoto} alt="Mandy, founder of The Dollhouse Brand Studio" loading="lazy" className="h-full w-full object-cover" style={{ objectPosition: "center 22%" }} />
+          <div className="relative aspect-[4/5] w-full overflow-hidden" style={{ background: "linear-gradient(160deg, #3a2018 0%, #1f110b 100%)" }}>
+            <img src={mandyPhoto} alt="Mandy Fortune, founder of The Dollhouse Brand Studio" decoding="async" className="absolute inset-0 h-full w-full object-cover" style={{ objectPosition: "center 18%" }} />
             <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/2" style={{ background: "linear-gradient(to top, rgba(15,7,4,0.85), transparent)" }} />
             <div className="absolute bottom-5 left-6">
-              <p className="uppercase text-[var(--cream)]" style={{ fontFamily: HEAD, fontWeight: 300, fontSize: "1.5rem", letterSpacing: "0.08em" }}>Mandy</p>
+              <p className="uppercase text-[var(--cream)]" style={{ fontFamily: HEAD, fontWeight: 300, fontSize: "1.5rem", letterSpacing: "0.08em" }}>Mandy Fortune</p>
               <p className="mt-1 text-[10px] tracking-[0.3em] uppercase" style={{ fontFamily: LUXE, color: "var(--gold)" }}>Founder · Brand Designer</p>
             </div>
           </div>
