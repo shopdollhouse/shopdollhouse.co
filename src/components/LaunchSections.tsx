@@ -22,6 +22,7 @@ import {
   X,
 } from "lucide-react";
 import archMark from "@/assets/arch-mark.svg";
+import { BookingPhonePreview, PostStudioPreview, QuizPhonePreview, RepliesPreview } from "@/components/LaunchAnimatedPreviews";
 import { IllustrationCarouselPlan, IllustrationSinglePlan, IllustrationAccess, IllustrationBook, IllustrationCheckout, IllustrationFirstPosts, IllustrationPosts, IllustrationQuote, IllustrationReply } from "@/components/LaunchIllustrations";
 import bgImage from "@/assets/password-bg.jpg";
 import mandyPhoto from "@/assets/mandy-photo.jpg";
@@ -579,76 +580,11 @@ export function LaunchHowItWorks() {
 /* ─── What's included ─────────────────────────────────── */
 type PreviewKind = "quote" | "replies" | "booking";
 
-function ServicePreview({ kind }: { kind: PreviewKind }) {
-  const shell = {
-    background: "linear-gradient(160deg, #fffaf6 0%, #f7e9e3 100%)",
-    border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)",
-    boxShadow: "0 24px 50px -30px rgba(120,70,60,0.45)",
-  } as const;
-
-  if (kind === "quote") {
-    return (
-      <div aria-hidden className="rounded-2xl p-5" style={shell}>
-        <p className="text-[8px] tracking-luxe uppercase text-[var(--gold)]" style={{ fontFamily: LUXE }}>Quote calculator · example</p>
-        <p className="mt-2 text-[var(--ink)]" style={{ fontFamily: DISPLAY, fontSize: "1.25rem" }}>What do you need help with?</p>
-        <div className="mt-3 h-1 w-full overflow-hidden rounded-full" style={{ background: "rgba(31,17,11,0.08)" }}>
-          <div className="h-full w-2/5 rounded-full" style={{ background: "var(--gold)" }} />
-        </div>
-        <div className="mt-4 grid gap-2">
-          {["Service one", "Service two", "Not sure yet"].map((o, i) => (
-            <div key={o} className="flex items-center gap-2.5 rounded-xl px-3 py-2.5" style={{ background: i === 1 ? "var(--ink)" : "rgba(255,255,255,0.8)", border: "1px solid color-mix(in oklab, var(--gold) 26%, transparent)" }}>
-              <span className="h-3.5 w-3.5 rounded-full" style={{ border: `1.5px solid ${i === 1 ? "var(--gold)" : "rgba(31,17,11,0.3)"}`, background: i === 1 ? "var(--gold)" : "transparent" }} />
-              <span style={{ fontFamily: BODY, fontSize: "0.78rem", color: i === 1 ? "var(--cream)" : "var(--ink)" }}>{o}</span>
-            </div>
-          ))}
-        </div>
-        <div className="mt-4 rounded-full py-2.5 text-center text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE, background: "var(--ink)", color: "var(--cream)" }}>See my results</div>
-      </div>
-    );
-  }
-
-  if (kind === "replies") {
-    return (
-      <div aria-hidden className="rounded-2xl p-5" style={shell}>
-        <p className="text-[8px] tracking-luxe uppercase text-[var(--gold)]" style={{ fontFamily: LUXE }}>Comment to private reply · example</p>
-        <div className="mt-3 flex items-start gap-2.5">
-          <span className="mt-0.5 h-7 w-7 shrink-0 rounded-full" style={{ background: "rgba(31,17,11,0.12)" }} />
-          <div className="rounded-2xl rounded-tl-sm px-3.5 py-2" style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(31,17,11,0.08)" }}>
-            <p className="text-[var(--ink)]" style={{ fontFamily: BODY, fontSize: "0.78rem" }}>QUOTE</p>
-          </div>
-        </div>
-        <div className="mt-3 ml-auto max-w-[88%] rounded-2xl rounded-tr-sm px-3.5 py-2.5" style={{ background: "var(--ink)" }}>
-          <p className="text-[var(--cream)]/90 leading-snug" style={{ fontFamily: BODY, fontSize: "0.78rem" }}>Hi! Thanks for asking. Which service are you looking for?</p>
-        </div>
-        <div className="mt-2 flex items-start gap-2.5">
-          <span className="mt-0.5 h-7 w-7 shrink-0 rounded-full" style={{ background: "rgba(31,17,11,0.12)" }} />
-          <div className="rounded-2xl rounded-tl-sm px-3.5 py-2" style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(31,17,11,0.08)" }}>
-            <p className="text-[var(--ink)]" style={{ fontFamily: BODY, fontSize: "0.78rem" }}>Service two, please.</p>
-          </div>
-        </div>
-        <p className="mt-3 text-center text-[8px] tracking-luxe uppercase text-[var(--rose)]" style={{ fontFamily: LUXE }}>Contact saved for follow-up</p>
-      </div>
-    );
-  }
-
-  return (
-    <div aria-hidden className="rounded-2xl p-5" style={shell}>
-      <p className="text-[8px] tracking-luxe uppercase text-[var(--gold)]" style={{ fontFamily: LUXE }}>Booking · example</p>
-      <div className="mt-3 rounded-2xl rounded-tl-sm px-3.5 py-2.5" style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(31,17,11,0.08)" }}>
-        <p className="text-[var(--ink)]/80 leading-snug" style={{ fontFamily: BODY, fontSize: "0.78rem" }}>Thanks for reaching out! Here are a few times that work. Pick one and you are booked.</p>
-      </div>
-      <div className="mt-3 grid grid-cols-3 gap-2">
-        {["Tue 10:00", "Wed 2:30", "Fri 11:00"].map((t, i) => (
-          <div key={t} className="rounded-xl py-2 text-center" style={{ fontFamily: BODY, fontSize: "0.7rem", background: i === 1 ? "var(--gold)" : "rgba(255,255,255,0.85)", color: "var(--ink)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)", fontWeight: i === 1 ? 600 : 400 }}>{t}</div>
-        ))}
-      </div>
-      <div className="mt-3 flex items-center justify-center gap-2 rounded-xl py-2.5" style={{ background: "color-mix(in oklab, var(--gold) 18%, transparent)" }}>
-        <CalendarCheck className="h-4 w-4 text-[var(--rose)]" />
-        <span className="text-[var(--ink)]" style={{ fontFamily: BODY, fontSize: "0.76rem", fontWeight: 600 }}>Appointment booked</span>
-      </div>
-    </div>
-  );
-}
+const PREVIEWS: Record<PreviewKind, () => React.ReactElement> = {
+  quote: QuizPhonePreview,
+  replies: RepliesPreview,
+  booking: BookingPhonePreview,
+};
 
 const SERVICES: {
   icon: typeof ImageIcon;
@@ -713,12 +649,6 @@ const SERVICES: {
   },
 ];
 
-const POST_EXAMPLES = [
-  { text: "The one thing I check before every appointment.", tone: "cream" },
-  { text: "Why this customer came back three times.", tone: "blush" },
-  { text: "Three questions to ask before you hire anyone.", tone: "ink" },
-] as const;
-
 export function LaunchWhatsIncluded() {
   return (
     <section id="whats-included" className="scroll-mt-24 py-24 md:py-28 px-6 bg-[var(--cream)]">
@@ -754,32 +684,25 @@ export function LaunchWhatsIncluded() {
               <div>
                 {i === 0 && (
                   <>
-                    <p className="text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Your content, brought to life</p>
-                    <p className="mt-1 text-[var(--ink)]/50" style={{ fontFamily: BODY, fontSize: "0.78rem" }}>Post examples</p>
-                    <div className="mt-3 grid grid-cols-3 gap-2.5">
-                      {POST_EXAMPLES.map((ex) => {
-                        const t = TONES[ex.tone];
-                        return (
-                          <div key={ex.text} className="flex aspect-square items-center justify-center rounded-xl p-2.5 text-center" style={{ background: t.bg, border: "1px solid color-mix(in oklab, var(--gold) 24%, transparent)" }}>
-                            <p className="italic leading-tight" style={{ fontFamily: DISPLAY, fontSize: "0.82rem", color: t.fg }}>{ex.text}</p>
-                          </div>
-                        );
-                      })}
-                    </div>
-                    <div className="mt-4 flex flex-wrap items-center gap-2">
+                    <p className="text-center text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Your content, brought to life</p>
+                    <div className="mt-3"><PostStudioPreview /></div>
+                    <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
                       {["Your expertise", "Your branding", "Your style"].map((c) => (
                         <span key={c} className="rounded-full px-3.5 py-1.5 text-[var(--ink)]/75" style={{ fontFamily: BODY, fontSize: "0.78rem", background: "rgba(255,255,255,0.75)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)" }}>{c}</span>
                       ))}
                     </div>
-                    <p className="mt-3 text-[var(--ink)]/45 italic" style={{ fontFamily: BODY, fontSize: "0.78rem" }}>Examples, not a fixed template library.</p>
+                    <p className="mt-3 text-center text-[var(--ink)]/45 italic" style={{ fontFamily: BODY, fontSize: "0.78rem" }}>Examples, not a fixed template library.</p>
                   </>
                 )}
-                {preview && (
-                  <>
-                    <ServicePreview kind={preview} />
-                    <p className="mt-3 text-center text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Built and managed for you</p>
-                  </>
-                )}
+                {preview && (() => {
+                  const Preview = PREVIEWS[preview];
+                  return (
+                    <>
+                      <Preview />
+                      <p className="mt-4 text-center text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Built and managed for you</p>
+                    </>
+                  );
+                })()}
               </div>
             </div>
           </article>
