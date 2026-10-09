@@ -114,7 +114,7 @@ export function MockCommentToDm() {
           {bubble("Perfect. Here is the link to book a time that suits you.", false)}
         </div>
       </Peek>
-      <Chip className="left-2 top-6 -rotate-3" float="launch-float-slow">
+      <Chip className="left-2 top-6" float="launch-float-slow">
         <span className="flex h-6 w-6 shrink-0 rounded-full" style={{ background: "linear-gradient(135deg,#d9a9a3,#c58a85)" }} />
         <span><b>you</b> QUOTE<br /><span style={{ color: "#999", fontSize: "0.56rem" }}>now · Reply</span></span>
         <Heart className="ml-1 h-3.5 w-3.5" style={{ color: "#bbb" }} />

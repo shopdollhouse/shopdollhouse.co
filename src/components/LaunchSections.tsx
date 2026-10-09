@@ -36,6 +36,8 @@ import {
   LAUNCH_PLANS,
   POSTS_PER_MONTH,
   PRICE_SINGLE,
+  BONUS_VALUES,
+  SERVICE_VALUES,
   SHOW_VALUE_STACK,
   VALUE_STACK,
   VALUE_STACK_BONUSES,
@@ -607,9 +609,15 @@ export function LaunchWhatsIncluded() {
               <div className="min-w-0">
                 <p className="flex items-center gap-2 text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE, color: "var(--gold)" }}>
                   <Icon className="h-3.5 w-3.5" /> Included service
+                  {SHOW_VALUE_STACK && <span className="rounded-full border px-2.5 py-0.5 sm:hidden" style={{ borderColor: "color-mix(in oklab, var(--gold) 60%, transparent)" }}>{SERVICE_VALUES[i]}</span>}
                 </p>
                 <h3 className="mt-1 text-[var(--cream)] leading-tight" style={{ fontFamily: DISPLAY, fontSize: "clamp(1.4rem, 3vw, 1.9rem)", fontWeight: 500 }}>{title}</h3>
               </div>
+              {SHOW_VALUE_STACK && (
+                <span className="ml-auto hidden shrink-0 rounded-full border px-3.5 py-1.5 text-[9.5px] uppercase tracking-[0.2em] sm:inline-block" style={{ fontFamily: LUXE, fontWeight: 600, color: "var(--gold)", borderColor: "color-mix(in oklab, var(--gold) 60%, transparent)", background: "rgba(198,178,130,0.1)" }}>
+                  {SERVICE_VALUES[i]}
+                </span>
+              )}
             </div>
             <div className="grid gap-8 p-6 md:grid-cols-2 md:p-8">
               <div>
@@ -1001,13 +1009,13 @@ export function LaunchPlans() {
             {[
               { title: "Your Dollhouse CRM account", copy: "Keep inquiries, messages, follow-up, and appointments organized in one place.", icon: MessageSquare },
               { title: "Private 1-on-1 kickoff call", copy: "Discuss your services, ideal clients, preferred styles, and setup questions.", icon: CalendarCheck },
-            ].map((b) => (
+            ].map((b, bi) => (
               <div key={b.title} className="flex gap-4">
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full" style={{ border: "1px solid color-mix(in oklab, var(--gold) 60%, transparent)", color: "var(--gold)" }}>
                   <b.icon className="h-5 w-5" strokeWidth={1.5} />
                 </span>
                 <div>
-                  <p className="text-[var(--gold)] text-[9px] tracking-[0.3em] uppercase" style={{ fontFamily: LUXE }}>Included bonus</p>
+                  <p className="text-[var(--gold)] text-[9px] tracking-[0.3em] uppercase" style={{ fontFamily: LUXE }}>Included bonus{SHOW_VALUE_STACK && ` · ${BONUS_VALUES[bi]}`}</p>
                   <h4 className="mt-1 text-[var(--cream)]" style={{ fontFamily: DISPLAY, fontSize: "1.35rem", fontWeight: 500 }}>{b.title}</h4>
                   <p className="mt-1 text-[var(--cream)]/60 leading-6" style={{ fontFamily: BODY, fontSize: "0.88rem" }}>{b.copy}</p>
                 </div>

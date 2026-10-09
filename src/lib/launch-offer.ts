@@ -75,12 +75,10 @@ export const ADDON_PLATFORM_PRICE = 50;
 export const AI_USAGE_COVERED = 10;
 
 /**
- * Optional "launch-month value breakdown" (the "$7,244 value" stack on the
- * reference site). OFF by default: "value" figures imply a normal selling price,
- * and these are not prices you actually charge anywhere. Turn on only if you can
- * stand behind each number.
+ * "Launch-month value breakdown" (the "$7,244 value" stack, matching the reference offer).
+ * Flip SHOW_VALUE_STACK to false to hide every value tag and the breakdown at once.
  */
-export const SHOW_VALUE_STACK = false;
+export const SHOW_VALUE_STACK = true;
 export const VALUE_STACK: { label: string; value: string }[] = [
   { label: "30 Social Media Posts Every Month", value: "$1,500/mo" },
   { label: "Website Quote Calculator or Quiz", value: "$1,500" },
@@ -91,3 +89,8 @@ export const VALUE_STACK: { label: string; value: string }[] = [
 ];
 export const VALUE_STACK_BONUSES = "Plus the Dollhouse CRM account ($497/month value) and kickoff call ($297 value).";
 export const VALUE_STACK_TOTAL = "$7,244";
+
+/** Value tags shown on the four included services, in order. */
+export const SERVICE_VALUES = ["$1,500/mo value", "$1,500 value", "$750 value", "$1,200/mo value"];
+/** Value tags shown on the two included bonuses, in order. */
+export const BONUS_VALUES = ["$497/mo value", "$297 value"];
