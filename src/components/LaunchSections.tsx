@@ -311,22 +311,39 @@ function LaunchHero() {
       />
 
       <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
-        <div className="text-center lg:text-left">
-          <p
-            className="inline-flex items-center gap-2 rounded-full px-5 py-2 text-[10px] tracking-luxe uppercase text-[var(--ink)]/75"
-            style={{ fontFamily: LUXE, background: "rgba(255,250,246,0.78)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)" }}
+        <div className="relative text-center lg:text-left">
+          {/* The soft white glow behind the header, exactly as on shopdollhouse.co */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute left-1/2 top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2"
+            style={{ width: "min(120%, 780px)", height: "110%", background: "radial-gradient(rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.65) 40%, rgba(255,255,255,0.2) 65%, rgba(255,255,255,0) 85%)", filter: "blur(32px)" }}
+          />
+
+          <div
+            className="inline-flex items-center gap-2 rounded-full border px-5 py-2 text-[var(--gold)] backdrop-blur-md"
+            style={{ borderColor: "color-mix(in oklab, var(--gold) 55%, transparent)", background: "rgba(255,255,255,0.4)" }}
           >
-            <span style={{ color: "var(--gold)" }}>✦</span> For local business owners
-          </p>
+            <span style={{ fontSize: "0.55rem" }}>✦</span>
+            <span className="text-[10px] tracking-luxe uppercase font-medium" style={{ fontFamily: LUXE }}>For local business owners</span>
+            <span style={{ fontSize: "0.55rem" }}>✦</span>
+          </div>
+
+          <div className="mt-4 flex justify-center text-[var(--gold)] lg:justify-start">
+            <span className="float-slow inline-flex"><img src={archMark} alt="" className="h-10 w-7" /></span>
+          </div>
+          <p className="mt-2 italic leading-none text-[var(--gold)]" style={{ fontFamily: "Allura, cursive", fontSize: "clamp(2.5rem, 5vw, 3.5rem)", textTransform: "lowercase" }}>the</p>
+          <p className="mt-1 font-normal leading-[0.95] tracking-[0.04em] text-[var(--rose)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(3.5rem, 8vw, 5.4rem)", fontWeight: 400 }}>DOLLHOUSE</p>
+          <p className="mt-3 text-[15px] uppercase tracking-luxe text-[var(--gold)]" style={{ fontFamily: "Jost, sans-serif" }}>launch</p>
+          <div className="flex justify-center lg:justify-start"><span className="w-[200px]"><Divider /></span></div>
 
           <h1
-            className="mt-7 italic text-[var(--rose)]"
-            style={{ fontFamily: DISPLAY, fontWeight: 300, fontSize: "clamp(2.9rem, 7.2vw, 5.6rem)", lineHeight: 1.04, letterSpacing: "-0.005em" }}
+            className="mt-1 max-w-xl italic leading-snug text-[var(--rose)] lg:mx-0 mx-auto"
+            style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: "clamp(1.75rem, 3.4vw, 2.45rem)", letterSpacing: "-0.01em" }}
           >
             Turn your social media into booked appointments.
           </h1>
 
-          <p className="mx-auto mt-6 max-w-xl text-[var(--ink)]/72 leading-8 lg:mx-0" style={{ fontFamily: BODY, fontSize: "clamp(1rem, 2vw, 1.15rem)" }}>
+          <p className="mx-auto mt-4 max-w-xl text-[var(--ink)]/65 leading-relaxed lg:mx-0" style={{ fontFamily: BODY, fontSize: "clamp(0.95rem, 1.8vw, 1.1rem)" }}>
             The done-for-you social media and lead-generation system for appointment-based and service businesses. We post for you,
             capture new inquiries, reply instantly and book the appointment, from{" "}
             <strong className="text-[var(--ink)]">${PRICE_SINGLE}/month</strong>.
