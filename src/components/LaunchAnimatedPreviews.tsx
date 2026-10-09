@@ -7,13 +7,13 @@ import archMark from "@/assets/arch-mark.svg";
  * Each one loops through a short story, only runs while on screen, and shows
  * the finished state for people who prefer reduced motion.
  */
-const SANS = "-apple-system, 'SF Pro Text', 'Inter', 'DM Sans', system-ui, sans-serif";
+export const SANS = "-apple-system, 'SF Pro Text', 'Inter', 'DM Sans', system-ui, sans-serif";
 const BODY = "'DM Sans', sans-serif";
-const DISPLAY = "'Cormorant Garamond', serif";
-const GOLD = "#c6b282";
-const CHOC = "#1f110b";
-const IOS_BLUE = "#0a84ff";
-const IOS_GRAY = "#e9e9eb";
+export const DISPLAY = "'Cormorant Garamond', serif";
+export const GOLD = "#c6b282";
+export const CHOC = "#1f110b";
+export const IOS_BLUE = "#0a84ff";
+export const IOS_GRAY = "#e9e9eb";
 
 function useStory(loopMs: number, marks: number[]) {
   const ref = useRef<HTMLDivElement>(null);
@@ -51,7 +51,7 @@ function typed(text: string, from: number, perChar: number, elapsed: number) {
   return text.slice(0, n);
 }
 
-function StatusBar({ dark = false }: { dark?: boolean }) {
+export function StatusBar({ dark = false }: { dark?: boolean }) {
   const c = dark ? "#fff" : "#111";
   return (
     <div className="flex items-center justify-between px-6 pt-[13px]" style={{ fontFamily: SANS, fontSize: "0.7rem", fontWeight: 600, color: c }}>
@@ -64,23 +64,28 @@ function StatusBar({ dark = false }: { dark?: boolean }) {
   );
 }
 
-/** iPhone 15 style device: titanium edge, thin bezel, island, light screen. */
-function Phone({ children, bg = "#ffffff" }: { children: React.ReactNode; bg?: string }) {
+/** iPhone 15 style device: titanium edge, thin bezel, island, light screen. `scale` resizes the whole device. */
+export function Phone({ children, bg = "#ffffff", scale = 1, height = 456 }: { children: React.ReactNode; bg?: string; scale?: number; height?: number }) {
   const edge = "linear-gradient(145deg, #b4ad9f 0%, #4a453d 20%, #1b1915 50%, #5a554c 78%, #bab3a4 100%)";
+  const total = height + 18;
   return (
-    <div className="relative mx-auto w-[252px]">
-      <span className="absolute -left-[2px] top-[72px] h-5 w-[3px] rounded-l-sm" style={{ background: "#5a554c" }} />
-      <span className="absolute -left-[2px] top-[112px] h-9 w-[3px] rounded-l-sm" style={{ background: "#5a554c" }} />
-      <span className="absolute -left-[2px] top-[156px] h-9 w-[3px] rounded-l-sm" style={{ background: "#5a554c" }} />
-      <span className="absolute -right-[2px] top-[124px] h-14 w-[3px] rounded-r-sm" style={{ background: "#5a554c" }} />
-      <div className="rounded-[46px] p-[3px]" style={{ background: edge, boxShadow: "0 50px 80px -34px rgba(31,17,11,0.75), 0 18px 34px -18px rgba(0,0,0,0.5)" }}>
-        <div className="rounded-[43px] p-[6px]" style={{ background: "#050505" }}>
-          <div className="relative flex flex-col overflow-hidden rounded-[37px]" style={{ background: bg, height: 456, fontFamily: SANS }}>
-            <div className="absolute left-1/2 top-[8px] z-30 h-[21px] w-[74px] -translate-x-1/2 rounded-full bg-black" />
-            <div aria-hidden className="pointer-events-none absolute inset-0 z-40" style={{ background: "linear-gradient(120deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.04) 22%, transparent 36%)" }} />
-            <span aria-hidden className="absolute bottom-1.5 left-1/2 z-30 h-[4px] w-[88px] -translate-x-1/2 rounded-full" style={{ background: "#111", opacity: 0.85 }} />
-            <StatusBar />
-            <div className="flex min-h-0 flex-1 flex-col">{children}</div>
+    <div className="relative mx-auto" style={{ width: 252 * scale, height: total * scale }}>
+      <div className="absolute left-0 top-0" style={{ width: 252, transform: `scale(${scale})`, transformOrigin: "top left" }}>
+        <div className="relative">
+          <span className="absolute -left-[2px] top-[72px] h-5 w-[3px] rounded-l-sm" style={{ background: "#5a554c" }} />
+          <span className="absolute -left-[2px] top-[112px] h-9 w-[3px] rounded-l-sm" style={{ background: "#5a554c" }} />
+          <span className="absolute -left-[2px] top-[156px] h-9 w-[3px] rounded-l-sm" style={{ background: "#5a554c" }} />
+          <span className="absolute -right-[2px] top-[124px] h-14 w-[3px] rounded-r-sm" style={{ background: "#5a554c" }} />
+          <div className="rounded-[46px] p-[3px]" style={{ background: edge, boxShadow: "0 50px 80px -34px rgba(31,17,11,0.75), 0 18px 34px -18px rgba(0,0,0,0.5)" }}>
+            <div className="rounded-[43px] p-[6px]" style={{ background: "#050505" }}>
+              <div className="relative flex flex-col overflow-hidden rounded-[37px]" style={{ background: bg, height, fontFamily: SANS }}>
+                <div className="absolute left-1/2 top-[8px] z-30 h-[21px] w-[74px] -translate-x-1/2 rounded-full bg-black" />
+                <div aria-hidden className="pointer-events-none absolute inset-0 z-40" style={{ background: "linear-gradient(120deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.04) 22%, transparent 36%)" }} />
+                <span aria-hidden className="absolute bottom-1.5 left-1/2 z-30 h-[4px] w-[88px] -translate-x-1/2 rounded-full" style={{ background: "#111", opacity: 0.85 }} />
+                <StatusBar />
+                <div className="flex min-h-0 flex-1 flex-col">{children}</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -89,7 +94,7 @@ function Phone({ children, bg = "#ffffff" }: { children: React.ReactNode; bg?: s
 }
 
 /* ───────── 1. Instagram profile: thirty posts fill the grid ───────── */
-const GRID = [
+export const GRID = [
   { t: "The one thing I check before every appointment.", a: "#2a1a13", b: "#1a0f0a", fg: "#f5efe6" },
   { t: "Why this customer came back three times.", a: "#f4dcdc", b: "#e7c2c0", fg: CHOC },
   { t: "Three questions to ask before you hire anyone.", a: "#c6b282", b: "#a8946a", fg: CHOC },
@@ -386,5 +391,59 @@ export function BookingPhonePreview() {
         </div>
       </Phone>
     </div>
+  );
+}
+
+/* ───────── Hero: Instagram DM that ends in a booked appointment ───────── */
+export function HeroPhoneScreen({ step }: { step: number }) {
+  const Typing = () => (
+    <div className="phone-pop flex w-[52px] items-center gap-1 rounded-[16px] px-3 py-3" style={{ background: IOS_GRAY }}>
+      {[0, 1, 2].map((i) => <span key={i} className="phone-dot h-1.5 w-1.5 rounded-full" style={{ background: "#999", animationDelay: `${i * 0.18}s` }} />)}
+    </div>
+  );
+  const slots = ["Tue 10:00", "Thu 2:30", "Fri 11:00"];
+  const typing = step === 2 || step === 5;
+  return (
+    <>
+      <div className="flex items-center gap-2 border-b px-3 pb-2 pt-3" style={{ borderColor: "#eee" }}>
+        <ChevronLeft className="h-4 w-4" style={{ color: "#111" }} />
+        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white" style={{ border: `1.5px solid ${GOLD}` }}><img src={archMark} alt="" className="h-3.5 w-auto" /></span>
+        <p style={{ fontSize: "0.72rem", fontWeight: 700, color: "#111", lineHeight: 1.15 }}>yourbusiness<br /><span style={{ fontWeight: 400, color: "#888", fontSize: "0.6rem" }}>Active now</span></p>
+      </div>
+      <div className="flex flex-1 flex-col justify-end gap-1.5 overflow-hidden px-3 pb-8">
+        <p className="mb-1 text-center" style={{ fontSize: "0.58rem", color: "#999" }}>Today 9:41 PM</p>
+        {step >= 1 && <div className="phone-pop ml-auto max-w-[78%] rounded-[16px] px-3 py-2" style={{ background: "linear-gradient(135deg,#7a5cff,#a14bff)", fontSize: "0.7rem", color: "#fff", lineHeight: 1.3 }}>Hi, I saw your post. Are you taking new customers?</div>}
+        {step === 2 && <Typing />}
+        {step >= 3 && <div className="phone-pop max-w-[82%] rounded-[16px] px-3 py-2" style={{ background: IOS_GRAY, fontSize: "0.7rem", color: "#111", lineHeight: 1.3 }}>Yes, we are! What service are you looking for, and when would you like to come in?</div>}
+        {step >= 4 && <div className="phone-pop ml-auto max-w-[70%] rounded-[16px] px-3 py-2" style={{ background: "linear-gradient(135deg,#7a5cff,#a14bff)", fontSize: "0.7rem", color: "#fff" }}>Something this week, if possible.</div>}
+        {step === 5 && <Typing />}
+        {step >= 6 && (
+          <div className="phone-pop max-w-[88%] rounded-[16px] p-2" style={{ background: IOS_GRAY }}>
+            <p className="px-1 pb-1.5" style={{ fontSize: "0.68rem", color: "#111", lineHeight: 1.3 }}>Great. I have a few times open. Which works best?</p>
+            <div className="grid grid-cols-3 gap-1">
+              {slots.map((t, i) => {
+                const on = step >= 7 && i === 1;
+                return <span key={t} className="rounded-lg py-1.5 text-center transition-colors duration-500" style={{ fontSize: "0.58rem", background: on ? "#7a5cff" : "#fff", color: on ? "#fff" : "#111", fontWeight: on ? 600 : 500 }}>{t}</span>;
+              })}
+            </div>
+          </div>
+        )}
+        {step >= 7 && <div className="phone-pop ml-auto max-w-[70%] rounded-[16px] px-3 py-2" style={{ background: "linear-gradient(135deg,#7a5cff,#a14bff)", fontSize: "0.7rem", color: "#fff" }}>Thursday at 2:30.</div>}
+        {step >= 8 && (
+          <div className="phone-pop flex max-w-[90%] items-center gap-2.5 rounded-[16px] p-2.5" style={{ background: IOS_GRAY }}>
+            <span className="flex h-10 w-10 shrink-0 flex-col items-center overflow-hidden rounded-lg bg-white text-center" style={{ border: "1px solid #ddd" }}>
+              <span className="w-full py-px" style={{ background: "#ff3b30", color: "#fff", fontSize: "0.4rem", fontWeight: 700 }}>THU</span>
+              <span style={{ fontSize: "0.95rem", fontWeight: 700, color: "#111", lineHeight: 1.3 }}>15</span>
+            </span>
+            <p style={{ fontSize: "0.66rem", color: "#111", lineHeight: 1.25 }}><b>Appointment booked</b><br /><span style={{ color: "#666" }}>Thu 2:30 PM · Your Business</span></p>
+            <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full" style={{ background: "#34c759", color: "#fff" }}><Check className="h-3 w-3" strokeWidth={3} /></span>
+          </div>
+        )}
+        <div className="mt-1 flex items-center gap-2 rounded-full border px-3 py-1.5" style={{ borderColor: "#ddd" }}>
+          <p className="flex-1" style={{ fontSize: "0.68rem", color: "#aaa" }}>Message...</p>
+          <Send className="h-3.5 w-3.5" style={{ color: "#999" }} />
+        </div>
+      </div>
+    </>
   );
 }

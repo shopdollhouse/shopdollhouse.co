@@ -22,8 +22,8 @@ import {
   X,
 } from "lucide-react";
 import archMark from "@/assets/arch-mark.svg";
-import { BookingPhonePreview, PostStudioPreview, QuizPhonePreview, RepliesPreview } from "@/components/LaunchAnimatedPreviews";
-import { IllustrationCarouselPlan, IllustrationSinglePlan, IllustrationAccess, IllustrationBook, IllustrationCheckout, IllustrationFirstPosts, IllustrationPosts, IllustrationQuote, IllustrationReply } from "@/components/LaunchIllustrations";
+import { MockApprove, MockBookingText, MockCheckout, MockCommentToDm, MockCrm, MockPlanCarousel, MockPlanSingle, MockPostFeed, MockQuizWindow } from "@/components/LaunchMockups";
+import { HeroPhoneScreen, Phone, BookingPhonePreview, PostStudioPreview, QuizPhonePreview, RepliesPreview } from "@/components/LaunchAnimatedPreviews";
 import bgImage from "@/assets/password-bg.jpg";
 import mandyPhoto from "@/assets/mandy-photo.jpg";
 import {
@@ -227,121 +227,23 @@ function usePhoneStory() {
   return { step, secs };
 }
 
-function Bubble({ who, label, children }: { who: "them" | "us"; label: string; children: React.ReactNode }) {
-  const us = who === "us";
-  return (
-    <div
-      className={`phone-pop max-w-[88%] rounded-[16px] px-3.5 py-2.5 ${us ? "" : "ml-auto"}`}
-      style={us ? { background: "rgba(198,178,130,0.12)", border: "1px solid rgba(198,178,130,0.3)" } : { background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)" }}
-    >
-      <p className="text-[7.5px] tracking-[0.26em] uppercase" style={{ fontFamily: LUXE, color: us ? "rgba(198,178,130,0.95)" : "rgba(255,255,255,0.45)" }}>{label}</p>
-      <p className="mt-1 leading-snug" style={{ fontFamily: BODY, fontSize: "0.78rem", color: "#f5efe6" }}>{children}</p>
-    </div>
-  );
-}
-
-function TypingDots() {
-  return (
-    <div className="phone-pop flex w-[62px] items-center gap-1.5 rounded-[16px] px-4 py-3.5" style={{ background: "rgba(198,178,130,0.12)", border: "1px solid rgba(198,178,130,0.3)" }}>
-      {[0, 1, 2].map((i) => (
-        <span key={i} className="phone-dot h-1.5 w-1.5 rounded-full" style={{ background: "#c6b282", animationDelay: `${i * 0.18}s` }} />
-      ))}
-    </div>
-  );
-}
-
 function HeroVisual() {
-  const { step, secs } = usePhoneStory();
-  const typing = step === 2 || step === 5;
+  const { step } = usePhoneStory();
   const booked = step >= 8;
-  const mm = String(Math.floor(secs / 60));
-  const ss = String(secs % 60).padStart(2, "0");
-  const metal = "linear-gradient(180deg, #6f6a62 0%, #2b2925 50%, #55514a 100%)";
 
   return (
     <div className="relative mx-auto w-full max-w-[300px] sm:max-w-[310px]" aria-hidden>
       <div className="absolute -inset-12 rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(198,178,130,0.3), transparent 62%)" }} />
 
       <div className="relative">
-        {/* side buttons */}
-        <span className="absolute -left-[3px] top-[96px] h-7 w-[4px] rounded-l-sm" style={{ background: metal }} />
-        <span className="absolute -left-[3px] top-[150px] h-12 w-[4px] rounded-l-sm" style={{ background: metal }} />
-        <span className="absolute -left-[3px] top-[210px] h-12 w-[4px] rounded-l-sm" style={{ background: metal }} />
-        <span className="absolute -right-[3px] top-[170px] h-20 w-[4px] rounded-r-sm" style={{ background: metal }} />
-
-        {/* titanium frame */}
-        <div
-          className="relative rounded-[58px] p-[3px]"
-          style={{ background: "linear-gradient(145deg, #a39b8d 0%, #3d3934 20%, #14120f 50%, #4d483f 78%, #aaa294 100%)", boxShadow: "0 70px 110px -40px rgba(24,10,6,0.85), 0 30px 60px -30px rgba(0,0,0,0.6)" }}
-        >
-          {/* bezel */}
-          <div className="rounded-[55px] p-[9px]" style={{ background: "#020202" }}>
-            {/* screen */}
-            <div className="relative flex flex-col overflow-hidden rounded-[46px]" style={{ background: "linear-gradient(180deg, #0d0c0b 0%, #070706 100%)", aspectRatio: "9 / 19" }}>
-              {/* glare */}
-              <div aria-hidden className="pointer-events-none absolute inset-0 z-30" style={{ background: "linear-gradient(118deg, rgba(255,255,255,0.09) 0%, rgba(255,255,255,0.02) 28%, transparent 40%)" }} />
-
-              {/* dynamic island + status bar */}
-              <div className="absolute left-1/2 top-[11px] z-20 flex h-[26px] w-[92px] -translate-x-1/2 items-center justify-end rounded-full bg-black pr-3">
-                <span className="h-2 w-2 rounded-full" style={{ background: "radial-gradient(circle at 35% 35%, #26304a, #0a0d16)" }} />
-              </div>
-              <div className="absolute inset-x-0 top-[14px] z-10 flex items-center justify-between px-8" style={{ fontFamily: BODY, fontSize: "0.7rem", fontWeight: 600, color: "#f5efe6" }}>
-                <span>9:41</span>
-                <span className="flex items-center gap-1.5">
-                  <svg width="15" height="10" viewBox="0 0 16 10" fill="currentColor"><rect x="0" y="6" width="2.6" height="4" rx="0.6" /><rect x="4.4" y="4" width="2.6" height="6" rx="0.6" /><rect x="8.8" y="2" width="2.6" height="8" rx="0.6" /><rect x="13.2" y="0" width="2.6" height="10" rx="0.6" /></svg>
-                  <svg width="20" height="10" viewBox="0 0 20 10" fill="none"><rect x="0.5" y="0.5" width="16" height="9" rx="2.4" stroke="currentColor" opacity="0.5" /><rect x="2" y="2" width="13" height="6" rx="1.4" fill="currentColor" /><rect x="17.5" y="3.2" width="1.6" height="3.6" rx="0.8" fill="currentColor" opacity="0.5" /></svg>
-                </span>
-              </div>
-
-              {/* caller */}
-              <div className="flex flex-col items-center px-6 pt-[64px]">
-                <span className="relative flex h-[58px] w-[58px] items-center justify-center rounded-full" style={{ background: "radial-gradient(circle at 35% 30%, #3a332a, #151210)", border: "1px solid rgba(198,178,130,0.5)", color: "#f5efe6", fontFamily: HEAD, fontSize: "1.45rem", fontWeight: 300 }}>
-                  <span className="launch-ping absolute inset-0 rounded-full" style={{ background: "rgba(198,178,130,0.25)" }} />
-                  <span className="relative">D</span>
-                </span>
-                <p className="mt-3" style={{ fontFamily: HEAD, fontWeight: 400, fontSize: "1.2rem", color: "#f5efe6" }}>The Dollhouse AI</p>
-                <p className="mt-1.5 text-[9px] tracking-[0.3em] uppercase" style={{ fontFamily: LUXE, color: "#c6b282" }}>{booked ? "Booked" : "Replying now"}</p>
-                <p className="mt-2 flex items-center gap-2 text-[11px]" style={{ fontFamily: BODY, color: "rgba(198,178,130,0.85)", letterSpacing: "0.12em" }}>
-                  <span className="h-1.5 w-1.5 rounded-full" style={{ background: "#c6b282" }} /> {mm}:{ss}
-                </p>
-              </div>
-
-              <div className="mt-4 h-px w-full" style={{ background: "rgba(255,255,255,0.08)" }} />
-
-              {/* conversation (newest at the bottom, older ones slide up) */}
-              <div
-                className="flex min-h-0 flex-1 flex-col justify-end gap-2.5 overflow-hidden px-4 pb-3 pt-3"
-                style={{ WebkitMaskImage: "linear-gradient(to bottom, transparent 0, #000 22px)", maskImage: "linear-gradient(to bottom, transparent 0, #000 22px)" }}
-              >
-                {step >= 1 && <Bubble who="them" label="Customer">Hi, I saw your post. Are you taking new customers?</Bubble>}
-                {step >= 3 && <Bubble who="us" label="Your business · Auto reply">Yes, we are! What service are you looking for, and when would you like to come in?</Bubble>}
-                {step >= 4 && <Bubble who="them" label="Customer">Something this week, if possible.</Bubble>}
-                {step >= 6 && <Bubble who="us" label="Your business · Auto reply">Great. I have Tuesday at 10:00 or Thursday at 2:30. Which works best?</Bubble>}
-                {step >= 7 && <Bubble who="them" label="Customer">Thursday at 2:30.</Bubble>}
-                {typing && <TypingDots />}
-                {booked && <Bubble who="us" label="Your business · Auto reply">You are booked for Thursday at 2:30. See you then.</Bubble>}
-              </div>
-
-              {/* action */}
-              <div className="px-5 pb-7">
-                <div
-                  className="py-3 text-center text-[9.5px] tracking-[0.26em] uppercase transition-colors duration-500"
-                  style={{ fontFamily: LUXE, fontWeight: 600, background: booked ? "transparent" : "#c6b282", color: booked ? "#c6b282" : "#0a0a0a", border: "1px solid #c6b282", borderRadius: "2px" }}
-                >
-                  {booked ? "✓ Appointment booked" : "Book my appointment"}
-                </div>
-              </div>
-
-              {/* home indicator */}
-              <span aria-hidden className="absolute bottom-2 left-1/2 z-20 h-[4px] w-[108px] -translate-x-1/2 rounded-full" style={{ background: "rgba(255,255,255,0.7)" }} />
-            </div>
-          </div>
-        </div>
+        <Phone scale={1.2} height={470}>
+          <HeroPhoneScreen step={step} />
+        </Phone>
       </div>
 
       {/* floating messages, timed to the story */}
       <div
-        className="launch-float absolute -left-6 top-[26%] z-30 flex items-center gap-2.5 rounded-2xl px-4 py-3 transition-all duration-700 sm:-left-24 lg:-left-28"
+        className="launch-float absolute -left-6 top-[34%] z-30 flex items-center gap-2.5 rounded-2xl px-4 py-3 transition-all duration-700 sm:-left-32 lg:-left-40"
         style={{ opacity: step >= 3 ? 1 : 0.0, transform: step >= 3 ? "scale(1)" : "scale(0.9)", background: "rgba(255,250,246,0.95)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)", boxShadow: "0 24px 50px -24px rgba(90,40,30,0.5)" }}
       >
         <span className="flex h-8 w-8 items-center justify-center rounded-full" style={{ background: "color-mix(in oklab, var(--rose) 16%, transparent)", color: "var(--rose)" }}>
@@ -354,7 +256,7 @@ function HeroVisual() {
       </div>
 
       <div
-        className="launch-float-slow absolute -right-4 top-[11%] z-30 flex items-center gap-2.5 rounded-2xl px-4 py-3 transition-all duration-700 sm:-right-20 lg:-right-24"
+        className="launch-float-slow absolute -right-4 top-[11%] z-30 flex items-center gap-2.5 rounded-2xl px-4 py-3 transition-all duration-700 sm:-right-28 lg:-right-32"
         style={{ opacity: booked ? 1 : 0, transform: booked ? "scale(1)" : "scale(0.9)", background: "rgba(255,250,246,0.95)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)", boxShadow: "0 24px 50px -24px rgba(90,40,30,0.5)" }}
       >
         <span className="relative flex h-8 w-8 items-center justify-center rounded-full" style={{ background: "color-mix(in oklab, var(--gold) 22%, transparent)", color: "var(--gold)" }}>
@@ -487,7 +389,7 @@ const STEPS = [
     title: "We create your posts",
     copy: `Receive your first batch of posts for your business within ${FIRST_POSTS_DAYS} days.`,
     icon: ImageIcon,
-    art: IllustrationPosts,
+    art: MockPostFeed,
     bullets: [`${POSTS_PER_MONTH} posts every month`, "Written for your services and your area", "Published daily after your approval"],
     foot: `First posts in ${FIRST_POSTS_DAYS} days`,
   },
@@ -495,7 +397,7 @@ const STEPS = [
     title: "We collect new inquiries",
     copy: "Visitors use a helpful quote calculator or quiz and share their contact details to get their results.",
     icon: Calculator,
-    art: IllustrationQuote,
+    art: MockQuizWindow,
     bullets: ["Quote calculator or quiz for your website", "Results based on their answers", "Names and contact details saved automatically"],
     foot: "Inquiries captured for you",
   },
@@ -503,7 +405,7 @@ const STEPS = [
     title: "We reply automatically",
     copy: "When someone comments or sends a message, they get a helpful private reply right away.",
     icon: MessageSquare,
-    art: IllustrationReply,
+    art: MockCommentToDm,
     bullets: ["Comments get an instant private reply", "A few questions find the service they need", "New contacts saved for follow-up"],
     foot: "No more lost messages",
   },
@@ -511,7 +413,7 @@ const STEPS = [
     title: "We follow up and book",
     copy: "New inquiries get follow-up, even after hours, and can book an appointment on your calendar.",
     icon: CalendarCheck,
-    art: IllustrationBook,
+    art: MockBookingText,
     bullets: ["Follow-up starts right away, even at night", "Answers common questions you approve", "Books the appointment on your calendar"],
     foot: "Appointments on your calendar",
   },
@@ -531,7 +433,7 @@ export function LaunchHowItWorks() {
           const Art = st.art;
           return (
             <article key={st.title} className="group flex flex-col overflow-hidden rounded-[8px] transition-all duration-500" style={{ ...card, boxShadow: "0 40px 80px -44px rgba(110,60,50,0.5)" }}>
-              <div className="relative h-[220px] overflow-hidden" style={{ background: "linear-gradient(160deg, #fbeee9 0%, #f3d9d3 100%)" }}>
+              <div className="relative h-[310px] overflow-hidden" style={{ background: "linear-gradient(160deg, #fbeee9 0%, #f3d9d3 100%)" }}>
                 <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.06]">
                   <Art />
                 </div>
@@ -993,7 +895,7 @@ function ValueStack() {
 }
 
 export function LaunchPlans() {
-  const arts = { single: IllustrationSinglePlan, carousel: IllustrationCarouselPlan } as const;
+  const arts = { single: MockPlanSingle, carousel: MockPlanCarousel } as const;
   return (
     <section
       id="plans"
@@ -1018,7 +920,7 @@ export function LaunchPlans() {
                 className="group flex flex-col overflow-hidden rounded-[8px] transition-all duration-500"
                 style={{ background: "linear-gradient(180deg, #fffaf6 0%, #fbeee9 100%)", border: "1px solid color-mix(in oklab, var(--gold) 70%, transparent)", boxShadow: "0 50px 100px -40px rgba(0,0,0,0.75), 0 0 0 6px rgba(198,178,130,0.07)" }}
               >
-                <div className="relative h-[250px] overflow-hidden" style={{ background: "radial-gradient(ellipse at 50% 40%, #fff6f2 0%, #f6dfd9 70%, #f0d1ca 100%)" }}>
+                <div className="relative h-[290px] overflow-hidden" style={{ background: "radial-gradient(ellipse at 50% 40%, #fff6f2 0%, #f6dfd9 70%, #f0d1ca 100%)" }}>
                   <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.04]"><Art /></div>
                   <div aria-hidden className="absolute inset-x-0 bottom-0 h-3" style={{ background: "linear-gradient(to top, rgba(255,250,246,0.9), transparent)" }} />
                 </div>
@@ -1094,9 +996,9 @@ export function LaunchPlans() {
 
 /* ─── After purchase ──────────────────────────────────── */
 const AFTER = [
-  { title: "Today", copy: "Complete your order and choose a time for your private kickoff call.", icon: CreditCard, art: IllustrationCheckout, foot: "Kickoff call booked" },
-  { title: "Immediate account access", copy: "Your Dollhouse CRM account is available immediately. Complete your setup checklist after booking your call.", icon: KeyRound, art: IllustrationAccess, foot: "Setup checklist ready" },
-  { title: "Your first posts", copy: `Review your first posts and the publishing plan within ${FIRST_POSTS_DAYS} days, with your setup details and access provided.`, icon: Images, art: IllustrationFirstPosts, foot: `First posts in ${FIRST_POSTS_DAYS} days` },
+  { title: "Today", copy: "Complete your order and choose a time for your private kickoff call.", icon: CreditCard, art: MockCheckout, foot: "Kickoff call booked" },
+  { title: "Immediate account access", copy: "Your Dollhouse CRM account is available immediately. Complete your setup checklist after booking your call.", icon: KeyRound, art: MockCrm, foot: "Setup checklist ready" },
+  { title: "Your first posts", copy: `Review your first posts and the publishing plan within ${FIRST_POSTS_DAYS} days, with your setup details and access provided.`, icon: Images, art: MockApprove, foot: `First posts in ${FIRST_POSTS_DAYS} days` },
 ];
 
 export function LaunchAfterPurchase() {
@@ -1109,7 +1011,7 @@ export function LaunchAfterPurchase() {
           const Art = a.art;
           return (
             <article key={a.title} className="group flex flex-col overflow-hidden rounded-[8px] transition-all duration-500" style={{ ...card, boxShadow: "0 40px 80px -44px rgba(110,60,50,0.5)" }}>
-              <div className="relative h-[220px] overflow-hidden" style={{ background: "linear-gradient(160deg, #fbeee9 0%, #f3d9d3 100%)" }}>
+              <div className="relative h-[285px] overflow-hidden" style={{ background: "linear-gradient(160deg, #fbeee9 0%, #f3d9d3 100%)" }}>
                 <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.06]">
                   <Art />
                 </div>
