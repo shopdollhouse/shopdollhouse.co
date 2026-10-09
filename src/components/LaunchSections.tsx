@@ -3,6 +3,9 @@ import {
   ArrowRight,
   Calculator,
   CalendarCheck,
+  CreditCard,
+  Images,
+  KeyRound,
   Check,
   ChevronDown,
   ChevronLeft,
@@ -15,9 +18,10 @@ import {
   X,
 } from "lucide-react";
 import archMark from "@/assets/arch-mark.svg";
-import { IllustrationBook, IllustrationPosts, IllustrationQuote, IllustrationReply } from "@/components/LaunchIllustrations";
+import { IllustrationAccess, IllustrationBook, IllustrationCheckout, IllustrationFirstPosts, IllustrationPosts, IllustrationQuote, IllustrationReply } from "@/components/LaunchIllustrations";
 import bgImage from "@/assets/password-bg.jpg";
 import mandyPhoto from "@/assets/mandy-founder-portrait.png";
+import mandyOldPhoto from "@/assets/mandy-photo.jpg";
 import {
   ADDON_PLATFORM_PRICE,
   AI_USAGE_COVERED,
@@ -1145,23 +1149,45 @@ export function LaunchPlans() {
 
 /* ─── After purchase ──────────────────────────────────── */
 const AFTER = [
-  { title: "Today", copy: "Complete your order and choose a time for your private kickoff call." },
-  { title: "Immediate account access", copy: "Your Dollhouse CRM account is available immediately. Complete your setup checklist after booking your call." },
-  { title: "Your first posts", copy: `Review your first posts and the publishing plan within ${FIRST_POSTS_DAYS} days, with your setup details and access provided.` },
+  { title: "Today", copy: "Complete your order and choose a time for your private kickoff call.", icon: CreditCard, art: IllustrationCheckout, foot: "Kickoff call booked" },
+  { title: "Immediate account access", copy: "Your Dollhouse CRM account is available immediately. Complete your setup checklist after booking your call.", icon: KeyRound, art: IllustrationAccess, foot: "Setup checklist ready" },
+  { title: "Your first posts", copy: `Review your first posts and the publishing plan within ${FIRST_POSTS_DAYS} days, with your setup details and access provided.`, icon: Images, art: IllustrationFirstPosts, foot: `First posts in ${FIRST_POSTS_DAYS} days` },
 ];
 
 export function LaunchAfterPurchase() {
   return (
-    <section className="py-24 md:py-28 px-6" style={{ background: "linear-gradient(180deg, #fff8f3 0%, var(--cream) 100%)" }}>
+    <section id="after-purchase" className="scroll-mt-24 py-24 md:py-28 px-6" style={{ background: "linear-gradient(180deg, #fff8f3 0%, var(--cream) 100%)" }}>
       <SectionHead eyebrow="What happens after purchase" title="From checkout to launch" />
-      <div className="mx-auto mt-12 grid max-w-5xl gap-5 md:grid-cols-3" data-stagger>
-        {AFTER.map((a, i) => (
-          <article key={a.title} className="rounded-[8px] p-8 text-center" style={card}>
-            <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full text-[var(--gold)]" style={{ background: "var(--ink)", fontFamily: DISPLAY, fontSize: "1.3rem" }}>{i + 1}</span>
-            <h3 className="mt-4 italic text-[var(--rose)]" style={{ fontFamily: DISPLAY, fontSize: "1.5rem", fontWeight: 500 }}>{a.title}</h3>
-            <p className="mt-2 text-[var(--ink)]/62 leading-7" style={{ fontFamily: BODY, fontSize: "0.93rem" }}>{a.copy}</p>
-          </article>
-        ))}
+      <div className="mx-auto mt-14 grid max-w-6xl gap-6 md:grid-cols-3" data-stagger>
+        {AFTER.map((a, i) => {
+          const Icon = a.icon;
+          const Art = a.art;
+          return (
+            <article key={a.title} className="group flex flex-col overflow-hidden rounded-[8px] transition-all duration-500 hover:-translate-y-1.5" style={{ ...card, boxShadow: "0 40px 80px -44px rgba(110,60,50,0.5)" }}>
+              <div className="relative h-[220px] overflow-hidden" style={{ background: "linear-gradient(160deg, #fbeee9 0%, #f3d9d3 100%)" }}>
+                <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.06]">
+                  <Art />
+                </div>
+                <div aria-hidden className="absolute inset-x-0 bottom-0 h-7" style={{ background: "linear-gradient(to top, rgba(255,251,248,0.9), transparent)" }} />
+              </div>
+              <div className="relative flex flex-1 flex-col px-7 pb-6">
+                <span className="relative z-10 -mt-7 flex h-14 w-14 items-center justify-center rounded-full" style={{ background: "var(--cream)", border: "1px solid color-mix(in oklab, var(--gold) 60%, transparent)", color: "var(--rose)", boxShadow: "0 14px 28px -14px rgba(120,70,55,0.55)" }}>
+                  <Icon className="h-6 w-6" strokeWidth={1.5} />
+                </span>
+                <p className="mt-5 text-[9.5px] tracking-[0.3em] uppercase" style={{ fontFamily: LUXE, color: "var(--gold)", fontWeight: 600 }}>Step {i + 1}</p>
+                <h3 className="mt-2 text-[var(--ink)]" style={{ fontFamily: HEAD, fontSize: "1.3rem", fontWeight: 500, lineHeight: 1.2 }}>{a.title}</h3>
+                <p className="mt-3 text-[var(--ink)]/62 leading-7" style={{ fontFamily: BODY, fontSize: "0.9rem", fontWeight: 300 }}>{a.copy}</p>
+                <div className="mt-auto pt-6">
+                  <div className="h-px w-full" style={{ background: "color-mix(in oklab, var(--gold) 32%, transparent)" }} />
+                  <p className="mt-4 flex items-center gap-2.5 text-[9px] tracking-[0.26em] uppercase" style={{ fontFamily: LUXE, color: "color-mix(in oklab, var(--ink) 55%, transparent)" }}>
+                    <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--gold)" }} />
+                    {a.foot}
+                  </p>
+                </div>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
   );
@@ -1224,12 +1250,17 @@ export function LaunchFaq() {
     <section id="faq" className="scroll-mt-24 py-24 md:py-28 px-6 bg-[var(--cream)]">
       <div className="mx-auto grid max-w-6xl items-start gap-8 lg:grid-cols-[0.85fr_1.15fr]">
         <div id="about" className="overflow-hidden rounded-[8px]" style={card}>
-          <div className="relative aspect-[4/5] w-full overflow-hidden">
-            <img src={mandyPhoto} alt="Mandy Fortune, founder of The Dollhouse Brand Studio" loading="lazy" className="h-full w-full object-cover" style={{ objectPosition: "center 18%" }} />
-            <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/2" style={{ background: "linear-gradient(to top, rgba(20,12,10,0.85), transparent)" }} />
-            <div className="absolute bottom-5 left-6">
-              <p className="uppercase text-[var(--cream)]" style={{ fontFamily: HEAD, fontWeight: 300, fontSize: "1.5rem", letterSpacing: "0.08em" }}>Mandy Fortune</p>
-              <p className="mt-1 text-[10px] tracking-[0.3em] uppercase" style={{ fontFamily: LUXE, color: "var(--gold)" }}>Founder · Brand Designer</p>
+          <div className="relative grid grid-cols-2 gap-1">
+            <div className="relative aspect-[3/4] overflow-hidden">
+              <img src={mandyPhoto} alt="Mandy Fortune, founder of The Dollhouse Brand Studio" loading="lazy" className="h-full w-full object-cover" style={{ objectPosition: "center 16%" }} />
+              <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/2" style={{ background: "linear-gradient(to top, rgba(20,12,10,0.85), transparent)" }} />
+              <div className="absolute bottom-4 left-4">
+                <p className="uppercase text-[var(--cream)]" style={{ fontFamily: HEAD, fontWeight: 300, fontSize: "1.15rem", letterSpacing: "0.08em" }}>Mandy Fortune</p>
+                <p className="mt-1 text-[9px] tracking-[0.28em] uppercase" style={{ fontFamily: LUXE, color: "var(--gold)" }}>Founder · Designer</p>
+              </div>
+            </div>
+            <div className="relative aspect-[3/4] overflow-hidden">
+              <img src={mandyOldPhoto} alt="Mandy Fortune smiling" loading="lazy" className="h-full w-full object-cover" style={{ objectPosition: "center 20%" }} />
             </div>
           </div>
           <div className="p-7">

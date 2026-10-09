@@ -198,3 +198,138 @@ export function IllustrationBook() {
     </svg>
   );
 }
+
+export function IllustrationCheckout() {
+  return (
+    <svg {...svgProps} aria-label="An order confirmation and a kickoff call time picker">
+      <ellipse cx="200" cy="232" rx="125" ry="9" fill={ROSE} opacity="0.12" />
+      <g>
+        <rect x="70" y="30" width="170" height="182" rx="14" fill="#ffffff" stroke={ROSE} strokeWidth="1.6" />
+        <path d="M70 44 a14 14 0 0 1 14 -14 h142 a14 14 0 0 1 14 14 v8 h-170z" fill={BLUSH} />
+        <circle cx="155" cy="86" r="22" fill={GOLD} />
+        <path d="M144 86.5 l8 8 l15 -16" fill="none" stroke="#ffffff" strokeWidth="3.4" strokeLinecap="round" strokeLinejoin="round" />
+        <text x="155" y="130" textAnchor="middle" fontFamily="Jost, sans-serif" fontSize="8" letterSpacing="2.6" fill={INK}>ORDER CONFIRMED</text>
+        {[0, 1, 2].map((i) => (
+          <g key={i}>
+            <circle cx="92" cy={152 + i * 17} r="3" fill={i === 0 ? GOLD : BLUSH} stroke={GOLD} strokeWidth="1" />
+            <rect x="104" y={149.5 + i * 17} width={[90, 74, 58][i]} height="5" rx="2.5" fill={INK} opacity={0.3 - i * 0.05} />
+          </g>
+        ))}
+        <rect x="180" y="148" width="40" height="5" rx="2.5" fill={GOLD} opacity="0.8" />
+      </g>
+      <g className="launch-float-slow">
+        <rect x="226" y="108" width="140" height="108" rx="12" fill="#ffffff" stroke={GOLD} strokeWidth="1.5" />
+        <text x="296" y="130" textAnchor="middle" fontFamily="Jost, sans-serif" fontSize="7.5" letterSpacing="2.2" fill={ROSE}>KICKOFF CALL</text>
+        {["Tue 10:00", "Wed 2:30", "Fri 11:00"].map((t, i) => (
+          <g key={t}>
+            <rect x="240" y={140 + i * 24} width="112" height="19" rx="9.5" fill={i === 1 ? INK : "#fbf1ed"} stroke={GOLD} strokeWidth="1" strokeOpacity="0.55" />
+            <text x="296" y={153 + i * 24} textAnchor="middle" fontFamily="Jost, sans-serif" fontSize="8" letterSpacing="1.4" fill={i === 1 ? CREAM : INK} opacity={i === 1 ? 1 : 0.6}>{t}</text>
+          </g>
+        ))}
+      </g>
+      <Sparkle x={46} y={60} s={1.1} className="launch-float" />
+      <Sparkle x={274} y={44} s={0.9} className="launch-float-slow" />
+      <Sparkle x={376} y={82} s={0.7} className="launch-float" />
+      <circle cx="262" cy="70" r="3" fill={ROSE} opacity="0.5" />
+      <circle cx="40" cy="150" r="3" fill={GOLD} opacity="0.7" />
+      <circle cx="372" cy="150" r="2.4" fill={ROSE} opacity="0.5" />
+    </svg>
+  );
+}
+
+export function IllustrationAccess() {
+  return (
+    <svg {...svgProps} aria-label="A dashboard with a key, your account is ready immediately">
+      <ellipse cx="200" cy="232" rx="125" ry="9" fill={ROSE} opacity="0.12" />
+      <g>
+        <rect x="84" y="36" width="232" height="148" rx="12" fill="#ffffff" stroke={ROSE} strokeWidth="1.6" />
+        <path d="M84 48 a12 12 0 0 1 12 -12 h208 a12 12 0 0 1 12 12 v10 h-232z" fill={BLUSH} />
+        {[98, 110, 122].map((x, i) => (
+          <circle key={x} cx={x} cy="47" r="3" fill={i === 0 ? ROSE : i === 1 ? GOLD : "#e6cfc9"} />
+        ))}
+        <rect x="84" y="58" width="42" height="126" fill="#fbf1ed" />
+        {[0, 1, 2, 3].map((i) => (
+          <rect key={i} x="94" y={72 + i * 18} width="22" height="5" rx="2.5" fill={i === 0 ? ROSE : INK} opacity={i === 0 ? 0.8 : 0.22} />
+        ))}
+        {[0, 1, 2].map((i) => (
+          <g key={i}>
+            <circle cx="146" cy={80 + i * 28} r="8" fill={BLUSH} stroke={GOLD} strokeWidth="1" />
+            <rect x="162" y={74 + i * 28} width="62" height="5" rx="2.5" fill={INK} opacity="0.55" />
+            <rect x="162" y={84 + i * 28} width="42" height="4" rx="2" fill={INK} opacity="0.2" />
+          </g>
+        ))}
+        <rect x="236" y="70" width="68" height="100" rx="8" fill="#fffaf6" stroke={GOLD} strokeWidth="1.1" />
+        <text x="270" y="86" textAnchor="middle" fontFamily="Jost, sans-serif" fontSize="6.5" letterSpacing="1.6" fill={ROSE}>SETUP CHECKLIST</text>
+        {[0, 1, 2].map((i) => (
+          <g key={i}>
+            <rect x="244" y={98 + i * 22} width="11" height="11" rx="3" fill={i < 2 ? GOLD : "none"} stroke={GOLD} strokeWidth="1.2" />
+            {i < 2 && <path d={`M246.5 ${103.5 + i * 22} l2.4 2.4 l4 -4.6`} fill="none" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />}
+            <rect x="260" y={101 + i * 22} width="36" height="4" rx="2" fill={INK} opacity="0.3" />
+          </g>
+        ))}
+      </g>
+      <path d="M60 190 h280 l-14 14 h-252z" fill="#e9d6d0" stroke={ROSE} strokeWidth="1.2" strokeLinejoin="round" />
+      <g className="launch-float">
+        <circle cx="330" cy="62" r="26" fill={GOLD} />
+        <circle cx="330" cy="62" r="20" fill="none" stroke="#ffffff" strokeWidth="1" opacity="0.6" />
+        <circle cx="321" cy="62" r="6.5" fill="none" stroke="#ffffff" strokeWidth="3" />
+        <path d="M327 62 h22 M342 62 v8 M349 62 v6" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" />
+      </g>
+      <g>
+        <rect x="132" y="216" width="136" height="24" rx="12" fill={INK} />
+        <circle cx="150" cy="228" r="5.5" fill={GOLD} />
+        <path d="M147.4 228 l2.2 2.2 l3.8 -4.4" fill="none" stroke={INK} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <text x="164" y="231" fontFamily="Jost, sans-serif" fontSize="7.5" letterSpacing="2" fill={CREAM}>ACCOUNT READY</text>
+      </g>
+      <Sparkle x={52} y={70} s={1} className="launch-float-slow" />
+      <Sparkle x={366} y={140} s={0.8} className="launch-float" />
+      <Sparkle x={40} y={150} s={0.6} className="launch-float" />
+    </svg>
+  );
+}
+
+export function IllustrationFirstPosts() {
+  const tiles = [
+    { x: 52, g1: "#fbe9e4", g2: "#efc9c3" },
+    { x: 158, g1: "#f6e3d6", g2: "#e6c9a4" },
+    { x: 264, g1: "#f4dcdc", g2: "#e7c2c0" },
+  ];
+  return (
+    <svg {...svgProps} aria-label="Your first posts ready to review, with a five day publishing plan">
+      <ellipse cx="200" cy="232" rx="125" ry="9" fill={ROSE} opacity="0.12" />
+      {tiles.map((t, i) => (
+        <g key={t.x} className={i === 1 ? "launch-float-slow" : ""}>
+          <defs>
+            <linearGradient id={`ft${i}`} x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stopColor={t.g1} />
+              <stop offset="1" stopColor={t.g2} />
+            </linearGradient>
+          </defs>
+          <rect x={t.x} y="44" width="84" height="108" rx="10" fill="#ffffff" stroke={i === 0 ? GOLD : ROSE} strokeWidth="1.5" />
+          <rect x={t.x + 8} y="52" width="68" height="62" rx="6" fill={`url(#ft${i})`} />
+          <path d={`M${t.x + 42} 70 C${t.x + 43.5} 78 ${t.x + 47} 81 ${t.x + 55} 83 C${t.x + 47} 85 ${t.x + 43.5} 88 ${t.x + 42} 96 C${t.x + 40.5} 88 ${t.x + 37} 85 ${t.x + 29} 83 C${t.x + 37} 81 ${t.x + 40.5} 78 ${t.x + 42} 70Z`} fill={GOLD} opacity="0.9" />
+          <rect x={t.x + 8} y="122" width="56" height="5" rx="2.5" fill={INK} opacity="0.45" />
+          <rect x={t.x + 8} y="133" width="38" height="4" rx="2" fill={INK} opacity="0.2" />
+        </g>
+      ))}
+      <g>
+        <circle cx="136" cy="48" r="13" fill={GOLD} />
+        <path d="M130 48.5 l4.2 4.2 l8 -8.6" fill="none" stroke="#ffffff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
+      {/* five-day plan */}
+      <line x1="76" y1="186" x2="324" y2="186" stroke={GOLD} strokeWidth="1.4" strokeDasharray="3 5" />
+      {[0, 1, 2, 3, 4].map((i) => (
+        <g key={i}>
+          <circle cx={76 + i * 62} cy="186" r={i === 4 ? 10 : 6} fill={i === 4 ? GOLD : "#ffffff"} stroke={GOLD} strokeWidth="1.4" />
+          {i === 4 && <path d="M319 186.4 l3.2 3.2 l5.6 -6.2" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />}
+          <text x={76 + i * 62} y="208" textAnchor="middle" fontFamily="Jost, sans-serif" fontSize="7" letterSpacing="1.6" fill={INK} opacity="0.5">{`DAY ${i + 1}`}</text>
+        </g>
+      ))}
+      <rect x="132" y="218" width="136" height="24" rx="12" fill={INK} />
+      <text x="200" y="233.4" textAnchor="middle" fontFamily="Jost, sans-serif" fontSize="7.5" letterSpacing="2" fill={CREAM}>REVIEW &amp; APPROVE</text>
+      <Sparkle x={40} y={60} s={1} className="launch-float" />
+      <Sparkle x={366} y={52} s={0.8} className="launch-float-slow" />
+      <Sparkle x={372} y={150} s={0.6} className="launch-float" />
+    </svg>
+  );
+}
