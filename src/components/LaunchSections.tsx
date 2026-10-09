@@ -331,11 +331,10 @@ function LaunchHero() {
           <div className="mt-4 flex justify-center text-[var(--gold)] lg:justify-start">
             <span className="float-slow inline-flex"><img src={archMark} alt="" className="h-10 w-7" /></span>
           </div>
-          <h1
-            className="mt-4 font-normal leading-[1.02] tracking-[0.04em] text-[var(--rose)]"
-            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.6rem, 5.6vw, 4.3rem)", fontWeight: 400 }}
-          >
-            Turn your social media into booked appointments.
+          <h1 className="mt-3" aria-label="Turn your social media into booked appointments">
+            <span aria-hidden className="block italic leading-none" style={{ fontFamily: "Allura, cursive", fontSize: "clamp(2.3rem, 4.8vw, 3.4rem)", textTransform: "lowercase", color: "color-mix(in oklab, var(--gold) 78%, var(--ink))" }}>turn your social media into</span>
+            <span aria-hidden className="mt-2 block font-normal leading-[0.98] tracking-[0.04em] text-[var(--rose)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(3rem, 6.6vw, 4.9rem)", fontWeight: 400 }}>BOOKED<br />APPOINTMENTS</span>
+            <span aria-hidden className="mt-3 block text-[15px] uppercase tracking-luxe text-[var(--gold)]" style={{ fontFamily: "Jost, sans-serif" }}>done for you</span>
           </h1>
           <div className="mt-3 flex justify-center lg:justify-start"><span className="w-[200px]"><Divider /></span></div>
 
