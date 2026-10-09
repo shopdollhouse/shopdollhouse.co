@@ -4,7 +4,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { useScrollReveal } from "@/lib/use-scroll-reveal";
 import {
   LaunchNav,
-  LaunchHero,
+  LaunchHeroBlock,
   LaunchHowItWorks,
   LaunchWhatsIncluded,
   LaunchExamples,
@@ -28,7 +28,7 @@ function Index() {
   return (
     <main className="lux bg-[var(--blush)] text-[var(--ink)]">
       <LaunchNav />
-      <LaunchHero />
+      <LaunchHeroBlock />
       <LaunchHowItWorks />
       <LaunchWhatsIncluded />
       <LaunchExamples />

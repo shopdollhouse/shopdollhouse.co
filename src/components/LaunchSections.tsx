@@ -197,9 +197,111 @@ export function LaunchNav() {
 }
 
 /* ─── Hero ────────────────────────────────────────────── */
-export function LaunchHero() {
+function HeroVisual() {
   return (
-    <header className="relative overflow-hidden px-5 pt-32 pb-20 md:pt-36 md:pb-24">
+    <div className="relative mx-auto w-full max-w-[330px] sm:max-w-[360px]" aria-hidden>
+      {/* soft glow */}
+      <div className="absolute -inset-10 rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(200,164,100,0.28), transparent 62%)" }} />
+
+      {/* phone */}
+      <div
+        className="relative rounded-[46px] p-[10px]"
+        style={{ background: "linear-gradient(160deg, #2d1f1b, #170e0c)", boxShadow: "0 50px 90px -40px rgba(60,25,20,0.7), inset 0 0 0 1px rgba(255,255,255,0.08)" }}
+      >
+        <div className="absolute left-1/2 top-[18px] z-20 h-[22px] w-[84px] -translate-x-1/2 rounded-full bg-black" />
+        <div className="relative overflow-hidden rounded-[37px]" style={{ background: "var(--cream)" }}>
+          {/* IG header */}
+          <div className="flex items-center gap-2.5 px-4 pb-3 pt-12">
+            <span
+              className="flex h-9 w-9 items-center justify-center rounded-full"
+              style={{ background: "linear-gradient(135deg, #e8d5b0, #c8a464)", padding: "2px" }}
+            >
+              <span className="flex h-full w-full items-center justify-center rounded-full bg-[var(--cream)]">
+                <img src={archMark} alt="" className="h-4 w-auto" />
+              </span>
+            </span>
+            <div className="leading-tight">
+              <p className="text-[var(--ink)] font-semibold" style={{ fontFamily: BODY, fontSize: "0.78rem" }}>yourbusiness</p>
+              <p className="text-[var(--ink)]/45" style={{ fontFamily: BODY, fontSize: "0.65rem" }}>Your town</p>
+            </div>
+          </div>
+
+          {/* post */}
+          <div
+            className="mx-3 flex aspect-square flex-col items-center justify-center rounded-2xl p-6 text-center"
+            style={{ background: "linear-gradient(160deg, #fffaf6 0%, #f4dcdc 100%)", border: "1px solid color-mix(in oklab, var(--gold) 26%, transparent)" }}
+          >
+            <span style={{ color: "var(--gold)", fontSize: "0.8rem" }}>✦</span>
+            <p className="mt-3 italic text-[var(--ink)] leading-tight" style={{ fontFamily: DISPLAY, fontSize: "1.7rem" }}>
+              The one thing I check before every job.
+            </p>
+            <span className="mt-4 h-px w-10 bg-[var(--gold)] opacity-70" />
+            <p className="mt-2 text-[8px] tracking-luxe uppercase text-[var(--rose)]" style={{ fontFamily: LUXE }}>Comment QUOTE for a free estimate</p>
+          </div>
+
+          <div className="flex items-center gap-3 px-4 pb-1 pt-3 text-[var(--ink)]/70">
+            <Heart className="h-5 w-5" strokeWidth={1.6} />
+            <MessageCircle className="h-5 w-5" strokeWidth={1.6} />
+            <Send className="h-5 w-5" strokeWidth={1.6} />
+          </div>
+
+          {/* auto reply DM */}
+          <div className="mx-3 mb-4 mt-2 rounded-2xl p-3" style={{ background: "rgba(244,220,220,0.55)", border: "1px solid color-mix(in oklab, var(--rose) 22%, transparent)" }}>
+            <p className="text-[8px] tracking-luxe uppercase text-[var(--rose)]" style={{ fontFamily: LUXE }}>Private reply, sent instantly</p>
+            <p className="mt-1 text-[var(--ink)]/78 leading-snug" style={{ fontFamily: BODY, fontSize: "0.74rem" }}>
+              Hi! Thanks for asking. What kind of job do you need done? I can get your free estimate booked in.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* floating chips */}
+      <div
+        className="launch-float absolute -left-6 top-[22%] z-30 flex items-center gap-2.5 rounded-2xl px-4 py-3 sm:-left-14"
+        style={{ background: "rgba(255,250,246,0.95)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)", boxShadow: "0 24px 50px -24px rgba(90,40,30,0.5)" }}
+      >
+        <span className="flex h-8 w-8 items-center justify-center rounded-full" style={{ background: "color-mix(in oklab, var(--rose) 16%, transparent)", color: "var(--rose)" }}>
+          <MessageSquare className="h-4 w-4" />
+        </span>
+        <span className="leading-tight">
+          <span className="block text-[var(--ink)]" style={{ fontFamily: BODY, fontSize: "0.74rem", fontWeight: 600 }}>Auto-reply sent</span>
+          <span className="block text-[var(--ink)]/50" style={{ fontFamily: BODY, fontSize: "0.65rem" }}>Comment to private message</span>
+        </span>
+      </div>
+
+      <div
+        className="launch-float-slow absolute -right-4 bottom-[26%] z-30 flex items-center gap-2.5 rounded-2xl px-4 py-3 sm:-right-12"
+        style={{ background: "rgba(255,250,246,0.95)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)", boxShadow: "0 24px 50px -24px rgba(90,40,30,0.5)" }}
+      >
+        <span className="relative flex h-8 w-8 items-center justify-center rounded-full" style={{ background: "color-mix(in oklab, var(--gold) 22%, transparent)", color: "var(--gold)" }}>
+          <span className="launch-ping absolute inset-0 rounded-full" style={{ background: "color-mix(in oklab, var(--gold) 45%, transparent)" }} />
+          <CalendarCheck className="relative h-4 w-4" />
+        </span>
+        <span className="leading-tight">
+          <span className="block text-[var(--ink)]" style={{ fontFamily: BODY, fontSize: "0.74rem", fontWeight: 600 }}>Estimate booked</span>
+          <span className="block text-[var(--ink)]/50" style={{ fontFamily: BODY, fontSize: "0.65rem" }}>Added to your calendar</span>
+        </span>
+      </div>
+
+      <p className="mt-6 text-center text-[var(--ink)]/40 text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>
+        Illustrative example
+      </p>
+    </div>
+  );
+}
+
+export function LaunchHeroBlock() {
+  return (
+    <>
+      <LaunchHero />
+      <HeroVideo />
+    </>
+  );
+}
+
+function LaunchHero() {
+  return (
+    <header className="relative overflow-hidden px-5 pt-32 pb-20 md:pt-40 md:pb-28">
       <div
         aria-hidden
         className="bg-kenburns absolute inset-0 pointer-events-none"
@@ -207,7 +309,7 @@ export function LaunchHero() {
       />
       <div aria-hidden className="aurora absolute inset-0 pointer-events-none" />
       <span aria-hidden className="sparkle-drift" style={{ top: "18%", left: "6%", fontSize: "16px" }}>✦</span>
-      <span aria-hidden className="sparkle-drift" style={{ top: "34%", right: "8%", fontSize: "12px", animationDelay: "1.6s" }}>✦</span>
+      <span aria-hidden className="sparkle-drift" style={{ top: "62%", left: "44%", fontSize: "12px", animationDelay: "1.6s" }}>✦</span>
       <span aria-hidden className="sparkle-drift" style={{ bottom: "14%", left: "12%", fontSize: "11px", animationDelay: "3s" }}>✦</span>
       <div aria-hidden className="absolute inset-0 pointer-events-none" style={{ background: "rgba(247,228,223,0.4)" }} />
       <div
@@ -216,67 +318,82 @@ export function LaunchHero() {
         style={{ background: "radial-gradient(ellipse at center, transparent 0%, rgba(230,200,195,0.4) 72%, rgba(210,175,168,0.65) 100%)" }}
       />
 
-      <div className="relative z-10 mx-auto max-w-4xl text-center">
-        <p
-          className="inline-flex items-center gap-2 rounded-full px-5 py-2 text-[10px] tracking-luxe uppercase text-[var(--ink)]/75"
-          style={{ fontFamily: LUXE, background: "rgba(255,250,246,0.78)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)" }}
-        >
-          <span style={{ color: "var(--gold)" }}>✦</span> For home service businesses
-        </p>
+      <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
+        <div className="text-center lg:text-left">
+          <p
+            className="inline-flex items-center gap-2 rounded-full px-5 py-2 text-[10px] tracking-luxe uppercase text-[var(--ink)]/75"
+            style={{ fontFamily: LUXE, background: "rgba(255,250,246,0.78)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)" }}
+          >
+            <span style={{ color: "var(--gold)" }}>✦</span> For home service businesses
+          </p>
 
-        <h1 className="mt-7 uppercase text-[var(--ink)]" style={{ fontFamily: HEAD, fontWeight: 300, fontSize: "clamp(2.7rem, 7.2vw, 5.8rem)", letterSpacing: "-0.025em", lineHeight: 0.98 }}>
-          Turn social media into{" "}
-          <span className="italic text-[var(--rose)]">booked estimates.</span>
-        </h1>
+          <h1
+            className="mt-6 text-[var(--ink)] leading-[0.98]"
+            style={{ fontFamily: DISPLAY, fontWeight: 400, fontSize: "clamp(2.9rem, 7.4vw, 5.6rem)" }}
+          >
+            Turn your social media into{" "}
+            <span className="italic text-[var(--rose)]">booked estimates.</span>
+          </h1>
 
-        <p className="mx-auto mt-6 max-w-2xl text-[var(--ink)]/72 leading-8" style={{ fontFamily: BODY, fontSize: "clamp(1rem, 2vw, 1.15rem)" }}>
-          We create your posts, give interested visitors an easy way to contact you, and automatically follow up to help them book an estimate, starting at{" "}
-          <strong className="text-[var(--ink)]">${PRICE_SINGLE}/mo</strong>.
-        </p>
+          <p className="mx-auto mt-6 max-w-xl text-[var(--ink)]/72 leading-8 lg:mx-0" style={{ fontFamily: BODY, fontSize: "clamp(1rem, 2vw, 1.15rem)" }}>
+            The done-for-you social media and lead-generation system for contractors, cleaners, landscapers and every home service business. We post for you,
+            capture new inquiries, reply instantly and book the estimate, from{" "}
+            <strong className="text-[var(--ink)]">${PRICE_SINGLE}/month</strong>.
+          </p>
 
-        <div className="mt-7 flex flex-wrap items-center justify-center gap-2.5">
-          {["Daily social media posts", "Lead capture tool", "AI follow up & booking"].map((label) => (
-            <span
-              key={label}
-              className="rounded-full px-4 py-2 text-[10px] tracking-luxe uppercase text-[var(--ink)]"
-              style={{ fontFamily: LUXE, fontWeight: 600, background: "rgba(255,250,246,0.85)", border: "1px solid color-mix(in oklab, var(--gold) 38%, transparent)", boxShadow: "0 14px 30px -22px rgba(120,70,55,0.5)" }}
-            >
-              {label}
-            </span>
-          ))}
-        </div>
-
-        {HERO_VIDEO_EMBED_URL && (
-          <div className="mt-10">
-            <p className="text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontWeight: 600, letterSpacing: "0.12em", fontSize: "1rem" }}>
-              See how it works <span className="text-[var(--rose)]">↓</span>
-            </p>
-            <div className="mx-auto mt-5 aspect-video overflow-hidden rounded-[8px]" style={{ border: "1px solid color-mix(in oklab, var(--gold) 55%, transparent)", boxShadow: "0 50px 100px -40px rgba(70,30,25,0.55), 0 0 0 8px rgba(255,250,246,0.35)" }}>
-              <iframe src={HERO_VIDEO_EMBED_URL} title="Dollhouse Launch video presentation" className="h-full w-full" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen />
-            </div>
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-2.5 lg:justify-start">
+            {["Daily social media posts", "Lead capture tool", "AI follow-up & booking"].map((label) => (
+              <span
+                key={label}
+                className="rounded-full px-4 py-2 text-[10px] tracking-luxe uppercase text-[var(--ink)]"
+                style={{ fontFamily: LUXE, fontWeight: 600, background: "rgba(255,250,246,0.85)", border: "1px solid color-mix(in oklab, var(--gold) 38%, transparent)", boxShadow: "0 14px 30px -22px rgba(120,70,55,0.5)" }}
+              >
+                {label}
+              </span>
+            ))}
           </div>
-        )}
 
-        <div className="mt-9">
-          <GetStarted label="Get Started Now" className="!px-12 !py-[18px] !text-[12px]" />
+          <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
+            <GetStarted label="Get Started Now" className="!px-10 !py-[18px] !text-[12px]" />
+            
+          </div>
+
+          <p className="mt-7 text-[var(--ink)]/72" style={{ fontFamily: BODY, fontSize: "0.98rem" }}>
+            Done-for-you social media from <strong className="text-[var(--ink)]">${PRICE_SINGLE}/mo</strong>
+          </p>
+          <p className="mt-1 italic text-[var(--ink)]/55" style={{ fontFamily: DISPLAY, fontSize: "1.15rem" }}>
+            Built for organic growth. No paid ads or ad spend required.
+          </p>
+
+          <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[10px] tracking-[0.16em] uppercase text-[var(--ink)]/60 lg:justify-start" style={{ fontFamily: LUXE }}>
+            {[`${GUARANTEE_DAYS}-day money-back guarantee`, "No contract, cancel anytime", "Instant account access", "Free CRM account included", "1-on-1 kickoff call"].map((t) => (
+              <li key={t} className="flex items-center gap-1.5">
+                <span style={{ color: "var(--gold)" }}>✦</span> {t}
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <p className="mt-6 text-[var(--ink)]/72" style={{ fontFamily: BODY, fontSize: "0.98rem" }}>
-          Done-for-you social media from <strong className="text-[var(--ink)]">${PRICE_SINGLE}/mo</strong>
-        </p>
-        <p className="mt-1 italic text-[var(--ink)]/55" style={{ fontFamily: DISPLAY, fontSize: "1.15rem" }}>
-          Built for organic growth, no paid ads or ad spend required.
-        </p>
-
-        <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[10px] tracking-[0.16em] uppercase text-[var(--ink)]/60" style={{ fontFamily: LUXE }}>
-          {[`${GUARANTEE_DAYS}-day money-back guarantee`, "No contract, cancel anytime", "Instant account access", "Free CRM account included", "1-on-1 kickoff call"].map((t) => (
-            <li key={t} className="flex items-center gap-1.5">
-              <span style={{ color: "var(--gold)" }}>✦</span> {t}
-            </li>
-          ))}
-        </ul>
+        <HeroVisual />
       </div>
     </header>
+  );
+}
+
+/* ─── Walkthrough video (right under the hero) ────────── */
+function HeroVideo() {
+  if (!HERO_VIDEO_EMBED_URL) return null;
+  return (
+    <section className="px-5 pb-20 pt-4 md:pb-24" style={{ background: "linear-gradient(180deg, #fbf1ed 0%, var(--cream) 100%)" }}>
+      <div className="mx-auto max-w-4xl text-center">
+        <p className="text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontWeight: 600, letterSpacing: "0.12em", fontSize: "1rem" }}>
+          See how it works <span className="text-[var(--rose)]">↓</span>
+        </p>
+        <div className="mx-auto mt-5 aspect-video overflow-hidden rounded-[8px]" style={{ border: "1px solid color-mix(in oklab, var(--gold) 55%, transparent)", boxShadow: "0 50px 100px -40px rgba(70,30,25,0.55), 0 0 0 8px rgba(255,250,246,0.35)" }}>
+          <iframe src={HERO_VIDEO_EMBED_URL} title="Dollhouse Launch video presentation" className="h-full w-full" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen />
+        </div>
+      </div>
+    </section>
   );
 }
 
