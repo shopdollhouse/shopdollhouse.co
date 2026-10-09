@@ -1155,7 +1155,7 @@ export function LaunchFaq() {
             </div>
           </div>
           <div className="p-7">
-            <h2 className="uppercase text-[var(--ink)]" style={{ fontFamily: HEAD, fontWeight: 300, fontSize: "clamp(1.5rem, 3vw, 2rem)", lineHeight: 1.1, letterSpacing: "-0.01em" }}>Meet Mandy</h2>
+            <h2 className="uppercase text-[var(--ink)]" style={{ fontFamily: HEAD, fontWeight: 300, fontSize: "clamp(1.5rem, 3vw, 2rem)", lineHeight: 1.1, letterSpacing: "-0.01em" }}>Meet your founder</h2>
             <p className="mt-3 text-[var(--ink)]/70 leading-7" style={{ fontFamily: BODY, fontSize: "0.93rem", fontWeight: 300 }}>
               I have spent 11+ years in graphic and product design, building brands for companies, creators and entrepreneurs. I built Dollhouse Launch because I kept seeing talented local business owners who were invisible online, not because they were not good enough, but because they were too busy doing the work to show up consistently.
             </p>
