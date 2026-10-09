@@ -547,3 +547,13 @@ main.lux .btn-ink:hover, main.lux .btn-ghost:hover { transform: none; }
 
 /* Launch page: icons inside the dark buttons are gold */
 main.lux .btn-ink svg { color: var(--gold); }
+
+/* Deeper gold for text that sits on the pink and cream backgrounds (readable contrast) */
+.lux { --gold-deep: #7a6531; }
+.lux .gold-grad {
+  background: linear-gradient(100deg, #a08a52 0%, #7a6531 44%, #5f4e25 68%, #957f48 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}

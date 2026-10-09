@@ -20,9 +20,9 @@ export function SiteFooter() {
           <a href="/" className="flex shrink-0 items-center gap-2.5 no-underline">
             <img src={archMark} alt="" className="h-10 w-auto" />
             <span className="flex flex-col items-start leading-none">
-              <span style={{ fontFamily: "'Allura', cursive", color: "var(--gold)", fontSize: "20px", lineHeight: 1 }}>the</span>
+              <span style={{ fontFamily: "'Allura', cursive", color: "var(--gold-deep)", fontSize: "20px", lineHeight: 1 }}>the</span>
               <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "var(--rose)", fontSize: "19px", fontWeight: 500, letterSpacing: "5px", textTransform: "uppercase", lineHeight: 1, marginTop: "-1px" }}>Dollhouse</span>
-              <span className="font-semibold" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold)", fontSize: "7px", letterSpacing: "6px", textTransform: "uppercase", marginTop: "2px" }}>Launch</span>
+              <span className="font-semibold" style={{ fontFamily: "'Jost', sans-serif", color: "var(--gold-deep)", fontSize: "7px", letterSpacing: "6px", textTransform: "uppercase", marginTop: "2px" }}>Launch</span>
             </span>
           </a>
           <p className="max-w-xs text-[var(--ink)]/55 leading-6" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem" }}>

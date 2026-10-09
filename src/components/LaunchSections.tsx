@@ -170,9 +170,9 @@ export function LaunchNav() {
           <a href="/" className="flex items-center gap-2.5 shrink-0 no-underline">
             <img src={archMark} alt="" className="h-10 w-auto" />
             <span className="flex flex-col items-start leading-none">
-              <span style={{ fontFamily: "'Allura', cursive", color: "var(--gold)", fontSize: "20px", letterSpacing: "0.5px", textTransform: "lowercase", lineHeight: 1 }}>the</span>
+              <span style={{ fontFamily: "'Allura', cursive", color: "var(--gold-deep)", fontSize: "20px", letterSpacing: "0.5px", textTransform: "lowercase", lineHeight: 1 }}>the</span>
               <span style={{ fontFamily: DISPLAY, color: "var(--rose)", fontSize: "19px", fontWeight: 500, letterSpacing: "5px", textTransform: "uppercase", lineHeight: 1, marginTop: "-1px" }}>Dollhouse</span>
-              <span className="font-semibold" style={{ fontFamily: LUXE, color: "var(--gold)", fontSize: "7px", letterSpacing: "6px", textTransform: "uppercase", marginTop: "2px" }}>Launch</span>
+              <span className="font-semibold" style={{ fontFamily: LUXE, color: "var(--gold-deep)", fontSize: "7px", letterSpacing: "6px", textTransform: "uppercase", marginTop: "2px" }}>Launch</span>
             </span>
           </a>
 
@@ -320,7 +320,7 @@ function LaunchHero() {
           />
 
           <div
-            className="inline-flex items-center gap-2 rounded-full border px-5 py-2 text-[var(--gold)] backdrop-blur-md"
+            className="inline-flex items-center gap-2 rounded-full border px-5 py-2 text-[var(--gold-deep)] backdrop-blur-md"
             style={{ borderColor: "color-mix(in oklab, var(--gold) 55%, transparent)", background: "rgba(255,255,255,0.4)" }}
           >
             <span style={{ fontSize: "0.55rem" }}>✦</span>
@@ -332,9 +332,9 @@ function LaunchHero() {
             <span className="float-slow inline-flex"><img src={archMark} alt="" className="h-10 w-7" /></span>
           </div>
           <h1 className="mt-3" aria-label="Turn your social media into booked appointments">
-            <span aria-hidden className="block italic leading-none" style={{ fontFamily: "Allura, cursive", fontSize: "clamp(2.3rem, 4.8vw, 3.4rem)", textTransform: "lowercase", color: "color-mix(in oklab, var(--gold) 78%, var(--ink))" }}>turn your social media into</span>
+            <span aria-hidden className="block italic leading-none" style={{ fontFamily: "Allura, cursive", fontSize: "clamp(2.3rem, 4.8vw, 3.4rem)", textTransform: "lowercase", color: "var(--gold-deep)" }}>turn your social media into</span>
             <span aria-hidden className="mt-2 block font-normal leading-[0.98] tracking-[0.04em] text-[var(--rose)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.15rem, 8.4vw, 4.9rem)", fontWeight: 400 }}>BOOKED<br />APPOINTMENTS</span>
-            <span aria-hidden className="mt-3 block text-[15px] uppercase tracking-luxe text-[var(--gold)]" style={{ fontFamily: "Jost, sans-serif" }}>done for you</span>
+            <span aria-hidden className="mt-3 block text-[15px] uppercase tracking-luxe text-[var(--gold-deep)]" style={{ fontFamily: "Jost, sans-serif" }}>done for you</span>
           </h1>
           <div className="mt-3 flex justify-center lg:justify-start"><span className="w-[200px]"><Divider /></span></div>
 
@@ -376,7 +376,7 @@ function LaunchHero() {
           <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[10px] tracking-[0.16em] uppercase text-[var(--ink)]/60 lg:justify-start" style={{ fontFamily: LUXE }}>
             {[`${GUARANTEE_DAYS}-day money-back guarantee`, "No contract, cancel anytime", "Instant account access", "Free CRM account included", "1-on-1 kickoff call"].map((t) => (
               <li key={t} className="flex items-center gap-1.5">
-                <span style={{ color: "var(--gold)" }}>✦</span> {t}
+                <span style={{ color: "var(--gold-deep)" }}>✦</span> {t}
               </li>
             ))}
           </ul>
@@ -508,7 +508,7 @@ export function LaunchHowItWorks() {
                   <Icon className="h-6 w-6" strokeWidth={1.5} />
                 </span>
 
-                <p className="mt-5 text-[9.5px] tracking-[0.3em] uppercase" style={{ fontFamily: LUXE, color: "var(--gold)", fontWeight: 600 }}>
+                <p className="mt-5 text-[9.5px] tracking-[0.3em] uppercase" style={{ fontFamily: LUXE, color: "var(--gold-deep)", fontWeight: 600 }}>
                   Step {i + 1}
                 </p>
                 <h3 className="mt-2 text-[var(--ink)]" style={{ fontFamily: HEAD, fontSize: "1.3rem", fontWeight: 500, lineHeight: 1.2 }}>{st.title}</h3>
@@ -517,7 +517,7 @@ export function LaunchHowItWorks() {
                 <ul className="mt-5 grid gap-2.5">
                   {st.bullets.map((b) => (
                     <li key={b} className="flex gap-2.5 text-[var(--ink)]/75 leading-5" style={{ fontFamily: BODY, fontSize: "0.84rem" }}>
-                      <span className="mt-[1px] shrink-0" style={{ color: "var(--gold)" }}>✦</span>
+                      <span className="mt-[1px] shrink-0" style={{ color: "var(--gold-deep)" }}>✦</span>
                       <span>{b}</span>
                     </li>
                   ))}
@@ -652,7 +652,7 @@ export function LaunchWhatsIncluded() {
               <div>
                 {i === 0 && (
                   <>
-                    <p className="text-center text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Your content, brought to life</p>
+                    <p className="text-center text-[var(--gold-deep)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Your content, brought to life</p>
                     <p className="mt-1 text-center text-[var(--ink)]/50" style={{ fontFamily: BODY, fontSize: "0.78rem" }}>Post examples</p>
                     <div className="mt-3"><PostStudioPreview /></div>
                     <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
@@ -668,7 +668,7 @@ export function LaunchWhatsIncluded() {
                   return (
                     <>
                       <Preview />
-                      <p className="mt-4 text-center text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Built and managed for you</p>
+                      <p className="mt-4 text-center text-[var(--gold-deep)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Built and managed for you</p>
                     </>
                   );
                 })()}
@@ -690,7 +690,7 @@ export function LaunchWhatsIncluded() {
       </div>
 
       <div className="mx-auto mt-14 max-w-3xl text-center">
-        <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Ready when you are</p>
+        <p className="text-[var(--gold-deep)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Ready when you are</p>
         <h3 className="mt-3 italic text-[var(--ink)]" style={{ fontFamily: DISPLAY, fontSize: "clamp(1.9rem, 4vw, 2.7rem)", lineHeight: 1.1 }}>Let us start building your social media and follow-up system</h3>
         <p className="mt-3 text-[var(--ink)]/62" style={{ fontFamily: BODY }}>
           Start for ${PRICE_SINGLE} per month with both launch bonuses, no long-term contract and a {GUARANTEE_DAYS}-day guarantee.
@@ -798,7 +798,7 @@ function ExampleTile({ item, format, onOpen }: { item: ExampleItem; format: "sin
       <div className="px-6 py-5">
         <div className="flex items-center justify-between gap-3">
           <h4 className="text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontSize: "0.78rem", letterSpacing: "0.12em", fontWeight: 600 }}>{item.style.name}</h4>
-          <span className="text-[var(--gold)] text-[8px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Sample</span>
+          <span className="text-[var(--gold-deep)] text-[8px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Sample</span>
         </div>
         <p className="mt-2 text-[var(--ink)]/60 leading-6" style={{ fontFamily: BODY, fontSize: "0.86rem" }}>{item.style.desc}</p>
         {format === "carousel" && (
@@ -927,7 +927,7 @@ export function LaunchExamples() {
       </div>
 
       <div className="mx-auto mt-16 max-w-2xl rounded-[8px] p-8 text-center md:p-10" style={card}>
-        <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Your content, your direction</p>
+        <p className="text-[var(--gold-deep)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Your content, your direction</p>
         <h3 className="mt-3 italic text-[var(--ink)]" style={{ fontFamily: DISPLAY, fontSize: "1.9rem", lineHeight: 1.1 }}>Have another style in mind?</h3>
         <p className="mt-3 text-[var(--ink)]/62 leading-7" style={{ fontFamily: BODY, fontSize: "0.95rem" }}>
           Share a link or screenshot during setup. We can create posts in the style you like, with your own branding and message. Not sure? We will help you choose.
@@ -946,7 +946,7 @@ function ValueStack() {
     <details className="dh-faq mt-6 rounded-2xl px-6 py-4" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}>
       <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[var(--cream)]" style={{ fontFamily: LUXE, fontSize: "0.78rem", letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 600 }}>
         See the launch-month value breakdown · {VALUE_STACK_TOTAL}
-        <ChevronDown className="dh-faq-chevron h-4 w-4 shrink-0 text-[var(--gold)]" />
+        <ChevronDown className="dh-faq-chevron h-4 w-4 shrink-0 text-[var(--gold-deep)]" />
       </summary>
       <ul className="mt-4 grid gap-2">
         {VALUE_STACK.map((v) => (
@@ -1090,7 +1090,7 @@ export function LaunchAfterPurchase() {
                 <span className="relative z-10 -mt-7 flex h-14 w-14 items-center justify-center rounded-full" style={{ background: "var(--cream)", border: "1px solid color-mix(in oklab, var(--gold) 60%, transparent)", color: "var(--rose)", boxShadow: "0 14px 28px -14px rgba(120,70,55,0.55)" }}>
                   <Icon className="h-6 w-6" strokeWidth={1.5} />
                 </span>
-                <p className="mt-5 text-[9.5px] tracking-[0.3em] uppercase" style={{ fontFamily: LUXE, color: "var(--gold)", fontWeight: 600 }}>Step {i + 1}</p>
+                <p className="mt-5 text-[9.5px] tracking-[0.3em] uppercase" style={{ fontFamily: LUXE, color: "var(--gold-deep)", fontWeight: 600 }}>Step {i + 1}</p>
                 <h3 className="mt-2 text-[var(--ink)]" style={{ fontFamily: HEAD, fontSize: "1.3rem", fontWeight: 500, lineHeight: 1.2 }}>{a.title}</h3>
                 <p className="mt-3 text-[var(--ink)]/62 leading-7" style={{ fontFamily: BODY, fontSize: "0.9rem", fontWeight: 300 }}>{a.copy}</p>
                 <div className="mt-auto pt-6">
@@ -1190,7 +1190,7 @@ export function LaunchFaq() {
               <details key={f.q} className="dh-faq rounded-[8px] px-5 py-4" style={card}>
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[var(--ink)]" style={{ fontFamily: BODY, fontSize: "0.95rem", fontWeight: 600 }}>
                   {f.q}
-                  <ChevronDown className="dh-faq-chevron h-4 w-4 shrink-0 text-[var(--gold)]" />
+                  <ChevronDown className="dh-faq-chevron h-4 w-4 shrink-0 text-[var(--gold-deep)]" />
                 </summary>
                 <p className="mt-3 text-[var(--ink)]/65 leading-7" style={{ fontFamily: BODY, fontSize: "0.92rem" }}>{f.a}</p>
               </details>
