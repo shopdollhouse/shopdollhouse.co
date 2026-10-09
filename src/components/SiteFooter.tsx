@@ -1,11 +1,11 @@
 import { Link } from "@tanstack/react-router";
 
 const exploreLinks: [string, string][] = [
-  ["What's Included", "/#whats-included"],
   ["How It Works", "/#how-it-works"],
+  ["What's Included", "/#whats-included"],
+  ["Our Work", "/#work"],
   ["Plans & Pricing", "/#plans"],
   ["FAQ", "/#faq"],
-  ["Questions", "/#contact"],
 ];
 
 export function SiteFooter() {
@@ -19,7 +19,7 @@ export function SiteFooter() {
             <p className="text-[var(--gold)] font-semibold" style={{ fontFamily: "'Jost', sans-serif", fontSize: "8px", letterSpacing: "3px", textTransform: "uppercase", marginTop: "4px" }}>Brand Studio</p>
           </div>
           <p className="mt-5 max-w-sm text-[var(--ink)]/58 leading-7" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem" }}>
-            Done-for-you social media, quote tools and automatic follow-up for local business owners who want the work handled beautifully.
+            Dollhouse Launch: done-for-you social media, quote tools and automatic follow-up for appointment-based and service businesses.
           </p>
         </div>
 
@@ -48,8 +48,8 @@ export function SiteFooter() {
           <a href="tel:+12893014567" className="mt-2 block text-[var(--ink)]/68 hover:text-[var(--rose)] transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.78rem", letterSpacing: "0.12em" }}>
             +1 (289) 301-4567
           </a>
-          <a href="/#plans" className="mt-5 inline-flex rounded-full px-5 py-3 text-[var(--cream)] bg-[var(--ink)] hover:opacity-90 transition-opacity" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.68rem", letterSpacing: "0.18em", textTransform: "uppercase" }}>
-            Get started →
+          <a href="/get-started" className="mt-5 inline-flex rounded-full px-5 py-3 text-[var(--cream)] bg-[var(--ink)] hover:opacity-90 transition-opacity" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.68rem", letterSpacing: "0.18em", textTransform: "uppercase" }}>
+            Get Started →
           </a>
         </div>
       </div>

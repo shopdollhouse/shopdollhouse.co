@@ -1,57 +1,58 @@
 /**
- * The Dollhouse launch offer: one place for prices, links and plan copy.
- * Change a number here and the whole homepage updates.
+ * Dollhouse Launch: one place for prices, links and plan copy.
+ * Change a number here and the whole site updates.
  */
 
 export type LaunchPlanId = "single" | "carousel";
 
 /**
- * Checkout links for each plan. Leave a link empty until the payment link
- * exists: the button then sends people to the questions / application form
- * instead of a dead link.
+ * Hosted payment links, one per plan (recurring monthly).
+ * Paste each link here and the /get-started checkout page embeds it.
+ * While a link is empty, that plan shows an "email to order" fallback.
  */
 export const ORDER_LINKS: Record<LaunchPlanId, string> = {
   single: "",
   carousel: "",
 };
 
-export const FALLBACK_HREF = "#contact";
+/** Every "Get started" button on the site goes to the on-site checkout page. */
+export const CHECKOUT_PATH = "/get-started";
 
-export function orderHref(plan: LaunchPlanId): string {
-  return ORDER_LINKS[plan] || FALLBACK_HREF;
+export function checkoutHref(plan: LaunchPlanId = "single"): string {
+  return `${CHECKOUT_PATH}?plan=${plan}`;
 }
 
-/** Optional explainer video. Paste an embed URL (YouTube/Vimeo/etc.) to show it in the hero. */
-export const HERO_VIDEO_EMBED_URL = "";
+export const SUPPORT_EMAIL = "hello@shopdollhouse.co";
 
 export const PRICE_SINGLE = 297;
 export const PRICE_CAROUSEL = 497;
 export const GUARANTEE_DAYS = 14;
 export const FIRST_POSTS_DAYS = 5;
+export const POSTS_PER_MONTH = 30;
 
 export const LAUNCH_PLANS: {
   id: LaunchPlanId;
   name: string;
   price: number;
+  badge: string;
   mix: string;
   blurb: string;
-  cta: string;
 }[] = [
   {
     id: "single",
     name: "Single-Image Posts",
     price: PRICE_SINGLE,
+    badge: "Best starting point",
     mix: "30 single-image posts each month",
-    blurb: "One clear message in every post.",
-    cta: "Choose single-image posts",
+    blurb: "One clear message in every post. The simplest way to show up every day.",
   },
   {
     id: "carousel",
     name: "Carousel + Single-Image Posts",
     price: PRICE_CAROUSEL,
+    badge: "Most complete",
     mix: "15 carousel posts + 15 single-image posts each month",
     blurb: "More room for stories, before-and-afters and step-by-step explanations.",
-    cta: "Choose carousel posts",
   },
 ];
 

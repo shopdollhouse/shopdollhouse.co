@@ -20,6 +20,7 @@ import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PlaybookRouteImport } from './routes/playbook'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as GetStartedRouteImport } from './routes/get-started'
 import { Route as FoundationRouteImport } from './routes/foundation'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as BrandRoomRouteImport } from './routes/brand-room'
@@ -94,6 +95,11 @@ const PlaybookRoute = PlaybookRouteImport.update({
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GetStartedRoute = GetStartedRouteImport.update({
+  id: '/get-started',
+  path: '/get-started',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FoundationRoute = FoundationRouteImport.update({
@@ -208,6 +214,7 @@ export interface FileRoutesByFullPath {
   '/brand-room': typeof BrandRoomRoute
   '/careers': typeof CareersRoute
   '/foundation': typeof FoundationRoute
+  '/get-started': typeof GetStartedRoute
   '/onboarding': typeof OnboardingRoute
   '/playbook': typeof PlaybookRoute
   '/privacy': typeof PrivacyRoute
@@ -241,6 +248,7 @@ export interface FileRoutesByTo {
   '/brand-room': typeof BrandRoomRoute
   '/careers': typeof CareersRoute
   '/foundation': typeof FoundationRoute
+  '/get-started': typeof GetStartedRoute
   '/onboarding': typeof OnboardingRoute
   '/playbook': typeof PlaybookRoute
   '/privacy': typeof PrivacyRoute
@@ -275,6 +283,7 @@ export interface FileRoutesById {
   '/brand-room': typeof BrandRoomRoute
   '/careers': typeof CareersRoute
   '/foundation': typeof FoundationRoute
+  '/get-started': typeof GetStartedRoute
   '/onboarding': typeof OnboardingRoute
   '/playbook': typeof PlaybookRoute
   '/privacy': typeof PrivacyRoute
@@ -310,6 +319,7 @@ export interface FileRouteTypes {
     | '/brand-room'
     | '/careers'
     | '/foundation'
+    | '/get-started'
     | '/onboarding'
     | '/playbook'
     | '/privacy'
@@ -343,6 +353,7 @@ export interface FileRouteTypes {
     | '/brand-room'
     | '/careers'
     | '/foundation'
+    | '/get-started'
     | '/onboarding'
     | '/playbook'
     | '/privacy'
@@ -376,6 +387,7 @@ export interface FileRouteTypes {
     | '/brand-room'
     | '/careers'
     | '/foundation'
+    | '/get-started'
     | '/onboarding'
     | '/playbook'
     | '/privacy'
@@ -410,6 +422,7 @@ export interface RootRouteChildren {
   BrandRoomRoute: typeof BrandRoomRoute
   CareersRoute: typeof CareersRoute
   FoundationRoute: typeof FoundationRoute
+  GetStartedRoute: typeof GetStartedRoute
   OnboardingRoute: typeof OnboardingRoute
   PlaybookRoute: typeof PlaybookRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -514,6 +527,13 @@ declare module '@tanstack/react-router' {
       path: '/onboarding'
       fullPath: '/onboarding'
       preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/get-started': {
+      id: '/get-started'
+      path: '/get-started'
+      fullPath: '/get-started'
+      preLoaderRoute: typeof GetStartedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/foundation': {
@@ -666,6 +686,7 @@ const rootRouteChildren: RootRouteChildren = {
   BrandRoomRoute: BrandRoomRoute,
   CareersRoute: CareersRoute,
   FoundationRoute: FoundationRoute,
+  GetStartedRoute: GetStartedRoute,
   OnboardingRoute: OnboardingRoute,
   PlaybookRoute: PlaybookRoute,
   PrivacyRoute: PrivacyRoute,
