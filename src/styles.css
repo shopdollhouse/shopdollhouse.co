@@ -529,7 +529,7 @@ main article:hover {
 /* Launch palette: deeper chocolate brown + the med spa gold */
 .lux {
   --gold: #c6b282;
-  --ink: #2b1710;
+  --ink: #1f110b;
 }
 .lux .gold-grad {
   background: linear-gradient(100deg, #e6dcc0 0%, #c6b282 44%, #a8946a 68%, #dccfa8 100%);

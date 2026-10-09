@@ -271,7 +271,7 @@ function HeroVisual() {
         {/* titanium frame */}
         <div
           className="relative rounded-[58px] p-[3px]"
-          style={{ background: "linear-gradient(145deg, #a39b8d 0%, #3d3934 20%, #14120f 50%, #4d483f 78%, #aaa294 100%)", boxShadow: "0 70px 110px -40px rgba(38,14,8,0.85), 0 30px 60px -30px rgba(0,0,0,0.6)" }}
+          style={{ background: "linear-gradient(145deg, #a39b8d 0%, #3d3934 20%, #14120f 50%, #4d483f 78%, #aaa294 100%)", boxShadow: "0 70px 110px -40px rgba(24,10,6,0.85), 0 30px 60px -30px rgba(0,0,0,0.6)" }}
         >
           {/* bezel */}
           <div className="rounded-[55px] p-[9px]" style={{ background: "#020202" }}>
@@ -591,13 +591,13 @@ function ServicePreview({ kind }: { kind: PreviewKind }) {
       <div aria-hidden className="rounded-2xl p-5" style={shell}>
         <p className="text-[8px] tracking-luxe uppercase text-[var(--gold)]" style={{ fontFamily: LUXE }}>Quote calculator · example</p>
         <p className="mt-2 text-[var(--ink)]" style={{ fontFamily: DISPLAY, fontSize: "1.25rem" }}>What do you need help with?</p>
-        <div className="mt-3 h-1 w-full overflow-hidden rounded-full" style={{ background: "rgba(43,23,16,0.08)" }}>
+        <div className="mt-3 h-1 w-full overflow-hidden rounded-full" style={{ background: "rgba(31,17,11,0.08)" }}>
           <div className="h-full w-2/5 rounded-full" style={{ background: "var(--gold)" }} />
         </div>
         <div className="mt-4 grid gap-2">
           {["Service one", "Service two", "Not sure yet"].map((o, i) => (
             <div key={o} className="flex items-center gap-2.5 rounded-xl px-3 py-2.5" style={{ background: i === 1 ? "var(--ink)" : "rgba(255,255,255,0.8)", border: "1px solid color-mix(in oklab, var(--gold) 26%, transparent)" }}>
-              <span className="h-3.5 w-3.5 rounded-full" style={{ border: `1.5px solid ${i === 1 ? "var(--gold)" : "rgba(43,23,16,0.3)"}`, background: i === 1 ? "var(--gold)" : "transparent" }} />
+              <span className="h-3.5 w-3.5 rounded-full" style={{ border: `1.5px solid ${i === 1 ? "var(--gold)" : "rgba(31,17,11,0.3)"}`, background: i === 1 ? "var(--gold)" : "transparent" }} />
               <span style={{ fontFamily: BODY, fontSize: "0.78rem", color: i === 1 ? "var(--cream)" : "var(--ink)" }}>{o}</span>
             </div>
           ))}
@@ -612,8 +612,8 @@ function ServicePreview({ kind }: { kind: PreviewKind }) {
       <div aria-hidden className="rounded-2xl p-5" style={shell}>
         <p className="text-[8px] tracking-luxe uppercase text-[var(--gold)]" style={{ fontFamily: LUXE }}>Comment to private reply · example</p>
         <div className="mt-3 flex items-start gap-2.5">
-          <span className="mt-0.5 h-7 w-7 shrink-0 rounded-full" style={{ background: "rgba(43,23,16,0.12)" }} />
-          <div className="rounded-2xl rounded-tl-sm px-3.5 py-2" style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(43,23,16,0.08)" }}>
+          <span className="mt-0.5 h-7 w-7 shrink-0 rounded-full" style={{ background: "rgba(31,17,11,0.12)" }} />
+          <div className="rounded-2xl rounded-tl-sm px-3.5 py-2" style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(31,17,11,0.08)" }}>
             <p className="text-[var(--ink)]" style={{ fontFamily: BODY, fontSize: "0.78rem" }}>QUOTE</p>
           </div>
         </div>
@@ -621,8 +621,8 @@ function ServicePreview({ kind }: { kind: PreviewKind }) {
           <p className="text-[var(--cream)]/90 leading-snug" style={{ fontFamily: BODY, fontSize: "0.78rem" }}>Hi! Thanks for asking. Which service are you looking for?</p>
         </div>
         <div className="mt-2 flex items-start gap-2.5">
-          <span className="mt-0.5 h-7 w-7 shrink-0 rounded-full" style={{ background: "rgba(43,23,16,0.12)" }} />
-          <div className="rounded-2xl rounded-tl-sm px-3.5 py-2" style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(43,23,16,0.08)" }}>
+          <span className="mt-0.5 h-7 w-7 shrink-0 rounded-full" style={{ background: "rgba(31,17,11,0.12)" }} />
+          <div className="rounded-2xl rounded-tl-sm px-3.5 py-2" style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(31,17,11,0.08)" }}>
             <p className="text-[var(--ink)]" style={{ fontFamily: BODY, fontSize: "0.78rem" }}>Service two, please.</p>
           </div>
         </div>
@@ -634,7 +634,7 @@ function ServicePreview({ kind }: { kind: PreviewKind }) {
   return (
     <div aria-hidden className="rounded-2xl p-5" style={shell}>
       <p className="text-[8px] tracking-luxe uppercase text-[var(--gold)]" style={{ fontFamily: LUXE }}>Booking · example</p>
-      <div className="mt-3 rounded-2xl rounded-tl-sm px-3.5 py-2.5" style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(43,23,16,0.08)" }}>
+      <div className="mt-3 rounded-2xl rounded-tl-sm px-3.5 py-2.5" style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(31,17,11,0.08)" }}>
         <p className="text-[var(--ink)]/80 leading-snug" style={{ fontFamily: BODY, fontSize: "0.78rem" }}>Thanks for reaching out! Here are a few times that work. Pick one and you are booked.</p>
       </div>
       <div className="mt-3 grid grid-cols-3 gap-2">
@@ -730,7 +730,7 @@ export function LaunchWhatsIncluded() {
       <div className="mx-auto mt-14 grid max-w-5xl gap-8">
         {SERVICES.map(({ icon: Icon, title, lead, points, preview }, i) => (
           <article key={title} className="overflow-hidden rounded-[8px]" style={card}>
-            <div className="flex items-center gap-4 px-6 py-5 md:px-8" style={{ background: "linear-gradient(135deg, #2b1710 0%, #160905 100%)" }}>
+            <div className="flex items-center gap-4 px-6 py-5 md:px-8" style={{ background: "linear-gradient(135deg, #1f110b 0%, #0f0705 100%)" }}>
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[var(--ink)]" style={{ background: "var(--gold)", fontFamily: DISPLAY, fontSize: "1.35rem", fontWeight: 600 }}>{i + 1}</span>
               <div className="min-w-0">
                 <p className="flex items-center gap-2 text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE, color: "var(--gold)" }}>
@@ -788,7 +788,7 @@ export function LaunchWhatsIncluded() {
 
       <div
         className="mx-auto mt-8 flex max-w-5xl flex-col items-center gap-3 rounded-[8px] px-8 py-8 text-center md:flex-row md:justify-between md:text-left"
-        style={{ background: "linear-gradient(135deg, #2b1710 0%, #160905 100%)", border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)" }}
+        style={{ background: "linear-gradient(135deg, #1f110b 0%, #0f0705 100%)", border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)" }}
       >
         <div>
           <p className="text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE, color: "var(--gold)" }}>Included across the full system</p>
@@ -816,7 +816,7 @@ export function LaunchWhatsIncluded() {
 const TONES: Record<string, { bg: string; fg: string; accent: string }> = {
   cream: { bg: "linear-gradient(160deg, #fffaf6 0%, #f7e9e3 100%)", fg: "var(--ink)", accent: "var(--rose)" },
   blush: { bg: "linear-gradient(160deg, #f4dcdc 0%, #f1d3cf 100%)", fg: "var(--ink)", accent: "var(--rose)" },
-  ink: { bg: "linear-gradient(160deg, #2b1710 0%, #1c0d08 100%)", fg: "var(--cream)", accent: "var(--gold)" },
+  ink: { bg: "linear-gradient(160deg, #1f110b 0%, #130a06 100%)", fg: "var(--cream)", accent: "var(--gold)" },
 };
 
 /* ─── Content examples ────────────────────────────────── */
@@ -1075,7 +1075,7 @@ export function LaunchPlans() {
     <section
       id="plans"
       className="relative scroll-mt-24 overflow-hidden py-24 md:py-32 px-6"
-      style={{ background: "linear-gradient(165deg, #2d1810 0%, #1c0d08 55%, #100603 100%)" }}
+      style={{ background: "linear-gradient(165deg, #1f120c 0%, #130a06 55%, #0a0503 100%)" }}
     >
       <div aria-hidden className="pointer-events-none absolute left-1/2 top-[-120px] h-[420px] w-[820px] -translate-x-1/2 rounded-full" style={{ background: "radial-gradient(circle, rgba(198,178,130,0.22), transparent 66%)" }} />
       <div aria-hidden className="pointer-events-none absolute -right-40 bottom-0 h-[420px] w-[520px] rounded-full" style={{ background: "radial-gradient(circle, rgba(192,128,121,0.2), transparent 68%)" }} />
@@ -1103,7 +1103,7 @@ export function LaunchPlans() {
                   <h3 className="mt-4 text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontSize: "1rem", letterSpacing: "0.14em", fontWeight: 600 }}>{plan.name}</h3>
                   <p className="mt-4" style={{ fontFamily: DISPLAY, fontSize: "4.6rem", lineHeight: 0.95, color: "var(--ink)" }}>
                     <span className="align-top text-[1.6rem]" style={{ color: "var(--gold)" }}>$</span>{plan.price}
-                    <span className="ml-1.5 uppercase" style={{ fontFamily: LUXE, fontSize: "0.78rem", letterSpacing: "0.16em", color: "rgba(43,23,16,0.5)" }}>/month</span>
+                    <span className="ml-1.5 uppercase" style={{ fontFamily: LUXE, fontSize: "0.78rem", letterSpacing: "0.16em", color: "rgba(31,17,11,0.5)" }}>/month</span>
                   </p>
                   <span className="mx-auto mt-5 block h-px w-14" style={{ background: "var(--gold)", opacity: 0.7 }} />
                   <p className="mt-5 font-semibold text-[var(--ink)]" style={{ fontFamily: BODY, fontSize: "1rem" }}>{plan.mix}</p>
@@ -1111,7 +1111,7 @@ export function LaunchPlans() {
                   <a
                     href={checkoutHref(plan.id)}
                     className="mt-auto inline-flex items-center justify-center gap-2 px-8 py-[17px] text-[11px] tracking-[0.26em] uppercase transition-transform hover:-translate-y-0.5"
-                    style={{ marginTop: "1.75rem", fontFamily: LUXE, fontWeight: 600, borderRadius: "2px", background: gold ? "var(--gold)" : "#2b1710", color: gold ? "#1c0d08" : "var(--cream)", border: "1px solid var(--gold)", boxShadow: "0 22px 44px -18px rgba(43,23,16,0.6)" }}
+                    style={{ marginTop: "1.75rem", fontFamily: LUXE, fontWeight: 600, borderRadius: "2px", background: gold ? "var(--gold)" : "#1f110b", color: gold ? "#130a06" : "var(--cream)", border: "1px solid var(--gold)", boxShadow: "0 22px 44px -18px rgba(31,17,11,0.6)" }}
                   >
                     {plan.id === "single" ? "Choose single-image posts" : "Choose carousel slide posts"} <ArrowRight className="h-4 w-4" />
                   </a>
@@ -1152,7 +1152,7 @@ export function LaunchPlans() {
         </div>
 
         <div className="mx-auto mt-6 flex max-w-5xl items-center gap-5 rounded-[8px] px-7 py-6" style={{ background: "linear-gradient(135deg, rgba(198,178,130,0.2), rgba(198,178,130,0.08))", border: "1px solid color-mix(in oklab, var(--gold) 55%, transparent)" }}>
-          <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full" style={{ background: "var(--gold)", color: "#1c0d08", fontFamily: DISPLAY, fontSize: "1.7rem", fontWeight: 600 }}>{GUARANTEE_DAYS}</span>
+          <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full" style={{ background: "var(--gold)", color: "#130a06", fontFamily: DISPLAY, fontSize: "1.7rem", fontWeight: 600 }}>{GUARANTEE_DAYS}</span>
           <div>
             <h3 className="text-[var(--cream)] uppercase" style={{ fontFamily: LUXE, fontSize: "1rem", letterSpacing: "0.12em", fontWeight: 600 }}>Your {GUARANTEE_DAYS}-day money-back guarantee</h3>
             <p className="mt-1 text-[var(--cream)]/70 leading-6" style={{ fontFamily: BODY, fontSize: "0.92rem" }}>
@@ -1274,7 +1274,7 @@ export function LaunchFaq() {
         <div id="about" className="overflow-hidden rounded-[8px]" style={card}>
           <div className="relative aspect-[4/5] w-full overflow-hidden">
             <img src={mandyPhoto} alt="Mandy, founder of The Dollhouse Brand Studio" loading="lazy" className="h-full w-full object-cover" style={{ objectPosition: "center 22%" }} />
-            <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/2" style={{ background: "linear-gradient(to top, rgba(23,10,6,0.85), transparent)" }} />
+            <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/2" style={{ background: "linear-gradient(to top, rgba(15,7,4,0.85), transparent)" }} />
             <div className="absolute bottom-5 left-6">
               <p className="uppercase text-[var(--cream)]" style={{ fontFamily: HEAD, fontWeight: 300, fontSize: "1.5rem", letterSpacing: "0.08em" }}>Mandy</p>
               <p className="mt-1 text-[10px] tracking-[0.3em] uppercase" style={{ fontFamily: LUXE, color: "var(--gold)" }}>Founder · Brand Designer</p>
@@ -1312,7 +1312,7 @@ export function LaunchFaq() {
 export function LaunchFinalCta() {
   return (
     <section className="px-6 pb-16 bg-[var(--cream)]">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 rounded-[8px] px-8 py-9 text-center md:flex-row md:text-left" style={{ background: "linear-gradient(135deg, #2b1710 0%, #160905 100%)", border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)" }}>
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 rounded-[8px] px-8 py-9 text-center md:flex-row md:text-left" style={{ background: "linear-gradient(135deg, #1f110b 0%, #0f0705 100%)", border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)" }}>
         <h2 className="max-w-2xl text-[var(--cream)]" style={{ fontFamily: DISPLAY, fontWeight: 400, fontSize: "clamp(1.8rem, 4vw, 2.8rem)", lineHeight: 1.08 }}>
           Ready to turn your social media into{" "}
           <span className="italic text-[var(--gold)]">booked appointments?</span>
@@ -1417,7 +1417,7 @@ export function LaunchStickyBar() {
           transform: `translateX(-50%) translateY(${show ? "0" : "140%"})`,
           opacity: show ? 1 : 0,
           pointerEvents: show ? "auto" : "none",
-          background: "rgba(28,13,8,0.96)",
+          background: "rgba(19,10,6,0.96)",
           borderColor: gold,
           backdropFilter: "blur(12px)",
           WebkitBackdropFilter: "blur(12px)",
@@ -1443,7 +1443,7 @@ export function LaunchStickyBar() {
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         className="fixed bottom-6 right-24 z-[60] hidden h-12 w-12 items-center justify-center rounded-full border transition-all duration-500 md:flex"
         style={{
-          background: "#1c0d08",
+          background: "#130a06",
           borderColor: "color-mix(in oklab, var(--gold) 55%, transparent)",
           boxShadow: "0 14px 30px -12px rgba(0,0,0,0.5)",
           opacity: scrolled ? 1 : 0,
@@ -1462,14 +1462,14 @@ export function LaunchStickyBar() {
         className="fixed inset-x-0 bottom-0 z-[60] md:hidden transition-transform duration-500"
         style={{
           transform: show ? "translateY(0)" : "translateY(110%)",
-          background: "rgba(28,13,8,0.97)",
+          background: "rgba(19,10,6,0.97)",
           backdropFilter: "blur(14px)",
           WebkitBackdropFilter: "blur(14px)",
           borderTop: "1px solid color-mix(in oklab, var(--gold) 55%, transparent)",
           paddingBottom: "env(safe-area-inset-bottom)",
         }}
       >
-        <button type="button" aria-label="Dismiss" onClick={dismiss} className="absolute -top-3.5 right-3 flex h-7 w-7 items-center justify-center rounded-full border text-[var(--cream)]/80" style={{ background: "#1c0d08", borderColor: "color-mix(in oklab, var(--gold) 55%, transparent)" }}>
+        <button type="button" aria-label="Dismiss" onClick={dismiss} className="absolute -top-3.5 right-3 flex h-7 w-7 items-center justify-center rounded-full border text-[var(--cream)]/80" style={{ background: "#130a06", borderColor: "color-mix(in oklab, var(--gold) 55%, transparent)" }}>
           <X className="h-3.5 w-3.5" />
         </button>
         <div className="grid grid-cols-5">
