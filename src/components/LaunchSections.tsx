@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 import archMark from "@/assets/arch-mark.svg";
 import bgImage from "@/assets/password-bg.jpg";
-import mandyPhoto from "@/assets/mandy-photo.jpg";
+import mandyPhoto from "@/assets/mandy-founder-portrait.png";
 import {
   ADDON_PLATFORM_PRICE,
   AI_USAGE_COVERED,
@@ -41,15 +41,18 @@ import {
 const DISPLAY = "'Cormorant Garamond', serif";
 const BODY = "'DM Sans', sans-serif";
 const LUXE = "'Jost', sans-serif";
+const HEAD = "'Jost', sans-serif";
 
 /* ─── Shared pieces ───────────────────────────────────── */
 function Eyebrow({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
   return (
     <p
-      className={`${light ? "" : "gold-grad"} text-[11px] tracking-luxe uppercase font-semibold`}
+      className={`${light ? "" : "gold-grad"} inline-flex items-center gap-3 text-[10.5px] tracking-[0.34em] uppercase font-medium`}
       style={{ fontFamily: LUXE, ...(light ? { color: "var(--gold)" } : {}) }}
     >
+      <span aria-hidden className="h-px w-8 bg-[var(--gold)] opacity-60" />
       {children}
+      <span aria-hidden className="h-px w-8 bg-[var(--gold)] opacity-60" />
     </p>
   );
 }
@@ -68,17 +71,17 @@ function Divider() {
 
 function SectionHead({ eyebrow, title, sub }: { eyebrow: string; title: React.ReactNode; sub?: string }) {
   return (
-    <div className="text-center max-w-3xl mx-auto">
+    <div className="text-center max-w-4xl mx-auto">
       <Eyebrow>{eyebrow}</Eyebrow>
       <h2
-        className="text-[var(--ink)] mt-4 leading-[1.04]"
-        style={{ fontFamily: DISPLAY, fontWeight: 400, fontSize: "clamp(2.3rem, 5vw, 3.8rem)", letterSpacing: "0.005em" }}
+        className="text-[var(--ink)] mt-6 uppercase"
+        style={{ fontFamily: HEAD, fontWeight: 300, fontSize: "clamp(2rem, 4.6vw, 3.5rem)", letterSpacing: "-0.01em", lineHeight: 1.06 }}
       >
         {title}
       </h2>
       <Divider />
       {sub && (
-        <p className="mx-auto max-w-2xl text-[var(--ink)]/62 leading-8" style={{ fontFamily: BODY, fontSize: "1.02rem" }}>
+        <p className="mx-auto max-w-2xl text-[var(--ink)]/62 leading-8" style={{ fontFamily: BODY, fontSize: "1.02rem", fontWeight: 300 }}>
           {sub}
         </p>
       )}
@@ -98,9 +101,9 @@ function CheckDot() {
 }
 
 const card = {
-  background: "rgba(255,250,246,0.82)",
-  border: "1px solid color-mix(in oklab, var(--gold) 26%, transparent)",
-  boxShadow: "0 30px 70px -40px rgba(120,70,60,0.42)",
+  background: "rgba(255,251,248,0.88)",
+  border: "1px solid color-mix(in oklab, var(--gold) 38%, transparent)",
+  boxShadow: "0 40px 80px -48px rgba(110,60,50,0.45)",
 } as const;
 
 /** Primary conversion button: always goes straight to checkout. */
@@ -221,7 +224,7 @@ export function LaunchHero() {
           <span style={{ color: "var(--gold)" }}>✦</span> For home service businesses
         </p>
 
-        <h1 className="mt-6 text-[var(--ink)] leading-[0.98]" style={{ fontFamily: DISPLAY, fontWeight: 400, fontSize: "clamp(2.9rem, 7.4vw, 5.6rem)" }}>
+        <h1 className="mt-7 uppercase text-[var(--ink)]" style={{ fontFamily: HEAD, fontWeight: 300, fontSize: "clamp(2.7rem, 7.2vw, 5.8rem)", letterSpacing: "-0.025em", lineHeight: 0.98 }}>
           Turn social media into{" "}
           <span className="italic text-[var(--rose)]">booked estimates.</span>
         </h1>
@@ -246,9 +249,9 @@ export function LaunchHero() {
         {HERO_VIDEO_EMBED_URL && (
           <div className="mt-10">
             <p className="text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontWeight: 600, letterSpacing: "0.12em", fontSize: "1rem" }}>
-              See how it works in <span className="text-[var(--rose)]">10 minutes ↓</span>
+              See how it works <span className="text-[var(--rose)]">↓</span>
             </p>
-            <div className="mt-4 aspect-video overflow-hidden rounded-[24px]" style={card}>
+            <div className="mx-auto mt-5 aspect-video overflow-hidden rounded-[8px]" style={{ border: "1px solid color-mix(in oklab, var(--gold) 55%, transparent)", boxShadow: "0 50px 100px -40px rgba(70,30,25,0.55), 0 0 0 8px rgba(255,250,246,0.35)" }}>
               <iframe src={HERO_VIDEO_EMBED_URL} title="Dollhouse Launch video presentation" className="h-full w-full" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen />
             </div>
           </div>
@@ -295,7 +298,7 @@ export function LaunchHowItWorks() {
       />
       <div className="mx-auto mt-14 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-4" data-stagger>
         {STEPS.map((st, i) => (
-          <article key={st.title} className="rounded-[24px] p-7" style={card}>
+          <article key={st.title} className="rounded-[8px] p-7" style={card}>
             <span className="flex h-11 w-11 items-center justify-center rounded-full text-[var(--gold)]" style={{ background: "var(--ink)", fontFamily: DISPLAY, fontSize: "1.3rem" }}>{i + 1}</span>
             <p className="mt-4 text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Step {i + 1}</p>
             <h3 className="mt-1 text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontSize: "0.92rem", letterSpacing: "0.1em", fontWeight: 600 }}>{st.title}</h3>
@@ -460,7 +463,7 @@ export function LaunchWhatsIncluded() {
       />
       <div className="mx-auto mt-14 grid max-w-5xl gap-8">
         {SERVICES.map(({ icon: Icon, title, lead, points, preview }, i) => (
-          <article key={title} className="overflow-hidden rounded-[28px]" style={card}>
+          <article key={title} className="overflow-hidden rounded-[8px]" style={card}>
             <div className="flex items-center gap-4 px-6 py-5 md:px-8" style={{ background: "linear-gradient(135deg, #2a1d1a 0%, #170e0c 100%)" }}>
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[var(--ink)]" style={{ background: "var(--gold)", fontFamily: DISPLAY, fontSize: "1.35rem", fontWeight: 600 }}>{i + 1}</span>
               <div className="min-w-0">
@@ -518,7 +521,7 @@ export function LaunchWhatsIncluded() {
       </div>
 
       <div
-        className="mx-auto mt-8 flex max-w-5xl flex-col items-center gap-3 rounded-[28px] px-8 py-8 text-center md:flex-row md:justify-between md:text-left"
+        className="mx-auto mt-8 flex max-w-5xl flex-col items-center gap-3 rounded-[8px] px-8 py-8 text-center md:flex-row md:justify-between md:text-left"
         style={{ background: "linear-gradient(135deg, #2a1d1a 0%, #170e0c 100%)", border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)" }}
       >
         <div>
@@ -651,11 +654,11 @@ function ExampleTile({ item, format, onOpen }: { item: ExampleItem; format: "sin
   );
 
   return format === "carousel" ? (
-    <button type="button" onClick={onOpen} aria-label={`Open the 5-slide ${item.style.name} carousel`} className="group block w-full overflow-hidden rounded-[24px] text-left transition-transform duration-500 hover:-translate-y-1" style={card}>
+    <button type="button" onClick={onOpen} aria-label={`Open the 5-slide ${item.style.name} carousel`} className="group block w-full overflow-hidden rounded-[8px] text-left transition-transform duration-500 hover:-translate-y-1" style={card}>
       {inner}
     </button>
   ) : (
-    <article className="overflow-hidden rounded-[24px]" style={card}>{inner}</article>
+    <article className="overflow-hidden rounded-[8px]" style={card}>{inner}</article>
   );
 }
 
@@ -686,7 +689,7 @@ function CarouselViewer({ item, onClose }: { item: ExampleItem; onClose: () => v
           <X className="h-6 w-6" />
         </button>
         <p className="mb-3 text-center text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE, color: "var(--gold)" }}>{item.style.name} · sample carousel</p>
-        <div className="flex aspect-square flex-col items-center justify-center rounded-[28px] p-10 text-center" style={{ background: t.bg, border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)", boxShadow: "0 40px 90px -30px rgba(0,0,0,0.6)" }}>
+        <div className="flex aspect-square flex-col items-center justify-center rounded-[8px] p-10 text-center" style={{ background: t.bg, border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)", boxShadow: "0 40px 90px -30px rgba(0,0,0,0.6)" }}>
           <span style={{ color: t.accent, fontSize: "0.9rem" }}>✦</span>
           <p key={i} className="mt-4 italic leading-tight" style={{ fontFamily: DISPLAY, fontSize: i === 0 ? "clamp(1.9rem, 6vw, 2.5rem)" : "clamp(1.6rem, 5vw, 2.1rem)", color: t.fg }}>{slides[i]}</p>
           <span className="mt-6 h-px w-12" style={{ background: t.accent, opacity: 0.6 }} />
@@ -765,7 +768,7 @@ export function LaunchExamples() {
         </button>
       </div>
 
-      <div className="mx-auto mt-16 max-w-2xl rounded-[28px] p-8 text-center md:p-10" style={card}>
+      <div className="mx-auto mt-16 max-w-2xl rounded-[8px] p-8 text-center md:p-10" style={card}>
         <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Your content, your direction</p>
         <h3 className="mt-3 italic text-[var(--ink)]" style={{ fontFamily: DISPLAY, fontSize: "1.9rem", lineHeight: 1.1 }}>Have another style in mind?</h3>
         <p className="mt-3 text-[var(--ink)]/62 leading-7" style={{ fontFamily: BODY, fontSize: "0.95rem" }}>
@@ -814,7 +817,7 @@ export function LaunchPlans() {
 
       <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-2" data-stagger>
         {LAUNCH_PLANS.map((plan) => (
-          <article key={plan.id} className="flex flex-col rounded-[28px] p-8" style={{ ...card, border: "1.5px solid color-mix(in oklab, var(--gold) 50%, transparent)" }}>
+          <article key={plan.id} className="flex flex-col rounded-[8px] p-8" style={{ ...card, border: "1.5px solid color-mix(in oklab, var(--gold) 50%, transparent)" }}>
             <span className="flex h-11 w-11 items-center justify-center rounded-xl" style={{ background: "color-mix(in oklab, var(--gold) 20%, transparent)", color: "var(--rose)" }}>
               <ImageIcon className="h-5 w-5" strokeWidth={1.6} />
             </span>
@@ -836,7 +839,7 @@ export function LaunchPlans() {
         ))}
       </div>
 
-      <div className="mx-auto mt-6 max-w-5xl rounded-[28px] p-8 md:p-10" style={card}>
+      <div className="mx-auto mt-6 max-w-5xl rounded-[8px] p-8 md:p-10" style={card}>
         <h3 className="text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontSize: "0.95rem", letterSpacing: "0.14em", fontWeight: 600 }}>Included in both plans</h3>
         <ul className="mt-5 grid gap-3 sm:grid-cols-2">
           {INCLUDED_IN_BOTH.map((t) => (
@@ -864,7 +867,7 @@ export function LaunchPlans() {
         {SHOW_VALUE_STACK && <ValueStack />}
       </div>
 
-      <div className="mx-auto mt-6 flex max-w-5xl items-center gap-5 rounded-[24px] px-7 py-6" style={{ background: "color-mix(in oklab, var(--gold) 13%, transparent)", border: "1px solid color-mix(in oklab, var(--gold) 38%, transparent)" }}>
+      <div className="mx-auto mt-6 flex max-w-5xl items-center gap-5 rounded-[8px] px-7 py-6" style={{ background: "color-mix(in oklab, var(--gold) 13%, transparent)", border: "1px solid color-mix(in oklab, var(--gold) 38%, transparent)" }}>
         <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-[var(--gold)]" style={{ background: "var(--ink)", fontFamily: DISPLAY, fontSize: "1.8rem" }}>{GUARANTEE_DAYS}</span>
         <div>
           <h3 className="text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontSize: "1rem", letterSpacing: "0.1em", fontWeight: 600 }}>Your {GUARANTEE_DAYS}-day money-back guarantee</h3>
@@ -894,7 +897,7 @@ export function LaunchAfterPurchase() {
       <SectionHead eyebrow="What happens after purchase" title="From checkout to launch" />
       <div className="mx-auto mt-12 grid max-w-5xl gap-5 md:grid-cols-3" data-stagger>
         {AFTER.map((a, i) => (
-          <article key={a.title} className="rounded-[26px] p-8 text-center" style={card}>
+          <article key={a.title} className="rounded-[8px] p-8 text-center" style={card}>
             <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full text-[var(--gold)]" style={{ background: "var(--ink)", fontFamily: DISPLAY, fontSize: "1.3rem" }}>{i + 1}</span>
             <h3 className="mt-4 italic text-[var(--rose)]" style={{ fontFamily: DISPLAY, fontSize: "1.5rem", fontWeight: 500 }}>{a.title}</h3>
             <p className="mt-2 text-[var(--ink)]/62 leading-7" style={{ fontFamily: BODY, fontSize: "0.93rem" }}>{a.copy}</p>
@@ -961,12 +964,18 @@ export function LaunchFaq() {
   return (
     <section id="faq" className="scroll-mt-24 py-24 md:py-28 px-6 bg-[var(--cream)]">
       <div className="mx-auto grid max-w-6xl items-start gap-8 lg:grid-cols-[0.85fr_1.15fr]">
-        <div id="about" className="overflow-hidden rounded-[28px]" style={card}>
-          <img src={mandyPhoto} alt="Mandy Fortune, founder of The Dollhouse Brand Studio" loading="lazy" className="aspect-[4/3] w-full object-cover" style={{ objectPosition: "center top" }} />
+        <div id="about" className="overflow-hidden rounded-[8px]" style={card}>
+          <div className="relative aspect-[4/5] w-full overflow-hidden">
+            <img src={mandyPhoto} alt="Mandy Fortune, founder of The Dollhouse Brand Studio" loading="lazy" className="h-full w-full object-cover" style={{ objectPosition: "center 18%" }} />
+            <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/2" style={{ background: "linear-gradient(to top, rgba(20,12,10,0.85), transparent)" }} />
+            <div className="absolute bottom-5 left-6">
+              <p className="uppercase text-[var(--cream)]" style={{ fontFamily: HEAD, fontWeight: 300, fontSize: "1.5rem", letterSpacing: "0.08em" }}>Mandy Fortune</p>
+              <p className="mt-1 text-[10px] tracking-[0.3em] uppercase" style={{ fontFamily: LUXE, color: "var(--gold)" }}>Founder · Brand Designer</p>
+            </div>
+          </div>
           <div className="p-7">
-            <p className="text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Founder · Brand designer · Social media strategist</p>
-            <h2 className="mt-2 italic text-[var(--ink)]" style={{ fontFamily: DISPLAY, fontSize: "2.2rem", lineHeight: 1.05 }}>Meet Mandy Fortune</h2>
-            <p className="mt-3 text-[var(--ink)]/70 leading-7" style={{ fontFamily: BODY, fontSize: "0.93rem" }}>
+            <h2 className="uppercase text-[var(--ink)]" style={{ fontFamily: HEAD, fontWeight: 300, fontSize: "clamp(1.5rem, 3vw, 2rem)", lineHeight: 1.1, letterSpacing: "-0.01em" }}>Meet Mandy Fortune</h2>
+            <p className="mt-3 text-[var(--ink)]/70 leading-7" style={{ fontFamily: BODY, fontSize: "0.93rem", fontWeight: 300 }}>
               I have spent 11+ years in graphic and product design, building brands for companies, creators and entrepreneurs. I built Dollhouse Launch because I kept seeing talented local business owners who were invisible online, not because they were not good enough, but because they were too busy doing the work to show up consistently.
             </p>
             <p className="mt-4 italic text-[var(--rose)]" style={{ fontFamily: DISPLAY, fontSize: "1.4rem" }}>You run your business. We'll handle the marketing.</p>
@@ -974,10 +983,10 @@ export function LaunchFaq() {
         </div>
 
         <div>
-          <h2 className="text-[var(--ink)]" style={{ fontFamily: DISPLAY, fontSize: "clamp(2.4rem, 5vw, 3.4rem)", fontWeight: 500 }}>FAQ</h2>
+          <h2 className="uppercase text-[var(--ink)]" style={{ fontFamily: HEAD, fontWeight: 300, fontSize: "clamp(2.2rem, 4.6vw, 3.2rem)", letterSpacing: "-0.01em" }}>FAQ</h2>
           <div className="mt-5 grid gap-3">
             {FAQS.map((f) => (
-              <details key={f.q} className="dh-faq rounded-2xl px-5 py-4" style={card}>
+              <details key={f.q} className="dh-faq rounded-[8px] px-5 py-4" style={card}>
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[var(--ink)]" style={{ fontFamily: BODY, fontSize: "0.95rem", fontWeight: 600 }}>
                   {f.q}
                   <ChevronDown className="dh-faq-chevron h-4 w-4 shrink-0 text-[var(--gold)]" />
@@ -996,7 +1005,7 @@ export function LaunchFaq() {
 export function LaunchFinalCta() {
   return (
     <section className="px-6 pb-16 bg-[var(--cream)]">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 rounded-[28px] px-8 py-9 text-center md:flex-row md:text-left" style={{ background: "linear-gradient(135deg, #2a1d1a 0%, #170e0c 100%)", border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)" }}>
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 rounded-[8px] px-8 py-9 text-center md:flex-row md:text-left" style={{ background: "linear-gradient(135deg, #2a1d1a 0%, #170e0c 100%)", border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)" }}>
         <h2 className="max-w-2xl text-[var(--cream)]" style={{ fontFamily: DISPLAY, fontWeight: 400, fontSize: "clamp(1.8rem, 4vw, 2.8rem)", lineHeight: 1.08 }}>
           Ready to turn your social media into{" "}
           <span className="italic text-[var(--gold)]">booked estimates?</span>

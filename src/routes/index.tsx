@@ -26,7 +26,7 @@ function Index() {
   useScrollReveal();
 
   return (
-    <main className="bg-[var(--blush)] text-[var(--ink)]">
+    <main className="lux bg-[var(--blush)] text-[var(--ink)]">
       <LaunchNav />
       <LaunchHero />
       <LaunchHowItWorks />

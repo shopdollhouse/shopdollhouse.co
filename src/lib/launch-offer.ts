@@ -25,7 +25,8 @@ export function checkoutHref(plan: LaunchPlanId = "single"): string {
 export const SUPPORT_EMAIL = "hello@shopdollhouse.co";
 
 /** Optional "see how it works" walkthrough video. Paste an embed URL (YouTube/Vimeo/etc.) to show it under the hero. */
-export const HERO_VIDEO_EMBED_URL = "";
+export const HERO_VIDEO_EMBED_URL =
+  "https://player.vimeo.com/video/860958837?title=0&byline=0&portrait=0&badge=0&autopause=0&dnt=1&playsinline=1&loop=1&end_screen=0";
 
 export const PRICE_SINGLE = 297;
 export const PRICE_CAROUSEL = 497;
