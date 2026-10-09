@@ -15,6 +15,7 @@ import {
   X,
 } from "lucide-react";
 import archMark from "@/assets/arch-mark.svg";
+import { IllustrationBook, IllustrationPosts, IllustrationQuote, IllustrationReply } from "@/components/LaunchIllustrations";
 import bgImage from "@/assets/password-bg.jpg";
 import mandyPhoto from "@/assets/mandy-founder-portrait.png";
 import {
@@ -474,10 +475,38 @@ function HeroVideo() {
 
 /* ─── How it works ────────────────────────────────────── */
 const STEPS = [
-  { title: "We create your posts", copy: `Receive your first batch of posts for your business within ${FIRST_POSTS_DAYS} days.` },
-  { title: "We collect new inquiries", copy: "Visitors use a helpful quote calculator or quiz and share their contact details to get their results." },
-  { title: "We reply automatically", copy: "When someone comments or sends a message, they get a helpful private reply right away." },
-  { title: "We follow up and book", copy: "New inquiries get follow-up, even after hours, and can book an estimate on your calendar." },
+  {
+    title: "We create your posts",
+    copy: `Receive your first batch of posts for your business within ${FIRST_POSTS_DAYS} days.`,
+    icon: ImageIcon,
+    art: IllustrationPosts,
+    bullets: [`${POSTS_PER_MONTH} posts every month`, "Written for your trade and service area", "Published daily after your approval"],
+    foot: `First posts in ${FIRST_POSTS_DAYS} days`,
+  },
+  {
+    title: "We collect new inquiries",
+    copy: "Visitors use a helpful quote calculator or quiz and share their contact details to get their results.",
+    icon: Calculator,
+    art: IllustrationQuote,
+    bullets: ["Quote calculator or quiz for your website", "Results based on their answers", "Names and contact details saved automatically"],
+    foot: "Inquiries captured for you",
+  },
+  {
+    title: "We reply automatically",
+    copy: "When someone comments or sends a message, they get a helpful private reply right away.",
+    icon: MessageSquare,
+    art: IllustrationReply,
+    bullets: ["Comments get an instant private reply", "A few questions find the service they need", "New contacts saved for follow-up"],
+    foot: "No more lost messages",
+  },
+  {
+    title: "We follow up and book",
+    copy: "New inquiries get follow-up, even after hours, and can book an estimate on your calendar.",
+    icon: CalendarCheck,
+    art: IllustrationBook,
+    bullets: ["Follow-up starts right away, even at night", "Answers common questions you approve", "Books the estimate on your calendar"],
+    foot: "Estimates on your calendar",
+  },
 ];
 
 export function LaunchHowItWorks() {
@@ -488,15 +517,53 @@ export function LaunchHowItWorks() {
         title="Everything you need to turn social media attention into booked estimates"
         sub="Grow your business through organic social media. We create your posts, capture inquiries, and follow up with interested people without requiring paid ads."
       />
-      <div className="mx-auto mt-14 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-4" data-stagger>
-        {STEPS.map((st, i) => (
-          <article key={st.title} className="rounded-[8px] p-7" style={card}>
-            <span className="flex h-11 w-11 items-center justify-center rounded-full text-[var(--gold)]" style={{ background: "var(--ink)", fontFamily: DISPLAY, fontSize: "1.3rem" }}>{i + 1}</span>
-            <p className="mt-4 text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Step {i + 1}</p>
-            <h3 className="mt-1 text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontSize: "0.92rem", letterSpacing: "0.1em", fontWeight: 600 }}>{st.title}</h3>
-            <p className="mt-3 text-[var(--ink)]/62 leading-7" style={{ fontFamily: BODY, fontSize: "0.92rem" }}>{st.copy}</p>
-          </article>
-        ))}
+      <div className="mx-auto mt-16 grid max-w-7xl gap-6 sm:grid-cols-2 lg:grid-cols-4" data-stagger>
+        {STEPS.map((st, i) => {
+          const Icon = st.icon;
+          const Art = st.art;
+          return (
+            <article key={st.title} className="group flex flex-col overflow-hidden rounded-[8px] transition-all duration-500 hover:-translate-y-1.5" style={{ ...card, boxShadow: "0 40px 80px -44px rgba(110,60,50,0.5)" }}>
+              <div className="relative h-[220px] overflow-hidden" style={{ background: "linear-gradient(160deg, #fbeee9 0%, #f3d9d3 100%)" }}>
+                <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.06]">
+                  <Art />
+                </div>
+                <div aria-hidden className="absolute inset-x-0 bottom-0 h-7" style={{ background: "linear-gradient(to top, rgba(255,251,248,0.9), transparent)" }} />
+              </div>
+
+              <div className="relative flex flex-1 flex-col px-7 pb-6">
+                <span
+                  className="relative z-10 -mt-7 flex h-14 w-14 items-center justify-center rounded-full"
+                  style={{ background: "var(--cream)", border: "1px solid color-mix(in oklab, var(--gold) 60%, transparent)", color: "var(--rose)", boxShadow: "0 14px 28px -14px rgba(120,70,55,0.55)" }}
+                >
+                  <Icon className="h-6 w-6" strokeWidth={1.5} />
+                </span>
+
+                <p className="mt-5 text-[9.5px] tracking-[0.3em] uppercase" style={{ fontFamily: LUXE, color: "var(--gold)", fontWeight: 600 }}>
+                  Step {i + 1}
+                </p>
+                <h3 className="mt-2 text-[var(--ink)]" style={{ fontFamily: HEAD, fontSize: "1.3rem", fontWeight: 500, lineHeight: 1.2 }}>{st.title}</h3>
+                <p className="mt-3 text-[var(--ink)]/62 leading-7" style={{ fontFamily: BODY, fontSize: "0.9rem", fontWeight: 300 }}>{st.copy}</p>
+
+                <ul className="mt-5 grid gap-2.5">
+                  {st.bullets.map((b) => (
+                    <li key={b} className="flex gap-2.5 text-[var(--ink)]/75 leading-5" style={{ fontFamily: BODY, fontSize: "0.84rem" }}>
+                      <span className="mt-[1px] shrink-0" style={{ color: "var(--gold)" }}>✦</span>
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-auto pt-6">
+                  <div className="h-px w-full" style={{ background: "color-mix(in oklab, var(--gold) 32%, transparent)" }} />
+                  <p className="mt-4 flex items-center gap-2.5 text-[9px] tracking-[0.26em] uppercase" style={{ fontFamily: LUXE, color: "color-mix(in oklab, var(--ink) 55%, transparent)" }}>
+                    <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--gold)" }} />
+                    {st.foot}
+                  </p>
+                </div>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
   );
