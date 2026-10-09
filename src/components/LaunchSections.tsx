@@ -7,12 +7,9 @@ import {
   ChevronDown,
   ChevronLeft,
   ChevronRight,
-  Heart,
   Image as ImageIcon,
   Menu,
-  MessageCircle,
   MessageSquare,
-  Send,
   ShieldCheck,
   Sparkles,
   X,
@@ -205,59 +202,44 @@ function HeroVisual() {
 
       {/* phone */}
       <div
-        className="relative rounded-[46px] p-[10px]"
-        style={{ background: "linear-gradient(160deg, #2d1f1b, #170e0c)", boxShadow: "0 50px 90px -40px rgba(60,25,20,0.7), inset 0 0 0 1px rgba(255,255,255,0.08)" }}
+        className="relative mx-auto flex h-[600px] w-full flex-col items-center overflow-hidden rounded-[40px] border p-6"
+        style={{ background: "#050505", borderColor: "rgba(255,255,255,0.12)", boxShadow: "0 60px 100px -40px rgba(40,15,10,0.8), inset 0 0 0 1px rgba(198,178,130,0.08)" }}
       >
-        <div className="absolute left-1/2 top-[18px] z-20 h-[22px] w-[84px] -translate-x-1/2 rounded-full bg-black" />
-        <div className="relative overflow-hidden rounded-[37px]" style={{ background: "var(--cream)" }}>
-          {/* IG header */}
-          <div className="flex items-center gap-2.5 px-4 pb-3 pt-12">
-            <span
-              className="flex h-9 w-9 items-center justify-center rounded-full"
-              style={{ background: "linear-gradient(135deg, #e8d5b0, #c8a464)", padding: "2px" }}
-            >
-              <span className="flex h-full w-full items-center justify-center rounded-full bg-[var(--cream)]">
-                <img src={archMark} alt="" className="h-4 w-auto" />
-              </span>
-            </span>
-            <div className="leading-tight">
-              <p className="text-[var(--ink)] font-semibold" style={{ fontFamily: BODY, fontSize: "0.78rem" }}>yourbusiness</p>
-              <p className="text-[var(--ink)]/45" style={{ fontFamily: BODY, fontSize: "0.65rem" }}>Your town</p>
-            </div>
-          </div>
+        <div className="absolute left-1/2 top-3 z-20 h-[22px] w-[86px] -translate-x-1/2 rounded-full bg-black" style={{ border: "1px solid rgba(255,255,255,0.06)" }} />
 
-          {/* post */}
-          <div
-            className="mx-3 flex aspect-square flex-col items-center justify-center rounded-2xl p-6 text-center"
-            style={{ background: "linear-gradient(160deg, #fffaf6 0%, #f4dcdc 100%)", border: "1px solid color-mix(in oklab, var(--gold) 26%, transparent)" }}
-          >
-            <span style={{ color: "var(--gold)", fontSize: "0.8rem" }}>✦</span>
-            <p className="mt-3 italic text-[var(--ink)] leading-tight" style={{ fontFamily: DISPLAY, fontSize: "1.7rem" }}>
-              The one thing I check before every job.
-            </p>
-            <span className="mt-4 h-px w-10 bg-[var(--gold)] opacity-70" />
-            <p className="mt-2 text-[8px] tracking-luxe uppercase text-[var(--rose)]" style={{ fontFamily: LUXE }}>Comment QUOTE for a free estimate</p>
-          </div>
+        <div className="mt-7 flex h-14 w-14 items-center justify-center rounded-2xl" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)" }}>
+          <img src={archMark} alt="" className="h-7 w-auto" />
+        </div>
+        <span className="mt-3 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[9px] tracking-[0.24em] uppercase" style={{ fontFamily: LUXE, color: "rgba(255,255,255,0.8)", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)" }}>
+          <span style={{ color: "#c6b282" }}>✦</span> Live preview
+        </span>
 
-          <div className="flex items-center gap-3 px-4 pb-1 pt-3 text-[var(--ink)]/70">
-            <Heart className="h-5 w-5" strokeWidth={1.6} />
-            <MessageCircle className="h-5 w-5" strokeWidth={1.6} />
-            <Send className="h-5 w-5" strokeWidth={1.6} />
-          </div>
+        <div className="mt-5 w-full rounded-[18px] p-5 text-center" style={{ background: "rgba(255,255,255,0.045)", border: "1px solid rgba(198,178,130,0.28)" }}>
+          <p className="text-[8px] tracking-[0.26em] uppercase text-left" style={{ fontFamily: LUXE, color: "rgba(255,255,255,0.45)" }}>yourbusiness · your town</p>
+          <span className="mt-3 block" style={{ color: "#c6b282", fontSize: "0.8rem" }}>✦</span>
+          <p className="mt-2 italic leading-tight" style={{ fontFamily: DISPLAY, fontSize: "1.65rem", color: "#f5efe6" }}>The one thing I check before every job.</p>
+          <span className="mx-auto mt-4 block h-px w-10" style={{ background: "#c6b282", opacity: 0.7 }} />
+          <p className="mt-3 text-[8px] tracking-[0.24em] uppercase" style={{ fontFamily: LUXE, color: "#c6b282" }}>Comment QUOTE for a free estimate</p>
+        </div>
 
-          {/* auto reply DM */}
-          <div className="mx-3 mb-4 mt-2 rounded-2xl p-3" style={{ background: "rgba(244,220,220,0.55)", border: "1px solid color-mix(in oklab, var(--rose) 22%, transparent)" }}>
-            <p className="text-[8px] tracking-luxe uppercase text-[var(--rose)]" style={{ fontFamily: LUXE }}>Private reply, sent instantly</p>
-            <p className="mt-1 text-[var(--ink)]/78 leading-snug" style={{ fontFamily: BODY, fontSize: "0.74rem" }}>
-              Hi! Thanks for asking. What kind of job do you need done? I can get your free estimate booked in.
-            </p>
+        <div className="mt-4 w-full rounded-[18px] p-4" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)" }}>
+          <p className="text-[8px] tracking-[0.24em] uppercase" style={{ fontFamily: LUXE, color: "rgba(255,255,255,0.45)" }}>Private reply · sent instantly</p>
+          <p className="mt-2 leading-snug" style={{ fontFamily: BODY, fontSize: "0.78rem", color: "rgba(245,239,230,0.82)" }}>
+            Hi! Thanks for asking. What kind of job do you need done? I can get your free estimate booked in.
+          </p>
+        </div>
+
+        <div className="mt-auto w-full">
+          <div className="w-full py-3.5 text-center text-[10px] tracking-[0.26em] uppercase" style={{ fontFamily: LUXE, fontWeight: 600, background: "#c6b282", color: "#0a0a0a", borderRadius: "2px" }}>
+            Book my free estimate
           </div>
+          <p className="mt-3 text-center text-[8px] tracking-[0.24em] uppercase" style={{ fontFamily: LUXE, color: "rgba(198,178,130,0.85)" }}>Automatic · Replies day and night</p>
         </div>
       </div>
 
       {/* floating chips */}
       <div
-        className="launch-float absolute -left-6 top-[22%] z-30 flex items-center gap-2.5 rounded-2xl px-4 py-3 sm:-left-14"
+        className="launch-float absolute -left-6 top-[26%] z-30 flex items-center gap-2.5 rounded-2xl px-4 py-3 sm:-left-24 lg:-left-28"
         style={{ background: "rgba(255,250,246,0.95)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)", boxShadow: "0 24px 50px -24px rgba(90,40,30,0.5)" }}
       >
         <span className="flex h-8 w-8 items-center justify-center rounded-full" style={{ background: "color-mix(in oklab, var(--rose) 16%, transparent)", color: "var(--rose)" }}>
@@ -270,7 +252,7 @@ function HeroVisual() {
       </div>
 
       <div
-        className="launch-float-slow absolute -right-4 bottom-[26%] z-30 flex items-center gap-2.5 rounded-2xl px-4 py-3 sm:-right-12"
+        className="launch-float-slow absolute -right-4 bottom-[20%] z-30 flex items-center gap-2.5 rounded-2xl px-4 py-3 sm:-right-20 lg:-right-24"
         style={{ background: "rgba(255,250,246,0.95)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)", boxShadow: "0 24px 50px -24px rgba(90,40,30,0.5)" }}
       >
         <span className="relative flex h-8 w-8 items-center justify-center rounded-full" style={{ background: "color-mix(in oklab, var(--gold) 22%, transparent)", color: "var(--gold)" }}>
