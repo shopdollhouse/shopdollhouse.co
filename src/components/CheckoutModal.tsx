@@ -212,7 +212,7 @@ function CheckoutModal({ initialPlan, onClose }: { initialPlan: LaunchPlanId; on
             className="mt-1 flex w-full items-center justify-center gap-2.5 rounded-xl px-6 py-4 transition-colors duration-300"
             style={{ fontFamily: LUXE, fontSize: "0.82rem", letterSpacing: "0.22em", fontWeight: 700, textTransform: "uppercase", background: valid ? "#1f110b" : "#ece6dc", color: valid ? "#f5efe6" : "#a0968a", border: `1px solid ${valid ? "#c6b282" : "transparent"}`, cursor: valid && !busy ? "pointer" : "not-allowed" }}
           >
-            Continue with ${selected.price} plan <ArrowRight className="h-4 w-4" />
+            Continue with ${selected.price} plan <ArrowRight className="h-4 w-4" style={{ color: valid ? "#c6b282" : undefined }} />
           </button>
           {tried && !valid && (
             <p role="alert" style={{ fontFamily: BODY, fontSize: "0.82rem", color: "#c0443c" }}>

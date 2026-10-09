@@ -544,3 +544,6 @@ main article:hover {
 /* Launch page: no hover lift or tilt on cards or buttons (it jittered at the edges) */
 main.lux article, main.lux article:hover { transform: none !important; }
 main.lux .btn-ink:hover, main.lux .btn-ghost:hover { transform: none; }
+
+/* Launch page: icons inside the dark buttons are gold */
+main.lux .btn-ink svg { color: var(--gold); }

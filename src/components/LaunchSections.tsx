@@ -1007,7 +1007,7 @@ export function LaunchPlans() {
                     className="mt-auto inline-flex items-center justify-center gap-2 px-8 py-[17px] text-[11px] tracking-[0.26em] uppercase transition-transform"
                     style={{ marginTop: "1.75rem", fontFamily: LUXE, fontWeight: 600, borderRadius: "2px", background: gold ? "var(--gold)" : "#1f110b", color: gold ? "#130a06" : "var(--cream)", border: "1px solid var(--gold)", boxShadow: "0 22px 44px -18px rgba(31,17,11,0.6)" }}
                   >
-                    {plan.id === "single" ? "Choose single-image posts" : "Choose carousel slide posts"} <ArrowRight className="h-4 w-4" />
+                    {plan.id === "single" ? "Choose single-image posts" : "Choose carousel slide posts"} <ArrowRight className="h-4 w-4" style={{ color: plan.id === "single" ? "var(--gold)" : undefined }} />
                   </a>
                 </div>
               </article>
