@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   Tag,
@@ -117,15 +117,17 @@ function GetStarted({
   plan = "single",
   label = "Get Started",
   className = "",
+  cart = false,
 }: {
   plan?: LaunchPlanId;
   label?: string;
   className?: string;
+  cart?: boolean;
 }) {
   return (
     <a href={checkoutHref(plan)} className={`btn-ink ${className}`}>
       {label}
-      <ArrowRight className="h-4 w-4" />
+      {cart ? <ShoppingBag className="h-4 w-4" /> : <ArrowRight className="h-4 w-4" />}
     </a>
   );
 }
@@ -176,7 +178,7 @@ export function LaunchNav() {
                 {l.label}
               </a>
             ))}
-            <GetStarted label="Get Started Now" className="!py-2.5 !px-5 !text-[10px]" />
+            <GetStarted label="Get Started Now" cart className="!py-2.5 !px-5 !text-[10px]" />
           </div>
 
           <button type="button" aria-label={open ? "Close menu" : "Open menu"} onClick={() => setOpen((v) => !v)} className="lg:hidden p-2 text-[var(--ink)]">
@@ -194,7 +196,7 @@ export function LaunchNav() {
                 {l.label}
               </a>
             ))}
-            <GetStarted label="Get Started Now" className="justify-center mt-1" />
+            <GetStarted label="Get Started Now" cart className="justify-center mt-1" />
           </div>
         )}
       </nav>
@@ -328,7 +330,7 @@ function LaunchHero() {
           </p>
 
           <div className="mt-7 flex flex-wrap items-center justify-center gap-2.5 lg:justify-start">
-            {["Daily social media posts", "Lead capture tool", "AI follow-up & booking"].map((label) => (
+            {["Daily social media posts", "Lead capture tool", "AI follow up & booking"].map((label) => (
               <span
                 key={label}
                 className="rounded-full px-4 py-2 text-[10px] tracking-luxe uppercase text-[var(--ink)]"
@@ -368,18 +370,56 @@ function LaunchHero() {
 
 /* ─── Walkthrough video (right under the hero) ────────── */
 function HeroVideo() {
+  const holder = useRef<HTMLDivElement>(null);
+  const [mini, setMini] = useState(false);
+  const [closed, setClosed] = useState(false);
+  const [desktop, setDesktop] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const sync = () => setDesktop(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  useEffect(() => {
+    const el = holder.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => setMini(!e.isIntersecting && e.boundingClientRect.top < 0), { threshold: 0.05 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   if (!HERO_VIDEO_EMBED_URL) return null;
+  const floating = mini && desktop && !closed;
+
   return (
+    // Wrapped in a div on purpose: the scroll-reveal effect only touches direct <section> children of <main>,
+    // and its will-change would otherwise trap the floating player inside this section.
+    <div>
     <section className="px-5 pb-20 pt-4 md:pb-24" style={{ background: "linear-gradient(180deg, #fbf1ed 0%, var(--cream) 100%)" }}>
       <div className="mx-auto max-w-4xl text-center">
         <p className="text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontWeight: 600, letterSpacing: "0.12em", fontSize: "1rem" }}>
           See how it works <span className="text-[var(--rose)]">↓</span>
         </p>
-        <div className="mx-auto mt-5 aspect-video overflow-hidden rounded-[8px]" style={{ border: "1px solid color-mix(in oklab, var(--gold) 55%, transparent)", boxShadow: "0 50px 100px -40px rgba(70,30,25,0.55), 0 0 0 8px rgba(255,250,246,0.35)" }}>
-          <iframe src={HERO_VIDEO_EMBED_URL} title="Dollhouse Launch video presentation" className="h-full w-full" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen />
+        {/* The holder keeps its size while the player floats, so the page never jumps. */}
+        <div ref={holder} className="mx-auto mt-5 aspect-video">
+          <div
+            className={floating ? "phone-pop fixed bottom-28 right-6 z-[55] aspect-video w-[300px] overflow-hidden rounded-[8px]" : "h-full w-full overflow-hidden rounded-[8px]"}
+            style={{ border: "1px solid color-mix(in oklab, var(--gold) 55%, transparent)", boxShadow: floating ? "0 30px 60px -20px rgba(31,17,11,0.6)" : "0 50px 100px -40px rgba(70,30,25,0.55), 0 0 0 8px rgba(255,250,246,0.35)" }}
+          >
+            <iframe src={HERO_VIDEO_EMBED_URL} title="Dollhouse Launch video presentation" className="h-full w-full" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen />
+            {floating && (
+              <button type="button" aria-label="Close video" onClick={() => setClosed(true)} className="absolute right-1.5 top-1.5 flex h-6 w-6 items-center justify-center rounded-full" style={{ background: "rgba(20,10,6,0.75)", color: "#fff" }}>
+                <X className="h-3.5 w-3.5" />
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </section>
+    </div>
   );
 }
 
@@ -587,6 +627,7 @@ export function LaunchWhatsIncluded() {
                 {i === 0 && (
                   <>
                     <p className="text-center text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Your content, brought to life</p>
+                    <p className="mt-1 text-center text-[var(--ink)]/50" style={{ fontFamily: BODY, fontSize: "0.78rem" }}>Post examples</p>
                     <div className="mt-3"><PostStudioPreview /></div>
                     <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
                       {["Your expertise", "Your branding", "Your style"].map((c) => (
@@ -1111,6 +1152,7 @@ export function LaunchFaq() {
               I have spent 11+ years in graphic and product design, building brands for companies, creators and entrepreneurs. I built Dollhouse Launch because I kept seeing talented local business owners who were invisible online, not because they were not good enough, but because they were too busy doing the work to show up consistently.
             </p>
             <p className="mt-4 italic text-[var(--rose)]" style={{ fontFamily: DISPLAY, fontSize: "1.4rem" }}>You run your business. We'll handle the marketing.</p>
+            <p className="mt-2 text-[var(--ink)]" style={{ fontFamily: "'Allura', cursive", fontSize: "2.4rem", lineHeight: 1 }}>Mandy</p>
           </div>
         </div>
 
