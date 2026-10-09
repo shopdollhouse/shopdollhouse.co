@@ -202,38 +202,56 @@ function HeroVisual() {
 
       {/* phone */}
       <div
-        className="relative mx-auto flex h-[600px] w-full flex-col items-center overflow-hidden rounded-[40px] border p-6"
-        style={{ background: "#050505", borderColor: "rgba(255,255,255,0.12)", boxShadow: "0 60px 100px -40px rgba(40,15,10,0.8), inset 0 0 0 1px rgba(198,178,130,0.08)" }}
+        className="relative mx-auto h-[610px] w-full overflow-hidden rounded-[52px]"
+        style={{ background: "#0a0a0a", border: "1px solid rgba(255,255,255,0.14)", boxShadow: "0 60px 100px -40px rgba(40,15,10,0.8), inset 0 0 0 1px rgba(198,178,130,0.1)" }}
       >
-        <div className="absolute left-1/2 top-3 z-20 h-[22px] w-[86px] -translate-x-1/2 rounded-full bg-black" style={{ border: "1px solid rgba(255,255,255,0.06)" }} />
+        {/* inner frame line */}
+        <div aria-hidden className="pointer-events-none absolute inset-[7px] rounded-[46px]" style={{ border: "1px solid rgba(255,255,255,0.07)" }} />
 
-        <div className="mt-7 flex h-14 w-14 items-center justify-center rounded-2xl" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)" }}>
-          <img src={archMark} alt="" className="h-7 w-auto" />
-        </div>
-        <span className="mt-3 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[9px] tracking-[0.24em] uppercase" style={{ fontFamily: LUXE, color: "rgba(255,255,255,0.8)", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)" }}>
-          <span style={{ color: "#c6b282" }}>✦</span> Live preview
-        </span>
-
-        <div className="mt-5 w-full rounded-[18px] p-5 text-center" style={{ background: "rgba(255,255,255,0.045)", border: "1px solid rgba(198,178,130,0.28)" }}>
-          <p className="text-[8px] tracking-[0.26em] uppercase text-left" style={{ fontFamily: LUXE, color: "rgba(255,255,255,0.45)" }}>yourbusiness · your town</p>
-          <span className="mt-3 block" style={{ color: "#c6b282", fontSize: "0.8rem" }}>✦</span>
-          <p className="mt-2 italic leading-tight" style={{ fontFamily: DISPLAY, fontSize: "1.65rem", color: "#f5efe6" }}>The one thing I check before every job.</p>
-          <span className="mx-auto mt-4 block h-px w-10" style={{ background: "#c6b282", opacity: 0.7 }} />
-          <p className="mt-3 text-[8px] tracking-[0.24em] uppercase" style={{ fontFamily: LUXE, color: "#c6b282" }}>Comment QUOTE for a free estimate</p>
+        {/* dynamic island + status bar */}
+        <div className="absolute left-1/2 top-3 z-20 h-[28px] w-[104px] -translate-x-1/2 rounded-full bg-black" />
+        <div className="absolute inset-x-0 top-[14px] z-10 flex items-center justify-between px-9" style={{ fontFamily: BODY, fontSize: "0.72rem", fontWeight: 600, color: "#f5efe6" }}>
+          <span>9:41</span>
+          <span className="flex items-center gap-1.5">
+            <svg width="16" height="10" viewBox="0 0 16 10" fill="currentColor"><rect x="0" y="6" width="2.6" height="4" rx="0.6" /><rect x="4.4" y="4" width="2.6" height="6" rx="0.6" /><rect x="8.8" y="2" width="2.6" height="8" rx="0.6" /><rect x="13.2" y="0" width="2.6" height="10" rx="0.6" /></svg>
+            <span>100%</span>
+            <svg width="20" height="10" viewBox="0 0 20 10" fill="none"><rect x="0.5" y="0.5" width="16" height="9" rx="2.4" stroke="currentColor" opacity="0.5" /><rect x="2" y="2" width="13" height="6" rx="1.4" fill="currentColor" /><rect x="17.5" y="3.2" width="1.6" height="3.6" rx="0.8" fill="currentColor" opacity="0.5" /></svg>
+          </span>
         </div>
 
-        <div className="mt-4 w-full rounded-[18px] p-4" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)" }}>
-          <p className="text-[8px] tracking-[0.24em] uppercase" style={{ fontFamily: LUXE, color: "rgba(255,255,255,0.45)" }}>Private reply · sent instantly</p>
-          <p className="mt-2 leading-snug" style={{ fontFamily: BODY, fontSize: "0.78rem", color: "rgba(245,239,230,0.82)" }}>
-            Hi! Thanks for asking. What kind of job do you need done? I can get your free estimate booked in.
+        {/* caller */}
+        <div className="flex flex-col items-center px-6 pt-[72px]">
+          <span
+            className="flex h-[64px] w-[64px] items-center justify-center rounded-full"
+            style={{ background: "radial-gradient(circle at 35% 30%, #3a332a, #151210)", border: "1px solid rgba(198,178,130,0.45)", color: "#f5efe6", fontFamily: HEAD, fontSize: "1.6rem", fontWeight: 300 }}
+          >
+            D
+          </span>
+          <p className="mt-4" style={{ fontFamily: HEAD, fontWeight: 400, fontSize: "1.35rem", color: "#f5efe6" }}>The Dollhouse AI</p>
+          <p className="mt-2 text-[10px] tracking-[0.3em] uppercase" style={{ fontFamily: LUXE, color: "#c6b282" }}>Replying now</p>
+          <p className="mt-2.5 flex items-center gap-2 text-[11px]" style={{ fontFamily: BODY, color: "rgba(198,178,130,0.85)", letterSpacing: "0.12em" }}>
+            <span className="h-1.5 w-1.5 rounded-full" style={{ background: "#c6b282" }} /> 0:08
           </p>
         </div>
 
-        <div className="mt-auto w-full">
-          <div className="w-full py-3.5 text-center text-[10px] tracking-[0.26em] uppercase" style={{ fontFamily: LUXE, fontWeight: 600, background: "#c6b282", color: "#0a0a0a", borderRadius: "2px" }}>
+        <div className="mt-6 h-px w-full" style={{ background: "rgba(255,255,255,0.08)" }} />
+
+        {/* conversation */}
+        <div className="px-5 pt-5">
+          <div className="ml-auto max-w-[88%] rounded-[16px] px-4 py-3" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
+            <p className="text-[8px] tracking-[0.26em] uppercase" style={{ fontFamily: LUXE, color: "rgba(255,255,255,0.45)" }}>Homeowner</p>
+            <p className="mt-1.5 leading-snug" style={{ fontFamily: BODY, fontSize: "0.82rem", color: "#f5efe6" }}>Hi, I saw your post about kitchen renovations.</p>
+          </div>
+          <div className="mt-3.5 max-w-[88%] rounded-[16px] px-4 py-3" style={{ background: "rgba(198,178,130,0.1)", border: "1px solid rgba(198,178,130,0.28)" }}>
+            <p className="text-[8px] tracking-[0.26em] uppercase" style={{ fontFamily: LUXE, color: "rgba(198,178,130,0.9)" }}>Your business · Auto reply</p>
+            <p className="mt-1.5 leading-snug" style={{ fontFamily: BODY, fontSize: "0.82rem", color: "#f5efe6" }}>Happy to help. What kind of job do you have in mind, and when would you like it done?</p>
+          </div>
+        </div>
+
+        <div className="absolute inset-x-6 bottom-6">
+          <div className="py-3.5 text-center text-[10px] tracking-[0.26em] uppercase" style={{ fontFamily: LUXE, fontWeight: 600, background: "#c6b282", color: "#0a0a0a", borderRadius: "2px" }}>
             Book my free estimate
           </div>
-          <p className="mt-3 text-center text-[8px] tracking-[0.24em] uppercase" style={{ fontFamily: LUXE, color: "rgba(198,178,130,0.85)" }}>Automatic · Replies day and night</p>
         </div>
       </div>
 
