@@ -1,4 +1,6 @@
 /* ── Self-hosted fonts — no external requests, no FOUT ── */
+@import "@fontsource/cormorant-garamond/300.css";
+@import "@fontsource/cormorant-garamond/300-italic.css";
 @import "@fontsource/cormorant-garamond/400.css";
 @import "@fontsource/cormorant-garamond/400-italic.css";
 @import "@fontsource/cormorant-garamond/500.css";
