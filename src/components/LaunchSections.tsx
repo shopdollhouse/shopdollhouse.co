@@ -331,10 +331,13 @@ function LaunchHero() {
           <div className="mt-4 flex justify-center text-[var(--gold)] lg:justify-start">
             <span className="float-slow inline-flex"><img src={archMark} alt="" className="h-10 w-7" /></span>
           </div>
-          <p className="mt-2 italic leading-none text-[var(--gold)]" style={{ fontFamily: "Allura, cursive", fontSize: "clamp(2.5rem, 5vw, 3.5rem)", textTransform: "lowercase" }}>the</p>
-          <h1 className="mt-1 font-normal leading-[0.95] tracking-[0.04em] text-[var(--rose)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(3.5rem, 8vw, 5.4rem)", fontWeight: 400 }}>DOLLHOUSE</h1>
-          <p className="mt-3 text-[15px] uppercase tracking-luxe text-[var(--gold)]" style={{ fontFamily: "Jost, sans-serif" }}>launch</p>
-          <div className="flex justify-center lg:justify-start"><span className="w-[200px]"><Divider /></span></div>
+          <h1
+            className="mt-4 font-normal leading-[1.02] tracking-[0.04em] text-[var(--rose)]"
+            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.6rem, 5.6vw, 4.3rem)", fontWeight: 400 }}
+          >
+            Turn your social media into booked appointments.
+          </h1>
+          <div className="mt-3 flex justify-center lg:justify-start"><span className="w-[200px]"><Divider /></span></div>
 
           <p className="mx-auto mt-2 max-w-xl text-[var(--ink)]/65 leading-relaxed lg:mx-0" style={{ fontFamily: BODY, fontSize: "clamp(0.95rem, 1.8vw, 1.1rem)" }}>
             The done-for-you social media and lead-generation system for appointment-based and service businesses. We post for you,
