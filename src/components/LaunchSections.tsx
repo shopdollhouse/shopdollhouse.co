@@ -1160,7 +1160,6 @@ export function LaunchFaq() {
               I have spent 11+ years in graphic and product design, building brands for companies, creators and entrepreneurs. I built Dollhouse Launch because I kept seeing talented local business owners who were invisible online, not because they were not good enough, but because they were too busy doing the work to show up consistently.
             </p>
             <p className="mt-4 italic text-[var(--rose)]" style={{ fontFamily: DISPLAY, fontSize: "1.4rem" }}>You run your business. We'll handle the marketing.</p>
-            <p className="mt-2 text-[var(--ink)]" style={{ fontFamily: "'Allura', cursive", fontSize: "2.4rem", lineHeight: 1 }}>Mandy</p>
           </div>
         </div>
 
