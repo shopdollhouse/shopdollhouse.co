@@ -149,7 +149,7 @@ export function IllustrationReply() {
 export function IllustrationBook() {
   const cols = 7;
   return (
-    <svg {...svgProps} aria-label="A calendar with an estimate booked, plus after-hours moon">
+    <svg {...svgProps} aria-label="A calendar with an appointment booked, plus after-hours moon">
       <ellipse cx="200" cy="232" rx="120" ry="9" fill={ROSE} opacity="0.12" />
       {/* moon, after hours */}
       <g className="launch-float-slow">
@@ -163,7 +163,7 @@ export function IllustrationBook() {
         <path d="M112 52 a12 12 0 0 1 12 -12 h176 a12 12 0 0 1 12 12 v24 h-200z" fill={ROSE} />
         <rect x="146" y="32" width="6" height="16" rx="3" fill={INK} />
         <rect x="272" y="32" width="6" height="16" rx="3" fill={INK} />
-        <text x="212" y="63" textAnchor="middle" fontFamily="Jost, sans-serif" fontSize="8" letterSpacing="3" fill="#ffffff">YOUR ESTIMATE</text>
+        <text x="212" y="63" textAnchor="middle" fontFamily="Jost, sans-serif" fontSize="8" letterSpacing="3" fill="#ffffff">YOUR APPOINTMENT</text>
         {Array.from({ length: 28 }).map((_, n) => {
           const c = n % cols;
           const r = Math.floor(n / cols);
@@ -192,7 +192,7 @@ export function IllustrationBook() {
         <rect x="128" y="218" width="158" height="26" rx="13" fill={INK} />
         <circle cx="146" cy="231" r="6" fill={GOLD} />
         <path d="M143 231 l2.4 2.4 l4.4 -4.8" fill="none" stroke={INK} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-        <text x="160" y="234.4" fontFamily="Jost, sans-serif" fontSize="8" letterSpacing="2" fill={CREAM}>ESTIMATE BOOKED</text>
+        <text x="160" y="234.4" fontFamily="Jost, sans-serif" fontSize="7.5" letterSpacing="1.6" fill={CREAM}>APPOINTMENT BOOKED</text>
       </g>
       <Sparkle x={356} y={60} s={0.9} className="launch-float-slow" />
     </svg>

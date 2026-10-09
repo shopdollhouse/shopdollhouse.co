@@ -20,8 +20,7 @@ import {
 import archMark from "@/assets/arch-mark.svg";
 import { IllustrationAccess, IllustrationBook, IllustrationCheckout, IllustrationFirstPosts, IllustrationPosts, IllustrationQuote, IllustrationReply } from "@/components/LaunchIllustrations";
 import bgImage from "@/assets/password-bg.jpg";
-import mandyPhoto from "@/assets/mandy-founder-portrait.png";
-import mandyOldPhoto from "@/assets/mandy-photo.jpg";
+import mandyPhoto from "@/assets/mandy-photo.jpg";
 import {
   ADDON_PLATFORM_PRICE,
   AI_USAGE_COVERED,
@@ -199,7 +198,7 @@ export function LaunchNav() {
 }
 
 /* ─── Hero ────────────────────────────────────────────── */
-/* Animated story: timer ticks, messages arrive, estimate gets booked, loop. */
+/* Animated story: timer ticks, messages arrive, appointment gets booked, loop. */
 const STORY_EVENTS = [700, 2000, 3300, 5200, 6200, 7500, 9300, 10600]; // step 1..8
 const STORY_LOOP_MS = 15500;
 
@@ -309,11 +308,11 @@ function HeroVisual() {
                 className="flex min-h-0 flex-1 flex-col justify-end gap-2.5 overflow-hidden px-4 pb-3 pt-3"
                 style={{ WebkitMaskImage: "linear-gradient(to bottom, transparent 0, #000 22px)", maskImage: "linear-gradient(to bottom, transparent 0, #000 22px)" }}
               >
-                {step >= 1 && <Bubble who="them" label="Homeowner">Hi, I saw your post about kitchen renovations.</Bubble>}
-                {step >= 3 && <Bubble who="us" label="Your business · Auto reply">Happy to help. What kind of job do you have in mind, and when would you like it done?</Bubble>}
-                {step >= 4 && <Bubble who="them" label="Homeowner">A full remodel, this spring.</Bubble>}
+                {step >= 1 && <Bubble who="them" label="Customer">Hi, I saw your post. Are you taking new customers?</Bubble>}
+                {step >= 3 && <Bubble who="us" label="Your business · Auto reply">Yes, we are! What service are you looking for, and when would you like to come in?</Bubble>}
+                {step >= 4 && <Bubble who="them" label="Customer">Something this week, if possible.</Bubble>}
                 {step >= 6 && <Bubble who="us" label="Your business · Auto reply">Great. I have Tuesday at 10:00 or Thursday at 2:30. Which works best?</Bubble>}
-                {step >= 7 && <Bubble who="them" label="Homeowner">Thursday at 2:30.</Bubble>}
+                {step >= 7 && <Bubble who="them" label="Customer">Thursday at 2:30.</Bubble>}
                 {typing && <TypingDots />}
                 {booked && <Bubble who="us" label="Your business · Auto reply">You are booked for Thursday at 2:30. See you then.</Bubble>}
               </div>
@@ -324,7 +323,7 @@ function HeroVisual() {
                   className="py-3 text-center text-[9.5px] tracking-[0.26em] uppercase transition-colors duration-500"
                   style={{ fontFamily: LUXE, fontWeight: 600, background: booked ? "transparent" : "#c6b282", color: booked ? "#c6b282" : "#0a0a0a", border: "1px solid #c6b282", borderRadius: "2px" }}
                 >
-                  {booked ? "✓ Estimate booked" : "Book my free estimate"}
+                  {booked ? "✓ Appointment booked" : "Book my appointment"}
                 </div>
               </div>
 
@@ -358,7 +357,7 @@ function HeroVisual() {
           <CalendarCheck className="relative h-4 w-4" />
         </span>
         <span className="leading-tight">
-          <span className="block text-[var(--ink)]" style={{ fontFamily: BODY, fontSize: "0.74rem", fontWeight: 600 }}>Estimate booked</span>
+          <span className="block text-[var(--ink)]" style={{ fontFamily: BODY, fontSize: "0.74rem", fontWeight: 600 }}>Appointment booked</span>
           <span className="block text-[var(--ink)]/50" style={{ fontFamily: BODY, fontSize: "0.65rem" }}>Added to your calendar</span>
         </span>
       </div>
@@ -404,7 +403,7 @@ function LaunchHero() {
             className="inline-flex items-center gap-2 rounded-full px-5 py-2 text-[10px] tracking-luxe uppercase text-[var(--ink)]/75"
             style={{ fontFamily: LUXE, background: "rgba(255,250,246,0.78)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)" }}
           >
-            <span style={{ color: "var(--gold)" }}>✦</span> For home service businesses
+            <span style={{ color: "var(--gold)" }}>✦</span> For local business owners
           </p>
 
           <h1
@@ -412,12 +411,12 @@ function LaunchHero() {
             style={{ fontFamily: DISPLAY, fontWeight: 400, fontSize: "clamp(2.9rem, 7.4vw, 5.6rem)" }}
           >
             Turn your social media into{" "}
-            <span className="italic text-[var(--rose)]">booked estimates.</span>
+            <span className="italic text-[var(--rose)]">booked appointments.</span>
           </h1>
 
           <p className="mx-auto mt-6 max-w-xl text-[var(--ink)]/72 leading-8 lg:mx-0" style={{ fontFamily: BODY, fontSize: "clamp(1rem, 2vw, 1.15rem)" }}>
-            The done-for-you social media and lead-generation system for contractors, cleaners, landscapers and every home service business. We post for you,
-            capture new inquiries, reply instantly and book the estimate, from{" "}
+            The done-for-you social media and lead-generation system for appointment-based and service businesses. We post for you,
+            capture new inquiries, reply instantly and book the appointment, from{" "}
             <strong className="text-[var(--ink)]">${PRICE_SINGLE}/month</strong>.
           </p>
 
@@ -484,7 +483,7 @@ const STEPS = [
     copy: `Receive your first batch of posts for your business within ${FIRST_POSTS_DAYS} days.`,
     icon: ImageIcon,
     art: IllustrationPosts,
-    bullets: [`${POSTS_PER_MONTH} posts every month`, "Written for your trade and service area", "Published daily after your approval"],
+    bullets: [`${POSTS_PER_MONTH} posts every month`, "Written for your services and your area", "Published daily after your approval"],
     foot: `First posts in ${FIRST_POSTS_DAYS} days`,
   },
   {
@@ -505,11 +504,11 @@ const STEPS = [
   },
   {
     title: "We follow up and book",
-    copy: "New inquiries get follow-up, even after hours, and can book an estimate on your calendar.",
+    copy: "New inquiries get follow-up, even after hours, and can book an appointment on your calendar.",
     icon: CalendarCheck,
     art: IllustrationBook,
-    bullets: ["Follow-up starts right away, even at night", "Answers common questions you approve", "Books the estimate on your calendar"],
-    foot: "Estimates on your calendar",
+    bullets: ["Follow-up starts right away, even at night", "Answers common questions you approve", "Books the appointment on your calendar"],
+    foot: "Appointments on your calendar",
   },
 ];
 
@@ -518,7 +517,7 @@ export function LaunchHowItWorks() {
     <section id="how-it-works" className="scroll-mt-24 py-24 md:py-28 px-6" style={{ background: "linear-gradient(180deg, var(--cream) 0%, #f8e9e5 100%)" }}>
       <SectionHead
         eyebrow="How it works"
-        title="Everything you need to turn social media attention into booked estimates"
+        title="Everything you need to turn social media attention into booked appointments"
         sub="Grow your business through organic social media. We create your posts, capture inquiries, and follow up with interested people without requiring paid ads."
       />
       <div className="mx-auto mt-16 grid max-w-7xl gap-6 sm:grid-cols-2 lg:grid-cols-4" data-stagger>
@@ -641,7 +640,7 @@ function ServicePreview({ kind }: { kind: PreviewKind }) {
       </div>
       <div className="mt-3 flex items-center justify-center gap-2 rounded-xl py-2.5" style={{ background: "color-mix(in oklab, var(--gold) 18%, transparent)" }}>
         <CalendarCheck className="h-4 w-4 text-[var(--rose)]" />
-        <span className="text-[var(--ink)]" style={{ fontFamily: BODY, fontSize: "0.76rem", fontWeight: 600 }}>Estimate booked</span>
+        <span className="text-[var(--ink)]" style={{ fontFamily: BODY, fontSize: "0.76rem", fontWeight: 600 }}>Appointment booked</span>
       </div>
     </div>
   );
@@ -662,7 +661,7 @@ const SERVICES: {
       `${POSTS_PER_MONTH} single-image social media posts per month`,
       "Published daily to Instagram and Facebook after approval",
       "Reasonable revisions included at no additional charge",
-      "Posts written for your trade, your service area and your customers",
+      "Posts written for your services, your town and your customers",
       "We manage and improve everything for you",
     ],
   },
@@ -696,13 +695,13 @@ const SERVICES: {
   },
   {
     icon: CalendarCheck,
-    title: "Automatic Follow-Up and Estimate Booking",
+    title: "Automatic Follow-Up and Appointment Booking",
     lead: "New inquiries receive prompt replies, answers to common questions, and an invitation to book with you, even outside normal business hours.",
     points: [
       "Follow-up starts automatically when someone contacts you",
       "Answers common service questions you have approved",
       "Asks a few questions to determine which service they need",
-      "Helps interested people book an estimate or appointment on your calendar",
+      "Helps interested people book an appointment on your calendar",
       "Keeps contacts and conversations organized in your included Dollhouse CRM account",
       "Works during busy season, evenings and weekends without extra staff",
     ],
@@ -711,9 +710,9 @@ const SERVICES: {
 ];
 
 const POST_EXAMPLES = [
-  { text: "The one thing I check before every job.", tone: "cream" },
-  { text: "Why this homeowner called us back three times.", tone: "blush" },
-  { text: "Three questions to ask before you hire a contractor.", tone: "ink" },
+  { text: "The one thing I check before every appointment.", tone: "cream" },
+  { text: "Why this customer came back three times.", tone: "blush" },
+  { text: "Three questions to ask before you hire anyone.", tone: "ink" },
 ] as const;
 
 export function LaunchWhatsIncluded() {
@@ -832,7 +831,7 @@ const STYLE_DEFS: StyleDef[] = [
     desc: "Practical, handwritten-style advice shared by you, the professional.",
     category: "you",
     tone: "cream",
-    hooks: ["The one thing I check before every job.", "The question homeowners ask us most, answered."],
+    hooks: ["The one thing I check before every appointment.", "The question customers ask us most, answered."],
     middle: ["Most people skip it, and it only takes a couple of minutes.", "Skipping it is how small problems turn into big ones.", "So we check it every single time."],
   },
   {
@@ -840,7 +839,7 @@ const STYLE_DEFS: StyleDef[] = [
     desc: "Casual photos with captions that tell a story and share something useful.",
     category: "you",
     tone: "blush",
-    hooks: ["Why this homeowner called us back three times.", "A look behind the scenes on a job site."],
+    hooks: ["Why this customer came back three times.", "A look behind the scenes at what we do."],
     middle: ["It started with a simple question in the comments.", "We listened, explained the options and kept it honest.", "That is how a first booking becomes a regular."],
   },
   {
@@ -848,7 +847,7 @@ const STYLE_DEFS: StyleDef[] = [
     desc: "Plain text posts that look like a natural part of social media, not an advertisement.",
     category: "graphic",
     tone: "ink",
-    hooks: ["Three questions to ask before you hire a contractor.", "What to know before you book any home service."],
+    hooks: ["Three questions to ask before you hire anyone.", "What to know before you book anyone."],
     middle: ["1. Ask what is included.", "2. Ask how long it takes.", "3. Ask what happens if something changes."],
   },
   {
@@ -857,23 +856,23 @@ const STYLE_DEFS: StyleDef[] = [
     category: "graphic",
     tone: "cream",
     hooks: ["What actually goes into a fair quote.", "How the process works, step by step."],
-    middle: ["Step 1: Tell us about the job.", "Step 2: We explain the options and the price.", "Step 3: You book the time that suits you."],
+    middle: ["Step 1: Tell us what you need.", "Step 2: We explain the options and the price.", "Step 3: You book the time that suits you."],
   },
   {
     name: "Everyday object posts",
     desc: "Everyday objects used to explain your work in a way people remember.",
     category: "graphic",
     tone: "blush",
-    hooks: ["What a dripping faucet can teach you about waiting.", "What a gutter full of leaves says about your roof."],
-    middle: ["Small things show you how a home is cared for.", "A little maintenance now beats a big repair later.", "Regular care builds trust, one visit at a time."],
+    hooks: ["What a coffee mug can teach you about maintenance.", "What a calendar can teach you about priorities."],
+    middle: ["Small things show you how something is cared for.", "The same goes for the way a business shows up.", "Consistency builds trust, one day at a time."],
   },
   {
     name: "Bold brand graphics",
     desc: "Bold headlines and eye-catching graphics that make people stop and read.",
     category: "graphic",
     tone: "ink",
-    hooks: ["Spring cleanup season is here.", "Questions homeowners ask every week."],
-    middle: ["Know what your home needs.", "Know what it costs.", "Know who to call."],
+    hooks: ["Booked out this week? Here is how.", "Questions we hear every week."],
+    middle: ["Know what you need.", "Know what it costs.", "Know who to call."],
   },
 ];
 
@@ -1225,7 +1224,7 @@ const FAQS = [
   },
   {
     q: "Who is this system built for?",
-    a: "It is built for home service businesses, such as contractors, roofers, plumbers, HVAC and electrical companies, landscapers, cleaners and painters. Other local, appointment-based businesses like salons, clinics and fitness studios are welcome too. If you want help attracting and following up with potential customers without hiring and coordinating several different companies, this is for you.",
+    a: "It is for appointment-based and service businesses, such as salons, barbers, lash and brow studios, spas, clinics, fitness studios, contractors, cleaners, photographers and realtors, that want help attracting and following up with potential customers without hiring and coordinating several different companies.",
   },
   {
     q: "Does the AI give professional advice?",
@@ -1250,21 +1249,16 @@ export function LaunchFaq() {
     <section id="faq" className="scroll-mt-24 py-24 md:py-28 px-6 bg-[var(--cream)]">
       <div className="mx-auto grid max-w-6xl items-start gap-8 lg:grid-cols-[0.85fr_1.15fr]">
         <div id="about" className="overflow-hidden rounded-[8px]" style={card}>
-          <div className="relative grid grid-cols-2 gap-1">
-            <div className="relative aspect-[3/4] overflow-hidden">
-              <img src={mandyPhoto} alt="Mandy Fortune, founder of The Dollhouse Brand Studio" loading="lazy" className="h-full w-full object-cover" style={{ objectPosition: "center 16%" }} />
-              <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/2" style={{ background: "linear-gradient(to top, rgba(20,12,10,0.85), transparent)" }} />
-              <div className="absolute bottom-4 left-4">
-                <p className="uppercase text-[var(--cream)]" style={{ fontFamily: HEAD, fontWeight: 300, fontSize: "1.15rem", letterSpacing: "0.08em" }}>Mandy Fortune</p>
-                <p className="mt-1 text-[9px] tracking-[0.28em] uppercase" style={{ fontFamily: LUXE, color: "var(--gold)" }}>Founder · Designer</p>
-              </div>
-            </div>
-            <div className="relative aspect-[3/4] overflow-hidden">
-              <img src={mandyOldPhoto} alt="Mandy Fortune smiling" loading="lazy" className="h-full w-full object-cover" style={{ objectPosition: "center 20%" }} />
+          <div className="relative aspect-[4/5] w-full overflow-hidden">
+            <img src={mandyPhoto} alt="Mandy, founder of The Dollhouse Brand Studio" loading="lazy" className="h-full w-full object-cover" style={{ objectPosition: "center 22%" }} />
+            <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/2" style={{ background: "linear-gradient(to top, rgba(20,12,10,0.85), transparent)" }} />
+            <div className="absolute bottom-5 left-6">
+              <p className="uppercase text-[var(--cream)]" style={{ fontFamily: HEAD, fontWeight: 300, fontSize: "1.5rem", letterSpacing: "0.08em" }}>Mandy</p>
+              <p className="mt-1 text-[10px] tracking-[0.3em] uppercase" style={{ fontFamily: LUXE, color: "var(--gold)" }}>Founder · Brand Designer</p>
             </div>
           </div>
           <div className="p-7">
-            <h2 className="uppercase text-[var(--ink)]" style={{ fontFamily: HEAD, fontWeight: 300, fontSize: "clamp(1.5rem, 3vw, 2rem)", lineHeight: 1.1, letterSpacing: "-0.01em" }}>Meet Mandy Fortune</h2>
+            <h2 className="uppercase text-[var(--ink)]" style={{ fontFamily: HEAD, fontWeight: 300, fontSize: "clamp(1.5rem, 3vw, 2rem)", lineHeight: 1.1, letterSpacing: "-0.01em" }}>Meet Mandy</h2>
             <p className="mt-3 text-[var(--ink)]/70 leading-7" style={{ fontFamily: BODY, fontSize: "0.93rem", fontWeight: 300 }}>
               I have spent 11+ years in graphic and product design, building brands for companies, creators and entrepreneurs. I built Dollhouse Launch because I kept seeing talented local business owners who were invisible online, not because they were not good enough, but because they were too busy doing the work to show up consistently.
             </p>
@@ -1298,7 +1292,7 @@ export function LaunchFinalCta() {
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 rounded-[8px] px-8 py-9 text-center md:flex-row md:text-left" style={{ background: "linear-gradient(135deg, #2a1d1a 0%, #170e0c 100%)", border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)" }}>
         <h2 className="max-w-2xl text-[var(--cream)]" style={{ fontFamily: DISPLAY, fontWeight: 400, fontSize: "clamp(1.8rem, 4vw, 2.8rem)", lineHeight: 1.08 }}>
           Ready to turn your social media into{" "}
-          <span className="italic text-[var(--gold)]">booked estimates?</span>
+          <span className="italic text-[var(--gold)]">booked appointments?</span>
         </h2>
         <a
           href={checkoutHref("single")}

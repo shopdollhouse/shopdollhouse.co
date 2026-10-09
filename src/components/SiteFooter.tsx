@@ -26,7 +26,7 @@ export function SiteFooter() {
             </span>
           </a>
           <p className="max-w-xs text-[var(--ink)]/55 leading-6" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem" }}>
-            Done-for-you marketing for home service businesses.
+            Done-for-you marketing for local businesses.
           </p>
           <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
             {links.map(([label, href]) => (
