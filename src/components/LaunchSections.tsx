@@ -332,18 +332,11 @@ function LaunchHero() {
             <span className="float-slow inline-flex"><img src={archMark} alt="" className="h-10 w-7" /></span>
           </div>
           <p className="mt-2 italic leading-none text-[var(--gold)]" style={{ fontFamily: "Allura, cursive", fontSize: "clamp(2.5rem, 5vw, 3.5rem)", textTransform: "lowercase" }}>the</p>
-          <p className="mt-1 font-normal leading-[0.95] tracking-[0.04em] text-[var(--rose)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(3.5rem, 8vw, 5.4rem)", fontWeight: 400 }}>DOLLHOUSE</p>
+          <h1 className="mt-1 font-normal leading-[0.95] tracking-[0.04em] text-[var(--rose)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(3.5rem, 8vw, 5.4rem)", fontWeight: 400 }}>DOLLHOUSE</h1>
           <p className="mt-3 text-[15px] uppercase tracking-luxe text-[var(--gold)]" style={{ fontFamily: "Jost, sans-serif" }}>launch</p>
           <div className="flex justify-center lg:justify-start"><span className="w-[200px]"><Divider /></span></div>
 
-          <h1
-            className="mt-1 max-w-xl italic leading-snug text-[var(--rose)] lg:mx-0 mx-auto"
-            style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, fontSize: "clamp(1.75rem, 3.4vw, 2.45rem)", letterSpacing: "-0.01em" }}
-          >
-            Turn your social media into booked appointments.
-          </h1>
-
-          <p className="mx-auto mt-4 max-w-xl text-[var(--ink)]/65 leading-relaxed lg:mx-0" style={{ fontFamily: BODY, fontSize: "clamp(0.95rem, 1.8vw, 1.1rem)" }}>
+          <p className="mx-auto mt-2 max-w-xl text-[var(--ink)]/65 leading-relaxed lg:mx-0" style={{ fontFamily: BODY, fontSize: "clamp(0.95rem, 1.8vw, 1.1rem)" }}>
             The done-for-you social media and lead-generation system for appointment-based and service businesses. We post for you,
             capture new inquiries, reply instantly and book the appointment, from{" "}
             <strong className="text-[var(--ink)]">${PRICE_SINGLE}/month</strong>.
