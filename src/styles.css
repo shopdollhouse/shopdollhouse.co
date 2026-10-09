@@ -525,3 +525,16 @@ main article:hover {
 @keyframes phone-dot { 0%, 80%, 100% { opacity: 0.25; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
 .phone-dot { animation: phone-dot 1s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .phone-pop, .phone-dot { animation: none; } }
+
+/* Launch palette: deeper chocolate brown + the med spa gold */
+.lux {
+  --gold: #c6b282;
+  --ink: #2b1710;
+}
+.lux .gold-grad {
+  background: linear-gradient(100deg, #e6dcc0 0%, #c6b282 44%, #a8946a 68%, #dccfa8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}

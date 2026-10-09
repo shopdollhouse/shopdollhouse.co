@@ -52,7 +52,7 @@ function GetStartedPage() {
   }, []);
 
   return (
-    <main className="min-h-screen" style={{ background: "linear-gradient(160deg, var(--blush) 0%, var(--cream) 60%)", color: "var(--ink)" }}>
+    <main className="lux min-h-screen" style={{ background: "linear-gradient(160deg, var(--blush) 0%, var(--cream) 60%)", color: "var(--ink)" }}>
       {/* Minimal header: no distractions */}
       <header className="border-b" style={{ borderColor: "color-mix(in oklab, var(--gold) 24%, transparent)" }}>
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
@@ -100,7 +100,7 @@ function GetStartedPage() {
                   style={{
                     background: active ? "var(--ink)" : "rgba(255,250,246,0.8)",
                     border: active ? "1.5px solid var(--gold)" : "1.5px solid color-mix(in oklab, var(--gold) 28%, transparent)",
-                    boxShadow: active ? "0 24px 50px -26px rgba(40,19,15,0.7)" : "none",
+                    boxShadow: active ? "0 24px 50px -26px rgba(38,14,8,0.7)" : "none",
                   }}
                 >
                   <span className="flex items-center gap-3">
@@ -112,7 +112,7 @@ function GetStartedPage() {
                     </span>
                     <span>
                       <span className="block" style={{ fontFamily: DISPLAY, fontSize: "1.2rem", fontWeight: 500, color: active ? "var(--cream)" : "var(--ink)" }}>{p.name}</span>
-                      <span className="block" style={{ fontFamily: BODY, fontSize: "0.8rem", color: active ? "rgba(255,250,246,0.6)" : "rgba(30,15,10,0.55)" }}>{p.mix}</span>
+                      <span className="block" style={{ fontFamily: BODY, fontSize: "0.8rem", color: active ? "rgba(255,250,246,0.6)" : "rgba(43,23,16,0.55)" }}>{p.mix}</span>
                     </span>
                   </span>
                   <span style={{ fontFamily: DISPLAY, fontSize: "1.7rem", color: active ? "var(--gold)" : "var(--rose)", whiteSpace: "nowrap" }}>

@@ -16,7 +16,7 @@ function RefundPolicyPage() {
   );
 
   return (
-    <main className="min-h-screen px-6 py-20" style={{ background: "var(--blush)", color: "var(--ink)" }}>
+    <main className="lux min-h-screen px-6 py-20" style={{ background: "var(--blush)", color: "var(--ink)" }}>
       <div className="max-w-2xl mx-auto">
         <Link
           to="/"

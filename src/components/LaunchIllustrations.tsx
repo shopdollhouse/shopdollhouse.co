@@ -3,8 +3,8 @@
  * Pink, cream and gold only, so they sit in the Dollhouse palette.
  */
 const ROSE = "#c08079";
-const GOLD = "#c8a464";
-const INK = "#2a1d1a";
+const GOLD = "#c6b282";
+const INK = "#2b1710";
 const CREAM = "#fffaf6";
 const BLUSH = "#f4d9d3";
 
@@ -127,7 +127,7 @@ export function IllustrationReply() {
         <rect x="204" y="126" width="164" height="78" rx="16" fill="url(#dmGrad)" />
         <defs>
           <linearGradient id="dmGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#3a2a25" />
+            <stop offset="0" stopColor="#3d2217" />
             <stop offset="1" stopColor={INK} />
           </linearGradient>
         </defs>
