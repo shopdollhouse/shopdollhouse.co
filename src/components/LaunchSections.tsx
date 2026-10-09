@@ -320,11 +320,10 @@ function LaunchHero() {
           </p>
 
           <h1
-            className="mt-7 text-[var(--ink)]"
-            style={{ fontFamily: DISPLAY, fontWeight: 500, fontSize: "clamp(2.8rem, 7vw, 5.4rem)", lineHeight: 1.0 }}
+            className="mt-7 italic text-[var(--rose)]"
+            style={{ fontFamily: DISPLAY, fontWeight: 300, fontSize: "clamp(2.9rem, 7.2vw, 5.6rem)", lineHeight: 1.04, letterSpacing: "-0.005em" }}
           >
-            Turn your social media into{" "}
-            <span className="italic text-[var(--rose)]">booked appointments.</span>
+            Turn your social media into booked appointments.
           </h1>
 
           <p className="mx-auto mt-6 max-w-xl text-[var(--ink)]/72 leading-8 lg:mx-0" style={{ fontFamily: BODY, fontSize: "clamp(1rem, 2vw, 1.15rem)" }}>
