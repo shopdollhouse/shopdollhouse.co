@@ -411,8 +411,8 @@ function LaunchHero() {
           </p>
 
           <h1
-            className="mt-6 text-[var(--ink)] leading-[0.98]"
-            style={{ fontFamily: DISPLAY, fontWeight: 400, fontSize: "clamp(2.9rem, 7.4vw, 5.6rem)" }}
+            className="mt-7 uppercase text-[var(--ink)]"
+            style={{ fontFamily: HEAD, fontWeight: 300, fontSize: "clamp(2.5rem, 5.8vw, 4.7rem)", letterSpacing: "-0.025em", lineHeight: 1.0 }}
           >
             Turn your social media into{" "}
             <span className="italic text-[var(--rose)]">booked appointments.</span>
