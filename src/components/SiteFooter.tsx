@@ -3,7 +3,6 @@ import { Link } from "@tanstack/react-router";
 const exploreLinks: [string, string][] = [
   ["How It Works", "/#how-it-works"],
   ["What's Included", "/#whats-included"],
-  ["Our Work", "/#work"],
   ["Plans & Pricing", "/#plans"],
   ["FAQ", "/#faq"],
 ];
@@ -31,24 +30,11 @@ export function SiteFooter() {
                 {label}
               </a>
             ))}
-            <a href="https://shopdollhouse-clone.vibepreview.com/blog" className="text-[var(--ink)]/58 hover:text-[var(--rose)] transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.78rem", letterSpacing: "0.12em", textTransform: "uppercase" }}>
-              Blog
-            </a>
-            <Link to="/careers" className="text-[var(--ink)]/58 hover:text-[var(--rose)] transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.78rem", letterSpacing: "0.12em", textTransform: "uppercase" }}>
-              Careers
-            </Link>
           </div>
         </div>
 
         <div>
-          <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>Contact</p>
-          <a href="mailto:hello@shopdollhouse.co" className="mt-4 block text-[var(--ink)]/68 hover:text-[var(--rose)] transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.78rem", letterSpacing: "0.12em" }}>
-            hello@shopdollhouse.co
-          </a>
-          <a href="tel:+12893014567" className="mt-2 block text-[var(--ink)]/68 hover:text-[var(--rose)] transition-colors" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.78rem", letterSpacing: "0.12em" }}>
-            +1 (289) 301-4567
-          </a>
-          <a href="/get-started" className="mt-5 inline-flex rounded-full px-5 py-3 text-[var(--cream)] bg-[var(--ink)] hover:opacity-90 transition-opacity" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.68rem", letterSpacing: "0.18em", textTransform: "uppercase" }}>
+          <a href="/get-started" className="inline-flex rounded-full px-5 py-3 text-[var(--cream)] bg-[var(--ink)] hover:opacity-90 transition-opacity" style={{ fontFamily: "'Jost', sans-serif", fontSize: "0.68rem", letterSpacing: "0.18em", textTransform: "uppercase" }}>
             Get Started →
           </a>
         </div>

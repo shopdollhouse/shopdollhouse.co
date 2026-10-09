@@ -34,7 +34,6 @@ import {
   POSTS_PER_MONTH,
   PRICE_SINGLE,
   SHOW_VALUE_STACK,
-  SUPPORT_EMAIL,
   VALUE_STACK,
   VALUE_STACK_BONUSES,
   VALUE_STACK_TOTAL,
@@ -129,7 +128,6 @@ function GetStarted({
 const NAV_LINKS = [
   { href: "#how-it-works", label: "How It Works" },
   { href: "#whats-included", label: "What's Included" },
-  { href: "#work", label: "Our Work" },
   { href: "#plans", label: "Pricing" },
   { href: "#faq", label: "FAQ" },
 ];
@@ -364,9 +362,6 @@ export function LaunchHero() {
 
           <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
             <GetStarted className="!px-10 !py-[18px] !text-[12px]" />
-            <a href="#work" className="btn-ghost !px-8 !py-[17px]">
-              View Our Work
-            </a>
           </div>
 
           <p className="mt-7 text-[var(--ink)]/72" style={{ fontFamily: BODY, fontSize: "0.98rem" }}>
@@ -1338,10 +1333,6 @@ export function LaunchFaq() {
           </details>
         ))}
       </div>
-      <p className="mt-8 text-center text-[var(--ink)]/55" style={{ fontFamily: BODY, fontSize: "0.9rem" }}>
-        Still have a question? Email us at{" "}
-        <a href={`mailto:${SUPPORT_EMAIL}`} className="text-[var(--rose)] underline underline-offset-4">{SUPPORT_EMAIL}</a>.
-      </p>
     </section>
   );
 }
@@ -1367,13 +1358,6 @@ export function LaunchFinalCta() {
             style={{ fontFamily: LUXE, fontWeight: 600, background: "var(--gold)", color: "var(--ink)", boxShadow: "0 24px 50px -18px rgba(200,164,100,0.55)" }}
           >
             Get Started <ArrowRight className="h-4 w-4" />
-          </a>
-          <a
-            href="#work"
-            className="inline-flex items-center justify-center rounded-full px-8 py-[17px] text-[11px] tracking-luxe uppercase transition-colors hover:bg-white/10"
-            style={{ fontFamily: LUXE, color: "var(--cream)", border: "1px solid rgba(255,250,246,0.4)" }}
-          >
-            View Our Work
           </a>
         </div>
         <p className="mt-6 inline-flex items-center gap-2 text-[var(--cream)]/40 text-[10px] tracking-[0.16em] uppercase" style={{ fontFamily: LUXE }}>

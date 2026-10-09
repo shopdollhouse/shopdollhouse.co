@@ -10,7 +10,6 @@ import {
   LaunchProblem,
   LaunchHowItWorks,
   LaunchWhatsIncluded,
-  LaunchWork,
   LaunchExamples,
   LaunchPlans,
   LaunchAfterPurchase,
@@ -72,7 +71,6 @@ function Index() {
       <LaunchProblem />
       <LaunchHowItWorks />
       <LaunchWhatsIncluded />
-      <LaunchWork />
       <LaunchExamples />
       <LaunchPlans />
       <LaunchAfterPurchase />
