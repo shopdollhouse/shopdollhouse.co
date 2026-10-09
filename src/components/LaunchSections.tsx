@@ -20,9 +20,6 @@ import {
 import archMark from "@/assets/arch-mark.svg";
 import bgImage from "@/assets/password-bg.jpg";
 import mandyPhoto from "@/assets/mandy-photo.jpg";
-import brandKitImg from "@/assets/product-brand-kit.jpg";
-import workbookImg from "@/assets/product-workbook.jpg";
-import promptKitImg from "@/assets/product-ai-prompt-kit.jpg";
 import {
   ADDON_PLATFORM_PRICE,
   AI_USAGE_COVERED,
@@ -145,24 +142,8 @@ export function LaunchNav() {
 
   return (
     <>
-      <a
-        href={checkoutHref("single")}
-        className="bar-shimmer fixed top-0 inset-x-0 z-50 h-9 flex items-center justify-center gap-3 px-4 hover:opacity-90 transition-opacity"
-        style={{ backgroundColor: "var(--ink)" }}
-      >
-        <span style={{ color: "var(--gold)", fontSize: "0.55rem" }}>✦</span>
-        <span
-          className="text-[var(--cream)] text-[9px] sm:text-[10px] tracking-[0.12em] sm:tracking-[0.2em] uppercase whitespace-nowrap"
-          style={{ fontFamily: LUXE }}
-        >
-          <span className="hidden sm:inline">Dollhouse Launch · Done-for-you social media from ${PRICE_SINGLE}/mo · {GUARANTEE_DAYS}-day money-back guarantee</span>
-          <span className="sm:hidden">From ${PRICE_SINGLE}/mo · {GUARANTEE_DAYS}-day money-back guarantee</span>
-        </span>
-        <span style={{ color: "var(--gold)", fontSize: "0.55rem" }}>✦</span>
-      </a>
-
       <nav
-        className={`fixed top-9 inset-x-0 z-40 transition-all duration-500 ${scrolled ? "py-3" : "py-5"}`}
+        className={`fixed top-0 inset-x-0 z-40 transition-all duration-500 ${scrolled ? "py-3" : "py-5"}`}
         style={{
           backgroundColor: scrolled ? "color-mix(in oklab, var(--cream) 94%, transparent)" : "transparent",
           backdropFilter: scrolled ? "blur(14px) saturate(140%)" : "none",
@@ -186,7 +167,7 @@ export function LaunchNav() {
                 {l.label}
               </a>
             ))}
-            <GetStarted className="!py-2.5 !px-5 !text-[10px]" />
+            <GetStarted label="Get Started Now" className="!py-2.5 !px-5 !text-[10px]" />
           </div>
 
           <button type="button" aria-label={open ? "Close menu" : "Open menu"} onClick={() => setOpen((v) => !v)} className="lg:hidden p-2 text-[var(--ink)]">
@@ -204,7 +185,7 @@ export function LaunchNav() {
                 {l.label}
               </a>
             ))}
-            <GetStarted className="justify-center mt-1" />
+            <GetStarted label="Get Started Now" className="justify-center mt-1" />
           </div>
         )}
       </nav>
@@ -213,102 +194,9 @@ export function LaunchNav() {
 }
 
 /* ─── Hero ────────────────────────────────────────────── */
-function HeroVisual() {
-  return (
-    <div className="relative mx-auto w-full max-w-[330px] sm:max-w-[360px]" aria-hidden>
-      {/* soft glow */}
-      <div className="absolute -inset-10 rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(200,164,100,0.28), transparent 62%)" }} />
-
-      {/* phone */}
-      <div
-        className="relative rounded-[46px] p-[10px]"
-        style={{ background: "linear-gradient(160deg, #2d1f1b, #170e0c)", boxShadow: "0 50px 90px -40px rgba(60,25,20,0.7), inset 0 0 0 1px rgba(255,255,255,0.08)" }}
-      >
-        <div className="absolute left-1/2 top-[18px] z-20 h-[22px] w-[84px] -translate-x-1/2 rounded-full bg-black" />
-        <div className="relative overflow-hidden rounded-[37px]" style={{ background: "var(--cream)" }}>
-          {/* IG header */}
-          <div className="flex items-center gap-2.5 px-4 pb-3 pt-12">
-            <span
-              className="flex h-9 w-9 items-center justify-center rounded-full"
-              style={{ background: "linear-gradient(135deg, #e8d5b0, #c8a464)", padding: "2px" }}
-            >
-              <span className="flex h-full w-full items-center justify-center rounded-full bg-[var(--cream)]">
-                <img src={archMark} alt="" className="h-4 w-auto" />
-              </span>
-            </span>
-            <div className="leading-tight">
-              <p className="text-[var(--ink)] font-semibold" style={{ fontFamily: BODY, fontSize: "0.78rem" }}>yourbusiness</p>
-              <p className="text-[var(--ink)]/45" style={{ fontFamily: BODY, fontSize: "0.65rem" }}>Your town</p>
-            </div>
-          </div>
-
-          {/* post */}
-          <div
-            className="mx-3 flex aspect-square flex-col items-center justify-center rounded-2xl p-6 text-center"
-            style={{ background: "linear-gradient(160deg, #fffaf6 0%, #f4dcdc 100%)", border: "1px solid color-mix(in oklab, var(--gold) 26%, transparent)" }}
-          >
-            <span style={{ color: "var(--gold)", fontSize: "0.8rem" }}>✦</span>
-            <p className="mt-3 italic text-[var(--ink)] leading-tight" style={{ fontFamily: DISPLAY, fontSize: "1.7rem" }}>
-              The one thing I check before every job.
-            </p>
-            <span className="mt-4 h-px w-10 bg-[var(--gold)] opacity-70" />
-            <p className="mt-2 text-[8px] tracking-luxe uppercase text-[var(--rose)]" style={{ fontFamily: LUXE }}>Comment QUOTE for a free estimate</p>
-          </div>
-
-          <div className="flex items-center gap-3 px-4 pb-1 pt-3 text-[var(--ink)]/70">
-            <Heart className="h-5 w-5" strokeWidth={1.6} />
-            <MessageCircle className="h-5 w-5" strokeWidth={1.6} />
-            <Send className="h-5 w-5" strokeWidth={1.6} />
-          </div>
-
-          {/* auto reply DM */}
-          <div className="mx-3 mb-4 mt-2 rounded-2xl p-3" style={{ background: "rgba(244,220,220,0.55)", border: "1px solid color-mix(in oklab, var(--rose) 22%, transparent)" }}>
-            <p className="text-[8px] tracking-luxe uppercase text-[var(--rose)]" style={{ fontFamily: LUXE }}>Private reply, sent instantly</p>
-            <p className="mt-1 text-[var(--ink)]/78 leading-snug" style={{ fontFamily: BODY, fontSize: "0.74rem" }}>
-              Hi! Thanks for asking. What kind of job do you need done? I can get your free estimate booked in.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* floating chips */}
-      <div
-        className="launch-float absolute -left-6 top-[22%] z-30 flex items-center gap-2.5 rounded-2xl px-4 py-3 sm:-left-14"
-        style={{ background: "rgba(255,250,246,0.95)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)", boxShadow: "0 24px 50px -24px rgba(90,40,30,0.5)" }}
-      >
-        <span className="flex h-8 w-8 items-center justify-center rounded-full" style={{ background: "color-mix(in oklab, var(--rose) 16%, transparent)", color: "var(--rose)" }}>
-          <MessageSquare className="h-4 w-4" />
-        </span>
-        <span className="leading-tight">
-          <span className="block text-[var(--ink)]" style={{ fontFamily: BODY, fontSize: "0.74rem", fontWeight: 600 }}>Auto-reply sent</span>
-          <span className="block text-[var(--ink)]/50" style={{ fontFamily: BODY, fontSize: "0.65rem" }}>Comment to private message</span>
-        </span>
-      </div>
-
-      <div
-        className="launch-float-slow absolute -right-4 bottom-[26%] z-30 flex items-center gap-2.5 rounded-2xl px-4 py-3 sm:-right-12"
-        style={{ background: "rgba(255,250,246,0.95)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)", boxShadow: "0 24px 50px -24px rgba(90,40,30,0.5)" }}
-      >
-        <span className="relative flex h-8 w-8 items-center justify-center rounded-full" style={{ background: "color-mix(in oklab, var(--gold) 22%, transparent)", color: "var(--gold)" }}>
-          <span className="launch-ping absolute inset-0 rounded-full" style={{ background: "color-mix(in oklab, var(--gold) 45%, transparent)" }} />
-          <CalendarCheck className="relative h-4 w-4" />
-        </span>
-        <span className="leading-tight">
-          <span className="block text-[var(--ink)]" style={{ fontFamily: BODY, fontSize: "0.74rem", fontWeight: 600 }}>Estimate booked</span>
-          <span className="block text-[var(--ink)]/50" style={{ fontFamily: BODY, fontSize: "0.65rem" }}>Added to your calendar</span>
-        </span>
-      </div>
-
-      <p className="mt-6 text-center text-[var(--ink)]/40 text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>
-        Illustrative example
-      </p>
-    </div>
-  );
-}
-
 export function LaunchHero() {
   return (
-    <header className="relative overflow-hidden px-5 pt-32 pb-20 md:pt-40 md:pb-28">
+    <header className="relative overflow-hidden px-5 pt-32 pb-20 md:pt-36 md:pb-24">
       <div
         aria-hidden
         className="bg-kenburns absolute inset-0 pointer-events-none"
@@ -316,7 +204,7 @@ export function LaunchHero() {
       />
       <div aria-hidden className="aurora absolute inset-0 pointer-events-none" />
       <span aria-hidden className="sparkle-drift" style={{ top: "18%", left: "6%", fontSize: "16px" }}>✦</span>
-      <span aria-hidden className="sparkle-drift" style={{ top: "62%", left: "44%", fontSize: "12px", animationDelay: "1.6s" }}>✦</span>
+      <span aria-hidden className="sparkle-drift" style={{ top: "34%", right: "8%", fontSize: "12px", animationDelay: "1.6s" }}>✦</span>
       <span aria-hidden className="sparkle-drift" style={{ bottom: "14%", left: "12%", fontSize: "11px", animationDelay: "3s" }}>✦</span>
       <div aria-hidden className="absolute inset-0 pointer-events-none" style={{ background: "rgba(247,228,223,0.4)" }} />
       <div
@@ -325,116 +213,67 @@ export function LaunchHero() {
         style={{ background: "radial-gradient(ellipse at center, transparent 0%, rgba(230,200,195,0.4) 72%, rgba(210,175,168,0.65) 100%)" }}
       />
 
-      <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
-        <div className="text-center lg:text-left">
-          <p
-            className="inline-flex items-center gap-2 rounded-full px-5 py-2 text-[10px] tracking-luxe uppercase text-[var(--ink)]/75"
-            style={{ fontFamily: LUXE, background: "rgba(255,250,246,0.78)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)" }}
-          >
-            <span style={{ color: "var(--gold)" }}>✦</span> For home service businesses
-          </p>
+      <div className="relative z-10 mx-auto max-w-4xl text-center">
+        <p
+          className="inline-flex items-center gap-2 rounded-full px-5 py-2 text-[10px] tracking-luxe uppercase text-[var(--ink)]/75"
+          style={{ fontFamily: LUXE, background: "rgba(255,250,246,0.78)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)" }}
+        >
+          <span style={{ color: "var(--gold)" }}>✦</span> For home service businesses
+        </p>
 
-          <h1
-            className="mt-6 text-[var(--ink)] leading-[0.98]"
-            style={{ fontFamily: DISPLAY, fontWeight: 400, fontSize: "clamp(2.9rem, 7.4vw, 5.6rem)" }}
-          >
-            Turn your social media into{" "}
-            <span className="italic text-[var(--rose)]">booked estimates.</span>
-          </h1>
+        <h1 className="mt-6 text-[var(--ink)] leading-[0.98]" style={{ fontFamily: DISPLAY, fontWeight: 400, fontSize: "clamp(2.9rem, 7.4vw, 5.6rem)" }}>
+          Turn social media into{" "}
+          <span className="italic text-[var(--rose)]">booked estimates.</span>
+        </h1>
 
-          <p className="mx-auto mt-6 max-w-xl text-[var(--ink)]/72 leading-8 lg:mx-0" style={{ fontFamily: BODY, fontSize: "clamp(1rem, 2vw, 1.15rem)" }}>
-            The done-for-you social media and lead-generation system for contractors, cleaners, landscapers and every home service business. We post for you,
-            capture new inquiries, reply instantly and book the estimate, from{" "}
-            <strong className="text-[var(--ink)]">${PRICE_SINGLE}/month</strong>.
-          </p>
+        <p className="mx-auto mt-6 max-w-2xl text-[var(--ink)]/72 leading-8" style={{ fontFamily: BODY, fontSize: "clamp(1rem, 2vw, 1.15rem)" }}>
+          We create your posts, give interested visitors an easy way to contact you, and automatically follow up to help them book an estimate, starting at{" "}
+          <strong className="text-[var(--ink)]">${PRICE_SINGLE}/mo</strong>.
+        </p>
 
-          <div className="mt-7 flex flex-wrap items-center justify-center gap-2.5 lg:justify-start">
-            {["Daily social media posts", "Lead capture tool", "AI follow-up & booking"].map((label) => (
-              <span
-                key={label}
-                className="rounded-full px-4 py-2 text-[10px] tracking-luxe uppercase text-[var(--ink)]"
-                style={{ fontFamily: LUXE, fontWeight: 600, background: "rgba(255,250,246,0.85)", border: "1px solid color-mix(in oklab, var(--gold) 38%, transparent)", boxShadow: "0 14px 30px -22px rgba(120,70,55,0.5)" }}
-              >
-                {label}
-              </span>
-            ))}
-          </div>
-
-          <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
-            <GetStarted className="!px-10 !py-[18px] !text-[12px]" />
-          </div>
-
-          <p className="mt-7 text-[var(--ink)]/72" style={{ fontFamily: BODY, fontSize: "0.98rem" }}>
-            Done-for-you social media from <strong className="text-[var(--ink)]">${PRICE_SINGLE}/mo</strong>
-          </p>
-          <p className="mt-1 italic text-[var(--ink)]/55" style={{ fontFamily: DISPLAY, fontSize: "1.15rem" }}>
-            Built for organic growth. No paid ads or ad spend required.
-          </p>
-
-          <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[10px] tracking-[0.16em] uppercase text-[var(--ink)]/60 lg:justify-start" style={{ fontFamily: LUXE }}>
-            {[`${GUARANTEE_DAYS}-day money-back guarantee`, "No contract, cancel anytime", "Instant account access", "Free CRM account included", "1-on-1 kickoff call"].map((t) => (
-              <li key={t} className="flex items-center gap-1.5">
-                <span style={{ color: "var(--gold)" }}>✦</span> {t}
-              </li>
-            ))}
-          </ul>
+        <div className="mt-7 flex flex-wrap items-center justify-center gap-2.5">
+          {["Daily social media posts", "Lead capture tool", "AI follow up & booking"].map((label) => (
+            <span
+              key={label}
+              className="rounded-full px-4 py-2 text-[10px] tracking-luxe uppercase text-[var(--ink)]"
+              style={{ fontFamily: LUXE, fontWeight: 600, background: "rgba(255,250,246,0.85)", border: "1px solid color-mix(in oklab, var(--gold) 38%, transparent)", boxShadow: "0 14px 30px -22px rgba(120,70,55,0.5)" }}
+            >
+              {label}
+            </span>
+          ))}
         </div>
 
-        <HeroVisual />
+        {HERO_VIDEO_EMBED_URL && (
+          <div className="mt-10">
+            <p className="text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontWeight: 600, letterSpacing: "0.12em", fontSize: "1rem" }}>
+              See how it works in <span className="text-[var(--rose)]">10 minutes ↓</span>
+            </p>
+            <div className="mt-4 aspect-video overflow-hidden rounded-[24px]" style={card}>
+              <iframe src={HERO_VIDEO_EMBED_URL} title="Dollhouse Launch video presentation" className="h-full w-full" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen />
+            </div>
+          </div>
+        )}
+
+        <div className="mt-9">
+          <GetStarted label="Get Started Now" className="!px-12 !py-[18px] !text-[12px]" />
+        </div>
+
+        <p className="mt-6 text-[var(--ink)]/72" style={{ fontFamily: BODY, fontSize: "0.98rem" }}>
+          Done-for-you social media from <strong className="text-[var(--ink)]">${PRICE_SINGLE}/mo</strong>
+        </p>
+        <p className="mt-1 italic text-[var(--ink)]/55" style={{ fontFamily: DISPLAY, fontSize: "1.15rem" }}>
+          Built for organic growth, no paid ads or ad spend required.
+        </p>
+
+        <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[10px] tracking-[0.16em] uppercase text-[var(--ink)]/60" style={{ fontFamily: LUXE }}>
+          {[`${GUARANTEE_DAYS}-day money-back guarantee`, "No contract, cancel anytime", "Instant account access", "Free CRM account included", "1-on-1 kickoff call"].map((t) => (
+            <li key={t} className="flex items-center gap-1.5">
+              <span style={{ color: "var(--gold)" }}>✦</span> {t}
+            </li>
+          ))}
+        </ul>
       </div>
     </header>
-  );
-}
-
-/* ─── Stats strip ─────────────────────────────────────── */
-export function LaunchStats() {
-  const stats = [
-    [`${POSTS_PER_MONTH}`, "posts every month"],
-    [`${FIRST_POSTS_DAYS} days`, "to your first posts"],
-    ["24/7", "replies and follow-up"],
-    [`${GUARANTEE_DAYS} days`, "money-back guarantee"],
-  ];
-  return (
-    <section className="px-6 py-10" style={{ background: "var(--ink)" }}>
-      <div className="mx-auto grid max-w-5xl grid-cols-2 gap-y-8 md:grid-cols-4">
-        {stats.map(([value, label], i) => (
-          <div key={label} className={`text-center ${i > 0 ? "md:border-l md:border-white/10" : ""}`}>
-            <p className="italic text-[var(--gold)]" style={{ fontFamily: DISPLAY, fontSize: "clamp(2rem, 4vw, 2.8rem)", lineHeight: 1 }}>
-              {value}
-            </p>
-            <p className="mt-2 text-[var(--cream)]/60 text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>
-              {label}
-            </p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-/* ─── Problem ─────────────────────────────────────────── */
-export function LaunchProblem() {
-  const items = [
-    { title: "Posting is a second job", copy: "You are on the job site all day, so your page goes quiet for weeks. Homeowners check your profile before they call, and they see nothing new." },
-    { title: "Inquiries slip through", copy: "A homeowner messages three contractors and books the first one who replies. A comment sitting unanswered for hours is a lost estimate." },
-    { title: "Follow-up never happens", copy: "While you are on the roof, under a sink or driving between jobs, nobody is replying. Interested people go cold before you ever see them." },
-  ];
-  return (
-    <section className="py-24 md:py-32 px-6 bg-[var(--cream)]">
-      <SectionHead eyebrow="Sound familiar?" title={<>You are great at what you do. <span className="italic text-[var(--rose)]">Marketing keeps losing.</span></>} />
-      <div className="mx-auto mt-14 grid max-w-6xl gap-6 md:grid-cols-3" data-stagger>
-        {items.map((it, i) => (
-          <article key={it.title} className="rounded-[28px] p-8" style={card}>
-            <span className="italic text-[var(--gold)]" style={{ fontFamily: DISPLAY, fontSize: "2.6rem", lineHeight: 1 }}>0{i + 1}</span>
-            <h3 className="mt-4 text-[var(--ink)]" style={{ fontFamily: DISPLAY, fontSize: "1.6rem", fontWeight: 500 }}>{it.title}</h3>
-            <p className="mt-3 text-[var(--ink)]/62 leading-7" style={{ fontFamily: BODY, fontSize: "0.95rem" }}>{it.copy}</p>
-          </article>
-        ))}
-      </div>
-      <p className="mx-auto mt-12 max-w-2xl text-center italic text-[var(--rose)]" style={{ fontFamily: DISPLAY, fontSize: "clamp(1.5rem, 3vw, 2rem)", lineHeight: 1.2 }}>
-        Dollhouse Launch handles all three for one flat monthly price.
-      </p>
-    </section>
   );
 }
 
@@ -448,39 +287,21 @@ const STEPS = [
 
 export function LaunchHowItWorks() {
   return (
-    <section
-      id="how-it-works"
-      className="scroll-mt-32 py-24 md:py-32 px-6"
-      style={{ background: "linear-gradient(180deg, var(--cream) 0%, #f8e9e5 100%)" }}
-    >
+    <section id="how-it-works" className="scroll-mt-24 py-24 md:py-28 px-6" style={{ background: "linear-gradient(180deg, var(--cream) 0%, #f8e9e5 100%)" }}>
       <SectionHead
         eyebrow="How it works"
-        title="Four steps from social media attention to booked estimates"
-        sub="Grow your business through organic social media. We create the posts, capture the inquiries and follow up, so you can book more jobs without adding to your workload."
+        title="Everything you need to turn social media attention into booked estimates"
+        sub="Grow your business through organic social media. We create your posts, capture inquiries, and follow up with interested people without requiring paid ads."
       />
-      <div className="relative mx-auto mt-16 max-w-6xl">
-        <div aria-hidden className="absolute left-[12.5%] right-[12.5%] top-6 hidden h-px lg:block" style={{ background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 55%, transparent), transparent)" }} />
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4" data-stagger>
-          {STEPS.map((s, i) => (
-            <article key={s.title} className="relative text-center">
-              <span
-                className="relative mx-auto flex h-12 w-12 items-center justify-center rounded-full italic text-[var(--rose)]"
-                style={{ fontFamily: DISPLAY, fontSize: "1.5rem", background: "var(--cream)", border: "1px solid color-mix(in oklab, var(--gold) 50%, transparent)", boxShadow: "0 12px 26px -14px rgba(160,110,60,0.6)" }}
-              >
-                {i + 1}
-              </span>
-              <h3 className="mt-5 text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontSize: "0.92rem", letterSpacing: "0.1em", fontWeight: 600 }}>
-                {s.title}
-              </h3>
-              <p className="mx-auto mt-3 max-w-[240px] text-[var(--ink)]/62 leading-7" style={{ fontFamily: BODY, fontSize: "0.92rem" }}>
-                {s.copy}
-              </p>
-            </article>
-          ))}
-        </div>
-      </div>
-      <div className="mt-14 text-center">
-        <GetStarted />
+      <div className="mx-auto mt-14 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-4" data-stagger>
+        {STEPS.map((st, i) => (
+          <article key={st.title} className="rounded-[24px] p-7" style={card}>
+            <span className="flex h-11 w-11 items-center justify-center rounded-full text-[var(--gold)]" style={{ background: "var(--ink)", fontFamily: DISPLAY, fontSize: "1.3rem" }}>{i + 1}</span>
+            <p className="mt-4 text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Step {i + 1}</p>
+            <h3 className="mt-1 text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontSize: "0.92rem", letterSpacing: "0.1em", fontWeight: 600 }}>{st.title}</h3>
+            <p className="mt-3 text-[var(--ink)]/62 leading-7" style={{ fontFamily: BODY, fontSize: "0.92rem" }}>{st.copy}</p>
+          </article>
+        ))}
       </div>
     </section>
   );
@@ -631,89 +452,85 @@ const POST_EXAMPLES = [
 
 export function LaunchWhatsIncluded() {
   return (
-    <section id="whats-included" className="scroll-mt-32 py-24 md:py-32 px-6 bg-[var(--cream)]">
+    <section id="whats-included" className="scroll-mt-24 py-24 md:py-28 px-6 bg-[var(--cream)]">
       <SectionHead
         eyebrow="What is included"
         title="Everything we build and manage for your business"
         sub="Here is exactly what we create, manage and improve for your business each month."
       />
-      <div className="mx-auto mt-14 grid max-w-6xl gap-6 md:grid-cols-2" data-stagger>
+      <div className="mx-auto mt-14 grid max-w-5xl gap-8">
         {SERVICES.map(({ icon: Icon, title, lead, points, preview }, i) => (
-          <article key={title} className="relative flex flex-col rounded-[28px] p-8 md:p-10" style={card}>
-            <span className="absolute right-8 top-6 italic text-[var(--gold)]/25" style={{ fontFamily: DISPLAY, fontSize: "4.5rem", lineHeight: 1 }}>0{i + 1}</span>
-            <span
-              className="flex h-14 w-14 items-center justify-center rounded-2xl"
-              style={{ background: "linear-gradient(135deg, color-mix(in oklab, var(--gold) 26%, transparent), color-mix(in oklab, var(--rose) 14%, transparent))", color: "var(--rose)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)" }}
-            >
-              <Icon className="h-6 w-6" strokeWidth={1.5} />
-            </span>
-            <p className="mt-6 text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Included service</p>
-            <h3 className="mt-2 text-[var(--ink)] leading-tight" style={{ fontFamily: DISPLAY, fontSize: "1.75rem", fontWeight: 500 }}>
-              {title}
-            </h3>
-            <p className="mt-3 text-[var(--ink)]/62 leading-7" style={{ fontFamily: BODY, fontSize: "0.97rem" }}>{lead}</p>
-            <ul className="mt-6 grid gap-3">
-              {points.map((p) => (
-                <li key={p} className="flex gap-3 text-[var(--ink)]/78 leading-6" style={{ fontFamily: BODY, fontSize: "0.92rem" }}>
-                  <CheckDot />
-                  <span>{p}</span>
-                </li>
-              ))}
-            </ul>
-
-            {i === 0 && (
-              <div className="mt-8">
-                <p className="text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Your content, brought to life</p>
-                <p className="mt-1 text-[var(--ink)]/50" style={{ fontFamily: BODY, fontSize: "0.78rem" }}>Post examples</p>
-                <div className="mt-3 grid grid-cols-3 gap-2.5">
-                  {POST_EXAMPLES.map((ex) => {
-                    const t = TONES[ex.tone];
-                    return (
-                      <div key={ex.text} className="flex aspect-square items-center justify-center rounded-xl p-2.5 text-center" style={{ background: t.bg, border: "1px solid color-mix(in oklab, var(--gold) 24%, transparent)" }}>
-                        <p className="italic leading-tight" style={{ fontFamily: DISPLAY, fontSize: "0.82rem", color: t.fg }}>{ex.text}</p>
-                      </div>
-                    );
-                  })}
-                </div>
-                <div className="mt-4 flex flex-wrap items-center gap-2">
-                  {["Your expertise", "Your branding", "Your style"].map((c) => (
-                    <span key={c} className="rounded-full px-3.5 py-1.5 text-[var(--ink)]/75" style={{ fontFamily: BODY, fontSize: "0.78rem", background: "rgba(255,255,255,0.75)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)" }}>{c}</span>
+          <article key={title} className="overflow-hidden rounded-[28px]" style={card}>
+            <div className="flex items-center gap-4 px-6 py-5 md:px-8" style={{ background: "linear-gradient(135deg, #2a1d1a 0%, #170e0c 100%)" }}>
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[var(--ink)]" style={{ background: "var(--gold)", fontFamily: DISPLAY, fontSize: "1.35rem", fontWeight: 600 }}>{i + 1}</span>
+              <div className="min-w-0">
+                <p className="flex items-center gap-2 text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE, color: "var(--gold)" }}>
+                  <Icon className="h-3.5 w-3.5" /> Included service
+                </p>
+                <h3 className="mt-1 text-[var(--cream)] leading-tight" style={{ fontFamily: DISPLAY, fontSize: "clamp(1.4rem, 3vw, 1.9rem)", fontWeight: 500 }}>{title}</h3>
+              </div>
+            </div>
+            <div className="grid gap-8 p-6 md:grid-cols-2 md:p-8">
+              <div>
+                <p className="font-semibold text-[var(--ink)] leading-7" style={{ fontFamily: BODY, fontSize: "0.97rem" }}>{lead}</p>
+                <ul className="mt-5 grid gap-3">
+                  {points.map((pt) => (
+                    <li key={pt} className="flex gap-3 text-[var(--ink)]/78 leading-6" style={{ fontFamily: BODY, fontSize: "0.92rem" }}>
+                      <CheckDot />
+                      <span>{pt}</span>
+                    </li>
                   ))}
-                </div>
-                <p className="mt-3 text-[var(--ink)]/45 italic" style={{ fontFamily: BODY, fontSize: "0.78rem" }}>Examples, not a fixed template library.</p>
+                </ul>
               </div>
-            )}
-
-            {preview && (
-              <div className="mt-8">
-                <ServicePreview kind={preview} />
-                <p className="mt-3 text-center text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Built and managed for you</p>
+              <div>
+                {i === 0 && (
+                  <>
+                    <p className="text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Your content, brought to life</p>
+                    <p className="mt-1 text-[var(--ink)]/50" style={{ fontFamily: BODY, fontSize: "0.78rem" }}>Post examples</p>
+                    <div className="mt-3 grid grid-cols-3 gap-2.5">
+                      {POST_EXAMPLES.map((ex) => {
+                        const t = TONES[ex.tone];
+                        return (
+                          <div key={ex.text} className="flex aspect-square items-center justify-center rounded-xl p-2.5 text-center" style={{ background: t.bg, border: "1px solid color-mix(in oklab, var(--gold) 24%, transparent)" }}>
+                            <p className="italic leading-tight" style={{ fontFamily: DISPLAY, fontSize: "0.82rem", color: t.fg }}>{ex.text}</p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                    <div className="mt-4 flex flex-wrap items-center gap-2">
+                      {["Your expertise", "Your branding", "Your style"].map((c) => (
+                        <span key={c} className="rounded-full px-3.5 py-1.5 text-[var(--ink)]/75" style={{ fontFamily: BODY, fontSize: "0.78rem", background: "rgba(255,255,255,0.75)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)" }}>{c}</span>
+                      ))}
+                    </div>
+                    <p className="mt-3 text-[var(--ink)]/45 italic" style={{ fontFamily: BODY, fontSize: "0.78rem" }}>Examples, not a fixed template library.</p>
+                  </>
+                )}
+                {preview && (
+                  <>
+                    <ServicePreview kind={preview} />
+                    <p className="mt-3 text-center text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Built and managed for you</p>
+                  </>
+                )}
               </div>
-            )}
+            </div>
           </article>
         ))}
       </div>
 
-      {/* Included across the full system */}
       <div
-        className="mx-auto mt-6 flex max-w-6xl flex-col items-center gap-3 rounded-[28px] px-8 py-8 text-center md:flex-row md:justify-between md:text-left"
+        className="mx-auto mt-8 flex max-w-5xl flex-col items-center gap-3 rounded-[28px] px-8 py-8 text-center md:flex-row md:justify-between md:text-left"
         style={{ background: "linear-gradient(135deg, #2a1d1a 0%, #170e0c 100%)", border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)" }}
       >
         <div>
           <p className="text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE, color: "var(--gold)" }}>Included across the full system</p>
-          <h3 className="mt-2 italic text-[var(--cream)]" style={{ fontFamily: DISPLAY, fontSize: "clamp(1.6rem, 3.4vw, 2.3rem)", lineHeight: 1.1 }}>
-            We manage and improve everything for you
-          </h3>
+          <h3 className="mt-2 italic text-[var(--cream)]" style={{ fontFamily: DISPLAY, fontSize: "clamp(1.6rem, 3.4vw, 2.3rem)", lineHeight: 1.1 }}>We manage and improve everything for you</h3>
         </div>
         <span className="rounded-full px-6 py-3 text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE, background: "var(--gold)", color: "var(--ink)", fontWeight: 600 }}>Done for you</span>
       </div>
 
-      {/* Order block */}
       <div className="mx-auto mt-14 max-w-3xl text-center">
         <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Ready when you are</p>
-        <h3 className="mt-3 italic text-[var(--ink)]" style={{ fontFamily: DISPLAY, fontSize: "clamp(1.9rem, 4vw, 2.7rem)", lineHeight: 1.1 }}>
-          Let us start building your social media and follow-up system
-        </h3>
+        <h3 className="mt-3 italic text-[var(--ink)]" style={{ fontFamily: DISPLAY, fontSize: "clamp(1.9rem, 4vw, 2.7rem)", lineHeight: 1.1 }}>Let us start building your social media and follow-up system</h3>
         <p className="mt-3 text-[var(--ink)]/62" style={{ fontFamily: BODY }}>
           Start for ${PRICE_SINGLE} per month with both launch bonuses, no long-term contract and a {GUARANTEE_DAYS}-day guarantee.
         </p>
@@ -726,86 +543,12 @@ export function LaunchWhatsIncluded() {
   );
 }
 
-/* ─── Our work ────────────────────────────────────────── */
-const BUILT = [
-  { title: "The Brand Kit", tag: "Interactive web app", copy: "A guided tool that builds a full brand blueprint: moodboard, palette, fonts, core message and a first-sale plan.", img: brandKitImg, href: "https://room.shopdollhouse.co/brand-kit" },
-  { title: "The Brand Workbook", tag: "Interactive web app", copy: "An eight-room workbook that walks you through every launch decision and ends in a downloadable business blueprint.", img: workbookImg, href: "https://room.shopdollhouse.co/workbook" },
-  { title: "The AI Prompt Kit", tag: "Interactive web app", copy: "50+ fill-in-the-blank prompts organized into eight rooms, so a week of marketing content writes itself.", img: promptKitImg, href: "https://room.shopdollhouse.co/ai-prompt-kit" },
-];
-
+/* ─── Shared tones ────────────────────────────────────── */
 const TONES: Record<string, { bg: string; fg: string; accent: string }> = {
   cream: { bg: "linear-gradient(160deg, #fffaf6 0%, #f7e9e3 100%)", fg: "var(--ink)", accent: "var(--rose)" },
   blush: { bg: "linear-gradient(160deg, #f4dcdc 0%, #f1d3cf 100%)", fg: "var(--ink)", accent: "var(--rose)" },
   ink: { bg: "linear-gradient(160deg, #2a1d1a 0%, #1a100e 100%)", fg: "var(--cream)", accent: "var(--gold)" },
 };
-
-export function LaunchWork() {
-  return (
-    <section
-      id="work"
-      className="scroll-mt-32 py-24 md:py-32 px-6"
-      style={{ background: "linear-gradient(180deg, var(--blush) 0%, var(--cream) 100%)" }}
-    >
-      <SectionHead
-        eyebrow="Our work"
-        title="Built by us. Live today."
-        sub="We design, build and run our own brand, so you can see what we make before you order. Here is a look at what is live right now."
-      />
-
-      <div className="mx-auto mt-14 grid max-w-6xl gap-6 md:grid-cols-3" data-stagger>
-        {BUILT.map((b) => (
-          <a key={b.title} href={b.href} target="_blank" rel="noopener noreferrer" className="group block no-underline">
-            <article className="overflow-hidden rounded-[28px] transition-all duration-500 group-hover:-translate-y-1" style={card}>
-              <div className="overflow-hidden">
-                <img src={b.img} alt={`${b.title} preview`} loading="lazy" className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              </div>
-              <div className="p-7">
-                <p className="text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>{b.tag}</p>
-                <h3 className="mt-2 text-[var(--ink)]" style={{ fontFamily: DISPLAY, fontSize: "1.55rem", fontWeight: 500 }}>{b.title}</h3>
-                <p className="mt-2 text-[var(--ink)]/62 leading-7" style={{ fontFamily: BODY, fontSize: "0.9rem" }}>{b.copy}</p>
-                <span className="mt-4 inline-flex items-center gap-2 text-[var(--rose)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>
-                  See it live <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                </span>
-              </div>
-            </article>
-          </a>
-        ))}
-      </div>
-
-      <a href="https://dollhousebrandstudio.com" target="_blank" rel="noopener noreferrer" className="group mx-auto mt-6 block max-w-6xl no-underline">
-        <article
-          className="relative overflow-hidden rounded-[28px] p-8 md:p-12 transition-transform duration-500 group-hover:-translate-y-1"
-          style={{ background: "linear-gradient(135deg, #2a1d1a 0%, #170e0c 100%)", border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)", boxShadow: "0 40px 80px -44px rgba(40,19,15,0.7)" }}
-        >
-          <div aria-hidden className="absolute -right-20 -top-20 h-72 w-72 rounded-full" style={{ background: "radial-gradient(circle, rgba(200,164,100,0.3), transparent 65%)" }} />
-          <div className="relative grid items-center gap-8 md:grid-cols-[1.4fr_1fr]">
-            <div>
-              <p className="text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE, color: "var(--gold)" }}>Live funnel · Voice AI</p>
-              <h3 className="mt-3 italic text-[var(--cream)]" style={{ fontFamily: DISPLAY, fontSize: "clamp(1.9rem, 4vw, 2.7rem)", lineHeight: 1.1 }}>
-                Talk to a live AI receptionist
-              </h3>
-              <p className="mt-3 max-w-xl text-[var(--cream)]/65 leading-7" style={{ fontFamily: BODY, fontSize: "0.95rem" }}>
-                Our own funnel for med spas and clinics: a premium landing page, a working voice AI demo you can talk to, and a built-in
-                application flow. It is the same follow-up and booking technology behind Dollhouse Launch.
-              </p>
-            </div>
-            <div className="flex md:justify-end">
-              <span className="inline-flex items-center gap-2 rounded-full px-7 py-4 text-[11px] tracking-luxe uppercase" style={{ fontFamily: LUXE, background: "var(--gold)", color: "var(--ink)", fontWeight: 600 }}>
-                Try the live demo <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </span>
-            </div>
-          </div>
-        </article>
-      </a>
-
-      <div className="mx-auto mt-10 flex max-w-3xl flex-wrap items-center justify-center gap-x-8 gap-y-3">
-        <span className="text-[var(--ink)]/45 text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Our work has been recognized by</span>
-        <a href="https://www.buzzfeed.com/sarahrohoman/black-owned-stores-etsy-canada" target="_blank" rel="noopener noreferrer" className="italic text-[var(--gold)] underline decoration-[var(--gold)]/40 underline-offset-4 hover:text-[var(--rose)]" style={{ fontFamily: DISPLAY, fontSize: "1.3rem" }}>BuzzFeed</a>
-        <a href="https://www.huffpost.com/entry/get-out-and-vote-merch-election-2020_l_5f344d83c5b6960c066fef03" target="_blank" rel="noopener noreferrer" className="font-semibold text-[var(--ink)] underline decoration-[var(--ink)]/25 underline-offset-4 hover:text-[var(--rose)]" style={{ fontFamily: LUXE, fontSize: "0.95rem" }}>HuffPost</a>
-      </div>
-    </section>
-  );
-}
 
 /* ─── Content examples ────────────────────────────────── */
 type StyleDef = {
@@ -1061,74 +804,41 @@ export function LaunchPlans() {
   return (
     <section
       id="plans"
-      className="scroll-mt-32 py-24 md:py-32 px-6"
+      className="scroll-mt-24 py-24 md:py-28 px-6"
       style={{
         background:
           "radial-gradient(circle at 50% 0%, rgba(255,255,255,0.9), transparent 36%), radial-gradient(circle at 50% 58%, rgba(201,122,122,0.16), transparent 42%), linear-gradient(180deg, #fbf1ed 0%, #f5ddd7 52%, #fff8f3 100%)",
       }}
     >
-      <div className="mx-auto max-w-4xl text-center">
-        <Eyebrow>Your plan. Everything handled.</Eyebrow>
-        <h2 className="mt-4 leading-[0.98]" style={{ fontFamily: DISPLAY, fontWeight: 400, color: "var(--ink)", fontSize: "clamp(2.8rem, 7vw, 5.2rem)" }}>
-          Choose your monthly package
-        </h2>
-        <p className="mx-auto mt-5 max-w-xl text-[var(--ink)]/62 leading-7" style={{ fontFamily: BODY }}>
-          The same complete service in both plans. Choose the type of posts you prefer.
-        </p>
-      </div>
+      <SectionHead eyebrow="Your plan. Everything handled." title="Choose your monthly package" sub="The same complete service in both plans. Choose the type of posts you prefer." />
 
-      <div className="mx-auto mt-14 grid max-w-4xl gap-8 md:grid-cols-2" data-stagger>
-        {LAUNCH_PLANS.map((plan, i) => {
-          const featured = i === 1;
-          return (
-            <article
-              key={plan.id}
-              className="relative flex flex-col rounded-[30px] p-9 text-center"
-              style={{
-                background: featured ? "linear-gradient(170deg, #2a1d1a 0%, #170e0c 100%)" : card.background,
-                border: featured ? "1.5px solid var(--gold)" : "1.5px solid color-mix(in oklab, var(--gold) 50%, transparent)",
-                boxShadow: featured ? "0 44px 90px -40px rgba(40,19,15,0.75)" : "0 36px 80px -38px rgba(160,110,60,0.5)",
-              }}
+      <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-2" data-stagger>
+        {LAUNCH_PLANS.map((plan) => (
+          <article key={plan.id} className="flex flex-col rounded-[28px] p-8" style={{ ...card, border: "1.5px solid color-mix(in oklab, var(--gold) 50%, transparent)" }}>
+            <span className="flex h-11 w-11 items-center justify-center rounded-xl" style={{ background: "color-mix(in oklab, var(--gold) 20%, transparent)", color: "var(--rose)" }}>
+              <ImageIcon className="h-5 w-5" strokeWidth={1.6} />
+            </span>
+            <h3 className="mt-5 text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontSize: "1.05rem", letterSpacing: "0.1em", fontWeight: 600 }}>{plan.name}</h3>
+            <p className="mt-3" style={{ fontFamily: DISPLAY, fontSize: "3.6rem", lineHeight: 1, color: "var(--ink)" }}>
+              ${plan.price}
+              <span className="ml-1 uppercase" style={{ fontFamily: LUXE, fontSize: "0.8rem", letterSpacing: "0.1em", color: "rgba(30,15,10,0.5)" }}>/month</span>
+            </p>
+            <p className="mt-4 font-semibold text-[var(--ink)]" style={{ fontFamily: BODY, fontSize: "0.98rem" }}>{plan.mix}</p>
+            <p className="mt-1 text-[var(--ink)]/55" style={{ fontFamily: BODY, fontSize: "0.88rem" }}>{plan.blurb}</p>
+            <a
+              href={checkoutHref(plan.id)}
+              className="mt-7 inline-flex items-center justify-center gap-2 rounded-full px-8 py-[16px] text-[11px] tracking-luxe uppercase transition-transform hover:-translate-y-0.5"
+              style={{ fontFamily: LUXE, fontWeight: 600, background: plan.id === "single" ? "var(--ink)" : "var(--gold)", color: plan.id === "single" ? "var(--cream)" : "var(--ink)", boxShadow: "0 22px 44px -18px rgba(30,15,10,0.5)" }}
             >
-              <span
-                className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-4 py-1 text-[9px] tracking-luxe uppercase"
-                style={{ fontFamily: LUXE, background: featured ? "var(--gold)" : "var(--ink)", color: featured ? "var(--ink)" : "var(--cream)", fontWeight: 600 }}
-              >
-                {plan.badge}
-              </span>
-              <h3 style={{ fontFamily: DISPLAY, fontSize: "1.65rem", fontWeight: 500, color: featured ? "var(--cream)" : "var(--rose)" }}>{plan.name}</h3>
-              <p className="mt-4" style={{ fontFamily: DISPLAY, fontSize: "4.2rem", lineHeight: 1, color: featured ? "var(--gold)" : "var(--ink)" }}>
-                ${plan.price}
-                <span className="ml-1" style={{ fontFamily: BODY, fontSize: "1rem", color: featured ? "rgba(255,250,246,0.5)" : "rgba(30,15,10,0.5)" }}>/month</span>
-              </p>
-              <p className="mt-4 font-medium" style={{ fontFamily: BODY, fontSize: "0.98rem", color: featured ? "var(--cream)" : "var(--ink)" }}>{plan.mix}</p>
-              <p className="mt-1" style={{ fontFamily: BODY, fontSize: "0.88rem", color: featured ? "rgba(255,250,246,0.55)" : "rgba(30,15,10,0.55)" }}>{plan.blurb}</p>
-              <a
-                href={checkoutHref(plan.id)}
-                className="mt-8 inline-flex items-center justify-center gap-2 rounded-full px-8 py-[17px] text-[11px] tracking-luxe uppercase transition-transform hover:-translate-y-0.5"
-                style={{
-                  fontFamily: LUXE,
-                  fontWeight: 600,
-                  background: featured ? "var(--gold)" : "var(--ink)",
-                  color: featured ? "var(--ink)" : "var(--cream)",
-                  boxShadow: "0 22px 44px -18px rgba(30,15,10,0.6)",
-                }}
-              >
-                {plan.id === "single" ? "Choose single-image posts" : "Choose carousel slide posts"} <ArrowRight className="h-4 w-4" />
-              </a>
-              <p className="mt-3 text-[10px] tracking-[0.14em] uppercase" style={{ fontFamily: LUXE, color: featured ? "rgba(255,250,246,0.45)" : "rgba(30,15,10,0.45)" }}>
-                No contract · Cancel anytime
-              </p>
-            </article>
-          );
-        })}
+              {plan.id === "single" ? "Choose single-image posts" : "Choose carousel slide posts"} <ArrowRight className="h-4 w-4" />
+            </a>
+          </article>
+        ))}
       </div>
 
-      <div className="mx-auto mt-10 max-w-4xl rounded-[30px] p-8 md:p-10" style={card}>
-        <h3 className="text-center text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontSize: "0.85rem", letterSpacing: "0.18em", fontWeight: 600 }}>
-          Included in both plans
-        </h3>
-        <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+      <div className="mx-auto mt-6 max-w-5xl rounded-[28px] p-8 md:p-10" style={card}>
+        <h3 className="text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontSize: "0.95rem", letterSpacing: "0.14em", fontWeight: 600 }}>Included in both plans</h3>
+        <ul className="mt-5 grid gap-3 sm:grid-cols-2">
           {INCLUDED_IN_BOTH.map((t) => (
             <li key={t} className="flex gap-3 text-[var(--ink)]/78 leading-6" style={{ fontFamily: BODY, fontSize: "0.92rem" }}>
               <CheckDot />
@@ -1136,40 +846,37 @@ export function LaunchPlans() {
             </li>
           ))}
         </ul>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        <div className="mt-7 grid gap-5 border-t pt-7 sm:grid-cols-2" style={{ borderColor: "color-mix(in oklab, var(--gold) 28%, transparent)" }}>
           {[
-            { title: "Your Dollhouse CRM account", copy: "Keep inquiries, messages, follow-up, and appointments organized in one place." },
-            { title: "Private 1-on-1 kickoff call", copy: "Discuss your services, ideal clients, preferred styles, and setup questions." },
+            { title: "Your Dollhouse CRM account", copy: "Keep inquiries, messages, follow-up, and appointments organized in one place.", icon: MessageSquare },
+            { title: "Private 1-on-1 kickoff call", copy: "Discuss your services, ideal clients, preferred styles, and setup questions.", icon: CalendarCheck },
           ].map((b) => (
-            <div key={b.title} className="rounded-2xl p-6 text-center" style={{ background: "rgba(255,255,255,0.7)", border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}>
-              <p className="text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Included bonus</p>
-              <h4 className="mt-2 italic text-[var(--rose)]" style={{ fontFamily: DISPLAY, fontSize: "1.4rem" }}>{b.title}</h4>
-              <p className="mt-2 text-[var(--ink)]/60 leading-6" style={{ fontFamily: BODY, fontSize: "0.88rem" }}>{b.copy}</p>
+            <div key={b.title}>
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl" style={{ background: "color-mix(in oklab, var(--gold) 20%, transparent)", color: "var(--rose)" }}>
+                <b.icon className="h-5 w-5" strokeWidth={1.6} />
+              </span>
+              <p className="mt-3 text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Included bonus</p>
+              <h4 className="mt-1 font-semibold text-[var(--ink)]" style={{ fontFamily: BODY, fontSize: "1rem" }}>{b.title}</h4>
+              <p className="mt-1 text-[var(--ink)]/60 leading-6" style={{ fontFamily: BODY, fontSize: "0.88rem" }}>{b.copy}</p>
             </div>
           ))}
         </div>
-        <p className="mt-6 text-center text-[var(--ink)]/62 leading-6" style={{ fontFamily: BODY, fontSize: "0.88rem" }}>
-          Want another platform? LinkedIn and other supported platforms can be added for ${ADDON_PLATFORM_PRICE}/month per platform.
-        </p>
         {SHOW_VALUE_STACK && <ValueStack />}
-        <p className="mt-4 text-center text-[var(--ink)]/45 leading-6" style={{ fontFamily: BODY, fontSize: "0.78rem" }}>
-          Your selected plan is billed monthly until canceled. Optional upgrades and additional usage fees require your approval. Cancel before your next renewal to avoid the next monthly charge. All prices in USD.
-        </p>
       </div>
 
-      {/* Guarantee */}
-      <div className="mx-auto mt-10 flex max-w-4xl flex-col items-center gap-5 rounded-[30px] p-8 text-center md:flex-row md:text-left" style={{ background: "color-mix(in oklab, var(--gold) 13%, transparent)", border: "1px solid color-mix(in oklab, var(--gold) 38%, transparent)" }}>
-        <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full" style={{ background: "var(--ink)", color: "var(--gold)" }}>
-          <ShieldCheck className="h-7 w-7" strokeWidth={1.5} />
-        </span>
+      <div className="mx-auto mt-6 flex max-w-5xl items-center gap-5 rounded-[24px] px-7 py-6" style={{ background: "color-mix(in oklab, var(--gold) 13%, transparent)", border: "1px solid color-mix(in oklab, var(--gold) 38%, transparent)" }}>
+        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-[var(--gold)]" style={{ background: "var(--ink)", fontFamily: DISPLAY, fontSize: "1.8rem" }}>{GUARANTEE_DAYS}</span>
         <div>
-          <h3 className="italic text-[var(--ink)]" style={{ fontFamily: DISPLAY, fontSize: "1.8rem" }}>Try it risk-free for {GUARANTEE_DAYS} days</h3>
-          <p className="mt-1 text-[var(--ink)]/65 leading-7" style={{ fontFamily: BODY, fontSize: "0.95rem" }}>
-            If you are not satisfied, contact us within your first {GUARANTEE_DAYS} days for a full refund. No long-term contract, and you can cancel anytime.{" "}
-            <a href="/refund-policy" className="text-[var(--rose)] underline underline-offset-4">Read the refund policy</a>.
+          <h3 className="text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontSize: "1rem", letterSpacing: "0.1em", fontWeight: 600 }}>Your {GUARANTEE_DAYS}-day money-back guarantee</h3>
+          <p className="mt-1 text-[var(--ink)]/65 leading-6" style={{ fontFamily: BODY, fontSize: "0.92rem" }}>
+            If you are not satisfied, contact us within your first {GUARANTEE_DAYS} days for a full refund. No long-term contract. Cancel anytime.
           </p>
         </div>
       </div>
+
+      <p className="mx-auto mt-6 max-w-3xl text-center text-[var(--ink)]/50 leading-6" style={{ fontFamily: BODY, fontSize: "0.8rem" }}>
+        Your selected plan is billed monthly until canceled. Optional upgrades and additional usage fees require your approval. Cancel before your next renewal to avoid the next monthly charge. All prices in USD.
+      </p>
     </section>
   );
 }
@@ -1198,75 +905,7 @@ export function LaunchAfterPurchase() {
   );
 }
 
-/* ─── Video (shows only when an embed URL is set) ─────── */
-export function LaunchVideo() {
-  if (!HERO_VIDEO_EMBED_URL) return null;
-  return (
-    <section id="video" className="scroll-mt-32 px-6 py-16 md:py-20 bg-[var(--cream)]">
-      <SectionHead eyebrow="See how it works" title="A quick walkthrough" />
-      <div className="mx-auto mt-10 aspect-video max-w-4xl overflow-hidden rounded-[28px]" style={{ ...card, padding: 0 }}>
-        <iframe src={HERO_VIDEO_EMBED_URL} title="Dollhouse Launch video presentation" className="h-full w-full" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen loading="lazy" />
-      </div>
-    </section>
-  );
-}
-
-/* ─── Who it's for ────────────────────────────────────── */
-const WHO = [
-  "Contractors & renovators", "Roofers", "Plumbers", "HVAC", "Electricians", "Landscaping & lawn care",
-  "Cleaning services", "Painters", "Pest control", "Pressure washing", "Movers", "Handyman services",
-  "Salons & spas", "Clinics & practitioners", "Fitness studios", "Photographers", "Realtors",
-];
-
-export function LaunchWhoFor() {
-  return (
-    <section className="py-24 md:py-28 px-6 bg-[var(--cream)]">
-      <SectionHead eyebrow="Who it is for" title="Built for home service businesses" sub="Contractors, cleaners, landscapers and every trade that books estimates from social media. Other local, appointment-based businesses are welcome too." />
-      <div className="mx-auto mt-10 flex max-w-4xl flex-wrap justify-center gap-3" data-stagger>
-        {WHO.map((w) => (
-          <span key={w} className="rounded-full px-5 py-2.5 text-[var(--ink)]/80" style={{ fontFamily: BODY, fontSize: "0.9rem", background: "rgba(255,250,246,0.9)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)" }}>
-            {w}
-          </span>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-/* ─── Founder ─────────────────────────────────────────── */
-export function LaunchFounder() {
-  return (
-    <section id="about" className="scroll-mt-32 py-24 md:py-32 px-6" style={{ background: "linear-gradient(180deg, var(--cream) 0%, #f8e9e5 100%)" }}>
-      <div className="mx-auto grid max-w-5xl items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-        <div className="mx-auto w-full max-w-sm">
-          <div className="relative overflow-hidden" style={{ borderRadius: "30px", border: "2px solid color-mix(in oklab, var(--gold) 40%, transparent)", boxShadow: "0 20px 50px -15px rgba(160,110,95,0.35)", aspectRatio: "3/4" }}>
-            <img src={mandyPhoto} alt="Mandy Fortune, founder of The Dollhouse Brand Studio" loading="lazy" className="h-full w-full object-cover" style={{ objectPosition: "center top" }} />
-          </div>
-        </div>
-        <div className="text-center lg:text-left">
-          <Eyebrow>Meet your founder</Eyebrow>
-          <h2 className="mt-4 italic text-[var(--ink)]" style={{ fontFamily: DISPLAY, fontSize: "clamp(2.4rem, 5vw, 3.8rem)", lineHeight: 1.05 }}>
-            Hi, I'm Mandy.
-          </h2>
-          <p className="mt-2 text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>
-            Social media strategist · Brand designer · Greater Toronto Area
-          </p>
-          <p className="mt-5 text-[var(--ink)]/75 leading-8" style={{ fontFamily: BODY }}>
-            I have spent 11+ years in graphic and product design, building brands for companies, creators and entrepreneurs. My work has been recognized by BuzzFeed and HuffPost.
-          </p>
-          <p className="mt-4 text-[var(--ink)]/75 leading-8" style={{ fontFamily: BODY }}>
-            I built Dollhouse Launch because I kept seeing talented local business owners who were invisible online. Not because they were not good enough, but because they were too busy doing the work to show up consistently. This system exists so you do not have to choose.
-          </p>
-          <p className="mt-6 italic text-[var(--rose)]" style={{ fontFamily: DISPLAY, fontSize: "1.7rem" }}>
-            You run your business. We'll handle the marketing.
-          </p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── FAQ ─────────────────────────────────────────────── */
+/* ─── Founder + FAQ ───────────────────────────────────── */
 const FAQS = [
   {
     q: "Exactly what content is included each month?",
@@ -1320,18 +959,34 @@ const FAQS = [
 
 export function LaunchFaq() {
   return (
-    <section id="faq" className="scroll-mt-32 py-24 md:py-32 px-6 bg-[var(--cream)]">
-      <SectionHead eyebrow="FAQ" title="Questions, answered" />
-      <div className="mx-auto mt-12 grid max-w-3xl gap-3">
-        {FAQS.map((f) => (
-          <details key={f.q} className="dh-faq rounded-2xl px-6 py-5" style={card}>
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[var(--ink)]" style={{ fontFamily: DISPLAY, fontSize: "1.25rem", fontWeight: 500 }}>
-              {f.q}
-              <ChevronDown className="dh-faq-chevron h-5 w-5 shrink-0 text-[var(--gold)]" />
-            </summary>
-            <p className="mt-3 text-[var(--ink)]/65 leading-7" style={{ fontFamily: BODY, fontSize: "0.95rem" }}>{f.a}</p>
-          </details>
-        ))}
+    <section id="faq" className="scroll-mt-24 py-24 md:py-28 px-6 bg-[var(--cream)]">
+      <div className="mx-auto grid max-w-6xl items-start gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+        <div id="about" className="overflow-hidden rounded-[28px]" style={card}>
+          <img src={mandyPhoto} alt="Mandy Fortune, founder of The Dollhouse Brand Studio" loading="lazy" className="aspect-[4/3] w-full object-cover" style={{ objectPosition: "center top" }} />
+          <div className="p-7">
+            <p className="text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Founder · Brand designer · Social media strategist</p>
+            <h2 className="mt-2 italic text-[var(--ink)]" style={{ fontFamily: DISPLAY, fontSize: "2.2rem", lineHeight: 1.05 }}>Meet Mandy Fortune</h2>
+            <p className="mt-3 text-[var(--ink)]/70 leading-7" style={{ fontFamily: BODY, fontSize: "0.93rem" }}>
+              I have spent 11+ years in graphic and product design, building brands for companies, creators and entrepreneurs. I built Dollhouse Launch because I kept seeing talented local business owners who were invisible online, not because they were not good enough, but because they were too busy doing the work to show up consistently.
+            </p>
+            <p className="mt-4 italic text-[var(--rose)]" style={{ fontFamily: DISPLAY, fontSize: "1.4rem" }}>You run your business. We'll handle the marketing.</p>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-[var(--ink)]" style={{ fontFamily: DISPLAY, fontSize: "clamp(2.4rem, 5vw, 3.4rem)", fontWeight: 500 }}>FAQ</h2>
+          <div className="mt-5 grid gap-3">
+            {FAQS.map((f) => (
+              <details key={f.q} className="dh-faq rounded-2xl px-5 py-4" style={card}>
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[var(--ink)]" style={{ fontFamily: BODY, fontSize: "0.95rem", fontWeight: 600 }}>
+                  {f.q}
+                  <ChevronDown className="dh-faq-chevron h-4 w-4 shrink-0 text-[var(--gold)]" />
+                </summary>
+                <p className="mt-3 text-[var(--ink)]/65 leading-7" style={{ fontFamily: BODY, fontSize: "0.92rem" }}>{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -1340,73 +995,20 @@ export function LaunchFaq() {
 /* ─── Final CTA ───────────────────────────────────────── */
 export function LaunchFinalCta() {
   return (
-    <section className="relative overflow-hidden px-6 py-24 md:py-32 text-center" style={{ background: "linear-gradient(135deg, #2a1d1a 0%, #170e0c 100%)" }}>
-      <div aria-hidden className="absolute left-1/2 top-0 h-80 w-[40rem] -translate-x-1/2 rounded-full" style={{ background: "radial-gradient(circle, rgba(200,164,100,0.25), transparent 65%)" }} />
-      <div className="relative">
-        <Eyebrow light>Dollhouse Launch</Eyebrow>
-        <h2 className="mx-auto mt-5 max-w-3xl text-[var(--cream)]" style={{ fontFamily: DISPLAY, fontWeight: 400, fontSize: "clamp(2.4rem, 6vw, 4.2rem)", lineHeight: 1.04 }}>
+    <section className="px-6 pb-16 bg-[var(--cream)]">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 rounded-[28px] px-8 py-9 text-center md:flex-row md:text-left" style={{ background: "linear-gradient(135deg, #2a1d1a 0%, #170e0c 100%)", border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)" }}>
+        <h2 className="max-w-2xl text-[var(--cream)]" style={{ fontFamily: DISPLAY, fontWeight: 400, fontSize: "clamp(1.8rem, 4vw, 2.8rem)", lineHeight: 1.08 }}>
           Ready to turn your social media into{" "}
           <span className="italic text-[var(--gold)]">booked estimates?</span>
         </h2>
-        <p className="mx-auto mt-5 max-w-xl text-[var(--cream)]/60 leading-8" style={{ fontFamily: BODY }}>
-          Start today for ${PRICE_SINGLE} a month. No contract, and a full {GUARANTEE_DAYS}-day money-back guarantee.
-        </p>
-        <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <a
-            href={checkoutHref("single")}
-            className="inline-flex items-center justify-center gap-2 rounded-full px-10 py-[18px] text-[12px] tracking-luxe uppercase transition-transform hover:-translate-y-0.5"
-            style={{ fontFamily: LUXE, fontWeight: 600, background: "var(--gold)", color: "var(--ink)", boxShadow: "0 24px 50px -18px rgba(200,164,100,0.55)" }}
-          >
-            Get Started <ArrowRight className="h-4 w-4" />
-          </a>
-        </div>
-        <p className="mt-6 inline-flex items-center gap-2 text-[var(--cream)]/40 text-[10px] tracking-[0.16em] uppercase" style={{ fontFamily: LUXE }}>
-          <Sparkles className="h-3 w-3" /> Secure checkout · Instant account access
-        </p>
-      </div>
-    </section>
-  );
-}
-
-/* ─── Mobile sticky checkout bar ──────────────────────── */
-export function LaunchStickyBar() {
-  const [show, setShow] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const plans = document.getElementById("plans");
-      const pastHero = window.scrollY > 560;
-      const r = plans?.getBoundingClientRect();
-      const inPlans = r ? r.top < window.innerHeight * 0.6 && r.bottom > 0 : false;
-      setShow(pastHero && !inPlans);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  return (
-    <div
-      className="fixed inset-x-0 bottom-0 z-50 md:hidden transition-transform duration-500"
-      style={{
-        transform: show ? "translateY(0)" : "translateY(110%)",
-        background: "color-mix(in oklab, var(--cream) 95%, transparent)",
-        backdropFilter: "blur(14px)",
-        WebkitBackdropFilter: "blur(14px)",
-        borderTop: "1px solid color-mix(in oklab, var(--gold) 30%, transparent)",
-        paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom))",
-      }}
-    >
-      <div className="flex items-center justify-between gap-3 pl-5 pr-24 pt-3">
-        <p className="text-[var(--ink)]/70 leading-tight" style={{ fontFamily: BODY, fontSize: "0.8rem" }}>
-          Social media from <strong className="text-[var(--ink)]">${PRICE_SINGLE}/mo</strong>
-          <br />
-          <span className="text-[var(--ink)]/50">{GUARANTEE_DAYS}-day money-back guarantee</span>
-        </p>
-        <a href={checkoutHref("single")} className="btn-ink !py-3 !px-5 !text-[10px] shrink-0">
-          Get Started
+        <a
+          href={checkoutHref("single")}
+          className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full px-9 py-[17px] text-[12px] tracking-luxe uppercase transition-transform hover:-translate-y-0.5"
+          style={{ fontFamily: LUXE, fontWeight: 600, background: "var(--gold)", color: "var(--ink)" }}
+        >
+          Get Started Now <ArrowRight className="h-4 w-4" />
         </a>
       </div>
-    </div>
+    </section>
   );
 }
