@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import {
   ArrowRight,
+  Tag,
+  ShoppingBag,
+  ListChecks,
+  HelpCircle,
   Calculator,
   CalendarCheck,
   CreditCard,
@@ -1322,5 +1326,173 @@ export function LaunchFinalCta() {
         </a>
       </div>
     </section>
+  );
+}
+
+/* ─── Sticky bottom bar (desktop strip + mobile tab bar) ─ */
+const TAB_ITEMS = [
+  { id: "whats-included", label: "Included", icon: Sparkles },
+  { id: "how-it-works", label: "Steps", icon: ListChecks },
+  { id: "plans", label: "Plans", icon: Tag },
+  { id: "faq", label: "FAQ", icon: HelpCircle },
+] as const;
+
+export function LaunchStickyBar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
+  const [active, setActive] = useState<string>("");
+
+  useEffect(() => {
+    try {
+      if (sessionStorage.getItem("launch-bar-dismissed") === "1") setDismissed(true);
+    } catch {
+      /* storage can be unavailable; the bar just shows */
+    }
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 520);
+      const mid = window.innerHeight * 0.4;
+      let current = "";
+      for (const t of TAB_ITEMS) {
+        const el = document.getElementById(t.id);
+        if (!el) continue;
+        const r = el.getBoundingClientRect();
+        if (r.top <= mid && r.bottom > mid) current = t.id;
+      }
+      setActive(current);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const dismiss = () => {
+    setDismissed(true);
+    try {
+      sessionStorage.setItem("launch-bar-dismissed", "1");
+    } catch {
+      /* ignore */
+    }
+  };
+
+  const show = scrolled && !dismissed;
+  const gold = "var(--gold)";
+
+  // On phones, lift the chat bubble above the tab bar while the bar is showing.
+  useEffect(() => {
+    if (!show) return;
+    let tries = 0;
+    let styleEl: HTMLStyleElement | null = null;
+    const attach = () => {
+      const root = document.querySelector("chat-widget")?.shadowRoot;
+      if (root) {
+        styleEl = document.createElement("style");
+        styleEl.textContent = "@media (max-width: 767px) { #lc_text-widget, #lc_text-widget--btn { bottom: 96px !important; } }";
+        root.appendChild(styleEl);
+        return true;
+      }
+      return false;
+    };
+    if (attach()) return () => styleEl?.remove();
+    const id = window.setInterval(() => {
+      tries += 1;
+      if (attach() || tries > 40) window.clearInterval(id);
+    }, 500);
+    return () => {
+      window.clearInterval(id);
+      styleEl?.remove();
+    };
+  }, [show]);
+
+  return (
+    <>
+      {/* Desktop strip */}
+      <div
+        role="region"
+        aria-label="Get started"
+        className="fixed bottom-6 left-1/2 z-[60] hidden items-center border transition-all duration-500 md:flex"
+        style={{
+          transform: `translateX(-50%) translateY(${show ? "0" : "140%"})`,
+          opacity: show ? 1 : 0,
+          pointerEvents: show ? "auto" : "none",
+          background: "rgba(26,16,14,0.96)",
+          borderColor: gold,
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
+          boxShadow: "0 20px 44px -12px rgba(0,0,0,0.45)",
+        }}
+      >
+        <span aria-hidden className="mx-5 h-2 w-2 shrink-0" style={{ background: gold }} />
+        <p className="py-4 pr-6 text-[10.5px] uppercase tracking-[0.18em] text-[var(--cream)]/90" style={{ fontFamily: LUXE, fontWeight: 500 }}>
+          Ready to book more appointments?{" "}
+          <a href={checkoutHref("single")} className="font-semibold underline underline-offset-4" style={{ color: gold }}>
+            Get started from ${PRICE_SINGLE}/mo.
+          </a>
+        </p>
+        <button type="button" aria-label="Dismiss" onClick={dismiss} className="flex self-stretch items-center border-l px-5 text-[var(--cream)]/60 transition-colors hover:text-[var(--cream)]" style={{ borderColor: "color-mix(in oklab, var(--gold) 35%, transparent)" }}>
+          <X className="h-4 w-4" />
+        </button>
+      </div>
+
+      {/* Desktop back to top */}
+      <button
+        type="button"
+        aria-label="Back to top"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        className="fixed bottom-6 right-24 z-[60] hidden h-12 w-12 items-center justify-center rounded-full border transition-all duration-500 md:flex"
+        style={{
+          background: "#1a100e",
+          borderColor: "color-mix(in oklab, var(--gold) 55%, transparent)",
+          boxShadow: "0 14px 30px -12px rgba(0,0,0,0.5)",
+          opacity: scrolled ? 1 : 0,
+          transform: scrolled ? "translateY(0)" : "translateY(16px)",
+          pointerEvents: scrolled ? "auto" : "none",
+        }}
+      >
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-4 w-4" style={{ color: gold }}>
+          <path d="M3 10.5L8 5.5L13 10.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+
+      {/* Mobile tab bar */}
+      <nav
+        aria-label="Quick navigation"
+        className="fixed inset-x-0 bottom-0 z-[60] md:hidden transition-transform duration-500"
+        style={{
+          transform: show ? "translateY(0)" : "translateY(110%)",
+          background: "rgba(26,16,14,0.97)",
+          backdropFilter: "blur(14px)",
+          WebkitBackdropFilter: "blur(14px)",
+          borderTop: "1px solid color-mix(in oklab, var(--gold) 55%, transparent)",
+          paddingBottom: "env(safe-area-inset-bottom)",
+        }}
+      >
+        <button type="button" aria-label="Dismiss" onClick={dismiss} className="absolute -top-3.5 right-3 flex h-7 w-7 items-center justify-center rounded-full border text-[var(--cream)]/80" style={{ background: "#1a100e", borderColor: "color-mix(in oklab, var(--gold) 55%, transparent)" }}>
+          <X className="h-3.5 w-3.5" />
+        </button>
+        <div className="grid grid-cols-5">
+          {TAB_ITEMS.map(({ id, label, icon: Icon }) => {
+            const on = active === id;
+            return (
+              <a
+                key={id}
+                href={`#${id}`}
+                className="flex flex-col items-center gap-1.5 px-1 pb-3 pt-3.5 transition-colors"
+                style={{ color: on ? gold : "rgba(255,250,246,0.62)" }}
+              >
+                <Icon className="h-[22px] w-[22px]" strokeWidth={1.5} />
+                <span className="whitespace-nowrap text-[9px] uppercase tracking-[0.1em]" style={{ fontFamily: LUXE, fontWeight: 600 }}>{label}</span>
+              </a>
+            );
+          })}
+          <a href={checkoutHref("single")} className="flex flex-col items-center gap-1.5 px-1 pb-3 pt-3.5" style={{ color: gold }}>
+            <ShoppingBag className="h-[22px] w-[22px]" strokeWidth={1.5} />
+            <span className="whitespace-nowrap text-[9px] uppercase tracking-[0.06em]" style={{ fontFamily: LUXE, fontWeight: 700 }}>Get Started</span>
+          </a>
+        </div>
+      </nav>
+    </>
   );
 }

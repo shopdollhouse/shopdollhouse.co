@@ -12,6 +12,7 @@ import {
   LaunchAfterPurchase,
   LaunchFaq,
   LaunchFinalCta,
+  LaunchStickyBar,
 } from "@/components/LaunchSections";
 
 export const Route = createFileRoute("/")({ component: Index });
@@ -26,7 +27,7 @@ function Index() {
   useScrollReveal();
 
   return (
-    <main className="lux bg-[var(--blush)] text-[var(--ink)]">
+    <main className="lux bg-[var(--blush)] text-[var(--ink)] pb-[84px] md:pb-0">
       <LaunchNav />
       <LaunchHeroBlock />
       <LaunchHowItWorks />
@@ -37,6 +38,7 @@ function Index() {
       <LaunchFaq />
       <LaunchFinalCta />
       <SiteFooter />
+      <LaunchStickyBar />
     </main>
   );
 }
