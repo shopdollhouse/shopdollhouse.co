@@ -530,7 +530,7 @@ export function LaunchHowItWorks() {
           const Icon = st.icon;
           const Art = st.art;
           return (
-            <article key={st.title} className="group flex flex-col overflow-hidden rounded-[8px] transition-all duration-500 hover:-translate-y-1.5" style={{ ...card, boxShadow: "0 40px 80px -44px rgba(110,60,50,0.5)" }}>
+            <article key={st.title} className="group flex flex-col overflow-hidden rounded-[8px] transition-all duration-500" style={{ ...card, boxShadow: "0 40px 80px -44px rgba(110,60,50,0.5)" }}>
               <div className="relative h-[220px] overflow-hidden" style={{ background: "linear-gradient(160deg, #fbeee9 0%, #f3d9d3 100%)" }}>
                 <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.06]">
                   <Art />
@@ -843,7 +843,7 @@ function ExampleTile({ item, format, onOpen }: { item: ExampleItem; format: "sin
   );
 
   return format === "carousel" ? (
-    <button type="button" onClick={onOpen} aria-label={`Open the 5-slide ${item.style.name} carousel`} className="group block w-full overflow-hidden rounded-[8px] text-left transition-transform duration-500 hover:-translate-y-1" style={card}>
+    <button type="button" onClick={onOpen} aria-label={`Open the 5-slide ${item.style.name} carousel`} className="group block w-full overflow-hidden rounded-[8px] text-left transition-transform duration-500" style={card}>
       {inner}
     </button>
   ) : (
@@ -1015,7 +1015,7 @@ export function LaunchPlans() {
             return (
               <article
                 key={plan.id}
-                className="group flex flex-col overflow-hidden rounded-[8px] transition-all duration-500 hover:-translate-y-1.5"
+                className="group flex flex-col overflow-hidden rounded-[8px] transition-all duration-500"
                 style={{ background: "linear-gradient(180deg, #fffaf6 0%, #fbeee9 100%)", border: "1px solid color-mix(in oklab, var(--gold) 70%, transparent)", boxShadow: "0 50px 100px -40px rgba(0,0,0,0.75), 0 0 0 6px rgba(198,178,130,0.07)" }}
               >
                 <div className="relative h-[250px] overflow-hidden" style={{ background: "radial-gradient(ellipse at 50% 40%, #fff6f2 0%, #f6dfd9 70%, #f0d1ca 100%)" }}>
@@ -1033,7 +1033,7 @@ export function LaunchPlans() {
                   <p className="mt-1.5 text-[var(--ink)]/55" style={{ fontFamily: BODY, fontSize: "0.9rem" }}>{plan.blurb}</p>
                   <a
                     href={checkoutHref(plan.id)}
-                    className="mt-auto inline-flex items-center justify-center gap-2 px-8 py-[17px] text-[11px] tracking-[0.26em] uppercase transition-transform hover:-translate-y-0.5"
+                    className="mt-auto inline-flex items-center justify-center gap-2 px-8 py-[17px] text-[11px] tracking-[0.26em] uppercase transition-transform"
                     style={{ marginTop: "1.75rem", fontFamily: LUXE, fontWeight: 600, borderRadius: "2px", background: gold ? "var(--gold)" : "#1f110b", color: gold ? "#130a06" : "var(--cream)", border: "1px solid var(--gold)", boxShadow: "0 22px 44px -18px rgba(31,17,11,0.6)" }}
                   >
                     {plan.id === "single" ? "Choose single-image posts" : "Choose carousel slide posts"} <ArrowRight className="h-4 w-4" />
@@ -1108,7 +1108,7 @@ export function LaunchAfterPurchase() {
           const Icon = a.icon;
           const Art = a.art;
           return (
-            <article key={a.title} className="group flex flex-col overflow-hidden rounded-[8px] transition-all duration-500 hover:-translate-y-1.5" style={{ ...card, boxShadow: "0 40px 80px -44px rgba(110,60,50,0.5)" }}>
+            <article key={a.title} className="group flex flex-col overflow-hidden rounded-[8px] transition-all duration-500" style={{ ...card, boxShadow: "0 40px 80px -44px rgba(110,60,50,0.5)" }}>
               <div className="relative h-[220px] overflow-hidden" style={{ background: "linear-gradient(160deg, #fbeee9 0%, #f3d9d3 100%)" }}>
                 <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.06]">
                   <Art />
@@ -1242,7 +1242,7 @@ export function LaunchFinalCta() {
         </h2>
         <a
           href={checkoutHref("single")}
-          className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full px-9 py-[17px] text-[12px] tracking-luxe uppercase transition-transform hover:-translate-y-0.5"
+          className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full px-9 py-[17px] text-[12px] tracking-luxe uppercase transition-transform"
           style={{ fontFamily: LUXE, fontWeight: 600, background: "var(--gold)", color: "var(--ink)" }}
         >
           Get Started Now <ArrowRight className="h-4 w-4" />

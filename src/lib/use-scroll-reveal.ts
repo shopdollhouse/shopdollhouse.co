@@ -69,7 +69,7 @@ export function useScrollReveal() {
     // Gentle 3D tilt on cards as the cursor moves over them.
     const MAX_TILT = 4;
     const onTilt = (e: MouseEvent) => {
-      const card = (e.target as Element | null)?.closest?.("main article") as HTMLElement | null;
+      const card = (e.target as Element | null)?.closest?.("main:not(.lux) article") as HTMLElement | null;
       if (!card) return;
       const r = card.getBoundingClientRect();
       const px = (e.clientX - r.left) / r.width - 0.5;
@@ -77,7 +77,7 @@ export function useScrollReveal() {
       card.style.transform = `perspective(900px) rotateX(${(-py * MAX_TILT).toFixed(2)}deg) rotateY(${(px * MAX_TILT).toFixed(2)}deg) translateY(-5px)`;
     };
     const onTiltOut = (e: MouseEvent) => {
-      const card = (e.target as Element | null)?.closest?.("main article") as HTMLElement | null;
+      const card = (e.target as Element | null)?.closest?.("main:not(.lux) article") as HTMLElement | null;
       if (!card) return;
       const to = e.relatedTarget as Element | null;
       if (to && card.contains(to)) return;

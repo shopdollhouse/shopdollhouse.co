@@ -538,3 +538,7 @@ main article:hover {
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
+
+/* Launch page: no hover lift or tilt on cards or buttons (it jittered at the edges) */
+main.lux article, main.lux article:hover { transform: none !important; }
+main.lux .btn-ink:hover, main.lux .btn-ghost:hover { transform: none; }
