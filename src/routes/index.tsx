@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { usePageMeta } from "@/lib/use-page-meta";
+import { CheckoutProvider } from "@/components/CheckoutModal";
 import { SiteFooter } from "@/components/SiteFooter";
 import { useScrollReveal } from "@/lib/use-scroll-reveal";
 import {
@@ -27,6 +28,7 @@ function Index() {
   useScrollReveal();
 
   return (
+    <CheckoutProvider>
     <main className="lux bg-[var(--blush)] text-[var(--ink)] pb-[84px] md:pb-0">
       <LaunchNav />
       <LaunchHeroBlock />
@@ -40,5 +42,6 @@ function Index() {
       <SiteFooter />
       <LaunchStickyBar />
     </main>
+    </CheckoutProvider>
   );
 }

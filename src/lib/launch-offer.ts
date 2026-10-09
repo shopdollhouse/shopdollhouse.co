@@ -94,3 +94,11 @@ export const VALUE_STACK_TOTAL = "$7,244";
 export const SERVICE_VALUES = ["$1,500/mo value", "$1,500 value", "$750 value", "$1,200/mo value"];
 /** Value tags shown on the two included bonuses, in order. */
 export const BONUS_VALUES = ["$497/mo value", "$297 value"];
+
+/**
+ * Optional lead webhook (for example a GoHighLevel inbound webhook URL).
+ * When set, the sign-up step posts the name, email, phone and chosen plan here
+ * before the visitor reaches payment, so abandoned checkouts become leads.
+ * Leave empty to send nothing anywhere.
+ */
+export const LEAD_WEBHOOK_URL = "";

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useCheckout } from "@/components/CheckoutModal";
 import {
   ArrowRight,
   Tag,
@@ -126,8 +127,9 @@ function GetStarted({
   className?: string;
   cart?: boolean;
 }) {
+  const { open } = useCheckout();
   return (
-    <a href={checkoutHref(plan)} className={`btn-ink ${className}`}>
+    <a href={checkoutHref(plan)} onClick={(e) => { e.preventDefault(); open(plan); }} className={`btn-ink ${className}`}>
       {label}
       {cart ? <ShoppingBag className="h-4 w-4" /> : <ArrowRight className="h-4 w-4" />}
     </a>
@@ -944,6 +946,7 @@ function ValueStack() {
 }
 
 export function LaunchPlans() {
+  const { open } = useCheckout();
   const arts = { single: MockPlanSingle, carousel: MockPlanCarousel } as const;
   return (
     <section
@@ -984,6 +987,7 @@ export function LaunchPlans() {
                   <p className="mt-1.5 text-[var(--ink)]/55" style={{ fontFamily: BODY, fontSize: "0.9rem" }}>{plan.blurb}</p>
                   <a
                     href={checkoutHref(plan.id)}
+                    onClick={(e) => { e.preventDefault(); open(plan.id); }}
                     className="mt-auto inline-flex items-center justify-center gap-2 px-8 py-[17px] text-[11px] tracking-[0.26em] uppercase transition-transform"
                     style={{ marginTop: "1.75rem", fontFamily: LUXE, fontWeight: 600, borderRadius: "2px", background: gold ? "var(--gold)" : "#1f110b", color: gold ? "#130a06" : "var(--cream)", border: "1px solid var(--gold)", boxShadow: "0 22px 44px -18px rgba(31,17,11,0.6)" }}
                   >
@@ -1184,6 +1188,7 @@ export function LaunchFaq() {
 
 /* ─── Final CTA ───────────────────────────────────────── */
 export function LaunchFinalCta() {
+  const { open } = useCheckout();
   return (
     <section className="px-6 pb-16 bg-[var(--cream)]">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 rounded-[8px] px-8 py-9 text-center md:flex-row md:text-left" style={{ background: "linear-gradient(135deg, #1f110b 0%, #0f0705 100%)", border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)" }}>
@@ -1193,6 +1198,7 @@ export function LaunchFinalCta() {
         </h2>
         <a
           href={checkoutHref("single")}
+          onClick={(e) => { e.preventDefault(); open("single"); }}
           className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full px-9 py-[17px] text-[12px] tracking-luxe uppercase transition-transform"
           style={{ fontFamily: LUXE, fontWeight: 600, background: "var(--gold)", color: "var(--ink)" }}
         >
@@ -1212,6 +1218,7 @@ const TAB_ITEMS = [
 ] as const;
 
 export function LaunchStickyBar() {
+  const { open: openCheckout } = useCheckout();
   const [scrolled, setScrolled] = useState(false);
   const [dismissed, setDismissed] = useState(false);
   const [active, setActive] = useState<string>("");
@@ -1301,7 +1308,7 @@ export function LaunchStickyBar() {
         <span aria-hidden className="mx-5 h-2 w-2 shrink-0" style={{ background: gold }} />
         <p className="py-4 pr-6 text-[10.5px] uppercase tracking-[0.18em] text-[var(--cream)]/90" style={{ fontFamily: LUXE, fontWeight: 500 }}>
           Ready to book more appointments?{" "}
-          <a href={checkoutHref("single")} className="font-semibold underline underline-offset-4" style={{ color: gold }}>
+          <a href={checkoutHref("single")} onClick={(e) => { e.preventDefault(); openCheckout("single"); }} className="font-semibold underline underline-offset-4" style={{ color: gold }}>
             Get started from ${PRICE_SINGLE}/mo.
           </a>
         </p>
@@ -1361,7 +1368,7 @@ export function LaunchStickyBar() {
               </a>
             );
           })}
-          <a href={checkoutHref("single")} className="flex flex-col items-center gap-1.5 px-1 pb-3 pt-3.5" style={{ color: gold }}>
+          <a href={checkoutHref("single")} onClick={(e) => { e.preventDefault(); openCheckout("single"); }} className="flex flex-col items-center gap-1.5 px-1 pb-3 pt-3.5" style={{ color: gold }}>
             <ShoppingBag className="h-[22px] w-[22px]" strokeWidth={1.5} />
             <span className="whitespace-nowrap text-[9px] uppercase tracking-[0.06em]" style={{ fontFamily: LUXE, fontWeight: 700 }}>Get Started</span>
           </a>

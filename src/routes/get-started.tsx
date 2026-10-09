@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowLeft, Check, Lock, ShieldCheck } from "lucide-react";
 import archMark from "@/assets/arch-mark.svg";
@@ -40,6 +40,17 @@ function GetStartedPage() {
   const navigate = Route.useNavigate();
   const selected = LAUNCH_PLANS.find((p) => p.id === plan) ?? LAUNCH_PLANS[0];
   const link = ORDER_LINKS[selected.id];
+
+  // Details from the sign-up step (kept for this visit only, never put in the URL).
+  const [lead, setLead] = useState<{ firstName: string; lastName: string; email: string } | null>(null);
+  useEffect(() => {
+    try {
+      const raw = sessionStorage.getItem("launch-lead");
+      if (raw) setLead(JSON.parse(raw));
+    } catch {
+      /* ignore */
+    }
+  }, []);
 
   // Checkout pages should not show up in search results.
   useEffect(() => {
@@ -84,6 +95,15 @@ function GetStartedPage() {
           <p className="mt-4 max-w-md text-[var(--ink)]/65 leading-8" style={{ fontFamily: BODY }}>
             Pick your plan, check out securely, and get instant account access. Your first posts arrive within {FIRST_POSTS_DAYS} days.
           </p>
+
+          {lead && (
+            <div className="mt-6 flex items-start gap-3 rounded-2xl px-5 py-4" style={{ background: "color-mix(in oklab, var(--gold) 14%, transparent)", border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)" }}>
+              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full" style={{ background: "var(--gold)", color: "var(--ink)" }}><Check className="h-3.5 w-3.5" strokeWidth={3} /></span>
+              <p className="leading-6 text-[var(--ink)]/80" style={{ fontFamily: BODY, fontSize: "0.92rem" }}>
+                Welcome, <strong>{lead.firstName}</strong>. Your details are saved for this order ({lead.email}). Finish payment on the right to start.
+              </p>
+            </div>
+          )}
 
           {/* Plan selector */}
           <div className="mt-8 grid gap-3" role="radiogroup" aria-label="Choose your plan">
