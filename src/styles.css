@@ -549,9 +549,9 @@ main.lux .btn-ink:hover, main.lux .btn-ghost:hover { transform: none; }
 main.lux .btn-ink svg { color: var(--gold); }
 
 /* Deeper gold for text that sits on the pink and cream backgrounds (readable contrast) */
-.lux { --gold-deep: #7a6531; }
+.lux { --gold-deep: #9a7228; }
 .lux .gold-grad {
-  background: linear-gradient(100deg, #a08a52 0%, #7a6531 44%, #5f4e25 68%, #957f48 100%);
+  background: linear-gradient(100deg, #b8923f 0%, #9a7228 46%, #c19a4a 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
