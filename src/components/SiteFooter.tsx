@@ -19,7 +19,7 @@ export function SiteFooter() {
             <p className="text-[var(--gold)] font-semibold" style={{ fontFamily: "'Jost', sans-serif", fontSize: "8px", letterSpacing: "3px", textTransform: "uppercase", marginTop: "4px" }}>Brand Studio</p>
           </div>
           <p className="mt-5 max-w-sm text-[var(--ink)]/58 leading-7" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem" }}>
-            Dollhouse Launch: done-for-you social media, quote tools and automatic follow-up for appointment-based and service businesses.
+            Dollhouse Launch: done-for-you social media, quote tools and automatic follow-up for home service businesses.
           </p>
         </div>
 
