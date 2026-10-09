@@ -194,71 +194,146 @@ export function LaunchNav() {
 }
 
 /* ─── Hero ────────────────────────────────────────────── */
-function HeroVisual() {
+/* Animated story: timer ticks, messages arrive, estimate gets booked, loop. */
+const STORY_EVENTS = [700, 2000, 3300, 5200, 6200, 7500, 9300, 10600]; // step 1..8
+const STORY_LOOP_MS = 15500;
+
+function usePhoneStory() {
+  const [elapsed, setElapsed] = useState(0);
+  const [still, setStill] = useState(false);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setStill(true);
+      setElapsed(11000);
+      return;
+    }
+    const start = performance.now();
+    const id = window.setInterval(() => setElapsed((performance.now() - start) % STORY_LOOP_MS), 100);
+    return () => window.clearInterval(id);
+  }, []);
+
+  const step = STORY_EVENTS.filter((t) => elapsed >= t).length;
+  const secs = still ? 14 : Math.floor(elapsed / 1000);
+  return { step, secs };
+}
+
+function Bubble({ who, label, children }: { who: "them" | "us"; label: string; children: React.ReactNode }) {
+  const us = who === "us";
   return (
-    <div className="relative mx-auto w-full max-w-[330px] sm:max-w-[360px]" aria-hidden>
-      {/* soft glow */}
-      <div className="absolute -inset-10 rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(200,164,100,0.28), transparent 62%)" }} />
+    <div
+      className={`phone-pop max-w-[88%] rounded-[16px] px-3.5 py-2.5 ${us ? "" : "ml-auto"}`}
+      style={us ? { background: "rgba(198,178,130,0.12)", border: "1px solid rgba(198,178,130,0.3)" } : { background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)" }}
+    >
+      <p className="text-[7.5px] tracking-[0.26em] uppercase" style={{ fontFamily: LUXE, color: us ? "rgba(198,178,130,0.95)" : "rgba(255,255,255,0.45)" }}>{label}</p>
+      <p className="mt-1 leading-snug" style={{ fontFamily: BODY, fontSize: "0.78rem", color: "#f5efe6" }}>{children}</p>
+    </div>
+  );
+}
 
-      {/* phone */}
-      <div
-        className="relative mx-auto h-[610px] w-full overflow-hidden rounded-[52px]"
-        style={{ background: "#0a0a0a", border: "1px solid rgba(255,255,255,0.14)", boxShadow: "0 60px 100px -40px rgba(40,15,10,0.8), inset 0 0 0 1px rgba(198,178,130,0.1)" }}
-      >
-        {/* inner frame line */}
-        <div aria-hidden className="pointer-events-none absolute inset-[7px] rounded-[46px]" style={{ border: "1px solid rgba(255,255,255,0.07)" }} />
+function TypingDots() {
+  return (
+    <div className="phone-pop flex w-[62px] items-center gap-1.5 rounded-[16px] px-4 py-3.5" style={{ background: "rgba(198,178,130,0.12)", border: "1px solid rgba(198,178,130,0.3)" }}>
+      {[0, 1, 2].map((i) => (
+        <span key={i} className="phone-dot h-1.5 w-1.5 rounded-full" style={{ background: "#c6b282", animationDelay: `${i * 0.18}s` }} />
+      ))}
+    </div>
+  );
+}
 
-        {/* dynamic island + status bar */}
-        <div className="absolute left-1/2 top-3 z-20 h-[28px] w-[104px] -translate-x-1/2 rounded-full bg-black" />
-        <div className="absolute inset-x-0 top-[14px] z-10 flex items-center justify-between px-9" style={{ fontFamily: BODY, fontSize: "0.72rem", fontWeight: 600, color: "#f5efe6" }}>
-          <span>9:41</span>
-          <span className="flex items-center gap-1.5">
-            <svg width="16" height="10" viewBox="0 0 16 10" fill="currentColor"><rect x="0" y="6" width="2.6" height="4" rx="0.6" /><rect x="4.4" y="4" width="2.6" height="6" rx="0.6" /><rect x="8.8" y="2" width="2.6" height="8" rx="0.6" /><rect x="13.2" y="0" width="2.6" height="10" rx="0.6" /></svg>
-            <span>100%</span>
-            <svg width="20" height="10" viewBox="0 0 20 10" fill="none"><rect x="0.5" y="0.5" width="16" height="9" rx="2.4" stroke="currentColor" opacity="0.5" /><rect x="2" y="2" width="13" height="6" rx="1.4" fill="currentColor" /><rect x="17.5" y="3.2" width="1.6" height="3.6" rx="0.8" fill="currentColor" opacity="0.5" /></svg>
-          </span>
-        </div>
+function HeroVisual() {
+  const { step, secs } = usePhoneStory();
+  const typing = step === 2 || step === 5;
+  const booked = step >= 8;
+  const mm = String(Math.floor(secs / 60));
+  const ss = String(secs % 60).padStart(2, "0");
+  const metal = "linear-gradient(180deg, #6f6a62 0%, #2b2925 50%, #55514a 100%)";
 
-        {/* caller */}
-        <div className="flex flex-col items-center px-6 pt-[72px]">
-          <span
-            className="flex h-[64px] w-[64px] items-center justify-center rounded-full"
-            style={{ background: "radial-gradient(circle at 35% 30%, #3a332a, #151210)", border: "1px solid rgba(198,178,130,0.45)", color: "#f5efe6", fontFamily: HEAD, fontSize: "1.6rem", fontWeight: 300 }}
-          >
-            D
-          </span>
-          <p className="mt-4" style={{ fontFamily: HEAD, fontWeight: 400, fontSize: "1.35rem", color: "#f5efe6" }}>The Dollhouse AI</p>
-          <p className="mt-2 text-[10px] tracking-[0.3em] uppercase" style={{ fontFamily: LUXE, color: "#c6b282" }}>Replying now</p>
-          <p className="mt-2.5 flex items-center gap-2 text-[11px]" style={{ fontFamily: BODY, color: "rgba(198,178,130,0.85)", letterSpacing: "0.12em" }}>
-            <span className="h-1.5 w-1.5 rounded-full" style={{ background: "#c6b282" }} /> 0:08
-          </p>
-        </div>
+  return (
+    <div className="relative mx-auto w-full max-w-[300px] sm:max-w-[310px]" aria-hidden>
+      <div className="absolute -inset-12 rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(200,164,100,0.3), transparent 62%)" }} />
 
-        <div className="mt-6 h-px w-full" style={{ background: "rgba(255,255,255,0.08)" }} />
+      <div className="relative">
+        {/* side buttons */}
+        <span className="absolute -left-[3px] top-[96px] h-7 w-[4px] rounded-l-sm" style={{ background: metal }} />
+        <span className="absolute -left-[3px] top-[150px] h-12 w-[4px] rounded-l-sm" style={{ background: metal }} />
+        <span className="absolute -left-[3px] top-[210px] h-12 w-[4px] rounded-l-sm" style={{ background: metal }} />
+        <span className="absolute -right-[3px] top-[170px] h-20 w-[4px] rounded-r-sm" style={{ background: metal }} />
 
-        {/* conversation */}
-        <div className="px-5 pt-5">
-          <div className="ml-auto max-w-[88%] rounded-[16px] px-4 py-3" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
-            <p className="text-[8px] tracking-[0.26em] uppercase" style={{ fontFamily: LUXE, color: "rgba(255,255,255,0.45)" }}>Homeowner</p>
-            <p className="mt-1.5 leading-snug" style={{ fontFamily: BODY, fontSize: "0.82rem", color: "#f5efe6" }}>Hi, I saw your post about kitchen renovations.</p>
-          </div>
-          <div className="mt-3.5 max-w-[88%] rounded-[16px] px-4 py-3" style={{ background: "rgba(198,178,130,0.1)", border: "1px solid rgba(198,178,130,0.28)" }}>
-            <p className="text-[8px] tracking-[0.26em] uppercase" style={{ fontFamily: LUXE, color: "rgba(198,178,130,0.9)" }}>Your business · Auto reply</p>
-            <p className="mt-1.5 leading-snug" style={{ fontFamily: BODY, fontSize: "0.82rem", color: "#f5efe6" }}>Happy to help. What kind of job do you have in mind, and when would you like it done?</p>
-          </div>
-        </div>
+        {/* titanium frame */}
+        <div
+          className="relative rounded-[58px] p-[3px]"
+          style={{ background: "linear-gradient(145deg, #a39b8d 0%, #3d3934 20%, #14120f 50%, #4d483f 78%, #aaa294 100%)", boxShadow: "0 70px 110px -40px rgba(40,15,10,0.85), 0 30px 60px -30px rgba(0,0,0,0.6)" }}
+        >
+          {/* bezel */}
+          <div className="rounded-[55px] p-[9px]" style={{ background: "#020202" }}>
+            {/* screen */}
+            <div className="relative flex flex-col overflow-hidden rounded-[46px]" style={{ background: "linear-gradient(180deg, #0d0c0b 0%, #070706 100%)", aspectRatio: "9 / 19" }}>
+              {/* glare */}
+              <div aria-hidden className="pointer-events-none absolute inset-0 z-30" style={{ background: "linear-gradient(118deg, rgba(255,255,255,0.09) 0%, rgba(255,255,255,0.02) 28%, transparent 40%)" }} />
 
-        <div className="absolute inset-x-6 bottom-6">
-          <div className="py-3.5 text-center text-[10px] tracking-[0.26em] uppercase" style={{ fontFamily: LUXE, fontWeight: 600, background: "#c6b282", color: "#0a0a0a", borderRadius: "2px" }}>
-            Book my free estimate
+              {/* dynamic island + status bar */}
+              <div className="absolute left-1/2 top-[11px] z-20 flex h-[26px] w-[92px] -translate-x-1/2 items-center justify-end rounded-full bg-black pr-3">
+                <span className="h-2 w-2 rounded-full" style={{ background: "radial-gradient(circle at 35% 35%, #26304a, #0a0d16)" }} />
+              </div>
+              <div className="absolute inset-x-0 top-[14px] z-10 flex items-center justify-between px-8" style={{ fontFamily: BODY, fontSize: "0.7rem", fontWeight: 600, color: "#f5efe6" }}>
+                <span>9:41</span>
+                <span className="flex items-center gap-1.5">
+                  <svg width="15" height="10" viewBox="0 0 16 10" fill="currentColor"><rect x="0" y="6" width="2.6" height="4" rx="0.6" /><rect x="4.4" y="4" width="2.6" height="6" rx="0.6" /><rect x="8.8" y="2" width="2.6" height="8" rx="0.6" /><rect x="13.2" y="0" width="2.6" height="10" rx="0.6" /></svg>
+                  <svg width="20" height="10" viewBox="0 0 20 10" fill="none"><rect x="0.5" y="0.5" width="16" height="9" rx="2.4" stroke="currentColor" opacity="0.5" /><rect x="2" y="2" width="13" height="6" rx="1.4" fill="currentColor" /><rect x="17.5" y="3.2" width="1.6" height="3.6" rx="0.8" fill="currentColor" opacity="0.5" /></svg>
+                </span>
+              </div>
+
+              {/* caller */}
+              <div className="flex flex-col items-center px-6 pt-[64px]">
+                <span className="relative flex h-[58px] w-[58px] items-center justify-center rounded-full" style={{ background: "radial-gradient(circle at 35% 30%, #3a332a, #151210)", border: "1px solid rgba(198,178,130,0.5)", color: "#f5efe6", fontFamily: HEAD, fontSize: "1.45rem", fontWeight: 300 }}>
+                  <span className="launch-ping absolute inset-0 rounded-full" style={{ background: "rgba(198,178,130,0.25)" }} />
+                  <span className="relative">D</span>
+                </span>
+                <p className="mt-3" style={{ fontFamily: HEAD, fontWeight: 400, fontSize: "1.2rem", color: "#f5efe6" }}>The Dollhouse AI</p>
+                <p className="mt-1.5 text-[9px] tracking-[0.3em] uppercase" style={{ fontFamily: LUXE, color: "#c6b282" }}>{booked ? "Booked" : "Replying now"}</p>
+                <p className="mt-2 flex items-center gap-2 text-[11px]" style={{ fontFamily: BODY, color: "rgba(198,178,130,0.85)", letterSpacing: "0.12em" }}>
+                  <span className="h-1.5 w-1.5 rounded-full" style={{ background: "#c6b282" }} /> {mm}:{ss}
+                </p>
+              </div>
+
+              <div className="mt-4 h-px w-full" style={{ background: "rgba(255,255,255,0.08)" }} />
+
+              {/* conversation (newest at the bottom, older ones slide up) */}
+              <div
+                className="flex min-h-0 flex-1 flex-col justify-end gap-2.5 overflow-hidden px-4 pb-3 pt-3"
+                style={{ WebkitMaskImage: "linear-gradient(to bottom, transparent 0, #000 22px)", maskImage: "linear-gradient(to bottom, transparent 0, #000 22px)" }}
+              >
+                {step >= 1 && <Bubble who="them" label="Homeowner">Hi, I saw your post about kitchen renovations.</Bubble>}
+                {step >= 3 && <Bubble who="us" label="Your business · Auto reply">Happy to help. What kind of job do you have in mind, and when would you like it done?</Bubble>}
+                {step >= 4 && <Bubble who="them" label="Homeowner">A full remodel, this spring.</Bubble>}
+                {step >= 6 && <Bubble who="us" label="Your business · Auto reply">Great. I have Tuesday at 10:00 or Thursday at 2:30. Which works best?</Bubble>}
+                {step >= 7 && <Bubble who="them" label="Homeowner">Thursday at 2:30.</Bubble>}
+                {typing && <TypingDots />}
+                {booked && <Bubble who="us" label="Your business · Auto reply">You are booked for Thursday at 2:30. See you then.</Bubble>}
+              </div>
+
+              {/* action */}
+              <div className="px-5 pb-7">
+                <div
+                  className="py-3 text-center text-[9.5px] tracking-[0.26em] uppercase transition-colors duration-500"
+                  style={{ fontFamily: LUXE, fontWeight: 600, background: booked ? "transparent" : "#c6b282", color: booked ? "#c6b282" : "#0a0a0a", border: "1px solid #c6b282", borderRadius: "2px" }}
+                >
+                  {booked ? "✓ Estimate booked" : "Book my free estimate"}
+                </div>
+              </div>
+
+              {/* home indicator */}
+              <span aria-hidden className="absolute bottom-2 left-1/2 z-20 h-[4px] w-[108px] -translate-x-1/2 rounded-full" style={{ background: "rgba(255,255,255,0.7)" }} />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* floating chips */}
+      {/* floating messages, timed to the story */}
       <div
-        className="launch-float absolute -left-6 top-[26%] z-30 flex items-center gap-2.5 rounded-2xl px-4 py-3 sm:-left-24 lg:-left-28"
-        style={{ background: "rgba(255,250,246,0.95)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)", boxShadow: "0 24px 50px -24px rgba(90,40,30,0.5)" }}
+        className="launch-float absolute -left-6 top-[26%] z-30 flex items-center gap-2.5 rounded-2xl px-4 py-3 transition-all duration-700 sm:-left-24 lg:-left-28"
+        style={{ opacity: step >= 3 ? 1 : 0.0, transform: step >= 3 ? "scale(1)" : "scale(0.9)", background: "rgba(255,250,246,0.95)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)", boxShadow: "0 24px 50px -24px rgba(90,40,30,0.5)" }}
       >
         <span className="flex h-8 w-8 items-center justify-center rounded-full" style={{ background: "color-mix(in oklab, var(--rose) 16%, transparent)", color: "var(--rose)" }}>
           <MessageSquare className="h-4 w-4" />
@@ -270,8 +345,8 @@ function HeroVisual() {
       </div>
 
       <div
-        className="launch-float-slow absolute -right-4 bottom-[20%] z-30 flex items-center gap-2.5 rounded-2xl px-4 py-3 sm:-right-20 lg:-right-24"
-        style={{ background: "rgba(255,250,246,0.95)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)", boxShadow: "0 24px 50px -24px rgba(90,40,30,0.5)" }}
+        className="launch-float-slow absolute -right-4 top-[11%] z-30 flex items-center gap-2.5 rounded-2xl px-4 py-3 transition-all duration-700 sm:-right-20 lg:-right-24"
+        style={{ opacity: booked ? 1 : 0, transform: booked ? "scale(1)" : "scale(0.9)", background: "rgba(255,250,246,0.95)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)", boxShadow: "0 24px 50px -24px rgba(90,40,30,0.5)" }}
       >
         <span className="relative flex h-8 w-8 items-center justify-center rounded-full" style={{ background: "color-mix(in oklab, var(--gold) 22%, transparent)", color: "var(--gold)" }}>
           <span className="launch-ping absolute inset-0 rounded-full" style={{ background: "color-mix(in oklab, var(--gold) 45%, transparent)" }} />
