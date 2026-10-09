@@ -139,7 +139,7 @@ function GetStartedPage() {
                 <span className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full" style={{ background: "color-mix(in oklab, var(--gold) 22%, transparent)", color: "var(--gold)" }}>
                   <Check className="h-2.5 w-2.5" strokeWidth={3.5} />
                 </span>
-                Bonus: your Dollhouse CRM account and a private onboarding kickoff
+                Bonus: your DOLLHOUSE CRM account and a private onboarding kickoff
               </li>
             </ul>
           </div>

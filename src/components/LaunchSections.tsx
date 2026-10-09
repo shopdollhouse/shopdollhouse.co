@@ -586,7 +586,7 @@ const SERVICES: {
       "Answers common service questions you have approved",
       "Asks a few questions to determine which service they need",
       "Helps interested people book an appointment on your calendar",
-      "Keeps contacts and conversations organized in your included Dollhouse CRM account",
+      "Keeps contacts and conversations organized in your included DOLLHOUSE CRM account",
       "Works during busy season, evenings and weekends without extra staff",
     ],
     preview: "booking",
@@ -1007,7 +1007,7 @@ export function LaunchPlans() {
           </ul>
           <div className="mt-7 grid gap-5 border-t pt-7 sm:grid-cols-2" style={{ borderColor: "color-mix(in oklab, var(--gold) 28%, transparent)" }}>
             {[
-              { title: "Your Dollhouse CRM account", copy: "Keep inquiries, messages, follow-up, and appointments organized in one place.", icon: MessageSquare },
+              { title: "Your DOLLHOUSE CRM account", copy: "Keep inquiries, messages, follow-up, and appointments organized in one place. Powered by HighLevel.", icon: MessageSquare },
               { title: "Private 1-on-1 kickoff call", copy: "Discuss your services, ideal clients, preferred styles, and setup questions.", icon: CalendarCheck },
             ].map((b, bi) => (
               <div key={b.title} className="flex gap-4">
@@ -1046,7 +1046,7 @@ export function LaunchPlans() {
 /* ─── After purchase ──────────────────────────────────── */
 const AFTER = [
   { title: "Today", copy: "Complete your order and choose a time for your private kickoff call.", icon: CreditCard, art: MockCheckout, foot: "Kickoff call booked" },
-  { title: "Immediate account access", copy: "Your Dollhouse CRM account is available immediately. Complete your setup checklist after booking your call.", icon: KeyRound, art: MockCrm, foot: "Setup checklist ready" },
+  { title: "Immediate account access", copy: "Your DOLLHOUSE CRM account is available immediately. Complete your setup checklist after booking your call.", icon: KeyRound, art: MockCrm, foot: "Setup checklist ready" },
   { title: "Your first posts", copy: `Review your first posts and the publishing plan within ${FIRST_POSTS_DAYS} days, with your setup details and access provided.`, icon: Images, art: MockApprove, foot: `First posts in ${FIRST_POSTS_DAYS} days` },
 ];
 
@@ -1109,7 +1109,7 @@ const FAQS = [
   },
   {
     q: "Are there any additional software or AI costs?",
-    a: `Your website tools and Dollhouse CRM account are included. Some AI features have small fees based on how much they are used. We cover the first $${AI_USAGE_COVERED} in AI usage each month, which is enough for most clients. Any additional project or usage fee requires your approval before it is charged.`,
+    a: `Your website tools and DOLLHOUSE CRM account (powered by HighLevel) are included. Some AI features have small fees based on how much they are used. We cover the first $${AI_USAGE_COVERED} in AI usage each month, which is enough for most clients. Any additional project or usage fee requires your approval before it is charged.`,
   },
   {
     q: "What do you need from me, and how quickly can we launch?",
@@ -1133,7 +1133,7 @@ const FAQS = [
   },
   {
     q: "What if I already have a CRM account?",
-    a: "We can connect to your existing account when practical. An included Dollhouse CRM account is available if you need a new one.",
+    a: "We can connect to your existing account when practical. An included DOLLHOUSE CRM account (powered by HighLevel) is available if you need a new one.",
   },
   {
     q: "Is there a contract or commitment?",
