@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
 
 const exploreLinks: [string, string][] = [
-  ["How It Works", "/#how-it-works"],
   ["What's Included", "/#whats-included"],
+  ["How It Works", "/#how-it-works"],
   ["Plans & Pricing", "/#plans"],
   ["FAQ", "/#faq"],
 ];

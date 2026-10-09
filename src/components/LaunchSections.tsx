@@ -126,9 +126,9 @@ function GetStarted({
 
 /* ─── Nav ─────────────────────────────────────────────── */
 const NAV_LINKS = [
-  { href: "#how-it-works", label: "How It Works" },
   { href: "#whats-included", label: "What's Included" },
-  { href: "#plans", label: "Pricing" },
+  { href: "#how-it-works", label: "How It Works" },
+  { href: "#plans", label: "Plans & Pricing" },
   { href: "#faq", label: "FAQ" },
 ];
 

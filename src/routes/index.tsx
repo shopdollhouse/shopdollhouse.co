@@ -6,15 +6,12 @@ import { useScrollReveal } from "@/lib/use-scroll-reveal";
 import {
   LaunchNav,
   LaunchHero,
-  LaunchStats,
-  LaunchProblem,
   LaunchHowItWorks,
   LaunchWhatsIncluded,
   LaunchExamples,
   LaunchPlans,
   LaunchAfterPurchase,
   LaunchVideo,
-  LaunchWhoFor,
   LaunchFounder,
   LaunchFaq,
   LaunchFinalCta,
@@ -67,14 +64,11 @@ function Index() {
       <LaunchNav />
       <LaunchHero />
       <LaunchVideo />
-      <LaunchStats />
-      <LaunchProblem />
       <LaunchHowItWorks />
       <LaunchWhatsIncluded />
       <LaunchExamples />
       <LaunchPlans />
       <LaunchAfterPurchase />
-      <LaunchWhoFor />
       <LaunchFounder />
       <LaunchFaq />
       <LaunchFinalCta />
