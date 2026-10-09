@@ -5,8 +5,8 @@ export const Route = createFileRoute("/privacy")({ component: PrivacyPage });
 function PrivacyPage() {
   const updated = "June 2026";
 
-  const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
-    <div className="mt-10">
+  const Section = ({ title, id, children }: { title: string; id?: string; children: React.ReactNode }) => (
+    <div className="mt-10 scroll-mt-24" id={id}>
       <h2
         style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.5rem", color: "var(--ink)", fontWeight: 400 }}
       >
@@ -109,6 +109,19 @@ function PrivacyPage() {
         <Section title="Third-Party Services">
           <p>
             We use trusted third-party platforms to deliver our services, including GoHighLevel, which acts as a data processor for our CRM, SMS and communications, forms, and marketing automation. We also use a third-party payment processor to securely handle transactions, and analytics and advertising platforms (such as Meta and Google) to measure and improve our marketing. These providers process information on our behalf and are expected to maintain appropriate safeguards.
+          </p>
+        </Section>
+
+        <Section title="Your Privacy Choices" id="your-privacy-choices">
+          <p>
+            You are in control of how we contact you and what we collect. Reply STOP to any text message to stop receiving texts, and use the unsubscribe link in any email to stop receiving emails. You can limit or block cookies and similar technologies in your browser settings at any time.
+          </p>
+          <p>
+            To ask us to access, correct or delete your personal information, or to opt out of marketing, email{" "}
+            <a href="mailto:hello@shopdollhouse.co" style={{ color: "var(--rose)", textDecoration: "underline" }}>
+              hello@shopdollhouse.co
+            </a>
+            . We will respond in accordance with applicable law.
           </p>
         </Section>
 

@@ -11,7 +11,10 @@ import {
   LaunchHowItWorks,
   LaunchWhatsIncluded,
   LaunchWork,
+  LaunchExamples,
   LaunchPlans,
+  LaunchAfterPurchase,
+  LaunchVideo,
   LaunchWhoFor,
   LaunchFounder,
   LaunchFaq,
@@ -64,12 +67,15 @@ function Index() {
     <main className="bg-[var(--blush)] text-[var(--ink)]">
       <LaunchNav />
       <LaunchHero />
+      <LaunchVideo />
       <LaunchStats />
       <LaunchProblem />
       <LaunchHowItWorks />
       <LaunchWhatsIncluded />
       <LaunchWork />
+      <LaunchExamples />
       <LaunchPlans />
+      <LaunchAfterPurchase />
       <LaunchWhoFor />
       <LaunchFounder />
       <LaunchFaq />

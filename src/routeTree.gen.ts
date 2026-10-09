@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as VaultRouteImport } from './routes/vault'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as SupportRouteImport } from './routes/support'
 import { Route as SoftwareRouteImport } from './routes/software'
 import { Route as SocietyRouteImport } from './routes/society'
 import { Route as ServicesRouteImport } from './routes/services'
@@ -55,6 +56,11 @@ const ThankYouRoute = ThankYouRouteImport.update({
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupportRoute = SupportRouteImport.update({
+  id: '/support',
+  path: '/support',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SoftwareRoute = SoftwareRouteImport.update({
@@ -223,6 +229,7 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/society': typeof SocietyRoute
   '/software': typeof SoftwareRoute
+  '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/vault': typeof VaultRoute
@@ -257,6 +264,7 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/society': typeof SocietyRoute
   '/software': typeof SoftwareRoute
+  '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/vault': typeof VaultRoute
@@ -292,6 +300,7 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/society': typeof SocietyRoute
   '/software': typeof SoftwareRoute
+  '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/vault': typeof VaultRoute
@@ -328,6 +337,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/society'
     | '/software'
+    | '/support'
     | '/terms'
     | '/thank-you'
     | '/vault'
@@ -362,6 +372,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/society'
     | '/software'
+    | '/support'
     | '/terms'
     | '/thank-you'
     | '/vault'
@@ -396,6 +407,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/society'
     | '/software'
+    | '/support'
     | '/terms'
     | '/thank-you'
     | '/vault'
@@ -431,6 +443,7 @@ export interface RootRouteChildren {
   ServicesRoute: typeof ServicesRoute
   SocietyRoute: typeof SocietyRoute
   SoftwareRoute: typeof SoftwareRoute
+  SupportRoute: typeof SupportRoute
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
   VaultRoute: typeof VaultRoute
@@ -471,6 +484,13 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/support': {
+      id: '/support'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof SupportRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/software': {
@@ -695,6 +715,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesRoute: ServicesRoute,
   SocietyRoute: SocietyRoute,
   SoftwareRoute: SoftwareRoute,
+  SupportRoute: SupportRoute,
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
   VaultRoute: VaultRoute,
