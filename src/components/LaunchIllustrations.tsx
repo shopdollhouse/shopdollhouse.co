@@ -333,3 +333,81 @@ export function IllustrationFirstPosts() {
     </svg>
   );
 }
+
+export function IllustrationSinglePlan() {
+  const tiles = [
+    [36, 54], [66, 54], [36, 84], [66, 84], [36, 114], [66, 114],
+    [298, 54], [328, 54], [298, 84], [328, 84], [298, 114], [328, 114],
+  ];
+  return (
+    <svg {...svgProps} preserveAspectRatio="xMidYMid meet" aria-label="Thirty single-image posts every month">
+      <ellipse cx="200" cy="232" rx="125" ry="9" fill={ROSE} opacity="0.12" />
+      {tiles.map(([x, y], i) => (
+        <rect key={i} x={x} y={y} width="26" height="26" rx="5" fill={i % 3 === 0 ? BLUSH : "#fffaf6"} stroke={GOLD} strokeWidth="1" strokeOpacity="0.7" />
+      ))}
+      <g className="launch-float-slow">
+        <rect x="136" y="30" width="128" height="152" rx="14" fill="#ffffff" stroke={ROSE} strokeWidth="1.6" />
+        <circle cx="158" cy="54" r="8" fill={BLUSH} stroke={GOLD} strokeWidth="1.2" />
+        <rect x="172" y="48" width="52" height="5" rx="2.5" fill={INK} opacity="0.55" />
+        <rect x="172" y="58" width="34" height="4" rx="2" fill={INK} opacity="0.25" />
+        <rect x="148" y="74" width="104" height="78" rx="8" fill="url(#spGrad)" />
+        <defs>
+          <linearGradient id="spGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#fbe9e4" />
+            <stop offset="1" stopColor="#efc9c3" />
+          </linearGradient>
+        </defs>
+        <path d="M200 92 C202 104 207 109 219 112 C207 115 202 120 200 132 C198 120 193 115 181 112 C193 109 198 104 200 92Z" fill={GOLD} />
+        <rect x="148" y="162" width="64" height="5" rx="2.5" fill={ROSE} opacity="0.35" />
+      </g>
+      <text x="200" y="214" textAnchor="middle" fontFamily="Jost, sans-serif" fontSize="9" letterSpacing="3.4" fill={INK} opacity="0.55">30 POSTS A MONTH</text>
+      <Sparkle x={52} y={34} s={0.9} className="launch-float" />
+      <Sparkle x={348} y={36} s={1} className="launch-float-slow" />
+      <Sparkle x={366} y={172} s={0.7} className="launch-float" />
+      <Sparkle x={34} y={176} s={0.7} className="launch-float-slow" />
+    </svg>
+  );
+}
+
+export function IllustrationCarouselPlan() {
+  return (
+    <svg {...svgProps} preserveAspectRatio="xMidYMid meet" aria-label="Fifteen carousel posts and fifteen single-image posts every month">
+      <ellipse cx="200" cy="232" rx="125" ry="9" fill={ROSE} opacity="0.12" />
+      {/* swipeable slides */}
+      {[0, 1, 2].map((i) => (
+        <g key={i} className={i === 2 ? "launch-float-slow" : ""}>
+          <defs>
+            <linearGradient id={`cs${i}`} x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stopColor={["#f6e3d6", "#fbe9e4", "#f4dcdc"][i]} />
+              <stop offset="1" stopColor={["#e6c9a4", "#efc9c3", "#e7c2c0"][i]} />
+            </linearGradient>
+          </defs>
+          <rect x={44 + i * 62} y={50 + (2 - i) * 4} width="98" height="124" rx="12" fill="#ffffff" stroke={i === 2 ? ROSE : GOLD} strokeWidth="1.5" />
+          <rect x={54 + i * 62} y={60 + (2 - i) * 4} width="78" height="66" rx="7" fill={`url(#cs${i})`} />
+          {i === 2 && <path d="M193 80 C195 92 200 97 212 100 C200 103 195 108 193 120 C191 108 186 103 174 100 C186 97 191 92 193 80Z" fill={GOLD} />}
+          <rect x={54 + i * 62} y={140 + (2 - i) * 4} width="58" height="5" rx="2.5" fill={INK} opacity="0.4" />
+          <rect x={54 + i * 62} y={151 + (2 - i) * 4} width="40" height="4" rx="2" fill={INK} opacity="0.2" />
+        </g>
+      ))}
+      {/* single image */}
+      <g>
+        <rect x="278" y="64" width="86" height="104" rx="11" fill="#ffffff" stroke={GOLD} strokeWidth="1.4" />
+        <rect x="286" y="72" width="70" height="58" rx="6" fill="#f1d3cf" />
+        <rect x="286" y="138" width="50" height="5" rx="2.5" fill={INK} opacity="0.4" />
+        <rect x="286" y="149" width="34" height="4" rx="2" fill={INK} opacity="0.2" />
+      </g>
+      {/* swipe controls */}
+      <circle cx="82" cy="204" r="11" fill="#ffffff" stroke={GOLD} strokeWidth="1.3" />
+      <path d="M85 199 l-5 5 l5 5" fill="none" stroke={ROSE} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      {[0, 1, 2, 3, 4].map((i) => (
+        <circle key={i} cx={118 + i * 15} cy="204" r={i === 2 ? 4 : 3} fill={i === 2 ? GOLD : "none"} stroke={GOLD} strokeWidth="1.1" />
+      ))}
+      <circle cx="226" cy="204" r="11" fill={GOLD} />
+      <path d="M223 199 l5 5 l-5 5" fill="none" stroke="#ffffff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <text x="136" y="234" textAnchor="middle" fontFamily="Jost, sans-serif" fontSize="8" letterSpacing="2.6" fill={INK} opacity="0.55">15 CAROUSELS</text>
+      <text x="321" y="190" textAnchor="middle" fontFamily="Jost, sans-serif" fontSize="8" letterSpacing="2.6" fill={INK} opacity="0.55">+ 15 SINGLE</text>
+      <Sparkle x={36} y={38} s={0.9} className="launch-float" />
+      <Sparkle x={372} y={42} s={0.8} className="launch-float-slow" />
+    </svg>
+  );
+}

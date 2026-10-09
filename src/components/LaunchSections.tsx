@@ -18,7 +18,7 @@ import {
   X,
 } from "lucide-react";
 import archMark from "@/assets/arch-mark.svg";
-import { IllustrationAccess, IllustrationBook, IllustrationCheckout, IllustrationFirstPosts, IllustrationPosts, IllustrationQuote, IllustrationReply } from "@/components/LaunchIllustrations";
+import { IllustrationCarouselPlan, IllustrationSinglePlan, IllustrationAccess, IllustrationBook, IllustrationCheckout, IllustrationFirstPosts, IllustrationPosts, IllustrationQuote, IllustrationReply } from "@/components/LaunchIllustrations";
 import bgImage from "@/assets/password-bg.jpg";
 import mandyPhoto from "@/assets/mandy-photo.jpg";
 import {
@@ -70,19 +70,19 @@ function Divider() {
   );
 }
 
-function SectionHead({ eyebrow, title, sub }: { eyebrow: string; title: React.ReactNode; sub?: string }) {
+function SectionHead({ eyebrow, title, sub, dark = false }: { eyebrow: string; title: React.ReactNode; sub?: string; dark?: boolean }) {
   return (
     <div className="text-center max-w-4xl mx-auto">
-      <Eyebrow>{eyebrow}</Eyebrow>
+      <Eyebrow light={dark}>{eyebrow}</Eyebrow>
       <h2
-        className="text-[var(--ink)] mt-6 uppercase"
+        className={`${dark ? "text-[var(--cream)]" : "text-[var(--ink)]"} mt-6 uppercase`}
         style={{ fontFamily: HEAD, fontWeight: 300, fontSize: "clamp(2rem, 4.6vw, 3.5rem)", letterSpacing: "-0.01em", lineHeight: 1.06 }}
       >
         {title}
       </h2>
       <Divider />
       {sub && (
-        <p className="mx-auto max-w-2xl text-[var(--ink)]/62 leading-8" style={{ fontFamily: BODY, fontSize: "1.02rem", fontWeight: 300 }}>
+        <p className={`mx-auto max-w-2xl leading-8 ${dark ? "text-[var(--cream)]/62" : "text-[var(--ink)]/62"}`} style={{ fontFamily: BODY, fontSize: "1.02rem", fontWeight: 300 }}>
           {sub}
         </p>
       )}
@@ -1047,101 +1047,120 @@ export function LaunchExamples() {
 /* ─── Plans ───────────────────────────────────────────── */
 function ValueStack() {
   return (
-    <details className="dh-faq mt-6 rounded-2xl px-6 py-4" style={{ background: "rgba(255,255,255,0.7)", border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}>
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[var(--ink)]" style={{ fontFamily: LUXE, fontSize: "0.78rem", letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 600 }}>
+    <details className="dh-faq mt-6 rounded-2xl px-6 py-4" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid color-mix(in oklab, var(--gold) 28%, transparent)" }}>
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[var(--cream)]" style={{ fontFamily: LUXE, fontSize: "0.78rem", letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 600 }}>
         See the launch-month value breakdown · {VALUE_STACK_TOTAL}
         <ChevronDown className="dh-faq-chevron h-4 w-4 shrink-0 text-[var(--gold)]" />
       </summary>
       <ul className="mt-4 grid gap-2">
         {VALUE_STACK.map((v) => (
-          <li key={v.label} className="flex justify-between gap-4 text-[var(--ink)]/75" style={{ fontFamily: BODY, fontSize: "0.9rem" }}>
+          <li key={v.label} className="flex justify-between gap-4 text-[var(--cream)]/75" style={{ fontFamily: BODY, fontSize: "0.9rem" }}>
             <span>{v.label}</span>
-            <span className="shrink-0 text-[var(--ink)]">{v.value}</span>
+            <span className="shrink-0 text-[var(--cream)]">{v.value}</span>
           </li>
         ))}
       </ul>
-      <p className="mt-3 text-[var(--ink)]/55" style={{ fontFamily: BODY, fontSize: "0.82rem" }}>{VALUE_STACK_BONUSES}</p>
+      <p className="mt-3 text-[var(--cream)]/55" style={{ fontFamily: BODY, fontSize: "0.82rem" }}>{VALUE_STACK_BONUSES}</p>
     </details>
   );
 }
 
 export function LaunchPlans() {
+  const arts = { single: IllustrationSinglePlan, carousel: IllustrationCarouselPlan } as const;
   return (
     <section
       id="plans"
-      className="scroll-mt-24 py-24 md:py-28 px-6"
-      style={{
-        background:
-          "radial-gradient(circle at 50% 0%, rgba(255,255,255,0.9), transparent 36%), radial-gradient(circle at 50% 58%, rgba(201,122,122,0.16), transparent 42%), linear-gradient(180deg, #fbf1ed 0%, #f5ddd7 52%, #fff8f3 100%)",
-      }}
+      className="relative scroll-mt-24 overflow-hidden py-24 md:py-32 px-6"
+      style={{ background: "linear-gradient(165deg, #2c1f1b 0%, #1a100e 55%, #120b09 100%)" }}
     >
-      <SectionHead eyebrow="Your plan. Everything handled." title="Choose your monthly package" sub="The same complete service in both plans. Choose the type of posts you prefer." />
+      <div aria-hidden className="pointer-events-none absolute left-1/2 top-[-120px] h-[420px] w-[820px] -translate-x-1/2 rounded-full" style={{ background: "radial-gradient(circle, rgba(200,164,100,0.22), transparent 66%)" }} />
+      <div aria-hidden className="pointer-events-none absolute -right-40 bottom-0 h-[420px] w-[520px] rounded-full" style={{ background: "radial-gradient(circle, rgba(192,128,121,0.2), transparent 68%)" }} />
+      <span aria-hidden className="sparkle-drift" style={{ top: "12%", left: "8%", fontSize: "14px" }}>✦</span>
+      <span aria-hidden className="sparkle-drift" style={{ top: "30%", right: "9%", fontSize: "11px", animationDelay: "1.8s" }}>✦</span>
 
-      <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-2" data-stagger>
-        {LAUNCH_PLANS.map((plan) => (
-          <article key={plan.id} className="flex flex-col rounded-[8px] p-8" style={{ ...card, border: "1.5px solid color-mix(in oklab, var(--gold) 50%, transparent)" }}>
-            <span className="flex h-11 w-11 items-center justify-center rounded-xl" style={{ background: "color-mix(in oklab, var(--gold) 20%, transparent)", color: "var(--rose)" }}>
-              <ImageIcon className="h-5 w-5" strokeWidth={1.6} />
-            </span>
-            <h3 className="mt-5 text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontSize: "1.05rem", letterSpacing: "0.1em", fontWeight: 600 }}>{plan.name}</h3>
-            <p className="mt-3" style={{ fontFamily: DISPLAY, fontSize: "3.6rem", lineHeight: 1, color: "var(--ink)" }}>
-              ${plan.price}
-              <span className="ml-1 uppercase" style={{ fontFamily: LUXE, fontSize: "0.8rem", letterSpacing: "0.1em", color: "rgba(30,15,10,0.5)" }}>/month</span>
+      <div className="relative">
+        <SectionHead dark eyebrow="Your plan. Everything handled." title="Choose your monthly package" sub="The same complete service in both plans. Choose the type of posts you prefer." />
+
+        <div className="mx-auto mt-14 grid max-w-5xl gap-7 md:grid-cols-2" data-stagger>
+          {LAUNCH_PLANS.map((plan) => {
+            const Art = arts[plan.id];
+            const gold = plan.id === "carousel";
+            return (
+              <article
+                key={plan.id}
+                className="group flex flex-col overflow-hidden rounded-[8px] transition-all duration-500 hover:-translate-y-1.5"
+                style={{ background: "linear-gradient(180deg, #fffaf6 0%, #fbeee9 100%)", border: "1px solid color-mix(in oklab, var(--gold) 70%, transparent)", boxShadow: "0 50px 100px -40px rgba(0,0,0,0.75), 0 0 0 6px rgba(200,164,100,0.07)" }}
+              >
+                <div className="relative h-[250px] overflow-hidden" style={{ background: "radial-gradient(ellipse at 50% 40%, #fff6f2 0%, #f6dfd9 70%, #f0d1ca 100%)" }}>
+                  <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.04]"><Art /></div>
+                  <div aria-hidden className="absolute inset-x-0 bottom-0 h-3" style={{ background: "linear-gradient(to top, rgba(255,250,246,0.9), transparent)" }} />
+                </div>
+                <div className="flex flex-1 flex-col px-8 pb-8 text-center">
+                  <h3 className="mt-4 text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontSize: "1rem", letterSpacing: "0.14em", fontWeight: 600 }}>{plan.name}</h3>
+                  <p className="mt-4" style={{ fontFamily: DISPLAY, fontSize: "4.6rem", lineHeight: 0.95, color: "var(--ink)" }}>
+                    <span className="align-top text-[1.6rem]" style={{ color: "var(--gold)" }}>$</span>{plan.price}
+                    <span className="ml-1.5 uppercase" style={{ fontFamily: LUXE, fontSize: "0.78rem", letterSpacing: "0.16em", color: "rgba(42,29,26,0.5)" }}>/month</span>
+                  </p>
+                  <span className="mx-auto mt-5 block h-px w-14" style={{ background: "var(--gold)", opacity: 0.7 }} />
+                  <p className="mt-5 font-semibold text-[var(--ink)]" style={{ fontFamily: BODY, fontSize: "1rem" }}>{plan.mix}</p>
+                  <p className="mt-1.5 text-[var(--ink)]/55" style={{ fontFamily: BODY, fontSize: "0.9rem" }}>{plan.blurb}</p>
+                  <a
+                    href={checkoutHref(plan.id)}
+                    className="mt-auto inline-flex items-center justify-center gap-2 px-8 py-[17px] text-[11px] tracking-[0.26em] uppercase transition-transform hover:-translate-y-0.5"
+                    style={{ marginTop: "1.75rem", fontFamily: LUXE, fontWeight: 600, borderRadius: "2px", background: gold ? "var(--gold)" : "#2a1d1a", color: gold ? "#1a100e" : "var(--cream)", border: "1px solid var(--gold)", boxShadow: "0 22px 44px -18px rgba(30,15,10,0.6)" }}
+                  >
+                    {plan.id === "single" ? "Choose single-image posts" : "Choose carousel slide posts"} <ArrowRight className="h-4 w-4" />
+                  </a>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        <div className="mx-auto mt-8 max-w-5xl rounded-[8px] p-8 md:p-10" style={{ background: "rgba(255,255,255,0.045)", border: "1px solid color-mix(in oklab, var(--gold) 34%, transparent)" }}>
+          <h3 className="text-[var(--cream)] uppercase" style={{ fontFamily: LUXE, fontSize: "0.95rem", letterSpacing: "0.18em", fontWeight: 600 }}>Included in both plans</h3>
+          <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+            {INCLUDED_IN_BOTH.map((t) => (
+              <li key={t} className="flex gap-3 text-[var(--cream)]/80 leading-6" style={{ fontFamily: BODY, fontSize: "0.92rem" }}>
+                <CheckDot />
+                <span>{t}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-7 grid gap-5 border-t pt-7 sm:grid-cols-2" style={{ borderColor: "color-mix(in oklab, var(--gold) 28%, transparent)" }}>
+            {[
+              { title: "Your Dollhouse CRM account", copy: "Keep inquiries, messages, follow-up, and appointments organized in one place.", icon: MessageSquare },
+              { title: "Private 1-on-1 kickoff call", copy: "Discuss your services, ideal clients, preferred styles, and setup questions.", icon: CalendarCheck },
+            ].map((b) => (
+              <div key={b.title} className="flex gap-4">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full" style={{ border: "1px solid color-mix(in oklab, var(--gold) 60%, transparent)", color: "var(--gold)" }}>
+                  <b.icon className="h-5 w-5" strokeWidth={1.5} />
+                </span>
+                <div>
+                  <p className="text-[var(--gold)] text-[9px] tracking-[0.3em] uppercase" style={{ fontFamily: LUXE }}>Included bonus</p>
+                  <h4 className="mt-1 text-[var(--cream)]" style={{ fontFamily: DISPLAY, fontSize: "1.35rem", fontWeight: 500 }}>{b.title}</h4>
+                  <p className="mt-1 text-[var(--cream)]/60 leading-6" style={{ fontFamily: BODY, fontSize: "0.88rem" }}>{b.copy}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          {SHOW_VALUE_STACK && <ValueStack />}
+        </div>
+
+        <div className="mx-auto mt-6 flex max-w-5xl items-center gap-5 rounded-[8px] px-7 py-6" style={{ background: "linear-gradient(135deg, rgba(200,164,100,0.2), rgba(200,164,100,0.08))", border: "1px solid color-mix(in oklab, var(--gold) 55%, transparent)" }}>
+          <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full" style={{ background: "var(--gold)", color: "#1a100e", fontFamily: DISPLAY, fontSize: "1.7rem", fontWeight: 600 }}>{GUARANTEE_DAYS}</span>
+          <div>
+            <h3 className="text-[var(--cream)] uppercase" style={{ fontFamily: LUXE, fontSize: "1rem", letterSpacing: "0.12em", fontWeight: 600 }}>Your {GUARANTEE_DAYS}-day money-back guarantee</h3>
+            <p className="mt-1 text-[var(--cream)]/70 leading-6" style={{ fontFamily: BODY, fontSize: "0.92rem" }}>
+              If you are not satisfied, contact us within your first {GUARANTEE_DAYS} days for a full refund. No long-term contract. Cancel anytime.
             </p>
-            <p className="mt-4 font-semibold text-[var(--ink)]" style={{ fontFamily: BODY, fontSize: "0.98rem" }}>{plan.mix}</p>
-            <p className="mt-1 text-[var(--ink)]/55" style={{ fontFamily: BODY, fontSize: "0.88rem" }}>{plan.blurb}</p>
-            <a
-              href={checkoutHref(plan.id)}
-              className="mt-7 inline-flex items-center justify-center gap-2 rounded-full px-8 py-[16px] text-[11px] tracking-luxe uppercase transition-transform hover:-translate-y-0.5"
-              style={{ fontFamily: LUXE, fontWeight: 600, background: plan.id === "single" ? "var(--ink)" : "var(--gold)", color: plan.id === "single" ? "var(--cream)" : "var(--ink)", boxShadow: "0 22px 44px -18px rgba(30,15,10,0.5)" }}
-            >
-              {plan.id === "single" ? "Choose single-image posts" : "Choose carousel slide posts"} <ArrowRight className="h-4 w-4" />
-            </a>
-          </article>
-        ))}
-      </div>
-
-      <div className="mx-auto mt-6 max-w-5xl rounded-[8px] p-8 md:p-10" style={card}>
-        <h3 className="text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontSize: "0.95rem", letterSpacing: "0.14em", fontWeight: 600 }}>Included in both plans</h3>
-        <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-          {INCLUDED_IN_BOTH.map((t) => (
-            <li key={t} className="flex gap-3 text-[var(--ink)]/78 leading-6" style={{ fontFamily: BODY, fontSize: "0.92rem" }}>
-              <CheckDot />
-              <span>{t}</span>
-            </li>
-          ))}
-        </ul>
-        <div className="mt-7 grid gap-5 border-t pt-7 sm:grid-cols-2" style={{ borderColor: "color-mix(in oklab, var(--gold) 28%, transparent)" }}>
-          {[
-            { title: "Your Dollhouse CRM account", copy: "Keep inquiries, messages, follow-up, and appointments organized in one place.", icon: MessageSquare },
-            { title: "Private 1-on-1 kickoff call", copy: "Discuss your services, ideal clients, preferred styles, and setup questions.", icon: CalendarCheck },
-          ].map((b) => (
-            <div key={b.title}>
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl" style={{ background: "color-mix(in oklab, var(--gold) 20%, transparent)", color: "var(--rose)" }}>
-                <b.icon className="h-5 w-5" strokeWidth={1.6} />
-              </span>
-              <p className="mt-3 text-[var(--gold)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Included bonus</p>
-              <h4 className="mt-1 font-semibold text-[var(--ink)]" style={{ fontFamily: BODY, fontSize: "1rem" }}>{b.title}</h4>
-              <p className="mt-1 text-[var(--ink)]/60 leading-6" style={{ fontFamily: BODY, fontSize: "0.88rem" }}>{b.copy}</p>
-            </div>
-          ))}
+          </div>
         </div>
-        {SHOW_VALUE_STACK && <ValueStack />}
-      </div>
 
-      <div className="mx-auto mt-6 flex max-w-5xl items-center gap-5 rounded-[8px] px-7 py-6" style={{ background: "color-mix(in oklab, var(--gold) 13%, transparent)", border: "1px solid color-mix(in oklab, var(--gold) 38%, transparent)" }}>
-        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-[var(--gold)]" style={{ background: "var(--ink)", fontFamily: DISPLAY, fontSize: "1.8rem" }}>{GUARANTEE_DAYS}</span>
-        <div>
-          <h3 className="text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontSize: "1rem", letterSpacing: "0.1em", fontWeight: 600 }}>Your {GUARANTEE_DAYS}-day money-back guarantee</h3>
-          <p className="mt-1 text-[var(--ink)]/65 leading-6" style={{ fontFamily: BODY, fontSize: "0.92rem" }}>
-            If you are not satisfied, contact us within your first {GUARANTEE_DAYS} days for a full refund. No long-term contract. Cancel anytime.
-          </p>
-        </div>
+        <p className="mx-auto mt-6 max-w-3xl text-center text-[var(--cream)]/45 leading-6" style={{ fontFamily: BODY, fontSize: "0.8rem" }}>
+          Your selected plan is billed monthly until canceled. Optional upgrades and additional usage fees require your approval. Cancel before your next renewal to avoid the next monthly charge. All prices in USD.
+        </p>
       </div>
-
-      <p className="mx-auto mt-6 max-w-3xl text-center text-[var(--ink)]/50 leading-6" style={{ fontFamily: BODY, fontSize: "0.8rem" }}>
-        Your selected plan is billed monthly until canceled. Optional upgrades and additional usage fees require your approval. Cancel before your next renewal to avoid the next monthly charge. All prices in USD.
-      </p>
     </section>
   );
 }
