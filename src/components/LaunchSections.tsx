@@ -311,7 +311,7 @@ function LaunchHero() {
       />
 
       <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
-        <div className="relative text-center lg:text-left">
+        <div className="relative min-w-0 text-center lg:text-left">
           {/* The soft white glow behind the header, exactly as on shopdollhouse.co */}
           <div
             aria-hidden
@@ -333,7 +333,7 @@ function LaunchHero() {
           </div>
           <h1 className="mt-3" aria-label="Turn your social media into booked appointments">
             <span aria-hidden className="block italic leading-none" style={{ fontFamily: "Allura, cursive", fontSize: "clamp(2.3rem, 4.8vw, 3.4rem)", textTransform: "lowercase", color: "color-mix(in oklab, var(--gold) 78%, var(--ink))" }}>turn your social media into</span>
-            <span aria-hidden className="mt-2 block font-normal leading-[0.98] tracking-[0.04em] text-[var(--rose)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(3rem, 6.6vw, 4.9rem)", fontWeight: 400 }}>BOOKED<br />APPOINTMENTS</span>
+            <span aria-hidden className="mt-2 block font-normal leading-[0.98] tracking-[0.04em] text-[var(--rose)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.15rem, 8.4vw, 4.9rem)", fontWeight: 400 }}>BOOKED<br />APPOINTMENTS</span>
             <span aria-hidden className="mt-3 block text-[15px] uppercase tracking-luxe text-[var(--gold)]" style={{ fontFamily: "Jost, sans-serif" }}>done for you</span>
           </h1>
           <div className="mt-3 flex justify-center lg:justify-start"><span className="w-[200px]"><Divider /></span></div>
@@ -344,15 +344,20 @@ function LaunchHero() {
             <strong className="text-[var(--ink)]">${PRICE_SINGLE}/month</strong>.
           </p>
 
-          <div className="mt-7 flex flex-wrap items-center justify-center gap-2.5 lg:justify-start">
-            {["Daily social media posts", "Lead capture tool", "AI follow up & booking"].map((label) => (
-              <span
-                key={label}
-                className="rounded-full px-4 py-2 text-[10px] tracking-luxe uppercase text-[var(--ink)]"
-                style={{ fontFamily: LUXE, fontWeight: 600, background: "rgba(255,250,246,0.85)", border: "1px solid color-mix(in oklab, var(--gold) 38%, transparent)", boxShadow: "0 14px 30px -22px rgba(120,70,55,0.5)" }}
-              >
-                {label}
-              </span>
+          {/* Same frosted stats bar as shopdollhouse.co */}
+          <div
+            className="mx-auto mt-7 grid w-full max-w-[560px] grid-cols-3 rounded-2xl px-2 py-4 lg:mx-0"
+            style={{ background: "rgba(255,255,255,0.55)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", border: "1px solid rgba(200,168,100,0.2)" }}
+          >
+            {[
+              ["Daily", "Social media posts"],
+              ["Lead", "Capture tool"],
+              ["AI", "Follow up & booking"],
+            ].map(([big, small], i) => (
+              <div key={big} className={`flex flex-col items-center gap-1 px-2 text-center ${i < 2 ? "border-r border-[var(--gold)]/25" : ""}`}>
+                <span className="text-[var(--rose)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.6rem, 4vw, 2.4rem)", fontStyle: "italic", lineHeight: 1 }}>{big}</span>
+                <span className="uppercase tracking-[0.2em] text-[var(--ink)]/60" style={{ fontFamily: "Jost, sans-serif", fontSize: "0.65rem" }}>{small}</span>
+              </div>
             ))}
           </div>
 
