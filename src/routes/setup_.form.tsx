@@ -24,6 +24,7 @@ const STYLES = [
   { name: "Everyday object posts", img: "object-single" },
   { name: "Chat-style posts", img: "chat-single" },
   { name: "Simple feed-style posts", img: "feed-single" },
+  { name: "Reel cover posts", img: "reel-single" },
 ];
 
 type Answers = {

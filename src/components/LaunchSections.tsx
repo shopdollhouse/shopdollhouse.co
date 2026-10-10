@@ -927,6 +927,15 @@ const STYLE_DEFS: StyleDef[] = [
     hooks: ["Homeowners do not need more ads. They need one clear next step.", "What to know before you book anyone."],
     middle: ["Licensed and insured?", "A written quote?", "How long will it take?"],
   },
+  {
+    name: "Reel cover posts",
+    desc: "A person on camera with a bold caption, built to look like a video you want to watch.",
+    best: "Putting a friendly face on a quick tip, great for realtors, dentists, contractors and anyone customers want to know before they call.",
+    category: "you",
+    tone: "ink",
+    hooks: ["3 things to do before you list your home.", "3 things to know before your next visit."],
+    middle: ["Declutter every room.", "Fix the small repairs.", "Ask for a pre-listing inspection."],
+  },
 ];
 
 type ExampleItem = { style: StyleDef; hook: string };
@@ -1130,6 +1139,7 @@ const STYLE_KEYS: Record<string, string> = {
   "Everyday object posts": "object",
   "Chat-style posts": "chat",
   "Simple feed-style posts": "feed",
+  "Reel cover posts": "reel",
 };
 function styleSlides(name: string, format: "single" | "carousel"): string[] {
   const key = STYLE_KEYS[name];
