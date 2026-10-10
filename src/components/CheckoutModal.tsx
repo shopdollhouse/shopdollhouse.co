@@ -72,15 +72,6 @@ function CheckoutModal({ initialPlan, onClose }: { initialPlan: LaunchPlanId; on
     };
   }, [onClose]);
 
-  // Keep the chat bubble from sitting on top of the form while it is open.
-  useEffect(() => {
-    const root = document.querySelector("chat-widget")?.shadowRoot;
-    if (!root) return;
-    const style = document.createElement("style");
-    style.textContent = "#lc_text-widget, #lc_text-widget--btn { display: none !important; }";
-    root.appendChild(style);
-    return () => style.remove();
-  }, []);
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -180,7 +171,7 @@ function CheckoutModal({ initialPlan, onClose }: { initialPlan: LaunchPlanId; on
 
         <div className="mt-3 flex items-center gap-2.5 rounded-xl px-4 py-3" style={{ background: "#faf6ec", color: "#7a6a3a", fontFamily: BODY, fontSize: "0.88rem", fontWeight: 600 }}>
           <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full" style={{ border: "1.5px solid #c6b282" }}><Check className="h-3 w-3" strokeWidth={3} /></span>
-          Both plans include a FREE DOLLHOUSE CRM account + a private kickoff call
+          Both plans include a FREE DOLLHOUSE account + a private kickoff call
         </div>
 
         <form onSubmit={submit} noValidate className="mt-5 grid gap-4">

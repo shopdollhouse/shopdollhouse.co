@@ -223,10 +223,10 @@ export function MockCheckout() {
 
 export function MockCrm() {
   return (
-    <Win className="left-4 right-4 top-5" url="app.dollhouse-crm.com">
+    <Win className="left-4 right-4 top-5" url="my-account.dollhouse">
       <div className="flex" style={{ height: 190 }}>
         <div className="flex w-[84px] shrink-0 flex-col gap-1.5 px-2.5 py-3" style={{ background: CHOC }}>
-          <div className="mb-1 flex items-center gap-1"><img src={archMark} alt="" className="h-3.5 w-auto" /><span style={{ fontSize: "0.5rem", color: GOLD, fontWeight: 700, letterSpacing: "0.08em" }}>CRM</span></div>
+          <div className="mb-1 flex items-center gap-1"><img src={archMark} alt="" className="h-3.5 w-auto" /><span style={{ fontSize: "0.5rem", color: GOLD, fontWeight: 700, letterSpacing: "0.08em" }}>ACCOUNT</span></div>
           {["Dashboard", "Contacts", "Messages", "Calendar"].map((n, i) => <span key={n} className="rounded-md px-1.5 py-1" style={{ fontSize: "0.56rem", color: i === 0 ? CHOC : "rgba(255,255,255,0.7)", background: i === 0 ? GOLD : "transparent", fontWeight: i === 0 ? 700 : 400 }}>{n}</span>)}
         </div>
         <div className="flex-1 px-3 py-3" style={{ background: "#faf8f6" }}>

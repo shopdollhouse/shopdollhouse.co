@@ -87,7 +87,7 @@ export const VALUE_STACK: { label: string; value: string }[] = [
   { label: "Online Appointment Scheduling", value: "$750" },
   { label: "We Manage and Improve Everything", value: "$750/mo" },
 ];
-export const VALUE_STACK_BONUSES = "Plus the DOLLHOUSE CRM account, powered by HighLevel ($497/month value), and kickoff call ($297 value).";
+export const VALUE_STACK_BONUSES = "Plus the DOLLHOUSE account, powered by HighLevel ($497/month value), and kickoff call ($297 value).";
 export const VALUE_STACK_TOTAL = "$7,244";
 
 /** Value tags shown on the four included services, in order. */

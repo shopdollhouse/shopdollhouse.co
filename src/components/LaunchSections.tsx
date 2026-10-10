@@ -3,6 +3,8 @@ import { createPortal } from "react-dom";
 import { useCheckout } from "@/components/CheckoutModal";
 import {
   ArrowRight,
+  RotateCcw,
+  Play,
   Tag,
   ShoppingBag,
   ListChecks,
@@ -373,7 +375,7 @@ function LaunchHero() {
           </p>
 
           <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[10px] tracking-[0.16em] uppercase text-[var(--ink)]/60 lg:justify-start" style={{ fontFamily: LUXE }}>
-            {[`${GUARANTEE_DAYS}-day money-back guarantee`, "No contract, cancel anytime", "Instant account access", "Free CRM account included", "1-on-1 kickoff call"].map((t) => (
+            {[`${GUARANTEE_DAYS}-day money-back guarantee`, "No contract, cancel anytime", "Instant account access", "Free DOLLHOUSE account included", "1-on-1 kickoff call"].map((t) => (
               <li key={t} className="flex items-center gap-1.5">
                 <span style={{ color: "var(--gold-deep)" }}>✦</span> {t}
               </li>
@@ -388,7 +390,43 @@ function LaunchHero() {
 }
 
 /* ─── Walkthrough video (right under the hero) ────────── */
+/* Minimal slice of Vimeo's player API, loaded from Vimeo itself only when the video is on the page. */
+type VimeoPlayer = {
+  on: (event: string, cb: (data: { seconds: number; duration: number }) => void) => void;
+  setCurrentTime: (s: number) => Promise<number>;
+  play: () => Promise<void>;
+};
+declare global {
+  interface Window {
+    Vimeo?: { Player: new (el: HTMLIFrameElement) => VimeoPlayer };
+  }
+}
+
+const VIDEO_PROGRESS_KEY = "launch-video-progress";
+
+function loadVimeoApi(): Promise<void> {
+  if (window.Vimeo) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const existing = document.querySelector<HTMLScriptElement>("script[data-vimeo-api]");
+    if (existing) {
+      existing.addEventListener("load", () => resolve());
+      existing.addEventListener("error", () => reject(new Error("vimeo api")));
+      return;
+    }
+    const el = document.createElement("script");
+    el.src = "https://player.vimeo.com/api/player.js";
+    el.async = true;
+    el.dataset.vimeoApi = "1";
+    el.onload = () => resolve();
+    el.onerror = () => reject(new Error("vimeo api"));
+    document.head.appendChild(el);
+  });
+}
+
 function HeroVideo() {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const playerRef = useRef<VimeoPlayer | null>(null);
+  const [resumeAt, setResumeAt] = useState<number | null>(null);
   const holder = useRef<HTMLDivElement>(null);
   const [mini, setMini] = useState(false);
   const [closed, setClosed] = useState(false);
@@ -410,6 +448,53 @@ function HeroVideo() {
     return () => io.disconnect();
   }, []);
 
+  // Remember where each visitor stopped, and offer to pick up from there on their next visit.
+  useEffect(() => {
+    if (!HERO_VIDEO_EMBED_URL) return;
+    try {
+      const saved = Number(localStorage.getItem(VIDEO_PROGRESS_KEY));
+      if (saved >= 5) setResumeAt(saved);
+    } catch {
+      /* storage can be blocked; the video just starts at the beginning */
+    }
+    let last = 0;
+    loadVimeoApi()
+      .then(() => {
+        if (!iframeRef.current || !window.Vimeo) return;
+        const player = new window.Vimeo.Player(iframeRef.current);
+        playerRef.current = player;
+        player.on("timeupdate", ({ seconds, duration }) => {
+          if (seconds < 5 || seconds - last < 2) return;
+          last = seconds;
+          try {
+            if (seconds > duration - 8) localStorage.removeItem(VIDEO_PROGRESS_KEY);
+            else localStorage.setItem(VIDEO_PROGRESS_KEY, String(Math.floor(seconds)));
+          } catch {
+            /* ignore */
+          }
+        });
+        player.on("ended", () => {
+          try {
+            localStorage.removeItem(VIDEO_PROGRESS_KEY);
+          } catch {
+            /* ignore */
+          }
+        });
+      })
+      .catch(() => {
+        /* if Vimeo's script cannot load, the video still plays normally */
+      });
+  }, []);
+
+  const choose = (from: number) => {
+    setResumeAt(null);
+    const player = playerRef.current;
+    if (!player) return;
+    player.setCurrentTime(from).then(() => player.play()).catch(() => {
+      /* the visitor can press play themselves */
+    });
+  };
+
   if (!HERO_VIDEO_EMBED_URL) return null;
   const floating = mini && desktop && !closed;
 
@@ -425,10 +510,28 @@ function HeroVideo() {
         {/* The holder keeps its size while the player floats, so the page never jumps. */}
         <div ref={holder} className="mx-auto mt-5 aspect-video">
           <div
-            className={floating ? "phone-pop fixed bottom-28 right-6 z-[55] aspect-video w-[300px] overflow-hidden rounded-[8px]" : "h-full w-full overflow-hidden rounded-[8px]"}
+            className={floating ? "phone-pop fixed bottom-28 right-6 z-[55] aspect-video w-[300px] overflow-hidden rounded-[8px]" : "relative h-full w-full overflow-hidden rounded-[8px]"}
             style={{ border: "1px solid color-mix(in oklab, var(--gold) 55%, transparent)", boxShadow: floating ? "0 30px 60px -20px rgba(31,17,11,0.6)" : "0 50px 100px -40px rgba(70,30,25,0.55), 0 0 0 8px rgba(255,250,246,0.35)" }}
           >
-            <iframe src={HERO_VIDEO_EMBED_URL} title="Dollhouse Launch video presentation" className="h-full w-full" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen />
+            <iframe ref={iframeRef} src={HERO_VIDEO_EMBED_URL} title="Dollhouse Launch video presentation" className="h-full w-full" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen />
+            {resumeAt !== null && !floating && (
+              <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-4 p-4 text-center sm:gap-6" style={{ background: "rgba(19,10,6,0.84)", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)" }}>
+                <p className="text-[var(--cream)]" style={{ fontFamily: DISPLAY, fontSize: "clamp(1.5rem, 4.6vw, 3rem)", fontWeight: 500, lineHeight: 1.1 }}>
+                  Welcome back!<br />
+                  <span className="italic" style={{ fontSize: "0.62em", fontWeight: 400, opacity: 0.9 }}>You&apos;ve already started watching this video…</span>
+                </p>
+                <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8">
+                  <button type="button" onClick={() => choose(resumeAt)} className="flex items-center gap-3 text-left text-[var(--cream)] transition-opacity hover:opacity-85" style={{ fontFamily: LUXE, fontWeight: 500, fontSize: "clamp(0.8rem, 2vw, 1.05rem)", letterSpacing: "0.04em" }}>
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full sm:h-14 sm:w-14" style={{ border: "2.5px solid var(--gold)", background: "rgba(0,0,0,0.5)" }}><Play className="h-4 w-4 sm:h-5 sm:w-5" style={{ color: "#fff", fill: "#fff" }} /></span>
+                    Continue<br />watching?
+                  </button>
+                  <button type="button" onClick={() => choose(0)} className="flex items-center gap-3 text-left text-[var(--cream)] transition-opacity hover:opacity-85" style={{ fontFamily: LUXE, fontWeight: 500, fontSize: "clamp(0.8rem, 2vw, 1.05rem)", letterSpacing: "0.04em" }}>
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full sm:h-14 sm:w-14" style={{ border: "2.5px solid var(--gold)", background: "rgba(0,0,0,0.5)" }}><RotateCcw className="h-4 w-4 sm:h-5 sm:w-5" style={{ color: "var(--gold)" }} /></span>
+                    Start from<br />beginning?
+                  </button>
+                </div>
+              </div>
+            )}
             {floating && (
               <button type="button" aria-label="Close video" onClick={() => setClosed(true)} className="absolute right-1.5 top-1.5 flex h-6 w-6 items-center justify-center rounded-full" style={{ background: "rgba(20,10,6,0.75)", color: "#fff" }}>
                 <X className="h-3.5 w-3.5" />
@@ -603,7 +706,7 @@ const SERVICES: {
       "Answers common service questions you have approved",
       "Asks a few questions to determine which service they need",
       "Helps interested people book an appointment on your calendar",
-      "Keeps contacts and conversations organized in your included DOLLHOUSE CRM account",
+      "Keeps contacts and conversations organized in your included DOLLHOUSE account",
       "Works during busy season, evenings and weekends without extra staff",
     ],
     preview: "booking",
@@ -852,15 +955,6 @@ function StyleViewer({ item, format, saved, onToggleSaved, onClose }: { item: Ex
   const [i, setI] = useState(0);
   const touchX = useRef<number | null>(null);
   const t = TONES[item.style.tone];
-  // Keep the chat bubble from sitting on top of the viewer while it is open.
-  useEffect(() => {
-    const root = document.querySelector("chat-widget")?.shadowRoot;
-    if (!root) return;
-    const style = document.createElement("style");
-    style.textContent = "#lc_text-widget, #lc_text-widget--btn { display: none !important; }";
-    root.appendChild(style);
-    return () => style.remove();
-  }, []);
   const next = () => setI((v) => Math.min(slides.length - 1, v + 1));
   const prev = () => setI((v) => Math.max(0, v - 1));
 
@@ -1141,7 +1235,7 @@ export function LaunchPlans() {
           </ul>
           <div className="mt-7 grid gap-5 border-t pt-7 sm:grid-cols-2" style={{ borderColor: "color-mix(in oklab, var(--gold) 28%, transparent)" }}>
             {[
-              { title: "Your DOLLHOUSE CRM account", copy: "Keep inquiries, messages, follow-up, and appointments organized in one place. Powered by HighLevel.", icon: MessageSquare },
+              { title: "Your DOLLHOUSE account", copy: "Keep inquiries, messages, follow-up, and appointments organized in one place. Powered by HighLevel.", icon: MessageSquare },
               { title: "Private 1-on-1 kickoff call", copy: "Discuss your services, ideal clients, preferred styles, and setup questions.", icon: CalendarCheck },
             ].map((b, bi) => (
               <div key={b.title} className="flex gap-4">
@@ -1180,7 +1274,7 @@ export function LaunchPlans() {
 /* ─── After purchase ──────────────────────────────────── */
 const AFTER = [
   { title: "Today", copy: "Complete your order and choose a time for your private kickoff call.", icon: CreditCard, art: MockCheckout, foot: "Kickoff call booked" },
-  { title: "Immediate account access", copy: "Your DOLLHOUSE CRM account is available immediately. Complete your setup checklist after booking your call.", icon: KeyRound, art: MockCrm, foot: "Setup checklist ready" },
+  { title: "Immediate account access", copy: "Your DOLLHOUSE account is available immediately. Complete your setup checklist after booking your call.", icon: KeyRound, art: MockCrm, foot: "Setup checklist ready" },
   { title: "Your first posts", copy: `Review your first posts and the publishing plan within ${FIRST_POSTS_DAYS} days, with your setup details and access provided.`, icon: Images, art: MockApprove, foot: `First posts in ${FIRST_POSTS_DAYS} days` },
 ];
 
@@ -1243,7 +1337,7 @@ const FAQS = [
   },
   {
     q: "Are there any additional software or AI costs?",
-    a: `Your website tools and DOLLHOUSE CRM account (powered by HighLevel) are included. Some AI features have small fees based on how much they are used. We cover the first $${AI_USAGE_COVERED} in AI usage each month, which is enough for most clients. Any additional project or usage fee requires your approval before it is charged.`,
+    a: `Your website tools and DOLLHOUSE account (powered by HighLevel) are included. Some AI features have small fees based on how much they are used. We cover the first $${AI_USAGE_COVERED} in AI usage each month, which is enough for most clients. Any additional project or usage fee requires your approval before it is charged.`,
   },
   {
     q: "What do you need from me, and how quickly can we launch?",
@@ -1267,7 +1361,7 @@ const FAQS = [
   },
   {
     q: "What if I already have a CRM account?",
-    a: "We can connect to your existing account when practical. An included DOLLHOUSE CRM account (powered by HighLevel) is available if you need a new one.",
+    a: "We can connect to your existing account when practical. An included DOLLHOUSE account (powered by HighLevel) is available if you need a new one.",
   },
   {
     q: "Is there a contract or commitment?",
@@ -1391,31 +1485,6 @@ export function LaunchStickyBar() {
   const show = scrolled && !dismissed;
   const gold = "var(--gold)";
 
-  // On phones, lift the chat bubble above the tab bar while the bar is showing.
-  useEffect(() => {
-    if (!show) return;
-    let tries = 0;
-    let styleEl: HTMLStyleElement | null = null;
-    const attach = () => {
-      const root = document.querySelector("chat-widget")?.shadowRoot;
-      if (root) {
-        styleEl = document.createElement("style");
-        styleEl.textContent = "@media (max-width: 767px) { #lc_text-widget, #lc_text-widget--btn { bottom: 96px !important; } }";
-        root.appendChild(styleEl);
-        return true;
-      }
-      return false;
-    };
-    if (attach()) return () => styleEl?.remove();
-    const id = window.setInterval(() => {
-      tries += 1;
-      if (attach() || tries > 40) window.clearInterval(id);
-    }, 500);
-    return () => {
-      window.clearInterval(id);
-      styleEl?.remove();
-    };
-  }, [show]);
 
   return (
     <>
