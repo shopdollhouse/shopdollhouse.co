@@ -167,17 +167,17 @@ function OnboardingFormPage() {
           <LeftTitle italic="complete your" caps="Onboarding form." sub="Give our team the context we need to build content that sounds like you and supports your growth goals." />
           <ul className="mt-9 grid gap-3">
             {["Your contact details are already attached", "No social-media passwords are requested", "Your answers go straight to our team", "Next: log in and connect your social pages"].map((t) => (
-              <li key={t} className="flex items-start gap-3" style={{ fontFamily: BODY, fontSize: "0.92rem", color: "rgba(255,250,246,0.88)" }}>
+              <li key={t} className="flex items-start gap-3" style={{ fontFamily: BODY, fontSize: "0.92rem", color: "rgba(31,17,11,0.85)" }}>
                 <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full" style={{ border: "1.5px solid var(--gold)", color: "var(--gold)" }}><Check className="h-3 w-3" strokeWidth={3} /></span>
                 {t}
               </li>
             ))}
           </ul>
           {lead && (
-            <div className="mt-9 rounded-2xl px-5 py-4" style={{ background: "rgba(255,250,246,0.06)", border: "1px solid rgba(198,178,130,0.3)" }}>
+            <div className="mt-9 rounded-2xl px-5 py-4" style={{ background: "rgba(255,255,255,0.72)", border: "1px solid rgba(168,134,74,0.35)" }}>
               <p className="text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE, fontWeight: 700, color: "var(--gold)" }}>Completing as</p>
               <p className="mt-2" style={{ fontFamily: LUXE, fontWeight: 600 }}>{lead.firstName} {lead.lastName}</p>
-              <p className="mt-1 break-all" style={{ fontFamily: BODY, fontSize: "0.82rem", color: "rgba(255,250,246,0.65)" }}>{lead.email}</p>
+              <p className="mt-1 break-all" style={{ fontFamily: BODY, fontSize: "0.82rem", color: "rgba(31,17,11,0.6)" }}>{lead.email}</p>
             </div>
           )}
         </>

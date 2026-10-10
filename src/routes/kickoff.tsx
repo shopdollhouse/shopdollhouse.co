@@ -26,9 +26,9 @@ function KickoffPage() {
               "Have your brand assets and calendar handy.",
               "Choose a time that works for you.",
             ].map((t) => (
-              <li key={t} className="flex items-start gap-3 rounded-2xl px-4 py-4" style={{ background: "rgba(255,250,246,0.05)", border: "1px solid rgba(198,178,130,0.22)" }}>
+              <li key={t} className="flex items-start gap-3 rounded-2xl px-4 py-4" style={{ background: "rgba(255,255,255,0.72)", border: "1px solid rgba(168,134,74,0.35)" }}>
                 <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full" style={{ border: "1.5px solid var(--gold)", color: "var(--gold)" }}><Check className="h-3 w-3" strokeWidth={3} /></span>
-                <span className="leading-6" style={{ fontFamily: BODY, fontSize: "0.92rem", color: "rgba(255,250,246,0.9)" }}>{t}</span>
+                <span className="leading-6" style={{ fontFamily: BODY, fontSize: "0.92rem", color: "rgba(31,17,11,0.85)" }}>{t}</span>
               </li>
             ))}
           </ul>

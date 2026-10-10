@@ -36,7 +36,7 @@ function WelcomePage() {
         <>
           <Pill><ShieldCheck className="h-3.5 w-3.5" /> Payment successful</Pill>
           <LeftTitle italic="you're officially in." caps="Welcome to Launch." sub="Your subscription is active. We are excited to build your content engine. First, reserve your kickoff call. Then we will guide you through a short setup checklist." />
-          <p className="mt-10 inline-flex items-center gap-2 text-[11px] tracking-[0.16em] uppercase" style={{ fontFamily: LUXE, color: "rgba(255,250,246,0.5)" }}>
+          <p className="mt-10 inline-flex items-center gap-2 text-[11px] tracking-[0.16em] uppercase" style={{ fontFamily: LUXE, color: "rgba(31,17,11,0.55)" }}>
             <ShieldCheck className="h-4 w-4 text-[var(--gold)]" /> Your account is secured
           </p>
         </>

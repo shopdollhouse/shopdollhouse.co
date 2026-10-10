@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Check, Lock } from "lucide-react";
 import archMark from "@/assets/arch-mark.svg";
+import bgImage from "@/assets/password-bg.jpg";
 
 export const DISPLAY = "'Cormorant Garamond', serif";
 export const BODY = "'DM Sans', sans-serif";
@@ -66,14 +67,14 @@ function Stepper({ current }: { current: 0 | 1 | 2 }) {
                 style={{
                   fontFamily: LUXE,
                   background: done || active ? "var(--gold)" : "transparent",
-                  color: done || active ? "var(--ink)" : "rgba(255,250,246,0.5)",
-                  border: done || active ? "none" : "1.5px solid rgba(255,250,246,0.25)",
+                  color: done || active ? "var(--ink)" : "rgba(31,17,11,0.5)",
+                  border: done || active ? "none" : "1.5px solid rgba(31,17,11,0.25)",
                   boxShadow: active ? "0 0 0 4px rgba(198,178,130,0.28)" : "none",
                 }}
               >
                 {done ? <Check className="h-4 w-4" strokeWidth={3} /> : i + 1}
               </span>
-              <span className="hidden text-[12px] sm:inline" style={{ fontFamily: LUXE, fontWeight: active ? 600 : 400, color: done || active ? "var(--cream)" : "rgba(255,250,246,0.5)" }}>{label}</span>
+              <span className="hidden text-[12px] sm:inline" style={{ fontFamily: LUXE, fontWeight: active ? 600 : 400, color: done || active ? "var(--ink)" : "rgba(31,17,11,0.5)" }}>{label}</span>
             </span>
             {i < STEPS.length - 1 && <span className="h-px w-6 sm:w-14" style={{ background: "rgba(198,178,130,0.45)" }} />}
           </li>
@@ -86,17 +87,17 @@ function Stepper({ current }: { current: 0 | 1 | 2 }) {
 /** Dark page with header, progress bar and a two-panel card: dark intro on the left, light content on the right. */
 export function FlowShell({ current, left, right, footer }: { current: 0 | 1 | 2; left: React.ReactNode; right: React.ReactNode; footer: string }) {
   return (
-    <main className="lux min-h-screen px-4 pb-10 pt-8 sm:px-6" style={{ background: "linear-gradient(180deg, #130a06 0%, #1f110b 100%)", color: "var(--cream)" }}>
+    <main className="lux min-h-screen px-4 pb-10 pt-8 sm:px-6" style={{ backgroundColor: "#f7e4df", backgroundImage: `linear-gradient(rgba(247,228,223,0.55), rgba(247,228,223,0.55)), radial-gradient(ellipse at center, rgba(247,228,223,0) 0%, rgba(230,200,195,0.45) 75%, rgba(210,175,168,0.7) 100%), url(${bgImage})`, backgroundSize: "cover", backgroundPosition: "center", color: "var(--ink)" }}>
       <header className="mx-auto flex max-w-6xl items-center justify-between pb-8">
         <a href="/" className="flex items-center gap-2.5 no-underline" aria-label="Dollhouse Launch home">
-          <img src={archMark} alt="" className="h-9 w-auto" style={{ filter: "brightness(1.25)" }} />
+          <img src={archMark} alt="" className="h-9 w-auto"  />
           <span className="flex flex-col items-start leading-none">
             <span style={{ fontFamily: "'Allura', cursive", color: "var(--gold)", fontSize: "18px", textTransform: "lowercase", lineHeight: 1 }}>the</span>
-            <span style={{ fontFamily: DISPLAY, color: "#e9b2ab", fontSize: "17px", fontWeight: 500, letterSpacing: "5px", textTransform: "uppercase", lineHeight: 1, marginTop: "-1px" }}>Dollhouse</span>
+            <span style={{ fontFamily: DISPLAY, color: "var(--rose)", fontSize: "17px", fontWeight: 500, letterSpacing: "5px", textTransform: "uppercase", lineHeight: 1, marginTop: "-1px" }}>Dollhouse</span>
             <span className="font-semibold" style={{ fontFamily: LUXE, color: "var(--gold)", fontSize: "6.5px", letterSpacing: "6px", textTransform: "uppercase", marginTop: "2px" }}>Launch</span>
           </span>
         </a>
-        <span className="inline-flex items-center gap-2 text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE, color: "rgba(255,250,246,0.6)" }}>
+        <span className="inline-flex items-center gap-2 text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE, color: "rgba(31,17,11,0.6)" }}>
           <Lock className="h-3.5 w-3.5 text-[var(--gold)]" /> Secure setup
         </span>
       </header>
@@ -104,20 +105,20 @@ export function FlowShell({ current, left, right, footer }: { current: 0 | 1 | 2
       <Stepper current={current} />
 
       <div className="mx-auto mt-8 grid max-w-6xl overflow-hidden rounded-[32px] lg:grid-cols-2" style={{ border: "1px solid rgba(198,178,130,0.3)", boxShadow: "0 60px 120px -50px rgba(0,0,0,0.8)" }}>
-        <section className="p-8 sm:p-12" style={{ background: "linear-gradient(160deg, #24140d 0%, #170b06 100%)" }}>{left}</section>
+        <section className="p-8 sm:p-12" style={{ background: "rgba(255,250,246,0.6)", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)" }}>{left}</section>
         <section className="p-4 sm:p-8" style={{ background: "linear-gradient(160deg, #fff7f3 0%, #f7e3dd 100%)", color: "var(--ink)" }}>
           <div className="rounded-[26px] p-5 sm:p-8" style={{ background: "rgba(255,255,255,0.78)", boxShadow: "0 24px 60px -36px rgba(80,40,30,0.4)" }}>{right}</div>
         </section>
       </div>
 
-      <p className="mx-auto mt-8 max-w-6xl text-center text-[10px] tracking-[0.22em] uppercase" style={{ fontFamily: LUXE, color: "rgba(255,250,246,0.35)" }}>{footer}</p>
+      <p className="mx-auto mt-8 max-w-6xl text-center text-[10px] tracking-[0.22em] uppercase" style={{ fontFamily: LUXE, color: "rgba(31,17,11,0.5)" }}>{footer}</p>
     </main>
   );
 }
 
 export function Pill({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE, fontWeight: 600, color: "var(--gold)", border: "1px solid rgba(198,178,130,0.4)", background: "rgba(198,178,130,0.08)" }}>
+    <span className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE, fontWeight: 600, color: "var(--gold-deep)", border: "1px solid rgba(168,134,74,0.5)", background: "rgba(255,255,255,0.55)" }}>
       {children}
     </span>
   );
@@ -126,12 +127,12 @@ export function Pill({ children }: { children: React.ReactNode }) {
 export function LeftTitle({ italic, caps, sub }: { italic: string; caps: string; sub: string }) {
   return (
     <>
-      <h1 className="mt-7" style={{ fontFamily: DISPLAY, fontWeight: 400, fontSize: "clamp(2.2rem, 4.6vw, 3.3rem)", lineHeight: 1.04, color: "var(--cream)" }}>
-        <span className="italic" style={{ color: "var(--gold)" }}>{italic}</span>
+      <h1 className="mt-7" style={{ fontFamily: DISPLAY, fontWeight: 400, fontSize: "clamp(2.2rem, 4.6vw, 3.3rem)", lineHeight: 1.04, color: "var(--ink)" }}>
+        <span className="italic" style={{ color: "var(--gold-deep)" }}>{italic}</span>
         <br />
-        <span style={{ letterSpacing: "0.04em", textTransform: "uppercase", color: "#e9b2ab" }}>{caps}</span>
+        <span style={{ letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--rose)" }}>{caps}</span>
       </h1>
-      <p className="mt-6 max-w-md leading-8" style={{ fontFamily: BODY, color: "rgba(255,250,246,0.72)" }}>{sub}</p>
+      <p className="mt-6 max-w-md leading-8" style={{ fontFamily: BODY, color: "rgba(31,17,11,0.7)" }}>{sub}</p>
     </>
   );
 }

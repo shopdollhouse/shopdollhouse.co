@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Check, ImageIcon, Images, Lock, ShieldCheck, Sparkles, Star } from "lucide-react";
 import archMark from "@/assets/arch-mark.svg";
+import bgImage from "@/assets/password-bg.jpg";
 import { usePageMeta } from "@/lib/use-page-meta";
 import {
   GUARANTEE_DAYS,
@@ -56,13 +57,13 @@ function Stepper() {
               style={{
                 fontFamily: LUXE,
                 background: state === "todo" ? "transparent" : "var(--gold)",
-                color: state === "todo" ? "rgba(255,250,246,0.5)" : "var(--ink)",
-                border: state === "todo" ? "1.5px solid rgba(255,250,246,0.25)" : "none",
+                color: state === "todo" ? "rgba(31,17,11,0.5)" : "var(--ink)",
+                border: state === "todo" ? "1.5px solid rgba(31,17,11,0.25)" : "none",
               }}
             >
               {state === "done" ? <Check className="h-4 w-4" strokeWidth={3} /> : i + 1}
             </span>
-            <span className="hidden text-[12px] sm:inline" style={{ fontFamily: LUXE, fontWeight: state === "active" ? 600 : 400, color: state === "todo" ? "rgba(255,250,246,0.5)" : "var(--cream)" }}>{label}</span>
+            <span className="hidden text-[12px] sm:inline" style={{ fontFamily: LUXE, fontWeight: state === "active" ? 600 : 400, color: state === "todo" ? "rgba(31,17,11,0.5)" : "var(--ink)" }}>{label}</span>
           </span>
           {i < steps.length - 1 && <span className="h-px w-6 sm:w-16" style={{ background: "rgba(198,178,130,0.45)" }} />}
         </li>
@@ -105,17 +106,17 @@ function GetStartedPage() {
   }, []);
 
   return (
-    <main className="lux min-h-screen px-4 pb-10 pt-8 sm:px-6" style={{ background: "linear-gradient(180deg, #130a06 0%, #1f110b 100%)", color: "var(--cream)" }}>
+    <main className="lux min-h-screen px-4 pb-10 pt-8 sm:px-6" style={{ backgroundColor: "#f7e4df", backgroundImage: `linear-gradient(rgba(247,228,223,0.55), rgba(247,228,223,0.55)), radial-gradient(ellipse at center, rgba(247,228,223,0) 0%, rgba(230,200,195,0.45) 75%, rgba(210,175,168,0.7) 100%), url(${bgImage})`, backgroundSize: "cover", backgroundPosition: "center", color: "var(--ink)" }}>
       <header className="mx-auto flex max-w-6xl items-center justify-between pb-8">
         <a href="/" className="flex items-center gap-2.5 no-underline" aria-label="Dollhouse Launch home">
-          <img src={archMark} alt="" className="h-9 w-auto" style={{ filter: "brightness(1.25)" }} />
+          <img src={archMark} alt="" className="h-9 w-auto"  />
           <span className="flex flex-col items-start leading-none">
             <span style={{ fontFamily: "'Allura', cursive", color: "var(--gold)", fontSize: "18px", textTransform: "lowercase", lineHeight: 1 }}>the</span>
-            <span style={{ fontFamily: DISPLAY, color: "#e9b2ab", fontSize: "17px", fontWeight: 500, letterSpacing: "5px", textTransform: "uppercase", lineHeight: 1, marginTop: "-1px" }}>Dollhouse</span>
+            <span style={{ fontFamily: DISPLAY, color: "var(--rose)", fontSize: "17px", fontWeight: 500, letterSpacing: "5px", textTransform: "uppercase", lineHeight: 1, marginTop: "-1px" }}>Dollhouse</span>
             <span className="font-semibold" style={{ fontFamily: LUXE, color: "var(--gold)", fontSize: "6.5px", letterSpacing: "6px", textTransform: "uppercase", marginTop: "2px" }}>Launch</span>
           </span>
         </a>
-        <span className="inline-flex items-center gap-2 text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE, color: "rgba(255,250,246,0.6)" }}>
+        <span className="inline-flex items-center gap-2 text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE, color: "rgba(31,17,11,0.6)" }}>
           <Lock className="h-3.5 w-3.5 text-[var(--gold)]" /> Secure checkout
         </span>
       </header>
@@ -124,29 +125,29 @@ function GetStartedPage() {
 
       <div className="mx-auto mt-8 grid max-w-6xl overflow-hidden rounded-[32px] lg:grid-cols-2" style={{ border: "1px solid rgba(198,178,130,0.3)", boxShadow: "0 60px 120px -50px rgba(0,0,0,0.8)" }}>
         {/* Left: the offer */}
-        <section className="p-8 sm:p-12" style={{ background: "linear-gradient(160deg, #24140d 0%, #170b06 100%)" }}>
-          <span className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE, fontWeight: 600, color: "var(--gold)", border: "1px solid rgba(198,178,130,0.4)", background: "rgba(198,178,130,0.08)" }}>
+        <section className="p-8 sm:p-12" style={{ background: "rgba(255,250,246,0.6)", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)" }}>
+          <span className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE, fontWeight: 600, color: "var(--gold-deep)", border: "1px solid rgba(168,134,74,0.5)", background: "rgba(255,255,255,0.55)" }}>
             <Sparkles className="h-3.5 w-3.5" /> Everything your business needs
           </span>
-          <h1 className="mt-7" style={{ fontFamily: DISPLAY, fontWeight: 400, fontSize: "clamp(2.2rem, 4.6vw, 3.3rem)", lineHeight: 1.04, color: "var(--cream)" }}>
-            <span className="italic" style={{ color: "var(--gold)" }}>turn your social media into</span>
+          <h1 className="mt-7" style={{ fontFamily: DISPLAY, fontWeight: 400, fontSize: "clamp(2.2rem, 4.6vw, 3.3rem)", lineHeight: 1.04, color: "var(--ink)" }}>
+            <span className="italic" style={{ color: "var(--gold-deep)" }}>turn your social media into</span>
             <br />
-            <span style={{ letterSpacing: "0.04em", textTransform: "uppercase", color: "#e9b2ab" }}>Booked appointments.</span>
+            <span style={{ letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--rose)" }}>Booked appointments.</span>
           </h1>
-          <p className="mt-6 max-w-md leading-8" style={{ fontFamily: BODY, color: "rgba(255,250,246,0.72)" }}>
+          <p className="mt-6 max-w-md leading-8" style={{ fontFamily: BODY, color: "rgba(31,17,11,0.7)" }}>
             Choose the content format that fits your business. We handle the strategy, creative, publishing and follow-up, so you can stay focused on your customers.
           </p>
 
           <ul className="mt-9 grid gap-3 sm:grid-cols-2">
             {TILES.map((t) => (
-              <li key={t} className="flex items-start gap-3 rounded-2xl px-4 py-4" style={{ background: "rgba(255,250,246,0.05)", border: "1px solid rgba(198,178,130,0.22)" }}>
+              <li key={t} className="flex items-start gap-3 rounded-2xl px-4 py-4" style={{ background: "rgba(255,255,255,0.72)", border: "1px solid rgba(168,134,74,0.35)" }}>
                 <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full" style={{ border: "1.5px solid var(--gold)", color: "var(--gold)" }}><Check className="h-3 w-3" strokeWidth={3} /></span>
-                <span className="leading-6" style={{ fontFamily: BODY, fontSize: "0.92rem", color: "rgba(255,250,246,0.9)" }}>{t}</span>
+                <span className="leading-6" style={{ fontFamily: BODY, fontSize: "0.92rem", color: "rgba(31,17,11,0.85)" }}>{t}</span>
               </li>
             ))}
           </ul>
 
-          <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-2 border-t pt-6 text-[12px]" style={{ borderColor: "rgba(198,178,130,0.22)", fontFamily: LUXE, color: "rgba(255,250,246,0.65)" }}>
+          <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-2 border-t pt-6 text-[12px]" style={{ borderColor: "rgba(198,178,130,0.22)", fontFamily: LUXE, color: "rgba(31,17,11,0.6)" }}>
             <span className="inline-flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-[var(--gold)]" /> {GUARANTEE_DAYS}-day guarantee</span>
             <span className="inline-flex items-center gap-2"><Check className="h-4 w-4 text-[var(--gold)]" /> Private kickoff call</span>
             <span className="inline-flex items-center gap-2"><Check className="h-4 w-4 text-[var(--gold)]" /> Cancel anytime</span>
@@ -275,7 +276,7 @@ function GetStartedPage() {
         </section>
       </div>
 
-      <p className="mx-auto mt-8 max-w-6xl text-center text-[10px] tracking-[0.22em] uppercase" style={{ fontFamily: LUXE, color: "rgba(255,250,246,0.35)" }}>
+      <p className="mx-auto mt-8 max-w-6xl text-center text-[10px] tracking-[0.22em] uppercase" style={{ fontFamily: LUXE, color: "rgba(31,17,11,0.5)" }}>
         Dollhouse Launch · Secure monthly subscription · Built for local businesses
       </p>
     </main>
