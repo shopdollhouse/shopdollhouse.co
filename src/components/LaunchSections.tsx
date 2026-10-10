@@ -407,7 +407,7 @@ declare global {
   }
 }
 
-const VIDEO_PROGRESS_KEY = "launch-video-progress";
+const VIDEO_PROGRESS_KEY = "launch-video-progress-v2";
 
 function loadVimeoApi(): Promise<void> {
   if (window.Vimeo) return Promise.resolve();
@@ -487,11 +487,15 @@ function HeroVideo() {
           /* ignore */
         }
       };
+      const onMeta = () => setResumeAt((r) => (r !== null && r > v.duration - 6 ? null : r));
       v.addEventListener("timeupdate", onTime);
       v.addEventListener("ended", onEnd);
+      v.addEventListener("loadedmetadata", onMeta);
+      if (v.readyState >= 1) onMeta();
       return () => {
         v.removeEventListener("timeupdate", onTime);
         v.removeEventListener("ended", onEnd);
+        v.removeEventListener("loadedmetadata", onMeta);
       };
     }
     let last = 0;
@@ -560,6 +564,9 @@ function HeroVideo() {
             )}
             {resumeAt !== null && !floating && (
               <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-4 p-4 text-center sm:gap-6" style={{ background: "rgba(19,10,6,0.84)", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)" }}>
+                <button type="button" aria-label="Close this message" onClick={() => setResumeAt(null)} className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full sm:right-4 sm:top-4 sm:h-11 sm:w-11" style={{ background: "var(--gold)", color: "var(--ink)" }}>
+                  <X className="h-4 w-4 sm:h-5 sm:w-5" />
+                </button>
                 <p className="text-[var(--cream)]" style={{ fontFamily: DISPLAY, fontSize: "clamp(1.5rem, 4.6vw, 3rem)", fontWeight: 500, lineHeight: 1.1 }}>
                   Welcome back!<br />
                   <span className="italic" style={{ fontSize: "0.62em", fontWeight: 400, opacity: 0.9 }}>You&apos;ve already started watching this video…</span>
