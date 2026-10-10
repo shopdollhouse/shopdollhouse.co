@@ -18,7 +18,15 @@ export const ORDER_LINKS: Record<LaunchPlanId, string> = {
 /** Every "Get started" button on the site goes to the on-site checkout page. */
 export const CHECKOUT_PATH = "/get-started";
 
+/**
+ * Where the hosted checkout (built in the CRM's AI Studio) lives. When set, every "Get started" button goes straight
+ * to it: step 1 saves the contact, step 2 takes payment, then the buyer lands on /welcome here.
+ * Leave empty to use the on-site sign-up pop-up and /get-started page instead.
+ */
+export const CHECKOUT_BASE_URL = "https://dollhouse-checkout.vibepreview.app";
+
 export function checkoutHref(plan: LaunchPlanId = "single"): string {
+  if (CHECKOUT_BASE_URL) return `${CHECKOUT_BASE_URL}/checkout/${plan}`;
   return `${CHECKOUT_PATH}?plan=${plan}`;
 }
 
@@ -116,4 +124,4 @@ export const KICKOFF_CALENDAR_URL = "https://api.leadconnectorhq.com/widget/book
 /** Paste your DOLLHOUSE account login URL here. Empty shows "we will email your login". */
 export const ACCOUNT_LOGIN_URL = "";
 /** Optional webhook that receives the onboarding form answers. Empty opens a pre-filled email to SUPPORT_EMAIL instead. */
-export const ONBOARDING_WEBHOOK_URL = "";
+export const ONBOARDING_WEBHOOK_URL = "https://dollhouse-checkout.vibepreview.app/api/onboarding";

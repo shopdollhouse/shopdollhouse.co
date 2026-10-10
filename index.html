@@ -47,6 +47,17 @@
         }
       }
     </script>
+    <!-- Analytics: reports page views to the CRM account so visits, sources and purchases can be matched -->
+    <script>
+(function(){
+  var BEACON="https://dollhouse-checkout.vibepreview.app/__vibe/e";
+  var sid=(function(){try{var m=/(?:^|;\s*)__vibe_sid=([0-9a-f-]{36})(?:;|$)/.exec(document.cookie);if(m)return m[1];}catch(e){}var s=crypto.randomUUID?crypto.randomUUID():Math.random().toString(36).slice(2)+Date.now().toString(36);try{document.cookie="__vibe_sid="+s+"; Path=/; Max-Age=1800; Secure; SameSite=Lax";}catch(e){}return s;})();
+  function send(type,extra){try{var ev=Object.assign({type:type,eventId:(crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)),timestamp:new Date().toISOString(),sessionId:sid,url:location.href,path:location.pathname,title:document.title,referrer:document.referrer,userAgent:navigator.userAgent,properties:{source:"ai_studio"}},extra||{});var fd=new FormData();fd.append("event",JSON.stringify(ev));if(navigator.sendBeacon){navigator.sendBeacon(BEACON,fd);}else{fetch(BEACON,{method:"POST",body:fd,keepalive:true}).catch(function(){});}}catch(e){}}
+  send("external_script_page_view");
+  document.addEventListener("visibilitychange",function(){if(document.visibilityState==="hidden")send("external_page_time_spent",{timeSpentMs:0});});
+  window.addEventListener("pagehide",function(){send("external_page_time_spent",{timeSpentMs:0});});
+})();
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -57,6 +57,7 @@ function OnboardingFormPage() {
   const [a, setA] = useState<Answers>(EMPTY);
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
+  const [who, setWho] = useState({ firstName: "", email: "", phone: "" });
   const heading = useRef<HTMLHeadingElement>(null);
 
   // Restore a saved draft, and pre-select styles favorited on the homepage.
@@ -72,6 +73,12 @@ function OnboardingFormPage() {
     try {
       const raw = store.get(FAV_KEY);
       if (raw) favs = JSON.parse(raw);
+    } catch {
+      /* ignore */
+    }
+    try {
+      const rawWho = store.get(DRAFT_KEY + "-who");
+      if (rawWho) setWho(JSON.parse(rawWho));
     } catch {
       /* ignore */
     }
@@ -92,6 +99,7 @@ function OnboardingFormPage() {
   };
 
   const validate = (s: number) => {
+    if (s === 0 && !lead && (!who.firstName.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(who.email.trim()))) return "Please add your first name and the email you used at checkout, so we can match your answers to your order.";
     if (s === 0 && (!a.businessName.trim() || !a.businessDescription.trim())) return "Please add your business name and a short description before continuing.";
     if (s === 1 && (!a.usePhotos || !a.reviewPosts || !a.primaryAction || !a.leadMagnet)) return "Please answer the required preference questions before continuing.";
     return "";
@@ -114,7 +122,7 @@ function OnboardingFormPage() {
       }
     }
     setSaving(true);
-    const payload = { ...a, styles: a.styles.length ? a.styles : ["Please recommend a mix"], contact: lead, source: "dollhouse-launch-onboarding", submittedAt: new Date().toISOString() };
+    const payload = { ...a, styles: a.styles.length ? a.styles : ["Please recommend a mix"], contact: lead ?? { firstName: who.firstName.trim(), lastName: "", email: who.email.trim(), phone: who.phone.trim(), plan: "" }, source: "dollhouse-launch-onboarding", submittedAt: new Date().toISOString() };
     if (ONBOARDING_WEBHOOK_URL) {
       try {
         const res = await fetch(ONBOARDING_WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
@@ -139,7 +147,7 @@ function OnboardingFormPage() {
         `Look I have in mind: ${a.customStyle || "-"}`,
         `Links I like: ${a.inspirationLinks || "-"}`,
         `Notes: ${a.notes || "-"}`,
-        lead ? `Contact: ${lead.firstName} ${lead.lastName}, ${lead.email}` : "",
+        lead ? `Contact: ${lead.firstName} ${lead.lastName}, ${lead.email}` : `Contact: ${who.firstName}, ${who.email}, ${who.phone}`,
       ].join("\n");
       window.location.href = `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent("Dollhouse Launch onboarding form")}&body=${encodeURIComponent(body)}`;
     }
@@ -166,7 +174,7 @@ function OnboardingFormPage() {
           <Pill><ClipboardList className="h-3.5 w-3.5" /> Step 1</Pill>
           <LeftTitle italic="complete your" caps="Onboarding form." sub="Give our team the context we need to build content that sounds like you and supports your growth goals." />
           <ul className="mt-9 grid gap-3">
-            {["Your contact details are already attached", "No social-media passwords are requested", "Your answers go straight to our team", "Next: log in and connect your social pages"].map((t) => (
+            {["We match your answers to your order by email", "No social-media passwords are requested", "Your answers go straight to our team", "Next: log in and connect your social pages"].map((t) => (
               <li key={t} className="flex items-start gap-3" style={{ fontFamily: BODY, fontSize: "0.92rem", color: "rgba(31,17,11,0.85)" }}>
                 <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full" style={{ border: "1.5px solid var(--gold)", color: "var(--gold)" }}><Check className="h-3 w-3" strokeWidth={3} /></span>
                 {t}
@@ -206,6 +214,15 @@ function OnboardingFormPage() {
           <form className="mt-6 space-y-5" onSubmit={next} noValidate>
             {step === 0 && (
               <>
+                {!lead && (
+                  <div className="rounded-2xl p-4" style={{ background: "#fffaf6", border: "1px solid rgba(198,178,130,0.4)" }}>
+                    <p className="text-xs leading-5" style={{ fontFamily: BODY, color: "rgba(31,17,11,0.65)" }}>So we can match your answers to your order, tell us who you are. Use the same email you used at checkout.</p>
+                    <div className="mt-3 grid gap-4 sm:grid-cols-2">
+                      {field("Your first name *", <input className={input} style={inputStyle} value={who.firstName} onChange={(e) => { const w = { ...who, firstName: e.target.value }; setWho(w); store.set(DRAFT_KEY + "-who", JSON.stringify(w)); }} placeholder="First name" autoComplete="given-name" />)}
+                      {field("Email used at checkout *", <input className={input} style={inputStyle} type="email" value={who.email} onChange={(e) => { const w = { ...who, email: e.target.value }; setWho(w); store.set(DRAFT_KEY + "-who", JSON.stringify(w)); }} placeholder="you@example.com" autoComplete="email" />)}
+                    </div>
+                  </div>
+                )}
                 {field("Business name *", <input className={input} style={inputStyle} value={a.businessName} onChange={(e) => set("businessName", e.target.value)} placeholder="Your business name" />)}
                 {field("Website", <input className={input} style={inputStyle} type="url" value={a.website} onChange={(e) => set("website", e.target.value)} placeholder="https://yourbusiness.com" />)}
                 {field("Briefly describe your business *", <textarea className={`${input} min-h-[120px] resize-y`} style={inputStyle} value={a.businessDescription} onChange={(e) => set("businessDescription", e.target.value)} placeholder="Services, ideal customers, location, specialties, and what makes you different." />)}

@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { ArrowRight, Check, X } from "lucide-react";
-import { LAUNCH_PLANS, LEAD_WEBHOOK_URL, GUARANTEE_DAYS, checkoutHref, type LaunchPlanId } from "@/lib/launch-offer";
+import { CHECKOUT_BASE_URL, LAUNCH_PLANS, LEAD_WEBHOOK_URL, GUARANTEE_DAYS, checkoutHref, type LaunchPlanId } from "@/lib/launch-offer";
 
 /**
  * "Create your account" step shown when anyone hits a Get Started button.
@@ -24,7 +24,14 @@ export const useCheckout = () => useContext(CheckoutContext);
 
 export function CheckoutProvider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<{ open: boolean; plan: LaunchPlanId }>({ open: false, plan: "single" });
-  const open = useCallback((plan: LaunchPlanId = "single") => setState({ open: true, plan }), []);
+  const open = useCallback((plan: LaunchPlanId = "single") => {
+    // With a hosted checkout, skip the pop-up: its first step already collects the contact details.
+    if (CHECKOUT_BASE_URL) {
+      window.location.assign(checkoutHref(plan));
+      return;
+    }
+    setState({ open: true, plan });
+  }, []);
   const close = useCallback(() => setState((s) => ({ ...s, open: false })), []);
   return (
     <CheckoutContext.Provider value={{ open }}>

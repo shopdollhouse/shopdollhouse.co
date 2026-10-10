@@ -5,6 +5,8 @@ import archMark from "@/assets/arch-mark.svg";
 import bgImage from "@/assets/password-bg.jpg";
 import { usePageMeta } from "@/lib/use-page-meta";
 import {
+  CHECKOUT_BASE_URL,
+  checkoutHref,
   GUARANTEE_DAYS,
   LAUNCH_PLANS,
   ORDER_LINKS,
@@ -83,6 +85,11 @@ function GetStartedPage() {
   const selected = LAUNCH_PLANS.find((p) => p.id === plan) ?? LAUNCH_PLANS[0];
   const copy = PLAN_COPY[selected.id];
   const link = ORDER_LINKS[selected.id];
+
+  // Old links and bookmarks: forward to the hosted checkout when one is connected.
+  useEffect(() => {
+    if (CHECKOUT_BASE_URL) window.location.replace(checkoutHref(selected.id));
+  }, [selected.id]);
 
   // Details from the sign-up step (kept for this visit only, never put in the URL).
   const [lead, setLead] = useState<{ firstName: string; lastName: string; email: string } | null>(null);
