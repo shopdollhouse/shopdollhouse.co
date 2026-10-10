@@ -1108,22 +1108,24 @@ export function LaunchPlans() {
                   <div aria-hidden className="absolute inset-x-0 bottom-0 h-3" style={{ background: "linear-gradient(to top, rgba(255,250,246,0.9), transparent)" }} />
                 </div>
                 <div className="flex flex-1 flex-col px-8 pb-8 text-center">
-                  <h3 className="mt-4 text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontSize: "1rem", letterSpacing: "0.14em", fontWeight: 600 }}>{plan.name}</h3>
+                  <h3 className="mt-4 flex items-center justify-center text-[var(--ink)] uppercase md:min-h-[3.2rem]" style={{ fontFamily: LUXE, fontSize: "1rem", letterSpacing: "0.14em", fontWeight: 600 }}>{plan.name}</h3>
                   <p className="mt-4" style={{ fontFamily: DISPLAY, fontSize: "4.6rem", lineHeight: 0.95, color: "var(--ink)" }}>
                     <span className="align-top text-[1.6rem]" style={{ color: "var(--gold)" }}>$</span>{plan.price}
                     <span className="ml-1.5 uppercase" style={{ fontFamily: LUXE, fontSize: "0.78rem", letterSpacing: "0.16em", color: "rgba(31,17,11,0.5)" }}>/month</span>
                   </p>
                   <span className="mx-auto mt-5 block h-px w-14" style={{ background: "var(--gold)", opacity: 0.7 }} />
-                  <p className="mt-5 font-semibold text-[var(--ink)]" style={{ fontFamily: BODY, fontSize: "1rem" }}>{plan.mix}</p>
+                  <p className="mt-5 font-semibold text-[var(--ink)] md:min-h-[3.1rem]" style={{ fontFamily: BODY, fontSize: "1rem" }}>{plan.mix}</p>
                   <p className="mt-1.5 text-[var(--ink)]/55" style={{ fontFamily: BODY, fontSize: "0.9rem" }}>{plan.blurb}</p>
-                  <a
-                    href={checkoutHref(plan.id)}
-                    onClick={(e) => { e.preventDefault(); open(plan.id); }}
-                    className="mt-auto inline-flex items-center justify-center gap-2 px-8 py-[17px] text-[11px] tracking-[0.26em] uppercase transition-transform"
-                    style={{ marginTop: "1.75rem", fontFamily: LUXE, fontWeight: 600, borderRadius: "2px", background: gold ? "var(--gold)" : "#1f110b", color: gold ? "#130a06" : "var(--cream)", border: "1px solid var(--gold)", boxShadow: "0 22px 44px -18px rgba(31,17,11,0.6)" }}
-                  >
-                    {plan.id === "single" ? "Choose single-image posts" : "Choose carousel slide posts"} <ArrowRight className="h-4 w-4" style={{ color: plan.id === "single" ? "var(--gold)" : undefined }} />
-                  </a>
+                  <div className="mt-auto pt-7">
+                    <a
+                      href={checkoutHref(plan.id)}
+                      onClick={(e) => { e.preventDefault(); open(plan.id); }}
+                      className="inline-flex w-full items-center justify-center gap-2 px-8 py-[17px] text-[11px] tracking-[0.26em] uppercase transition-transform"
+                      style={{ fontFamily: LUXE, fontWeight: 600, borderRadius: "2px", background: gold ? "var(--gold)" : "#1f110b", color: gold ? "#130a06" : "var(--cream)", border: "1px solid var(--gold)", boxShadow: "0 22px 44px -18px rgba(31,17,11,0.6)" }}
+                    >
+                      {plan.id === "single" ? "Choose single-image posts" : "Choose carousel slide posts"} <ArrowRight className="h-4 w-4" style={{ color: plan.id === "single" ? "var(--gold)" : undefined }} />
+                    </a>
+                  </div>
                 </div>
               </article>
             );
