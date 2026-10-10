@@ -94,16 +94,21 @@ export function Phone({ children, bg = "#ffffff", scale = 1, height = 456 }: { c
 }
 
 /* ───────── 1. Instagram profile: thirty posts fill the grid ───────── */
+const SAMPLE_URLS = import.meta.glob("../assets/samples/*.jpg", { eager: true, query: "?url", import: "default" }) as Record<string, string>;
+const STYLE_URLS = import.meta.glob("../assets/styles/*.jpg", { eager: true, query: "?url", import: "default" }) as Record<string, string>;
+export const sampleImg = (n: string) => SAMPLE_URLS[`../assets/samples/${n}.jpg`];
+export const styleImg = (n: string) => STYLE_URLS[`../assets/styles/${n}.jpg`];
+
 export const GRID = [
-  { t: "The one thing I check before every appointment.", a: "#2a1a13", b: "#1a0f0a", fg: "#f5efe6" },
-  { t: "Why this customer came back three times.", a: "#f4dcdc", b: "#e7c2c0", fg: CHOC },
-  { t: "Three questions to ask before you hire anyone.", a: "#c6b282", b: "#a8946a", fg: CHOC },
-  { t: "What goes into a fair quote.", a: "#fffaf6", b: "#efe1d9", fg: CHOC },
-  { t: "Small things show how something is cared for.", a: "#3a2418", b: "#24140d", fg: "#f5efe6" },
-  { t: "Know what it costs. Know who to call.", a: "#efc9c3", b: "#e0aca5", fg: CHOC },
-  { t: "Booked out this week? Here is how.", a: "#e8d9c4", b: "#cdb894", fg: CHOC },
-  { t: "Questions we hear every week.", a: "#d9a9a3", b: "#c58a85", fg: CHOC },
-  { t: "How the process works, step by step.", a: "#fffaf6", b: "#f1e3dc", fg: CHOC },
+  { t: "Booked out this week? Here is how.", img: styleImg("bold-single"), a: "#efc9c3", b: "#e0aca5", fg: CHOC },
+  { t: "The one thing I check before every appointment.", img: styleImg("desk-single"), a: "#f4dcdc", b: "#e7c2c0", fg: CHOC },
+  { t: "Three questions to ask before you hire anyone.", img: styleImg("feed-single"), a: "#fffaf6", b: "#efe1d9", fg: CHOC },
+  { t: "You run your business. We'll handle the marketing.", img: sampleImg("s4-quote"), a: "#2a1a13", b: "#1a0f0a", fg: "#f5efe6" },
+  { t: "Why this customer came back three times.", img: styleImg("story-single"), a: "#f4dcdc", b: "#e7c2c0", fg: CHOC },
+  { t: "What actually goes into a fair quote.", img: styleImg("board-single"), a: "#fffaf6", b: "#f1e3dc", fg: CHOC },
+  { t: "Talented owners were invisible online.", img: sampleImg("s1-founder"), a: "#efc9c3", b: "#e0aca5", fg: CHOC },
+  { t: "What a coffee mug can teach you about maintenance.", img: styleImg("object-single"), a: "#e8d9c4", b: "#cdb894", fg: CHOC },
+  { t: "A message comes in. We reply instantly.", img: styleImg("chat-single"), a: "#efc9c3", b: "#e0aca5", fg: CHOC },
 ];
 const PROFILE_MARKS = [600, 1100, 1600, 2100, 2600, 3100, 3600, 4100, 4600, 7000];
 
@@ -149,9 +154,7 @@ export function PostStudioPreview() {
           {GRID.map((g, i) => (
             <div key={g.t} className="aspect-square">
               {step > i ? (
-                <div className="phone-pop flex h-full items-center justify-center p-1.5 text-center" style={{ background: `linear-gradient(160deg, ${g.a}, ${g.b})` }}>
-                  <p className="italic leading-tight" style={{ fontFamily: DISPLAY, fontSize: "0.6rem", color: g.fg }}>{g.t}</p>
-                </div>
+                <img src={g.img} alt={g.t} className="phone-pop block h-full w-full object-cover" />
               ) : (
                 <div className="h-full" style={{ background: "#f1f1f1" }} />
               )}

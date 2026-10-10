@@ -1,6 +1,6 @@
 import { Bookmark, Check, ChevronLeft, Heart, Lock, MessageCircle, Moon, Send } from "lucide-react";
 import archMark from "@/assets/arch-mark.svg";
-import { CHOC, DISPLAY, GOLD, GRID, IOS_BLUE, IOS_GRAY, Phone, SANS } from "@/components/LaunchAnimatedPreviews";
+import { CHOC, DISPLAY, GOLD, GRID, IOS_BLUE, IOS_GRAY, Phone, SANS, sampleImg } from "@/components/LaunchAnimatedPreviews";
 
 /**
  * Realistic app and browser mock-ups used as the card pictures in
@@ -38,13 +38,9 @@ const Avatar = ({ s = 28 }: { s?: number }) => (
   </span>
 );
 
-const hookTile = (i: number, big = false) => {
+const hookTile = (i: number, _big = false) => {
   const g = GRID[i];
-  return (
-    <div className="flex h-full w-full items-center justify-center p-4 text-center" style={{ background: `linear-gradient(160deg, ${g.a}, ${g.b})` }}>
-      <p className="italic leading-tight" style={{ fontFamily: DISPLAY, fontSize: big ? "1.15rem" : "0.7rem", color: g.fg }}>{g.t}</p>
-    </div>
-  );
+  return <img src={g.img} alt={g.t} className="block h-full w-full object-cover" />;
 };
 
 /* ───────────── How it works ───────────── */
@@ -181,8 +177,8 @@ export function MockPlanCarousel() {
           <p style={{ fontSize: "0.7rem", fontWeight: 700, color: "#111", lineHeight: 1.1 }}>yourbusiness<br /><span style={{ fontWeight: 400, color: "#777", fontSize: "0.58rem" }}>Your town</span></p>
         </div>
         <div className="relative aspect-square w-full overflow-hidden">
-          <div className="absolute inset-0">{hookTile(1, true)}</div>
-          <div className="absolute -right-6 bottom-4 top-4 w-11 rounded-l-xl" style={{ background: "linear-gradient(160deg, #e8d9c4, #cdb894)" }} />
+          <img src={sampleImg("c1-01-cover")} alt="Carousel cover slide" className="absolute inset-0 block h-full w-full object-cover" />
+          <img src={sampleImg("c1-02")} alt="" className="absolute -right-6 bottom-4 top-4 block w-11 rounded-l-xl object-cover" />
           <span className="absolute right-3 top-3 rounded-full px-2 py-0.5" style={{ background: "rgba(0,0,0,0.65)", color: "#fff", fontSize: "0.58rem", fontWeight: 600 }}>1/5</span>
         </div>
         <div className="flex items-center gap-3 px-3 pt-2" style={{ color: "#111" }}>
