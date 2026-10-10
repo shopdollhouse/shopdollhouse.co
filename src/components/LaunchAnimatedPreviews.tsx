@@ -100,15 +100,15 @@ export const sampleImg = (n: string) => SAMPLE_URLS[`../assets/samples/${n}.jpg`
 export const styleImg = (n: string) => STYLE_URLS[`../assets/styles/${n}.jpg`];
 
 export const GRID = [
-  { t: "Need it fixed this week? Here is how.", img: styleImg("bold-single"), a: "#efc9c3", b: "#e0aca5", fg: CHOC },
-  { t: "The one thing I check before every furnace tune-up.", img: styleImg("desk-single"), a: "#f4dcdc", b: "#e7c2c0", fg: CHOC },
-  { t: "Three questions to ask before you hire a contractor.", img: styleImg("feed-single"), a: "#fffaf6", b: "#efe1d9", fg: CHOC },
+  { t: "Do not wait until first frost.", img: styleImg("bold-single"), a: "#efc9c3", b: "#e0aca5", fg: CHOC },
+  { t: "Here is what I check before every job.", img: styleImg("desk-single"), a: "#f4dcdc", b: "#e7c2c0", fg: CHOC },
+  { t: "The line items most quotes leave out.", img: styleImg("collage-single"), a: "#fffaf6", b: "#efe1d9", fg: CHOC },
   { t: "A small leak is a big bill waiting to happen.", img: sampleImg("hs-quote"), a: "#2a1a13", b: "#1a0f0a", fg: "#f5efe6" },
   { t: "Why this homeowner called us back three times.", img: styleImg("story-single"), a: "#f4dcdc", b: "#e7c2c0", fg: CHOC },
-  { t: "What actually goes into a fair roofing quote.", img: styleImg("board-single"), a: "#fffaf6", b: "#f1e3dc", fg: CHOC },
+  { t: "The winter problem starts in September.", img: styleImg("character-single"), a: "#fffaf6", b: "#f1e3dc", fg: CHOC },
   { t: "Meet Sofia, owner and lead gardener.", img: sampleImg("hs-meet"), a: "#efc9c3", b: "#e0aca5", fg: CHOC },
   { t: "Before and after: one weekend, one deck.", img: styleImg("ba-single"), a: "#e8d9c4", b: "#cdb894", fg: CHOC },
-  { t: "A message comes in. We reply instantly.", img: styleImg("chat-single"), a: "#efc9c3", b: "#e0aca5", fg: CHOC },
+  { t: "A surprise repair bill is usually a maintenance problem.", img: styleImg("minimal-single"), a: "#efc9c3", b: "#e0aca5", fg: CHOC },
 ];
 const PROFILE_MARKS = [600, 1100, 1600, 2100, 2600, 3100, 3600, 4100, 4600, 7000];
 

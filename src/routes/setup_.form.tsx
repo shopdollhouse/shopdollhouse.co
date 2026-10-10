@@ -14,12 +14,15 @@ const DRAFT_KEY = "launch-onboarding-draft";
 
 const STYLES = [
   { name: "Expert desk notes", img: "desk-single" },
+  { name: "Creative collage", img: "collage-single" },
   { name: "Bold brand graphics", img: "bold-single" },
   { name: "Photo caption stories", img: "story-single" },
+  { name: "Animated character", img: "character-single" },
   { name: "Whiteboard lessons", img: "board-single" },
+  { name: "Minimal text", img: "minimal-single" },
   { name: "Before & after posts", img: "ba-single" },
-  { name: "Chat-style posts", img: "chat-single" },
   { name: "Everyday object posts", img: "object-single" },
+  { name: "Chat-style posts", img: "chat-single" },
   { name: "Simple feed-style posts", img: "feed-single" },
 ];
 

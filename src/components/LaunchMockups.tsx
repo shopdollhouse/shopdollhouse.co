@@ -61,7 +61,7 @@ export function MockPostFeed() {
           <Bookmark className="ml-auto h-5 w-5" />
         </div>
         <p className="px-3 pt-1.5" style={{ fontSize: "0.64rem", color: "#111" }}>Liked by <b>sarah.m</b> and others</p>
-        <p className="px-3 pt-0.5" style={{ fontSize: "0.64rem", color: "#111", lineHeight: 1.3 }}><b>yourbusiness</b> The one thing I check before every furnace tune-up.</p>
+        <p className="px-3 pt-0.5" style={{ fontSize: "0.64rem", color: "#111", lineHeight: 1.3 }}><b>yourbusiness</b> Here is what I check before every job.</p>
       </Peek>
       <Chip className="bottom-5 left-4" float="launch-float-slow"><span className="flex h-5 w-5 items-center justify-center rounded-full" style={{ background: GOLD, color: CHOC }}><Check className="h-3 w-3" strokeWidth={3} /></span><span><b>Posted</b><br /><span style={{ color: "#777" }}>Publishing daily</span></span></Chip>
     </>
