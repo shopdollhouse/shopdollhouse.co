@@ -38,7 +38,7 @@ function useStory(loopMs: number, marks: number[]) {
     if (still || !visible) return;
     const start = performance.now();
     setElapsed(0);
-    const id = window.setInterval(() => setElapsed((performance.now() - start) % loopMs), 100);
+    const id = window.setInterval(() => setElapsed((performance.now() - start) % loopMs), 50);
     return () => window.clearInterval(id);
   }, [visible, still, loopMs]);
 
@@ -354,11 +354,6 @@ const BOOK_MARKS = [800, 2000, 3200, 4400, 5800, 7200, 8600];
 export function BookingPhonePreview() {
   const { ref, step } = useStory(12500, BOOK_MARKS);
   const slots = ["Tue 10:00", "Wed 2:30", "Fri 11:00"];
-  const Typing = () => (
-    <div className="phone-pop flex w-[52px] items-center gap-1 rounded-[16px] px-3 py-3" style={{ background: IOS_GRAY }}>
-      {[0, 1, 2].map((i) => <span key={i} className="phone-dot h-1.5 w-1.5 rounded-full" style={{ background: "#999", animationDelay: `${i * 0.18}s` }} />)}
-    </div>
-  );
   return (
     <div ref={ref} aria-hidden>
       <Phone>
@@ -398,12 +393,16 @@ export function BookingPhonePreview() {
 }
 
 /* ───────── Hero: Instagram DM that ends in a booked appointment ───────── */
-export function HeroPhoneScreen({ step }: { step: number }) {
-  const Typing = () => (
+/** Module-level on purpose: defining this inside HeroPhoneScreen made React remount it on every tick, restarting its animation. */
+function Typing() {
+  return (
     <div className="phone-pop flex w-[52px] items-center gap-1 rounded-[16px] px-3 py-3" style={{ background: IOS_GRAY }}>
       {[0, 1, 2].map((i) => <span key={i} className="phone-dot h-1.5 w-1.5 rounded-full" style={{ background: "#999", animationDelay: `${i * 0.18}s` }} />)}
     </div>
   );
+}
+
+export function HeroPhoneScreen({ step }: { step: number }) {
   const slots = ["Tue 10:00", "Thu 2:30", "Fri 11:00"];
   const typing = step === 2 || step === 5;
   return (

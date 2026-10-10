@@ -218,23 +218,26 @@ const STORY_EVENTS = [700, 2000, 3300, 5200, 6200, 7500, 9300, 10600]; // step 1
 const STORY_LOOP_MS = 15500;
 
 function usePhoneStory() {
-  const [elapsed, setElapsed] = useState(0);
+  const [state, setState] = useState({ step: 0, secs: 0 });
   const [still, setStill] = useState(false);
 
   useEffect(() => {
+    const at = (elapsed: number) => ({ step: STORY_EVENTS.filter((t) => elapsed >= t).length, secs: Math.floor(elapsed / 1000) });
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setStill(true);
-      setElapsed(11000);
+      setState(at(11000));
       return;
     }
     const start = performance.now();
-    const id = window.setInterval(() => setElapsed((performance.now() - start) % STORY_LOOP_MS), 100);
+    // Only update state when the step or the second actually changes, so the phone is not re-rendered 10 times a second.
+    const id = window.setInterval(() => {
+      const next = at((performance.now() - start) % STORY_LOOP_MS);
+      setState((prev) => (prev.step === next.step && prev.secs === next.secs ? prev : next));
+    }, 100);
     return () => window.clearInterval(id);
   }, []);
 
-  const step = STORY_EVENTS.filter((t) => elapsed >= t).length;
-  const secs = still ? 14 : Math.floor(elapsed / 1000);
-  return { step, secs };
+  return { step: state.step, secs: still ? 14 : state.secs };
 }
 
 function HeroVisual() {
