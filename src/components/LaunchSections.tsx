@@ -879,6 +879,15 @@ const STYLE_DEFS: StyleDef[] = [
     hooks: ["Booked out this week? Here is how.", "Questions we hear every week."],
     middle: ["Know what you need.", "Know what it costs.", "Know who to call."],
   },
+  {
+    name: "Chat-style posts",
+    desc: "A message conversation that shows how fast you reply and how easy it is to book.",
+    best: "Showing customers what working with you feels like: a quick question, a fast answer and a booked appointment.",
+    category: "graphic",
+    tone: "blush",
+    hooks: ["A message comes in. We reply instantly.", "From question to booked in one chat."],
+    middle: ["A customer asks about an opening.", "You reply right away with the options.", "They pick a time and it is booked."],
+  },
 ];
 
 type ExampleItem = { style: StyleDef; hook: string };
@@ -1077,11 +1086,12 @@ const STYLE_KEYS: Record<string, string> = {
   "Whiteboard lessons": "board",
   "Everyday object posts": "object",
   "Bold brand graphics": "bold",
+  "Chat-style posts": "chat",
 };
 function styleSlides(name: string, format: "single" | "carousel"): string[] {
   const key = STYLE_KEYS[name];
   const all = [1, 2, 3, 4, 5].map((n) => STYLE_URLS[`../assets/styles/${key}-${n}.jpg`]);
-  return format === "carousel" ? all : [all[0]];
+  return format === "carousel" ? all : [STYLE_URLS[`../assets/styles/${key}-single.jpg`]];
 }
 
 type SamplePost = { title: string; note: string; slides: string[] };
