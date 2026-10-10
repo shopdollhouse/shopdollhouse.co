@@ -835,6 +835,15 @@ const STYLE_DEFS: StyleDef[] = [
     middle: ["Most people skip it, and it only takes a couple of minutes.", "Skipping it is how small problems turn into big ones.", "So we check it every single time."],
   },
   {
+    name: "Bold brand graphics",
+    desc: "Bold headlines and eye-catching graphics that make people stop and read.",
+    best: "Stopping the scroll with a strong headline, ideal for offers, reminders and the questions you hear most.",
+    category: "graphic",
+    tone: "ink",
+    hooks: ["Booked out this week? Here is how.", "Questions we hear every week."],
+    middle: ["Know what you need.", "Know what it costs.", "Know who to call."],
+  },
+  {
     name: "Photo caption stories",
     desc: "Casual photos with captions that tell a story and share something useful.",
     best: "Building trust with real moments from your business, so people feel like they already know you.",
@@ -842,15 +851,6 @@ const STYLE_DEFS: StyleDef[] = [
     tone: "blush",
     hooks: ["Why this customer came back three times.", "A look behind the scenes at what we do."],
     middle: ["It started with a simple question in the comments.", "We listened, explained the options and kept it honest.", "That is how a first booking becomes a regular."],
-  },
-  {
-    name: "Simple feed-style posts",
-    desc: "Plain text posts that look like a natural part of social media, not an advertisement.",
-    best: "Fitting naturally into the feed, so people read the whole post instead of scrolling past an ad.",
-    category: "graphic",
-    tone: "ink",
-    hooks: ["Three questions to ask before you hire anyone.", "What to know before you book anyone."],
-    middle: ["1. Ask what is included.", "2. Ask how long it takes.", "3. Ask what happens if something changes."],
   },
   {
     name: "Whiteboard lessons",
@@ -862,6 +862,15 @@ const STYLE_DEFS: StyleDef[] = [
     middle: ["Step 1: Tell us what you need.", "Step 2: We explain the options and the price.", "Step 3: You book the time that suits you."],
   },
   {
+    name: "Chat-style posts",
+    desc: "A message conversation that shows how fast you reply and how easy it is to book.",
+    best: "Showing customers what working with you feels like: a quick question, a fast answer and a booked appointment.",
+    category: "graphic",
+    tone: "blush",
+    hooks: ["A message comes in. We reply instantly.", "From question to booked in one chat."],
+    middle: ["A customer asks about an opening.", "You reply right away with the options.", "They pick a time and it is booked."],
+  },
+  {
     name: "Everyday object posts",
     desc: "Everyday objects used to explain your work in a way people remember.",
     best: "Making a simple idea memorable by tying it to something everyone already knows.",
@@ -871,22 +880,13 @@ const STYLE_DEFS: StyleDef[] = [
     middle: ["Small things show you how something is cared for.", "The same goes for the way a business shows up.", "Consistency builds trust, one day at a time."],
   },
   {
-    name: "Bold brand graphics",
-    desc: "Bold headlines and eye-catching graphics that make people stop and read.",
-    best: "Stopping the scroll with a strong headline, ideal for offers, reminders and the questions you hear most.",
+    name: "Simple feed-style posts",
+    desc: "Plain text posts that look like a natural part of social media, not an advertisement.",
+    best: "Fitting naturally into the feed, so people read the whole post instead of scrolling past an ad.",
     category: "graphic",
     tone: "ink",
-    hooks: ["Booked out this week? Here is how.", "Questions we hear every week."],
-    middle: ["Know what you need.", "Know what it costs.", "Know who to call."],
-  },
-  {
-    name: "Chat-style posts",
-    desc: "A message conversation that shows how fast you reply and how easy it is to book.",
-    best: "Showing customers what working with you feels like: a quick question, a fast answer and a booked appointment.",
-    category: "graphic",
-    tone: "blush",
-    hooks: ["A message comes in. We reply instantly.", "From question to booked in one chat."],
-    middle: ["A customer asks about an opening.", "You reply right away with the options.", "They pick a time and it is booked."],
+    hooks: ["Three questions to ask before you hire anyone.", "What to know before you book anyone."],
+    middle: ["1. Ask what is included.", "2. Ask how long it takes.", "3. Ask what happens if something changes."],
   },
 ];
 
@@ -1096,11 +1096,11 @@ function styleSlides(name: string, format: "single" | "carousel"): string[] {
 
 type SamplePost = { title: string; note: string; slides: string[] };
 const SAMPLE_SINGLES: SamplePost[] = [
+  { title: "Bold quote", note: "One strong line that stops the scroll.", slides: [sample("s4-quote")] },
   { title: "Founder note", note: "A personal message that builds trust.", slides: [sample("s1-founder")] },
   { title: "Save-worthy checklist", note: "Useful tips people save and share.", slides: [sample("s5-checklist")] },
+  { title: "Offer post", note: "Your service and price, made clear.", slides: [sample("s2-offer")] },
   { title: "Question post", note: "A prompt that gets people commenting.", slides: [sample("s3-question")] },
-  { title: "Offer post", note: "Your service and price, made clear.", slides: [sample("s6-pink-offer")] },
-  { title: "Bold quote", note: "One strong line that stops the scroll.", slides: [sample("s4-quote")] },
   { title: "Reminder post", note: "Short, pretty and easy to share.", slides: [sample("s7-save")] },
 ];
 const SAMPLE_CAROUSELS: SamplePost[] = [
@@ -1183,7 +1183,7 @@ function SampleGallery({ format }: { format: "single" | "carousel" }) {
   const posts = format === "carousel" ? SAMPLE_CAROUSELS : SAMPLE_SINGLES;
   return (
     <div className="mx-auto mt-10 max-w-6xl">
-      <p className="text-center text-[var(--gold-deep)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Sample posts</p>
+      <p className="text-center text-[var(--gold-deep)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>More sample posts</p>
       <div className={`mt-5 grid gap-5 ${format === "carousel" ? "mx-auto max-w-3xl sm:grid-cols-2" : "grid-cols-2 lg:grid-cols-3"}`}>
         {posts.map((p) => (
           <button key={p.title} type="button" onClick={() => setOpen(p)} aria-label={`View ${p.title}`} className="group block overflow-hidden rounded-[8px] text-left transition-transform hover:-translate-y-1" style={card}>
@@ -1247,14 +1247,14 @@ export function LaunchExamples() {
         </p>
       </div>
 
-      <SampleGallery format={format} />
-
-      <p className="mx-auto mt-16 text-center text-[var(--gold-deep)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>More styles we can create</p>
+      <p className="mx-auto mt-10 text-center text-[var(--gold-deep)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Pick a style you love</p>
       <div className="mx-auto mt-5 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((it) => (
           <ExampleTile key={`${it.style.name}-${it.hook}`} item={it} format={format} saved={favs.includes(it.style.name)} onOpen={() => setOpen(it)} />
         ))}
       </div>
+
+      <div className="mt-16"><SampleGallery format={format} /></div>
 
       <div className="mx-auto mt-16 max-w-2xl rounded-[8px] p-8 text-center md:p-10" style={card}>
         <p className="text-[var(--gold-deep)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Your content, your direction</p>
