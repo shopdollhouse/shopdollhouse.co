@@ -913,7 +913,6 @@ function useFavorites() {
 }
 
 function ExampleTile({ item, format, saved, onOpen }: { item: ExampleItem; format: "single" | "carousel"; saved: boolean; onOpen: () => void }) {
-  const t = TONES[item.style.tone];
   return (
     <button
       type="button"
@@ -922,21 +921,19 @@ function ExampleTile({ item, format, saved, onOpen }: { item: ExampleItem; forma
       className="group block w-full overflow-hidden rounded-[8px] text-left"
       style={card}
     >
-      <div className="relative flex aspect-[5/4] flex-col items-center justify-center p-7 text-center" style={{ background: t.bg }}>
+      <div className="relative">
+        <img src={styleSlides(item.style.name, format)[0]} alt={`${item.style.name} example post`} loading="lazy" className="block w-full" style={{ aspectRatio: "4 / 5", objectFit: "cover" }} />
         {item.style.category === "you" && (
-          <span className="absolute left-4 top-4 flex items-center gap-2 rounded-full px-2.5 py-1" style={{ background: "rgba(255,250,246,0.75)", border: "1px solid color-mix(in oklab, var(--gold) 30%, transparent)" }}>
+          <span className="absolute left-3 top-3 flex items-center gap-2 rounded-full px-2.5 py-1" style={{ background: "rgba(255,250,246,0.85)", border: "1px solid color-mix(in oklab, var(--gold) 30%, transparent)" }}>
             <span className="flex h-5 w-5 items-center justify-center rounded-full" style={{ background: "linear-gradient(135deg,#e6dcc0,#c6b282)" }}>
               <img src={archMark} alt="" className="h-2.5 w-auto" />
             </span>
             <span className="text-[8px] tracking-luxe uppercase text-[var(--ink)]/65" style={{ fontFamily: LUXE }}>You or your team</span>
           </span>
         )}
-        <span className="absolute right-4 top-4 rounded-full px-2.5 py-1 text-[8px] tracking-luxe uppercase" style={{ fontFamily: LUXE, background: "rgba(20,10,6,0.72)", color: "#fff" }}>
+        <span className="absolute right-3 top-3 rounded-full px-2.5 py-1 text-[8px] tracking-luxe uppercase" style={{ fontFamily: LUXE, background: "rgba(20,10,6,0.72)", color: "#fff" }}>
           {saved ? "♥ Saved" : format === "carousel" ? "5 slides · tap to view →" : "Tap to view →"}
         </span>
-        <span style={{ color: t.accent, fontSize: "0.8rem" }}>✦</span>
-        <p className="mt-3 italic leading-tight" style={{ fontFamily: DISPLAY, fontSize: "clamp(1.4rem, 2.6vw, 1.8rem)", color: t.fg }}>{item.hook}</p>
-        <span className="mt-4 h-px w-10" style={{ background: t.accent, opacity: 0.6 }} />
       </div>
       <div className="px-6 py-5">
         <h4 className="text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontSize: "0.78rem", letterSpacing: "0.12em", fontWeight: 600 }}>{item.style.name}</h4>
@@ -950,11 +947,10 @@ function ExampleTile({ item, format, saved, onOpen }: { item: ExampleItem; forma
 }
 
 function StyleViewer({ item, format, saved, onToggleSaved, onClose }: { item: ExampleItem; format: "single" | "carousel"; saved: boolean; onToggleSaved: () => void; onClose: () => void }) {
-  const slides = slidesFor(item);
   const carousel = format === "carousel";
+  const slides = styleSlides(item.style.name, format);
   const [i, setI] = useState(0);
   const touchX = useRef<number | null>(null);
-  const t = TONES[item.style.tone];
   const next = () => setI((v) => Math.min(slides.length - 1, v + 1));
   const prev = () => setI((v) => Math.max(0, v - 1));
 
@@ -1001,8 +997,8 @@ function StyleViewer({ item, format, saved, onToggleSaved, onClose }: { item: Ex
         {/* Image side */}
         <div className="p-4 sm:p-6" style={{ background: "linear-gradient(160deg, #fbeee9 0%, #f3d9d3 100%)" }}>
           <div
-            className="relative flex aspect-square select-none flex-col items-center justify-center rounded-[14px] p-8 text-center sm:p-12"
-            style={{ background: t.bg, border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)", boxShadow: "0 30px 60px -30px rgba(31,17,11,0.5)", touchAction: "pan-y" }}
+            className="relative select-none overflow-hidden rounded-[14px]"
+            style={{ border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)", boxShadow: "0 30px 60px -30px rgba(31,17,11,0.5)", touchAction: "pan-y" }}
             onTouchStart={(e) => { touchX.current = e.touches[0].clientX; }}
             onTouchEnd={(e) => {
               if (!carousel || touchX.current === null) return;
@@ -1012,14 +1008,7 @@ function StyleViewer({ item, format, saved, onToggleSaved, onClose }: { item: Ex
               if (dx > 40) prev();
             }}
           >
-            {carousel && (
-              <span className="absolute left-4 top-4 rounded-full px-3 py-1 text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE, background: "rgba(20,10,6,0.72)", color: "#fff" }}>{i + 1} / {slides.length}</span>
-            )}
-            <span style={{ color: t.accent, fontSize: "1rem" }}>✦</span>
-            <p key={i} className="phone-pop mt-4 italic leading-tight" style={{ fontFamily: DISPLAY, fontSize: i === 0 || !carousel ? "clamp(1.9rem, 5vw, 2.8rem)" : "clamp(1.6rem, 4.4vw, 2.3rem)", color: t.fg }}>
-              {carousel ? slides[i] : slides[0]}
-            </p>
-            <span className="mt-6 h-px w-12" style={{ background: t.accent, opacity: 0.6 }} />
+            <img src={slides[i]} alt={`${item.style.name}, slide ${i + 1} of ${slides.length}`} className="block w-full" style={{ aspectRatio: "4 / 5", objectFit: "cover" }} />
           </div>
 
           {carousel && (
@@ -1079,6 +1068,21 @@ function StyleViewer({ item, format, saved, onToggleSaved, onClose }: { item: Ex
 /* ─── Real sample posts ───────────────────────────────── */
 const SAMPLE_URLS = import.meta.glob("../assets/samples/*.jpg", { eager: true, query: "?url", import: "default" }) as Record<string, string>;
 const sample = (name: string) => SAMPLE_URLS[`../assets/samples/${name}.jpg`];
+
+const STYLE_URLS = import.meta.glob("../assets/styles/*.jpg", { eager: true, query: "?url", import: "default" }) as Record<string, string>;
+const STYLE_KEYS: Record<string, string> = {
+  "Expert desk notes": "desk",
+  "Photo caption stories": "story",
+  "Simple feed-style posts": "feed",
+  "Whiteboard lessons": "board",
+  "Everyday object posts": "object",
+  "Bold brand graphics": "bold",
+};
+function styleSlides(name: string, format: "single" | "carousel"): string[] {
+  const key = STYLE_KEYS[name];
+  const all = [1, 2, 3, 4, 5].map((n) => STYLE_URLS[`../assets/styles/${key}-${n}.jpg`]);
+  return format === "carousel" ? all : [all[0]];
+}
 
 type SamplePost = { title: string; note: string; slides: string[] };
 const SAMPLE_SINGLES: SamplePost[] = [
@@ -1194,13 +1198,11 @@ function SampleGallery({ format }: { format: "single" | "carousel" }) {
 export function LaunchExamples() {
   const [format, setFormat] = useState<"single" | "carousel">("single");
   const [filter, setFilter] = useState<"all" | "you" | "graphic">("all");
-  const [more, setMore] = useState(false);
   const [open, setOpen] = useState<ExampleItem | null>(null);
   const { favs, toggle } = useFavorites();
 
   const base: ExampleItem[] = STYLE_DEFS.map((s) => ({ style: s, hook: s.hooks[0] }));
-  const extra: ExampleItem[] = more ? STYLE_DEFS.map((s) => ({ style: s, hook: s.hooks[1] })) : [];
-  const items = [...base, ...extra].filter((it) => filter === "all" || it.style.category === filter);
+  const items = base.filter((it) => filter === "all" || it.style.category === filter);
 
   const pill = (active: boolean) => ({
     fontFamily: LUXE,
@@ -1242,12 +1244,6 @@ export function LaunchExamples() {
         {items.map((it) => (
           <ExampleTile key={`${it.style.name}-${it.hook}`} item={it} format={format} saved={favs.includes(it.style.name)} onOpen={() => setOpen(it)} />
         ))}
-      </div>
-
-      <div className="mt-10 text-center">
-        <button type="button" onClick={() => setMore((v) => !v)} className="btn-ghost">
-          {more ? "Show fewer examples" : "Explore more examples"}
-        </button>
       </div>
 
       <div className="mx-auto mt-16 max-w-2xl rounded-[8px] p-8 text-center md:p-10" style={card}>
