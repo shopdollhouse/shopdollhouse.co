@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowLeft, Check, Lock, ShieldCheck } from "lucide-react";
+import { Check, ImageIcon, Images, Lock, ShieldCheck, Sparkles, Star } from "lucide-react";
 import archMark from "@/assets/arch-mark.svg";
 import { usePageMeta } from "@/lib/use-page-meta";
 import {
-  FIRST_POSTS_DAYS,
   GUARANTEE_DAYS,
-  INCLUDED_IN_BOTH,
   LAUNCH_PLANS,
   ORDER_LINKS,
   SUPPORT_EMAIL,
@@ -24,21 +22,65 @@ export const Route = createFileRoute("/get-started")({
   component: GetStartedPage,
 });
 
-const card = {
-  background: "rgba(255,250,246,0.9)",
-  border: "1px solid color-mix(in oklab, var(--gold) 30%, transparent)",
-  boxShadow: "0 30px 70px -40px rgba(120,70,60,0.42)",
-} as const;
+const PLAN_COPY: Record<LaunchPlanId, { short: string; name: string; blurb: string; points: string[] }> = {
+  single: {
+    short: "Single images",
+    name: "Single Image Plan",
+    blurb: "One clear message in every post, so your business stays visible.",
+    points: ["30 single-image posts every month", "Captions written for your business", "Instagram and Facebook publishing after approval"],
+  },
+  carousel: {
+    short: "Carousel Slide Posts",
+    name: "Carousel + Single Image Plan",
+    blurb: "More room for stories and step-by-step explanations.",
+    points: ["15 carousel slide posts + 15 single-image posts every month", "Captions written for your business", "Instagram and Facebook publishing after approval"],
+  },
+};
+
+const TILES = [
+  "30 posts a month for Instagram and Facebook",
+  "Website quote calculator or quiz",
+  "Automatic replies and follow-up",
+  "Online appointment booking",
+];
+
+function Stepper() {
+  const steps: [string, "done" | "active" | "todo"][] = [["Your details", "done"], ["Secure payment", "active"], ["Onboarding", "todo"]];
+  return (
+    <ol className="mx-auto flex max-w-xl items-center justify-center gap-2 sm:gap-4" aria-label="Checkout progress">
+      {steps.map(([label, state], i) => (
+        <li key={label} className="flex items-center gap-2 sm:gap-4">
+          <span className="flex items-center gap-2.5">
+            <span
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[12px] font-semibold"
+              style={{
+                fontFamily: LUXE,
+                background: state === "todo" ? "transparent" : "var(--gold)",
+                color: state === "todo" ? "rgba(255,250,246,0.5)" : "var(--ink)",
+                border: state === "todo" ? "1.5px solid rgba(255,250,246,0.25)" : "none",
+              }}
+            >
+              {state === "done" ? <Check className="h-4 w-4" strokeWidth={3} /> : i + 1}
+            </span>
+            <span className="hidden text-[12px] sm:inline" style={{ fontFamily: LUXE, fontWeight: state === "active" ? 600 : 400, color: state === "todo" ? "rgba(255,250,246,0.5)" : "var(--cream)" }}>{label}</span>
+          </span>
+          {i < steps.length - 1 && <span className="h-px w-6 sm:w-16" style={{ background: "rgba(198,178,130,0.45)" }} />}
+        </li>
+      ))}
+    </ol>
+  );
+}
 
 function GetStartedPage() {
   usePageMeta(
-    "Get Started | Dollhouse Launch",
-    "Choose your Dollhouse Launch plan and check out securely. Done-for-you social media and lead generation, no contract, 14-day money-back guarantee.",
+    "Complete Your Order | Dollhouse Launch",
+    "Complete your Dollhouse Launch order. Done-for-you social media and lead generation, no contract, 14-day money-back guarantee.",
   );
 
   const { plan } = Route.useSearch();
   const navigate = Route.useNavigate();
   const selected = LAUNCH_PLANS.find((p) => p.id === plan) ?? LAUNCH_PLANS[0];
+  const copy = PLAN_COPY[selected.id];
   const link = ORDER_LINKS[selected.id];
 
   // Details from the sign-up step (kept for this visit only, never put in the URL).
@@ -63,177 +105,179 @@ function GetStartedPage() {
   }, []);
 
   return (
-    <main className="lux min-h-screen" style={{ background: "linear-gradient(160deg, var(--blush) 0%, var(--cream) 60%)", color: "var(--ink)" }}>
-      {/* Minimal header: no distractions */}
-      <header className="border-b" style={{ borderColor: "color-mix(in oklab, var(--gold) 24%, transparent)" }}>
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-          <a href="/" className="flex items-center gap-2.5 no-underline">
-            <img src={archMark} alt="" className="h-9 w-auto" />
-            <span className="flex flex-col items-start leading-none">
-              <span style={{ fontFamily: "'Allura', cursive", color: "var(--gold)", fontSize: "18px", textTransform: "lowercase", lineHeight: 1 }}>the</span>
-              <span style={{ fontFamily: DISPLAY, color: "var(--rose)", fontSize: "17px", fontWeight: 500, letterSpacing: "5px", textTransform: "uppercase", lineHeight: 1, marginTop: "-1px" }}>Dollhouse</span>
-              <span className="font-semibold" style={{ fontFamily: LUXE, color: "var(--gold)", fontSize: "6.5px", letterSpacing: "6px", textTransform: "uppercase", marginTop: "2px" }}>Launch</span>
-            </span>
-          </a>
-          <span className="inline-flex items-center gap-2 text-[10px] tracking-luxe uppercase text-[var(--ink)]/60" style={{ fontFamily: LUXE }}>
-            <Lock className="h-3.5 w-3.5 text-[var(--gold)]" /> Secure checkout
+    <main className="lux min-h-screen px-4 pb-10 pt-8 sm:px-6" style={{ background: "linear-gradient(180deg, #130a06 0%, #1f110b 100%)", color: "var(--cream)" }}>
+      <header className="mx-auto flex max-w-6xl items-center justify-between pb-8">
+        <a href="/" className="flex items-center gap-2.5 no-underline" aria-label="Dollhouse Launch home">
+          <img src={archMark} alt="" className="h-9 w-auto" style={{ filter: "brightness(1.25)" }} />
+          <span className="flex flex-col items-start leading-none">
+            <span style={{ fontFamily: "'Allura', cursive", color: "var(--gold)", fontSize: "18px", textTransform: "lowercase", lineHeight: 1 }}>the</span>
+            <span style={{ fontFamily: DISPLAY, color: "#e9b2ab", fontSize: "17px", fontWeight: 500, letterSpacing: "5px", textTransform: "uppercase", lineHeight: 1, marginTop: "-1px" }}>Dollhouse</span>
+            <span className="font-semibold" style={{ fontFamily: LUXE, color: "var(--gold)", fontSize: "6.5px", letterSpacing: "6px", textTransform: "uppercase", marginTop: "2px" }}>Launch</span>
           </span>
-        </div>
+        </a>
+        <span className="inline-flex items-center gap-2 text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE, color: "rgba(255,250,246,0.6)" }}>
+          <Lock className="h-3.5 w-3.5 text-[var(--gold)]" /> Secure checkout
+        </span>
       </header>
 
-      <div className="mx-auto grid max-w-6xl gap-10 px-6 py-12 md:py-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
-        {/* Left: choose + summary */}
-        <div>
-          <a href="/#plans" className="inline-flex items-center gap-2 text-[var(--gold)] hover:opacity-70 transition-opacity" style={{ fontFamily: LUXE, fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase" }}>
-            <ArrowLeft className="h-3.5 w-3.5" /> Back to plans
-          </a>
+      <Stepper />
 
-          <p className="gold-grad mt-8 text-[11px] tracking-luxe uppercase font-semibold" style={{ fontFamily: LUXE }}>Dollhouse Launch</p>
-          <h1 className="mt-3 text-[var(--ink)]" style={{ fontFamily: DISPLAY, fontWeight: 400, fontSize: "clamp(2.4rem, 5vw, 3.6rem)", lineHeight: 1.04 }}>
-            You are one step from <span className="italic text-[var(--rose)]">launch.</span>
+      <div className="mx-auto mt-8 grid max-w-6xl overflow-hidden rounded-[32px] lg:grid-cols-2" style={{ border: "1px solid rgba(198,178,130,0.3)", boxShadow: "0 60px 120px -50px rgba(0,0,0,0.8)" }}>
+        {/* Left: the offer */}
+        <section className="p-8 sm:p-12" style={{ background: "linear-gradient(160deg, #24140d 0%, #170b06 100%)" }}>
+          <span className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE, fontWeight: 600, color: "var(--gold)", border: "1px solid rgba(198,178,130,0.4)", background: "rgba(198,178,130,0.08)" }}>
+            <Sparkles className="h-3.5 w-3.5" /> Everything your business needs
+          </span>
+          <h1 className="mt-7" style={{ fontFamily: DISPLAY, fontWeight: 400, fontSize: "clamp(2.2rem, 4.6vw, 3.3rem)", lineHeight: 1.04, color: "var(--cream)" }}>
+            <span className="italic" style={{ color: "var(--gold)" }}>turn your social media into</span>
+            <br />
+            <span style={{ letterSpacing: "0.04em", textTransform: "uppercase", color: "#e9b2ab" }}>Booked appointments.</span>
           </h1>
-          <p className="mt-4 max-w-md text-[var(--ink)]/65 leading-8" style={{ fontFamily: BODY }}>
-            Pick your plan, check out securely, and get instant account access. Your first posts arrive within {FIRST_POSTS_DAYS} days.
+          <p className="mt-6 max-w-md leading-8" style={{ fontFamily: BODY, color: "rgba(255,250,246,0.72)" }}>
+            Choose the content format that fits your business. We handle the strategy, creative, publishing and follow-up, so you can stay focused on your customers.
           </p>
 
-          {lead && (
-            <div className="mt-6 flex items-start gap-3 rounded-2xl px-5 py-4" style={{ background: "color-mix(in oklab, var(--gold) 14%, transparent)", border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)" }}>
-              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full" style={{ background: "var(--gold)", color: "var(--ink)" }}><Check className="h-3.5 w-3.5" strokeWidth={3} /></span>
-              <p className="leading-6 text-[var(--ink)]/80" style={{ fontFamily: BODY, fontSize: "0.92rem" }}>
-                Welcome, <strong>{lead.firstName}</strong>. Your details are saved for this order ({lead.email}). Finish payment on the right to start.
-              </p>
-            </div>
-          )}
-
-          {/* Plan selector */}
-          <div className="mt-8 grid gap-3" role="radiogroup" aria-label="Choose your plan">
-            {LAUNCH_PLANS.map((p) => {
-              const active = p.id === selected.id;
-              return (
-                <button
-                  key={p.id}
-                  type="button"
-                  role="radio"
-                  aria-checked={active}
-                  onClick={() => navigate({ search: { plan: p.id }, replace: true })}
-                  className="flex items-center justify-between gap-4 rounded-2xl px-5 py-4 text-left transition-all"
-                  style={{
-                    background: active ? "var(--ink)" : "rgba(255,250,246,0.8)",
-                    border: active ? "1.5px solid var(--gold)" : "1.5px solid color-mix(in oklab, var(--gold) 28%, transparent)",
-                    boxShadow: active ? "0 24px 50px -26px rgba(24,10,6,0.7)" : "none",
-                  }}
-                >
-                  <span className="flex items-center gap-3">
-                    <span
-                      className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full"
-                      style={{ border: `1.5px solid ${active ? "var(--gold)" : "color-mix(in oklab, var(--ink) 30%, transparent)"}`, background: active ? "var(--gold)" : "transparent" }}
-                    >
-                      {active && <Check className="h-3 w-3 text-[var(--ink)]" strokeWidth={3.5} />}
-                    </span>
-                    <span>
-                      <span className="block" style={{ fontFamily: DISPLAY, fontSize: "1.2rem", fontWeight: 500, color: active ? "var(--cream)" : "var(--ink)" }}>{p.name}</span>
-                      <span className="block" style={{ fontFamily: BODY, fontSize: "0.8rem", color: active ? "rgba(255,250,246,0.6)" : "rgba(31,17,11,0.55)" }}>{p.mix}</span>
-                    </span>
-                  </span>
-                  <span style={{ fontFamily: DISPLAY, fontSize: "1.7rem", color: active ? "var(--gold)" : "var(--rose)", whiteSpace: "nowrap" }}>
-                    ${p.price}<span style={{ fontFamily: BODY, fontSize: "0.75rem", opacity: 0.7 }}>/mo</span>
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* What you get */}
-          <div className="mt-8 rounded-[24px] p-6" style={card}>
-            <p className="text-[var(--gold)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>What you get</p>
-            <ul className="mt-4 grid gap-3">
-              {INCLUDED_IN_BOTH.map((t) => (
-                <li key={t} className="flex gap-3 text-[var(--ink)]/78 leading-6" style={{ fontFamily: BODY, fontSize: "0.9rem" }}>
-                  <span className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full" style={{ background: "color-mix(in oklab, var(--gold) 22%, transparent)", color: "var(--gold)" }}>
-                    <Check className="h-2.5 w-2.5" strokeWidth={3.5} />
-                  </span>
-                  {t}
-                </li>
-              ))}
-              <li className="flex gap-3 text-[var(--ink)]/78 leading-6" style={{ fontFamily: BODY, fontSize: "0.9rem" }}>
-                <span className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full" style={{ background: "color-mix(in oklab, var(--gold) 22%, transparent)", color: "var(--gold)" }}>
-                  <Check className="h-2.5 w-2.5" strokeWidth={3.5} />
-                </span>
-                Bonus: your DOLLHOUSE account and a private onboarding kickoff
+          <ul className="mt-9 grid gap-3 sm:grid-cols-2">
+            {TILES.map((t) => (
+              <li key={t} className="flex items-start gap-3 rounded-2xl px-4 py-4" style={{ background: "rgba(255,250,246,0.05)", border: "1px solid rgba(198,178,130,0.22)" }}>
+                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full" style={{ border: "1.5px solid var(--gold)", color: "var(--gold)" }}><Check className="h-3 w-3" strokeWidth={3} /></span>
+                <span className="leading-6" style={{ fontFamily: BODY, fontSize: "0.92rem", color: "rgba(255,250,246,0.9)" }}>{t}</span>
               </li>
-            </ul>
-          </div>
-
-          <div className="mt-6 flex items-start gap-4 rounded-[24px] p-5" style={{ background: "color-mix(in oklab, var(--gold) 13%, transparent)", border: "1px solid color-mix(in oklab, var(--gold) 36%, transparent)" }}>
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full" style={{ background: "var(--ink)", color: "var(--gold)" }}>
-              <ShieldCheck className="h-5 w-5" strokeWidth={1.6} />
-            </span>
-            <div>
-              <p className="italic text-[var(--ink)]" style={{ fontFamily: DISPLAY, fontSize: "1.3rem" }}>{GUARANTEE_DAYS}-day money-back guarantee</p>
-              <p className="mt-1 text-[var(--ink)]/62 leading-6" style={{ fontFamily: BODY, fontSize: "0.85rem" }}>
-                Not satisfied? Contact us within {GUARANTEE_DAYS} days for a full refund. No contract, cancel anytime.{" "}
-                <a href="/refund-policy" className="text-[var(--rose)] underline underline-offset-4">Refund policy</a>
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Right: checkout */}
-        <div>
-          <div className="overflow-hidden rounded-[28px]" style={{ ...card, boxShadow: "0 40px 90px -44px rgba(70,35,25,0.5)" }}>
-            <div className="flex items-center justify-between gap-4 px-6 py-5" style={{ background: "var(--ink)" }}>
-              <div>
-                <p className="text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE, color: "var(--gold)" }}>Your order</p>
-                <p className="mt-1" style={{ fontFamily: DISPLAY, fontSize: "1.35rem", color: "var(--cream)" }}>{selected.name}</p>
-              </div>
-              <p style={{ fontFamily: DISPLAY, fontSize: "2rem", color: "var(--gold)", lineHeight: 1 }}>
-                ${selected.price}<span style={{ fontFamily: BODY, fontSize: "0.8rem", color: "rgba(255,250,246,0.55)" }}>/mo USD</span>
-              </p>
-            </div>
-
-            {link ? (
-              <iframe
-                key={selected.id}
-                src={link}
-                title={`Checkout for ${selected.name}`}
-                allow="payment"
-                className="block w-full border-0"
-                style={{ height: "820px", background: "transparent" }}
-              />
-            ) : (
-              <div className="px-8 py-16 text-center">
-                <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full" style={{ background: "color-mix(in oklab, var(--gold) 18%, transparent)", color: "var(--gold)" }}>
-                  <Lock className="h-6 w-6" strokeWidth={1.5} />
-                </span>
-                <h2 className="mt-5 italic text-[var(--ink)]" style={{ fontFamily: DISPLAY, fontSize: "1.9rem", lineHeight: 1.1 }}>
-                  Secure checkout is being connected
-                </h2>
-                <p className="mx-auto mt-3 max-w-sm text-[var(--ink)]/62 leading-7" style={{ fontFamily: BODY, fontSize: "0.95rem" }}>
-                  Email us your plan choice and we will send your secure payment link right away.
-                </p>
-                <a
-                  href={`mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(`Dollhouse Launch: ${selected.name} ($${selected.price}/mo)`)}`}
-                  className="btn-ink mt-7 justify-center"
-                >
-                  Email to order
-                </a>
-              </div>
-            )}
-          </div>
-
-          {link && (
-            <p className="mt-4 text-center text-[var(--ink)]/50" style={{ fontFamily: BODY, fontSize: "0.82rem" }}>
-              Trouble loading? <a href={link} target="_blank" rel="noopener noreferrer" className="text-[var(--rose)] underline underline-offset-4">Open secure checkout in a new tab</a>
-            </p>
-          )}
-
-          <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[10px] tracking-[0.16em] uppercase text-[var(--ink)]/55" style={{ fontFamily: LUXE }}>
-            {["Secure payment", "No contract", `${GUARANTEE_DAYS}-day guarantee`, "Instant access"].map((t) => (
-              <li key={t} className="flex items-center gap-1.5"><span style={{ color: "var(--gold)" }}>✦</span> {t}</li>
             ))}
           </ul>
-        </div>
+
+          <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-2 border-t pt-6 text-[12px]" style={{ borderColor: "rgba(198,178,130,0.22)", fontFamily: LUXE, color: "rgba(255,250,246,0.65)" }}>
+            <span className="inline-flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-[var(--gold)]" /> {GUARANTEE_DAYS}-day guarantee</span>
+            <span className="inline-flex items-center gap-2"><Check className="h-4 w-4 text-[var(--gold)]" /> Private kickoff call</span>
+            <span className="inline-flex items-center gap-2"><Check className="h-4 w-4 text-[var(--gold)]" /> Cancel anytime</span>
+          </div>
+        </section>
+
+        {/* Right: order */}
+        <section className="p-4 sm:p-8" style={{ background: "linear-gradient(160deg, #fff7f3 0%, #f7e3dd 100%)", color: "var(--ink)" }}>
+          <div className="rounded-[26px] p-5 sm:p-8" style={{ background: "rgba(255,255,255,0.78)", boxShadow: "0 24px 60px -36px rgba(80,40,30,0.4)" }}>
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE, fontWeight: 700, color: "var(--gold-deep)" }}>Step 2 of 2 · Secure payment</p>
+                <h2 className="mt-2" style={{ fontFamily: DISPLAY, fontWeight: 500, fontSize: "clamp(1.9rem, 3.6vw, 2.5rem)", lineHeight: 1.05 }}>Complete your order</h2>
+                <p className="mt-2 leading-7" style={{ fontFamily: BODY, fontSize: "0.92rem", color: "rgba(31,17,11,0.62)" }}>Review your selected plan and enter your payment details below.</p>
+              </div>
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl" style={{ background: "var(--ink)", color: "var(--gold)" }}><Lock className="h-5 w-5" /></span>
+            </div>
+
+            {/* Plan choice */}
+            <div className="mt-6 grid grid-cols-2 gap-3" role="radiogroup" aria-label="Choose your plan">
+              {LAUNCH_PLANS.map((pl) => {
+                const active = pl.id === selected.id;
+                const c = PLAN_COPY[pl.id];
+                const Icon = pl.id === "single" ? ImageIcon : Images;
+                return (
+                  <button
+                    key={pl.id}
+                    type="button"
+                    role="radio"
+                    aria-checked={active}
+                    onClick={() => navigate({ search: { plan: pl.id }, replace: true })}
+                    className="relative rounded-2xl p-4 text-left transition-all"
+                    style={{
+                      background: active ? "var(--ink)" : "#fff",
+                      border: active ? "1.5px solid var(--gold)" : "1.5px solid rgba(31,17,11,0.12)",
+                      boxShadow: active ? "0 20px 40px -22px rgba(24,10,6,0.7)" : "none",
+                    }}
+                  >
+                    {pl.id === "carousel" && (
+                      <span className="absolute -top-2.5 right-3 inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[8px] tracking-luxe uppercase" style={{ fontFamily: LUXE, fontWeight: 700, background: "var(--gold)", color: "var(--ink)" }}>
+                        <Star className="h-2.5 w-2.5" fill="currentColor" /> Upgrade
+                      </span>
+                    )}
+                    <span className="flex h-9 w-9 items-center justify-center rounded-xl" style={{ background: active ? "rgba(198,178,130,0.2)" : "rgba(31,17,11,0.06)", color: active ? "var(--gold)" : "var(--ink)" }}><Icon className="h-4 w-4" /></span>
+                    <span className="mt-3 block" style={{ fontFamily: LUXE, fontSize: "0.82rem", fontWeight: 600, color: active ? "var(--cream)" : "var(--ink)" }}>{c.short}</span>
+                    <span className="mt-1 flex items-end justify-between">
+                      <span style={{ fontFamily: DISPLAY, fontSize: "1.9rem", lineHeight: 1, fontWeight: 600, color: active ? "var(--gold)" : "var(--rose)" }}>
+                        ${pl.price}<span style={{ fontFamily: BODY, fontSize: "0.72rem", fontWeight: 400, opacity: 0.7 }}>/month</span>
+                      </span>
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full" style={{ border: `1.5px solid ${active ? "var(--gold)" : "rgba(31,17,11,0.25)"}`, background: active ? "var(--gold)" : "transparent" }}>
+                        {active && <Check className="h-3 w-3 text-[var(--ink)]" strokeWidth={3.5} />}
+                      </span>
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Plan summary */}
+            <div className="mt-5 rounded-2xl p-5" style={{ background: "#fffaf6", border: "1px solid rgba(198,178,130,0.35)" }}>
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p style={{ fontFamily: LUXE, fontWeight: 700, fontSize: "0.95rem" }}>{copy.name}</p>
+                  <p className="mt-1 leading-6" style={{ fontFamily: BODY, fontSize: "0.82rem", color: "rgba(31,17,11,0.6)" }}>{copy.blurb}</p>
+                </div>
+                <p className="shrink-0 text-right" style={{ fontFamily: DISPLAY, fontSize: "1.9rem", lineHeight: 1, fontWeight: 600, color: "var(--rose)" }}>
+                  ${selected.price}<span className="block" style={{ fontFamily: LUXE, fontSize: "0.58rem", letterSpacing: "0.14em", fontWeight: 400, color: "rgba(31,17,11,0.5)" }}>PER MONTH</span>
+                </p>
+              </div>
+              <ul className="mt-4 grid gap-2">
+                {copy.points.map((t) => (
+                  <li key={t} className="flex items-start gap-2.5" style={{ fontFamily: BODY, fontSize: "0.86rem", color: "rgba(31,17,11,0.8)" }}>
+                    <Check className="mt-0.5 h-4 w-4 shrink-0" style={{ color: "var(--gold-deep)" }} strokeWidth={2.5} /> {t}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 rounded-full px-4 py-2.5 text-[0.82rem] font-semibold" style={{ fontFamily: BODY, background: "color-mix(in oklab, var(--gold) 30%, white)", color: "var(--ink)" }}>
+                Bonus: your DOLLHOUSE account + private 1-on-1 kickoff call
+              </p>
+            </div>
+
+            {/* Payment */}
+            <div className="mt-5 overflow-hidden rounded-2xl" style={{ background: "#fff", border: "1px solid rgba(31,17,11,0.1)", boxShadow: "0 18px 40px -28px rgba(80,40,30,0.5)" }}>
+              <div className="flex items-start justify-between gap-3 px-5 py-4" style={{ background: "#fffaf6", borderBottom: "1px solid rgba(31,17,11,0.08)" }}>
+                <div>
+                  <p className="text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE, fontWeight: 700, color: "var(--gold-deep)" }}>Secure payment</p>
+                  <p className="mt-1" style={{ fontFamily: LUXE, fontWeight: 600, fontSize: "0.95rem" }}>{copy.name} · ${selected.price}/month</p>
+                  {lead && <p className="mt-0.5" style={{ fontFamily: BODY, fontSize: "0.8rem", color: "rgba(31,17,11,0.55)" }}>Paying as {lead.email}</p>}
+                </div>
+                <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1 text-[8.5px] tracking-luxe uppercase" style={{ fontFamily: LUXE, fontWeight: 700, color: "var(--gold-deep)", border: "1px solid rgba(198,178,130,0.5)" }}>
+                  <Lock className="h-3 w-3" /> Encrypted
+                </span>
+              </div>
+
+              {link ? (
+                <iframe key={selected.id} src={link} title={`Checkout for ${copy.name}`} allow="payment" className="block w-full border-0" style={{ height: "780px", background: "transparent" }} />
+              ) : (
+                <div className="px-6 py-10 text-center">
+                  <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full" style={{ background: "color-mix(in oklab, var(--gold) 20%, transparent)", color: "var(--gold-deep)" }}><Lock className="h-5 w-5" strokeWidth={1.6} /></span>
+                  <h3 className="mt-4 italic" style={{ fontFamily: DISPLAY, fontSize: "1.6rem", lineHeight: 1.1 }}>Secure checkout is being connected</h3>
+                  <p className="mx-auto mt-2 max-w-xs leading-7" style={{ fontFamily: BODY, fontSize: "0.9rem", color: "rgba(31,17,11,0.62)" }}>
+                    Email us your plan choice and we will send your secure payment link right away.
+                  </p>
+                  <a href={`mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(`Dollhouse Launch: ${copy.name} ($${selected.price}/mo)`)}`} className="btn-ink mt-6 justify-center">
+                    Email to order
+                  </a>
+                </div>
+              )}
+            </div>
+
+            {link && (
+              <p className="mt-3 text-center" style={{ fontFamily: BODY, fontSize: "0.8rem", color: "rgba(31,17,11,0.5)" }}>
+                Trouble loading? <a href={link} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4" style={{ color: "var(--rose)" }}>Open secure checkout in a new tab</a>
+              </p>
+            )}
+
+            <p className="mt-5 text-center">
+              <a href="/#plans" className="underline underline-offset-4" style={{ fontFamily: LUXE, fontSize: "0.85rem", fontWeight: 600 }}>Edit details or choose another plan</a>
+            </p>
+            <ul className="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[9.5px] tracking-[0.16em] uppercase" style={{ fontFamily: LUXE, color: "rgba(31,17,11,0.5)" }}>
+              {["SSL secured", `${GUARANTEE_DAYS}-day refund`, "Cancel anytime"].map((t) => (
+                <li key={t} className="flex items-center gap-1.5"><span style={{ color: "var(--gold-deep)" }}>✦</span> {t}</li>
+              ))}
+            </ul>
+          </div>
+        </section>
       </div>
+
+      <p className="mx-auto mt-8 max-w-6xl text-center text-[10px] tracking-[0.22em] uppercase" style={{ fontFamily: LUXE, color: "rgba(255,250,246,0.35)" }}>
+        Dollhouse Launch · Secure monthly subscription · Built for local businesses
+      </p>
     </main>
   );
 }
