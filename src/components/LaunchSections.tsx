@@ -1183,26 +1183,36 @@ function SampleViewer({ post, onClose }: { post: SamplePost; onClose: () => void
 
 function SampleGallery({ format }: { format: "single" | "carousel" }) {
   const [open, setOpen] = useState<SamplePost | null>(null);
+  const [more, setMore] = useState(false);
   const posts = format === "carousel" ? SAMPLE_CAROUSELS : SAMPLE_SINGLES;
   return (
-    <div className="mx-auto mt-10 max-w-6xl">
-      <p className="text-center text-[var(--gold-deep)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>More sample posts</p>
-      <div className={`mt-5 grid gap-5 ${format === "carousel" ? "mx-auto max-w-3xl sm:grid-cols-2" : "grid-cols-2 lg:grid-cols-3"}`}>
-        {posts.map((p) => (
-          <button key={p.title} type="button" onClick={() => setOpen(p)} aria-label={`View ${p.title}`} className="group block overflow-hidden rounded-[8px] text-left transition-transform hover:-translate-y-1" style={card}>
-            <div className="relative">
-              <img src={p.slides[0]} alt={p.title} loading="lazy" className="block w-full" style={{ aspectRatio: "4 / 5", objectFit: "cover" }} />
-              <span className="absolute right-3 top-3 rounded-full px-2.5 py-1 text-[8px] tracking-luxe uppercase" style={{ fontFamily: LUXE, background: "rgba(20,10,6,0.72)", color: "#fff" }}>
-                {p.slides.length > 1 ? `${p.slides.length} slides · tap to view` : "Tap to enlarge"}
-              </span>
-            </div>
-            <div className="px-5 py-4">
-              <h4 className="text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontSize: "0.74rem", letterSpacing: "0.12em", fontWeight: 600 }}>{p.title}</h4>
-              <p className="mt-1.5 text-[var(--ink)]/60 leading-6" style={{ fontFamily: BODY, fontSize: "0.84rem" }}>{p.note}</p>
-            </div>
-          </button>
-        ))}
+    <div className="mx-auto max-w-6xl">
+      <div className="text-center">
+        <button type="button" onClick={() => setMore((v) => !v)} aria-expanded={more} className="btn-ghost">
+          {more ? "Show fewer examples" : "Explore more examples"}
+        </button>
       </div>
+      {more && (
+        <>
+          <p className="mt-10 text-center text-[var(--gold-deep)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>More sample posts</p>
+          <div className={`mt-5 grid gap-5 ${format === "carousel" ? "mx-auto max-w-3xl sm:grid-cols-2" : "grid-cols-2 lg:grid-cols-3"}`}>
+            {posts.map((p) => (
+              <button key={p.title} type="button" onClick={() => setOpen(p)} aria-label={`View ${p.title}`} className="group block overflow-hidden rounded-[8px] text-left transition-transform hover:-translate-y-1" style={card}>
+                <div className="relative">
+                  <img src={p.slides[0]} alt={p.title} loading="lazy" className="block w-full" style={{ aspectRatio: "4 / 5", objectFit: "cover" }} />
+                  <span className="absolute right-3 top-3 rounded-full px-2.5 py-1 text-[8px] tracking-luxe uppercase" style={{ fontFamily: LUXE, background: "rgba(20,10,6,0.72)", color: "#fff" }}>
+                    {p.slides.length > 1 ? `${p.slides.length} slides · tap to view` : "Tap to enlarge"}
+                  </span>
+                </div>
+                <div className="px-5 py-4">
+                  <h4 className="text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontSize: "0.74rem", letterSpacing: "0.12em", fontWeight: 600 }}>{p.title}</h4>
+                  <p className="mt-1.5 text-[var(--ink)]/60 leading-6" style={{ fontFamily: BODY, fontSize: "0.84rem" }}>{p.note}</p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </>
+      )}
       {open && <SampleViewer key={open.title} post={open} onClose={() => setOpen(null)} />}
     </div>
   );
@@ -1257,7 +1267,7 @@ export function LaunchExamples() {
         ))}
       </div>
 
-      <div className="mt-16"><SampleGallery format={format} /></div>
+      <div className="mt-10"><SampleGallery format={format} /></div>
 
       <div className="mx-auto mt-16 max-w-2xl rounded-[8px] p-8 text-center md:p-10" style={card}>
         <p className="text-[var(--gold-deep)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Your content, your direction</p>
