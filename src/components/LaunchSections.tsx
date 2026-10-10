@@ -340,7 +340,7 @@ function LaunchHero() {
           <p className="mx-auto mt-2 max-w-xl text-[var(--ink)]/65 leading-relaxed lg:mx-0" style={{ fontFamily: BODY, fontSize: "clamp(0.95rem, 1.8vw, 1.1rem)" }}>
             The done-for-you social media and lead-generation system for appointment-based and service businesses. We post for you,
             capture new inquiries, reply instantly and book the appointment, from{" "}
-            <strong className="text-[var(--ink)]">${PRICE_SINGLE}/month</strong>.
+            <strong className="text-[var(--rose)]">${PRICE_SINGLE}/month</strong>.
           </p>
 
           {/* Same frosted stats bar as shopdollhouse.co */}
