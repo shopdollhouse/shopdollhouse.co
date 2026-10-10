@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useCheckout } from "@/components/CheckoutModal";
 import {
   ArrowRight,
@@ -15,6 +16,7 @@ import {
   ChevronDown,
   ChevronLeft,
   ChevronRight,
+  Heart,
   Image as ImageIcon,
   Menu,
   MessageSquare,
@@ -715,6 +717,7 @@ const TONES: Record<string, { bg: string; fg: string; accent: string }> = {
 type StyleDef = {
   name: string;
   desc: string;
+  best: string;
   category: "you" | "graphic";
   tone: keyof typeof TONES;
   hooks: [string, string];
@@ -725,6 +728,7 @@ const STYLE_DEFS: StyleDef[] = [
   {
     name: "Expert desk notes",
     desc: "Practical, handwritten-style advice shared by you, the professional.",
+    best: "Helping people recognize you and understand your expertise, with a consistent look and plenty of variety.",
     category: "you",
     tone: "cream",
     hooks: ["The one thing I check before every appointment.", "The question customers ask us most, answered."],
@@ -733,6 +737,7 @@ const STYLE_DEFS: StyleDef[] = [
   {
     name: "Photo caption stories",
     desc: "Casual photos with captions that tell a story and share something useful.",
+    best: "Building trust with real moments from your business, so people feel like they already know you.",
     category: "you",
     tone: "blush",
     hooks: ["Why this customer came back three times.", "A look behind the scenes at what we do."],
@@ -741,6 +746,7 @@ const STYLE_DEFS: StyleDef[] = [
   {
     name: "Simple feed-style posts",
     desc: "Plain text posts that look like a natural part of social media, not an advertisement.",
+    best: "Fitting naturally into the feed, so people read the whole post instead of scrolling past an ad.",
     category: "graphic",
     tone: "ink",
     hooks: ["Three questions to ask before you hire anyone.", "What to know before you book anyone."],
@@ -749,6 +755,7 @@ const STYLE_DEFS: StyleDef[] = [
   {
     name: "Whiteboard lessons",
     desc: "Clear, teachable explanations that make your service easy to understand.",
+    best: "Explaining how your service works step by step, so customers feel confident booking.",
     category: "graphic",
     tone: "cream",
     hooks: ["What actually goes into a fair quote.", "How the process works, step by step."],
@@ -757,6 +764,7 @@ const STYLE_DEFS: StyleDef[] = [
   {
     name: "Everyday object posts",
     desc: "Everyday objects used to explain your work in a way people remember.",
+    best: "Making a simple idea memorable by tying it to something everyone already knows.",
     category: "graphic",
     tone: "blush",
     hooks: ["What a coffee mug can teach you about maintenance.", "What a calendar can teach you about priorities."],
@@ -765,6 +773,7 @@ const STYLE_DEFS: StyleDef[] = [
   {
     name: "Bold brand graphics",
     desc: "Bold headlines and eye-catching graphics that make people stop and read.",
+    best: "Stopping the scroll with a strong headline, ideal for offers, reminders and the questions you hear most.",
     category: "graphic",
     tone: "ink",
     hooks: ["Booked out this week? Here is how.", "Questions we hear every week."],
@@ -778,10 +787,41 @@ function slidesFor(item: ExampleItem): string[] {
   return [item.hook, ...item.style.middle, "Questions? Send us a message and we will help."];
 }
 
-function ExampleTile({ item, format, onOpen }: { item: ExampleItem; format: "single" | "carousel"; onOpen: () => void }) {
+const FAV_KEY = "launch-style-favorites";
+
+function useFavorites() {
+  const [favs, setFavs] = useState<string[]>([]);
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(FAV_KEY);
+      if (raw) setFavs(JSON.parse(raw));
+    } catch {
+      /* storage can be blocked; favorites just will not persist */
+    }
+  }, []);
+  const toggle = (name: string) =>
+    setFavs((prev) => {
+      const next = prev.includes(name) ? prev.filter((n) => n !== name) : [...prev, name];
+      try {
+        localStorage.setItem(FAV_KEY, JSON.stringify(next));
+      } catch {
+        /* ignore */
+      }
+      return next;
+    });
+  return { favs, toggle };
+}
+
+function ExampleTile({ item, format, saved, onOpen }: { item: ExampleItem; format: "single" | "carousel"; saved: boolean; onOpen: () => void }) {
   const t = TONES[item.style.tone];
-  const inner = (
-    <>
+  return (
+    <button
+      type="button"
+      onClick={onOpen}
+      aria-label={`View ${item.style.name} examples`}
+      className="group block w-full overflow-hidden rounded-[8px] text-left"
+      style={card}
+    >
       <div className="relative flex aspect-[5/4] flex-col items-center justify-center p-7 text-center" style={{ background: t.bg }}>
         {item.style.category === "you" && (
           <span className="absolute left-4 top-4 flex items-center gap-2 rounded-full px-2.5 py-1" style={{ background: "rgba(255,250,246,0.75)", border: "1px solid color-mix(in oklab, var(--gold) 30%, transparent)" }}>
@@ -791,83 +831,157 @@ function ExampleTile({ item, format, onOpen }: { item: ExampleItem; format: "sin
             <span className="text-[8px] tracking-luxe uppercase text-[var(--ink)]/65" style={{ fontFamily: LUXE }}>You or your team</span>
           </span>
         )}
+        <span className="absolute right-4 top-4 rounded-full px-2.5 py-1 text-[8px] tracking-luxe uppercase" style={{ fontFamily: LUXE, background: "rgba(20,10,6,0.72)", color: "#fff" }}>
+          {saved ? "♥ Saved" : format === "carousel" ? "5 slides · tap to view →" : "Tap to view →"}
+        </span>
         <span style={{ color: t.accent, fontSize: "0.8rem" }}>✦</span>
         <p className="mt-3 italic leading-tight" style={{ fontFamily: DISPLAY, fontSize: "clamp(1.4rem, 2.6vw, 1.8rem)", color: t.fg }}>{item.hook}</p>
         <span className="mt-4 h-px w-10" style={{ background: t.accent, opacity: 0.6 }} />
       </div>
       <div className="px-6 py-5">
-        <div className="flex items-center justify-between gap-3">
-          <h4 className="text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontSize: "0.78rem", letterSpacing: "0.12em", fontWeight: 600 }}>{item.style.name}</h4>
-          <span className="text-[var(--gold-deep)] text-[8px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Sample</span>
-        </div>
+        <h4 className="text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontSize: "0.78rem", letterSpacing: "0.12em", fontWeight: 600 }}>{item.style.name}</h4>
         <p className="mt-2 text-[var(--ink)]/60 leading-6" style={{ fontFamily: BODY, fontSize: "0.86rem" }}>{item.style.desc}</p>
-        {format === "carousel" && (
-          <div className="mt-4 flex items-center justify-between">
-            <span className="text-[var(--rose)] text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>5 slides · tap to view →</span>
-            <span className="rounded-full px-3 py-1.5 text-[8px] tracking-luxe uppercase" style={{ fontFamily: LUXE, background: "var(--ink)", color: "var(--cream)" }}>Open 5-slide carousel</span>
-          </div>
-        )}
+        <span className="mt-4 inline-flex rounded-full px-3.5 py-1.5 text-[8px] tracking-luxe uppercase" style={{ fontFamily: LUXE, background: "var(--ink)", color: "var(--cream)" }}>
+          {format === "carousel" ? "Open 5-slide carousel" : "View example"}
+        </span>
       </div>
-    </>
-  );
-
-  return format === "carousel" ? (
-    <button type="button" onClick={onOpen} aria-label={`Open the 5-slide ${item.style.name} carousel`} className="group block w-full overflow-hidden rounded-[8px] text-left transition-transform duration-500" style={card}>
-      {inner}
     </button>
-  ) : (
-    <article className="overflow-hidden rounded-[8px]" style={card}>{inner}</article>
   );
 }
 
-function CarouselViewer({ item, onClose }: { item: ExampleItem; onClose: () => void }) {
+function StyleViewer({ item, format, saved, onToggleSaved, onClose }: { item: ExampleItem; format: "single" | "carousel"; saved: boolean; onToggleSaved: () => void; onClose: () => void }) {
   const slides = slidesFor(item);
+  const carousel = format === "carousel";
   const [i, setI] = useState(0);
+  const touchX = useRef<number | null>(null);
   const t = TONES[item.style.tone];
+  // Keep the chat bubble from sitting on top of the viewer while it is open.
+  useEffect(() => {
+    const root = document.querySelector("chat-widget")?.shadowRoot;
+    if (!root) return;
+    const style = document.createElement("style");
+    style.textContent = "#lc_text-widget, #lc_text-widget--btn { display: none !important; }";
+    root.appendChild(style);
+    return () => style.remove();
+  }, []);
+  const next = () => setI((v) => Math.min(slides.length - 1, v + 1));
+  const prev = () => setI((v) => Math.max(0, v - 1));
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
-      if (e.key === "ArrowRight") setI((v) => Math.min(slides.length - 1, v + 1));
-      if (e.key === "ArrowLeft") setI((v) => Math.max(0, v - 1));
+      if (carousel && e.key === "ArrowRight") setI((v) => Math.min(slides.length - 1, v + 1));
+      if (carousel && e.key === "ArrowLeft") setI((v) => Math.max(0, v - 1));
     };
     window.addEventListener("keydown", onKey);
-    const prev = document.body.style.overflow;
+    const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prev;
+      document.body.style.overflow = prevOverflow;
     };
-  }, [onClose, slides.length]);
+  }, [onClose, carousel, slides.length]);
 
-  return (
-    <div role="dialog" aria-modal="true" aria-label={`${item.style.name} carousel example`} className="fixed inset-0 z-[70] flex items-center justify-center p-5" style={{ background: "rgba(23,14,12,0.78)", backdropFilter: "blur(6px)" }} onClick={onClose}>
-      <div className="relative w-full max-w-md" onClick={(e) => e.stopPropagation()}>
-        <button type="button" aria-label="Close" onClick={onClose} className="absolute -top-12 right-0 flex h-10 w-10 items-center justify-center rounded-full text-[var(--cream)] hover:bg-white/10">
-          <X className="h-6 w-6" />
+  const navBtn = (disabled: boolean, filled: boolean) => ({
+    fontFamily: LUXE,
+    fontWeight: 700,
+    opacity: disabled ? 0.4 : 1,
+    background: filled ? "var(--ink)" : "transparent",
+    color: filled ? "var(--cream)" : "var(--ink)",
+    border: "1.5px solid var(--ink)",
+  });
+
+  // Rendered through a portal: the scroll-reveal effect on the section would otherwise trap a fixed overlay inside it.
+  return createPortal(
+    <div style={{ ["--gold" as string]: "#c6b282", ["--gold-deep" as string]: "#9a7228", ["--ink" as string]: "#1f110b", ["--cream" as string]: "oklch(0.97 0.012 60)", ["--rose" as string]: "oklch(0.65 0.09 20)" }}>
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${item.style.name} ${carousel ? "carousel" : "single-image"} example`}
+      className="fixed inset-0 z-[70] flex items-center justify-center p-3 sm:p-6"
+      style={{ background: "rgba(16,8,5,0.72)", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)" }}
+      onMouseDown={(e) => e.target === e.currentTarget && onClose()}
+    >
+      <div className="relative grid max-h-[94vh] w-full max-w-5xl overflow-y-auto rounded-[16px] md:grid-cols-[1.05fr_0.95fr]" style={{ background: "#fffaf6", border: "1px solid color-mix(in oklab, var(--gold) 45%, transparent)", boxShadow: "0 60px 120px -30px rgba(0,0,0,0.6)" }}>
+        <button type="button" aria-label="Close" onClick={onClose} className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center rounded-full text-[var(--cream)] transition-colors hover:opacity-85" style={{ background: "var(--ink)" }}>
+          <X className="h-5 w-5" />
         </button>
-        <p className="mb-3 text-center text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE, color: "var(--gold)" }}>{item.style.name} · sample carousel</p>
-        <div className="flex aspect-square flex-col items-center justify-center rounded-[8px] p-10 text-center" style={{ background: t.bg, border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)", boxShadow: "0 40px 90px -30px rgba(0,0,0,0.6)" }}>
-          <span style={{ color: t.accent, fontSize: "0.9rem" }}>✦</span>
-          <p key={i} className="mt-4 italic leading-tight" style={{ fontFamily: DISPLAY, fontSize: i === 0 ? "clamp(1.9rem, 6vw, 2.5rem)" : "clamp(1.6rem, 5vw, 2.1rem)", color: t.fg }}>{slides[i]}</p>
-          <span className="mt-6 h-px w-12" style={{ background: t.accent, opacity: 0.6 }} />
-        </div>
-        <div className="mt-5 flex items-center justify-between">
-          <button type="button" aria-label="Previous slide" disabled={i === 0} onClick={() => setI(i - 1)} className="flex h-11 w-11 items-center justify-center rounded-full border text-[var(--cream)] transition-opacity disabled:opacity-30" style={{ borderColor: "rgba(255,250,246,0.4)" }}>
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-          <div className="flex items-center gap-2" aria-label={`Slide ${i + 1} of ${slides.length}`}>
-            {slides.map((_, n) => (
-              <button key={n} type="button" aria-label={`Go to slide ${n + 1}`} onClick={() => setI(n)} className="h-2 rounded-full transition-all" style={{ width: n === i ? 26 : 8, background: n === i ? "var(--gold)" : "rgba(255,250,246,0.35)" }} />
-            ))}
+
+        {/* Image side */}
+        <div className="p-4 sm:p-6" style={{ background: "linear-gradient(160deg, #fbeee9 0%, #f3d9d3 100%)" }}>
+          <div
+            className="relative flex aspect-square select-none flex-col items-center justify-center rounded-[14px] p-8 text-center sm:p-12"
+            style={{ background: t.bg, border: "1px solid color-mix(in oklab, var(--gold) 40%, transparent)", boxShadow: "0 30px 60px -30px rgba(31,17,11,0.5)", touchAction: "pan-y" }}
+            onTouchStart={(e) => { touchX.current = e.touches[0].clientX; }}
+            onTouchEnd={(e) => {
+              if (!carousel || touchX.current === null) return;
+              const dx = e.changedTouches[0].clientX - touchX.current;
+              touchX.current = null;
+              if (dx < -40) next();
+              if (dx > 40) prev();
+            }}
+          >
+            {carousel && (
+              <span className="absolute left-4 top-4 rounded-full px-3 py-1 text-[9px] tracking-luxe uppercase" style={{ fontFamily: LUXE, background: "rgba(20,10,6,0.72)", color: "#fff" }}>{i + 1} / {slides.length}</span>
+            )}
+            <span style={{ color: t.accent, fontSize: "1rem" }}>✦</span>
+            <p key={i} className="phone-pop mt-4 italic leading-tight" style={{ fontFamily: DISPLAY, fontSize: i === 0 || !carousel ? "clamp(1.9rem, 5vw, 2.8rem)" : "clamp(1.6rem, 4.4vw, 2.3rem)", color: t.fg }}>
+              {carousel ? slides[i] : slides[0]}
+            </p>
+            <span className="mt-6 h-px w-12" style={{ background: t.accent, opacity: 0.6 }} />
           </div>
-          <button type="button" aria-label="Next slide" disabled={i === slides.length - 1} onClick={() => setI(i + 1)} className="flex h-11 w-11 items-center justify-center rounded-full border text-[var(--cream)] transition-opacity disabled:opacity-30" style={{ borderColor: "rgba(255,250,246,0.4)" }}>
-            <ChevronRight className="h-5 w-5" />
-          </button>
+
+          {carousel && (
+            <div className="mt-4 rounded-[14px] bg-white p-4" style={{ border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }}>
+              <div className="flex items-center justify-between gap-3">
+                <button type="button" onClick={prev} disabled={i === 0} className="inline-flex items-center gap-1.5 rounded-xl px-5 py-2.5 text-[12px]" style={navBtn(i === 0, false)}>
+                  <ChevronLeft className="h-4 w-4" /> Back
+                </button>
+                <p style={{ fontFamily: BODY, fontWeight: 700, fontSize: "0.95rem", color: "var(--ink)" }}>Slide {i + 1} of {slides.length}</p>
+                <button type="button" onClick={next} disabled={i === slides.length - 1} className="inline-flex items-center gap-1.5 rounded-xl px-5 py-2.5 text-[12px]" style={navBtn(i === slides.length - 1, true)}>
+                  Next <ChevronRight className="h-4 w-4" />
+                </button>
+              </div>
+              <div className="mt-4 flex items-center justify-center gap-3" aria-label={`Slide ${i + 1} of ${slides.length}`}>
+                {slides.map((_, n) => (
+                  <button key={n} type="button" aria-label={`Go to slide ${n + 1}`} onClick={() => setI(n)} className="h-2.5 rounded-full transition-all" style={{ width: n === i ? 34 : 10, background: n === i ? "var(--gold)" : "rgba(31,17,11,0.18)" }} />
+                ))}
+              </div>
+              <p className="mt-3 text-center text-[var(--ink)]/55" style={{ fontFamily: BODY, fontSize: "0.82rem" }}>Swipe the image or tap Next · Keyboard ← →</p>
+            </div>
+          )}
         </div>
-        <p className="mt-3 text-center text-[var(--cream)]/45" style={{ fontFamily: BODY, fontSize: "0.78rem" }}>Sample only. Yours would use your own branding and message.</p>
+
+        {/* Details side */}
+        <div className="flex flex-col justify-center p-7 sm:p-10">
+          <p className="text-[var(--gold-deep)] uppercase" style={{ fontFamily: LUXE, fontSize: "0.7rem", letterSpacing: "0.22em", fontWeight: 700 }}>
+            {carousel ? "Complete carousel slide example" : "Single-image example"}
+          </p>
+          <h3 className="mt-2 text-[var(--ink)]" style={{ fontFamily: DISPLAY, fontSize: "clamp(2rem, 4vw, 2.7rem)", fontWeight: 500, lineHeight: 1.05 }}>{item.style.name}</h3>
+          <p className="mt-4 text-[var(--ink)]/65 leading-7" style={{ fontFamily: BODY, fontSize: "1rem" }}>{item.style.desc}</p>
+
+          <div className="mt-6 rounded-[14px] bg-white p-5" style={{ border: "1px solid color-mix(in oklab, var(--gold) 35%, transparent)" }}>
+            <p className="text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontSize: "0.78rem", letterSpacing: "0.14em", fontWeight: 700 }}>Best for</p>
+            <p className="mt-2 text-[var(--ink)]/70 leading-7" style={{ fontFamily: BODY, fontSize: "0.95rem" }}>{item.style.best}</p>
+          </div>
+
+          <button
+            type="button"
+            onClick={onToggleSaved}
+            aria-pressed={saved}
+            className="mt-6 flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-[12px] uppercase tracking-[0.2em] transition-colors"
+            style={{ fontFamily: LUXE, fontWeight: 700, background: saved ? "transparent" : "var(--gold)", color: "var(--ink)", border: "1.5px solid var(--gold)" }}
+          >
+            {saved ? <><Check className="h-4 w-4" strokeWidth={3} /> Saved to favorites</> : <><Heart className="h-4 w-4" /> I like this style</>}
+          </button>
+          <p className="mt-3 text-center text-[var(--ink)]/50 leading-6" style={{ fontFamily: BODY, fontSize: "0.82rem" }}>
+            Favorites stay saved on this device. You can also share a link or screenshot during setup to request a different style.
+          </p>
+        </div>
       </div>
     </div>
+    </div>,
+    document.body,
   );
 }
 
@@ -876,6 +990,7 @@ export function LaunchExamples() {
   const [filter, setFilter] = useState<"all" | "you" | "graphic">("all");
   const [more, setMore] = useState(false);
   const [open, setOpen] = useState<ExampleItem | null>(null);
+  const { favs, toggle } = useFavorites();
 
   const base: ExampleItem[] = STYLE_DEFS.map((s) => ({ style: s, hook: s.hooks[0] }));
   const extra: ExampleItem[] = more ? STYLE_DEFS.map((s) => ({ style: s, hook: s.hooks[1] })) : [];
@@ -916,7 +1031,7 @@ export function LaunchExamples() {
 
       <div className="mx-auto mt-10 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((it) => (
-          <ExampleTile key={`${it.style.name}-${it.hook}`} item={it} format={format} onOpen={() => setOpen(it)} />
+          <ExampleTile key={`${it.style.name}-${it.hook}`} item={it} format={format} saved={favs.includes(it.style.name)} onOpen={() => setOpen(it)} />
         ))}
       </div>
 
@@ -935,7 +1050,7 @@ export function LaunchExamples() {
         <GetStarted label="Get started, make it yours" className="mt-6" />
       </div>
 
-      {open && <CarouselViewer item={open} onClose={() => setOpen(null)} />}
+      {open && <StyleViewer key={`${open.style.name}-${open.hook}-${format}`} item={open} format={format} saved={favs.includes(open.style.name)} onToggleSaved={() => toggle(open.style.name)} onClose={() => setOpen(null)} />}
     </section>
   );
 }
