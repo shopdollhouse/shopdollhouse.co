@@ -1,6 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Link, Outlet, createRootRouteWithContext } from "@tanstack/react-router";
-import ExitIntentPopup from "@/components/ExitIntentPopup";
 
 function NotFoundComponent() {
   return (
@@ -34,7 +33,6 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />
-      <ExitIntentPopup />
     </QueryClientProvider>
   );
 }
