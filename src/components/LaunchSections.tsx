@@ -37,6 +37,8 @@ import {
   FIRST_POSTS_DAYS,
   GUARANTEE_DAYS,
   HERO_VIDEO_EMBED_URL,
+  HERO_VIDEO_POSTER,
+  HERO_VIDEO_SRC,
   INCLUDED_IN_BOTH,
   LAUNCH_PLANS,
   POSTS_PER_MONTH,
@@ -428,6 +430,7 @@ function loadVimeoApi(): Promise<void> {
 
 function HeroVideo() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const playerRef = useRef<VimeoPlayer | null>(null);
   const [resumeAt, setResumeAt] = useState<number | null>(null);
   const holder = useRef<HTMLDivElement>(null);
@@ -453,12 +456,43 @@ function HeroVideo() {
 
   // Remember where each visitor stopped, and offer to pick up from there on their next visit.
   useEffect(() => {
-    if (!HERO_VIDEO_EMBED_URL) return;
+    if (!HERO_VIDEO_EMBED_URL && !HERO_VIDEO_SRC) return;
     try {
       const saved = Number(localStorage.getItem(VIDEO_PROGRESS_KEY));
       if (saved >= 5) setResumeAt(saved);
     } catch {
       /* storage can be blocked; the video just starts at the beginning */
+    }
+    const save = (seconds: number, duration: number) => {
+      try {
+        if (seconds > duration - 5) localStorage.removeItem(VIDEO_PROGRESS_KEY);
+        else localStorage.setItem(VIDEO_PROGRESS_KEY, String(Math.floor(seconds)));
+      } catch {
+        /* ignore */
+      }
+    };
+    if (HERO_VIDEO_SRC) {
+      const v = videoRef.current;
+      if (!v) return;
+      let last = 0;
+      const onTime = () => {
+        if (v.currentTime < 5 || v.currentTime - last < 2) return;
+        last = v.currentTime;
+        save(v.currentTime, v.duration || 0);
+      };
+      const onEnd = () => {
+        try {
+          localStorage.removeItem(VIDEO_PROGRESS_KEY);
+        } catch {
+          /* ignore */
+        }
+      };
+      v.addEventListener("timeupdate", onTime);
+      v.addEventListener("ended", onEnd);
+      return () => {
+        v.removeEventListener("timeupdate", onTime);
+        v.removeEventListener("ended", onEnd);
+      };
     }
     let last = 0;
     loadVimeoApi()
@@ -469,12 +503,7 @@ function HeroVideo() {
         player.on("timeupdate", ({ seconds, duration }) => {
           if (seconds < 5 || seconds - last < 2) return;
           last = seconds;
-          try {
-            if (seconds > duration - 8) localStorage.removeItem(VIDEO_PROGRESS_KEY);
-            else localStorage.setItem(VIDEO_PROGRESS_KEY, String(Math.floor(seconds)));
-          } catch {
-            /* ignore */
-          }
+          save(seconds, duration + 3);
         });
         player.on("ended", () => {
           try {
@@ -491,6 +520,14 @@ function HeroVideo() {
 
   const choose = (from: number) => {
     setResumeAt(null);
+    const v = videoRef.current;
+    if (v) {
+      v.currentTime = from;
+      v.play().catch(() => {
+        /* the visitor can press play themselves */
+      });
+      return;
+    }
     const player = playerRef.current;
     if (!player) return;
     player.setCurrentTime(from).then(() => player.play()).catch(() => {
@@ -498,7 +535,7 @@ function HeroVideo() {
     });
   };
 
-  if (!HERO_VIDEO_EMBED_URL) return null;
+  if (!HERO_VIDEO_EMBED_URL && !HERO_VIDEO_SRC) return null;
   const floating = mini && desktop && !closed;
 
   return (
@@ -516,7 +553,11 @@ function HeroVideo() {
             className={floating ? "phone-pop fixed bottom-28 right-6 z-[55] aspect-video w-[300px] overflow-hidden rounded-[8px]" : "relative h-full w-full overflow-hidden rounded-[8px]"}
             style={{ border: "1px solid color-mix(in oklab, var(--gold) 55%, transparent)", boxShadow: floating ? "0 30px 60px -20px rgba(31,17,11,0.6)" : "0 50px 100px -40px rgba(70,30,25,0.55), 0 0 0 8px rgba(255,250,246,0.35)" }}
           >
-            <iframe ref={iframeRef} src={HERO_VIDEO_EMBED_URL} title="Dollhouse Launch video presentation" className="h-full w-full" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen />
+            {HERO_VIDEO_SRC ? (
+              <video ref={videoRef} src={HERO_VIDEO_SRC} poster={HERO_VIDEO_POSTER} controls playsInline preload="metadata" className="h-full w-full bg-[#fbeee9] object-cover" aria-label="Dollhouse Launch overview video" />
+            ) : (
+              <iframe ref={iframeRef} src={HERO_VIDEO_EMBED_URL} title="Dollhouse Launch video presentation" className="h-full w-full" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen />
+            )}
             {resumeAt !== null && !floating && (
               <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-4 p-4 text-center sm:gap-6" style={{ background: "rgba(19,10,6,0.84)", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)" }}>
                 <p className="text-[var(--cream)]" style={{ fontFamily: DISPLAY, fontSize: "clamp(1.5rem, 4.6vw, 3rem)", fontWeight: 500, lineHeight: 1.1 }}>

@@ -28,6 +28,10 @@ export const SUPPORT_EMAIL = "hello@shopdollhouse.co";
 export const HERO_VIDEO_EMBED_URL =
   "https://player.vimeo.com/video/860958837?title=0&byline=0&portrait=0&badge=0&autopause=0&dnt=1&playsinline=1&loop=1&end_screen=0";
 
+/** The overview video shown under the hero. Replace the file in /public/video to change it. When set, it is used instead of the Vimeo embed above. */
+export const HERO_VIDEO_SRC = "/video/launch-overview.mp4";
+export const HERO_VIDEO_POSTER = "/video/launch-overview-poster.jpg";
+
 export const PRICE_SINGLE = 297;
 export const PRICE_CAROUSEL = 497;
 export const GUARANTEE_DAYS = 14;
