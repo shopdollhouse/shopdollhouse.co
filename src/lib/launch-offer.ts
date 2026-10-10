@@ -102,3 +102,14 @@ export const BONUS_VALUES = ["$497/mo value", "$297 value"];
  * Leave empty to send nothing anywhere.
  */
 export const LEAD_WEBHOOK_URL = "";
+
+/**
+ * Post-purchase flow (welcome > kickoff > setup checklist > onboarding form).
+ * Set the payment link's success redirect to https://www.shopdollhouse.co/welcome
+ */
+/** Paste your booking calendar embed URL here (GoHighLevel calendar widget link). Empty shows an "email to schedule" button. */
+export const KICKOFF_CALENDAR_URL = "";
+/** Paste your DOLLHOUSE account login URL here. Empty shows "we will email your login". */
+export const ACCOUNT_LOGIN_URL = "";
+/** Optional webhook that receives the onboarding form answers. Empty opens a pre-filled email to SUPPORT_EMAIL instead. */
+export const ONBOARDING_WEBHOOK_URL = "";

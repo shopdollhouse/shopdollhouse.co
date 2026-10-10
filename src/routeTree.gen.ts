@@ -9,18 +9,21 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WelcomeRouteImport } from './routes/welcome'
 import { Route as VaultRouteImport } from './routes/vault'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as SoftwareRouteImport } from './routes/software'
 import { Route as SocietyRouteImport } from './routes/society'
+import { Route as SetupRouteImport } from './routes/setup'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
 import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PlaybookRouteImport } from './routes/playbook'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as KickoffRouteImport } from './routes/kickoff'
 import { Route as GetStartedRouteImport } from './routes/get-started'
 import { Route as FoundationRouteImport } from './routes/foundation'
 import { Route as CareersRouteImport } from './routes/careers'
@@ -32,6 +35,7 @@ import { Route as SystemsServiceRouteImport } from './routes/systems_.$service'
 import { Route as StanstoreWorkbookRouteImport } from './routes/stanstore_.workbook'
 import { Route as StanstoreBrandKitRouteImport } from './routes/stanstore_.brand-kit'
 import { Route as StanstoreAiPromptKitRouteImport } from './routes/stanstore_.ai-prompt-kit'
+import { Route as SetupFormRouteImport } from './routes/setup_.form'
 import { Route as CheckoutProductRouteImport } from './routes/checkout_.$product'
 import { Route as CheckoutSuccessRouteImport } from './routes/checkout.success'
 import { Route as BrandRoomWorkbookRouteImport } from './routes/brand-room_.workbook'
@@ -43,6 +47,11 @@ import { Route as BlogSocialMediaMarketingCostTorontoRouteImport } from './route
 import { Route as BlogSocialMediaMarketingAgencyTorontoRouteImport } from './routes/blog_.social-media-marketing-agency-toronto'
 import { Route as BlogAiVideoMarketingTorontoRouteImport } from './routes/blog_.ai-video-marketing-toronto'
 
+const WelcomeRoute = WelcomeRouteImport.update({
+  id: '/welcome',
+  path: '/welcome',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VaultRoute = VaultRouteImport.update({
   id: '/vault',
   path: '/vault',
@@ -73,6 +82,11 @@ const SocietyRoute = SocietyRouteImport.update({
   path: '/society',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SetupRoute = SetupRouteImport.update({
+  id: '/setup',
+  path: '/setup',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -101,6 +115,11 @@ const PlaybookRoute = PlaybookRouteImport.update({
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KickoffRoute = KickoffRouteImport.update({
+  id: '/kickoff',
+  path: '/kickoff',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GetStartedRoute = GetStartedRouteImport.update({
@@ -156,6 +175,11 @@ const StanstoreBrandKitRoute = StanstoreBrandKitRouteImport.update({
 const StanstoreAiPromptKitRoute = StanstoreAiPromptKitRouteImport.update({
   id: '/stanstore_/ai-prompt-kit',
   path: '/stanstore/ai-prompt-kit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SetupFormRoute = SetupFormRouteImport.update({
+  id: '/setup_/form',
+  path: '/setup/form',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CheckoutProductRoute = CheckoutProductRouteImport.update({
@@ -221,18 +245,21 @@ export interface FileRoutesByFullPath {
   '/careers': typeof CareersRoute
   '/foundation': typeof FoundationRoute
   '/get-started': typeof GetStartedRoute
+  '/kickoff': typeof KickoffRoute
   '/onboarding': typeof OnboardingRoute
   '/playbook': typeof PlaybookRoute
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
   '/refund-policy': typeof RefundPolicyRoute
   '/services': typeof ServicesRoute
+  '/setup': typeof SetupRoute
   '/society': typeof SocietyRoute
   '/software': typeof SoftwareRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/vault': typeof VaultRoute
+  '/welcome': typeof WelcomeRoute
   '/blog/ai-video-marketing-toronto': typeof BlogAiVideoMarketingTorontoRoute
   '/blog/social-media-marketing-agency-toronto': typeof BlogSocialMediaMarketingAgencyTorontoRoute
   '/blog/social-media-marketing-cost-toronto': typeof BlogSocialMediaMarketingCostTorontoRoute
@@ -243,6 +270,7 @@ export interface FileRoutesByFullPath {
   '/brand-room/workbook': typeof BrandRoomWorkbookRoute
   '/checkout/success': typeof CheckoutSuccessRoute
   '/checkout/$product': typeof CheckoutProductRoute
+  '/setup/form': typeof SetupFormRoute
   '/stanstore/ai-prompt-kit': typeof StanstoreAiPromptKitRoute
   '/stanstore/brand-kit': typeof StanstoreBrandKitRoute
   '/stanstore/workbook': typeof StanstoreWorkbookRoute
@@ -256,18 +284,21 @@ export interface FileRoutesByTo {
   '/careers': typeof CareersRoute
   '/foundation': typeof FoundationRoute
   '/get-started': typeof GetStartedRoute
+  '/kickoff': typeof KickoffRoute
   '/onboarding': typeof OnboardingRoute
   '/playbook': typeof PlaybookRoute
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
   '/refund-policy': typeof RefundPolicyRoute
   '/services': typeof ServicesRoute
+  '/setup': typeof SetupRoute
   '/society': typeof SocietyRoute
   '/software': typeof SoftwareRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/vault': typeof VaultRoute
+  '/welcome': typeof WelcomeRoute
   '/blog/ai-video-marketing-toronto': typeof BlogAiVideoMarketingTorontoRoute
   '/blog/social-media-marketing-agency-toronto': typeof BlogSocialMediaMarketingAgencyTorontoRoute
   '/blog/social-media-marketing-cost-toronto': typeof BlogSocialMediaMarketingCostTorontoRoute
@@ -278,6 +309,7 @@ export interface FileRoutesByTo {
   '/brand-room/workbook': typeof BrandRoomWorkbookRoute
   '/checkout/success': typeof CheckoutSuccessRoute
   '/checkout/$product': typeof CheckoutProductRoute
+  '/setup/form': typeof SetupFormRoute
   '/stanstore/ai-prompt-kit': typeof StanstoreAiPromptKitRoute
   '/stanstore/brand-kit': typeof StanstoreBrandKitRoute
   '/stanstore/workbook': typeof StanstoreWorkbookRoute
@@ -292,18 +324,21 @@ export interface FileRoutesById {
   '/careers': typeof CareersRoute
   '/foundation': typeof FoundationRoute
   '/get-started': typeof GetStartedRoute
+  '/kickoff': typeof KickoffRoute
   '/onboarding': typeof OnboardingRoute
   '/playbook': typeof PlaybookRoute
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
   '/refund-policy': typeof RefundPolicyRoute
   '/services': typeof ServicesRoute
+  '/setup': typeof SetupRoute
   '/society': typeof SocietyRoute
   '/software': typeof SoftwareRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/vault': typeof VaultRoute
+  '/welcome': typeof WelcomeRoute
   '/blog_/ai-video-marketing-toronto': typeof BlogAiVideoMarketingTorontoRoute
   '/blog_/social-media-marketing-agency-toronto': typeof BlogSocialMediaMarketingAgencyTorontoRoute
   '/blog_/social-media-marketing-cost-toronto': typeof BlogSocialMediaMarketingCostTorontoRoute
@@ -314,6 +349,7 @@ export interface FileRoutesById {
   '/brand-room_/workbook': typeof BrandRoomWorkbookRoute
   '/checkout/success': typeof CheckoutSuccessRoute
   '/checkout_/$product': typeof CheckoutProductRoute
+  '/setup_/form': typeof SetupFormRoute
   '/stanstore_/ai-prompt-kit': typeof StanstoreAiPromptKitRoute
   '/stanstore_/brand-kit': typeof StanstoreBrandKitRoute
   '/stanstore_/workbook': typeof StanstoreWorkbookRoute
@@ -329,18 +365,21 @@ export interface FileRouteTypes {
     | '/careers'
     | '/foundation'
     | '/get-started'
+    | '/kickoff'
     | '/onboarding'
     | '/playbook'
     | '/privacy'
     | '/quiz'
     | '/refund-policy'
     | '/services'
+    | '/setup'
     | '/society'
     | '/software'
     | '/support'
     | '/terms'
     | '/thank-you'
     | '/vault'
+    | '/welcome'
     | '/blog/ai-video-marketing-toronto'
     | '/blog/social-media-marketing-agency-toronto'
     | '/blog/social-media-marketing-cost-toronto'
@@ -351,6 +390,7 @@ export interface FileRouteTypes {
     | '/brand-room/workbook'
     | '/checkout/success'
     | '/checkout/$product'
+    | '/setup/form'
     | '/stanstore/ai-prompt-kit'
     | '/stanstore/brand-kit'
     | '/stanstore/workbook'
@@ -364,18 +404,21 @@ export interface FileRouteTypes {
     | '/careers'
     | '/foundation'
     | '/get-started'
+    | '/kickoff'
     | '/onboarding'
     | '/playbook'
     | '/privacy'
     | '/quiz'
     | '/refund-policy'
     | '/services'
+    | '/setup'
     | '/society'
     | '/software'
     | '/support'
     | '/terms'
     | '/thank-you'
     | '/vault'
+    | '/welcome'
     | '/blog/ai-video-marketing-toronto'
     | '/blog/social-media-marketing-agency-toronto'
     | '/blog/social-media-marketing-cost-toronto'
@@ -386,6 +429,7 @@ export interface FileRouteTypes {
     | '/brand-room/workbook'
     | '/checkout/success'
     | '/checkout/$product'
+    | '/setup/form'
     | '/stanstore/ai-prompt-kit'
     | '/stanstore/brand-kit'
     | '/stanstore/workbook'
@@ -399,18 +443,21 @@ export interface FileRouteTypes {
     | '/careers'
     | '/foundation'
     | '/get-started'
+    | '/kickoff'
     | '/onboarding'
     | '/playbook'
     | '/privacy'
     | '/quiz'
     | '/refund-policy'
     | '/services'
+    | '/setup'
     | '/society'
     | '/software'
     | '/support'
     | '/terms'
     | '/thank-you'
     | '/vault'
+    | '/welcome'
     | '/blog_/ai-video-marketing-toronto'
     | '/blog_/social-media-marketing-agency-toronto'
     | '/blog_/social-media-marketing-cost-toronto'
@@ -421,6 +468,7 @@ export interface FileRouteTypes {
     | '/brand-room_/workbook'
     | '/checkout/success'
     | '/checkout_/$product'
+    | '/setup_/form'
     | '/stanstore_/ai-prompt-kit'
     | '/stanstore_/brand-kit'
     | '/stanstore_/workbook'
@@ -435,18 +483,21 @@ export interface RootRouteChildren {
   CareersRoute: typeof CareersRoute
   FoundationRoute: typeof FoundationRoute
   GetStartedRoute: typeof GetStartedRoute
+  KickoffRoute: typeof KickoffRoute
   OnboardingRoute: typeof OnboardingRoute
   PlaybookRoute: typeof PlaybookRoute
   PrivacyRoute: typeof PrivacyRoute
   QuizRoute: typeof QuizRoute
   RefundPolicyRoute: typeof RefundPolicyRoute
   ServicesRoute: typeof ServicesRoute
+  SetupRoute: typeof SetupRoute
   SocietyRoute: typeof SocietyRoute
   SoftwareRoute: typeof SoftwareRoute
   SupportRoute: typeof SupportRoute
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
   VaultRoute: typeof VaultRoute
+  WelcomeRoute: typeof WelcomeRoute
   BlogAiVideoMarketingTorontoRoute: typeof BlogAiVideoMarketingTorontoRoute
   BlogSocialMediaMarketingAgencyTorontoRoute: typeof BlogSocialMediaMarketingAgencyTorontoRoute
   BlogSocialMediaMarketingCostTorontoRoute: typeof BlogSocialMediaMarketingCostTorontoRoute
@@ -457,6 +508,7 @@ export interface RootRouteChildren {
   BrandRoomWorkbookRoute: typeof BrandRoomWorkbookRoute
   CheckoutSuccessRoute: typeof CheckoutSuccessRoute
   CheckoutProductRoute: typeof CheckoutProductRoute
+  SetupFormRoute: typeof SetupFormRoute
   StanstoreAiPromptKitRoute: typeof StanstoreAiPromptKitRoute
   StanstoreBrandKitRoute: typeof StanstoreBrandKitRoute
   StanstoreWorkbookRoute: typeof StanstoreWorkbookRoute
@@ -465,6 +517,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/welcome': {
+      id: '/welcome'
+      path: '/welcome'
+      fullPath: '/welcome'
+      preLoaderRoute: typeof WelcomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/vault': {
       id: '/vault'
       path: '/vault'
@@ -507,6 +566,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SocietyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/setup': {
+      id: '/setup'
+      path: '/setup'
+      fullPath: '/setup'
+      preLoaderRoute: typeof SetupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services': {
       id: '/services'
       path: '/services'
@@ -547,6 +613,13 @@ declare module '@tanstack/react-router' {
       path: '/onboarding'
       fullPath: '/onboarding'
       preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kickoff': {
+      id: '/kickoff'
+      path: '/kickoff'
+      fullPath: '/kickoff'
+      preLoaderRoute: typeof KickoffRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/get-started': {
@@ -624,6 +697,13 @@ declare module '@tanstack/react-router' {
       path: '/stanstore/ai-prompt-kit'
       fullPath: '/stanstore/ai-prompt-kit'
       preLoaderRoute: typeof StanstoreAiPromptKitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/setup_/form': {
+      id: '/setup_/form'
+      path: '/setup/form'
+      fullPath: '/setup/form'
+      preLoaderRoute: typeof SetupFormRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/checkout_/$product': {
@@ -707,18 +787,21 @@ const rootRouteChildren: RootRouteChildren = {
   CareersRoute: CareersRoute,
   FoundationRoute: FoundationRoute,
   GetStartedRoute: GetStartedRoute,
+  KickoffRoute: KickoffRoute,
   OnboardingRoute: OnboardingRoute,
   PlaybookRoute: PlaybookRoute,
   PrivacyRoute: PrivacyRoute,
   QuizRoute: QuizRoute,
   RefundPolicyRoute: RefundPolicyRoute,
   ServicesRoute: ServicesRoute,
+  SetupRoute: SetupRoute,
   SocietyRoute: SocietyRoute,
   SoftwareRoute: SoftwareRoute,
   SupportRoute: SupportRoute,
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
   VaultRoute: VaultRoute,
+  WelcomeRoute: WelcomeRoute,
   BlogAiVideoMarketingTorontoRoute: BlogAiVideoMarketingTorontoRoute,
   BlogSocialMediaMarketingAgencyTorontoRoute:
     BlogSocialMediaMarketingAgencyTorontoRoute,
@@ -732,6 +815,7 @@ const rootRouteChildren: RootRouteChildren = {
   BrandRoomWorkbookRoute: BrandRoomWorkbookRoute,
   CheckoutSuccessRoute: CheckoutSuccessRoute,
   CheckoutProductRoute: CheckoutProductRoute,
+  SetupFormRoute: SetupFormRoute,
   StanstoreAiPromptKitRoute: StanstoreAiPromptKitRoute,
   StanstoreBrandKitRoute: StanstoreBrandKitRoute,
   StanstoreWorkbookRoute: StanstoreWorkbookRoute,
