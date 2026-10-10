@@ -302,7 +302,7 @@ function LaunchHero() {
         style={{ backgroundImage: `url(${bgImage})`, backgroundSize: "cover", backgroundPosition: "center" }}
       />
       <div aria-hidden className="aurora absolute inset-0 pointer-events-none" />
-      <span aria-hidden className="sparkle-drift" style={{ top: "18%", left: "6%", fontSize: "16px" }}>✦</span>
+      <span aria-hidden className="sparkle-drift" style={{ top: "14%", left: "46%", fontSize: "16px" }}>✦</span>
       <span aria-hidden className="sparkle-drift" style={{ top: "62%", left: "44%", fontSize: "12px", animationDelay: "1.6s" }}>✦</span>
       <span aria-hidden className="sparkle-drift" style={{ bottom: "14%", left: "12%", fontSize: "11px", animationDelay: "3s" }}>✦</span>
       <div aria-hidden className="absolute inset-0 pointer-events-none" style={{ background: "rgba(247,228,223,0.4)" }} />
@@ -330,11 +330,8 @@ function LaunchHero() {
             <span style={{ fontSize: "0.55rem" }}>✦</span>
           </div>
 
-          <div className="mt-4 flex justify-center text-[var(--gold)] lg:justify-start">
-            <span className="float-slow inline-flex"><img src={archMark} alt="" className="h-10 w-7" /></span>
-          </div>
-          <h1 className="mt-3" aria-label="Turn your social media into booked appointments">
-            <span aria-hidden className="block italic leading-none" style={{ fontFamily: "Allura, cursive", fontSize: "clamp(2.3rem, 4.8vw, 3.4rem)", textTransform: "lowercase", color: "var(--gold-deep)" }}>turn your social media into</span>
+          <h1 className="mt-5" aria-label="Turn your social media into booked appointments">
+            <span aria-hidden className="flex flex-col items-center justify-center gap-1 lg:flex-row lg:gap-3 lg:justify-start"><span className="float-slow inline-flex shrink-0"><img src={archMark} alt="" className="h-12 w-8" /></span><span aria-hidden className="italic leading-none" style={{ fontFamily: "Allura, cursive", fontSize: "clamp(1.85rem, 4.8vw, 3.4rem)", textTransform: "lowercase", color: "var(--gold-deep)" }}>turn your social media into</span></span>
             <span aria-hidden className="mt-2 block font-normal leading-[0.98] tracking-[0.04em] text-[var(--rose)]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.15rem, 8.4vw, 4.9rem)", fontWeight: 400 }}>BOOKED<br />APPOINTMENTS</span>
             <span aria-hidden className="mt-3 block text-[15px] uppercase tracking-luxe text-[var(--gold-deep)]" style={{ fontFamily: "Jost, sans-serif" }}>done for you</span>
           </h1>
