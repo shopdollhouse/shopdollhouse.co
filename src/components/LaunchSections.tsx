@@ -1076,6 +1076,121 @@ function StyleViewer({ item, format, saved, onToggleSaved, onClose }: { item: Ex
   );
 }
 
+/* ─── Real sample posts ───────────────────────────────── */
+const SAMPLE_URLS = import.meta.glob("../assets/samples/*.jpg", { eager: true, query: "?url", import: "default" }) as Record<string, string>;
+const sample = (name: string) => SAMPLE_URLS[`../assets/samples/${name}.jpg`];
+
+type SamplePost = { title: string; note: string; slides: string[] };
+const SAMPLE_SINGLES: SamplePost[] = [
+  { title: "Founder note", note: "A personal message that builds trust.", slides: [sample("s1-founder")] },
+  { title: "Save-worthy checklist", note: "Useful tips people save and share.", slides: [sample("s5-checklist")] },
+  { title: "Question post", note: "A prompt that gets people commenting.", slides: [sample("s3-question")] },
+  { title: "Offer post", note: "Your service and price, made clear.", slides: [sample("s6-pink-offer")] },
+  { title: "Bold quote", note: "One strong line that stops the scroll.", slides: [sample("s4-quote")] },
+  { title: "Reminder post", note: "Short, pretty and easy to share.", slides: [sample("s7-save")] },
+];
+const SAMPLE_CAROUSELS: SamplePost[] = [
+  { title: "The 3 reasons carousel", note: "A 6-slide story that ends with a clear next step.", slides: ["c1-01-cover", "c1-02", "c1-03", "c1-04", "c1-05", "c1-06-cta"].map(sample) },
+  { title: "The 3 myths carousel", note: "A 5-slide swipe post that answers common doubts.", slides: ["c2-01-cover", "c2-02", "c2-03", "c2-04", "c2-05-cta"].map(sample) },
+];
+
+function SampleViewer({ post, onClose }: { post: SamplePost; onClose: () => void }) {
+  const [i, setI] = useState(0);
+  const touchX = useRef<number | null>(null);
+  const n = post.slides.length;
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight") setI((v) => Math.min(n - 1, v + 1));
+      if (e.key === "ArrowLeft") setI((v) => Math.max(0, v - 1));
+    };
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [onClose, n]);
+  const btn = (disabled: boolean, filled: boolean) => ({ fontFamily: LUXE, fontWeight: 700, opacity: disabled ? 0.4 : 1, background: filled ? "var(--ink)" : "transparent", color: filled ? "var(--cream)" : "var(--ink)", border: "1.5px solid var(--ink)" });
+  return createPortal(
+    <div style={{ ["--gold" as string]: "#c6b282", ["--ink" as string]: "#1f110b", ["--cream" as string]: "oklch(0.97 0.012 60)" }}>
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label={post.title}
+        className="fixed inset-0 z-[70] flex items-center justify-center p-3 sm:p-6"
+        style={{ background: "rgba(16,8,5,0.78)", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)" }}
+        onMouseDown={(e) => e.target === e.currentTarget && onClose()}
+      >
+        <div className="relative flex max-h-[96vh] w-full max-w-md flex-col items-center overflow-y-auto rounded-[16px] p-4" style={{ background: "#fffaf6", border: "1px solid color-mix(in oklab, var(--gold) 45%, transparent)" }}>
+          <button type="button" aria-label="Close" onClick={onClose} className="absolute right-3 top-3 z-20 flex h-10 w-10 items-center justify-center rounded-full text-[var(--cream)]" style={{ background: "var(--ink)" }}>
+            <X className="h-5 w-5" />
+          </button>
+          <p className="mt-1 text-center text-[var(--ink)]" style={{ fontFamily: DISPLAY, fontSize: "1.5rem", fontWeight: 500 }}>{post.title}</p>
+          <div
+            className="relative mt-3 w-full select-none overflow-hidden rounded-[12px]"
+            style={{ touchAction: "pan-y", boxShadow: "0 24px 50px -24px rgba(31,17,11,0.55)" }}
+            onTouchStart={(e) => { touchX.current = e.touches[0].clientX; }}
+            onTouchEnd={(e) => {
+              if (touchX.current === null) return;
+              const dx = e.changedTouches[0].clientX - touchX.current;
+              touchX.current = null;
+              if (dx < -40) setI((v) => Math.min(n - 1, v + 1));
+              if (dx > 40) setI((v) => Math.max(0, v - 1));
+            }}
+          >
+            <img src={post.slides[i]} alt={`${post.title}, slide ${i + 1} of ${n}`} className="block w-full" style={{ aspectRatio: "4 / 5" }} />
+          </div>
+          {n > 1 && (
+            <div className="mt-4 w-full">
+              <div className="flex items-center justify-between gap-3">
+                <button type="button" onClick={() => setI((v) => Math.max(0, v - 1))} disabled={i === 0} className="inline-flex items-center gap-1.5 rounded-xl px-4 py-2.5 text-[12px]" style={btn(i === 0, false)}><ChevronLeft className="h-4 w-4" /> Back</button>
+                <p style={{ fontFamily: BODY, fontWeight: 700, fontSize: "0.9rem", color: "var(--ink)" }}>{i + 1} of {n}</p>
+                <button type="button" onClick={() => setI((v) => Math.min(n - 1, v + 1))} disabled={i === n - 1} className="inline-flex items-center gap-1.5 rounded-xl px-4 py-2.5 text-[12px]" style={btn(i === n - 1, true)}>Next <ChevronRight className="h-4 w-4" /></button>
+              </div>
+              <div className="mt-3 flex items-center justify-center gap-2.5">
+                {post.slides.map((_, k) => (
+                  <button key={k} type="button" aria-label={`Go to slide ${k + 1}`} onClick={() => setI(k)} className="h-2.5 rounded-full transition-all" style={{ width: k === i ? 30 : 10, background: k === i ? "var(--gold)" : "rgba(31,17,11,0.18)" }} />
+                ))}
+              </div>
+            </div>
+          )}
+          <p className="mt-3 mb-1 text-center text-[var(--ink)]/50" style={{ fontFamily: BODY, fontSize: "0.78rem" }}>Sample post. Yours will carry your own brand and message.</p>
+        </div>
+      </div>
+    </div>,
+    document.body,
+  );
+}
+
+function SampleGallery({ format }: { format: "single" | "carousel" }) {
+  const [open, setOpen] = useState<SamplePost | null>(null);
+  const posts = format === "carousel" ? SAMPLE_CAROUSELS : SAMPLE_SINGLES;
+  return (
+    <div className="mx-auto mt-10 max-w-6xl">
+      <p className="text-center text-[var(--gold-deep)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>Sample posts</p>
+      <div className={`mt-5 grid gap-5 ${format === "carousel" ? "mx-auto max-w-3xl sm:grid-cols-2" : "grid-cols-2 lg:grid-cols-3"}`}>
+        {posts.map((p) => (
+          <button key={p.title} type="button" onClick={() => setOpen(p)} aria-label={`View ${p.title}`} className="group block overflow-hidden rounded-[8px] text-left transition-transform hover:-translate-y-1" style={card}>
+            <div className="relative">
+              <img src={p.slides[0]} alt={p.title} loading="lazy" className="block w-full" style={{ aspectRatio: "4 / 5", objectFit: "cover" }} />
+              <span className="absolute right-3 top-3 rounded-full px-2.5 py-1 text-[8px] tracking-luxe uppercase" style={{ fontFamily: LUXE, background: "rgba(20,10,6,0.72)", color: "#fff" }}>
+                {p.slides.length > 1 ? `${p.slides.length} slides · tap to view` : "Tap to enlarge"}
+              </span>
+            </div>
+            <div className="px-5 py-4">
+              <h4 className="text-[var(--ink)] uppercase" style={{ fontFamily: LUXE, fontSize: "0.74rem", letterSpacing: "0.12em", fontWeight: 600 }}>{p.title}</h4>
+              <p className="mt-1.5 text-[var(--ink)]/60 leading-6" style={{ fontFamily: BODY, fontSize: "0.84rem" }}>{p.note}</p>
+            </div>
+          </button>
+        ))}
+      </div>
+      {open && <SampleViewer key={open.title} post={open} onClose={() => setOpen(null)} />}
+    </div>
+  );
+}
+
 export function LaunchExamples() {
   const [format, setFormat] = useState<"single" | "carousel">("single");
   const [filter, setFilter] = useState<"all" | "you" | "graphic">("all");
@@ -1120,7 +1235,10 @@ export function LaunchExamples() {
         </p>
       </div>
 
-      <div className="mx-auto mt-10 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <SampleGallery format={format} />
+
+      <p className="mx-auto mt-16 text-center text-[var(--gold-deep)] text-[10px] tracking-luxe uppercase" style={{ fontFamily: LUXE }}>More styles we can create</p>
+      <div className="mx-auto mt-5 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((it) => (
           <ExampleTile key={`${it.style.name}-${it.hook}`} item={it} format={format} saved={favs.includes(it.style.name)} onOpen={() => setOpen(it)} />
         ))}
