@@ -108,7 +108,7 @@ export const LEAD_WEBHOOK_URL = "";
  * Set the payment link's success redirect to https://www.shopdollhouse.co/welcome
  */
 /** Paste your booking calendar embed URL here (GoHighLevel calendar widget link). Empty shows an "email to schedule" button. */
-export const KICKOFF_CALENDAR_URL = "https://api.leadconnectorhq.com/widget/booking/EtYxCAQVGqTIJMuxlmx6";
+export const KICKOFF_CALENDAR_URL = "https://api.leadconnectorhq.com/widget/booking/9mOtVmE8ihxgAX2AMzge";
 /** Paste your DOLLHOUSE account login URL here. Empty shows "we will email your login". */
 export const ACCOUNT_LOGIN_URL = "";
 /** Optional webhook that receives the onboarding form answers. Empty opens a pre-filled email to SUPPORT_EMAIL instead. */
