@@ -830,12 +830,12 @@ type StyleDef = {
 const STYLE_DEFS: StyleDef[] = [
   {
     name: "Expert desk notes",
-    desc: "Practical, handwritten-style advice shared by you, the professional.",
-    best: "Helping people recognize you and understand your expertise, with a consistent look and plenty of variety.",
+    desc: "Practical, handwritten-style tips shared by you, the pro.",
+    best: "Helping homeowners recognize you and trust your expertise, with a consistent look and plenty of variety.",
     category: "you",
     tone: "cream",
-    hooks: ["The one thing I check before every appointment.", "The question customers ask us most, answered."],
-    middle: ["Most people skip it, and it only takes a couple of minutes.", "Skipping it is how small problems turn into big ones.", "So we check it every single time."],
+    hooks: ["The one thing I check before every furnace tune-up.", "The mistake I see in every other home."],
+    middle: ["The air filter is the first thing I look at.", "A clogged one makes your system work twice as hard.", "Check it every month in winter."],
   },
   {
     name: "Bold brand graphics",
@@ -843,44 +843,53 @@ const STYLE_DEFS: StyleDef[] = [
     best: "Stopping the scroll with a strong headline, ideal for offers, reminders and the questions you hear most.",
     category: "graphic",
     tone: "ink",
-    hooks: ["Booked out this week? Here is how.", "Questions we hear every week."],
-    middle: ["Know what you need.", "Know what it costs.", "Know who to call."],
+    hooks: ["Need it fixed this week? Here is how.", "Questions we hear every week."],
+    middle: ["Know what is wrong.", "Know what it costs.", "Know who to call."],
   },
   {
     name: "Photo caption stories",
-    desc: "Casual photos with captions that tell a story and share something useful.",
-    best: "Building trust with real moments from your business, so people feel like they already know you.",
+    desc: "Candid job-site photos with captions that tell a story and share something useful.",
+    best: "Building trust with real moments from your work, so homeowners feel like they already know you.",
     category: "you",
     tone: "blush",
-    hooks: ["Why this customer came back three times.", "A look behind the scenes at what we do."],
-    middle: ["It started with a simple question in the comments.", "We listened, explained the options and kept it honest.", "That is how a first booking becomes a regular."],
+    hooks: ["Why this homeowner called us back three times.", "A look behind the scenes at what we do."],
+    middle: ["It started with a dripping kitchen tap.", "We fixed it and showed them how to spot the next leak.", "Now we take care of the whole house."],
   },
   {
     name: "Whiteboard lessons",
     desc: "Clear, teachable explanations that make your service easy to understand.",
-    best: "Explaining how your service works step by step, so customers feel confident booking.",
+    best: "Explaining how a quote or a job works step by step, so homeowners feel confident booking.",
     category: "graphic",
     tone: "cream",
-    hooks: ["What actually goes into a fair quote.", "How the process works, step by step."],
-    middle: ["Step 1: Tell us what you need.", "Step 2: We explain the options and the price.", "Step 3: You book the time that suits you."],
+    hooks: ["What actually goes into a fair roofing quote.", "How the process works, step by step."],
+    middle: ["Step 1: We inspect your roof.", "Step 2: We explain the options and the price.", "Step 3: You pick a date that suits you."],
+  },
+  {
+    name: "Before & after posts",
+    desc: "Photo transformations that show the work and the result at a glance.",
+    best: "Showing the result of your work, a favorite format for home services because the proof is right there in the image.",
+    category: "graphic",
+    tone: "blush",
+    hooks: ["Before and after: one weekend, one deck.", "From tired to ready for summer."],
+    middle: ["The problem: a weathered deck.", "The fix: clean, sand and restain.", "The result: ready for summer."],
   },
   {
     name: "Chat-style posts",
     desc: "A message conversation that shows how fast you reply and how easy it is to book.",
-    best: "Showing customers what working with you feels like: a quick question, a fast answer and a booked appointment.",
+    best: "Showing homeowners what working with you feels like: a quick question, a fast answer and a booked appointment.",
     category: "graphic",
-    tone: "blush",
+    tone: "ink",
     hooks: ["A message comes in. We reply instantly.", "From question to booked in one chat."],
-    middle: ["A customer asks about an opening.", "You reply right away with the options.", "They pick a time and it is booked."],
+    middle: ["A homeowner asks about an opening.", "You reply right away with the options.", "They pick a time and it is booked."],
   },
   {
     name: "Everyday object posts",
     desc: "Everyday objects used to explain your work in a way people remember.",
-    best: "Making a simple idea memorable by tying it to something everyone already knows.",
+    best: "Making a simple idea memorable by tying it to something every homeowner already knows.",
     category: "graphic",
     tone: "blush",
-    hooks: ["What a coffee mug can teach you about maintenance.", "What a calendar can teach you about priorities."],
-    middle: ["Small things show you how something is cared for.", "The same goes for the way a business shows up.", "Consistency builds trust, one day at a time."],
+    hooks: ["What a furnace filter can teach you about maintenance.", "What a calendar can teach you about priorities."],
+    middle: ["A clean filter is easy to forget about.", "A dirty one makes your system work harder.", "Small habits prevent big repairs."],
   },
   {
     name: "Simple feed-style posts",
@@ -888,8 +897,8 @@ const STYLE_DEFS: StyleDef[] = [
     best: "Fitting naturally into the feed, so people read the whole post instead of scrolling past an ad.",
     category: "graphic",
     tone: "ink",
-    hooks: ["Three questions to ask before you hire anyone.", "What to know before you book anyone."],
-    middle: ["1. Ask what is included.", "2. Ask how long it takes.", "3. Ask what happens if something changes."],
+    hooks: ["Three questions to ask before you hire a contractor.", "What to know before you book anyone."],
+    middle: ["1. Ask if they are licensed and insured.", "2. Ask for the quote in writing.", "3. Ask how long the job will take."],
   },
 ];
 
@@ -1090,6 +1099,7 @@ const STYLE_KEYS: Record<string, string> = {
   "Everyday object posts": "object",
   "Bold brand graphics": "bold",
   "Chat-style posts": "chat",
+  "Before & after posts": "ba",
 };
 function styleSlides(name: string, format: "single" | "carousel"): string[] {
   const key = STYLE_KEYS[name];
@@ -1099,16 +1109,16 @@ function styleSlides(name: string, format: "single" | "carousel"): string[] {
 
 type SamplePost = { title: string; note: string; slides: string[] };
 const SAMPLE_SINGLES: SamplePost[] = [
-  { title: "Bold quote", note: "One strong line that stops the scroll.", slides: [sample("s4-quote")] },
-  { title: "Founder note", note: "A personal message that builds trust.", slides: [sample("s1-founder")] },
-  { title: "Save-worthy checklist", note: "Useful tips people save and share.", slides: [sample("s5-checklist")] },
-  { title: "Offer post", note: "Your service and price, made clear.", slides: [sample("s2-offer")] },
-  { title: "Question post", note: "A prompt that gets people commenting.", slides: [sample("s3-question")] },
-  { title: "Reminder post", note: "Short, pretty and easy to share.", slides: [sample("s7-save")] },
+  { title: "Bold quote", note: "One strong line that stops the scroll.", slides: [sample("hs-quote")] },
+  { title: "Meet the team", note: "Put a friendly face to your business.", slides: [sample("hs-meet")] },
+  { title: "Seasonal checklist", note: "Useful tips people save and share.", slides: [sample("hs-checklist")] },
+  { title: "Offer post", note: "Your service and next step, made clear.", slides: [sample("hs-offer")] },
+  { title: "Question post", note: "A prompt that gets people commenting.", slides: [sample("hs-question")] },
+  { title: "Seasonal reminder", note: "Timely and easy to share.", slides: [sample("hs-reminder")] },
 ];
 const SAMPLE_CAROUSELS: SamplePost[] = [
-  { title: "The 3 reasons carousel", note: "A 6-slide story that ends with a clear next step.", slides: ["c1-01-cover", "c1-02", "c1-03", "c1-04", "c1-05", "c1-06-cta"].map(sample) },
-  { title: "The 3 myths carousel", note: "A 5-slide swipe post that answers common doubts.", slides: ["c2-01-cover", "c2-02", "c2-03", "c2-04", "c2-05-cta"].map(sample) },
+  { title: "5 signs it is time to replace your roof", note: "A 6-slide guide that ends with a clear next step.", slides: [1, 2, 3, 4, 5, 6].map((n) => sample(`hc1-${n}`)) },
+  { title: "3 home maintenance myths", note: "A 5-slide swipe post that answers common doubts.", slides: [1, 2, 3, 4, 5].map((n) => sample(`hc2-${n}`)) },
 ];
 
 function SampleViewer({ post, onClose }: { post: SamplePost; onClose: () => void }) {

@@ -17,6 +17,7 @@ const STYLES = [
   { name: "Bold brand graphics", img: "bold-single" },
   { name: "Photo caption stories", img: "story-single" },
   { name: "Whiteboard lessons", img: "board-single" },
+  { name: "Before & after posts", img: "ba-single" },
   { name: "Chat-style posts", img: "chat-single" },
   { name: "Everyday object posts", img: "object-single" },
   { name: "Simple feed-style posts", img: "feed-single" },

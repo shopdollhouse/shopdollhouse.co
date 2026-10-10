@@ -61,7 +61,7 @@ export function MockPostFeed() {
           <Bookmark className="ml-auto h-5 w-5" />
         </div>
         <p className="px-3 pt-1.5" style={{ fontSize: "0.64rem", color: "#111" }}>Liked by <b>sarah.m</b> and others</p>
-        <p className="px-3 pt-0.5" style={{ fontSize: "0.64rem", color: "#111", lineHeight: 1.3 }}><b>yourbusiness</b> The one thing I check before every appointment.</p>
+        <p className="px-3 pt-0.5" style={{ fontSize: "0.64rem", color: "#111", lineHeight: 1.3 }}><b>yourbusiness</b> The one thing I check before every furnace tune-up.</p>
       </Peek>
       <Chip className="bottom-5 left-4" float="launch-float-slow"><span className="flex h-5 w-5 items-center justify-center rounded-full" style={{ background: GOLD, color: CHOC }}><Check className="h-3 w-3" strokeWidth={3} /></span><span><b>Posted</b><br /><span style={{ color: "#777" }}>Publishing daily</span></span></Chip>
     </>
@@ -177,8 +177,8 @@ export function MockPlanCarousel() {
           <p style={{ fontSize: "0.7rem", fontWeight: 700, color: "#111", lineHeight: 1.1 }}>yourbusiness<br /><span style={{ fontWeight: 400, color: "#777", fontSize: "0.58rem" }}>Your town</span></p>
         </div>
         <div className="relative aspect-square w-full overflow-hidden">
-          <img src={sampleImg("c1-01-cover")} alt="Carousel cover slide" className="absolute inset-0 block h-full w-full object-cover" />
-          <img src={sampleImg("c1-02")} alt="" className="absolute -right-6 bottom-4 top-4 block w-11 rounded-l-xl object-cover" />
+          <img src={sampleImg("hc1-1")} alt="Carousel cover slide" className="absolute inset-0 block h-full w-full object-cover" />
+          <img src={sampleImg("hc1-2")} alt="" className="absolute -right-6 bottom-4 top-4 block w-11 rounded-l-xl object-cover" />
           <span className="absolute right-3 top-3 rounded-full px-2 py-0.5" style={{ background: "rgba(0,0,0,0.65)", color: "#fff", fontSize: "0.58rem", fontWeight: 600 }}>1/5</span>
         </div>
         <div className="flex items-center gap-3 px-3 pt-2" style={{ color: "#111" }}>
