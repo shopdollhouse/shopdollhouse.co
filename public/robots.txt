@@ -4,5 +4,9 @@ Disallow: /playbook
 Disallow: /onboarding
 Disallow: /checkout
 Disallow: /thank-you
+Disallow: /get-started
+Disallow: /welcome
+Disallow: /kickoff
+Disallow: /setup
 
-Sitemap: https://shopdollhouse.co/sitemap.xml
+Sitemap: https://www.dollhouselaunch.com/sitemap.xml
