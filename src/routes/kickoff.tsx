@@ -39,7 +39,7 @@ function KickoffPage() {
           <RightHeading eyebrow="Step 2 of 3 · Kickoff call" title="Choose your time" sub="Pick a convenient time for your private 30-minute strategy session." />
           <div className="mt-6 overflow-hidden rounded-2xl" style={{ background: "#fff", border: "1px solid rgba(31,17,11,0.1)" }}>
             {KICKOFF_CALENDAR_URL ? (
-              <iframe src={KICKOFF_CALENDAR_URL} title="Book your kickoff call" className="block w-full border-0" style={{ height: "640px" }} />
+              <iframe src={KICKOFF_CALENDAR_URL} title="Book your kickoff call" className="block w-full border-0" style={{ height: "720px" }} />
             ) : (
               <div className="px-6 py-12 text-center">
                 <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full" style={{ background: "color-mix(in oklab, var(--gold) 20%, transparent)", color: "var(--gold-deep)" }}><CalendarCheck className="h-5 w-5" strokeWidth={1.6} /></span>
