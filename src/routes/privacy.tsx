@@ -78,8 +78,8 @@ function PrivacyPage() {
           </p>
           <p>
             You may opt out at any time by replying STOP to any message. After you reply STOP, we will send one confirmation message and stop sending you SMS messages. For help, reply HELP or email{" "}
-            <a href="mailto:hello@shopdollhouse.co" style={{ color: "var(--rose)", textDecoration: "underline" }}>
-              hello@shopdollhouse.co
+            <a href="mailto:hello@dollhouselaunch.com" style={{ color: "var(--rose)", textDecoration: "underline" }}>
+              hello@dollhouselaunch.com
             </a>
             .
           </p>
@@ -118,8 +118,8 @@ function PrivacyPage() {
           </p>
           <p>
             To ask us to access, correct or delete your personal information, or to opt out of marketing, email{" "}
-            <a href="mailto:hello@shopdollhouse.co" style={{ color: "var(--rose)", textDecoration: "underline" }}>
-              hello@shopdollhouse.co
+            <a href="mailto:hello@dollhouselaunch.com" style={{ color: "var(--rose)", textDecoration: "underline" }}>
+              hello@dollhouselaunch.com
             </a>
             . We will respond in accordance with applicable law.
           </p>
@@ -128,8 +128,8 @@ function PrivacyPage() {
         <Section title="Your Rights">
           <p>
             Depending on your location, you may have the right to access, correct, or delete the personal information we hold about you, withdraw consent, or opt out of marketing and SMS communications. To exercise any of these rights, contact us at{" "}
-            <a href="mailto:hello@shopdollhouse.co" style={{ color: "var(--rose)", textDecoration: "underline" }}>
-              hello@shopdollhouse.co
+            <a href="mailto:hello@dollhouselaunch.com" style={{ color: "var(--rose)", textDecoration: "underline" }}>
+              hello@dollhouselaunch.com
             </a>
             . We will respond in accordance with applicable law.
           </p>
@@ -139,8 +139,8 @@ function PrivacyPage() {
           <p>The Dollhouse Brand Studio</p>
           <p>Markham, ON, Canada</p>
           <p>
-            <a href="mailto:hello@shopdollhouse.co" style={{ color: "var(--rose)", textDecoration: "underline" }}>
-              hello@shopdollhouse.co
+            <a href="mailto:hello@dollhouselaunch.com" style={{ color: "var(--rose)", textDecoration: "underline" }}>
+              hello@dollhouselaunch.com
             </a>
           </p>
           <p>

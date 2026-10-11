@@ -30,7 +30,7 @@ export function checkoutHref(plan: LaunchPlanId = "single"): string {
   return `${CHECKOUT_PATH}?plan=${plan}`;
 }
 
-export const SUPPORT_EMAIL = "hello@shopdollhouse.co";
+export const SUPPORT_EMAIL = "hello@dollhouselaunch.com";
 
 /** Optional "see how it works" walkthrough video. Paste an embed URL (YouTube/Vimeo/etc.) to show it under the hero. */
 export const HERO_VIDEO_EMBED_URL =

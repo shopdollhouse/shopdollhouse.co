@@ -45,7 +45,7 @@ function RefundPolicyPage() {
 
         <Section title="How to request a refund">
           <p>
-            Email <a href="mailto:hello@shopdollhouse.co" className="text-[var(--rose)] underline">hello@shopdollhouse.co</a> from the address you used to order, within {GUARANTEE_DAYS} days of your first payment. We will confirm your request and process the refund to your original payment method. Your bank may take several business days to show it.
+            Email <a href="mailto:hello@dollhouselaunch.com" className="text-[var(--rose)] underline">hello@dollhouselaunch.com</a> from the address you used to order, within {GUARANTEE_DAYS} days of your first payment. We will confirm your request and process the refund to your original payment method. Your bank may take several business days to show it.
           </p>
         </Section>
 
@@ -63,7 +63,7 @@ function RefundPolicyPage() {
 
         <Section title="Questions">
           <p>
-            Write to <a href="mailto:hello@shopdollhouse.co" className="text-[var(--rose)] underline">hello@shopdollhouse.co</a> and we will get back to you.
+            Write to <a href="mailto:hello@dollhouselaunch.com" className="text-[var(--rose)] underline">hello@dollhouselaunch.com</a> and we will get back to you.
           </p>
         </Section>
       </div>

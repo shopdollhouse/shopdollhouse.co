@@ -24,9 +24,9 @@ function SetupPage() {
       key: "account",
       icon: KeyRound,
       title: "Finish your account setup",
-      text: ACCOUNT_LOGIN_URL ? "Log in to your DOLLHOUSE account and connect the social pages you want us to manage." : "We will email your DOLLHOUSE login. Then you connect the social pages you want us to manage.",
-      href: ACCOUNT_LOGIN_URL || `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent("Dollhouse Launch account login")}`,
-      cta: ACCOUNT_LOGIN_URL ? "Log in" : "Ask for my login",
+      text: ACCOUNT_LOGIN_URL ? "Log in to your DOLLHOUSE account and connect the social pages you want us to manage." : "Nothing to do yet. We will email your DOLLHOUSE login to the address you used at checkout, and then you connect the social pages you want us to manage.",
+      href: ACCOUNT_LOGIN_URL,
+      cta: ACCOUNT_LOGIN_URL ? "Log in" : "",
       external: !!ACCOUNT_LOGIN_URL,
     },
   ] as const;
@@ -65,15 +65,17 @@ function SetupPage() {
                       <span className="mt-1 block leading-6" style={{ fontFamily: BODY, fontSize: "0.84rem", color: "rgba(31,17,11,0.62)" }}>{text}</span>
                     </span>
                   </span>
-                  <a
-                    href={href}
-                    {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    onClick={() => key === "account" && store.set(FLOW_KEYS.account, "1")}
-                    className="inline-flex items-center justify-center gap-1.5 self-start rounded-full px-5 py-2.5 text-[10px] uppercase tracking-[0.16em]"
-                    style={{ fontFamily: LUXE, fontWeight: 700, background: "var(--ink)", color: "var(--cream)" }}
-                  >
-                    {cta} <ArrowRight className="h-3.5 w-3.5" />
-                  </a>
+                  {cta && (
+                    <a
+                      href={href}
+                      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                      onClick={() => key === "account" && store.set(FLOW_KEYS.account, "1")}
+                      className="inline-flex items-center justify-center gap-1.5 self-start rounded-full px-5 py-2.5 text-[10px] uppercase tracking-[0.16em]"
+                      style={{ fontFamily: LUXE, fontWeight: 700, background: "var(--ink)", color: "var(--cream)" }}
+                    >
+                      {cta} <ArrowRight className="h-3.5 w-3.5" />
+                    </a>
+                  )}
                 </li>
               );
             })}
